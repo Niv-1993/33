@@ -1,4 +1,4 @@
-package Bussiness;
+package BussinessLayer;
 //bar
 public class Truck {
 }
