@@ -2,12 +2,12 @@ package BussinessLayer;
 
 import java.util.Objects;
 
-public class shippingArea {
+public class ShippingArea {
 
     private  Area area;
 
-    public shippingArea(){ }
-    public shippingArea(Area are){ this.area=are;}
+    public ShippingArea(){ }
+    public ShippingArea(Area are){ this.area=are;}
 
     public Area getArea() { return area; }
 
@@ -17,7 +17,7 @@ public class shippingArea {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        shippingArea that = (shippingArea) o;
+        ShippingArea that = (ShippingArea) o;
         return area == that.area;
     }
 
