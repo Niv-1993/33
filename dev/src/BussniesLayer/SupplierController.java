@@ -13,6 +13,7 @@ public class SupplierController{
     public SupplierController(){
         suppliers = new Hashtable<Integer, SupplierCard>();
         numOfItems = 0;
+        numOfOrders = 0;
     }
 
     public SupplierCard showSupplier(int supplierBN){
@@ -27,7 +28,6 @@ public class SupplierController{
     }
 
     public int showSupplierBN(String supplierName) {
-
     }
 
     public void updateSupplierPayWay(int supplierBN, String payWay) {
@@ -69,7 +69,7 @@ public class SupplierController{
     public void removeItem(int itemId) {
     }
 
-    public void removeItemFsromSupplier(int supplierBN, int itemId) {
+    public void removeItemFromSupplier(int supplierBN, int itemId) {
     }
 
     public void addOrder(int supplierBN) {

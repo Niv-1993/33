@@ -103,7 +103,7 @@ public class SupplierCard {
     }
 
     public void addSupplierAgreement(int minimalAmount, int discount, boolean constantTime, boolean shipToUs) {
-        SupplierAgreement SA = new SupplierAgreement(minimalAmount, discount, constantTime, shipToUs);
+        SupplierAgreement SA = new SupplierAgreement(supplierBN ,minimalAmount, discount, constantTime, shipToUs);
         supplierAgreement = SA;
     }
 
