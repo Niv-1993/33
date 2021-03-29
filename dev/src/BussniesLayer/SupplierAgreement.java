@@ -14,4 +14,16 @@ public class SupplierAgreement {
         this.constantTime = constantTime;
         this.shipToUs = shipToUs;
     }
+
+    public void updateMinimalAmountOfSA(int supplierBN, int minimalAmount) {
+    }
+
+    public void updateDiscountOfSA(int supplierBN, int discount) {
+    }
+
+    public void updateConstantTime(int supplierBN, boolean constantTime) {
+    }
+
+    public void updateShipToUs(int supplierBN, boolean shipToUs) {
+    }
 }

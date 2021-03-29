@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/ADSS_Group_B.iml" filepath="$PROJECT_DIR$/ADSS_Group_B.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/Project.iml" filepath="$PROJECT_DIR$/.idea/Project.iml" />
+>>>>>>> origin/206826539_212073696
     </modules>
   </component>
 </project>

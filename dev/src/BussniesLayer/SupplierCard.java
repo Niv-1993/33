@@ -1,9 +1,7 @@
 package BussniesLayer;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+
 
 public class SupplierCard {
     private int supplierBN;
@@ -28,35 +26,99 @@ public class SupplierCard {
         contactEmail = new Hashtable<String, String>();
     }
 
-    public int showSupplierBN(String supplierName){
+
+    public int showSupplierBN(String supplierName) {
+
     }
 
-    public void updateSupplierPayWay(int supplierBN, String payWay) {
+    public void updateSupplierPayWay(String payWay) {
     }
 
-    public void updateSupplierBankAccount(int supplierBN, int bankAccount) {
+    public void updateSupplierBankAccount(int bankAccount) {
     }
 
-    public void addContactPhone(int supplierBN, String phone, String name) {
+    public void addContactPhone(String phone, String name) {
     }
 
-    public void addContactEmail(int supplierBN, String email, String name) {
+    public void addContactEmail(String email, String name) {
     }
 
-    public void removeContactPhone(int supplierBN, String phone) {
+    public void removeContactPhone(String phone) {
     }
 
-    public void removeContactEmail(int supplierBN, String email) {
+    public void removeContactEmail(String email) {
     }
 
-    public void updateContactPhone(int supplierBN, String phone) {
+    public void updateContactPhone(String phone) {
     }
 
-    public void updateContactEmail(int supplierBN, String email) {
+    public void updateContactEmail(String email) {
     }
 
-    public void showAllItemsOfSupplier(int supplierBN) {
+
+    public void showAllItemsOfSupplier() {
     }
-    public void removeItemFromSupplier(int supplierBN, int itemId) {
+
+    public void addItem(String category) {
+    }
+
+    public void removeItemFsromSupplier(int itemId) {
+    }
+
+    public void addOrder() {
+    }
+
+    public void addItemToOrder(int orderId, int itemId) {
+    }
+
+    public void showOrderOfSupplier(int orderId) {
+    }
+
+    public void showAllOrdersOfSupplier() {
+    }
+
+    public void showTotalAmount(int orderId) {
+    }
+
+    public void showDeliverTime(int orderId) {
+    }
+
+    public void updateDeliverTime(int orderId, Date deliverTime) {
+    }
+
+    public void addQuantityDocument(int itemId, int minimalAmount, int discount) {
+
+    }
+
+    public void removeQuantityDocument(int itemId) {
+    }
+
+    public void showQuantityDocument(int itemId) {
+    }
+
+    public void updateMinimalAmountOfQD(int itemId, int minimalAmount) {
+    }
+
+    public void updateDiscountOfQD(int itemId, int discount) {
+    }
+
+    public void addSupplierAgreement(int minimalAmount, int discount, boolean constantTime, boolean shipToUs) {
+        SupplierAgreement SA = new SupplierAgreement(minimalAmount, discount, constantTime, shipToUs);
+        supplierAgreement = SA;
+    }
+
+    public void showSupplierAgreement() {
+    }
+
+    public void updateMinimalAmountOfSA(int minimalAmount) {
+    }
+
+    public void updateDiscountOfSA(int discount) {
+    }
+
+    public void updateConstantTime(boolean constantTime) {
+    }
+
+    public void updateShipToUs(boolean shipToUs) {
     }
 }
