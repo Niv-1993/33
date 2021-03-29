@@ -1,3 +1,4 @@
+package BusinessLayer.Fcade;
 public class Response {
     public String error;
     public boolean isError=false;
@@ -6,6 +7,7 @@ public class Response {
         this.error = error;
         isError=true;
     }
+    public Response(){}
 
     public String getError() {
         return error;
@@ -15,4 +17,3 @@ public class Response {
         return isError;
     }
 }
-
