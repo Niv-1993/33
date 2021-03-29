@@ -126,8 +126,7 @@ public class SupplierCard {
     public void addQuantityDocument(int itemId, int minimalAmount, int discount) {
         for (Item i : items) {
             if (i.getItemId() == itemId) {
-                i.addQuantityDocument(supplierBN, itemId, minimalAmount, discount) {
-                }
+                i.addQuantityDocument(supplierBN, itemId, minimalAmount, discount);
             }
         }
     }
