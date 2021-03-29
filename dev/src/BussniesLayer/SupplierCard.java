@@ -32,43 +32,68 @@ public class SupplierCard {
     }
 
     public void updateSupplierPayWay(String payWay) {
+        this.payWay = payWay;
     }
 
     public void updateSupplierBankAccount(int bankAccount) {
+        this.accountNumber = accountNumber;
     }
 
     public void addContactPhone(String phone, String name) {
+        contactPhone.put(phone, name);
     }
 
     public void addContactEmail(String email, String name) {
+        contactEmail.put(email, name);
     }
 
     public void removeContactPhone(String phone) {
+        contactPhone.remove(phone);
     }
 
     public void removeContactEmail(String email) {
+        contactPhone.remove(email);
     }
 
     public void updateContactPhone(String phone) {
+        String name = contactPhone.get(phone);
+        removeContactPhone(phone);
+        addContactPhone(phone , name);
     }
 
     public void updateContactEmail(String email) {
+        String name = contactEmail.get(email);
+        removeContactPhone(email);
+        addContactPhone(email , name);
     }
 
 
     public void showAllItemsOfSupplier() {
     }
 
-    public void addItem(String category) {
+    public void addItem(String category, int ItemId) {
+        Item newItem = new BussniesLayer.Item(supplierBN,category, ItemId);
+        items.add(newItem);
     }
 
-    public void removeItemFsromSupplier(int itemId) {
+    public void removeItemFromSupplier(int itemId) {
+        for (Item i : items) {
+            if (i.getItemId = itemId) {
+                items.remove(i);
+            }
+        }
     }
 
     public void addOrder() {
+
     }
 
     public void addItemToOrder(int orderId, int itemId) {
+        for (Order o : orders) {
+            if (o.getOrderId = orderId) {
+               orders.removeItem(itemId);
+            }
+        }
     }
 
     public void showOrderOfSupplier(int orderId) {
@@ -84,22 +109,47 @@ public class SupplierCard {
     }
 
     public void updateDeliverTime(int orderId, Date deliverTime) {
+        for (Order o : orders) {
+            if (o.getOrderId = orderId) {
+                o.updateDeliverTime(deliverTime)
+            }
+        }
     }
 
     public void addQuantityDocument(int itemId, int minimalAmount, int discount) {
-
+        for (Item i : items) {
+            if (i.getItemId = itemId) {
+                i.addQuantityDocument(supplierBN, itemId, minimalAmount, discount) {
+                }
+            }
+        }
     }
 
     public void removeQuantityDocument(int itemId) {
+        for (Item i : items) {
+            if (i.getItemId = itemId) {
+                i.removeQuantityDocument();
+            }
+        }
     }
 
     public void showQuantityDocument(int itemId) {
     }
 
     public void updateMinimalAmountOfQD(int itemId, int minimalAmount) {
+        for (Item i : items) {
+            if (i.getItemId = itemId) {
+                i.updateMinimalAmountOfQD(minimalAmount);
+            }
+        }
     }
 
     public void updateDiscountOfQD(int itemId, int discount) {
+        for (Item i : items) {
+            if (i.getItemId = itemId) {
+                i.updateDiscountOfQD(discount);
+            }
+        }
     }
 
     public void addSupplierAgreement(int minimalAmount, int discount, boolean constantTime, boolean shipToUs) {
@@ -111,14 +161,18 @@ public class SupplierCard {
     }
 
     public void updateMinimalAmountOfSA(int minimalAmount) {
+        supplierAgreement.updateMinimalAmountOfSA(minimalAmount);
     }
 
     public void updateDiscountOfSA(int discount) {
+        supplierAgreement.updateDiscountOfSA(discount);
     }
 
     public void updateConstantTime(boolean constantTime) {
+        supplierAgreement.updateConstantTime(constantTime);
     }
 
     public void updateShipToUs(boolean shipToUs) {
+        supplierAgreement.updateShipToUs(shipToUs);
     }
 }
