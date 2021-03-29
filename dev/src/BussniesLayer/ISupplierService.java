@@ -45,7 +45,7 @@ public interface ISupplierService {
     response updateMinimalAmountOfQD(int supplierBN , int itemId , int minimalAmount);
     response updateDiscountOfQD(int supplierBN , int itemId , int discount);
     response addSupplierAgreement(int supplierBN , int minimalAmount , int discount , boolean constantTime ,boolean shipToUs);
-    Tresponse<SupplierAgreement> addSupplierAgreement(int supplierBN);
+    Tresponse<SupplierAgreement> showSupplierAgreement(int supplierBN);
     response updateMinimalAmountOfSA(int supplierBN , int minimalAmount);
     response updateDiscountOfSA(int supplierBN , int discount);
     response updateConstantTime(int supplierBN , boolean constantTime);
