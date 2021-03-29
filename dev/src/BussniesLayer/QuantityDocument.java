@@ -12,4 +12,10 @@ public class QuantityDocument {
         this.minimalAmount = minimalAmount;
         this.discount = discount;
     }
+
+    public void updateMinimalAmountOfQD(int itemId, int minimalAmount) {
+    }
+
+    public void updateDiscountOfQD(int itemId, int discount) {
+    }
 }

@@ -8,6 +8,7 @@ import BussniesLayer.facade.outObjects.SupplierCard;
 public class SupplierController{
     private Dictionary<Integer ,SupplierCard> suppliers;
     private int numOfItems;
+    private int numOfOrders;
 
     public SupplierController(){
         suppliers = new Hashtable<Integer, SupplierCard>();

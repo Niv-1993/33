@@ -13,9 +13,19 @@ public class Item{
         quantityDocument = null;
     }
 
-    public void addItem(int supplierBN, String category) {
+    public void addQuantityDocument(int supplierBN, int itemId, int minimalAmount, int discount) {
     }
 
-    public void removeItem(int itemId) {
+    public void removeQuantityDocument(int supplierBN, int itemId) {
     }
+
+    public void showQuantityDocument(int supplierBN, int itemId) {
+    }
+
+    public void updateMinimalAmountOfQD(int supplierBN, int itemId, int minimalAmount) {
+    }
+
+    public void updateDiscountOfQD(int supplierBN, int itemId, int discount) {
+    }
+
 }

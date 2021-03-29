@@ -19,9 +19,15 @@ public class Order {
         this.deliverTime = deliverTime;
     }
 
-    public void addOrder(int supplierBN) {
+    public void addItemToOrder(int supplierBN, int orderId, int itemId) {
     }
 
-    public void addItemToOrder(int supplierBN, int orderId, int itemId) {
+    public void showTotalAmount(int supplierBN, int orderId) {
+    }
+
+    public void showDeliverTime(int supplierBN, int orderId) {
+    }
+
+    public void updateDeliverTime(int supplierBN, int orderId, Date deliverTime) {
     }
 }
