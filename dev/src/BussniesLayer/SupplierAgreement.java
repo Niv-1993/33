@@ -15,15 +15,15 @@ public class SupplierAgreement {
         this.shipToUs = shipToUs;
     }
 
-    public void updateMinimalAmountOfSA(int supplierBN, int minimalAmount) {
+    public void updateMinimalAmountOfSA(int minimalAmount) {
     }
 
-    public void updateDiscountOfSA(int supplierBN, int discount) {
+    public void updateDiscountOfSA(int discount) {
     }
 
-    public void updateConstantTime(int supplierBN, boolean constantTime) {
+    public void updateConstantTime(boolean constantTime) {
     }
 
-    public void updateShipToUs(int supplierBN, boolean shipToUs) {
+    public void updateShipToUs(boolean shipToUs) {
     }
 }

@@ -78,20 +78,27 @@ public class SupplierCard {
 
     public void removeItemFromSupplier(int itemId) {
         for (Item i : items) {
-            if (i.getItemId = itemId) {
+            if (i.getItemId() == itemId) {
                 items.remove(i);
             }
         }
     }
 
-    public void addOrder() {
-
+    public void addOrder(int orderID) {
+        Order order = new Order(orderID, supplierBN, 0, null);
+        orders.add(order);
     }
 
     public void addItemToOrder(int orderId, int itemId) {
+        Item toAdd = null;
+        for (Item i : items) {
+            if (i.getItemId() == itemId) {
+                toAdd = i;
+            }
+        }
         for (Order o : orders) {
-            if (o.getOrderId = orderId) {
-               orders.removeItem(itemId);
+            if (o.getOrderId() == orderId) {
+               o.addItem(toAdd);
             }
         }
     }
@@ -110,15 +117,15 @@ public class SupplierCard {
 
     public void updateDeliverTime(int orderId, Date deliverTime) {
         for (Order o : orders) {
-            if (o.getOrderId = orderId) {
-                o.updateDeliverTime(deliverTime)
+            if (o.getOrderId() == orderId) {
+                o.updateDeliverTime(deliverTime);
             }
         }
     }
 
     public void addQuantityDocument(int itemId, int minimalAmount, int discount) {
         for (Item i : items) {
-            if (i.getItemId = itemId) {
+            if (i.getItemId() == itemId) {
                 i.addQuantityDocument(supplierBN, itemId, minimalAmount, discount) {
                 }
             }
@@ -127,7 +134,7 @@ public class SupplierCard {
 
     public void removeQuantityDocument(int itemId) {
         for (Item i : items) {
-            if (i.getItemId = itemId) {
+            if (i.getItemId() == itemId) {
                 i.removeQuantityDocument();
             }
         }
@@ -138,7 +145,7 @@ public class SupplierCard {
 
     public void updateMinimalAmountOfQD(int itemId, int minimalAmount) {
         for (Item i : items) {
-            if (i.getItemId = itemId) {
+            if (i.getItemId() == itemId) {
                 i.updateMinimalAmountOfQD(minimalAmount);
             }
         }
@@ -146,7 +153,7 @@ public class SupplierCard {
 
     public void updateDiscountOfQD(int itemId, int discount) {
         for (Item i : items) {
-            if (i.getItemId = itemId) {
+            if (i.getItemId() == itemId) {
                 i.updateDiscountOfQD(discount);
             }
         }
