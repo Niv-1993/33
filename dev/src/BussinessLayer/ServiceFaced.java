@@ -60,5 +60,14 @@ public class ServiceFaced {
         }
         return acc;
     }
+    public StringBuilder registerATruck(int id){
+        StringBuilder acc = new StringBuilder();
+        try{
+            acc.append(truckService.getTruck(id));
+        }catch(Exception e){
+            return acc.append(e.getMessage());
+        }
+        return acc;
+    }
 
 }
