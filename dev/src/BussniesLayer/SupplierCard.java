@@ -68,7 +68,8 @@ public class SupplierCard {
     }
 
 
-    public void showAllItemsOfSupplier() {
+    public List<Item> showAllItemsOfSupplier() {
+        return items;
     }
 
     public void addItem(String category, int ItemId , double price) {
@@ -103,16 +104,32 @@ public class SupplierCard {
         }
     }
 
-    public void showOrderOfSupplier(int orderId) {
+    public Order showOrderOfSupplier(int orderId) {
+        for (Order o : orders) {
+            if (o.getOrderId() == orderId)
+                return o;
+        }
+        return null;
     }
 
-    public void showAllOrdersOfSupplier() {
+    public List<Order> showAllOrdersOfSupplier() {
+        return orders;
     }
 
-    public void showTotalAmount(int orderId) {
+    public int showTotalAmount(int orderId) {
+        for (Order o : orders) {
+            if (o.getOrderId() == orderId)
+                return o.showTotalAmount();
+        }
+        return 0;
     }
 
-    public void showDeliverTime(int orderId) {
+    public Date showDeliverTime(int orderId) {
+        for (Order o : orders) {
+            if (o.getOrderId() == orderId)
+                return o.showDeliverTime();
+        }
+        return null;
     }
 
     public void updateDeliverTime(int orderId, Date deliverTime) {
@@ -139,7 +156,12 @@ public class SupplierCard {
         }
     }
 
-    public void showQuantityDocument(int itemId) {
+    public QuantityDocument showQuantityDocument(int itemId) {
+        for (Item i : items) {
+            if (i.getItemId() == itemId)
+                return i.showQuantityDocument();
+        }
+        return null;
     }
 
     public void updateMinimalAmountOfQD(int itemId, int minimalAmount) {
@@ -163,7 +185,8 @@ public class SupplierCard {
         supplierAgreement = SA;
     }
 
-    public void showSupplierAgreement() {
+    public SupplierAgreement showSupplierAgreement() {
+        return supplierAgreement;
     }
 
     public void updateMinimalAmountOfSA(int minimalAmount) {

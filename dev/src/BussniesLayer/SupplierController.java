@@ -1,9 +1,6 @@
 package BussniesLayer;
 
-import java.util.Date;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.Set;
+import java.util.*;
 
 import BussniesLayer.SupplierCard;
 
@@ -73,19 +70,30 @@ public class SupplierController{
         suppliers.get(supplierBN).updateContactEmail(email);
     }
 
-    public void showAllSuppliers() {
+    public List<SupplierCard> showAllSuppliers() {
+        List<SupplierCard> list = new LinkedList<>();
+        while (suppliers.elements().hasMoreElements()) {
+            list.add(suppliers.elements().nextElement());
+        }
+        return list;
     }
 
-    public void showAllItemsOfSupplier(int supplierBN) {
+    public List<Item> showAllItemsOfSupplier(int supplierBN) {
+        return suppliers.get(supplierBN).showAllItemsOfSupplier();
     }
 
-    public void showAllItems() {
+    public List<Item> showAllItems() {
+        List<Item> list = new LinkedList<>();
+        while (suppliers.elements().hasMoreElements()) {
+            List<Item> toAdd = suppliers.elements().nextElement().showAllItemsOfSupplier();
+            list.addAll(toAdd);
+        }
+        return list;
     }
 
     public void addItem(int supplierBN, String category ,double price) {
-        Item newItem = new Item(supplierBN, category, numOfItems , price);
+        suppliers.get(supplierBN).addItem(category, numOfItems , price);
         numOfItems++;
-        suppliers.get(supplierBN).addItem(category, newItem.getItemId() , price);
     }
 
     public void removeItem(int itemId) {
@@ -104,17 +112,20 @@ public class SupplierController{
         suppliers.get(supplierBN).addItemToOrder(orderId, itemId);
     }
 
-    public void showOrderOfSupplier(int supplierBN, int orderId) {
-        suppliers.get(supplierBN).showOrderOfSupplier(orderId);
+    public Order showOrderOfSupplier(int supplierBN, int orderId) {
+        return suppliers.get(supplierBN).showOrderOfSupplier(orderId);
     }
 
-    public void showAllOrdersOfSupplier(int supplierBN) {
+    public List<Order> showAllOrdersOfSupplier(int supplierBN) {
+        return suppliers.get(supplierBN).showAllOrdersOfSupplier();
     }
 
-    public void showTotalAmount(int supplierBN, int orderId) {
+    public int showTotalAmount(int supplierBN, int orderId) {
+        return suppliers.get(supplierBN).showTotalAmount(orderId);
     }
 
-    public void showDeliverTime(int supplierBN, int orderId) {
+    public Date showDeliverTime(int supplierBN, int orderId) {
+        return suppliers.get(supplierBN).showDeliverTime(orderId);
     }
 
     public void updateDeliverTime(int supplierBN, int orderId, Date deliverTime) {
@@ -130,7 +141,8 @@ public class SupplierController{
         suppliers.get(supplierBN).removeQuantityDocument(itemId);
     }
 
-    public void showQuantityDocument(int supplierBN, int itemId) {
+    public QuantityDocument showQuantityDocument(int supplierBN, int itemId) {
+        return suppliers.get(supplierBN).showQuantityDocument(itemId);
     }
 
     public void updateMinimalAmountOfQD(int supplierBN, int itemId, int minimalAmount) {
@@ -146,7 +158,8 @@ public class SupplierController{
         suppliers.get(supplierBN).addSupplierAgreement(minimalAmount, discount, constantTime, shipToUs);
     }
 
-    public void showSupplierAgreement(int supplierBN) {
+    public SupplierAgreement showSupplierAgreement(int supplierBN) {
+        return suppliers.get(supplierBN).showSupplierAgreement();
     }
 
     public void updateMinimalAmountOfSA(int supplierBN, int minimalAmount) {
