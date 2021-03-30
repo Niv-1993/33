@@ -50,4 +50,5 @@ public interface ISupplierService {
     response updateDiscountOfSA(int supplierBN , int discount);
     response updateConstantTime(int supplierBN , boolean constantTime);
     response updateShipToUs(int supplierBN , boolean ShipToUs);
+    response updatePrice(int supplierBN , int itemId , double Price);
 }

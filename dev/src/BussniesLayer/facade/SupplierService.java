@@ -6,7 +6,7 @@ import BussniesLayer.facade.outObjects.SupplierCard;
 import BussniesLayer.facade.outObjects.Item;
 import BussniesLayer.facade.outObjects.Order;
 import BussniesLayer.facade.outObjects.QuantityDocument;
-import BussniesLayer.facade.outObjects.SupplierAgreement
+import BussniesLayer.facade.outObjects.SupplierAgreement;
 
 
 
@@ -411,6 +411,16 @@ public class SupplierService implements ISupplierService {
     public response updateShipToUs(int supplierBN, boolean ShipToUs) {
         try{
             supplierController.updateShipToUs(supplierBN, ShipToUs);
+        }catch (Exception e){
+            return new response("ERROR: " + e);
+        }
+        return new response();
+    }
+
+    @Override
+    public response updatePrice(int supplierBN, int itemId, double price) {
+        try{
+            supplierController.updatePrice(supplierBN , itemId , price);
         }catch (Exception e){
             return new response("ERROR: " + e);
         }

@@ -23,16 +23,12 @@ public class Item{
         quantityDocument = null;
     }
 
-    public QuantityDocument showQuantityDocument(int itemId) {
-        return quantityDocument;
-    }
+    public QuantityDocument showQuantityDocument(){ return quantityDocument; }
 
-    public void updateMinimalAmountOfQD(int minimalAmount) {
-        quantityDocument.updateMinimalAmountOfQD(itemId , minimalAmount);
-    }
+    public void updateMinimalAmountOfQD(int minimalAmount) { quantityDocument.updateMinimalAmountOfQD(minimalAmount); }
 
     public void updateDiscountOfQD(int discount) {
-        quantityDocument.updateDiscountOfQD(itemId , discount);
+        quantityDocument.updateDiscountOfQD(discount);
     }
 
     public int getItemId() {
@@ -46,6 +42,8 @@ public class Item{
     public double getPrice() {
         return price;
     }
+
+    public void updatePrice(double price) { this.price = price;}
 
     public String getCategory() {
         return category;

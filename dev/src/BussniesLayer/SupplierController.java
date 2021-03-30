@@ -3,6 +3,7 @@ package BussniesLayer;
 import java.util.*;
 
 import BussniesLayer.SupplierCard;
+import BussniesLayer.facade.response;
 
 public class SupplierController{
     private Dictionary<Integer , SupplierCard> suppliers;
@@ -28,14 +29,14 @@ public class SupplierController{
         suppliers.remove(removeSupplier);
     }
 
-    public int showSupplierBN(String supplierName) {
+    public SupplierCard showSupplierBN(String supplierName) {
         while(suppliers.keys().hasMoreElements()) {
             int current = suppliers.keys().nextElement();
             if (suppliers.get(current).getSupplierName().equals(supplierName)) {
-                return suppliers.get(current).getSupplierBN();
+                return suppliers.get(current);
             }
         }
-        return -1;
+        return null;
     }
 
     public void updateSupplierPayWay(int supplierBN, String payWay) {
@@ -177,4 +178,9 @@ public class SupplierController{
     public void updateShipToUs(int supplierBN, boolean shipToUs) {
         suppliers.get(supplierBN).updateShipToUs(shipToUs);
     }
+
+    public void updatePrice(int supplierBN, int itemId, double price) {
+        suppliers.get(supplierBN).updatePrice(itemId,price);
+    }
+
 }

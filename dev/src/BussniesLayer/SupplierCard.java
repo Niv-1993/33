@@ -179,7 +179,7 @@ public class SupplierCard {
     public QuantityDocument showQuantityDocument(int itemId) {
         for (Item i : items) {
             if (i.getItemId() == itemId)
-                return i.showQuantityDocument(itemId);
+                return i.showQuantityDocument();
         }
         return null;
     }
@@ -223,5 +223,14 @@ public class SupplierCard {
 
     public void updateShipToUs(boolean shipToUs) {
         supplierAgreement.updateShipToUs(shipToUs);
+    }
+
+    public void updatePrice(int itemId , double price){
+        for(Item item : items){
+            if(item.getItemId() == itemId){
+                item.updatePrice(price);
+                break;
+            }
+        }
     }
 }
