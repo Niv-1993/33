@@ -16,14 +16,18 @@ public class SupplierAgreement {
     }
 
     public void updateMinimalAmountOfSA(int minimalAmount) {
+        this.minimalAmount = minimalAmount;
     }
 
     public void updateDiscountOfSA(int discount) {
+        this.discount = discount;
     }
 
     public void updateConstantTime(boolean constantTime) {
+        this.constantTime = constantTime;
     }
 
     public void updateShipToUs(boolean shipToUs) {
+        this.shipToUs = shipToUs;
     }
 }

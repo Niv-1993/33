@@ -14,8 +14,18 @@ public class QuantityDocument {
     }
 
     public void updateMinimalAmountOfQD(int itemId, int minimalAmount) {
+        this.minimalAmount = minimalAmount;
     }
 
     public void updateDiscountOfQD(int itemId, int discount) {
+        this.discount = discount;
+    }
+
+    public int getMinimalAmount(){
+        return minimalAmount;
+    }
+
+    public int getDiscount(){
+        return discount;
     }
 }

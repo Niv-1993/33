@@ -5,15 +5,15 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.Set;
 
-import BussniesLayer.facade.outObjects.SupplierCard;
+import BussniesLayer.SupplierCard;
 
 public class SupplierController{
-    private Dictionary<Integer , BussniesLayer.SupplierCard> suppliers;
+    private Dictionary<Integer , SupplierCard> suppliers;
     private int numOfItems;
     private int numOfOrders;
 
     public SupplierController(){
-        suppliers = new Hashtable<Integer, BussniesLayer.SupplierCard>();
+        suppliers = new Hashtable<Integer, SupplierCard>();
         numOfItems = 0;
         numOfOrders = 0;
     }
