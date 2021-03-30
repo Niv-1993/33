@@ -60,7 +60,6 @@ public class DriverService {
         }
     }
     public boolean compatibleDriver(Driver driver , License lice){return driver.compatibleLicense(lice);}
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

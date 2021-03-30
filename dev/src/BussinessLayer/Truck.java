@@ -45,5 +45,15 @@ public class Truck {
     public int hashCode() {
         return Objects.hash(licenseNumber, model, netWeight, maxWeight);
     }
+
+    @Override
+    public String toString() {
+        return "Truck{" +
+                "licenseNumber=" + licenseNumber +
+                ", model='" + model + '\'' +
+                ", netWeight=" + netWeight +
+                ", maxWeight=" + maxWeight +
+                '}';
+    }
 }
 

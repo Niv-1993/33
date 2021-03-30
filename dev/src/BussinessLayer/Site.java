@@ -32,6 +32,17 @@ public abstract class Site {
     public ShippingArea getShippingArea(){return shippingArea;}
 
     @Override
+    public String toString() {
+        return "Site{" +
+                "phone='" + phone + '\'' +
+                ", contactName='" + contactName + '\'' +
+                ", id=" + id +
+                ", address=" + address +
+                ", shippingArea=" + shippingArea +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

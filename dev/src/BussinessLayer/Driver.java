@@ -40,4 +40,13 @@ public class Driver {
     public int hashCode() {
         return Objects.hash(id, name, LicenseWeight);
     }
+
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", LicenseWeight=" + LicenseWeight +
+                '}';
+    }
 }

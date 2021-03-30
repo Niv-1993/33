@@ -10,21 +10,42 @@ import java.util.List;
 
 public class ServiceFaced {
     private DriverService driverService;
-    private TruckService trackService;
+    private TruckService truckService;
     private SiteService siteService;
-    private ServiceFaced(){
+    private static ServiceFaced serviceFaced = null;
 
-    }
     public static ServiceFaced initial() {
-
+        if(serviceFaced == null){
+            serviceFaced = new ServiceFaced();
+        }
+        return serviceFaced;
     }
     public void orderMisses(List<Integer> missingItems){
 
     }
-    public String chooseDriver(){
-        System.out.println("chose driver");
-        //loop that prints drivers
-
+    public StringBuilder chooseDriver(){
+        List<Driver> drivers = driverService.getDrivers();
+        StringBuilder acc = new StringBuilder();
+        for (Driver d: drivers) {
+            acc.append(d).append("\n");
+        }
+        return acc;
+    }
+    public StringBuilder chooseSite(){
+        List<Site> sites = siteService.getSites();
+        StringBuilder acc = new StringBuilder();
+        for (Site s:sites) {
+            acc.append(s).append("\n");
+        }
+        return acc;
+    }
+    public StringBuilder chooseTruck(){
+        List<Truck> trucks = truckService.getTrucks();
+        StringBuilder acc = new StringBuilder();
+        for (Truck t: trucks) {
+            acc.append(t).append("\n");
+        }
+        return acc;
     }
 
 }

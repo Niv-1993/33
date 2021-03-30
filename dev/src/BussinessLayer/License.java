@@ -21,4 +21,11 @@ public class License {
     public int hashCode() {
         return Objects.hash(kg);
     }
+
+    @Override
+    public String toString() {
+        return "License{" +
+                "kg=" + kg +
+                '}';
+    }
 }
