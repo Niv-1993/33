@@ -120,7 +120,7 @@ public class SupplierController{
         return suppliers.get(supplierBN).showAllOrdersOfSupplier();
     }
 
-    public int showTotalAmount(int supplierBN, int orderId) {
+    public double showTotalAmount(int supplierBN, int orderId) {
         return suppliers.get(supplierBN).showTotalAmount(orderId);
     }
 

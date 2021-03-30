@@ -30,4 +30,20 @@ public class SupplierAgreement {
     public void updateShipToUs(boolean shipToUs) {
         this.shipToUs = shipToUs;
     }
+
+    public int getMinimalAmount() {
+        return minimalAmount;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public boolean getConstantTime() {
+        return constantTime;
+    }
+
+    public boolean getShipToUs() {
+        return shipToUs;
+    }
 }

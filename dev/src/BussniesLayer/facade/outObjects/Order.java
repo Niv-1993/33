@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Order {
     private int orderId;
-    private int totalAmount;
+    private double totalAmount;
     private Date deliverTime;
 
     public Order(BussniesLayer.Order order) {

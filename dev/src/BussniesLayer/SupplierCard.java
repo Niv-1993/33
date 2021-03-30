@@ -136,7 +136,7 @@ public class SupplierCard {
         return orders;
     }
 
-    public int showTotalAmount(int orderId) {
+    public double showTotalAmount(int orderId) {
         for (Order o : orders) {
             if (o.getOrderId() == orderId)
                 return o.showTotalAmount();

@@ -26,7 +26,7 @@ public class Order {
         }
     }
 
-    public double showTotalAmount(int supplierBN, int orderId) {
+    public double showTotalAmount() {
         for(Item item : items.keySet()) {
             QuantityDocument qd = item.getQuantityDocument();
             totalAmount = totalAmount + item.getPrice();
@@ -37,7 +37,7 @@ public class Order {
         return totalAmount;
     }
 
-    public Date showDeliverTime(int supplierBN, int orderId) {
+    public Date showDeliverTime() {
         return deliverTime;
     }
 
@@ -51,5 +51,13 @@ public class Order {
 
     public void addItem(Item item) {
         items.put(item , 1);
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public Date getDeliverTime() {
+        return deliverTime;
     }
 }

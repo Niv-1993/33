@@ -29,7 +29,7 @@ public interface ISupplierService {
     Tresponse<List<SupplierCard>> showAllSuppliers();
     Tresponse<List<Item>> showAllItemsOfSupplier(int SupplierBN);
     Tresponse<List<Item>> showAllItems();
-    response addItem(int supplierBN , String category);
+    response addItem(int supplierBN , String category, double price);
     response removeItem(int itemId);
     response removeItemFromSupplier(int supplierBN , int itemId);
     Tresponse<Order> addOrder(int supplierBN);
