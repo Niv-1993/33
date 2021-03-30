@@ -27,8 +27,8 @@ public class SupplierCard {
     }
 
 
-    public int showSupplierBN(String supplierName) {
-
+    public String getSupplierBN() {
+        return supplierName;
     }
 
     public void updateSupplierPayWay(String payWay) {
