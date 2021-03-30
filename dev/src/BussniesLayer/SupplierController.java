@@ -28,14 +28,14 @@ public class SupplierController{
         suppliers.remove(removeSupplier);
     }
 
-    public void showSupplierBN(String supplierName) {
+    public int showSupplierBN(String supplierName) {
         while(suppliers.keys().hasMoreElements()) {
             int current = suppliers.keys().nextElement();
-            if (suppliers.get(current).getSupplierBN().equals(supplierName)) {
-                //need to add what do do
-                break;
+            if (suppliers.get(current).getSupplierName().equals(supplierName)) {
+                return suppliers.get(current).getSupplierBN();
             }
         }
+        return -1;
     }
 
     public void updateSupplierPayWay(int supplierBN, String payWay) {

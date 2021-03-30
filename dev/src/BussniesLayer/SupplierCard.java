@@ -27,7 +27,27 @@ public class SupplierCard {
     }
 
 
-    public String getSupplierBN() {
+    public int getSupplierBN() {
+        return supplierBN;
+    }
+
+    public int getSupplierAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getSupplierPayWay() {
+        return payWay;
+    }
+
+    public Dictionary getcontactPhone() {
+        return contactPhone;
+    }
+
+    public Dictionary getcontactEmail() {
+        return contactEmail;
+    }
+
+    public String getSupplierName() {
         return supplierName;
     }
 
