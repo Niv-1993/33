@@ -7,12 +7,12 @@ public class Item{
     private QuantityDocument quantityDocument;
     private double price;
 
-    public Item(int supplierBN , String category , int itemId){
+    public Item(int supplierBN , String category , int itemId , double price){
         this.supplierBN = supplierBN;
         this.category = category;
         this.itemId = itemId;
         quantityDocument = null;
-        price = 100.00;
+        this.price = price;
     }
 
     public void addQuantityDocument(int supplierBN, int itemId, int minimalAmount, int discount) {

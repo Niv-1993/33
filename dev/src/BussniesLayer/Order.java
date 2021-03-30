@@ -12,11 +12,11 @@ public class Order {
     private double totalAmount;
     private Date deliverTime;
 
-    public Order(int orderId , int supplierBN , int totalAmount , Date deliverTime){
+    public Order(int orderId , int supplierBN , Date deliverTime){
         this.orderId = orderId;
         this.supplierBN = supplierBN;
         items = new Hashtable<Item , Integer>();
-        this.totalAmount = totalAmount;
+        this.totalAmount = 0;
         this.deliverTime = deliverTime;
     }
 

@@ -82,10 +82,10 @@ public class SupplierController{
     public void showAllItems() {
     }
 
-    public void addItem(int supplierBN, String category) {
-        Item newItem = new Item(supplierBN, category, numOfItems);
+    public void addItem(int supplierBN, String category ,double price) {
+        Item newItem = new Item(supplierBN, category, numOfItems , price);
         numOfItems++;
-        suppliers.get(supplierBN).addItem(category, newItem.getItemId());
+        suppliers.get(supplierBN).addItem(category, newItem.getItemId() , price);
     }
 
     public void removeItem(int itemId) {
@@ -97,7 +97,7 @@ public class SupplierController{
     }
 
     public void addOrder(int supplierBN) {
-        Order newOrder = new Order(numOfOrders, supplierBN, 0, null);
+        Order newOrder = new Order(numOfOrders, supplierBN, null);
     }
 
     public void addItemToOrder(int supplierBN, int orderId, int itemId) {

@@ -100,8 +100,8 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public response addItem(int supplierBN, String category) {
-        supplierController.addItem(supplierBN, category);
+    public response addItem(int supplierBN, String category , double price) {
+        supplierController.addItem(supplierBN, category , price);
     }
 
     @Override

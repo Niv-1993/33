@@ -71,8 +71,8 @@ public class SupplierCard {
     public void showAllItemsOfSupplier() {
     }
 
-    public void addItem(String category, int ItemId) {
-        Item newItem = new BussniesLayer.Item(supplierBN,category, ItemId);
+    public void addItem(String category, int ItemId , double price) {
+        Item newItem = new BussniesLayer.Item(supplierBN,category, ItemId , price);
         items.add(newItem);
     }
 
@@ -85,7 +85,7 @@ public class SupplierCard {
     }
 
     public void addOrder(int orderID) {
-        Order order = new Order(orderID, supplierBN, 0, null);
+        Order order = new Order(orderID, supplierBN,null);
         orders.add(order);
     }
 
