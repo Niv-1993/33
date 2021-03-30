@@ -34,14 +34,14 @@ public interface ISupplierService {
     response removeItemFromSupplier(int supplierBN , int itemId);
     Tresponse<Order> addOrder(int supplierBN);
     response addItemToOrder(int supplierBN , int orderId , int itemId);
-    Tresponse<List<Order>> showOrderOfSupplier(int supplierBN , int orderId);
+    Tresponse<Order> showOrderOfSupplier(int supplierBN , int orderId);
     Tresponse<List<Order>> showAllOrdersOfSupplier(int supplierBN);
     response showTotalAmount(int supplierBN , int orderId);
     response showDeliverTime(int supplierBN , int orderId);
     response updateDeliverTime(int supplierBN , int orderId , Date deliverTime);
-    Tresponse<QuantityDocument> addQuantityDocument(int supplierBN , int itemId , int minimalAmount , int discount);
+    response addQuantityDocument(int supplierBN , int itemId , int minimalAmount , int discount);
     response removeQuantityDocument(int supplierBN , int itemId);
-    response showQuantityDocument(int supplierBN , int itemId);
+    Tresponse<QuantityDocument> showQuantityDocument(int supplierBN , int itemId);
     response updateMinimalAmountOfQD(int supplierBN , int itemId , int minimalAmount);
     response updateDiscountOfQD(int supplierBN , int itemId , int discount);
     response addSupplierAgreement(int supplierBN , int minimalAmount , int discount , boolean constantTime ,boolean shipToUs);

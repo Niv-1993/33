@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class Order {
     private int orderId;
     private int supplierBN;
-    private Dictionary<Item , Integer> items;
+    private Hashtable<Item , Integer> items;
     private double totalAmount;
     private Date deliverTime;
 
@@ -20,20 +20,25 @@ public class Order {
         this.deliverTime = deliverTime;
     }
 
-    public void addItemToOrder(int itemId) { }
+    public void addItemToOrder(int itemId) {
+        for(Item item : items.keySet()) {
+            if(item.getItemId() == itemId) items.put(item , items.get(item) + 1);
+        }
+    }
 
-    public void showTotalAmount(int supplierBN, int orderId) {
-        while(items.keys().hasMoreElements()){
-            Item item = items.keys().nextElement();
+    public double showTotalAmount(int supplierBN, int orderId) {
+        for(Item item : items.keySet()) {
             QuantityDocument qd = item.getQuantityDocument();
             totalAmount = totalAmount + item.getPrice();
             if(qd.getMinimalAmount() <= items.get(item)) {
                 totalAmount = totalAmount - (item.getPrice()*(qd.getDiscount() / 100));
             }
         }
+        return totalAmount;
     }
 
-    public void showDeliverTime(int supplierBN, int orderId) {
+    public Date showDeliverTime(int supplierBN, int orderId) {
+        return deliverTime;
     }
 
     public void updateDeliverTime(Date deliverTime) {
@@ -45,7 +50,6 @@ public class Order {
     }
 
     public void addItem(Item item) {
-        int numOfItem = items.get(item) + 1;
-        items.put(item , numOfItem);
+        items.put(item , 1);
     }
 }

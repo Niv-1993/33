@@ -23,8 +23,8 @@ public class Item{
         quantityDocument = null;
     }
 
-    public void showQuantityDocument(int itemId) {
-
+    public QuantityDocument showQuantityDocument(int itemId) {
+        return quantityDocument;
     }
 
     public void updateMinimalAmountOfQD(int minimalAmount) {

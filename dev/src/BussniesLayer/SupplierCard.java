@@ -179,7 +179,7 @@ public class SupplierCard {
     public QuantityDocument showQuantityDocument(int itemId) {
         for (Item i : items) {
             if (i.getItemId() == itemId)
-                return i.showQuantityDocument();
+                return i.showQuantityDocument(itemId);
         }
         return null;
     }

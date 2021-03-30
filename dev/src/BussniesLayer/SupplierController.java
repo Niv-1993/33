@@ -104,8 +104,8 @@ public class SupplierController{
         suppliers.get(supplierBN).removeItemFromSupplier(itemId);
     }
 
-    public void addOrder(int supplierBN) {
-        Order newOrder = new Order(numOfOrders, supplierBN, null);
+    public Order addOrder(int supplierBN) {
+        return new Order(numOfOrders, supplierBN, null);
     }
 
     public void addItemToOrder(int supplierBN, int orderId, int itemId) {
