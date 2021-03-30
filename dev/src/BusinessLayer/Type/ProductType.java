@@ -14,10 +14,12 @@ public class ProductType {
     private float _basePrice;
     private float _salePrice;
     private String _producer;
+    private List<Integer> _suppliers;
     private List<SaleDiscount> _saleDiscounts;
     private List<SupplierDiscount> _supplierDiscounts;
 
-    public ProductType(int _typeID, int _categoryID, String _name, int _minAmount, float _basePrice, float _salePrice, String _producer) {
+
+    public ProductType(int _typeID, int _categoryID, String _name, int _minAmount, float _basePrice, float _salePrice, String _producer, List<Integer> _suppliers) {
         this._typeID = _typeID;
         this._categoryID = _categoryID;
         this._name = _name;
@@ -25,6 +27,7 @@ public class ProductType {
         this._basePrice = _basePrice;
         this._salePrice = _salePrice;
         this._producer = _producer;
+        this._suppliers=_suppliers;
         _products=new ArrayList<>();
         _saleDiscounts=new ArrayList<>();
         _supplierDiscounts=new ArrayList<>();
@@ -106,5 +109,10 @@ public class ProductType {
     public void set_producer(String _producer) {
         this._producer = _producer;
     }
+
+    public List<Integer> get_suppliers() { return _suppliers;    }
+
+    public void set_suppliers(List<Integer> _suppliers) { this._suppliers = _suppliers; }
+
 
 }

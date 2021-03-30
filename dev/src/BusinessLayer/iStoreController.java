@@ -12,17 +12,18 @@ import java.util.Date;
 import java.util.List;
 
 public interface iStoreController {
+    public int getID();
     public Report getWeeklyReport();
-    public Report getWeeklyReport(Category... c);
+    public Report getWeeklyReport(int... c);
     public Report getNeededReport();
     public Report getWasteReport();
     public void addCategory(String name);
     public void addCategory(String name, int superCategory);
-    public List<Category> getCategories();
+    public List<Integer> getCategories();
     public void editCategory(int Id, String name, int superCategory);
     public void editCategory(int Id, String name);
     public void addProductType(String name, int minAmount, float basePrice, String producer, int supID, int category);
-    public List<ProductType> getProductTypes();
+    public List<Integer> getProductTypes();
     public ProductType getProductTypeInfo(int id);
     public void editProductType(String name, int minAmount, float basePrice, String producer, int supID, int category);
     public void addSaleProductDiscount(int productTypeID, float percent, Date start, Date end);

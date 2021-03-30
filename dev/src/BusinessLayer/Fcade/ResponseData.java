@@ -9,6 +9,14 @@ public class ResponseData<T> extends Response{
         return data;
     }
     public ResponseData(T data) {
+        isError=false;
+        error="";
         this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        if(isError()) return super.toString();
+        return data.toString();
     }
 }

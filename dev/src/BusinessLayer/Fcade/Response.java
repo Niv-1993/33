@@ -16,4 +16,9 @@ public class Response {
     public boolean isError() {
         return isError;
     }
+
+    @Override
+    public String toString() {
+        return error;
+    }
 }

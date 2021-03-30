@@ -1,4 +1,18 @@
 package BusinessLayer.Fcade.outObjects;
 
+import java.util.List;
+
 public class SaleDiscounts {
+    int productType;
+    List<SaleDiscount> discounts;
+
+    public SaleDiscounts(int productType, List<SaleDiscount> discounts) {
+        this.productType = productType;
+        this.discounts = discounts;
+    }
+
+    @Override
+    public String toString() {
+        return "All sale discounts for product type: "+productType+"\n"+discounts.toString();
+    }
 }
