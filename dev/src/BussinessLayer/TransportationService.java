@@ -13,7 +13,6 @@ public class TransportationService {
                 return t;
             }
         }
-        return null;
+        throw new IllegalArgumentException("No transportation match to id:" + id);
     }
-
 }

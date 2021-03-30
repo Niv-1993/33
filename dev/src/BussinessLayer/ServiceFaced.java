@@ -20,6 +20,10 @@ public class ServiceFaced {
         }
         return serviceFaced;
     }
+    public StringBuilder createTransportation(){
+        StringBuilder acc = new StringBuilder();
+        return acc;
+    }
     public void orderMisses(List<Integer> missingItems){
 
     }
@@ -44,6 +48,15 @@ public class ServiceFaced {
         StringBuilder acc = new StringBuilder();
         for (Truck t: trucks) {
             acc.append(t).append("\n");
+        }
+        return acc;
+    }
+    public StringBuilder registerADriver(int id){
+        StringBuilder acc = new StringBuilder();
+        try{
+            acc.append(driverService.getDriver(id));
+        }catch(Exception e){
+            return acc.append(e.getMessage());
         }
         return acc;
     }

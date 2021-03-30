@@ -8,23 +8,23 @@ public class Driver {
 
     private int id;
     private String name;
-    private License LicenseWeight;
+    private License License;
 
     public Driver(int id, String name, License license){
         this.id=id;
         this.name=name;
-        this.LicenseWeight=license;
+        this.License =license;
     }
     public int getId() { return id; }
 
-    public License getLicenseWeight() { return LicenseWeight; }
+    public License getLicense() { return License; }
 
     public String getName() { return name; }
 
     //TODO: check if license is competible by equaling.
     public boolean compatibleLicense(License license){ return false; }
 
-    public void setLicenseWeight(License licenseWeight) { LicenseWeight = licenseWeight; }
+    public void setLicense(License license) { License = license; }
 
     public void setName(String name) { this.name = name; }
 
@@ -33,12 +33,12 @@ public class Driver {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Driver driver = (Driver) o;
-        return id == driver.id && LicenseWeight == driver.LicenseWeight && name.equals(driver.name);
+        return id == driver.id && License == driver.License && name.equals(driver.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, LicenseWeight);
+        return Objects.hash(id, name, License);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Driver {
         return "Driver{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", LicenseWeight=" + LicenseWeight +
+                ", LicenseWeight=" + License +
                 '}';
     }
 }

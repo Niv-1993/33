@@ -5,19 +5,19 @@ import java.util.Objects;
 //bar
 public class Truck {
 
-    private  int licenseNumber;
+    private  License license;
     private String model;
     private int netWeight;
     private int maxWeight;
 
-    public  Truck(int licenseNumber, int maxWeight, int netWeight, String model){
-        this.licenseNumber=licenseNumber;
+    public  Truck(License license, int maxWeight, int netWeight, String model){
+        this.license=license;
         this.maxWeight=maxWeight;
         this.model=model;
         this.netWeight=netWeight;
     }
 
-    public int getLicenseNumber() { return licenseNumber; }
+    public License getLicense() { return license; }
 
     public int getMaxWeight() { return maxWeight; }
 
@@ -25,7 +25,7 @@ public class Truck {
 
     public String getModel() { return model; }
 
-    public void setLicenseNumber(int licenseNumber) { this.licenseNumber = licenseNumber; }
+    public void setLicenseNumber(License licenseNumber) { this.license = licenseNumber; }
 
     public void setMaxWeight(int maxWeight) { this.maxWeight = maxWeight; }
 
@@ -38,18 +38,18 @@ public class Truck {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Truck truck = (Truck) o;
-        return licenseNumber == truck.licenseNumber && netWeight == truck.netWeight && maxWeight == truck.maxWeight && Objects.equals(model, truck.model);
+        return license == truck.license && netWeight == truck.netWeight && maxWeight == truck.maxWeight && Objects.equals(model, truck.model);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(licenseNumber, model, netWeight, maxWeight);
+        return Objects.hash(license, model, netWeight, maxWeight);
     }
 
     @Override
     public String toString() {
         return "Truck{" +
-                "licenseNumber=" + licenseNumber +
+                "licenseNumber=" + license +
                 ", model='" + model + '\'' +
                 ", netWeight=" + netWeight +
                 ", maxWeight=" + maxWeight +
