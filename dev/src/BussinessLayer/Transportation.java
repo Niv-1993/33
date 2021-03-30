@@ -48,7 +48,6 @@ public class Transportation {
                 Objects.equals(driver, that.driver) &&
                 Objects.equals(deliveryItems, that.deliveryItems);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id, date, leavingTime, driver, deliveryItems);
