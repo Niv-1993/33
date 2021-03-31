@@ -19,6 +19,10 @@ public class StorageService implements iStorageService {
         curr=null;
     }
 
+    public int getCurrID(){
+        return curr.getID();
+    }
+
     @Override
     public ResponseData<Report> getWeeklyReport() {
         try {
@@ -325,6 +329,7 @@ public class StorageService implements iStorageService {
             for (iStoreController s:stores) {
                 ret.add(s.getID());
             }
+            if(ret.size()==0) throw new Exception("no stores registered");
             return new ResponseData<>((Integer[]) ret.toArray());
         }
         catch (Exception e) {
