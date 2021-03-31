@@ -1,5 +1,6 @@
 package Business.EmployeePKG;
 
+import Business.ShiftPKG.*;
 import Business.Type.*;
 import org.apache.log4j.Logger;
 
@@ -34,19 +35,19 @@ public abstract class Employee {
     }
 
 
-    public Business.ShiftPKG.Constraint addConstConstraint(DayOfWeek day, ShiftType shiftType, String reason, ShiftController shiftController) {
+    public Constraint addConstConstraint(DayOfWeek day, ShiftType shiftType, String reason, ShiftController shiftController) {
         return shiftController.addConstConstraint(EID,day,shiftType,reason);
     }
-    public Business.ShiftPKG.Constraint addConstraint(LocalDate c_date, ShiftType shiftType, String reason, ShiftController shiftController) {
+    public Constraint addConstraint(LocalDate c_date, ShiftType shiftType, String reason, ShiftController shiftController) {
         return shiftController.addConstraint(EID,c_date,shiftType,reason);
     }
-    public Business.ShiftPKG.Constraint removeConstraint(int CID, ShiftController shiftController){
+    public Constraint removeConstraint(int CID, ShiftController shiftController) throws Exception {
         return shiftController.removeConstraint(CID);
     }
-    public void updateReasonConstraint(int CID, String newReason, ShiftController shiftController){
+    public void updateReasonConstraint(int CID, String newReason, ShiftController shiftController) throws Exception {
         shiftController.updateReasonConstraint(CID,newReason);
     }
-    public void updateShiftTypeConstraint(int CID, ShiftType newType, ShiftController shiftController){
+    public void updateShiftTypeConstraint(int CID, ShiftType newType, ShiftController shiftController) throws Exception {
         shiftController.updateShiftTypeConstraint(CID,newType);
     }
     public List<Shift> getOnlyEmployeeShifts(ShiftController shiftController){return shiftController.getOnlyEmployeeShifts(getEID());}
@@ -71,12 +72,11 @@ public abstract class Employee {
     public abstract void updateEmployeeEducationFund(Employee updateE,int newEducationFund) throws Exception;
     public abstract void updateEmployeeDaysOff(Employee updateE,int newAmount) throws Exception;
     public abstract void updateEmployeeSickDays(Employee updateE,int newAmount) throws Exception;
-    public abstract Business.ShiftPKG.Shift createShift(Map<RoleType,Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType,List<String[]>> employees,ShiftController shiftController) throws Exception;
-    public abstract List<Business.ShiftPkG.Shift> getShiftsAndEmployees(ShiftController shiftController) throws Exception;
+    public abstract Shift createShift(Map<RoleType,Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType,List<String[]>> employees,ShiftController shiftController) throws Exception;
+    public abstract List<Shift> getShiftsAndEmployees(ShiftController shiftController) throws Exception;
     public abstract void removeEmpFromShift(int SID,int removeEID,ShiftController shiftController) throws Exception;
     public abstract void addEmpToShift(int SID, int addEID, RoleType role, String name, ShiftController shiftController) throws Exception;
     public abstract void updateAmountRole(int SID,RoleType role,int newAmount, ShiftController shiftController) throws Exception;
-    public abstract void updateEmpRole(int SID, int EID, RoleType newRole, ShiftController shiftController) throws Exception;
 
 
     /**
@@ -120,7 +120,4 @@ public abstract class Employee {
         this.salary = salary;
     }
 
-    public List<Business.ShiftPKG.Shift> getShifts(ShiftController shiftController){
-        return shiftController.getShifts();
-    }
 }

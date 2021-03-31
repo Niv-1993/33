@@ -1,5 +1,6 @@
 package Business.EmployeePKG;
 
+import Business.ShiftPKG.*;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
 import org.apache.log4j.Logger;
@@ -65,12 +66,12 @@ public class Regular extends Employee{
     }
 
     @Override
-    public Business.ShiftPKG.Shift createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<String[]>> employees, ShiftController shiftController) throws Exception {
+    public Shift createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<String[]>> employees, ShiftController shiftController) throws Exception {
         throw new Exception("You are not allowed to create shifts in this branch");
     }
 
     @Override
-    public List<Business.ShiftPkG.Shift> getShiftsAndEmployees(ShiftController shiftController) throws Exception {
+    public List<Shift> getShiftsAndEmployees(ShiftController shiftController) throws Exception {
         throw new Exception("You are not allowed to request this kind of data in this branch");
     }
 
@@ -90,8 +91,4 @@ public class Regular extends Employee{
         throw new Exception("You are not allowed to update any shift");
     }
 
-    @Override
-    public void updateEmpRole(int SID, int EID, RoleType newRole, ShiftController shiftController) throws Exception {
-        throw new Exception("You are not allowed to update any shift");
-    }
 }

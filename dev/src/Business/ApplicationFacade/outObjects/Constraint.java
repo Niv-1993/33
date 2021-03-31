@@ -14,7 +14,7 @@ public class Constraint {
         this.reason = reason;
         this.shiftType = shiftType.name();
     }
-    public Constraint(Business.EmployeePKG.Constraint c){
+    public Constraint(Business.ShiftPKG.Constraint c){
         this.CID = c.getCID();
         this.EID = c.getEID();
         this.reason = c.getReason();

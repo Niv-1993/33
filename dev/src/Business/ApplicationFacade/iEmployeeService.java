@@ -246,14 +246,6 @@ public interface iEmployeeService {
     ResponseData<Employee> getOnlyEmployeeShiftsAndConstraints();
 
     /**
-     * updated a role of employee with EID in shift SID to role-type newRole
-     * @param SID identifier of the  chosen shift
-     * @param EID identifier of the employee in the shift
-     * @param newRole the new role to take
-     * @return A response object. The response should contain a error message in case of an error
-     */
-    Response updateEmpRole(int SID, int EID, String newRole);
-    /**
      * Loads the relevant data of a spcific branch with BID identifier
      * Note : the BID is chosen in the first window options before identifying to the system the employee
      * @param BID Identifier of the branch (1-9)

@@ -1,5 +1,6 @@
 package Business.EmployeePKG;
 
+import Business.ShiftPKG.*;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
 import org.junit.*;
@@ -44,7 +45,7 @@ public class EmployeeTest {
     }
 
     @Test
-    public void removeConstraint() {
+    public void removeConstraint() throws Exception {
         Business.ShiftPKG.Constraint constraint = driver.addConstraint(LocalDate.now(), ShiftType.Morning, "cant", shiftController);
         driver.removeConstraint(constraint.getCID(), shiftController);
         List<Business.ShiftPKG.Constraint> list = driver.getOnlyEmployeeConstraints(shiftController);
@@ -52,14 +53,14 @@ public class EmployeeTest {
     }
 
     @Test
-    public void updateReasonConstraint() {
+    public void updateReasonConstraint() throws Exception {
         Business.ShiftPKG.Constraint constraint = driver.addConstraint(LocalDate.now(), ShiftType.Morning, "cant", shiftController);
         driver.updateReasonConstraint(constraint.getCID(), "newReason", shiftController);
         Assert.assertNotEquals("didnt update reason", "cant", constraint.getReason());
     }
 
     @Test
-    public void updateShiftTypeConstraint() {
+    public void updateShiftTypeConstraint() throws Exception {
         Business.ShiftPKG.Constraint constraint = driver.addConstraint(LocalDate.now(), ShiftType.Morning, "cant", shiftController);
         driver.updateShiftTypeConstraint(constraint.getCID(), ShiftType.Night, shiftController);
         Assert.assertNotEquals("didnt update reason", ShiftType.Morning, constraint.getShiftType());
@@ -291,10 +292,9 @@ public class EmployeeTest {
     @Test
     public void removeEmpFromShift1() {
         try {
-            personnelManager.addEmpToShift(s.getSID(), driver.getEID(), driver.getRole(), driver.getName(), shiftController);
-
+            personnelManager.addEmpToShift(s.getSID(), driver.getEID(), driver.getRole().get(0), driver.getName(), shiftController);
             personnelManager.removeEmpFromShift(s.getSID(), driver.getEID(), shiftController);
-            Assert.assertFalse(shift.getEmployees().contains(driver.getEID()));
+            Assert.assertFalse(s.getEmployees().containsKey(driver.getEID()));
         } catch (Exception e) {
             Assert.fail();
         }
@@ -310,15 +310,15 @@ public class EmployeeTest {
     @Test
     public void addEmpToShift1() {
         try {
-            personnelManager.addEmpToShift(s.getSID(), driver.getEID(), driver.getRole(), driver.getName(), shiftController);
-            Assert.assertTrue(s.getEmployees().contains(driver.getEID()));
+            personnelManager.addEmpToShift(s.getSID(), driver.getEID(), driver.getRole().get(0), driver.getName(), shiftController);
+            Assert.assertTrue(s.getEmployees().containsKey(driver.getEID()));
         }
         catch (Exception e){Assert.fail();}
     }
     @Test
     public void addEmpToShift2() {
         try {
-            driver.addEmpToShift(s.getSID(), driver.getEID(), driver.getRole(), driver.getName(), shiftController);
+            driver.addEmpToShift(s.getSID(), driver.getEID(), driver.getRole().get(0), driver.getName(), shiftController);
             Assert.fail();
         }catch (Exception e){}
     }
@@ -328,7 +328,7 @@ public class EmployeeTest {
     public void updateAmountRole1(){
         try{
             personnelManager.updateAmountRole(1,RoleType.Driver,5,shiftController);
-            Assert.assertTrue(s.getRolesAmount().get(RoleType.Driver) == 5);
+            Assert.assertEquals(5, (int) s.getRolesAmount().get(RoleType.Driver));
         }catch (Exception e){Assert.fail();}
     }
 

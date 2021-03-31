@@ -445,22 +445,6 @@ public class EmployeeService implements iEmployeeService {
         }
     }
 
-    /**
-     * updated a role of employee with EID in shift SID to role-type newRole
-     *
-     * @param SID     identifier of the  chosen shift
-     * @param EID     identifier of the employee in the shift
-     * @param newRole the new role to take
-     * @return A response object. The response should contain a error message in case of an error
-     */
-    public Response updateEmpRole(int SID, int EID, String newRole) {
-        try {
-            employeeController.updateEmpRole(SID,EID,RoleType.valueOf(newRole));
-            return new Response();
-        }catch (Exception e){
-            return new Response();
-        }
-    }
 
     /**
      * Loads the relevant data of a spcific branch with BID identifier
@@ -492,7 +476,7 @@ public class EmployeeService implements iEmployeeService {
     private List<Constraint> convertConstrains(List<Business.ShiftPKG.Constraint> allConstraints) {
         List<Constraint> constraints = new ArrayList<>();
         allConstraints.forEach(c -> {
-            constraints.add(new Constraint(c.getCID(), c.getEID(), c.getReason()));
+            constraints.add(new Constraint(c.getCID(), c.getEID(), c.getReason(),c.getShiftType()));
         });
         return constraints;
     }

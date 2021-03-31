@@ -1,5 +1,6 @@
 package Business.EmployeePKG;
 
+import Business.ShiftPKG.*;
 import Business.Type.*;
 import org.apache.log4j.Logger;
 
@@ -18,7 +19,6 @@ public class EmployeeController {
 
     public EmployeeController() {
         employees = new HashMap<>();
-        shiftController = new ShiftContorller();
     }
 
     /**
@@ -61,7 +61,7 @@ public class EmployeeController {
      * @param shiftType Type of shift of the day
      * @param reason    The reason of the constraint
      */
-    public Business.ShiftPKG.Constraint addConstConstraint(DayOfWeek day, ShiftType shiftType, String reason) {
+    public Constraint addConstConstraint(DayOfWeek day, ShiftType shiftType, String reason) {
         return employees.get(currConnectedEmpID).addConstConstraint(day, shiftType, reason, shiftController);
     }
 
@@ -72,7 +72,7 @@ public class EmployeeController {
      * @param shiftType Type of shift of the day
      * @param reason    The reason of the constraint
      */
-    public Business.ShiftPKG.Constraint addConstraint(LocalDate c_date, ShiftType shiftType, String reason) {
+    public Constraint addConstraint(LocalDate c_date, ShiftType shiftType, String reason) {
         return employees.get(currConnectedEmpID).addConstraint(c_date, shiftType, reason, shiftController);
     }
 
@@ -81,7 +81,7 @@ public class EmployeeController {
      *
      * @param CID Identifier of the constraint to be removed
      */
-    public Business.ShiftPKG.Constraint removeConstraint(int CID) {
+    public Constraint removeConstraint(int CID) throws Exception {
         return employees.get(currConnectedEmpID).removeConstraint(CID, shiftController);
     }
 
@@ -91,7 +91,7 @@ public class EmployeeController {
      * @param CID       Identifier of the constraint to be updated
      * @param newReason The new reason of the constraint
      */
-    public void updateReasonConstraint(int CID, String newReason) {
+    public void updateReasonConstraint(int CID, String newReason) throws Exception {
         employees.get(currConnectedEmpID).updateReasonConstraint(CID, newReason, shiftController);
     }
 
@@ -101,7 +101,7 @@ public class EmployeeController {
      * @param CID     Identifier of the constraint to be updated
      * @param newType The new shift type
      */
-    public void updateShiftTypeConstraint(int CID, ShiftType newType) {
+    public void updateShiftTypeConstraint(int CID, ShiftType newType) throws Exception {
         employees.get(currConnectedEmpID).updateShiftTypeConstraint(CID, newType, shiftController);
     }
 
@@ -277,7 +277,7 @@ public class EmployeeController {
      *
      * @return A list of all the shifts and the employees in every shift (names & roles)
      */
-    public List<Business.ShiftPkG.Shift> getShiftsAndEmployees() throws Exception {
+    public List<Shift> getShiftsAndEmployees() throws Exception {
         return employees.get(currConnectedEmpID).getShiftsAndEmployees(shiftController);
     }
 
@@ -321,7 +321,7 @@ public class EmployeeController {
      *
      * @return A list of constraints of the current connected employee
      */
-    public List<Business.ShiftPkG.Shift> getOnlyEmployeeShifts() {
+    public List<Shift> getOnlyEmployeeShifts() {
         return employees.get(currConnectedEmpID).getOnlyEmployeeShifts(shiftController);
     }
 
@@ -330,12 +330,8 @@ public class EmployeeController {
      *
      * @return A list of constraints of the current connected employee
      */
-    public List<Business.ShiftPkG.Constraint> getOnlyEmployeeConstraints() {
+    public List<Constraint> getOnlyEmployeeConstraints() {
         return employees.get(currConnectedEmpID).getOnlyEmployeeConstraints(shiftController);
-    }
-
-    public void updateEmpRole(int SID, int EID, RoleType newRole) throws Exception {
-        employees.get(currConnectedEmpID).updateEmpRole(SID, EID, newRole, shiftController);
     }
 
     /**
@@ -346,6 +342,9 @@ public class EmployeeController {
      */
     public void loadData(int BID) {
         //Load the data from database first.
+        Map<Integer, Shift> shifts = new HashMap<>();
+        Map<Integer, Constraint> constraints = new HashMap<>();
+        shiftController = new ShiftController(shifts,constraints);
         currBranchID = BID;
     }
 

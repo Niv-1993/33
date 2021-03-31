@@ -1,5 +1,5 @@
 package Business.EmployeePKG;
-
+import Business.ShiftPKG.*;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
 import org.apache.log4j.Logger;
@@ -89,38 +89,32 @@ public class PersonnelManager extends Employee{
     }
 
     @Override
-    public Business.ShiftPKG.Shift createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<String[]>> employees, ShiftController shiftController) {
+    public Business.ShiftPKG.Shift createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<String[]>> employees, ShiftController shiftController) throws Exception {
         //SHIFT PKG NEEDS TO UPDATE DATABASE
         return shiftController.createShift(rolesAmount,date,shiftType,employees);
     }
 
     @Override
-    public List<Business.ShiftPkG.Shift> getShiftsAndEmployees(ShiftController shiftController) {
+    public List<Shift> getShiftsAndEmployees(ShiftController shiftController) {
         return shiftController.getShiftsAndEmployees();
     }
 
 
     @Override
-    public void removeEmpFromShift(int SID, int removeEID, ShiftController shiftController) {
+    public void removeEmpFromShift(int SID, int removeEID, ShiftController shiftController) throws Exception {
         //SHIFT PKG NEEDS TO UPDATE DATABASE
         shiftController.removeEmpFromShift(SID,removeEID);
     }
 
     @Override
-    public void addEmpToShift(int SID, int addEID, RoleType role, String name, ShiftController shiftController) {
+    public void addEmpToShift(int SID, int addEID, RoleType role, String name, ShiftController shiftController) throws Exception {
         //SHIFT PKG NEEDS TO UPDATE DATABASE
         shiftController.addEmpToShift(SID,addEID,role,name);
     }
 
     @Override
-    public void updateAmountRole(int SID, RoleType role, int newAmount, ShiftController shiftController) {
+    public void updateAmountRole(int SID, RoleType role, int newAmount, ShiftController shiftController) throws Exception {
         //SHIFT PKG NEEDS TO UPDATE DATABASE
         shiftController.updateAmountRole(SID,role,newAmount);
-    }
-
-    @Override
-    public void updateEmpRole(int SID, int EID, RoleType newRole, ShiftController shiftController) {
-        //SHIFT PKG NEEDS TO UPDATE DATABASE
-        shiftController.updateEmpRole(SID,EID,newRole);
     }
 }

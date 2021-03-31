@@ -33,5 +33,9 @@ public class Database {
     }
 
 
+    public void init() {
+    }
 
+    public void reset() {
+    }
 }
