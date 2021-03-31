@@ -122,9 +122,8 @@ public class EmployeeController {
      *                      terms[1] -> days off
      *                      terms[2] -> sick days
      */
-    public void addEmployee(int newEID, String name, int[] bankDetails, int salary, RoleType role, LocalDate startWorkDate, int[] terms) throws Exception {
-        Employee added = employees.get(currConnectedEmpID).addEmployee(newEID, name, bankDetails, salary, role, startWorkDate, terms, employees);
-        employees.put(added.getEID(), added);
+    public Employee addEmployee(int newEID, String name, int[] bankDetails, int salary, RoleType role, LocalDate startWorkDate, int[] terms) throws Exception {
+        return employees.get(currConnectedEmpID).addEmployee(newEID, name, bankDetails, salary, role, startWorkDate, terms, employees);
     }
 
     /**
@@ -135,7 +134,6 @@ public class EmployeeController {
      */
     public void fireEmployee(int fireEID) throws Exception {
         employees.get(currConnectedEmpID).fireEmployee(fireEID, employees);
-        employees.remove(fireEID);
     }
 
     /**
@@ -242,7 +240,7 @@ public class EmployeeController {
      * @param date        The date of the shift to take place
      * @param shiftType   type of the shift
      */
-    public void createShift(Map<String, Integer> rolesAmount, LocalDate date, ShiftType shiftType) throws Exception {
+    public Shift createShift(Map<String, Integer> rolesAmount, LocalDate date, ShiftType shiftType) throws Exception {
         Map<RoleType, List<String[]>> optionals = new HashMap<>();
         Map<RoleType, Integer> rolesAndAmount = new HashMap<>();
         EnumSet<RoleType> allRoles = EnumSet.allOf(RoleType.class);
@@ -259,7 +257,7 @@ public class EmployeeController {
         for (Map.Entry<String, Integer> entry : rolesAmount.entrySet()) {
             rolesAndAmount.put(RoleType.valueOf(entry.getKey()), entry.getValue() + 1);
         }
-        employees.get(currConnectedEmpID).createShift(rolesAndAmount, date, shiftType, optionals, shiftController);
+        return employees.get(currConnectedEmpID).createShift(rolesAndAmount, date, shiftType, optionals, shiftController);
     }
 
     /**

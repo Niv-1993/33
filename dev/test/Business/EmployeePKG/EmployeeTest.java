@@ -18,7 +18,7 @@ public class EmployeeTest {
     int terms[] = {4, 5, 6};
     Employee personnelManager = new PersonnelManager(1, "Niv", bank, 1000, RoleType.PerssonelManger, LocalDate.now(), terms);
     Employee driver;
-    Business.ShiftPKG.Shift s; //mock the shift with SID = 1
+    Shift s; //mock the shift with SID = 1
     ShiftController shiftController = new ShiftController(); //mock
 
     @Before
@@ -46,7 +46,7 @@ public class EmployeeTest {
 
     @Test
     public void removeConstraint() throws Exception {
-        Business.ShiftPKG.Constraint constraint = driver.addConstraint(LocalDate.now(), ShiftType.Morning, "cant", shiftController);
+        Constraint constraint = driver.addConstraint(LocalDate.now(), ShiftType.Morning, "cant", shiftController);
         driver.removeConstraint(constraint.getCID(), shiftController);
         List<Business.ShiftPKG.Constraint> list = driver.getOnlyEmployeeConstraints(shiftController);
         Assert.assertFalse(list.contains(constraint));

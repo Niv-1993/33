@@ -102,7 +102,7 @@ public interface iEmployeeService {
      *              terms[2] -> sick days
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response addEmployee(int newEID, String name,int[] bankDetails,int salary,String role,LocalDate startWorkDate,int[] terms);
+    ResponseData<Employee> addEmployee(int newEID, String name,int[] bankDetails,int salary,String role,LocalDate startWorkDate,int[] terms);
 
     /**
      * fire an employee with fireID
@@ -192,7 +192,7 @@ public interface iEmployeeService {
      * @param shiftType type of the shift
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response createShift(Map<String,Integer> rolesAmount, LocalDate date, String shiftType);
+    ResponseData<Shift> createShift(Map<String,Integer> rolesAmount, LocalDate date, String shiftType);
 
     /**
      * Gets the details of a connected employee

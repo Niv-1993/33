@@ -24,7 +24,9 @@ public class PersonnelManager extends Employee{
         if(employees.containsKey(newEID))
             throw new Exception("Employee with id: "+ newEID+ " already exits in this branch");
         //ADD TO DATABASE
-        return new Regular(newEID,name,bankDetails,salary,role,startWorkDate,terms);
+        Employee reg = new Regular(newEID,name,bankDetails,salary,role,startWorkDate,terms);
+        employees.put(reg.getEID(),reg);
+        return reg;
     }
 
     /**

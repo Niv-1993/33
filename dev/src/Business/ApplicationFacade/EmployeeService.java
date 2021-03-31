@@ -164,12 +164,13 @@ public class EmployeeService implements iEmployeeService {
      *                      terms[2] -> sick days
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response addEmployee(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms) {
+    public ResponseData<Employee> addEmployee(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms) {
         try {
-            employeeController.addEmployee(newEID, name, bankDetails, salary, RoleType.valueOf(role), startWorkDate, terms);
-            return new Response();
+            Business.EmployeePKG.Employee emp = employeeController.addEmployee(newEID, name, bankDetails, salary, RoleType.valueOf(role), startWorkDate, terms);
+            Employee employee = new Employee(emp.getEID(),emp.getName(), RoleType.valueOf(role),emp.getBankAccount(),emp.getSalary(),emp.getTermsOfEmployment());
+            return new ResponseData<>(employee);
         } catch (Exception e) {
-            return new Response(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
 
@@ -334,12 +335,13 @@ public class EmployeeService implements iEmployeeService {
      * @param shiftType   type of the shift
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response createShift(Map<String, Integer> rolesAmount, LocalDate date, String shiftType) {
+    public ResponseData<Shift> createShift(Map<String, Integer> rolesAmount, LocalDate date, String shiftType) {
         try {
-            employeeController.createShift(rolesAmount, date, ShiftType.valueOf(shiftType));
-            return new Response();
+            Business.ShiftPKG.Shift s = employeeController.createShift(rolesAmount, date, ShiftType.valueOf(shiftType));
+            Shift shift = new Shift(s.getSID(),s.getDate(),s.getShiftType(),s.getEmployees());
+            return new ResponseData<>(shift);
         } catch (Exception e) {
-            return new Response(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
 
