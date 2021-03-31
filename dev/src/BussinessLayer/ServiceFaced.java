@@ -12,6 +12,7 @@ public class ServiceFaced {
     private DriverService driverService;
     private TruckService truckService;
     private SiteService siteService;
+    private TransportationService transportationService;
     private static ServiceFaced serviceFaced = null;
 
     public static ServiceFaced initial() {
@@ -44,11 +45,8 @@ public class ServiceFaced {
         return acc;
     }
     public StringBuilder chooseTruck(){
-        List<Truck> trucks = truckService.getTrucks();
         StringBuilder acc = new StringBuilder();
-        for (Truck t: trucks) {
-            acc.append(t).append("\n");
-        }
+        acc.append("Choose a truck: ").append(truckService.getTrucks());
         return acc;
     }
     public StringBuilder registerADriver(int id){
@@ -60,12 +58,24 @@ public class ServiceFaced {
         }
         return acc;
     }
-    public StringBuilder registerATruck(int id){
+    public StringBuilder registerATruck(int truckId, int transportationId){
         StringBuilder acc = new StringBuilder();
         try{
-            acc.append(truckService.getTruck(id));
+            //set a the truck to this transportation
+            transportationService.getTransportationById(transportationId).setTruck(truckService.getTruck(truckId));
+            acc.append("Truck :").append(truckId).append("was register to a transportation: ").append((transportationId));
         }catch(Exception e){
-            return acc.append(e.getMessage());
+            acc.append(e.getMessage());
+        }
+        return acc;
+    }
+    public StringBuilder registerADriver(int driverID, int transportationId){
+        StringBuilder acc = new StringBuilder();
+        try {
+            transportationService.getTransportationById(transportationId).setDriver(driverService.getDriver(driverID));
+            acc.append("Driver : ").append(driverID).append("was register to a transportation: ").append(transportationId);
+        }catch (Exception e){
+            acc.append(e.getMessage());
         }
         return acc;
     }

@@ -1,51 +1,41 @@
 package BussinessLayer;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 
 //bar
 public class TruckService {
+    private HashMap<Integer,Truck> trucks;
 
-    private List<Truck> trucks;
+    public List<Truck> getTrucks() { return new ArrayList<Truck>(trucks.values());}
 
-    public TruckService(){ trucks=new LinkedList<>(); }
-    public TruckService(List<Truck> tru){ this.trucks=tru;}
 
-    public List<Truck> getTrucks() { return trucks; }
-
-    public void setTrucks(List<Truck> trucks) { this.trucks = trucks; }
-
-    public Truck getTruckByWeight(int add ) throws Exception {
-        for (Truck truck: trucks) {
+    public List<Truck> getTrucksByWeight(int add) throws Exception {
+        List<Truck> t = new LinkedList<>();
+        for (Map.Entry<Integer,Truck> entry: trucks.entrySet()) {
+            Truck truck = entry.getValue();
             if(truck.getMaxWeight()>= truck.getNetWeight()+add){
-                Truck ret=truck;
-                removeTruck(ret); //moving the driver to the end of the list
-                addTruck(ret);
-                return ret;
+                t.add(truck);
             }
         }
-        throw new Exception("there is no compatible truck for mission");
-    }
-    public Truck getTruck(int licNum){
-        for (Truck truck: trucks) {
-            if(truck.getLicenseNumber()==licNum)
-                return truck;
+        if(t.isEmpty()) {
+            throw new Exception("there is no compatible truck for mission");
         }
-        throw new NoSuchElementException("driver is not exists");
+        return t;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder acc = new StringBuilder();
+        for (Map.Entry<Integer,Truck> entry: trucks.entrySet()) {
+            Truck t = entry.getValue();
+            acc.append(t);
+        }
+        return acc.toString();
     }
 
     public void removeTruck(Truck tru){
         trucks.remove(tru);
     }
-    public void removeTruck(int licenseNum){
-        for (Truck truck:trucks) {
-            if(truck.getLicenseNumber()==licenseNum)
-                trucks.remove(truck);
-        }
-    }
-    public void addTruck(Truck tru){ trucks.add(tru);}
 
     @Override
     public boolean equals(Object o) {
@@ -58,5 +48,12 @@ public class TruckService {
     @Override
     public int hashCode() {
         return Objects.hash(trucks);
+    }
+
+    public Truck getTruck(int truckId) {
+        if(!trucks.containsKey(truckId)){
+            throw new IllegalArgumentException("truck with id: "+ truckId + "is not exist");
+        }
+        return trucks.get(truckId);
     }
 }

@@ -33,13 +33,12 @@ public abstract class Site {
 
     @Override
     public String toString() {
-        return "Site{" +
-                "phone='" + phone + '\'' +
-                ", contactName='" + contactName + '\'' +
-                ", id=" + id +
-                ", address=" + address +
-                ", shippingArea=" + shippingArea +
-                '}';
+        return "Site: " +
+                "phone='" + phone + '\n' +
+                ", contactName='" + contactName + '\n' +
+                ", id=" + id + '\n' +
+                ", " + address + '\n' +
+                ", " + shippingArea + '\n';
     }
 
     @Override

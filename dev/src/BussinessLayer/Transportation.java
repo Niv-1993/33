@@ -102,17 +102,18 @@ public class Transportation {
 
     @Override
     public String toString() {
-        return "Transportation{" +
-                "id=" + id +
-                ", date=" + date +
-                ", leavingTime=" + leavingTime +
-                ", driver=" + driver +
-                ", deliveryItems=" + deliveryItems +
-                '}';
+        return "Transportation: " +
+                "id=" + id + '\n' +
+                ", date=" + date + '\n' +
+                ", leavingTime=" + leavingTime + '\n' +
+                ", driver=" + driver + '\n' +
+                ", deliveryItems=" + deliveryItems + '\n';
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, date, leavingTime, driver, deliveryItems);
     }
+
+
 }
