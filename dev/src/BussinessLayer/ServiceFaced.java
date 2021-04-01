@@ -1,5 +1,6 @@
 package BussinessLayer;
 
+import java.util.HashMap;
 import java.util.List;
 // costumer ask for a new transportation
 // the system ask for missing <dic<item,Integer>,sites> ,we get the trucks, we get the driver
@@ -29,7 +30,7 @@ public class ServiceFaced {
 
     }
     public StringBuilder chooseDriver(){
-        List<Driver> drivers = driverService.getDrivers();
+        HashMap<Integer,Driver> drivers = driverService.getDrivers();
         StringBuilder acc = new StringBuilder();
         for (Driver d: drivers) {
             acc.append(d).append("\n");

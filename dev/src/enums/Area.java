@@ -1,6 +1,7 @@
-package DataLayer;
+package enums;
 
-enum Area {
+public enum Area {
+
     Sout,
     North,
     Central

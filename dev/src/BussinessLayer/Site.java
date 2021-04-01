@@ -7,12 +7,15 @@ import BussinessLayer.ShippingArea;
 import java.util.Objects;
 
 public abstract class Site {
+
     protected String phone;
     protected String contactName;
-    protected long id;
+    protected int id;
     protected Address address;
     protected ShippingArea shippingArea;
-    public Site(String phone, String contactName, long id, Address address, ShippingArea shippingArea){
+
+
+    public Site(String phone, String contactName, int id, Address address, ShippingArea shippingArea){
         this.phone = phone;
         this.contactName = contactName;
         this.id = id;
@@ -21,7 +24,7 @@ public abstract class Site {
     }
     public void setPhone(String newPhone){ phone = newPhone; }
     public void setContactName(String newContactName){ contactName = newContactName; }
-    public void setId(long newId){id = newId; }
+    public void setId(int newId){id = newId; }
     public void setAddress(Address newAddress){ address = newAddress; }
     public void setShippingArea(ShippingArea newShippingArea){shippingArea = newShippingArea; }
 

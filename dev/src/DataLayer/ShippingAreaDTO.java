@@ -1,6 +1,7 @@
 package DataLayer;
 
 import java.util.Objects;
+import enums.Area;
 
 public class ShippingAreaDTO {
 

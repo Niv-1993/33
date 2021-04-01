@@ -2,33 +2,32 @@ package BussinessLayer;
 
 import DataLayer.DataController;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Objects;
+import java.util.*;
 
 //bar
 public class DriverService {
 
-    private List<Driver> drivers;
+    private HashMap<Integer,Driver> drivers;
     private DataController dataController;
 
-    public DriverService(){drivers=new LinkedList<>(); }
-    public DriverService(List<Driver> driverList){this.drivers=driverList;}
+    public DriverService(){drivers=new HashMap<>(); }
+    public DriverService(HashMap<Integer,Driver> driverList){
+        this.drivers=driverList;
+        dataController=DataController.init();
+    }
 
-    public List<Driver> getDrivers() { return drivers;  }
+    public HashMap<Integer,Driver> getDrivers() { return drivers;  }
 
     public Driver getDriver(License lic ) throws Exception {
         for (Driver driver:drivers) {
             if(driver.compatibleLicense(lic)){
-                Driver ret=driver;
-                removeDriver(ret); //moving the driver to the end of the list
-                addDriver(ret);
-                return ret;
+                removeDriver(driver); //moving the driver to the end of the list
+                addDriver(driver);
+                return driver;
 
             }
         }
-        throw  new Exception("no suck driver available for this loicense type");
+        throw  new Exception("no suck driver available for this license type");
     }
     public Driver getDriver(int id){
         for (Driver driver: drivers) {
@@ -38,24 +37,26 @@ public class DriverService {
         throw new NoSuchElementException("driver is not exists");
     }
 
-    public void setDrivers(List<Driver> drivers) { this.drivers = drivers; }
+    public void setDrivers(HashMap<Integer,Driver> drivers) { this.drivers = drivers; }
 
-    public void addDriver(Driver driver){ drivers.add(driver);}
+    public void addDriver(Driver driver){
+        drivers.add(driver);
+        dataController.addDriver(driver);
+    }
 
-    public void removeDriver(Driver driver){ drivers.remove(driver);}
+    public void removeDriver(Driver driver){
+        drivers.remove(driver);
+        dataController.removeDriver(driver);
+    }
 
     public void removeDriver(int id){
         for (Driver driver: drivers) {
             if(driver.getId()==id)
                 removeDriver(driver);
         }
+        dataController.removeDriver(getDriver(id));
     }
-    public void removeDriver(String name){
-        for (Driver driver: drivers) {
-            if(driver.getName()==name)
-                removeDriver(driver);
-        }
-    }
+
     public boolean compatibleDriver(Driver driver , License lice){return driver.compatibleLicense(lice);}
 
     @Override

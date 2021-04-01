@@ -1,6 +1,7 @@
 package BussinessLayer;
 
 import java.util.Objects;
+import enums.Area;
 
 public class ShippingArea {
 

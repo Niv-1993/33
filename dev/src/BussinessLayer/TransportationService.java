@@ -1,12 +1,20 @@
 package BussinessLayer;
 
-import java.util.HashMap;
+import DataLayer.DataController;
+
+import java.util.LinkedList;
 import java.util.List;
 
 //yuval
 public class TransportationService {
+
+    private final DataController dataController;
     private List<Transportation> transportations;
 
+    public TransportationService(){
+        transportations=new LinkedList<>();
+        dataController=DataController.init();
+    }
     public List<Transportation> getTransportations() {
         return transportations;
     }

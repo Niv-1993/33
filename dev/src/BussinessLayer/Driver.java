@@ -21,8 +21,7 @@ public class Driver {
 
     public String getName() { return name; }
 
-    //TODO: check if license is competible by equaling.
-    public boolean compatibleLicense(License license){ return false; }
+    public boolean compatibleLicense(License license){ return this.License.getKg()>=license.getKg(); }
 
     public void setLicense(License license) { License = license; }
 

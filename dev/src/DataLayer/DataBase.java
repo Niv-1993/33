@@ -1,12 +1,11 @@
 package DataLayer;
 
-import BussinessLayer.Address;
-import BussinessLayer.Driver;
-import BussinessLayer.Truck;
+import BussinessLayer.*;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import enums.Area;
 
 public class DataBase {
     private static DataBase db=null;
@@ -16,6 +15,7 @@ public class DataBase {
     private List<LicenseDTO> licenses;
     private List<SiteDTO> sites;
     private List<ShippingAreaDTO> shippingAreas;
+    private List<AddressDTO> addresses;
 
     public static DataBase init() {
         if(db==null){
@@ -30,6 +30,7 @@ public class DataBase {
         licenses=new LinkedList<>();
         sites=new LinkedList<>();
         shippingAreas=new LinkedList<>();
+        addresses=new LinkedList<>();
     }
 
     public List<DriverDTO> getDrivers() { return drivers; }
@@ -39,12 +40,14 @@ public class DataBase {
     public List<TransportationDTO> getTrans() { return trans; }
     public void setDrivers(List<DriverDTO> drivers) { this.drivers = drivers; }
     public List<TruckDTO> getTrucks() { return trucks; }
+    public List<AddressDTO> getAddresses() { return addresses; }
 
     public void setLicenses(List<LicenseDTO> licenses) { this.licenses = licenses; }
     public void setSites(List<SiteDTO> sites) { this.sites = sites; }
     public void setShippingAreas(List<ShippingAreaDTO> shippingAreas) { this.shippingAreas = shippingAreas; }
     public void setTrans(List<TransportationDTO> trans) { this.trans = trans; }
     public void setTrucks(List<TruckDTO> trucks) { this.trucks = trucks; }
+    public void setAddresses(List<AddressDTO> addresses) { this.addresses = addresses; }
 
     public void addDriver(DriverDTO driverDTO){if(!drivers.contains(driverDTO)) drivers.add(driverDTO);}
     public void addTruck(TruckDTO truckDTO){if(!trucks.contains(truckDTO)) trucks.add(truckDTO);}
@@ -52,7 +55,10 @@ public class DataBase {
     public void addTransportation(TransportationDTO transportationDTO){if(!trans.contains(transportationDTO)) trans.add(transportationDTO);}
     public void addSite(SiteDTO siteDTO){if(!sites.contains(siteDTO)) sites.add(siteDTO);}
     public void addShippingArea(ShippingAreaDTO shippingAreaDTO){if(!shippingAreas.contains(shippingAreaDTO)) shippingAreas.add(shippingAreaDTO);}
+    public void addAddress(AddressDTO address){if(!addresses.contains(address)) addresses.add(address);}
 
+    public void removeAddress(AddressDTO addressDTO){addresses.remove(addressDTO);}
+    public void removeDriver(int id){drivers.remove(getDriver(id));}
     public void removeDriver(DriverDTO driverDTO){if(drivers.contains(driverDTO)) drivers.remove(driverDTO);}
     public void removeTruck(TruckDTO truckDTO){if(trucks.contains(truckDTO)) trucks.remove(truckDTO);}
     public void removeLicense(LicenseDTO licenseDTO){if(licenses.contains(licenseDTO)) licenses.remove(licenseDTO);}
@@ -88,10 +94,39 @@ public class DataBase {
         return Objects.hash(db, drivers, trucks, trans, licenses, sites, shippingAreas);
     }
 
-    public SiteDTO getSite(Address address, String phone) {
+    public SiteDTO getSite(String phone) {
         for (SiteDTO site:sites) {
-            if(site.address==address& site.phone==phone)
+            if( site.phone==phone)
                 return site;
+        }
+        return null;
+    }
+
+    public LicenseDTO getLicense(int kg) {
+
+        for (LicenseDTO lic:licenses) {
+            if(lic.getKg()==kg)
+                return lic;
+        }
+
+        return null;
+
+    }
+
+    public AddressDTO getAddress(int number,String street,String city) {
+        for(AddressDTO add: addresses ){
+            if(add.getCity()==city & add.getStreet()==street & add.getNumber()==number)
+                return add;
+        }
+
+        return null;
+    }
+
+    public ShippingAreaDTO getShippingArea(Area area) {
+
+        for(ShippingAreaDTO add:shippingAreas){
+            if(add.getArea().equals(area))
+                return add;
         }
         return null;
     }

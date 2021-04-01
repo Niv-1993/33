@@ -1,11 +1,19 @@
 package BussinessLayer;
 
+import DataLayer.DataController;
+
 import java.util.*;
 
 //bar
 public class TruckService {
+
+    private final DataController dataController;
     private HashMap<Integer,Truck> trucks;
 
+    public TruckService(){
+        trucks=new HashMap<>();
+        dataController=DataController.init();
+    }
     public List<Truck> getTrucks() { return new ArrayList<Truck>(trucks.values());}
 
 
