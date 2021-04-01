@@ -17,10 +17,11 @@ public class TransportationService {
     private LocalTime leavingTime;
     private Driver driver;
     private Truck truck;
+    private List<SupplierService> suppliers;
     private HashMap<BranchService, List<ItemService>> deliveryItems;
     private int weight;
 
-    public TransportationService(long id, LocalDate date,LocalTime leavingTime, Driver driver,Truck truck,int weight,HashMap<BranchService, List<ItemService>> deliveryItems){
+    public TransportationService(long id, LocalDate date,LocalTime leavingTime, Driver driver,Truck truck,int weight,HashMap<BranchService, List<ItemService>> deliveryItems,List<SupplierService> sup){
         this.date=date;
         this.deliveryItems=deliveryItems;
         this.id=id;
@@ -28,6 +29,7 @@ public class TransportationService {
         this.truck=truck;
         this.weight=weight;
         this.leavingTime=leavingTime;
+        this.suppliers=sup;
     }
 
     public void setId(long id) { this.id = id; }
