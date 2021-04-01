@@ -2,7 +2,7 @@ package ServiceLayer.Objects;
 
 import BussinessLayer.License;
 
-public class TruckService {
+public class TruckServiceDTO {
 
     private long id;
     private int license;
@@ -10,7 +10,7 @@ public class TruckService {
     private int netWeight;
     private int maxWeight;
 
-    public  TruckService(long id,int license, int maxWeight, int netWeight, String model){
+    public TruckServiceDTO(long id, int license, int maxWeight, int netWeight, String model){
         this.license=license;
         this.maxWeight=maxWeight;
         this.model=model;

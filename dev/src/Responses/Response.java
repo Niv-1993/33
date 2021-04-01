@@ -1,9 +1,8 @@
 package Responses;
 
 public class Response <T>{
-
     public T value;
-    public boolean ErrorOccured;
+    public boolean errorIsOccurred;
     public Response(){}
     public Response (T obj){this.value=obj;}
 
@@ -11,7 +10,7 @@ public class Response <T>{
 
     public void setValue(T value) { this.value = value; }
 
-    public boolean isErrorOccured() { return ErrorOccured; }
+    public boolean isErrorOccurred() { return errorIsOccurred; }
 
-    public void setErrorOccured(boolean errorOccured) { ErrorOccured = errorOccured; }
+    public void setErrorOccurred(boolean errorOccurred) { errorOccurred = errorOccurred; }
 }

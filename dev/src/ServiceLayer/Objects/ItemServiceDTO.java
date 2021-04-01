@@ -1,11 +1,11 @@
 package ServiceLayer.Objects;
 
-public class ItemService {
+public class ItemServiceDTO {
 
     private long id;
     private String name;
 
-    public ItemService(long id,String name){
+    public ItemServiceDTO(long id, String name){
         this.id=id;
         this.name=name;
     }

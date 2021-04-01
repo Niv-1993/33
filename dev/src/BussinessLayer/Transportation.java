@@ -14,10 +14,11 @@ public class Transportation {
     private Driver driver;
     private Truck truck;
     //ask if they call this item or product?
-    private HashMap<Site, List<Item>> deliveryItems;
+    private HashMap<Branch, List<Item>> deliveryItems;
     private int weight;
+    private final List<Supplier> suppliers;
 
-    public Transportation(long id, LocalDate date,LocalTime leavingTime, Driver driver,Truck truck,int weight,HashMap<Site, List<Item>> deliveryItems){
+    public Transportation(long id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, int weight, HashMap<Branch, List<Item>> deliveryItems, List<Supplier> suppliers){
         this.date=date;
         this.deliveryItems=deliveryItems;
         this.id=id;
@@ -25,7 +26,13 @@ public class Transportation {
         this.truck=truck;
         this.weight=weight;
         this.leavingTime=leavingTime;
+        this.suppliers = suppliers;
     }
+
+    public List<Supplier> getSuppliers() {
+        return suppliers;
+    }
+
     public long getId() { return id; }
     public LocalDate getDate() { return date; }
     public Driver getDriver() { return driver; }
@@ -37,7 +44,7 @@ public class Transportation {
         }
         this.date = date;
     }
-    public void setDeliveryItems(HashMap<Site, List<Item>> deliveryItems) { this.deliveryItems = deliveryItems; }
+    public void setDeliveryItems(HashMap<Branch, List<Item>> deliveryItems) { this.deliveryItems = deliveryItems; }
 
     public void setDriver(Driver driver) {
         //not expected but just in case
@@ -61,7 +68,7 @@ public class Transportation {
         this.weight = weight;
     }
 
-    public HashMap<Site, List<Item>> getDeliveryItems() {
+    public HashMap<Branch, List<Item>> getDeliveryItems() {
         return deliveryItems;
     }
 

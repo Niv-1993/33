@@ -1,16 +1,16 @@
 package ServiceLayer.Objects;
 
-public class SupplierService {
+public class BranchServiceDTO {
 
     private String phone;
     private String contactName;
     private int id;
     private  String Area;
 
-    public SupplierService(String phone, String contactName, int id,String area ){
+    public BranchServiceDTO(String phone, String contactName, int id, String area ){
 
         this.phone=phone;
-        this.contactName=phone;
+        this.contactName=contactName;
         this.id=id;
         this.Area=area;
     }
@@ -30,4 +30,5 @@ public class SupplierService {
     public void setContactName(String contactName) { this.contactName = contactName; }
 
     public void setPhone(String phone) { this.phone = phone; }
+
 }

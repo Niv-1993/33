@@ -1,12 +1,12 @@
 package ServiceLayer.Objects;
 
-public class DriverService {
+public class DriverServiceDTO {
 
     private int id;
     private String name;
     private int license;
 
-    public DriverService(int id, String name, int license){
+    public DriverServiceDTO(int id, String name, int license){
         this.id=id;
         this.name=name;
         this.license=license;

@@ -30,7 +30,7 @@ public abstract class Site {
 
     public String getPhone(){return phone;}
     public String getContactName(){return contactName;}
-    public long getId(){return id;}
+    public int getId(){return id;}
     public Address getAddress(){return address;}
     public ShippingArea getShippingArea(){return shippingArea;}
 

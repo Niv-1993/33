@@ -14,7 +14,7 @@ public class TruckService {
         trucks=new HashMap<>();
         dataController=DataController.init();
     }
-    public List<Truck> getTrucks() { return new ArrayList<Truck>(trucks.values());}
+    public List<Truck> getTrucksList() { return new ArrayList<Truck>(trucks.values());}
 
 
     public List<Truck> getTrucksByWeight(int add) throws Exception {

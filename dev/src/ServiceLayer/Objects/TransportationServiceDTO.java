@@ -1,8 +1,6 @@
 package ServiceLayer.Objects;
 
 import BussinessLayer.Driver;
-import BussinessLayer.Item;
-import BussinessLayer.Site;
 import BussinessLayer.Truck;
 
 import java.time.LocalDate;
@@ -10,18 +8,18 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 
-public class TransportationService {
+public class TransportationServiceDTO {
 
     private long id;
     private LocalDate date;
     private LocalTime leavingTime;
-    private Driver driver;
-    private Truck truck;
-    private List<SupplierService> suppliers;
-    private HashMap<BranchService, List<ItemService>> deliveryItems;
+    private DriverServiceDTO driver;
+    private TruckServiceDTO truck;
+    private List<SupplierServiceDTO> suppliers;
+    private HashMap<BranchServiceDTO, List<ItemServiceDTO>> deliveryItems;
     private int weight;
 
-    public TransportationService(long id, LocalDate date,LocalTime leavingTime, Driver driver,Truck truck,int weight,HashMap<BranchService, List<ItemService>> deliveryItems,List<SupplierService> sup){
+    public TransportationServiceDTO(long id, LocalDate date, LocalTime leavingTime, DriverServiceDTO driver, TruckServiceDTO truck, int weight, HashMap<BranchServiceDTO, List<ItemServiceDTO>> deliveryItems, List<SupplierServiceDTO> sup){
         this.date=date;
         this.deliveryItems=deliveryItems;
         this.id=id;
@@ -34,7 +32,7 @@ public class TransportationService {
 
     public void setId(long id) { this.id = id; }
 
-    public Driver getDriver() { return driver; }
+    public DriverServiceDTO getDriver() { return driver; }
 
     public int getWeight() { return weight; }
 
@@ -44,19 +42,19 @@ public class TransportationService {
 
     public long getId() { return id; }
 
-    public Truck getTruck() { return truck; }
+    public TruckServiceDTO getTruck() { return truck; }
 
-    public HashMap<BranchService, List<ItemService>> getDeliveryItems() { return deliveryItems; }
+    public HashMap<BranchServiceDTO, List<ItemServiceDTO>> getDeliveryItems() { return deliveryItems; }
 
     public void setDate(LocalDate date) { this.date = date; }
 
-    public void setDeliveryItems(HashMap<BranchService, List<ItemService>> deliveryItems) { this.deliveryItems = deliveryItems; }
+    public void setDeliveryItems(HashMap<BranchServiceDTO, List<ItemServiceDTO>> deliveryItems) { this.deliveryItems = deliveryItems; }
 
-    public void setDriver(Driver driver) { this.driver = driver; }
+    public void setDriver(DriverServiceDTO driver) { this.driver = driver; }
 
     public void setLeavingTime(LocalTime leavingTime) { this.leavingTime = leavingTime; }
 
-    public void setTruck(Truck truck) { this.truck = truck; }
+    public void setTruck(TruckServiceDTO truck) { this.truck = truck; }
 
     public void setWeight(int weight) { this.weight = weight; }
 

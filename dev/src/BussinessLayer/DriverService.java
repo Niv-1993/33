@@ -15,47 +15,21 @@ public class DriverService {
         this.drivers=driverList;
         dataController=DataController.init();
     }
-
+    public List<Driver> getDriversList(){
+        return new ArrayList<Driver>(drivers.values());
+    }
     public HashMap<Integer,Driver> getDrivers() { return drivers;  }
 
-    public Driver getDriver(License lic ) throws Exception {
-        for (Driver driver:drivers) {
-            if(driver.compatibleLicense(lic)){
-                removeDriver(driver); //moving the driver to the end of the list
-                addDriver(driver);
-                return driver;
 
-            }
-        }
-        throw  new Exception("no suck driver available for this license type");
-    }
     public Driver getDriver(int id){
-        for (Driver driver: drivers) {
-            if(driver.getId()==id)
-                return driver;
+        if(drivers.containsKey(id)){
+            return drivers.get(id);
         }
         throw new NoSuchElementException("driver is not exists");
     }
 
     public void setDrivers(HashMap<Integer,Driver> drivers) { this.drivers = drivers; }
 
-    public void addDriver(Driver driver){
-        drivers.add(driver);
-        dataController.addDriver(driver);
-    }
-
-    public void removeDriver(Driver driver){
-        drivers.remove(driver);
-        dataController.removeDriver(driver);
-    }
-
-    public void removeDriver(int id){
-        for (Driver driver: drivers) {
-            if(driver.getId()==id)
-                removeDriver(driver);
-        }
-        dataController.removeDriver(getDriver(id));
-    }
 
     public boolean compatibleDriver(Driver driver , License lice){return driver.compatibleLicense(lice);}
 
