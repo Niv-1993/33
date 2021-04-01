@@ -5,17 +5,23 @@ import java.util.Objects;
 //bar
 public class Truck {
 
+    private long id;
     private  License license;
     private String model;
     private int netWeight;
     private int maxWeight;
 
-    public  Truck(License license, int maxWeight, int netWeight, String model){
+    public  Truck(long id,License license, int maxWeight, int netWeight, String model){
         this.license=license;
         this.maxWeight=maxWeight;
         this.model=model;
         this.netWeight=netWeight;
+        this.id=id;
     }
+
+    public long getId() { return id; }
+
+    public void setId(long id) { this.id = id; }
 
     public License getLicense() { return license; }
 
@@ -55,5 +61,7 @@ public class Truck {
                 ", maxWeight=" + maxWeight +
                 '}';
     }
+
+    public int getLicenseNumber() { return license.getKg();}
 }
 

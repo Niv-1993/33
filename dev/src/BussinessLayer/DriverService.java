@@ -1,5 +1,7 @@
 package BussinessLayer;
 
+import DataLayer.DataController;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -9,6 +11,7 @@ import java.util.Objects;
 public class DriverService {
 
     private List<Driver> drivers;
+    private DataController dataController;
 
     public DriverService(){drivers=new LinkedList<>(); }
     public DriverService(List<Driver> driverList){this.drivers=driverList;}
@@ -34,19 +37,13 @@ public class DriverService {
         }
         throw new NoSuchElementException("driver is not exists");
     }
-  //TODO: check if driver name is unique.
-  /*
-    public Driver getDriver(String name) {
-        for (Driver driver: drivers) {
-            if(driver.getName()==name)
-               return driver;
-        }
-        throw new NoSuchElementException("driver is not exists");
-    }
-  */
+
     public void setDrivers(List<Driver> drivers) { this.drivers = drivers; }
+
     public void addDriver(Driver driver){ drivers.add(driver);}
+
     public void removeDriver(Driver driver){ drivers.remove(driver);}
+
     public void removeDriver(int id){
         for (Driver driver: drivers) {
             if(driver.getId()==id)
@@ -60,6 +57,7 @@ public class DriverService {
         }
     }
     public boolean compatibleDriver(Driver driver , License lice){return driver.compatibleLicense(lice);}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

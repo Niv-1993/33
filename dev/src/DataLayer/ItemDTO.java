@@ -1,13 +1,15 @@
-package BussinessLayer;
+package DataLayer;
+
+import BussinessLayer.Item;
 
 import java.util.Objects;
 
-public class Item {
+public class ItemDTO {
 
     private long id;
     private String name;
 
-    public Item(long id,String name){
+    public ItemDTO(long id,String name){
         this.id=id;
         this.name=name;
     }
@@ -22,8 +24,8 @@ public class Item {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
-        return id == item.id && Objects.equals(name, item.name);
+        ItemDTO itemDTO = (ItemDTO) o;
+        return id == itemDTO.id && Objects.equals(name, itemDTO.name);
     }
 
     @Override

@@ -9,6 +9,8 @@ public class License {
         this.kg = kg;
     }
 
+    public int getKg() { return kg; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

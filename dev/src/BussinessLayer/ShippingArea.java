@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class ShippingArea {
 
-    private  Area area;
+    private Area area;
 
     public ShippingArea(){ }
     public ShippingArea(Area are){ this.area=are;}
