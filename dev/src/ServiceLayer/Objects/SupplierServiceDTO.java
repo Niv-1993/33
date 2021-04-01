@@ -7,6 +7,16 @@ public class SupplierServiceDTO {
     private int id;
     private  String Area;
 
+    @Override
+    public String toString() {
+        return "SupplierServiceDTO{" +
+                "phone='" + phone + '\'' +
+                ", contactName='" + contactName + '\'' +
+                ", id=" + id +
+                ", Area='" + Area + '\'' +
+                '}';
+    }
+
     public SupplierServiceDTO(String phone, String contactName, int id, String area ){
 
         this.phone=phone;

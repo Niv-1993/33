@@ -12,6 +12,15 @@ public class DriverServiceDTO {
         this.license=license;
     }
 
+    @Override
+    public String toString() {
+        return "DriverServiceDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", license=" + license +
+                '}';
+    }
+
     public void setName(String name) { this.name = name; }
     public void setId(int id) { this.id = id; }
     public void setLicense(int license) { this.license = license; }

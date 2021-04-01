@@ -15,6 +15,17 @@ public class BranchServiceDTO {
         this.Area=area;
     }
 
+
+    @Override
+    public String toString() {
+        return "BranchServiceDTO{" +
+                "phone='" + phone + '\'' +
+                ", contactName='" + contactName + '\'' +
+                ", id=" + id +
+                ", Area='" + Area + '\'' +
+                '}';
+    }
+
     public void setId(int id) { this.id = id; }
 
     public int getId() { return id; }

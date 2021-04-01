@@ -10,6 +10,18 @@ public class TruckServiceDTO {
     private int netWeight;
     private int maxWeight;
 
+
+    @Override
+    public String toString() {
+        return "TruckServiceDTO{" +
+                "id=" + id +
+                ", license=" + license +
+                ", model='" + model + '\'' +
+                ", netWeight=" + netWeight +
+                ", maxWeight=" + maxWeight +
+                '}';
+    }
+
     public TruckServiceDTO(long id, int license, int maxWeight, int netWeight, String model){
         this.license=license;
         this.maxWeight=maxWeight;

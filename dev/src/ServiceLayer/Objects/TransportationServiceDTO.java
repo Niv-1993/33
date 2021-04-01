@@ -19,6 +19,20 @@ public class TransportationServiceDTO {
     private HashMap<BranchServiceDTO, List<ItemServiceDTO>> deliveryItems;
     private int weight;
 
+    @Override
+    public String toString() {
+        return "TransportationServiceDTO{" +
+                "id=" + id +
+                ", date=" + date +
+                ", leavingTime=" + leavingTime +
+                ", driver=" + driver +
+                ", truck=" + truck +
+                ", suppliers=" + suppliers +
+                ", deliveryItems=" + deliveryItems +
+                ", weight=" + weight +
+                '}';
+    }
+
     public TransportationServiceDTO(long id, LocalDate date, LocalTime leavingTime, DriverServiceDTO driver, TruckServiceDTO truck, int weight, HashMap<BranchServiceDTO, List<ItemServiceDTO>> deliveryItems, List<SupplierServiceDTO> sup){
         this.date=date;
         this.deliveryItems=deliveryItems;
