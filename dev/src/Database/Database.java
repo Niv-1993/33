@@ -143,7 +143,7 @@ public class Database {
         log.debug("updated sick days: "+ newAmount+" in database");
     }
 
-    public void createBranch(Employee personnelM) {
+    public void createBranch(Employee personnelM) throws Exception {
         log.debug("enter database - creating new branch with id " +counterBID);
         employeesInBranches.put(counterBID++,new HashMap<>());
         employeesInBranches.get(counterBID-1).put(personnelM.getEID(),new PersonnelManager(personnelM));

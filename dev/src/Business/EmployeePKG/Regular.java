@@ -14,7 +14,7 @@ public class Regular extends Employee{
     public Regular(int EID, String name, int[] bankDetails, int salary, RoleType role, LocalDate startWorkDate, int[] terms) throws Exception {
         super(EID, name, bankDetails, salary, role, startWorkDate, terms);
     }
-    public Regular(Employee other){
+    public Regular(Employee other) throws Exception {
         super(other);
     }
 

@@ -25,29 +25,28 @@ public abstract class Employee {
      */
     public Employee(int EID, String name, int[] bankDetails, int salary, RoleType role, LocalDate startWorkDate, int[] terms) throws Exception {
         checkName(name);
-        checkSalary(salary);
-        checkBank(bankDetails);
-        checkTerms(terms);
-        this.EID = EID;
         this.name = name;
-        bankAccount = new BankAccount(bankDetails[0], bankDetails[1], bankDetails[2]);
+        checkSalary(salary);
         this.salary = salary;
+        bankAccount = new BankAccount(bankDetails);
+        termsOfEmployment = new TermsOfEmployment(terms);
+        this.EID = EID;
         this.role = new ArrayList<>();
         this.role.add(role);
         this.startWorkingDate = startWorkDate;
-        termsOfEmployment = new TermsOfEmployment(terms[0], terms[1], terms[2]);
+
     }
 
 
     //copy constructor
-    public Employee(Employee other) {
+    public Employee(Employee other) throws Exception {
         this.EID = other.getEID();
         this.name = other.getName();
-        this.bankAccount = new BankAccount(other.getBankAccount().getAccountNum(), other.getBankAccount().getBankBranch(), other.getBankAccount().getBankID());
+        this.bankAccount = new BankAccount(other.bankAccount);
         this.salary = other.getSalary();
         this.role = new ArrayList<>(other.getRole());
         this.startWorkingDate = other.getStartWorkingDate();
-        termsOfEmployment = new TermsOfEmployment(other.getTermsOfEmployment().getEducationFun(), other.getTermsOfEmployment().getDaysOff(), other.getTermsOfEmployment().getSickDays());
+        termsOfEmployment = new TermsOfEmployment(other.termsOfEmployment);
     }
 
 
@@ -190,24 +189,6 @@ public abstract class Employee {
             throw new Exception("Invalid salary input");
         }
 
-    }
-
-    private void checkTerms(int[] terms) throws Exception {
-        log.debug("checking terms");
-        boolean isValid = terms[0] > 0 && terms[1] >= 0 && terms[2] >= 0;
-        if (!isValid) {
-            log.error("terms are invalid : education fund: " + terms[0] + " daysOff: " + terms[1] + " sickDays: " + terms[2]);
-            throw new Exception("Invalid terms of employment");
-        }
-    }
-
-    private void checkBank(int[] bankDetails) throws Exception {
-        log.debug("checking bank details");
-        boolean isValid = bankDetails[0] > 0 && bankDetails[1] > 0 && bankDetails[2] > 0;
-        if (!isValid) {
-            log.error("bank details are invalid: AccountNum: " + bankDetails[0] + " BankBranch: " + bankDetails[1] + " BandID: " + bankDetails[2]);
-            throw new Exception("Invalid bank details");
-        }
     }
 
     protected void checkName(String name) throws Exception {

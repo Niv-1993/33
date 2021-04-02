@@ -17,7 +17,7 @@ public class PersonnelManager extends Employee {
         super(EID, name, bankDetails, salary, role, startWorkDate, terms);
     }
 
-    public PersonnelManager(Employee other) {
+    public PersonnelManager(Employee other) throws Exception {
         super(other);
         log.debug("copy constructor of PersonnelManager");
     }
@@ -87,12 +87,8 @@ public class PersonnelManager extends Employee {
     public void updateEmployeeBANum(int updateEID, int newAccountNumber, Map<Integer, Employee> employees) throws Exception {
         log.debug("entered update employee bank account number function of: " + updateEID + " to: " + newAccountNumber);
         checkWorking(updateEID, employees);
-        if (newAccountNumber <= 0) {
-            log.error("the new account number is 0 or negative: "+newAccountNumber);
-            throw new Exception("invalid new account number: "+newAccountNumber);
-        }
-        Database.getInstance().updateEmployeeBANum(employees.get(updateEID).getEID(), newAccountNumber);
         employees.get(updateEID).getBankAccount().setAccountNum(newAccountNumber);
+        Database.getInstance().updateEmployeeBANum(employees.get(updateEID).getEID(), newAccountNumber);
         log.debug("successfully updated bank account number to: " + newAccountNumber);
     }
 
@@ -100,12 +96,8 @@ public class PersonnelManager extends Employee {
     public void updateEmployeeBABranch(int updateEID, int newBranch, Map<Integer, Employee> employees) throws Exception {
         log.debug("entered update employee bank branch number function of: " + updateEID + " to: " + newBranch);
         checkWorking(updateEID, employees);
-        if (newBranch <= 0) {
-            log.error("the new branch is 0 or negative: "+newBranch);
-            throw new Exception("invalid new branch number: "+newBranch);
-        }
-        Database.getInstance().updateEmployeeBABranch(employees.get(updateEID).getEID(), newBranch);
         employees.get(updateEID).getBankAccount().setBankBranch(newBranch);
+        Database.getInstance().updateEmployeeBABranch(employees.get(updateEID).getEID(), newBranch);
         log.debug("successfully updated bank branch number to: " + newBranch);
     }
 
@@ -113,12 +105,8 @@ public class PersonnelManager extends Employee {
     public void updateEmployeeBAID(int updateEID, int newBankID, Map<Integer, Employee> employees) throws Exception {
         log.debug("entered update employee bank ID number function of: " + updateEID + " to: " + newBankID);
         checkWorking(updateEID, employees);
-        if (newBankID <= 0) {
-            log.error("the new bank id is 0 or negative: "+newBankID);
-            throw new Exception("invalid new bank id number: "+newBankID);
-        }
-        Database.getInstance().updateEmployeeBAID(employees.get(updateEID).getEID(), newBankID);
         employees.get(updateEID).getBankAccount().setBankID(newBankID);
+        Database.getInstance().updateEmployeeBAID(employees.get(updateEID).getEID(), newBankID);
         log.debug("successfully updated bank ID number to: " + newBankID);
     }
 
@@ -126,12 +114,8 @@ public class PersonnelManager extends Employee {
     public void updateEmployeeEducationFund(int updateEID, int newEducationFund, Map<Integer, Employee> employees) throws Exception {
         log.debug("entered update employee education fund function of: " + updateEID + " to: " + newEducationFund);
         checkWorking(updateEID, employees);
-        if (newEducationFund <= 0) {
-            log.error("the new education fund is 0 or negative: "+newEducationFund);
-            throw new Exception("invalid new education fund number: "+newEducationFund);
-        }
-        Database.getInstance().updateEmployeeEducationFund(employees.get(updateEID).getEID(), newEducationFund);
         employees.get(updateEID).getTermsOfEmployment().setEducationFun(newEducationFund);
+        Database.getInstance().updateEmployeeEducationFund(employees.get(updateEID).getEID(), newEducationFund);
         log.debug("successfully updated education fund to: " + newEducationFund);
     }
 
@@ -139,12 +123,8 @@ public class PersonnelManager extends Employee {
     public void updateEmployeeDaysOff(int updateEID, int newAmount, Map<Integer, Employee> employees) throws Exception {
         log.debug("entered update employee days-off function of: " + updateEID + " to: " + newAmount);
         checkWorking(updateEID, employees);
-        if (newAmount < 0) {
-            log.error("the new amount of days off is negative: "+newAmount);
-            throw new Exception("invalid new amount of days off: "+newAmount);
-        }
-        Database.getInstance().updateEmployeeDaysOff(employees.get(updateEID).getEID(), newAmount);
         employees.get(updateEID).getTermsOfEmployment().setDaysOff(newAmount);
+        Database.getInstance().updateEmployeeDaysOff(employees.get(updateEID).getEID(), newAmount);
         log.debug("successfully updated days-off to: " + newAmount);
     }
 
@@ -152,12 +132,8 @@ public class PersonnelManager extends Employee {
     public void updateEmployeeSickDays(int updateEID, int newAmount, Map<Integer, Employee> employees) throws Exception {
         log.debug("entered update employee sick-days function of: " + updateEID + " to: " + newAmount);
         checkWorking(updateEID, employees);
-        if (newAmount < 0) {
-            log.error("the new amount of sick-days is negative: "+newAmount);
-            throw new Exception("invalid new amount of sick-days: "+newAmount);
-        }
-        Database.getInstance().updateEmployeeSickDays(employees.get(updateEID).getEID(), newAmount);
         employees.get(updateEID).getTermsOfEmployment().setSickDays(newAmount);
+        Database.getInstance().updateEmployeeSickDays(employees.get(updateEID).getEID(), newAmount);
         log.debug("successfully updated sick-days to: " + newAmount);
     }
 

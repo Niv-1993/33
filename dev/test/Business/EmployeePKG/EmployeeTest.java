@@ -461,6 +461,7 @@ public class EmployeeTest {
     @Test
     public void removeEmpFromShift2() {
         try {
+            Shift s = mock(Shift.class);
             driver.removeEmpFromShift(s.getSID(), driver.getEID(), shiftController);
             Assert.fail();
         } catch (Exception e) {}
