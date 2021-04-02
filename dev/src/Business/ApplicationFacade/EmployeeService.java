@@ -3,6 +3,8 @@ package Business.ApplicationFacade;
 import Business.ApplicationFacade.outObjects.*;
 import Business.EmployeePKG.EmployeeController;
 import Business.Type.*;
+import org.apache.log4j.Logger;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ import java.util.Map;
 
 public class EmployeeService implements iEmployeeService {
     private EmployeeController employeeController;
-
+    final static Logger log = Logger.getLogger(EmployeeService.class);
     public EmployeeService() {
         this.employeeController = new EmployeeController();
     }
@@ -27,9 +29,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response Login(int EID, String role) {
         try {
-            employeeController.Login(EID, RoleType.valueOf(role));
+            log.debug("login request service");
+            employeeController.Login(EID,role);
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -41,9 +46,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response Logout() {
         try {
+            log.debug("logout request service");
             employeeController.Logout();
+            log.debug("successful response from service");
             return new Response();
         }catch (Exception e){
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -61,9 +69,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response createBranch(String code, int newEID, String name, int[] bankDetails, int salary, int[] terms) {
         try {
+            log.debug("create a new branch service");
             employeeController.createBranch(code,newEID,name,bankDetails,salary,terms);
+            log.debug("successful response from service");
             return new Response();
         }catch (Exception e){
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -78,8 +89,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public ResponseData<Constraint> addConstConstraint(DayOfWeek day, String shiftType, String reason) {
         try {
-            return new ResponseData<>(new Constraint(employeeController.addConstConstraint(day, ShiftType.valueOf(shiftType), reason)));
+            log.debug("add a const constraint service");
+            Constraint c = new Constraint(employeeController.addConstConstraint(day, shiftType, reason));
+            log.debug("successful response data from service");
+            return new ResponseData<>(c);
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new ResponseData<>(e.getMessage());
         }
     }
@@ -94,8 +109,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public ResponseData<Constraint> addConstraint(LocalDate c_date, String shiftType, String reason) {
         try {
-            return new ResponseData<>(new Constraint(employeeController.addConstraint(c_date, ShiftType.valueOf(shiftType), reason)));
+            log.debug("add a constraint service");
+            Constraint c = new Constraint(employeeController.addConstraint(c_date, shiftType, reason));
+            log.debug("successful response data from service");
+            return new ResponseData<>(c);
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new ResponseData<>(e.getMessage());
         }
     }
@@ -108,8 +127,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public ResponseData<Constraint> removeConstraint(int CID) {
         try {
-            return new ResponseData<>(new Constraint(employeeController.removeConstraint(CID)));
+            log.debug("remove a constraint service");
+            Constraint c = new Constraint(employeeController.removeConstraint(CID));
+            log.debug("successful response data from service");
+            return new ResponseData<>(c);
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new ResponseData<>(e.getMessage());
         }
     }
@@ -123,9 +146,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response updateReasonConstraint(int CID, String newReason) {
         try {
+            log.debug("update reason in constraint service");
             employeeController.updateReasonConstraint(CID, newReason);
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -139,9 +165,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response updateShiftTypeConstraint(int CID, String newType) {
         try {
-            employeeController.updateShiftTypeConstraint(CID, ShiftType.valueOf(newType));
+            log.debug("update shift type in constraint service");
+            employeeController.updateShiftTypeConstraint(CID, newType);
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -166,10 +195,13 @@ public class EmployeeService implements iEmployeeService {
      */
     public ResponseData<Employee> addEmployee(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms) {
         try {
-            Business.EmployeePKG.Employee emp = employeeController.addEmployee(newEID, name, bankDetails, salary, RoleType.valueOf(role), startWorkDate, terms);
+            log.debug("add a new employee service");
+            Business.EmployeePKG.Employee emp = employeeController.addEmployee(newEID, name, bankDetails, salary, role, startWorkDate, terms);
             Employee employee = new Employee(emp.getEID(),emp.getName(), RoleType.valueOf(role),emp.getBankAccount(),emp.getSalary(),emp.getTermsOfEmployment());
+            log.debug("successful response data from service");
             return new ResponseData<>(employee);
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new ResponseData<>(e.getMessage());
         }
     }
@@ -183,9 +215,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response fireEmployee(int fireEID) {
         try {
+            log.debug("fire employee service");
             employeeController.fireEmployee(fireEID);
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -200,9 +235,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response updateEmployeeName(int updateEID, String newName) {
         try {
+            log.debug("update employee name service");
             employeeController.updateEmployeeName(updateEID, newName);
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -217,9 +255,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response updateEmployeeSalary(int updateEID, int newSalary) {
         try {
+            log.debug("update employee salary service");
             employeeController.updateEmployeeSalary(updateEID, newSalary);
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -234,9 +275,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response updateEmployeeBANum(int updateEID, int newAccountNumber) {
         try {
+            log.debug("update employee bank account number service");
             employeeController.updateEmployeeBANum(updateEID, newAccountNumber);
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -251,9 +295,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response updateEmployeeBABranch(int updateEID, int newBranch) {
         try {
+            log.debug("update employee bank branch number service");
             employeeController.updateEmployeeBABranch(updateEID, newBranch);
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -268,9 +315,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response updateEmployeeBAID(int updateEID, int newBankID) {
         try {
+            log.debug("update employee bank ID number service");
             employeeController.updateEmployeeBAID(updateEID, newBankID);
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -285,9 +335,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response updateEmployeeEducationFund(int updateEID, int newEducationFund) {
         try {
+            log.debug("update employee education fund service");
             employeeController.updateEmployeeEducationFund(updateEID, newEducationFund);
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -302,9 +355,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response updateEmployeeDaysOff(int updateEID, int newAmount) {
         try {
+            log.debug("update employee days-off service");
             employeeController.updateEmployeeDaysOff(updateEID, newAmount);
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -319,9 +375,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response updateEmployeeSickDays(int updateEID, int newAmount) {
         try {
+            log.debug("update employee sick-days service");
             employeeController.updateEmployeeSickDays(updateEID, newAmount);
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -337,10 +396,53 @@ public class EmployeeService implements iEmployeeService {
      */
     public ResponseData<Shift> createShift(Map<String, Integer> rolesAmount, LocalDate date, String shiftType) {
         try {
+            log.debug("create new shift service");
             Business.ShiftPKG.Shift s = employeeController.createShift(rolesAmount, date, ShiftType.valueOf(shiftType));
             Shift shift = new Shift(s.getSID(),s.getDate(),s.getShiftType(),s.getEmployees());
+            log.debug("successful response from service");
             return new ResponseData<>(shift);
         } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseData<>(e.getMessage());
+        }
+    }
+
+    /**
+     * set the default Shifts with roles and amount of each role
+     * Note: Only the personnel manager is allowed to use this functionality
+     *
+     * @param defaultRolesAmount Map<ShiftType, Map<RoleType,amount>>
+     * @return A response object. The response should contain a error message in case of an error
+     */
+    public Response defaultShifts(Map<String, Map<String, Integer>> defaultRolesAmount) {
+        try {
+            log.debug("default shift request service");
+            employeeController.defaultShifts(defaultRolesAmount);
+            log.debug("successful response from service");
+            return new Response();
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return new Response(e.getMessage());
+        }
+    }
+
+    /**
+     * creates a default shit (etc Morning, Night...)
+     *
+     * @param date      the date of the shift
+     * @param shiftType the type
+     * @returnA response object with a value set to the employee
+     * *         otherwise the response should contain a error message in case of an error
+     */
+    public ResponseData<Shift> createDefaultShift(LocalDate date, String shiftType) {
+        try {
+            log.debug("create default shift request service");
+            Business.ShiftPKG.Shift s = employeeController.createDefaultShift(date,shiftType);
+            Shift shift = new Shift(s.getSID(),s.getDate(),s.getShiftType(),s.getEmployees());
+            log.debug("successful response from service");
+            return new ResponseData<>(shift);
+        } catch (Exception e) {
+            log.error(e.getMessage());
             return new ResponseData<>(e.getMessage());
         }
     }
@@ -353,10 +455,13 @@ public class EmployeeService implements iEmployeeService {
      */
     public ResponseData<Employee> getEmployeeDetails() {
         try {
+            log.debug("get employee details service");
             Business.EmployeePKG.Employee emp = employeeController.getEmployeeDetails();
             Employee employee = new Employee(emp.getEID(), emp.getName(), employeeController.getCurrConnectedEmpRole(), emp.getBankAccount(),emp.getSalary(), emp.getTermsOfEmployment());
+            log.debug("successful response from service");
             return new ResponseData<>(employee);
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new ResponseData<>(e.getMessage());
         }
     }
@@ -370,9 +475,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public ResponseData<List<Shift>> getShiftsAndEmployees() {
         try {
+            log.debug("get all shifts and employee service");
             List<Shift> shifts = convertShifts(employeeController.getShiftsAndEmployees());
+            log.debug("successful response from service");
             return new ResponseData<>(shifts);
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new ResponseData<>(e.getMessage());
         }
     }
@@ -387,9 +495,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response removeEmpFromShift(int SID, int removeEID) {
         try {
+            log.debug("remove employee from shift service");
             employeeController.removeEmpFromShift(SID, removeEID);
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -405,9 +516,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response addEmpToShift(int SID, int addEID, String role) {
         try {
+            log.debug("add employee to shift service");
             employeeController.addEmpToShift(SID, addEID, RoleType.valueOf(role));
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -423,9 +537,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response updateAmountRole(int SID, String role, int newAmount) {
         try {
+            log.debug("update amount in role to shift service");
             employeeController.updateAmountRole(SID, RoleType.valueOf(role), newAmount);
+            log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -438,11 +555,14 @@ public class EmployeeService implements iEmployeeService {
      */
     public ResponseData<Employee> getOnlyEmployeeShiftsAndConstraints() {
         try {
+            log.debug("get current employee's shifts and constraints service");
             Employee emp = new Employee(employeeController.getCurrConnectedEmpID(), employeeController.getCurrentConEmpName(),
                     employeeController.getCurrConnectedEmpRole(), convertShifts(employeeController.getOnlyEmployeeShifts()),
                     convertConstrains(employeeController.getOnlyEmployeeConstraints()));
+            log.debug("successful response from service");
             return new ResponseData<>(emp);
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new ResponseData<>(e.getMessage());
         }
     }
@@ -457,9 +577,12 @@ public class EmployeeService implements iEmployeeService {
      */
     public Response loadData(int BID) {
         try {
+            log.debug("load data service");
             employeeController.loadData(BID);
+            log.debug("successful response from service");
             return new Response();
         }catch (Exception e){
+            log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
@@ -468,18 +591,22 @@ public class EmployeeService implements iEmployeeService {
      * Convert Help Functions of lists
      */
     private List<Shift> convertShifts(List<Business.ShiftPKG.Shift> allShifts) {
+        log.debug("converting shift of business layer to out objects list");
         List<Shift> shifts = new ArrayList<>();
         allShifts.forEach(s -> {
             shifts.add(new Shift(s.getSID(), s.getDate(), s.getShiftType(), s.getEmployees()));
         });
+        log.debug("Done.");
         return shifts;
     }
 
     private List<Constraint> convertConstrains(List<Business.ShiftPKG.Constraint> allConstraints) {
+        log.debug("converting constraints of business layer to out objects list");
         List<Constraint> constraints = new ArrayList<>();
         allConstraints.forEach(c -> {
             constraints.add(new Constraint(c.getCID(), c.getEID(), c.getReason(),c.getShiftType()));
         });
+        log.debug("Done.");
         return constraints;
     }
 }

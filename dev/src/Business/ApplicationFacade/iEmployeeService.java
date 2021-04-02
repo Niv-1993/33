@@ -190,10 +190,28 @@ public interface iEmployeeService {
      * @param rolesAmount Map with key: role and value: the amount
      * @param date The date of the shift to take place
      * @param shiftType type of the shift
-     * @return A response object. The response should contain a error message in case of an error
+     * @returnA response object with a value set to the employee
+     *      *         otherwise the response should contain a error message in case of an error
      */
     ResponseData<Shift> createShift(Map<String,Integer> rolesAmount, LocalDate date, String shiftType);
 
+    /**
+     * set the default Shifts with roles and amount of each role
+     * Note: Only the personnel manager is allowed to use this functionality
+     * @param defaultRolesAmount Map<ShiftType, Map<RoleType,amount>>
+     * @return A response object. The response should contain a error message in case of an error
+     */
+    Response defaultShifts(Map<String,Map<String,Integer>> defaultRolesAmount);
+
+    /**
+     * creates a default shit (etc Morning, Night...)
+     * Note: Only the personnel manager is allowed to use this functionality
+     * @param date the date of the shift
+     * @param shiftType the type
+     * @returnA response object with a value set to the employee
+     *      *         otherwise the response should contain a error message in case of an error
+     */
+    ResponseData<Shift> createDefaultShift(LocalDate date, String shiftType);
     /**
      * Gets the details of a connected employee
      * @return A response object with a value set to the employee

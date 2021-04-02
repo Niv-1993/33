@@ -15,7 +15,7 @@ public class EmployeeServiceTest {
     iEmployeeService service;
     int[] bank = {1,2,3};
     int[] terms = {4,5,6};
-    Database database = Database.getInstance();
+
 
     /**
      * Assume that database has in init:
@@ -25,6 +25,7 @@ public class EmployeeServiceTest {
      */
     @Before
     public void setUp() throws Exception {
+        Database database = Database.getInstance();
         database.init();
         service = new EmployeeService();
         service.loadData(1);
@@ -38,7 +39,7 @@ public class EmployeeServiceTest {
 
     @After
     public void tearDown() throws Exception {
-        database.reset();
+
     }
 
     @Test

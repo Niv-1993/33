@@ -23,61 +23,120 @@ public abstract class Employee {
     /**
      * Constructor
      */
-    public Employee(int EID, String name,int[] bankDetails,int salary,RoleType role,LocalDate startWorkDate,int[] terms){
+    public Employee(int EID, String name, int[] bankDetails, int salary, RoleType role, LocalDate startWorkDate, int[] terms) throws Exception {
+        checkName(name);
+        checkSalary(salary);
+        checkBank(bankDetails);
+        checkTerms(terms);
         this.EID = EID;
         this.name = name;
-        bankAccount = new BankAccount(bankDetails[0],bankDetails[1],bankDetails[2]);
+        bankAccount = new BankAccount(bankDetails[0], bankDetails[1], bankDetails[2]);
         this.salary = salary;
         this.role = new ArrayList<>();
         this.role.add(role);
         this.startWorkingDate = startWorkDate;
-        termsOfEmployment = new TermsOfEmployment(terms[0],terms[1],terms[2]);
+        termsOfEmployment = new TermsOfEmployment(terms[0], terms[1], terms[2]);
+    }
+
+
+    //copy constructor
+    public Employee(Employee other) {
+        this.EID = other.getEID();
+        this.name = other.getName();
+        this.bankAccount = new BankAccount(other.getBankAccount().getAccountNum(), other.getBankAccount().getBankBranch(), other.getBankAccount().getBankID());
+        this.salary = other.getSalary();
+        this.role = new ArrayList<>(other.getRole());
+        this.startWorkingDate = other.getStartWorkingDate();
+        termsOfEmployment = new TermsOfEmployment(other.getTermsOfEmployment().getEducationFun(), other.getTermsOfEmployment().getDaysOff(), other.getTermsOfEmployment().getSickDays());
     }
 
 
     public Constraint addConstConstraint(DayOfWeek day, ShiftType shiftType, String reason, ShiftController shiftController) {
-        return shiftController.addConstConstraint(EID,day,shiftType,reason);
+        log.debug("enter add const constraint function");
+        Constraint c = shiftController.addConstConstraint(EID, day, shiftType, reason);
+        log.debug("successfully add const constraint");
+        return c;
     }
+
     public Constraint addConstraint(LocalDate c_date, ShiftType shiftType, String reason, ShiftController shiftController) {
-        return shiftController.addConstraint(EID,c_date,shiftType,reason);
+        log.debug("enter add constraint function");
+        Constraint c = shiftController.addConstraint(EID, c_date, shiftType, reason);
+        log.debug("successfully add constraint");
+        return c;
     }
+
     public Constraint removeConstraint(int CID, ShiftController shiftController) throws Exception {
-        return shiftController.removeConstraint(CID);
+        log.debug("enter remove constraint function CID: " + CID);
+        Constraint c = shiftController.removeConstraint(CID);
+        log.debug("successfully removed constraint CID: " + CID);
+        return c;
     }
+
     public void updateReasonConstraint(int CID, String newReason, ShiftController shiftController) throws Exception {
-        shiftController.updateReasonConstraint(CID,newReason);
+        log.debug("enter update reason constraint function CID: " + CID);
+        shiftController.updateReasonConstraint(CID, newReason);
+        log.debug("successfully updated reason constraint CID: " + CID);
     }
+
     public void updateShiftTypeConstraint(int CID, ShiftType newType, ShiftController shiftController) throws Exception {
-        shiftController.updateShiftTypeConstraint(CID,newType);
+        log.debug("enter update shift type in constraint CID: " + CID);
+        shiftController.updateShiftTypeConstraint(CID, newType);
+        log.debug("successfully updated shift type in constraint CID: " + CID);
     }
-    public List<Shift> getOnlyEmployeeShifts(ShiftController shiftController){return shiftController.getOnlyEmployeeShifts(getEID());}
-    public List<Constraint> getOnlyEmployeeConstraints(ShiftController shiftController){return shiftController.getOnlyEmployeeConstraints(getEID());}
-    public void addToDB(){}
 
+    public List<Shift> getOnlyEmployeeShifts(ShiftController shiftController) {
+        log.debug("forwarding command to shiftPKG");
+        List<Shift> l = shiftController.getOnlyEmployeeShifts(getEID());
+        log.debug("returned to EmployeePKG successfully");
+        return l;
+    }
 
-    public boolean isQualified(RoleType role){
+    public List<Constraint> getOnlyEmployeeConstraints(ShiftController shiftController) {
+        log.debug("forwarding command to shiftPKG");
+        List<Constraint> l = shiftController.getOnlyEmployeeConstraints(getEID());
+        log.debug("returned to EmployeePKG successfully");
+        return l;
+    }
+
+    public boolean isQualified(RoleType role) {
         return this.role.contains(role);
     }
 
     /**
-     *Abstract Functions
+     * Abstract Functions for permissions management
      */
     public abstract Employee addEmployee(int newEID, String name, int[] bankDetails, int salary, RoleType role, LocalDate startWorkDate, int[] terms, Map<Integer, Employee> employees) throws Exception;
-    public abstract void fireEmployee(int fireEID, Map<Integer, Employee> employees) throws Exception;
-    public abstract void updateEmployeeName(Employee updateE,String newName) throws Exception;
-    public abstract void updateEmployeeSalary(Employee updateE,int newSalary) throws Exception;
-    public abstract void updateEmployeeBANum(Employee updateE,int newAccountNumber) throws Exception;
-    public abstract void updateEmployeeBABranch(Employee updateE,int newBranch) throws Exception;
-    public abstract void updateEmployeeBAID(Employee updateE,int newBankID) throws Exception;
-    public abstract void updateEmployeeEducationFund(Employee updateE,int newEducationFund) throws Exception;
-    public abstract void updateEmployeeDaysOff(Employee updateE,int newAmount) throws Exception;
-    public abstract void updateEmployeeSickDays(Employee updateE,int newAmount) throws Exception;
-    public abstract Shift createShift(Map<RoleType,Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType,List<String[]>> employees,ShiftController shiftController) throws Exception;
-    public abstract List<Shift> getShiftsAndEmployees(ShiftController shiftController) throws Exception;
-    public abstract void removeEmpFromShift(int SID,int removeEID,ShiftController shiftController) throws Exception;
-    public abstract void addEmpToShift(int SID, int addEID, RoleType role, String name, ShiftController shiftController) throws Exception;
-    public abstract void updateAmountRole(int SID,RoleType role,int newAmount, ShiftController shiftController) throws Exception;
 
+    public abstract Employee fireEmployee(int fireEID, Map<Integer, Employee> employees) throws Exception;
+
+    public abstract void updateEmployeeName(int updateEID, String newName, Map<Integer, Employee> employees) throws Exception;
+
+    public abstract void updateEmployeeSalary(int updateEID,int newSalary,Map<Integer, Employee> employees) throws Exception;
+
+    public abstract void updateEmployeeBANum(int updateEID,int newAccountNumber,Map<Integer, Employee> employees) throws Exception;
+
+    public abstract void updateEmployeeBABranch(int updateEID,int newBranch,Map<Integer, Employee> employees) throws Exception;
+
+    public abstract void updateEmployeeBAID(int updateEID,int newBankID,Map<Integer, Employee> employees) throws Exception;
+
+    public abstract void updateEmployeeEducationFund(int updateEID,int newEducationFund,Map<Integer, Employee> employees) throws Exception;
+
+    public abstract void updateEmployeeDaysOff(int updateEID,int newAmount,Map<Integer, Employee> employees) throws Exception;
+
+    public abstract void updateEmployeeSickDays(int updateEID,int newAmount,Map<Integer, Employee> employees) throws Exception;
+
+    public abstract Shift createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<String[]>> employees, ShiftController shiftController) throws Exception;
+
+    public abstract List<Shift> getShiftsAndEmployees(ShiftController shiftController) throws Exception;
+
+    public abstract void removeEmpFromShift(int SID, int removeEID, ShiftController shiftController) throws Exception;
+
+    public abstract void addEmpToShift(int SID, int addEID, RoleType role, String name, ShiftController shiftController) throws Exception;
+
+    public abstract void updateAmountRole(int SID, RoleType role, int newAmount, ShiftController shiftController) throws Exception;
+
+    public abstract void defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaults, ShiftController shiftController) throws Exception;
+    public abstract Shift createDefaultShift(LocalDate date, ShiftType shiftType, ShiftController shiftController) throws Exception;
 
     /**
      * Getters/Setters
@@ -120,4 +179,54 @@ public abstract class Employee {
         this.salary = salary;
     }
 
+    /**
+     * Input checks
+     */
+
+    protected void checkSalary(int salary) throws Exception {
+        log.debug("checking salary");
+        if (salary <= 0) {
+            log.error("salary is 0 or negative: " + salary);
+            throw new Exception("Invalid salary input");
+        }
+
+    }
+
+    private void checkTerms(int[] terms) throws Exception {
+        log.debug("checking terms");
+        boolean isValid = terms[0] > 0 && terms[1] >= 0 && terms[2] >= 0;
+        if (!isValid) {
+            log.error("terms are invalid : education fund: " + terms[0] + " daysOff: " + terms[1] + " sickDays: " + terms[2]);
+            throw new Exception("Invalid terms of employment");
+        }
+    }
+
+    private void checkBank(int[] bankDetails) throws Exception {
+        log.debug("checking bank details");
+        boolean isValid = bankDetails[0] > 0 && bankDetails[1] > 0 && bankDetails[2] > 0;
+        if (!isValid) {
+            log.error("bank details are invalid: AccountNum: " + bankDetails[0] + " BankBranch: " + bankDetails[1] + " BandID: " + bankDetails[2]);
+            throw new Exception("Invalid bank details");
+        }
+    }
+
+    protected void checkName(String name) throws Exception {
+        log.debug("checking name alphabetical");
+        boolean isValid = ((name != null) && (!name.equals("")) && (name.matches("^[a-zA-Z]*$")));
+        if (!isValid) {
+            log.error("name " + name + " is not alphabetical");
+            throw new Exception("Invalid name: " + name);
+        }
+    }
+    protected void checkWorking(int EID,Map<Integer, Employee> employees) throws Exception {
+        if (!employees.containsKey(EID)) {
+            log.error("user with id: " + EID + " is not in map of employees");
+            throw new Exception("Employee with id: " + EID + " doesn't work in this branch");
+        }
+        log.debug("checked that employee is working in this branch - success");
+    }
+
+
+
 }
+

@@ -3,249 +3,409 @@ package Business.EmployeePKG;
 import Business.ShiftPKG.*;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
+import Database.Database;
 import org.junit.*;
+import org.junit.Test;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.Mock;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class EmployeeTest {
-    int bank[] = {1, 2, 3};
-    int terms[] = {4, 5, 6};
-    Employee personnelManager = new PersonnelManager(1, "Niv", bank, 1000, RoleType.PerssonelManger, LocalDate.now(), terms);
-    Employee driver;
-    Shift s; //mock the shift with SID = 1
-    ShiftController shiftController = new ShiftController(); //mock
+    private int bank[] = {1, 2, 3};
+    private int terms[] = {4, 5, 6};
+    private Employee personnelManager;
+    private Employee driver;
+    private Map<Integer, Employee> employees;
+
+    @Mock
+    private ShiftController shiftController = mock(ShiftController.class);
+
 
     @Before
     public void setUp() throws Exception {
+        personnelManager = new PersonnelManager(1, "Niv", bank, 1000, RoleType.PersonnelManger, LocalDate.now(), terms);
         driver = new Regular(2, "dor", bank, 3000, RoleType.Driver, LocalDate.now(), terms);
+        Database.getInstance();
+         employees = new HashMap<>();
+        employees.put(driver.getEID(),driver);
     }
 
     @After
     public void tearDown() throws Exception {
+        Database.getInstance().init();
     }
 
     @Test
     public void addConstConstraint() {
+        Constraint constraintMock = mock(Constraint.class);
+        when(shiftController.addConstConstraint(driver.getEID(),DayOfWeek.MONDAY,ShiftType.Morning,"cant")).thenReturn(constraintMock);
+        when(shiftController.getOnlyEmployeeConstraints(driver.getEID())).thenReturn(new ArrayList<>());
+        when(constraintMock.getCID()).thenReturn(1);
         Business.ShiftPKG.Constraint constraint = driver.addConstConstraint(DayOfWeek.MONDAY, ShiftType.Morning, "cant", shiftController);
         List<Business.ShiftPKG.Constraint> list = driver.getOnlyEmployeeConstraints(shiftController);
-        Assert.assertTrue(list.contains(constraint));
+        list.add(constraintMock);
+        Assert.assertEquals(list.get(0).getCID(), constraint.getCID());
     }
 
     @Test
     public void addConstraint() {
+        Constraint constraintMock = mock(Constraint.class);
+        when(shiftController.addConstraint(driver.getEID(),LocalDate.now(),ShiftType.Morning,"cant")).thenReturn(constraintMock);
+        when(shiftController.getOnlyEmployeeConstraints(driver.getEID())).thenReturn(new ArrayList<>());
+        when(constraintMock.getCID()).thenReturn(1);
         Business.ShiftPKG.Constraint constraint = driver.addConstraint(LocalDate.now(), ShiftType.Morning, "cant", shiftController);
         List<Business.ShiftPKG.Constraint> list = driver.getOnlyEmployeeConstraints(shiftController);
-        Assert.assertTrue(list.contains(constraint));
+        list.add(constraintMock);
+        Assert.assertEquals(list.get(0).getCID(), constraint.getCID());
     }
 
     @Test
     public void removeConstraint() throws Exception {
+        Constraint constraintMock = mock(Constraint.class);
+        when(shiftController.addConstraint(driver.getEID(),LocalDate.now(),ShiftType.Morning,"cant")).thenReturn(constraintMock);
         Constraint constraint = driver.addConstraint(LocalDate.now(), ShiftType.Morning, "cant", shiftController);
-        driver.removeConstraint(constraint.getCID(), shiftController);
-        List<Business.ShiftPKG.Constraint> list = driver.getOnlyEmployeeConstraints(shiftController);
+        when(shiftController.removeConstraint(constraintMock.getCID())).thenReturn(constraintMock);
+        when(shiftController.removeConstraint(constraintMock.getCID())).thenReturn(constraintMock);
+        when(constraintMock.getCID()).thenReturn(1);
+        driver.removeConstraint(constraintMock.getCID(), shiftController);
+        when(shiftController.getOnlyEmployeeConstraints(driver.getEID())).thenReturn(new ArrayList<>());
+        List<Constraint> list = driver.getOnlyEmployeeConstraints(shiftController);
         Assert.assertFalse(list.contains(constraint));
     }
 
     @Test
     public void updateReasonConstraint() throws Exception {
-        Business.ShiftPKG.Constraint constraint = driver.addConstraint(LocalDate.now(), ShiftType.Morning, "cant", shiftController);
-        driver.updateReasonConstraint(constraint.getCID(), "newReason", shiftController);
-        Assert.assertNotEquals("didnt update reason", "cant", constraint.getReason());
+        Constraint constraintMock = mock(Constraint.class);
+        when(constraintMock.getReason()).thenReturn("newReason");
+        when(constraintMock.getCID()).thenReturn(1);
+        driver.updateReasonConstraint(constraintMock.getCID(), "newReason", shiftController);
+        Assert.assertNotEquals("didnt update reason", "cant", constraintMock.getReason());
     }
 
     @Test
     public void updateShiftTypeConstraint() throws Exception {
-        Business.ShiftPKG.Constraint constraint = driver.addConstraint(LocalDate.now(), ShiftType.Morning, "cant", shiftController);
-        driver.updateShiftTypeConstraint(constraint.getCID(), ShiftType.Night, shiftController);
-        Assert.assertNotEquals("didnt update reason", ShiftType.Morning, constraint.getShiftType());
+        Constraint constraintMock = mock(Constraint.class);
+        when(constraintMock.getShiftType()).thenReturn(ShiftType.Night);
+        driver.updateShiftTypeConstraint(constraintMock.getCID(), ShiftType.Night, shiftController);
+        Assert.assertNotEquals("didnt update reason", ShiftType.Morning, constraintMock.getShiftType());
     }
 
     @Test
-    public void addEmployee1() {
+    public void addEmployeePersonnelPass() {
         try {
-            Map<Integer, Employee> employees = new HashMap<>();
-            personnelManager.addEmployee(5, "bla", bank, 222222, RoleType.Cashier, LocalDate.now(), terms, employees);
+            Map<Integer, Employee> employees1 = new HashMap<>();
+            personnelManager.addEmployee(5, "bla", bank, 222222, RoleType.Cashier, LocalDate.now(), terms, employees1);
             Assert.assertTrue(employees.containsKey(5));
         } catch (Exception e) {
             Assert.fail();
         }
     }
 
-    @Test
-    public void addEmployee2() {
+
+
+    @ValueSource(strings = {"","ass3ASDA","aa3vsv"})
+    @ParameterizedTest
+    public void addEmployeePersonnelFail1(String name) {
         try {
-            Map<Integer, Employee> employees = new HashMap<>();
-            driver.addEmployee(5, "bla", bank, 222222, RoleType.Cashier, LocalDate.now(), terms, employees);
+            Map<Integer, Employee> employees1 = new HashMap<>();
+            personnelManager.addEmployee(5, name, bank, 22, RoleType.Cashier, LocalDate.now(), terms, employees1);
+            Assert.fail();
+        } catch (Exception e) {
+        }
+    }
+
+    @ValueSource(ints = {0,-5})
+    @ParameterizedTest
+    public void addEmployeePersonnelFail2(int s) {
+        try {
+            Map<Integer, Employee> employees1 = new HashMap<>();
+            personnelManager.addEmployee(5, "name", bank, s, RoleType.Cashier, LocalDate.now(), terms, employees1);
+            Assertions.fail();
+        } catch (Exception e) {
+        }
+    }
+    @Test
+    public void addEmployeePersonnelFail3() {
+        try {
+            Map<Integer, Employee> employees1 = new HashMap<>();
+            employees.put(5,driver);
+            personnelManager.addEmployee(5, "name", bank, 22222, RoleType.Cashier, LocalDate.now(), terms, employees1);
+            Assert.fail();
+        } catch (Exception e) {
+        }
+    }
+
+
+    @Test
+    public void addEmployeeRegularFail() {
+        try {
+            Map<Integer, Employee> employees1 = new HashMap<>();
+            driver.addEmployee(5, "bla", bank, 222222, RoleType.Cashier, LocalDate.now(), terms, employees1);
             Assert.fail();
         } catch (Exception e) {
         }
     }
 
     @Test
-    public void fireEmployee1() {
+    public void fireEmployeePersonnelPass() {
         try {
-            Map<Integer, Employee> employees = new HashMap<>();
-            personnelManager.addEmployee(5, "bla", bank, 222222, RoleType.Cashier, LocalDate.now(), terms, employees);
+            Map<Integer, Employee> employees1 = new HashMap<>();
+            personnelManager.addEmployee(5, "bla", bank, 222222, RoleType.Cashier, LocalDate.now(), terms, employees1);
             personnelManager.fireEmployee(5, employees);
             Assert.assertFalse(employees.containsKey(5));
         } catch (Exception e) {
             Assert.fail();
         }
     }
-
     @Test
-    public void fireEmployee2() {
+    public void fireEmployeePersonnelFail1() {
         try {
-            Map<Integer, Employee> employees = new HashMap<>();
-            driver.fireEmployee(5, employees);
+            Map<Integer, Employee> employees1 = new HashMap<>();
+            personnelManager.fireEmployee(5, employees1);
+            Assert.fail();
+        } catch (Exception e) {
+        }
+    }
+    @Test
+    public void fireEmployeePersonnelFail2() {
+        try {
+            Map<Integer, Employee> employees1 = new HashMap<>();
+            personnelManager.addEmployee(5, "bla", bank, 222222, RoleType.Cashier, LocalDate.now(), terms, employees1);
+            personnelManager.fireEmployee(1, employees1);
             Assert.fail();
         } catch (Exception e) {
         }
     }
 
     @Test
-    public void updateEmployeeName1() {
+    public void fireEmployeeRegular() {
         try {
-            personnelManager.updateEmployeeName(driver, "bla");
+            Map<Integer, Employee> employees1 = new HashMap<>();
+            driver.fireEmployee(5, employees1);
+            Assert.fail();
+        } catch (Exception e) {
+        }
+    }
+
+    @Test
+    public void updateEmployeeNamePersonnelPass() {
+        try {
+            personnelManager.updateEmployeeName(driver.getEID(),"xxx", employees);
             Assert.assertNotEquals("didnt update name", "dor", driver.getName());
         } catch (Exception e) {
             Assert.fail();
         }
     }
-
     @Test
-    public void updateEmployeeName2() {
+    public void updateEmployeeNamePersonnelFail() {
         try {
-            driver.updateEmployeeName(driver, "bla");
+            personnelManager.updateEmployeeName(driver.getEID(),"xx2x", employees);
             Assert.fail();
         } catch (Exception e) {
         }
     }
 
     @Test
-    public void updateEmployeeSalary1() {
+    public void updateEmployeeNameRegular() {
         try {
-            personnelManager.updateEmployeeSalary(driver, 60);
+            driver.updateEmployeeName(driver.getEID(), "bla",new HashMap<>());
+            Assert.fail();
+        } catch (Exception e) {
+        }
+    }
+
+    @Test
+    public void updateEmployeeSalaryPersonnelPass() {
+        try {
+            personnelManager.updateEmployeeSalary(driver.getEID(), 60,employees);
             Assert.assertNotEquals("didnt update name", 3000, driver.getSalary());
         } catch (Exception e) {
             Assert.fail();
         }
     }
-
     @Test
-    public void updateEmployeeSalary2() {
+    public void updateEmployeeSalaryPersonnelFail() {
         try {
-            driver.updateEmployeeSalary(driver, 60);
+            personnelManager.updateEmployeeSalary(driver.getEID(), -60,new HashMap<>());
             Assert.fail();
         } catch (Exception e) {
         }
     }
 
     @Test
-    public void updateEmployeeBANum1() {
+    public void updateEmployeeSalaryRegular() {
         try {
-            personnelManager.updateEmployeeBANum(driver, 8);
+            driver.updateEmployeeSalary(driver.getEID(), 60,new HashMap<>());
+            Assert.fail();
+        } catch (Exception e) {
+        }
+    }
+
+    @Test
+    public void updateEmployeeBANumPersonnelPass() {
+        try {
+            personnelManager.updateEmployeeBANum(driver.getEID(), 8,employees);
             Assert.assertNotEquals("didnt update bankA num", 1, driver.getBankAccount().getAccountNum());
         } catch (Exception e) {
             Assert.fail();
         }
     }
-
-    @Test
-    public void updateEmployeeBANum2() {
+    @ParameterizedTest
+    @ValueSource(ints={0,-1})
+    public void updateEmployeeBANumPersonnelFail(int v) {
         try {
-            driver.updateEmployeeBANum(driver, 60);
+            personnelManager.updateEmployeeBANum(driver.getEID(), v,employees);
             Assert.fail();
         } catch (Exception e) {
         }
     }
 
     @Test
-    public void updateEmployeeBABranch1() {
+    public void updateEmployeeBANumRegular() {
         try {
-            personnelManager.updateEmployeeBABranch(driver, 8);
+            driver.updateEmployeeBANum(driver.getEID(), 60,new HashMap<>());
+            Assert.fail();
+        } catch (Exception e) {
+        }
+    }
+
+    @Test
+    public void updateEmployeeBABranchPersonnelPass() {
+        try {
+            personnelManager.updateEmployeeBABranch(driver.getEID(), 8,employees);
             Assert.assertNotEquals("didnt update bank branch", 2, driver.getBankAccount().getBankBranch());
         } catch (Exception e) {
             Assert.fail();
         }
     }
-
-    @Test
-    public void updateEmployeeBABranch2() {
+    @ParameterizedTest
+    @ValueSource(ints = {0,-1})
+    public void updateEmployeeBABranchPersonnelFail(int v) {
         try {
-            driver.updateEmployeeBABranch(driver, 60);
+            personnelManager.updateEmployeeBABranch(driver.getEID(), v,employees);
             Assert.fail();
         } catch (Exception e) {
         }
     }
 
     @Test
-    public void updateEmployeeBAID1() {
+    public void updateEmployeeBABranchRegular() {
         try {
-            personnelManager.updateEmployeeBAID(driver, 8);
+            driver.updateEmployeeBABranch(driver.getEID(), 60,new HashMap<>());
+            Assert.fail();
+        } catch (Exception e) {
+        }
+    }
+
+    @Test
+    public void updateEmployeeBAIDPersonnelPass() {
+        try {
+            personnelManager.updateEmployeeBAID(driver.getEID(), 8,employees);
             Assert.assertNotEquals("didnt update bank id", 3, driver.getBankAccount().getBankID());
         } catch (Exception e) {
             Assert.fail();
         }
     }
+    @ParameterizedTest
+    @ValueSource(ints = {-5,0})
+    public void updateEmployeeBAIDPersonnelFail(int v) {
+        try {
+            personnelManager.updateEmployeeBAID(driver.getEID(), v,employees);
+            Assert.fail();
+        } catch (Exception e) {
+
+        }
+    }
 
     @Test
-    public void updateEmployeeBAID2() {
+    public void updateEmployeeBAIDRegular() {
         try {
-            driver.updateEmployeeBAID(driver, 60);
+            driver.updateEmployeeBAID(driver.getEID(), 60,new HashMap<>());
             Assert.fail();
         } catch (Exception e) {
         }
     }
 
     @Test
-    public void updateEmployeeEducationFund1() {
+    public void updateEmployeeEducationFundPersonnelPass() {
         try {
-            personnelManager.updateEmployeeEducationFund(driver, 8);
+            personnelManager.updateEmployeeEducationFund(driver.getEID(), 8,employees);
             Assert.assertNotEquals("didnt update education fund", 4, driver.getTermsOfEmployment().getEducationFun());
         } catch (Exception e) {
             Assert.fail();
         }
     }
-
-    @Test
-    public void updateEmployeeEducationFund2() {
+    @ParameterizedTest
+    @ValueSource(ints = {-5,-777,0})
+    public void updateEmployeeEducationFundPersonnelFail(int v) {
         try {
-            driver.updateEmployeeEducationFund(driver, 60);
+            personnelManager.updateEmployeeEducationFund(driver.getEID(), v,employees);
             Assert.fail();
         } catch (Exception e) {
         }
     }
 
     @Test
-    public void updateEmployeeDaysOff1() {
+    public void updateEmployeeEducationFundRegular() {
         try {
-            personnelManager.updateEmployeeDaysOff(driver, 8);
+            driver.updateEmployeeEducationFund(driver.getEID(), 60,new HashMap<>());
+            Assert.fail();
+        } catch (Exception e) {
+        }
+    }
+
+    @Test
+    public void updateEmployeeDaysOffPersonnelPass() {
+        try {
+            personnelManager.updateEmployeeDaysOff(driver.getEID(), 8,employees);
             Assert.assertNotEquals("didnt update days off", 5, driver.getTermsOfEmployment().getDaysOff());
         } catch (Exception e) {
             Assert.fail();
         }
     }
 
-    @Test
-    public void updateEmployeeDaysOff2() {
+    @ParameterizedTest
+    @ValueSource(ints={-5,-100})
+    public void updateEmployeeDaysOffPersonnelFail(int v) {
         try {
-            driver.updateEmployeeDaysOff(driver, 60);
+            personnelManager.updateEmployeeDaysOff(driver.getEID(), v,employees);
+            Assert.fail();
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Test
+    public void updateEmployeeDaysOffRegular() {
+        try {
+            driver.updateEmployeeDaysOff(driver.getEID(), 60,employees);
             Assert.fail();
         } catch (Exception e) {
         }
     }
 
     @Test
-    public void updateEmployeeSickDays1() {
+    public void updateEmployeeSickDaysPersonnelPass() {
         try {
-            personnelManager.updateEmployeeSickDays(driver, 8);
+            personnelManager.updateEmployeeSickDays(driver.getEID(), 8,employees);
+            Assert.assertNotEquals("didnt update sick days", 6, driver.getTermsOfEmployment().getSickDays());
+        } catch (Exception e) {
+            Assert.fail();
+        }
+    }
+    @ParameterizedTest
+    @ValueSource(ints = {-4,-6})
+    public void updateEmployeeSickDaysPersonnelFail(int v) {
+        try {
+            personnelManager.updateEmployeeSickDays(driver.getEID(), v,employees);
             Assert.assertNotEquals("didnt update sick days", 6, driver.getTermsOfEmployment().getSickDays());
         } catch (Exception e) {
             Assert.fail();
@@ -253,9 +413,9 @@ public class EmployeeTest {
     }
 
     @Test
-    public void updateEmployeeSickDays2() {
+    public void updateEmployeeSickDaysRegular() {
         try {
-            driver.updateEmployeeSickDays(driver, 60);
+            driver.updateEmployeeSickDays(driver.getEID(), 60,employees);
             Assert.fail();
         } catch (Exception e) {
         }
@@ -264,15 +424,15 @@ public class EmployeeTest {
     @Test
     public void createShift1() {
         try {
-            Map<RoleType, Integer> rolesAmount = new HashMap<>();
-            Map<RoleType, List<String[]>> employees = new HashMap<>();
-            String[] pair = {String.valueOf(driver.getEID()), driver.getName()};
-            List<String[]> l = new ArrayList<>();
-            l.add(pair);
-            employees.put(RoleType.Driver, l);
-            Business.ShiftPKG.Shift shift = personnelManager.createShift(rolesAmount, LocalDate.of(2021, 8, 20), ShiftType.Morning, employees, shiftController);
-            List<Business.ShiftPKG.Shift> list = personnelManager.getShiftsAndEmployees(shiftController);
-            Assert.assertTrue(list.contains(shift));
+            Shift shiftMock = mock(Shift.class);
+            when(shiftController.createShift(new HashMap<>(), LocalDate.of(2021, 8, 20), ShiftType.Morning, new HashMap<>())).thenReturn(shiftMock);
+            Shift shift = personnelManager.createShift(new HashMap<>(), LocalDate.of(2021, 8, 20), ShiftType.Morning, new HashMap<>(), shiftController);
+            when(shiftController.getShiftsAndEmployees()).thenReturn(new ArrayList<>());
+            List<Shift> list = personnelManager.getShiftsAndEmployees(shiftController);
+            list.add(shiftMock);
+            when(shiftMock.getDate()).thenReturn(LocalDate.of(2021,8,20));
+            when(shiftMock.getShiftType()).thenReturn(ShiftType.Morning);
+            Assert.assertTrue(list.get(0).getDate().equals(LocalDate.of(20201,8,20)) && list.get(0).getShiftType() == ShiftType.Morning);
         } catch (Exception e) {
             Assert.fail();
         }
@@ -281,9 +441,7 @@ public class EmployeeTest {
     @Test
     public void createShift2() {
         try {
-            Map<RoleType, Integer> rolesAmount = new HashMap<>();
-            Map<RoleType, List<String[]>> employees = new HashMap<>();
-            driver.createShift(rolesAmount, LocalDate.of(2021, 8, 20), ShiftType.Morning, employees, shiftController);
+            driver.createShift(new HashMap<>(), LocalDate.of(2021, 8, 20), ShiftType.Morning, new HashMap<>(), shiftController);
             Assert.fail();
         } catch (Exception e) {
         }
@@ -292,7 +450,8 @@ public class EmployeeTest {
     @Test
     public void removeEmpFromShift1() {
         try {
-            personnelManager.addEmpToShift(s.getSID(), driver.getEID(), driver.getRole().get(0), driver.getName(), shiftController);
+            Shift s = mock(Shift.class);
+            when(s.getEmployees().containsKey(driver.getEID())).thenReturn(false);
             personnelManager.removeEmpFromShift(s.getSID(), driver.getEID(), shiftController);
             Assert.assertFalse(s.getEmployees().containsKey(driver.getEID()));
         } catch (Exception e) {
@@ -310,6 +469,8 @@ public class EmployeeTest {
     @Test
     public void addEmpToShift1() {
         try {
+            Shift s = mock(Shift.class);
+            when(s.getEmployees().containsKey(driver.getEID())).thenReturn(true);
             personnelManager.addEmpToShift(s.getSID(), driver.getEID(), driver.getRole().get(0), driver.getName(), shiftController);
             Assert.assertTrue(s.getEmployees().containsKey(driver.getEID()));
         }
@@ -318,6 +479,7 @@ public class EmployeeTest {
     @Test
     public void addEmpToShift2() {
         try {
+            Shift s = mock(Shift.class);
             driver.addEmpToShift(s.getSID(), driver.getEID(), driver.getRole().get(0), driver.getName(), shiftController);
             Assert.fail();
         }catch (Exception e){}
@@ -327,6 +489,8 @@ public class EmployeeTest {
     @Test
     public void updateAmountRole1(){
         try{
+            Shift s = mock(Shift.class);
+            when(s.getRolesAmount().get(RoleType.Driver)).thenReturn(5);
             personnelManager.updateAmountRole(1,RoleType.Driver,5,shiftController);
             Assert.assertEquals(5, (int) s.getRolesAmount().get(RoleType.Driver));
         }catch (Exception e){Assert.fail();}

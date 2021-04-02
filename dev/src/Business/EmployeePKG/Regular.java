@@ -11,8 +11,11 @@ import java.util.Map;
 
 public class Regular extends Employee{
     final static Logger log = Logger.getLogger(Regular.class);
-    public Regular(int EID, String name, int[] bankDetails, int salary, RoleType role, LocalDate startWorkDate, int[] terms) {
+    public Regular(int EID, String name, int[] bankDetails, int salary, RoleType role, LocalDate startWorkDate, int[] terms) throws Exception {
         super(EID, name, bankDetails, salary, role, startWorkDate, terms);
+    }
+    public Regular(Employee other){
+        super(other);
     }
 
     @Override
@@ -21,47 +24,47 @@ public class Regular extends Employee{
     }
 
     @Override
-    public void fireEmployee(int fireEID, Map<Integer, Employee> employees) throws Exception {
+    public Employee fireEmployee(int fireEID, Map<Integer, Employee> employees) throws Exception {
         throw new Exception("You are not allowed to fire any employee from this branch");
     }
 
     @Override
-    public void updateEmployeeName(Employee updateE, String newName) throws Exception {
+    public void updateEmployeeName(int updateEID, String newName, Map<Integer, Employee> employees) throws Exception {
         throw new Exception("You are not allowed to change the name of any employee from this branch");
     }
 
     @Override
-    public void updateEmployeeSalary(Employee updateE, int newSalary) throws Exception {
+    public void updateEmployeeSalary(int updateEID, int newSalary, Map<Integer, Employee> employees) throws Exception {
         throw new Exception("You are not allowed to change the salary of any employee from this branch");
     }
 
     @Override
-    public void updateEmployeeBANum(Employee updateE, int newAccountNumber) throws Exception {
+    public void updateEmployeeBANum(int updateEID, int newAccountNumber, Map<Integer, Employee> employees) throws Exception {
         throw new Exception("You are not allowed to update bank account of any employee from this branch");
     }
 
     @Override
-    public void updateEmployeeBABranch(Employee updateE, int newBranch) throws Exception {
+    public void updateEmployeeBABranch(int updateEID, int newBranch, Map<Integer, Employee> employees) throws Exception {
         throw new Exception("You are not allowed to update bank account of any employee from this branch");
     }
 
     @Override
-    public void updateEmployeeBAID(Employee updateE, int newBankID) throws Exception {
+    public void updateEmployeeBAID(int updateEID, int newBankID, Map<Integer, Employee> employees) throws Exception {
         throw new Exception("You are not allowed to update bank account of any employee from this branch");
     }
 
     @Override
-    public void updateEmployeeEducationFund(Employee updateE, int newEducationFund) throws Exception {
+    public void updateEmployeeEducationFund(int updateEID, int newEducationFund, Map<Integer, Employee> employees) throws Exception {
         throw new Exception("You are not allowed to update terms of employment of any employee from this branch");
     }
 
     @Override
-    public void updateEmployeeDaysOff(Employee updateE, int newAmount) throws Exception {
+    public void updateEmployeeDaysOff(int updateEID, int newAmount, Map<Integer, Employee> employees) throws Exception {
         throw new Exception("You are not allowed to update terms of employment of any employee from this branch");
     }
 
     @Override
-    public void updateEmployeeSickDays(Employee updateE, int newAmount) throws Exception {
+    public void updateEmployeeSickDays(int updateEID, int newAmount, Map<Integer, Employee> employees) throws Exception {
         throw new Exception("You are not allowed to update terms of employment of any employee from this branch");
     }
 
@@ -89,6 +92,16 @@ public class Regular extends Employee{
     @Override
     public void updateAmountRole(int SID, RoleType role, int newAmount, ShiftController shiftController) throws Exception {
         throw new Exception("You are not allowed to update any shift");
+    }
+
+    @Override
+    public void defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaults, ShiftController shiftController) throws Exception {
+        throw new Exception("You are not allowed to set default shifts");
+    }
+
+    @Override
+    public Shift createDefaultShift(LocalDate date, ShiftType shiftType, ShiftController shiftController) throws Exception {
+        throw new Exception("You are not allowed to create default shifts");
     }
 
 }

@@ -2,6 +2,7 @@ package Business.EmployeePKG;
 
 import Business.ShiftPKG.*;
 import Business.Type.*;
+import Database.Database;
 import org.apache.log4j.Logger;
 
 import java.time.DayOfWeek;
@@ -14,7 +15,7 @@ public class EmployeeController {
     private int currBranchID;
     private int currConnectedEmpID;
     private RoleType currConnectedEmpRole;
-    private Map<Integer, Employee> employees;
+    protected Map<Integer, Employee> employees;
     private ShiftController shiftController;
 
     public EmployeeController() {
@@ -27,12 +28,17 @@ public class EmployeeController {
      * @param EID  The Identification number of the employee
      * @param role The role he takes in "super-lee"
      */
-    public void Login(int EID, RoleType role) throws Exception {
-        checkWorking(EID);
-        if (!employees.get(EID).isQualified(role))
+    public void Login(int EID, String role) throws Exception {
+        log.debug("entered login function with user id: " + EID + " and role " + role);
+        isInEnum(role, RoleType.class);
+        checkEID(EID);
+        if (!employees.get(EID).isQualified(RoleType.valueOf(role))) {
+            log.error("user with id: " + EID + " has no role of " + role + " in branch " + currBranchID);
             throw new Exception("Employee is unqualified to this role");
+        }
         currConnectedEmpID = EID;
-        currConnectedEmpRole = role;
+        currConnectedEmpRole = RoleType.valueOf(role);
+        log.debug("successfully logged in - user fields are updated to +" + EID + " with role " + role);
     }
 
 
@@ -40,18 +46,26 @@ public class EmployeeController {
      * logs out the current connected employee from the system
      */
     public void Logout() throws Exception {
-        if (currConnectedEmpID == -1)
+        log.debug("enter logout function when current connected id is: " + currConnectedEmpID);
+        if (currConnectedEmpID == -1) {
+            log.error("try to logout a user that is not logged in before");
             throw new Exception("No one is logged in");
+        }
         currConnectedEmpID = -1;
         currConnectedEmpRole = null;
+        log.debug("successfully logged out - user fields are updated to -1 and null role");
     }
 
     public void createBranch(String code, int newEID, String name, int[] bankDetails, int salary, int[] terms) throws Exception {
-        if (!code.equals("00000"))
+        log.debug("enter create branch function");
+        if (!code.equals("00000")) {
+            log.error("enter code: " + code);
             throw new Exception("Access denied!");
-        //create new branch in database
-        Employee personnelM = new PersonnelManager(newEID, name, bankDetails, salary, RoleType.PerssonelManger, LocalDate.now(), terms);
-        //add personnelM to database
+        }
+        log.debug("creating instance of the personnel manager in this new branch");
+        Employee personnelM = new PersonnelManager(newEID, name, bankDetails, salary, RoleType.PersonnelManger, LocalDate.now(), terms);
+        Database.getInstance().createBranch(personnelM);
+        log.debug("successfully created branch");
     }
 
     /**
@@ -61,8 +75,12 @@ public class EmployeeController {
      * @param shiftType Type of shift of the day
      * @param reason    The reason of the constraint
      */
-    public Constraint addConstConstraint(DayOfWeek day, ShiftType shiftType, String reason) {
-        return employees.get(currConnectedEmpID).addConstConstraint(day, shiftType, reason, shiftController);
+    public Constraint addConstConstraint(DayOfWeek day, String shiftType, String reason) throws Exception {
+        log.debug("enter add const constraint function");
+        isInEnum(shiftType, ShiftType.class);
+        Constraint c = employees.get(currConnectedEmpID).addConstConstraint(day, ShiftType.valueOf(shiftType), reason, shiftController);
+        log.debug("successfully added const constraint");
+        return c;
     }
 
     /**
@@ -72,8 +90,12 @@ public class EmployeeController {
      * @param shiftType Type of shift of the day
      * @param reason    The reason of the constraint
      */
-    public Constraint addConstraint(LocalDate c_date, ShiftType shiftType, String reason) {
-        return employees.get(currConnectedEmpID).addConstraint(c_date, shiftType, reason, shiftController);
+    public Constraint addConstraint(LocalDate c_date, String shiftType, String reason) throws Exception {
+        log.debug("enter add constraint function");
+        isInEnum(shiftType, ShiftType.class);
+        Constraint c = employees.get(currConnectedEmpID).addConstraint(c_date, ShiftType.valueOf(shiftType), reason, shiftController);
+        log.debug("successfully added constraint");
+        return c;
     }
 
     /**
@@ -82,7 +104,10 @@ public class EmployeeController {
      * @param CID Identifier of the constraint to be removed
      */
     public Constraint removeConstraint(int CID) throws Exception {
-        return employees.get(currConnectedEmpID).removeConstraint(CID, shiftController);
+        log.debug("enter remove constraint function");
+        Constraint c = employees.get(currConnectedEmpID).removeConstraint(CID, shiftController);
+        log.debug("successfully removed constraint");
+        return c;
     }
 
     /**
@@ -92,7 +117,9 @@ public class EmployeeController {
      * @param newReason The new reason of the constraint
      */
     public void updateReasonConstraint(int CID, String newReason) throws Exception {
+        log.debug("enter update reason constraint function");
         employees.get(currConnectedEmpID).updateReasonConstraint(CID, newReason, shiftController);
+        log.debug("successfully updated reason in constraint");
     }
 
     /**
@@ -101,8 +128,11 @@ public class EmployeeController {
      * @param CID     Identifier of the constraint to be updated
      * @param newType The new shift type
      */
-    public void updateShiftTypeConstraint(int CID, ShiftType newType) throws Exception {
-        employees.get(currConnectedEmpID).updateShiftTypeConstraint(CID, newType, shiftController);
+    public void updateShiftTypeConstraint(int CID, String newType) throws Exception {
+        log.debug("enter update shift type in constraint function");
+        isInEnum(newType, ShiftType.class);
+        employees.get(currConnectedEmpID).updateShiftTypeConstraint(CID, ShiftType.valueOf(newType), shiftController);
+        log.debug("successfully updated shift type in constraint");
     }
 
     /**
@@ -122,8 +152,13 @@ public class EmployeeController {
      *                      terms[1] -> days off
      *                      terms[2] -> sick days
      */
-    public Employee addEmployee(int newEID, String name, int[] bankDetails, int salary, RoleType role, LocalDate startWorkDate, int[] terms) throws Exception {
-        return employees.get(currConnectedEmpID).addEmployee(newEID, name, bankDetails, salary, role, startWorkDate, terms, employees);
+    public Employee addEmployee(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms) throws Exception {
+        log.debug("enter add employee function");
+        isInEnum(role, RoleType.class);
+        Employee e = employees.get(currConnectedEmpID).addEmployee(newEID, name, bankDetails, salary, RoleType.valueOf(role), startWorkDate, terms, employees);
+        shiftController.addToOptionals(e.getEID(), e.getName(), e.getRole());
+        log.debug("successfully added a new employee");
+        return e;
     }
 
     /**
@@ -133,7 +168,10 @@ public class EmployeeController {
      * @param fireEID Identifier of the employee to fire
      */
     public void fireEmployee(int fireEID) throws Exception {
-        employees.get(currConnectedEmpID).fireEmployee(fireEID, employees);
+        log.debug("enter fire employee function");
+        Employee removed = employees.get(currConnectedEmpID).fireEmployee(fireEID, employees);
+        shiftController.removeFireEmp(removed.getEID(), removed.getName());
+        log.debug("successfully fired employee");
     }
 
     /**
@@ -144,8 +182,9 @@ public class EmployeeController {
      * @param newName   The new name
      */
     public void updateEmployeeName(int updateEID, String newName) throws Exception {
-        checkWorking(updateEID);
-        employees.get(currConnectedEmpID).updateEmployeeName(employees.get(updateEID), newName);
+        log.debug("entered update employee name functions");
+        employees.get(currConnectedEmpID).updateEmployeeName(updateEID, newName, employees);
+        log.debug("successfully updated employee name");
     }
 
     /**
@@ -156,8 +195,9 @@ public class EmployeeController {
      * @param newSalary The new salary of the employee
      */
     public void updateEmployeeSalary(int updateEID, int newSalary) throws Exception {
-        checkWorking(updateEID);
-        employees.get(currConnectedEmpID).updateEmployeeSalary(employees.get(updateEID), newSalary);
+        log.debug("entered update employee salary function");
+        employees.get(currConnectedEmpID).updateEmployeeSalary(updateEID, newSalary, employees);
+        log.debug("successfully updated employee salary");
     }
 
     /**
@@ -168,8 +208,9 @@ public class EmployeeController {
      * @param newAccountNumber The new account number of the employee
      */
     public void updateEmployeeBANum(int updateEID, int newAccountNumber) throws Exception {
-        checkWorking(updateEID);
-        employees.get(currConnectedEmpID).updateEmployeeBANum(employees.get(updateEID), newAccountNumber);
+        log.debug("entered update employee bank account number function");
+        employees.get(currConnectedEmpID).updateEmployeeBANum(updateEID, newAccountNumber, employees);
+        log.debug("successfully updated employee bank account number");
     }
 
     /**
@@ -180,8 +221,9 @@ public class EmployeeController {
      * @param newBranch The new bank branch number of the employee
      */
     public void updateEmployeeBABranch(int updateEID, int newBranch) throws Exception {
-        checkWorking(updateEID);
-        employees.get(currConnectedEmpID).updateEmployeeBABranch(employees.get(updateEID), newBranch);
+        log.debug("entered update employee bank branch number function");
+        employees.get(currConnectedEmpID).updateEmployeeBABranch(updateEID, newBranch, employees);
+        log.debug("successfully updated employee bank branch number");
     }
 
     /**
@@ -192,8 +234,9 @@ public class EmployeeController {
      * @param newBankID The new bank id number of the employee
      */
     public void updateEmployeeBAID(int updateEID, int newBankID) throws Exception {
-        checkWorking(updateEID);
-        employees.get(currConnectedEmpID).updateEmployeeBAID(employees.get(updateEID), newBankID);
+        log.debug("entered update employee bank ID number function");
+        employees.get(currConnectedEmpID).updateEmployeeBAID(updateEID, newBankID, employees);
+        log.debug("successfully updated employee bank ID number");
     }
 
     /**
@@ -204,8 +247,9 @@ public class EmployeeController {
      * @param newEducationFund The education fund of the employee
      */
     public void updateEmployeeEducationFund(int updateEID, int newEducationFund) throws Exception {
-        checkWorking(updateEID);
-        employees.get(currConnectedEmpID).updateEmployeeEducationFund(employees.get(updateEID), newEducationFund);
+        log.debug("entered update employee education fund function");
+        employees.get(currConnectedEmpID).updateEmployeeEducationFund(updateEID, newEducationFund, employees);
+        log.debug("successfully updated employee education fund");
     }
 
     /**
@@ -216,8 +260,9 @@ public class EmployeeController {
      * @param newAmount The new amount of days off of the employee
      */
     public void updateEmployeeDaysOff(int updateEID, int newAmount) throws Exception {
-        checkWorking(updateEID);
-        employees.get(currConnectedEmpID).updateEmployeeDaysOff(employees.get(updateEID), newAmount);
+        log.debug("entered update employee days-off function");
+        employees.get(currConnectedEmpID).updateEmployeeDaysOff(updateEID, newAmount, employees);
+        log.debug("successfully updated employee days-off");
     }
 
     /**
@@ -228,8 +273,9 @@ public class EmployeeController {
      * @param newAmount The new amount of sick days of the employee
      */
     public void updateEmployeeSickDays(int updateEID, int newAmount) throws Exception {
-        checkWorking(updateEID);
-        employees.get(currConnectedEmpID).updateEmployeeSickDays(employees.get(updateEID), newAmount);
+        log.debug("entered update employee sick-days function");
+        employees.get(currConnectedEmpID).updateEmployeeSickDays(updateEID, newAmount, employees);
+        log.debug("successfully updated employee sick-days");
     }
 
     /**
@@ -241,23 +287,71 @@ public class EmployeeController {
      * @param shiftType   type of the shift
      */
     public Shift createShift(Map<String, Integer> rolesAmount, LocalDate date, ShiftType shiftType) throws Exception {
+        log.debug("entered create shift function");
         Map<RoleType, List<String[]>> optionals = new HashMap<>();
         Map<RoleType, Integer> rolesAndAmount = new HashMap<>();
         EnumSet<RoleType> allRoles = EnumSet.allOf(RoleType.class);
+        log.debug("initializing roles and amount map with all roles");
         for (RoleType role : allRoles) {
             optionals.put(role, new ArrayList<>());
             rolesAndAmount.put(role, 0);
         }
+        log.debug("initialized.");
+        log.debug("putting in optionals map all names and roles into array of strings to each role");
         for (Map.Entry<Integer, Employee> entry : employees.entrySet()) {
             String[] pairIDName = new String[]{Integer.toString(entry.getKey()), entry.getValue().getName()};
             for (RoleType role : entry.getValue().getRole()) {
                 optionals.get(role).add(pairIDName);
             }
         }
+        log.debug("done.");
+        log.debug("checking map for valid role types and converting to enum");
         for (Map.Entry<String, Integer> entry : rolesAmount.entrySet()) {
+            isInEnum(entry.getKey(), RoleType.class);
             rolesAndAmount.put(RoleType.valueOf(entry.getKey()), entry.getValue() + 1);
         }
-        return employees.get(currConnectedEmpID).createShift(rolesAndAmount, date, shiftType, optionals, shiftController);
+        log.debug("done.");
+        Shift s = employees.get(currConnectedEmpID).createShift(rolesAndAmount, date, shiftType, optionals, shiftController);
+        log.debug("successfully created a new shift");
+        return s;
+    }
+
+    /**
+     * sets default shifts with roles and amount
+     *
+     * @param defaultRolesAmount the default map
+     * @throws Exception
+     */
+    public void defaultShifts(Map<String, Map<String, Integer>> defaultRolesAmount) throws Exception {
+        log.debug("entered default shifts function");
+        Map<ShiftType, Map<RoleType, Integer>> defaults = new HashMap<>();
+        log.debug("parsing strings to enum types of map");
+        for (Map.Entry<String, Map<String, Integer>> entry : defaultRolesAmount.entrySet()) {
+            isInEnum(entry.getKey(), ShiftType.class);
+            ShiftType s_type = ShiftType.valueOf(entry.getKey());
+            defaults.put(s_type, new HashMap<>());
+            Map<RoleType, Integer> rolesAmount = defaults.get(s_type);
+            for (Map.Entry<String, Integer> r : entry.getValue().entrySet()) {
+                isInEnum(r.getKey(), RoleType.class);
+                rolesAmount.put(RoleType.valueOf(r.getKey()), r.getValue());
+            }
+        }
+        log.debug("done.");
+        employees.get(currConnectedEmpID).defaultShifts(defaults, shiftController);
+        log.debug("successfully set default shifts");
+    }
+
+    /**
+     * @param date
+     * @param shiftType
+     * @return
+     */
+    public Shift createDefaultShift(LocalDate date, String shiftType) throws Exception {
+        log.debug("enter create default shift function");
+        isInEnum(shiftType, ShiftType.class);
+        Shift s = employees.get(currConnectedEmpID).createDefaultShift(date, ShiftType.valueOf(shiftType), shiftController);
+        log.debug("created default shift successfully");
+        return s;
     }
 
     /**
@@ -266,7 +360,10 @@ public class EmployeeController {
      * @return the current connected employee object
      */
     public Employee getEmployeeDetails() {
-        return employees.get(currConnectedEmpID);
+        log.debug("entered get employee details function");
+        Employee e = employees.get(currConnectedEmpID);
+        log.debug("successfully got details");
+        return e;
     }
 
     /**
@@ -276,7 +373,10 @@ public class EmployeeController {
      * @return A list of all the shifts and the employees in every shift (names & roles)
      */
     public List<Shift> getShiftsAndEmployees() throws Exception {
-        return employees.get(currConnectedEmpID).getShiftsAndEmployees(shiftController);
+        log.debug("entered get shifts and employees function");
+        List<Shift> l = employees.get(currConnectedEmpID).getShiftsAndEmployees(shiftController);
+        log.debug("successfully got all shifts and employees details");
+        return l;
     }
 
     /**
@@ -287,7 +387,9 @@ public class EmployeeController {
      * @param removeEID Identifier of the employee
      */
     public void removeEmpFromShift(int SID, int removeEID) throws Exception {
+        log.debug("entered remove employee from shift functions");
         employees.get(currConnectedEmpID).removeEmpFromShift(SID, removeEID, shiftController);
+        log.debug("successfully removed employee: " + removeEID + " from shift: " + SID);
     }
 
     /**
@@ -299,7 +401,9 @@ public class EmployeeController {
      * @param role   The role of the employee will be in the shift
      */
     public void addEmpToShift(int SID, int addEID, RoleType role) throws Exception {
+        log.debug("entered add employee to shift function");
         employees.get(currConnectedEmpID).addEmpToShift(SID, addEID, role, employees.get(addEID).getName(), shiftController);
+        log.debug("successfully added employee: "+addEID+" to shift: "+SID+" in role of: "+role.name());
     }
 
     /**
@@ -311,7 +415,9 @@ public class EmployeeController {
      * @param newAmount nNew amount of the role
      */
     public void updateAmountRole(int SID, RoleType role, int newAmount) throws Exception {
+        log.debug("entered update amount in role function");
         employees.get(currConnectedEmpID).updateAmountRole(SID, role, newAmount, shiftController);
+        log.debug("successfully updated shift: "+SID+" with new amount: "+newAmount+" in role: "+role.name());
     }
 
     /**
@@ -320,7 +426,10 @@ public class EmployeeController {
      * @return A list of constraints of the current connected employee
      */
     public List<Shift> getOnlyEmployeeShifts() {
-        return employees.get(currConnectedEmpID).getOnlyEmployeeShifts(shiftController);
+        log.debug("entered getting shifts of employee: "+currConnectedEmpID);
+        List<Shift> l = employees.get(currConnectedEmpID).getOnlyEmployeeShifts(shiftController);
+        log.debug("successfully got all shifts of employee: "+currConnectedEmpID);
+        return l;
     }
 
     /**
@@ -339,16 +448,25 @@ public class EmployeeController {
      * @param BID Identifier of the branch (1-9)
      */
     public void loadData(int BID) {
-        //Load the data from database first.
-        Map<Integer, Shift> shifts = new HashMap<>();
-        Map<Integer, Constraint> constraints = new HashMap<>();
-        shiftController = new ShiftController(shifts,constraints);
+        log.debug("loading data of branch id: "+BID);
+        currConnectedEmpID = -1;
+        currConnectedEmpRole = null;
         currBranchID = BID;
+        employees = new HashMap<>(Database.getInstance().getEmployeesInBranches(BID));
+        log.debug("loaded all employees.");
+        Map<Integer, Shift> shifts = new HashMap<>(); //WHAT EVER SHIFTPGK NEED TO MAKE SHIFTCONTOLLER
+        Map<Integer, Constraint> constraints = new HashMap<>();
+        shiftController = new ShiftController(shifts, constraints);
+        log.debug("Done loading data");
+
     }
 
-    public void checkWorking(int EID) throws Exception {
-        if (!employees.containsKey(EID))
-            throw new Exception("Employee with id: " + EID + " doesn't work in this branch");
+    private void checkEID(int EID) throws Exception {
+        if (!employees.containsKey(EID)) {
+            log.error("user with id: " + EID + " is not in map of employees");
+            throw new Exception("EID: " + EID + " not found");
+        }
+        log.debug("checked that employee is working in this branch - success");
     }
 
     /**
@@ -390,5 +508,23 @@ public class EmployeeController {
         return employees.get(currConnectedEmpID).getName();
     }
 
+    /**
+     * https://stackoverflow.com/questions/10199462/how-to-check-if-a-given-string-is-a-part-of-any-given-enum-in-java
+     *
+     * @param value
+     * @param enumClass
+     * @param <E>
+     * @return
+     */
+    private <E extends Enum<E>> void isInEnum(String value, Class<E> enumClass) throws Exception {
+        log.debug("checking if is enum");
+        for (E e : enumClass.getEnumConstants()) {
+            if (e.name().equals(value)) {
+                return;
+            }
+        }
+        log.error("Illegal value of enum string: " + value + " of enum class: " + enumClass);
+        throw new Exception("illegal string value");
+    }
 
 }
