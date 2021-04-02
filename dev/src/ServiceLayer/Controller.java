@@ -28,85 +28,56 @@ public class Controller {
     public boolean setTransportation(Transportation t){return true;}
 
 
-
-    public StringBuilder getAllDrivers(){
-        StringBuilder acc = new StringBuilder();
+    public DriverServiceDTO getDriver(int id){
+        Response<DriverServiceDTO> driver =  serviceControl.getDriver(id);
+        if(driver.isErrorOccurred()){
+            throw new IllegalArgumentException(driver.getErrorMessage());
+        }
+        return driver.getValue();
+    }
+    public List<DriverServiceDTO> getAllDrivers(){
         Response<List<DriverServiceDTO>> res = serviceControl.getDTODrivers();
         if(res.isErrorOccurred()){
-            acc.append(res.getErrorMessage());
-        }else {
-            List<DriverServiceDTO> drivers = res.getValue();
-            for(DriverServiceDTO d: drivers){
-                acc.append(d.toString());
-            }
+            throw new IllegalArgumentException(res.getErrorMessage());
         }
-        return acc;
+        return res.getValue();
     }
-    public StringBuilder getAllItems(){
-        StringBuilder acc = new StringBuilder();
+    public List<ItemServiceDTO> getAllItems(){
         Response<List<ItemServiceDTO>> res = serviceControl.getAllItems();
-        if(res.isErrorOccurred()){
-            acc.append(res.getErrorMessage());
-        }else {
-            List<ItemServiceDTO> items = res.getValue();
-            for(ItemServiceDTO i: items){
-                acc.append(i.toString());
-            }
+        if(res.isErrorOccurred()) {
+            throw new IllegalArgumentException(res.getErrorMessage());
         }
-        return acc;
+        return res.getValue();
     }
 
-    public StringBuilder getAllSuppliers(){
-        StringBuilder acc = new StringBuilder();
+    public List<SupplierServiceDTO> getAllSuppliers(){
         Response<List<SupplierServiceDTO>> res = serviceControl.getDTOSuppliers();
         if(res.isErrorOccurred()){
-            acc.append(res.getErrorMessage());
-        }else {
-            List<SupplierServiceDTO> suppliers = res.getValue();
-            for(SupplierServiceDTO s: suppliers){
-                acc.append(s.toString());
-            }
+            throw new IllegalArgumentException(res.getErrorMessage());
         }
-        return acc;
+        return res.getValue();
     }
-    public StringBuilder getAllTransportations(){
-        StringBuilder acc = new StringBuilder();
+    public List<TransportationServiceDTO> getAllTransportations(){
+
         Response<List<TransportationServiceDTO>> res = serviceControl.getDTOtransportations();
         if(res.isErrorOccurred()){
-            acc.append(res.getErrorMessage());
-        }else {
-            List<TransportationServiceDTO> transportations = res.getValue();
-            for(TransportationServiceDTO t: transportations){
-                acc.append(t.toString());
-            }
+            throw new IllegalArgumentException(res.getErrorMessage());
         }
-        return acc;
+        return res.getValue();
     }
-    public StringBuilder getAllTrucks(){
-        StringBuilder acc = new StringBuilder();
+    public List<TruckServiceDTO> getAllTrucks(){
         Response<List<TruckServiceDTO>> res = serviceControl.getDTOTrucks();
-        if(res.isErrorOccurred()){
-            acc.append(res.getErrorMessage());
-        }else {
-            List<TruckServiceDTO> trucks = res.getValue();
-            for(TruckServiceDTO t: trucks){
-                acc.append(t.toString());
-            }
+        if(res.isErrorOccurred()) {
+            throw new IllegalArgumentException(res.getErrorMessage());
         }
-        return acc;
+        return res.getValue();
     }
-    public StringBuilder getAllBranches(){
-        StringBuilder acc = new StringBuilder();
+    public List<BranchServiceDTO> getAllBranches(){
         Response<List<BranchServiceDTO>> res = serviceControl.getDTOBranches();
         if(res.isErrorOccurred()){
-            acc.append(res.getErrorMessage());
-        }else {
-            List<BranchServiceDTO> branches = res.getValue();
-            for(BranchServiceDTO b: branches){
-                acc.append(b.toString());
-            }
+            throw new IllegalArgumentException(res.getErrorMessage());
         }
-        return acc;
+        return res.getValue();
     }
 
 }

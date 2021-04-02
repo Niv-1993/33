@@ -1,7 +1,7 @@
 package Responses;
 
 public class Response <T>{
-    private T value;
+    private  T value;
     private boolean errorIsOccurred;
     private String errorMessage;
     public Response(){

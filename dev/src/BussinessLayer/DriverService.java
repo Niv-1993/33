@@ -10,7 +10,9 @@ public class DriverService {
     private HashMap<Integer,Driver> drivers;
     private DataController dataController;
 
-    public DriverService(){drivers=new HashMap<>(); }
+    public DriverService(){drivers=new HashMap<>();
+    drivers.put(1,new Driver(1,"bar",new License(200)));
+    }
     public DriverService(HashMap<Integer,Driver> driverList){
         this.drivers=driverList;
         dataController=DataController.init();

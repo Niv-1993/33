@@ -35,14 +35,14 @@ public class DataController {
         }
         dataBase.setDrivers(lis);
     }
-    public void addTransportations(List<Transportation> trans){
+    /*public void addTransportations(List<Transportation> trans){
 
         List<TransportationDTO> lis=new LinkedList<>();
         for (Transportation tran:trans) {
             lis.add(new TransportationDTO(tran.getId(),tran.getDate(),tran.getLeavingTime(),getDriverDTO(tran.getDriver()),getTruckDTO(tran.getTruck()),tran.getWeight(),getItemsList(tran.getDeliveryItems())));
         }
         dataBase.setTrans(lis);
-    }
+    }*/
 
 
     private HashMap<SiteDTO, List<ItemDTO>> getItemsList(HashMap<Site, List<Item>> deliveryItems) {

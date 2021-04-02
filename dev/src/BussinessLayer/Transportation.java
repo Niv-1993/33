@@ -8,7 +8,7 @@ import java.util.Objects;
 
 //yuval
 public class Transportation {
-    private long id;
+    private int id;
     private LocalDate date;
     private LocalTime leavingTime;
     private Driver driver;
@@ -18,7 +18,7 @@ public class Transportation {
     private int weight;
     private final List<Supplier> suppliers;
 
-    public Transportation(long id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, int weight, HashMap<Branch, List<Item>> deliveryItems, List<Supplier> suppliers){
+    public Transportation(int id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, int weight, HashMap<Branch, List<Item>> deliveryItems, List<Supplier> suppliers){
         this.date=date;
         this.deliveryItems=deliveryItems;
         this.id=id;
@@ -33,7 +33,7 @@ public class Transportation {
         return suppliers;
     }
 
-    public long getId() { return id; }
+    public int getId() { return id; }
     public LocalDate getDate() { return date; }
     public Driver getDriver() { return driver; }
     public LocalTime getLeavingTime() { return leavingTime; }
@@ -56,7 +56,7 @@ public class Transportation {
             this.driver = driver;
         }
     }
-    public void setId(long id) { this.id = id; }
+    public void setId(int id) { this.id = id; }
     public void setLeavingTime(LocalTime leavingTime) { this.leavingTime = leavingTime; }
 
 

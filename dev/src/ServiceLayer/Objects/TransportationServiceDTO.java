@@ -6,11 +6,12 @@ import BussinessLayer.Truck;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TransportationServiceDTO {
 
-    private long id;
+    private int id;
     private LocalDate date;
     private LocalTime leavingTime;
     private DriverServiceDTO driver;
@@ -18,7 +19,15 @@ public class TransportationServiceDTO {
     private List<SupplierServiceDTO> suppliers;
     private HashMap<BranchServiceDTO, List<ItemServiceDTO>> deliveryItems;
     private int weight;
-
+    public TransportationServiceDTO(){
+        id = -1;
+        date = null;
+        leavingTime = null;
+        driver = null;
+        truck = null;
+        suppliers = new LinkedList<>();
+        deliveryItems = new HashMap<>();
+    }
     @Override
     public String toString() {
         return "TransportationServiceDTO{" +
@@ -33,7 +42,7 @@ public class TransportationServiceDTO {
                 '}';
     }
 
-    public TransportationServiceDTO(long id, LocalDate date, LocalTime leavingTime, DriverServiceDTO driver, TruckServiceDTO truck, int weight, HashMap<BranchServiceDTO, List<ItemServiceDTO>> deliveryItems, List<SupplierServiceDTO> sup){
+    public TransportationServiceDTO(int id, LocalDate date, LocalTime leavingTime, DriverServiceDTO driver, TruckServiceDTO truck, int weight, HashMap<BranchServiceDTO, List<ItemServiceDTO>> deliveryItems, List<SupplierServiceDTO> sup){
         this.date=date;
         this.deliveryItems=deliveryItems;
         this.id=id;
@@ -44,7 +53,7 @@ public class TransportationServiceDTO {
         this.suppliers=sup;
     }
 
-    public void setId(long id) { this.id = id; }
+    public void setId(int id) { this.id = id; }
 
     public DriverServiceDTO getDriver() { return driver; }
 

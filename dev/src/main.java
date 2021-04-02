@@ -1,5 +1,16 @@
+import java.util.Scanner;
+
 public class main {
     public static void main(String[] args) {
-        System.out.println("!Hello World");
+        Scanner sc = new Scanner(System.in);
+        Menu menu = new Menu(sc);
+        TransportationDisplay td = new TransportationDisplay();
+        boolean endProgram = true;
+        while (endProgram){
+            menu.chooseOption();
+            menu.chooseAddOption();
+
+            endProgram = menu.endOfProgram();
+        }
     }
 }

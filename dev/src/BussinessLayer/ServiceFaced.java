@@ -18,16 +18,28 @@ public class ServiceFaced {
     private TransportationService transportationService;
     private ItemService itemService;
     private static ServiceFaced serviceFaced = null;
+    private ServiceFaced(){
+        driverService = new DriverService();
+        truckService = new TruckService();
+        siteService = new SiteService();
+        transportationService = new TransportationService();
+        itemService = new ItemService();
 
+    }
     public static ServiceFaced initial() {
         if(serviceFaced == null){
             serviceFaced = new ServiceFaced();
         }
         return serviceFaced;
     }
-    
-    public void orderMisses(List<Integer> missingItems){
-
+    public Response<DriverServiceDTO> getDriver(int id){
+        Response<DriverServiceDTO> res = new Response<>();
+        try {
+            res.setValue(toDriverServiceDTO(driverService.getDriver(id)));
+        }catch (Exception e){
+            res.setErrorOccurred(e.getMessage());
+        }
+        return res;
     }
     public Response<List<DriverServiceDTO>> getDTODrivers(){
         Response<List<DriverServiceDTO>> returnResponse = new Response<>();
@@ -43,11 +55,9 @@ public class ServiceFaced {
         }
         return returnResponse;
     }
-
     public Response<List<BranchServiceDTO>> getDTOBranches(){
         Response<List<BranchServiceDTO>> returnResponse = new Response<>();
         List<BranchServiceDTO> returnB = new LinkedList<>();
-
         try {
             List<Branch> branches = siteService.getBranches();
             for (Branch b: branches) {
