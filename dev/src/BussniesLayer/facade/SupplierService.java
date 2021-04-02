@@ -43,9 +43,9 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public response addSupplier(int supplierBN, String supplierName, int bankAccount, String payWay) {
+    public response addSupplier(String supplierName, int bankAccount, String payWay) {
         try{
-            supplierController.addSupplier(supplierBN, supplierName, bankAccount, payWay);
+            supplierController.addSupplier(supplierName, bankAccount, payWay);
         }catch (Exception e){
             return new response("ERROR: " + e);
         }
@@ -199,13 +199,14 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public response addItem(int supplierBN, String category , double price) {
+    public Tresponse<Item> addItem(int supplierBN, String category , double price) {
+        BussniesLayer.Item item;
         try{
-            supplierController.addItem(supplierBN, category , price);
+            item = supplierController.addItem(supplierBN, category , price);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new Tresponse("ERROR: " + e);
         }
-        return new response();
+        return new Tresponse<Item>(new Item(item));
     }
 
     @Override

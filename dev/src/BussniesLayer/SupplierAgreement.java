@@ -15,17 +15,17 @@ public class SupplierAgreement {
         this.shipToUs = shipToUs;
     }
 
-    public void updateMinimalAmountOfSA(int minimalAmount) {
+    public void updateMinimalAmountOfSA(int minimalAmount) throws Exception {
+        if(minimalAmount < 0) throw new Exception("minimal amount must be a positive number");
         this.minimalAmount = minimalAmount;
     }
 
-    public void updateDiscountOfSA(int discount) {
+    public void updateDiscountOfSA(int discount) throws Exception {
+        if(discount < 0) throw new Exception("discount amount must be a positive number between 0 to 100");
         this.discount = discount;
     }
 
-    public void updateConstantTime(boolean constantTime) {
-        this.constantTime = constantTime;
-    }
+    public void updateConstantTime(boolean constantTime) { this.constantTime = constantTime; }
 
     public void updateShipToUs(boolean shipToUs) {
         this.shipToUs = shipToUs;

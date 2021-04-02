@@ -12,4 +12,13 @@ public class Order {
         totalAmount = order.getTotalAmount();
         deliverTime = order.getDeliverTime();
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", totalAmount=" + totalAmount +
+                ", deliverTime=" + deliverTime +
+                '}';
+    }
 }

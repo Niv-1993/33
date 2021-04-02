@@ -13,4 +13,14 @@ public class SupplierAgreement {
         constantTime = SA.getConstantTime();
         shipToUs = SA.getShipToUs();
     }
+
+    @Override
+    public String toString() {
+        return "SupplierAgreement{" +
+                "minimalAmount=" + minimalAmount +
+                ", discount=" + discount +
+                ", constantTime=" + constantTime +
+                ", shipToUs=" + shipToUs +
+                '}';
+    }
 }

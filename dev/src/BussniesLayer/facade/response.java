@@ -13,4 +13,12 @@ public class response {
         this.error = error;
         isError = true;
     }
+
+    public boolean isError() {
+        return isError;
+    }
+
+    public String getError() {
+        return error;
+    }
 }

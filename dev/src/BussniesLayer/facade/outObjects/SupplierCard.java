@@ -17,4 +17,15 @@ public class SupplierCard{
         contactPhone = supplierCard.getcontactPhone();
         contactEmail =  supplierCard.getcontactEmail();
     }
+
+    @Override
+    public String toString() {
+        return "SupplierCard{" +
+                "supplierBN=" + supplierBN +
+                ", accountNumber=" + accountNumber +
+                ", payWay='" + payWay + '\'' +
+                ", contactPhone=" + contactPhone +
+                ", contactEmail=" + contactEmail +
+                '}';
+    }
 }

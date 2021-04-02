@@ -1,11 +1,19 @@
 package BussniesLayer.facade.outObjects;
 
 public class Item {
-    private String category;
     private int ItemId;
+    private String category;
 
     public Item(BussniesLayer.Item item) {
-        category = item.getCategory();
         ItemId = item.getItemId();
+        category = item.getCategory();
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "ItemId=" + ItemId +
+                ", category='" + category + '\'' +
+                '}';
     }
 }

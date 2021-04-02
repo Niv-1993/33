@@ -15,7 +15,7 @@ public interface ISupplierService {
     response LoadDate();
     response deleteData();
     Tresponse<SupplierCard> showSupplier(int supplierBN);
-    response addSupplier(int supplierBN , String supplierName , int bankAccount , String payWay);
+    response addSupplier(String supplierName , int bankAccount , String payWay);
     response removeSupplier(int supplierBN);
     Tresponse<SupplierCard> showSupplierBN(String supplierName);
     response updateSupplierPayWay(int supplierBN , String payWay);
@@ -29,7 +29,7 @@ public interface ISupplierService {
     Tresponse<List<SupplierCard>> showAllSuppliers();
     Tresponse<List<Item>> showAllItemsOfSupplier(int SupplierBN);
     Tresponse<List<Item>> showAllItems();
-    response addItem(int supplierBN , String category, double price);
+    Tresponse<Item> addItem(int supplierBN , String category, double price);
     response removeItem(int itemId);
     response removeItemFromSupplier(int supplierBN , int itemId);
     Tresponse<Order> addOrder(int supplierBN);

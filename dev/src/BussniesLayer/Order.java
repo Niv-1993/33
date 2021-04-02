@@ -1,12 +1,9 @@
 package BussniesLayer;
 
-import java.util.Date;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Order {
-    private int orderId;
+    private final int orderId;
     private int supplierBN;
     private Hashtable<Item , Integer> items;
     private double totalAmount;
@@ -20,15 +17,15 @@ public class Order {
         this.deliverTime = deliverTime;
     }
 
-    public void addItemToOrder(int itemId) {
-        for(Item item : items.keySet()) {
-            if(item.getItemId() == itemId) items.put(item , items.get(item) + 1);
-        }
+    public void addItemToOrder(Item item) {
+        if(items.get(item) != null) items.put(item , items.get(item) + 1);
+        items.put(item , 1);
     }
 
-    public double showTotalAmount() {
+    public double showTotalAmount() throws Exception {
         for(Item item : items.keySet()) {
             QuantityDocument qd = item.getQuantityDocument();
+            if(qd == null) throw new Exception("quantity document does not exist.");
             totalAmount = totalAmount + item.getPrice();
             if(qd.getMinimalAmount() <= items.get(item)) {
                 totalAmount = totalAmount - (item.getPrice()*(qd.getDiscount() / 100));
@@ -37,12 +34,11 @@ public class Order {
         return totalAmount;
     }
 
-    public Date showDeliverTime() {
-        return deliverTime;
-    }
+    public Date showDeliverTime() { return deliverTime; }
 
-    public void updateDeliverTime(Date deliverTime) {
-        this.deliverTime = deliverTime;
+    public void updateDeliverTime(Date deliverTime) throws Exception {
+        if(deliverTime.after(new Date())) this.deliverTime = deliverTime;
+        throw new Exception("deliver time must be after current time");
     }
 
     public int getOrderId() {

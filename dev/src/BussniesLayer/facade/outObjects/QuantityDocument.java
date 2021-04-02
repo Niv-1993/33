@@ -8,4 +8,12 @@ public class QuantityDocument{
         minimalAmount = QD.getMinimalAmount();
         discount = QD.getDiscount();
     }
+
+    @Override
+    public String toString() {
+        return "QuantityDocument{" +
+                "minimalAmount=" + minimalAmount +
+                ", discount=" + discount +
+                '}';
+    }
 }
