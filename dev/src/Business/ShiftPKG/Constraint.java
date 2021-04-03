@@ -2,10 +2,11 @@ package Business.ShiftPKG;
 
 import Business.Type.ShiftType;
 import Database.Database;
+import org.apache.log4j.Logger;
 import java.time.LocalDate;
 
 public abstract class Constraint {
-
+    final static Logger log = Logger.getLogger(Constraint.class);
     //--------------------------------fields-----------------------------
     private int CID;
     private int EID;
