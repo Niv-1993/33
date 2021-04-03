@@ -264,6 +264,14 @@ public interface iEmployeeService {
     ResponseData<Employee> getOnlyEmployeeShiftsAndConstraints();
 
     /**
+     * Adds to a specific employee a role to his list
+     * Note : Only the personnel manager is allowed to use this functionality
+     * @param EID the identifier of the employee to add the role
+     * @param role the role
+     * @return
+     */
+    Response addRoleToEmployee(int EID, String role);
+    /**
      * Loads the relevant data of a spcific branch with BID identifier
      * Note : the BID is chosen in the first window options before identifying to the system the employee
      * @param BID Identifier of the branch (1-9)

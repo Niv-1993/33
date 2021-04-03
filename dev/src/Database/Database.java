@@ -165,4 +165,11 @@ public class Database {
     public Map<Integer, Map<Integer, Employee>> getFiredEmployees() {
         return firedEmployees;
     }
+
+    public void addRoleToEmployee(int eid, RoleType role) throws Exception {
+        log.debug("entered database - add role to employee");
+        int branch = getEmployeeBranch(eid);
+        employeesInBranches.get(branch).get(eid).getRole().add(role);
+        log.debug("updated role list of employee: "+ eid+" with role:"+role.name()+" in database");
+    }
 }

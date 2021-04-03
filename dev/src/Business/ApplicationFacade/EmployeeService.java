@@ -567,6 +567,25 @@ public class EmployeeService implements iEmployeeService {
         }
     }
 
+    /**
+     * Adds to a specific employee a role to his list
+     * Note : Only the personnel manager is allowed to use this functionality
+     * @param EID  the identifier of the employee to add the role
+     * @param role the role
+     * @return
+     */
+    public Response addRoleToEmployee(int EID, String role) {
+        try {
+            log.debug("add role to employee service");
+            employeeController.addRoleToEmployee(EID,role);
+            log.debug("successful response from service");
+            return new Response();
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return new Response(e.getMessage());
+        }
+    }
+
 
     /**
      * Loads the relevant data of a spcific branch with BID identifier

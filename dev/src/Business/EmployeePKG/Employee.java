@@ -137,6 +137,7 @@ public abstract class Employee {
     public abstract void defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaults, ShiftController shiftController) throws Exception;
     public abstract Shift createDefaultShift(LocalDate date, ShiftType shiftType, ShiftController shiftController) throws Exception;
 
+    public abstract void addRoleToEmployee(int eid, RoleType role,Map<Integer, Employee> employees) throws Exception;
     /**
      * Getters/Setters
      */
@@ -206,7 +207,6 @@ public abstract class Employee {
         }
         log.debug("checked that employee is working in this branch - success");
     }
-
 
 
 }

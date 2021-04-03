@@ -34,7 +34,7 @@ public class EmployeeTest {
         personnelManager = new PersonnelManager(1, "Niv", bank, 1000, RoleType.PersonnelManger, LocalDate.now(), terms);
         driver = new Regular(2, "dor", bank, 3000, RoleType.Driver, LocalDate.now(), terms);
         Database.getInstance();
-         employees = new HashMap<>();
+        employees = new HashMap<>();
         employees.put(driver.getEID(),driver);
     }
 

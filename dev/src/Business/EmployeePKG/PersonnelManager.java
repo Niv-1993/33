@@ -136,6 +136,14 @@ public class PersonnelManager extends Employee {
         Database.getInstance().updateEmployeeSickDays(employees.get(updateEID).getEID(), newAmount);
         log.debug("successfully updated sick-days to: " + newAmount);
     }
+    @Override
+    public void addRoleToEmployee(int eid, RoleType role,Map<Integer, Employee> employees) throws Exception {
+        log.debug("entered add role to employee function with role: "+role.name()+" in EID: "+eid);
+        checkWorking(eid,employees);
+        employees.get(eid).getRole().add(role);
+        Database.getInstance().addRoleToEmployee(eid,role);
+        log.debug("successfully added role: "+role.name()+"to employee: "+eid);
+    }
 
     @Override
     public Shift createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<String[]>> employees, ShiftController shiftController) throws Exception {
@@ -189,4 +197,6 @@ public class PersonnelManager extends Employee {
         log.debug("returned to EmployeePKG successfully");
         return s;
     }
+
+
 }

@@ -438,7 +438,25 @@ public class EmployeeController {
      * @return A list of constraints of the current connected employee
      */
     public List<Constraint> getOnlyEmployeeConstraints() {
-        return employees.get(currConnectedEmpID).getOnlyEmployeeConstraints(shiftController);
+        log.debug("entered getting current connected employee's constraints: "+currConnectedEmpID);
+        List<Constraint> l =  employees.get(currConnectedEmpID).getOnlyEmployeeConstraints(shiftController);
+        log.debug("successfully got all constraints of employee: "+currConnectedEmpID);
+        return l;
+    }
+
+    /**
+     * Adds to a specific employee a role to his list
+     * Note : Only the personnel manager is allowed to use this functionality
+     * @param eid  the identifier of the employee to add the role
+     * @param role the role
+     * @return
+     */
+    public void addRoleToEmployee(int eid, String role) throws Exception {
+        log.debug("entered add role to employee function");
+        isInEnum(role,RoleType.class);
+        employees.get(currConnectedEmpID).addRoleToEmployee(eid,RoleType.valueOf(role),employees);
+        shiftController.addToOptionals(eid, employees.get(eid).getName(), employees.get(eid).getRole());
+        log.debug("successfully added role to role list of employee: "+eid);
     }
 
     /**
