@@ -3,9 +3,9 @@ package BussniesLayer.facade.outObjects;
 import java.util.Date;
 
 public class Order {
-    private int orderId;
-    private double totalAmount;
-    private Date deliverTime;
+    private final int orderId;
+    private final double totalAmount;
+    private final Date deliverTime;
 
     public Order(BussniesLayer.Order order) {
         orderId = order.getOrderId();

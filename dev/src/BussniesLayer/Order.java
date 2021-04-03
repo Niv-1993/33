@@ -4,15 +4,13 @@ import java.util.*;
 
 public class Order {
     private final int orderId;
-    private int supplierBN;
     private Hashtable<Item , Integer> items;
     private double totalAmount;
     private Date deliverTime;
 
-    public Order(int orderId , int supplierBN , Date deliverTime){
+    public Order(int orderId , Date deliverTime){
         this.orderId = orderId;
-        this.supplierBN = supplierBN;
-        items = new Hashtable<Item , Integer>();
+        items = new Hashtable<>();
         this.totalAmount = 0;
         this.deliverTime = deliverTime;
     }
@@ -28,8 +26,8 @@ public class Order {
             if(qd == null) throw new Exception("quantity document does not exist.");
             totalAmount = totalAmount + item.getPrice();
             if(qd.getMinimalAmount() <= items.get(item)) {
-                double precent = qd.getDiscount() / 100;
-                totalAmount = totalAmount - (item.getPrice()*precent);
+                double present = qd.getDiscount() / 100;
+                totalAmount = totalAmount - (item.getPrice()*present);
             }
         }
         return this;
@@ -44,10 +42,6 @@ public class Order {
 
     public int getOrderId() {
         return orderId;
-    }
-
-    public void addItem(Item item) {
-        items.put(item , 1);
     }
 
     public double getTotalAmount() {

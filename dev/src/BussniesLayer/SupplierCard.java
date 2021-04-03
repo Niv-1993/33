@@ -4,8 +4,8 @@ import java.util.*;
 
 
 public class SupplierCard {
-    private int supplierBN;
-    private String supplierName;
+    private final int supplierBN;
+    private final String supplierName;
     private int accountNumber;
     private String payWay;
     private List<Order> orders;
@@ -19,11 +19,11 @@ public class SupplierCard {
         this.supplierName = supplierName;
         this.accountNumber = accountNumber;
         this.payWay = payWay;
-        orders = new LinkedList<Order>();
-        items = new LinkedList<Item>();
+        orders = new LinkedList<>();
+        items = new LinkedList<>();
         supplierAgreement = null;
-        contactPhone = new Hashtable<String, String>();
-        contactEmail = new Hashtable<String, String>();
+        contactPhone = new Hashtable<>();
+        contactEmail = new Hashtable<>();
     }
 
 
@@ -39,11 +39,11 @@ public class SupplierCard {
         return payWay;
     }
 
-    public Dictionary getcontactPhone() {
+    public Dictionary<String , String> getContactPhone() {
         return contactPhone;
     }
 
-    public Dictionary getcontactEmail() {
+    public Dictionary<String , String> getContactEmail() {
         return contactEmail;
     }
 
@@ -51,40 +51,47 @@ public class SupplierCard {
         return supplierName;
     }
 
-    public void updateSupplierPayWay(String payWay) {
+    public void updateSupplierPayWay(String payWay) throws Exception {
+        if(!(payWay.equals("check") || payWay.equals("bank transfer") || payWay.equals("cash")))
+            throw new Exception("pay way must be check/bank transfer/cash.");
         this.payWay = payWay;
     }
 
-    public void updateSupplierBankAccount(int bankAccount) {
-        this.accountNumber = accountNumber;
+    public void updateSupplierBankAccount(int bankAccount) throws Exception {
+        if(bankAccount < 0) throw new Exception("bank account must be a positive number");
+        this.accountNumber = bankAccount;
     }
 
-    public void addContactPhone(String phone, String name) {
+    public void addContactPhone(String phone, String name) throws Exception {
+        if(contactPhone.get(phone) != null)
+            throw new Exception("contact phone all ready exist, you may want to use: update contact phone");
         contactPhone.put(phone, name);
     }
 
-    public void addContactEmail(String email, String name) {
+    public void addContactEmail(String email, String name) throws Exception {
+        if(contactPhone.get(email) != null)
+            throw new Exception("contact email all ready exist, you may want to use: update contact email");
         contactEmail.put(email, name);
     }
 
-    public void removeContactPhone(String phone) {
+    public void removeContactPhone(String phone){
         contactPhone.remove(phone);
     }
 
-    public void removeContactEmail(String email) {
+    public void removeContactEmail(String email){
         contactPhone.remove(email);
     }
 
-    public void updateContactPhone(String phone) {
+    public void updateContactPhone(String phone) throws Exception {
         String name = contactPhone.get(phone);
-        removeContactPhone(phone);
-        addContactPhone(phone , name);
+        if(name == null) throw new Exception("phone does npt exist , you may want to use: add contact phone");
+        contactPhone.put(phone ,name);
     }
 
-    public void updateContactEmail(String email) {
-        String name = contactEmail.get(email);
-        removeContactPhone(email);
-        addContactPhone(email , name);
+    public void updateContactEmail(String email) throws Exception {
+        String name = contactPhone.get(email);
+        if(name == null) throw new Exception("phone does npt exist , you may want to use: add contact phone");
+        contactEmail.put(email ,name);
     }
 
 
@@ -94,22 +101,19 @@ public class SupplierCard {
 
     public Item addItem(String category, int ItemId , double price) throws Exception {
         if(price < 0) throw new Exception("price must be a positive number!");
-        Item newItem = new BussniesLayer.Item(supplierBN,category, ItemId , price);
+        Item newItem = new BussniesLayer.Item(category, ItemId , price);
         items.add(newItem);
         return newItem;
     }
 
     public void removeItemFromSupplier(int itemId) {
-        for (Item i : items) {
-            if (i.getItemId() == itemId) {
-                items.remove(i);
-            }
-        }
+        items.removeIf(item -> item.getItemId() == itemId);
     }
 
-    public void addOrder(int orderID) {
-        Order order = new Order(orderID, supplierBN,null);
+    public Order addOrder(int orderID) {
+        Order order = new Order(orderID ,null);
         orders.add(order);
+        return order;
     }
 
     public void addItemToOrder(int orderId, int itemId) throws Exception {
@@ -117,17 +121,19 @@ public class SupplierCard {
         for (Item i : items) {
             if (i.getItemId() == itemId) {
                 toAdd = i;
+                break;
             }
         }
-        if(toAdd == null) throw new Exception("itemId does not exist");
-        boolean found = false;
+        if(toAdd == null) throw new Exception("the supplier does not have this item");
+        boolean hasFound = false;
         for (Order o : orders) {
             if (o.getOrderId() == orderId) {
                o.addItemToOrder(toAdd);
-               found = true;
+                hasFound = true;
+                break;
             }
         }
-        if(!found) throw new Exception("orderId does not exist");
+        if(!hasFound) throw new Exception("orderId does not exist");
     }
 
     public Order showOrderOfSupplier(int orderId) throws Exception {
@@ -143,13 +149,14 @@ public class SupplierCard {
     }
 
     public Order showTotalAmount(int orderId) throws Exception {
-        try {
-            for (Order o : orders) {
-                if (o.getOrderId() == orderId)
+        for(Order o : orders) {
+            if (o.getOrderId() == orderId) {
+                try {
                     return o.showTotalAmount();
+                } catch (Exception e) {
+                    throw new Exception(e);
+                }
             }
-        }catch (Exception e) {
-            throw new Exception(e);
         }
         throw new Exception("orderId does not exist.");
     }
@@ -167,48 +174,50 @@ public class SupplierCard {
     }
 
     public void updateDeliverTime(int orderId, Date deliverTime) throws Exception {
-        boolean hasUpdated = false;
+        boolean hasFound = false;
         for (Order o : orders) {
             if (o.getOrderId() == orderId) {
                 o.updateDeliverTime(deliverTime);
-                hasUpdated = true;
+                hasFound = true;
             }
+            if(hasFound) break;
         }
-        if(!hasUpdated) throw new Exception("orderId does not exist.");
+        if(!hasFound) throw new Exception("orderId does not exist.");
     }
 
     public void addQuantityDocument(int itemId, int minimalAmount, int discount) throws Exception {
-        boolean hasAdded = false;
+        boolean hasFound = false;
         for (Item i : items) {
             if (i.getItemId() == itemId) {
                 try {
-                    i.addQuantityDocument(supplierBN, itemId, minimalAmount, discount);
+                    i.addQuantityDocument(minimalAmount, discount);
+                    hasFound = true;
                 } catch (Exception e){
                     throw new Exception(e);
                 }
-                hasAdded = true;
-            }
+           }
+            if(hasFound) break;
         }
-        if(!hasAdded) throw new Exception("itemId does not exist.");
+        if(!hasFound) throw new Exception("itemId does not exist.");
     }
 
     public void removeQuantityDocument(int itemId) throws Exception {
-        boolean hasRemoved = false;
+        boolean hasFound = false;
         for (Item i : items) {
             if (i.getItemId() == itemId) {
                 try {
                     i.removeQuantityDocument();
+                    hasFound = true;
                 }catch (Exception e){
                     throw new Exception(e);
                 }
-                hasRemoved = true;
             }
+            if(hasFound) break;
         }
-        if(!hasRemoved) throw new Exception("itemId does not exist");
+        if(!hasFound) throw new Exception("itemId does not exist");
     }
 
     public QuantityDocument showQuantityDocument(int itemId) throws Exception {
-        boolean hasFound = false;
         for (Item i : items) {
             if (i.getItemId() == itemId) {
                 try {
@@ -217,7 +226,6 @@ public class SupplierCard {
                     throw new Exception(e);
                 }
             }
-
         }
         throw new Exception("itemId does not exist.");
     }
@@ -228,26 +236,28 @@ public class SupplierCard {
             if (i.getItemId() == itemId) {
                 try {
                     i.updateMinimalAmountOfQD(minimalAmount);
+                    hasFound = true;
                 }catch (Exception e){
                     throw new Exception(e);
                 }
-                hasFound = true;
             }
+            if(hasFound) break;
         }
         if(!hasFound) throw new Exception("itemId does not found");
     }
 
     public void updateDiscountOfQD(int itemId, int discount) throws Exception {
         boolean hasFound = false;
-        for (Item i : items) {
-            if (i.getItemId() == itemId) {
+        for (Item item : items) {
+            if (item.getItemId() == itemId) {
                 try{
-                    i.updateDiscountOfQD(discount);
+                    item.updateDiscountOfQD(discount);
+                    hasFound = true;
                 } catch (Exception e){
                     throw new Exception(e);
                 }
-                hasFound = true;
             }
+            if(hasFound) break;
         }
         if(!hasFound) throw new Exception("itemId does not exist");
     }
@@ -255,7 +265,7 @@ public class SupplierCard {
     public void addSupplierAgreement(int minimalAmount, int discount, boolean constantTime, boolean shipToUs) throws Exception {
         if(minimalAmount < 0 ) throw new Exception("minimal amount must be a positive number");
         if(discount < 0 || discount > 100) throw new Exception("minimal amount must be a positive number between 0 to 100");
-        supplierAgreement = new SupplierAgreement(supplierBN ,minimalAmount, discount, constantTime, shipToUs);
+        supplierAgreement = new SupplierAgreement(minimalAmount, discount, constantTime, shipToUs);
     }
 
     public SupplierAgreement showSupplierAgreement() {
@@ -278,9 +288,7 @@ public class SupplierCard {
         }
     }
 
-    public void updateConstantTime(boolean constantTime) {
-        supplierAgreement.updateConstantTime(constantTime);
-    }
+    public void updateConstantTime(boolean constantTime) { supplierAgreement.updateConstantTime(constantTime); }
 
     public void updateShipToUs(boolean shipToUs) {
         supplierAgreement.updateShipToUs(shipToUs);
@@ -292,11 +300,12 @@ public class SupplierCard {
             if(item.getItemId() == itemId){
                 try {
                     item.updatePrice(price);
+                    hasFound = true;
                 }catch (Exception e){
                     throw new Exception(e);
                 }
-                hasFound = true;
             }
+            if(hasFound) break;
         }
         if(!hasFound) throw new Exception("itemId does not found");
     }

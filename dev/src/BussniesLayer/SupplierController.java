@@ -2,9 +2,6 @@ package BussniesLayer;
 
 import java.util.*;
 
-import BussniesLayer.SupplierCard;
-import BussniesLayer.facade.response;
-
 public class SupplierController{
     private Dictionary<Integer , SupplierCard> suppliers;
     private int numOfItems;
@@ -56,59 +53,69 @@ public class SupplierController{
 
     public void updateSupplierPayWay(int supplierBN, String payWay) throws Exception {
         try {
-            suppliers.get(supplierBN).updateSupplierPayWay(payWay);
+            suppliers.get(supplierBN);
         } catch (Exception e){
             throw new Exception("supplier BN is not exist");
+        }
+        try {
+            suppliers.get(supplierBN).updateSupplierPayWay(payWay);
+        } catch (Exception e){
+            throw new Exception(e);
         }
     }
 
     public void updateSupplierBankAccount(int supplierBN, int bankAccount) throws Exception {
         try {
-            suppliers.get(supplierBN).updateSupplierBankAccount(bankAccount);
+            suppliers.get(supplierBN);
         } catch (Exception e){
             throw new Exception("supplier BN is not exist");
+        }
+        try {
+            suppliers.get(supplierBN).updateSupplierBankAccount(bankAccount);
+        }catch (Exception e){
+            throw new Exception(e);
         }
     }
 
     public void addContactPhone(int supplierBN, String phone, String name) throws Exception {
         try {
-            suppliers.get(supplierBN).addContactPhone(phone, name);
+            suppliers.get(supplierBN);
         } catch (Exception e){
             throw new Exception("supplier BN is not exist");
+        }
+        try {
+            suppliers.get(supplierBN).addContactPhone(phone, name);
+        }catch (Exception e){
+            throw new Exception(e);
         }
     }
 
     public void addContactEmail(int supplierBN, String email, String name) throws Exception {
         try {
-            suppliers.get(supplierBN).addContactEmail(email, name);
+            suppliers.get(supplierBN);
         } catch (Exception e){
             throw new Exception("supplier BN is not exist");
+        }
+        try {
+            suppliers.get(supplierBN).addContactEmail(email, name);
+        }catch (Exception e){
+            throw new Exception(e);
         }
     }
 
     public void removeContactPhone(int supplierBN, String phone) throws Exception {
         try {
-            suppliers.get(supplierBN);
-        } catch (Exception e){
-            throw new Exception("supplier BN is not exist");
-        }
-        try {
             suppliers.get(supplierBN).removeContactPhone(phone);
         } catch (Exception e){
-            throw new Exception(phone +" does not exist for " + supplierBN);
+            throw new Exception("supplier BN is not exist");
         }
     }
 
     public void removeContactEmail(int supplierBN, String email) throws Exception {
         try {
-            suppliers.get(supplierBN);
-        } catch (Exception e){
-            throw new Exception("supplier BN is not exist");
-        }
-        try {
             suppliers.get(supplierBN).removeContactEmail(email);
         } catch (Exception e){
-            throw new Exception(email +" does not exist for " + supplierBN);
+            throw new Exception("supplier BN is not exist");
         }
     }
 
@@ -121,7 +128,7 @@ public class SupplierController{
         try {
             suppliers.get(supplierBN).updateContactPhone(phone);
         } catch (Exception e){
-            throw new Exception(phone +" does not exist for " + supplierBN);
+            throw new Exception(e);
         }
     }
 
@@ -134,7 +141,7 @@ public class SupplierController{
         try {
             suppliers.get(supplierBN).updateContactEmail(email);
         } catch (Exception e){
-            throw new Exception(email +" does not exist for " + supplierBN);
+            throw new Exception(e);
         }
     }
 
@@ -202,7 +209,8 @@ public class SupplierController{
         } catch (Exception e){
             throw new Exception("supplier BN is not exist");
         }
-        return new Order(numOfOrders, supplierBN, null);
+        if(numOfOrders != 0) numOfOrders++;
+        return suppliers.get(supplierBN).addOrder(numOfOrders);
     }
 
     public void addItemToOrder(int supplierBN, int orderId, int itemId) throws Exception {
@@ -412,7 +420,11 @@ public class SupplierController{
         } catch (Exception e){
             throw new Exception("supplier BN is not exist");
         }
-        suppliers.get(supplierBN).updatePrice(itemId,price);
+        try {
+            suppliers.get(supplierBN).updatePrice(itemId,price);
+        } catch (Exception e){
+            throw new Exception(e);
+        }
     }
 
 }

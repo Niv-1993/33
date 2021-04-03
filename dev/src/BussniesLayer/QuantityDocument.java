@@ -1,14 +1,11 @@
 package BussniesLayer;
 
 public class QuantityDocument {
-    private int supplierBN;
-    private int itemId;
+
     private int minimalAmount;
     private int discount;
 
-    public QuantityDocument(int supplierBN , int itemId , int minimalAmount , int discount){
-        this.supplierBN = supplierBN;
-        this.itemId = itemId;
+    public QuantityDocument(int minimalAmount , int discount){
         this.minimalAmount = minimalAmount;
         this.discount = discount;
     }

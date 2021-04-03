@@ -1,8 +1,8 @@
 package BussniesLayer.facade;
 
 public class response {
-    private String error;
-    private boolean isError;
+    private final String error;
+    private final boolean isError;
 
     public response(){
         error = null;

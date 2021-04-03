@@ -1,10 +1,10 @@
 package BussniesLayer.facade.outObjects;
 
 public class SupplierAgreement {
-    private int minimalAmount;
-    private int discount;
-    private boolean constantTime;
-    private boolean shipToUs;
+    private final int minimalAmount;
+    private final int discount;
+    private final boolean constantTime;
+    private final boolean shipToUs;
 
 
     public SupplierAgreement(BussniesLayer.SupplierAgreement SA) {
@@ -18,8 +18,8 @@ public class SupplierAgreement {
     public String toString() {
         return "SupplierAgreement: \n" +
                 "minimalAmount = " + minimalAmount + "\n" +
-                "discount=" + discount + "\n" +
-                "constantTime=" + constantTime + " \n" +
-                "shipToUs=" + shipToUs + "\n" ;
+                "discount = " + discount + "\n" +
+                "constantTime = " + constantTime + " \n" +
+                "shipToUs = " + shipToUs + "\n" ;
     }
 }

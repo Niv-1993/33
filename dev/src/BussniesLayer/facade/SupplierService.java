@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SupplierService implements ISupplierService {
-    private SupplierController supplierController;
+    private final SupplierController supplierController;
 
     public SupplierService() {
         supplierController = new SupplierController();
@@ -37,9 +37,9 @@ public class SupplierService implements ISupplierService {
         try {
             supplierCard = supplierController.showSupplier(supplierBN);
         }catch (Exception e){
-            return new Tresponse("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<SupplierCard>(new SupplierCard(supplierCard));
+        return new Tresponse<>(new SupplierCard(supplierCard));
     }
 
     @Override
@@ -68,9 +68,9 @@ public class SupplierService implements ISupplierService {
         try {
             supplierCard = supplierController.showSupplierBN(supplierName);
         }catch (Exception e){
-            return new Tresponse("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<SupplierCard>(new SupplierCard(supplierCard));
+        return new Tresponse<>(new SupplierCard(supplierCard));
     }
 
     @Override
@@ -163,9 +163,9 @@ public class SupplierService implements ISupplierService {
                 outSupplierCard.add(new SupplierCard(supplierCard));
             }
         }catch (Exception e){
-            return new Tresponse("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<List<SupplierCard>>(outSupplierCard);
+        return new Tresponse<>(outSupplierCard);
     }
 
     @Override
@@ -178,9 +178,9 @@ public class SupplierService implements ISupplierService {
                 outItems.add(new Item(item));
             }
         }catch (Exception e){
-            return new Tresponse("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<List<Item>>(outItems);
+        return new Tresponse<>(outItems);
     }
 
     @Override
@@ -193,9 +193,9 @@ public class SupplierService implements ISupplierService {
                 outItems.add(new Item(item));
             }
         }catch (Exception e){
-            return new Tresponse("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<List<Item>>(outItems);
+        return new Tresponse<>(outItems);
     }
 
     @Override
@@ -204,9 +204,9 @@ public class SupplierService implements ISupplierService {
         try{
             item = supplierController.addItem(supplierBN, category , price);
         }catch (Exception e){
-            return new Tresponse("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<Item>(new Item(item));
+        return new Tresponse<>(new Item(item));
     }
 
     @Override
@@ -235,9 +235,9 @@ public class SupplierService implements ISupplierService {
         try {
             order = supplierController.addOrder(supplierBN);
         }catch (Exception e){
-            return new Tresponse("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<Order>(new Order(order));
+        return new Tresponse<>(new Order(order));
     }
 
     @Override
@@ -256,9 +256,9 @@ public class SupplierService implements ISupplierService {
         try {
             order = supplierController.showOrderOfSupplier(supplierBN, orderId);
         }catch (Exception e){
-            return new Tresponse("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<Order>(new Order(order));
+        return new Tresponse<>(new Order(order));
     }
 
     @Override
@@ -271,9 +271,9 @@ public class SupplierService implements ISupplierService {
                 outOrder.add(new Order(order));
             }
         }catch (Exception e){
-            return new Tresponse("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<List<Order>>(outOrder);
+        return new Tresponse<>(outOrder);
     }
 
     @Override
@@ -282,9 +282,9 @@ public class SupplierService implements ISupplierService {
         try{
             order = supplierController.showTotalAmount(supplierBN, orderId);
         }catch (Exception e){
-            return new Tresponse("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<Order>(new Order(order));
+        return new Tresponse<>(new Order(order));
     }
 
     @Override
@@ -293,9 +293,9 @@ public class SupplierService implements ISupplierService {
         try{
             order = supplierController.showDeliverTime(supplierBN, orderId);
         }catch (Exception e){
-            return new Tresponse("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<Order>(new Order(order));
+        return new Tresponse<>(new Order(order));
     }
 
     @Override
@@ -334,9 +334,9 @@ public class SupplierService implements ISupplierService {
         try {
             quantityDocument =  supplierController.showQuantityDocument(supplierBN, itemId);
         }catch (Exception e){
-            return new Tresponse("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<QuantityDocument>(new QuantityDocument(quantityDocument));
+        return new Tresponse<>(new QuantityDocument(quantityDocument));
     }
 
     @Override
@@ -375,9 +375,9 @@ public class SupplierService implements ISupplierService {
         try {
             supplierAgreement = supplierController.showSupplierAgreement(supplierBN);
         }catch (Exception e){
-            return new Tresponse("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<SupplierAgreement>(new SupplierAgreement(supplierAgreement));
+        return new Tresponse<>(new SupplierAgreement(supplierAgreement));
     }
 
     @Override

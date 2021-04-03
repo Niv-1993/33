@@ -4,18 +4,18 @@ import java.util.Dictionary;
 
 
 public class SupplierCard{
-    private int supplierBN;
-    private int accountNumber;
-    private String payWay;
-    private Dictionary<String , String> contactPhone;
-    private Dictionary<String , String> contactEmail;
+    private final int supplierBN;
+    private final int accountNumber;
+    private final String payWay;
+    private final Dictionary<String , String> contactPhone;
+    private final Dictionary<String , String> contactEmail;
 
     public SupplierCard(BussniesLayer.SupplierCard supplierCard) {
         supplierBN = supplierCard.getSupplierBN();
         accountNumber = supplierCard.getSupplierAccountNumber();
         payWay = supplierCard.getSupplierPayWay();
-        contactPhone = supplierCard.getcontactPhone();
-        contactEmail =  supplierCard.getcontactEmail();
+        contactPhone = supplierCard.getContactPhone();
+        contactEmail =  supplierCard.getContactEmail();
     }
 
     @Override

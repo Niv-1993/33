@@ -177,7 +177,7 @@ public class PresentationCL{
                     BN = BNScan(scanner);
                     String email = contactEmailScan(scanner);
                     String name = contactNameScan(scanner);
-                    response response = service.addContactPhone(BN , email , name);
+                    response response = service.addContactEmail(BN , email , name);
                     if(response.isError()) System.out.println(response.getError());
                 }
                 case 4: {
@@ -255,7 +255,7 @@ public class PresentationCL{
                 case 3: {
                     BN = BNScan(scanner);
                     String email =contactEmailScan(scanner);
-                    response response = service.removeContactPhone(BN, email);
+                    response response = service.removeContactEmail(BN, email);
                     if(response.isError()) System.out.println(response.getError());
                 }
                 case 4: {
@@ -321,7 +321,7 @@ public class PresentationCL{
                 case 4: {
                     BN = BNScan(scanner);
                     String email = contactEmailScan(scanner);
-                    response response = service.updateContactPhone(BN, email);
+                    response response = service.updateContactEmail(BN, email);
                     if (response.isError()) System.out.println(response.getError());
                 }
                 case 5: {

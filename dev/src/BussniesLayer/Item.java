@@ -1,24 +1,22 @@
 package BussniesLayer;
 
 public class Item{
-    private int supplierBN;
-    private String category;
-    private int itemId;
+    private final String category;
+    private final int itemId;
     private QuantityDocument quantityDocument;
     private double price;
 
-    public Item(int supplierBN , String category , int itemId , double price){
-        this.supplierBN = supplierBN;
+    public Item(String category , int itemId , double price){
         this.category = category;
         this.itemId = itemId;
         quantityDocument = null;
         this.price = price;
     }
 
-    public void addQuantityDocument(int supplierBN, int itemId, int minimalAmount, int discount) throws Exception {
+    public void addQuantityDocument(int minimalAmount, int discount) throws Exception {
         if(minimalAmount < 0) throw new Exception("minimal amount must be a positive number");
         if(discount < 0 || discount > 100) throw new Exception("discount must be a positive number between 0 to 100");
-        quantityDocument = new QuantityDocument(supplierBN, itemId, minimalAmount, discount);
+        quantityDocument = new QuantityDocument(minimalAmount, discount);
     }
 
     public void removeQuantityDocument() throws Exception {
