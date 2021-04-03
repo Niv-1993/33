@@ -1,7 +1,9 @@
 package ServiceLayer;
+import BussinessLayer.Branch;
 import BussinessLayer.ServiceFaced;
 import BussinessLayer.Transportation;
 import Responses.Response;
+import Responses.ResponseT;
 import ServiceLayer.Objects.*;
 
 import java.util.*;
@@ -28,56 +30,77 @@ public class Controller {
     public boolean setTransportation(Transportation t){return true;}
 
 
-    public DriverServiceDTO getDriver(int id){
-        Response<DriverServiceDTO> driver =  serviceControl.getDriver(id);
-        if(driver.isErrorOccurred()){
-            throw new IllegalArgumentException(driver.getErrorMessage());
-        }
-        return driver.getValue();
-    }
+
     public List<DriverServiceDTO> getAllDrivers(){
-        Response<List<DriverServiceDTO>> res = serviceControl.getDTODrivers();
-        if(res.isErrorOccurred()){
+        ResponseT<List<DriverServiceDTO>> res = serviceControl.getDTODrivers();
+        if(res.ErrorOccured()){
             throw new IllegalArgumentException(res.getErrorMessage());
         }
         return res.getValue();
     }
     public List<ItemServiceDTO> getAllItems(){
-        Response<List<ItemServiceDTO>> res = serviceControl.getAllItems();
-        if(res.isErrorOccurred()) {
+        ResponseT<List<ItemServiceDTO>> res = serviceControl.getAllItems();
+        if(res.ErrorOccured()) {
             throw new IllegalArgumentException(res.getErrorMessage());
         }
         return res.getValue();
     }
 
     public List<SupplierServiceDTO> getAllSuppliers(){
-        Response<List<SupplierServiceDTO>> res = serviceControl.getDTOSuppliers();
-        if(res.isErrorOccurred()){
+        ResponseT<List<SupplierServiceDTO>> res = serviceControl.getDTOSuppliers();
+        if(res.ErrorOccured()){
             throw new IllegalArgumentException(res.getErrorMessage());
         }
         return res.getValue();
     }
     public List<TransportationServiceDTO> getAllTransportations(){
 
-        Response<List<TransportationServiceDTO>> res = serviceControl.getDTOtransportations();
-        if(res.isErrorOccurred()){
+        ResponseT<List<TransportationServiceDTO>> res = serviceControl.getDTOtransportations();
+        if(res.ErrorOccured()){
             throw new IllegalArgumentException(res.getErrorMessage());
         }
         return res.getValue();
     }
     public List<TruckServiceDTO> getAllTrucks(){
-        Response<List<TruckServiceDTO>> res = serviceControl.getDTOTrucks();
-        if(res.isErrorOccurred()) {
+        ResponseT<List<TruckServiceDTO>> res = serviceControl.getDTOTrucks();
+        if(res.ErrorOccured()) {
             throw new IllegalArgumentException(res.getErrorMessage());
         }
         return res.getValue();
     }
     public List<BranchServiceDTO> getAllBranches(){
-        Response<List<BranchServiceDTO>> res = serviceControl.getDTOBranches();
-        if(res.isErrorOccurred()){
+        ResponseT<List<BranchServiceDTO>> res = serviceControl.getDTOBranches();
+        if(res.ErrorOccured()){
             throw new IllegalArgumentException(res.getErrorMessage());
         }
         return res.getValue();
     }
-
+    public DriverServiceDTO getDriver(int id){
+        ResponseT<DriverServiceDTO> driver =  serviceControl.getDriver(id);
+        if(driver.ErrorOccured()){
+            throw new IllegalArgumentException(driver.getErrorMessage());
+        }
+        return driver.getValue();
+    }
+    public BranchServiceDTO getBranch(int id){
+        ResponseT<BranchServiceDTO> res = serviceControl.getBranch(id);
+        if(res.ErrorOccured()){
+            throw new IllegalArgumentException(res.getErrorMessage());
+        }
+        return res.getValue();
+    }
+    public SupplierServiceDTO getSupplier(int id) {
+        ResponseT<SupplierServiceDTO> res = serviceControl.getSuppliers(id);
+        if (res.ErrorOccured()) {
+            throw new IllegalArgumentException(res.getErrorMessage());
+        }
+        return res.getValue();
+    }
+    public TruckServiceDTO getTruck(int id){
+        ResponseT<TruckServiceDTO> res = serviceControl.getTruck(id);
+        if(res.ErrorOccured()) {
+            throw new IllegalArgumentException(res.getErrorMessage());
+        }
+        return res.getValue();
+    }
 }

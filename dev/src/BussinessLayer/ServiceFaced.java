@@ -1,15 +1,10 @@
 package BussinessLayer;
 
 import Responses.Response;
+import Responses.ResponseT;
 import ServiceLayer.Objects.*;
 
 import java.util.*;
-// costumer ask for a new transportation
-// the system ask for missing <dic<item,Integer>,sites> ,we get the trucks, we get the driver
-// we check for the validity of the input
-// if yes => create new transportation
-// if not => return error
-// return the error message
 
 public class ServiceFaced {
     private DriverService driverService;
@@ -24,127 +19,131 @@ public class ServiceFaced {
         siteService = new SiteService();
         transportationService = new TransportationService();
         itemService = new ItemService();
-
     }
+    private void loadData(){ };
     public static ServiceFaced initial() {
         if(serviceFaced == null){
             serviceFaced = new ServiceFaced();
         }
         return serviceFaced;
     }
-    public Response<DriverServiceDTO> getDriver(int id){
-        Response<DriverServiceDTO> res = new Response<>();
+    public ResponseT<DriverServiceDTO> getDriver(int id){
         try {
-            res.setValue(toDriverServiceDTO(driverService.getDriver(id)));
+            return new ResponseT<>(toDriverServiceDTO(driverService.getDriver(id)));
         }catch (Exception e){
-            res.setErrorOccurred(e.getMessage());
+            return new ResponseT<>(e.getMessage());
         }
-        return res;
     }
-    public Response<List<DriverServiceDTO>> getDTODrivers(){
-        Response<List<DriverServiceDTO>> returnResponse = new Response<>();
+    public ResponseT<BranchServiceDTO> getBranch(int id){
+        try{
+            return new ResponseT<>(toBranchServiceDTO(siteService.getBranch(id)));
+        }catch (Exception e){
+            return new ResponseT<>(e.getMessage());
+        }
+    }
+    public ResponseT<SupplierServiceDTO> getSuppliers(int id){
+        try {
+            return new ResponseT<>(toSupplierServiceDTO(siteService.getSupplier(id)));
+        }catch (Exception e){
+            return new ResponseT<>(e.getMessage());
+        }
+    }
+    public ResponseT<TruckServiceDTO> getTruck(int id){
+        try{
+            return new ResponseT<>(toTruckServiceDTO(truckService.getTruck(id)));
+        }catch (Exception e){
+            return new ResponseT<>(e.getMessage());
+        }
+    }
+    public ResponseT<List<DriverServiceDTO>> getDTODrivers(){
         List<DriverServiceDTO> returnD = new LinkedList<>();
         try {
             List<Driver> drivers = driverService.getDriversList();
             for (Driver d: drivers) {
                 returnD.add(toDriverServiceDTO(d));
             }
-            returnResponse.setValue(returnD);
+            return new ResponseT<>(returnD);
         }catch (Exception e){
-            returnResponse.setErrorOccurred(e.getMessage());
+            return new ResponseT<>(e.getMessage());
         }
-        return returnResponse;
     }
-    public Response<List<BranchServiceDTO>> getDTOBranches(){
-        Response<List<BranchServiceDTO>> returnResponse = new Response<>();
+    public ResponseT<List<BranchServiceDTO>> getDTOBranches(){
         List<BranchServiceDTO> returnB = new LinkedList<>();
         try {
-            List<Branch> branches = siteService.getBranches();
+            List<Branch> branches = siteService.getBranchesList();
             for (Branch b: branches) {
                 returnB.add(toBranchServiceDTO(b));
             }
-            returnResponse.setValue(returnB);
+            return new ResponseT<>(returnB);
         }catch (Exception e){
-            returnResponse.setErrorOccurred(e.getMessage());
+            return new ResponseT<>(e.getMessage());
         }
-
-        return returnResponse;
     }
-    public Response<List<SupplierServiceDTO>> getDTOSuppliers(){
-        Response<List<SupplierServiceDTO>> returnResponse = new Response<>();
+    public ResponseT<List<SupplierServiceDTO>> getDTOSuppliers(){
         List<SupplierServiceDTO> returnS = new LinkedList<>();
         try {
-            List<Supplier> suppliers = siteService.getSuppliers();
+            List<Supplier> suppliers = siteService.getSuppliersList();
             for (Supplier s:suppliers) {
                 returnS.add(toSupplierServiceDTO(s));
             }
-            returnResponse.setValue(returnS);
+            return new ResponseT<>(returnS);
         }catch (Exception e){
-            returnResponse.setErrorOccurred(e.getMessage());
+            return new ResponseT<>(e.getMessage());
         }
-        return returnResponse;
     }
-    public Response<List<TransportationServiceDTO>> getDTOtransportations(){
-        Response<List<TransportationServiceDTO>> returnResponse = new Response<>();
+    public ResponseT<List<TransportationServiceDTO>> getDTOtransportations(){
         List<TransportationServiceDTO> returnT = new LinkedList<>();
         try {
             List<Transportation> transportations = transportationService.getTransportationsList();
             for (Transportation t: transportations){
                 returnT.add(toTransportationServiceDTO(t));
             }
-            returnResponse.setValue(returnT);
+            return new ResponseT<>(returnT);
         }catch (Exception e){
-            returnResponse.setErrorOccurred(e.getMessage());
+            return new ResponseT<>(e.getMessage());
         }
-        return returnResponse;
     }
-    public Response<List<ItemServiceDTO>> getAllItems(){
-        Response<List<ItemServiceDTO>> returnResponse = new Response<>();
+    public ResponseT<List<ItemServiceDTO>> getAllItems(){
         List<ItemServiceDTO> returnI = new LinkedList<>();
         try {
             List<Item> allItems = itemService.getItemsList();
             for (Item i: allItems){
                 returnI.add(toItemServiceDTO(i));
             }
-            returnResponse.setValue(returnI);
+            return new ResponseT<>(returnI);
         }catch (Exception e){
-            returnResponse.setErrorOccurred(e.getMessage());
+            return new ResponseT<>(e.getMessage());
         }
-        return returnResponse;
-
-
     }
-    public Response<List<TruckServiceDTO>> getDTOTrucks(){
-        Response<List<TruckServiceDTO>> returnResponse = new Response<>();
+    public ResponseT<List<TruckServiceDTO>> getDTOTrucks(){
         List<TruckServiceDTO> returnT = new LinkedList<>();
         try {
             List<Truck> trucks = truckService.getTrucksList();
             for (Truck t:trucks) {
                 returnT.add(toTruckServiceDTO(t));
             }
-            returnResponse.setValue(returnT);
+            return new ResponseT<>(returnT);
         }catch (Exception e){
-            returnResponse.setErrorOccurred(e.getMessage());
+            return new ResponseT<>(e.getMessage());
         }
-        return returnResponse;
     }
 
-    public Response<StringBuilder> setTransportationDriver(TransportationServiceDTO t, int id){
+    public ResponseT<StringBuilder> setTransportationDriver(TransportationServiceDTO t, int id){
         return null;
     }
-    public Response<StringBuilder> setTransportationBranch(TransportationServiceDTO t,int id ){
+    public ResponseT<StringBuilder> setTransportationBranch(TransportationServiceDTO t, int id ){
         return null;
     }
-    public Response<StringBuilder> setTransportationItems(TransportationServiceDTO t, List<Integer> items){
+    public ResponseT<StringBuilder> setTransportationItems(TransportationServiceDTO t, List<Integer> items){
         return null;
     }
-    public Response<StringBuilder> setTransportationSupplier(TransportationServiceDTO t, int id){
+    public ResponseT<StringBuilder> setTransportationSupplier(TransportationServiceDTO t, int id){
         return null;
     }
-    public Response<StringBuilder> setTransportationTruck(TransportationServiceDTO t, int id){
+    public ResponseT<StringBuilder> setTransportationTruck(TransportationServiceDTO t, int id){
         return null;
     }
-    public Response<StringBuilder> setTransportation(TransportationServiceDTO t){
+    public ResponseT<StringBuilder> setTransportation(TransportationServiceDTO t){
         return null;
     }
 

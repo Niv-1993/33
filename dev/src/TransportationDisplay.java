@@ -31,7 +31,6 @@ public class TransportationDisplay {
     private DriverServiceDTO selectDriver(int id){
         try {
             DriverServiceDTO driver = controller.getDriver(id);
-
             return driver;
         }catch (Exception e){
             System.out.println(e.getMessage());

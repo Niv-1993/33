@@ -1,24 +1,16 @@
 package Responses;
 
-public class Response <T>{
-    private  T value;
-    private boolean errorIsOccurred;
-    private String errorMessage;
-    public Response(){
-        errorIsOccurred = false;
-        errorMessage = null;
+public class Response
+{
+    public final String ErrorMessage;
+    public boolean ErrorOccured() { return (ErrorMessage != null); }
+    public Response(String errorMessage) {
+        ErrorMessage = errorMessage;
     }
-    public String getErrorMessage(){ return errorMessage; }
-    public Response (T obj){this.value=obj;}
 
-    public T getValue() { return value; }
-
-    public void setValue(T value) { this.value = value; }
-
-    public boolean isErrorOccurred() { return errorIsOccurred; }
-
-    public void setErrorOccurred(String message) {
-        errorIsOccurred = true;
-        errorMessage = message;
+    public String getErrorMessage() {
+        return ErrorMessage;
     }
+
+    public Response() {ErrorMessage = null;}
 }

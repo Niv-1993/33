@@ -2,22 +2,36 @@ package BussinessLayer;
 
 import BussinessLayer.ShippingArea;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 //yuval
 public class SiteService {
     private List<Site> sites;
-    private List<Supplier> suppliers;
-    private List<Branch> branches;
+    private HashMap<Integer, Supplier> suppliers;
+    private HashMap<Integer, Branch> branches;
 
-    public List<Supplier> getSuppliers() {
-        return suppliers;
+    public List<Supplier> getSuppliersList() {
+        return new ArrayList<>(suppliers.values());
     }
 
-    public List<Branch> getBranches() {
-        return branches;
+    public List<Branch> getBranchesList() {
+        return new ArrayList<>(branches.values());
+    }
+    public Branch getBranch(int id){
+        if(branches.containsKey(id)){
+            return branches.get(id);
+        }
+        throw new IllegalArgumentException("branch with id: " + id + "does not exists");
     }
 
+    public Supplier getSupplier(int id){
+        if(suppliers.containsKey(id)){
+            return suppliers.get(id);
+        }
+        throw new IllegalArgumentException("supplier with id: " + id +"does not exist");
+    }
     public void setSites(List<Site> sites) {
         this.sites = sites;
     }
