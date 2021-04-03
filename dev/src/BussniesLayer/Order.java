@@ -22,19 +22,20 @@ public class Order {
         items.put(item , 1);
     }
 
-    public double showTotalAmount() throws Exception {
+    public Order showTotalAmount() throws Exception {
         for(Item item : items.keySet()) {
             QuantityDocument qd = item.getQuantityDocument();
             if(qd == null) throw new Exception("quantity document does not exist.");
             totalAmount = totalAmount + item.getPrice();
             if(qd.getMinimalAmount() <= items.get(item)) {
-                totalAmount = totalAmount - (item.getPrice()*(qd.getDiscount() / 100));
+                double precent = qd.getDiscount() / 100;
+                totalAmount = totalAmount - (item.getPrice()*precent);
             }
         }
-        return totalAmount;
+        return this;
     }
 
-    public Date showDeliverTime() { return deliverTime; }
+    public Order showDeliverTime() { return this; }
 
     public void updateDeliverTime(Date deliverTime) throws Exception {
         if(deliverTime.after(new Date())) this.deliverTime = deliverTime;

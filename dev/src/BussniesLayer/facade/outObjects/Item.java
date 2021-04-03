@@ -11,10 +11,9 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "ItemId=" + ItemId +
-                ", category='" + category + '\'' +
-                '}';
+        return "Items: \n" +
+                "ItemId = " + ItemId + "\n" +
+                "category = " + category + '\n';
     }
 
     public String toStringId(){

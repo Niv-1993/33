@@ -20,12 +20,13 @@ public class SupplierCard{
 
     @Override
     public String toString() {
-        return "SupplierCard{" +
-                "supplierBN=" + supplierBN +
-                ", accountNumber=" + accountNumber +
-                ", payWay='" + payWay + '\'' +
-                ", contactPhone=" + contactPhone +
-                ", contactEmail=" + contactEmail +
-                '}';
+        return "SupplierCard: \n" +
+                "supplierBN = " + supplierBN + "\n" +
+                "accountNumber =" + accountNumber + "\n" +
+                "payWay ='" + payWay + "\n" +
+                "contactPhone=" + contactPhone + "\n" +
+                "contactEmail=" + contactEmail + "\n";
     }
+
+    public String toStringId(){ return supplierBN + "";}
 }

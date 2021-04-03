@@ -277,23 +277,25 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public response showTotalAmount(int supplierBN, int orderId) {
+    public Tresponse<Order> showTotalAmount(int supplierBN, int orderId) {
+        BussniesLayer.Order order;
         try{
-            supplierController.showTotalAmount(supplierBN, orderId);
+            order = supplierController.showTotalAmount(supplierBN, orderId);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new Tresponse("ERROR: " + e);
         }
-        return new response();
+        return new Tresponse<Order>(new Order(order));
     }
 
     @Override
-    public response showDeliverTime(int supplierBN, int orderId) {
+    public Tresponse<Order> showDeliverTime(int supplierBN, int orderId) {
+        BussniesLayer.Order order;
         try{
-            supplierController.showDeliverTime(supplierBN, orderId);
+            order = supplierController.showDeliverTime(supplierBN, orderId);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new Tresponse("ERROR: " + e);
         }
-        return new response();
+        return new Tresponse<Order>(new Order(order));
     }
 
     @Override

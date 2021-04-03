@@ -240,7 +240,7 @@ public class SupplierController{
         return suppliers.get(supplierBN).showAllOrdersOfSupplier();
     }
 
-    public double showTotalAmount(int supplierBN, int orderId) throws Exception {
+    public Order showTotalAmount(int supplierBN, int orderId) throws Exception {
         try {
             suppliers.get(supplierBN);
         } catch (Exception e){
@@ -249,7 +249,7 @@ public class SupplierController{
         return suppliers.get(supplierBN).showTotalAmount(orderId);
     }
 
-    public Date showDeliverTime(int supplierBN, int orderId) throws Exception {
+    public Order showDeliverTime(int supplierBN, int orderId) throws Exception {
         try {
             suppliers.get(supplierBN);
         } catch (Exception e){

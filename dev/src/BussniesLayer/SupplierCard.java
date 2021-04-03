@@ -142,7 +142,7 @@ public class SupplierCard {
         return orders;
     }
 
-    public double showTotalAmount(int orderId) throws Exception {
+    public Order showTotalAmount(int orderId) throws Exception {
         try {
             for (Order o : orders) {
                 if (o.getOrderId() == orderId)
@@ -154,7 +154,7 @@ public class SupplierCard {
         throw new Exception("orderId does not exist.");
     }
 
-    public Date showDeliverTime(int orderId) throws Exception {
+    public Order showDeliverTime(int orderId) throws Exception {
         for (Order o : orders) {
             if (o.getOrderId() == orderId)
                 try {

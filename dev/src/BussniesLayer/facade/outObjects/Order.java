@@ -15,14 +15,17 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", totalAmount=" + totalAmount +
-                ", deliverTime=" + deliverTime +
-                '}';
+        return "Order: \n" +
+                "orderId = " + orderId + "\n" +
+                "totalAmount = " + totalAmount + "\n" +
+                ", deliverTime = " + deliverTime + "\n";
     }
 
     public String toStringId(){
         return orderId + "";
     }
+
+    public String toStringTotalAmount(){ return totalAmount + "";}
+
+    public String toStringDeliverTime(){ return deliverTime.toString();}
 }

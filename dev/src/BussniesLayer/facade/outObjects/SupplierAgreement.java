@@ -16,11 +16,10 @@ public class SupplierAgreement {
 
     @Override
     public String toString() {
-        return "SupplierAgreement{" +
-                "minimalAmount=" + minimalAmount +
-                ", discount=" + discount +
-                ", constantTime=" + constantTime +
-                ", shipToUs=" + shipToUs +
-                '}';
+        return "SupplierAgreement: \n" +
+                "minimalAmount = " + minimalAmount + "\n" +
+                "discount=" + discount + "\n" +
+                "constantTime=" + constantTime + " \n" +
+                "shipToUs=" + shipToUs + "\n" ;
     }
 }
