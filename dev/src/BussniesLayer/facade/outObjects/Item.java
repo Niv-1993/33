@@ -16,4 +16,8 @@ public class Item {
                 ", category='" + category + '\'' +
                 '}';
     }
+
+    public String toStringId(){
+        return ItemId + "";
+    }
 }

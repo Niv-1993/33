@@ -21,4 +21,8 @@ public class Order {
                 ", deliverTime=" + deliverTime +
                 '}';
     }
+
+    public String toStringId(){
+        return orderId + "";
+    }
 }
