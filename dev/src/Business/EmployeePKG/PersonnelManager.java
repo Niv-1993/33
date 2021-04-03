@@ -184,16 +184,16 @@ public class PersonnelManager extends Employee {
     }
 
     @Override
-    public void defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaults, ShiftController shiftController) {
+    public void defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaults, ShiftController shiftController) throws Exception {
         log.debug("forwarding command to shiftPKG");
         shiftController.defaultShifts(defaults);
         log.debug("returned to EmployeePKG successfully");
     }
 
     @Override
-    public Shift createDefaultShift(LocalDate date, ShiftType shiftType, ShiftController shiftController) {
+    public Shift createDefaultShift(LocalDate date, ShiftType shiftType, ShiftController shiftController,Map<RoleType, List<String[]>> optionals) throws Exception {
         log.debug("forwarding command to shiftPKG");
-        Shift s = shiftController.createDefaultShift(date, shiftType);
+        Shift s = shiftController.createDefaultShift(date, shiftType,optionals);
         log.debug("returned to EmployeePKG successfully");
         return s;
     }

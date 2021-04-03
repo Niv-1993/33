@@ -57,7 +57,7 @@ public abstract class Employee {
         return c;
     }
 
-    public Constraint addConstraint(LocalDate c_date, ShiftType shiftType, String reason, ShiftController shiftController) {
+    public Constraint addConstraint(LocalDate c_date, ShiftType shiftType, String reason, ShiftController shiftController) throws Exception {
         log.debug("enter add constraint function");
         Constraint c = shiftController.addConstraint(EID, c_date, shiftType, reason);
         log.debug("successfully add constraint");
@@ -135,7 +135,7 @@ public abstract class Employee {
     public abstract void updateAmountRole(int SID, RoleType role, int newAmount, ShiftController shiftController) throws Exception;
 
     public abstract void defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaults, ShiftController shiftController) throws Exception;
-    public abstract Shift createDefaultShift(LocalDate date, ShiftType shiftType, ShiftController shiftController) throws Exception;
+    public abstract Shift createDefaultShift(LocalDate date, ShiftType shiftType, ShiftController shiftController,Map<RoleType, List<String[]>> optionals) throws Exception;
 
     public abstract void addRoleToEmployee(int eid, RoleType role,Map<Integer, Employee> employees) throws Exception;
     /**

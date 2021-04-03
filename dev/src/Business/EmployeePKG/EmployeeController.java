@@ -63,7 +63,7 @@ public class EmployeeController {
             throw new Exception("Access denied!");
         }
         log.debug("creating instance of the personnel manager in this new branch");
-        Employee personnelM = new PersonnelManager(newEID, name, bankDetails, salary, RoleType.PersonnelManger, LocalDate.now(), terms);
+        Employee personnelM = new PersonnelManager(newEID, name, bankDetails, salary, RoleType.PersonnelManager, LocalDate.now(), terms);
         Database.getInstance().createBranch(personnelM);
         log.debug("successfully created branch");
     }
@@ -349,7 +349,21 @@ public class EmployeeController {
     public Shift createDefaultShift(LocalDate date, String shiftType) throws Exception {
         log.debug("enter create default shift function");
         isInEnum(shiftType, ShiftType.class);
-        Shift s = employees.get(currConnectedEmpID).createDefaultShift(date, ShiftType.valueOf(shiftType), shiftController);
+        Map<RoleType, List<String[]>> optionals = new HashMap<>();
+        EnumSet<RoleType> allRoles = EnumSet.allOf(RoleType.class);
+        log.debug("initializing roles and amount map with all roles");
+        for (RoleType role : allRoles) {
+            optionals.put(role, new ArrayList<>());
+        }
+        log.debug("putting in optionals map all names and roles into array of strings to each role");
+        for (Map.Entry<Integer, Employee> entry : employees.entrySet()) {
+            String[] pairIDName = new String[]{Integer.toString(entry.getKey()), entry.getValue().getName()};
+            for (RoleType role : entry.getValue().getRole()) {
+                optionals.get(role).add(pairIDName);
+            }
+        }
+        log.debug("done.");
+        Shift s = employees.get(currConnectedEmpID).createDefaultShift(date, ShiftType.valueOf(shiftType), shiftController,optionals);
         log.debug("created default shift successfully");
         return s;
     }
@@ -465,7 +479,7 @@ public class EmployeeController {
      *
      * @param BID Identifier of the branch (1-9)
      */
-    public void loadData(int BID) {
+    public void loadData(int BID) throws Exception {
         log.debug("loading data of branch id: "+BID);
         currConnectedEmpID = -1;
         currConnectedEmpRole = null;

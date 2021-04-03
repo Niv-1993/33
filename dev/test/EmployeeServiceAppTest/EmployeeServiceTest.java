@@ -4,6 +4,9 @@ import Business.ApplicationFacade.*;
 import Business.ApplicationFacade.outObjects.Constraint;
 import Business.ApplicationFacade.outObjects.Employee;
 import Business.ApplicationFacade.outObjects.Shift;
+import Business.EmployeePKG.PersonnelManager;
+import Business.Type.RoleType;
+import Business.Type.ShiftType;
 import Database.Database;
 import org.junit.*;
 
@@ -29,8 +32,11 @@ public class EmployeeServiceTest {
     public void setUp() throws Exception {
         Database.getInstance().init();
         service = new EmployeeService();
-        service.loadData(1);
+
         //testing commit
+        service.createBranch("00000",1,"niv",bank,10000,terms);
+        service.createShift(new HashMap<>(),LocalDate.of(2021,8,2),"Morning");
+        service.loadData(1);
     }
 
     @After
@@ -377,7 +383,7 @@ public class EmployeeServiceTest {
     @Test
     public void updateEmployeeSalaryFailByDriver() {
         Response login = service.Login(1,"PersonnelManager");
-        Assert.assertFalse(login.isError());
+         Assert.assertFalse(login.isError());
         ResponseData<Employee> driver = service.addEmployee(2,"moshe",bank,10000,"Driver", LocalDate.now(),terms);
         Assert.assertFalse(driver.isError());
         Response logout = service.Logout();

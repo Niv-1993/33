@@ -44,8 +44,10 @@ public class ShiftControllerTest {
 
     @Test
     public void addConstraint2() throws Exception {
-        Constraint constraint = sc.addConstraint(2, LocalDate.of(1990,10,19), ShiftType.Morning, "sick");
-        fail();  //date if before today
+        try {
+            Constraint constraint = sc.addConstraint(2, LocalDate.of(1990,10,19), ShiftType.Morning, "sick");
+            fail();
+        }catch (Exception e){}
     }
 
     @Test

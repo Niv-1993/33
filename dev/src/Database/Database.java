@@ -46,18 +46,13 @@ public class Database {
 
 
     public void init() {
-        this.counterBID = 2;
+        this.counterBID = 1;
         this.counterSID = 0;
         this.counterCID = 0;
         this.employeesInBranches = new HashMap<>();
         this.firedEmployees = new HashMap<>();
-        this.employeesInBranches.put(1, new HashMap<>());
         int[] bank = {1, 2, 3};
         int[] terms = {4, 5, 6};
-        try {
-            Employee personnel = new PersonnelManager(1, "Niv", bank, 1000, RoleType.PersonnelManger, LocalDate.now(), terms);
-        }catch (Exception e){}
-
         //employeesInBranches.get(1).put()
     }
 
@@ -71,6 +66,12 @@ public class Database {
     }
 
     public void addEmployee(int personnelID, Employee toAdd) throws Exception {
+        //init only for unit test of employee
+        if(toAdd.getEID() == personnelID){
+            employeesInBranches.put(1,new HashMap<>());
+            employeesInBranches.get(1).put(personnelID,toAdd);
+            return;
+        }
         log.debug("enter database - adding new instance of employee map");
         int branchNum = getEmployeeBranch(personnelID);
         employeesInBranches.get(branchNum).put(toAdd.getEID(), new Regular(toAdd));
