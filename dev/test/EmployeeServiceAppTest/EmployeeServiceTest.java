@@ -30,6 +30,7 @@ public class EmployeeServiceTest {
         Database.getInstance().init();
         service = new EmployeeService();
         service.loadData(1);
+        //testing commit
     }
 
     @After
