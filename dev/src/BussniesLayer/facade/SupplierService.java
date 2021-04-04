@@ -16,14 +16,16 @@ import java.util.List;
 
 public class SupplierService implements ISupplierService {
     private SupplierController supplierController;
+    private data load;
 
     public SupplierService() {
         supplierController = new SupplierController();
+        load = new data(supplierController);
     }
 
     @Override
     public response LoadData() {
-        data.getInstance();
+        //data.getInstance();
         return new response();
     }
 

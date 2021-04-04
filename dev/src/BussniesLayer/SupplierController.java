@@ -43,8 +43,9 @@ public class SupplierController{
     }
 
     public SupplierCard showSupplierBN(String supplierName) throws Exception {
-        while(suppliers.keys().hasMoreElements()) {
-            int current = suppliers.keys().nextElement();
+        Enumeration<Integer> enumeration = suppliers.keys();
+        while(enumeration.hasMoreElements()) {
+            int current = enumeration.nextElement();
             if (suppliers.get(current).getSupplierName().equals(supplierName)) {
                 return suppliers.get(current);
             }
@@ -148,8 +149,9 @@ public class SupplierController{
 
     public List<SupplierCard> showAllSuppliers() {
         List<SupplierCard> list = new LinkedList<>();
-        while (suppliers.elements().hasMoreElements()) {
-            list.add(suppliers.elements().nextElement());
+        Enumeration<SupplierCard> enumeration = suppliers.elements();
+        while (enumeration.hasMoreElements()) {
+            list.add(enumeration.nextElement());
         }
         return list;
     }
@@ -174,8 +176,9 @@ public class SupplierController{
 
     public List<Item> showAllItems() {
         List<Item> list = new LinkedList<>();
-        while (suppliers.elements().hasMoreElements()) {
-            List<Item> toAdd = suppliers.elements().nextElement().showAllItemsOfSupplier();
+        Enumeration<SupplierCard> enumeration = suppliers.elements();
+        while (enumeration.hasMoreElements()) {
+            List<Item> toAdd = enumeration.nextElement().showAllItemsOfSupplier();
             list.addAll(toAdd);
         }
         return list;
@@ -198,8 +201,9 @@ public class SupplierController{
     }
 
     public void removeItem(int itemId) {
-        while (suppliers.elements().hasMoreElements()) {
-            SupplierCard supplierCard = suppliers.elements().nextElement();
+        Enumeration<SupplierCard> enumeration = suppliers.elements();
+        while (enumeration.hasMoreElements()) {
+            SupplierCard supplierCard = enumeration.nextElement();
             supplierCard.removeItemFromSupplier(itemId);
         }
     }

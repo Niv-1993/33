@@ -5,17 +5,19 @@ import BussniesLayer.SupplierController;
 public class data {
 
     private SupplierController supplierController;
-    private static data Instance = null;
+    //private static data Instance = null;
 
-    private data(){
-        supplierController = new SupplierController();
+    public data(SupplierController supplierController){
+        this. supplierController = supplierController;
         this.loadData();
     }
 
+    /*
     public static data getInstance() {
         if(Instance == null) Instance = new data();
         return Instance;
     }
+     */
 
     private void loadData(){
         try {

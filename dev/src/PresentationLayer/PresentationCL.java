@@ -33,9 +33,13 @@ public class PresentationCL{
             option = scanner.nextInt();
             switch (option){
                 case 1: showingMethods();
+                break;
                 case 2: addingMethods();
+                break;
                 case 3: removingMethods();
+                    break;
                 case 4: updatingMethods();
+                    break;
                 case 5:{
                     System.out.println("PROGRAM DONE.\n");
                     service.deleteData();
@@ -51,9 +55,10 @@ public class PresentationCL{
         int option;
         String[] showingMethodArray = {"show Supplier","show SupplierBN","show All Suppliers","show All Items Of Supplier","show All Items",
                                        "show Order Of Supplier","show All Orders Of Supplier","show Total Amount","show Deliver Time",
-                                       "show Quantity Document","show Supplier Agreement,back to the main menu"};
+                                       "show Quantity Document","show Supplier Agreement","back to the main menu"};
         System.out.println("please select the showing method: \n");
-        while (true) {
+        boolean showingMenu = true;
+        while (showingMenu) {
             for (int i = 1; i <= showingMethodArray.length; i++) {
                 System.out.println(i + ") " + showingMethodArray[i - 1] + "\n");
             }
@@ -63,7 +68,7 @@ public class PresentationCL{
                 case 1: {
                     BN = BNScan(scanner);
                     Tresponse<SupplierCard> response = service.showSupplier(BN);
-                    if (!response.isError()) System.out.println(response.getError());
+                    if (response.isError()) System.out.println(response.getError());
                     else{
                         System.out.println(response.getOutObject().toString());
                         Tresponse<List<Item>> items = service.showAllItemsOfSupplier(BN);
@@ -83,49 +88,54 @@ public class PresentationCL{
                             }
                         }
                     }
+                    break;
                 }
                 case 2: {
                     String name = supplierNameScan(scanner);
                     Tresponse<SupplierCard> response = service.showSupplierBN(name);
-                    if (!response.isError()) System.out.println(response.getError());
+                    if (response.isError()) System.out.println(response.getError());
                     else System.out.println(response.getOutObject().toStringId());
+                    break;
                 }
                 case 3: {
                     Tresponse<List<SupplierCard>> responsesList = service.showAllSuppliers();
-                    if (!responsesList.isError()) System.out.println(responsesList.getError());
+                    if (responsesList.isError()) System.out.println(responsesList.getError());
                     else {
                         List<SupplierCard> responses = responsesList.getOutObject();
                         for (SupplierCard supplierCard : responses) {
                             System.out.println(supplierCard.toString());
                         }
                     }
+                    break;
                 }
                 case 4: {
                     BN = BNScan(scanner);
                     Tresponse<List<Item>> responsesList = service.showAllItemsOfSupplier(BN);
-                    if (!responsesList.isError()) System.out.println(responsesList.getError());
+                    if (responsesList.isError()) System.out.println(responsesList.getError());
                     else {
                         List<Item> responses = responsesList.getOutObject();
                         for (Item item : responses) {
                             System.out.println(item.toString());
                         }
                     }
+                    break;
                 }
                 case 5:{
                      Tresponse<List<Item>> responsesList = service.showAllItems();
-                    if (!responsesList.isError()) System.out.println(responsesList.getError());
+                    if (responsesList.isError()) System.out.println(responsesList.getError());
                     else {
                         List<Item> responses = responsesList.getOutObject();
                         for (Item item : responses) {
                             System.out.println(item.toString());
                         }
                     }
+                    break;
                 }
                 case 6:{
                     BN = BNScan(scanner);
                     int orderId = orderScan(scanner);
                     Tresponse<Order> response = service.showOrderOfSupplier(BN , orderId);
-                    if (!response.isError()) System.out.println(response.getError());
+                    if (response.isError()) System.out.println(response.getError());
                     else{
                         System.out.println(response.getOutObject().toString());
                         Tresponse<List<Item>> items = service.showAllItemsOfOrder(BN , orderId);
@@ -137,12 +147,12 @@ public class PresentationCL{
                             }
                         }
                     }
-
+                    break;
                 }
                 case 7:{
                     BN = BNScan(scanner);
                     Tresponse<List<Order>> responsesList = service.showAllOrdersOfSupplier(BN);
-                    if (!responsesList.isError()) System.out.println(responsesList.getError());
+                    if (responsesList.isError()) System.out.println(responsesList.getError());
                     else {
                         List<Order> responses = responsesList.getOutObject();
                         for (Order order : responses) {
@@ -157,37 +167,47 @@ public class PresentationCL{
                             }
                         }
                     }
+                    break;
                 }
                 case 8:{
                     BN = BNScan(scanner);
                     int orderId = orderScan(scanner);
                     Tresponse<Order> response = service.showTotalAmount(BN , orderId);
-                    if (!response.isError()) System.out.println(response.getError());
+                    if (response.isError()) System.out.println(response.getError());
                     else System.out.println(response.getOutObject().toStringTotalAmount());
+                    break;
                 }
                 case 9:{
                     BN = BNScan(scanner);
                     int orderId = orderScan(scanner);
                    Tresponse<Order> response = service.showDeliverTime(BN , orderId);
-                    if (!response.isError()) System.out.println(response.getError());
+                    if (response.isError()) System.out.println(response.getError());
                     else System.out.println(response.getOutObject().toStringDeliverTime());
+                    break;
                 }
                 case 10:{
                     BN = BNScan(scanner);
                     int itemId = itemScan(scanner);
                     Tresponse<QuantityDocument> response = service.showQuantityDocument(BN , itemId);
-                    if (!response.isError()) System.out.println(response.getError());
+                    if (response.isError()) System.out.println(response.getError());
                     else System.out.println(response.getOutObject().toString());
+                    break;
                 }
                 case 11:{
                     BN = BNScan(scanner);
                     Tresponse<SupplierAgreement> response = service.showSupplierAgreement(BN);
-                    if (!response.isError()) System.out.println(response.getError());
+                    if (response.isError()) System.out.println(response.getError());
                     else System.out.println(response.getOutObject().toString());
+                    break;
+                }
+                case 12: {
+                    showingMenu = false;
+                    break;
                 }
                 default: System.out.println("illegal option!!!\n");
             }
         }
+
     }
 
     private void addingMethods(){
@@ -196,7 +216,8 @@ public class PresentationCL{
         String[] showingMethodArray = {"add supplier","add Contact Phone","add Contact Email","add Item","add Order",
                                        "add Item To Order","add Quantity Document","add Supplier Agreement","back to the main menu"};
         System.out.println("please select the showing method: \n");
-        while (true) {
+        boolean addingMenu = true;
+        while (addingMenu) {
             for (int i = 1; i <= showingMethodArray.length; i++) {
                 System.out.println(i + ") " + showingMethodArray[i - 1] + "\n");
             }
@@ -209,6 +230,7 @@ public class PresentationCL{
                     String payWay = payWayScan(scanner);
                     response response = service.addSupplier(name , bankAccount , payWay);
                     if(response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 2: {
                     BN = BNScan(scanner);
@@ -216,6 +238,7 @@ public class PresentationCL{
                     String name = contactNameScan(scanner);
                     response response = service.addContactPhone(BN , phone , name);
                     if(response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 3: {
                     BN = BNScan(scanner);
@@ -223,6 +246,7 @@ public class PresentationCL{
                     String name = contactNameScan(scanner);
                     response response = service.addContactEmail(BN , email , name);
                     if(response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 4: {
                     BN = BNScan(scanner);
@@ -231,12 +255,14 @@ public class PresentationCL{
                     Tresponse<Item> response = service.addItem(BN , category , price);
                     if(response.isError()) System.out.println(response.getError());
                     else System.out.println("ItemId is: " + response.getOutObject().toStringId());
+                    break;
                 }
                 case 5:{
                     BN = BNScan(scanner);
                     Tresponse<Order> response = service.addOrder(BN);
                     if(response.isError()) System.out.println(response.getError());
                     else System.out.println("orderId is: " + response.getOutObject().toStringId());
+                    break;
                 }
                 case 6:{
                     BN =BNScan(scanner);
@@ -245,6 +271,7 @@ public class PresentationCL{
                     int amount = amountScan(scanner);
                     response response = service.addItemToOrder(BN , orderId , itemId , amount);
                     if(response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 7:{
                     BN = BNScan(scanner);
@@ -253,6 +280,7 @@ public class PresentationCL{
                     int discount = discountScan(scanner);
                     response response = service.addQuantityDocument(BN , itemId , minimalAmount, discount);
                     if(response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 8:{
                     BN = BNScan(scanner);
@@ -262,10 +290,11 @@ public class PresentationCL{
                     boolean shipToUs = shipToUsScan(scanner);
                     response response = service.addSupplierAgreement(BN , minimalAmount , discount , constantTime , shipToUs);
                     if(response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 9:{
-                    scanner.close();
-                    mainRun();
+                    addingMenu = false;
+                    break;
                 }
                 default: System.out.println("illegal option!!!\n");
             }
@@ -279,7 +308,8 @@ public class PresentationCL{
         String[] removeMethodArray = {"remove Supplier","remove Contact Phone","remove Contact Email","remove Item",
                                       "remove Item From Supplier","remove Quantity Document","back to the main menu"};
         System.out.println("please select the showing method: \n");
-        while (true) {
+        boolean removingMenu = true;
+        while (removingMenu) {
             for (int i = 1; i <= removeMethodArray.length; i++) {
                 System.out.println(i + ") " + removeMethodArray[i - 1] + "\n");
             }
@@ -290,39 +320,45 @@ public class PresentationCL{
                     BN = BNScan(scanner);
                     response response = service.removeSupplier(BN);
                     if(response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 2: {
                     BN = BNScan(scanner);
                     String phone = contactPhoneScan(scanner);
                     response response = service.removeContactPhone(BN, phone);
                     if(response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 3: {
                     BN = BNScan(scanner);
                     String email =contactEmailScan(scanner);
                     response response = service.removeContactEmail(BN, email);
                     if(response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 4: {
                     int itemId = itemScan(scanner);
                     response response = service.removeItem(itemId);
                     if(response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 5: {
                     BN = BNScan(scanner);
                     int itemId = itemScan(scanner);
                     response response = service.removeItemFromSupplier(BN, itemId);
                     if(response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 6: {
                     BN = BNScan(scanner);
                     int itemId = itemScan(scanner);
                     response response = service.removeQuantityDocument(BN, itemId);
                     if(response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 7: {
-                    scanner.close();
-                    mainRun();
+                    removingMenu = false;
+                    break;
                 }
                 default: System.out.println("illegal option!!!\n");
             }
@@ -339,7 +375,8 @@ public class PresentationCL{
                 "update Minimal Amount Of Supplier Agreement", "update Discount Of Supplier Agreement",
                 "update Constant Time", "update Ship To Us", "update Price", "back to the main menu"};
         System.out.println("please select the showing method: \n");
-        while (true) {
+        boolean updatingMenu = true;
+        while (updatingMenu) {
             for (int i = 1; i <= updateMethodArray.length; i++) {
                 System.out.println(i + ") " + updateMethodArray[i - 1] + "\n");
             }
@@ -350,24 +387,28 @@ public class PresentationCL{
                     String payWay = payWayScan(scanner);
                     response response = service.updateSupplierPayWay(BN, payWay);
                     if (response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 2: {
                     BN = BNScan(scanner);
                     int bankAccount = bankAccountScan(scanner);
                     response response = service.updateSupplierBankAccount(BN, bankAccount);
                     if (response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 3: {
                     BN = BNScan(scanner);
                     String phone = contactPhoneScan(scanner);
                     response response = service.updateContactPhone(BN, phone);
                     if (response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 4: {
                     BN = BNScan(scanner);
                     String email = contactEmailScan(scanner);
                     response response = service.updateContactEmail(BN, email);
                     if (response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 5: {
                     BN = BNScan(scanner);
@@ -375,6 +416,7 @@ public class PresentationCL{
                     Date date = dateScan(scanner);
                     response response = service.updateDeliverTime(BN, orderId, date);
                     if (response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 6: {
                     BN = BNScan(scanner);
@@ -382,6 +424,7 @@ public class PresentationCL{
                     int minimalAmount = minimalAmountScan(scanner);
                     response response = service.updateMinimalAmountOfQD(BN, itemId, minimalAmount);
                     if (response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 7: {
                     BN = BNScan(scanner);
@@ -389,30 +432,35 @@ public class PresentationCL{
                     int discount = discountScan(scanner);
                     response response = service.updateDiscountOfQD(BN, itemId, discount);
                     if (response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 8: {
                     BN = BNScan(scanner);
                     int minimalAmount = minimalAmountScan(scanner);
                     response response = service.updateMinimalAmountOfSA(BN, minimalAmount);
                     if (response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 9: {
                     BN = BNScan(scanner);
                     int discount = discountScan(scanner);
                     response response = service.updateDiscountOfSA(BN, discount);
                     if (response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 10: {
                     BN = BNScan(scanner);
                     boolean constantTime = constantTimeScan(scanner);
                     response response = service.updateConstantTime(BN, constantTime);
                     if (response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 11: {
                     BN = BNScan(scanner);
                     boolean shipToUs = shipToUsScan(scanner);
                     response response = service.updateShipToUs(BN, shipToUs);
                     if (response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 12: {
                     BN = BNScan(scanner);
@@ -420,10 +468,11 @@ public class PresentationCL{
                     double price = priceScan(scanner);
                     response response = service.updatePrice(BN, itemId, price);
                     if (response.isError()) System.out.println(response.getError());
+                    break;
                 }
                 case 13: {
-                    scanner.close();
-                    mainRun();
+                    updatingMenu = false;
+                    break;
                 }
                 default: System.out.println("illegal option!!!\n");
             }
