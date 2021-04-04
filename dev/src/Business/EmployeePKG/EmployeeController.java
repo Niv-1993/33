@@ -64,6 +64,7 @@ public class EmployeeController {
         }
         log.debug("creating instance of the personnel manager in this new branch");
         Employee personnelM = new PersonnelManager(newEID, name, bankDetails, salary, RoleType.PersonnelManager, LocalDate.now(), terms);
+        employees.put(newEID,personnelM);
         Database.getInstance().createBranch(personnelM);
         log.debug("successfully created branch");
     }

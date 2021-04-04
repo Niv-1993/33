@@ -66,12 +66,6 @@ public class Database {
     }
 
     public void addEmployee(int personnelID, Employee toAdd) throws Exception {
-        //init only for unit test of employee
-        if(toAdd.getEID() == personnelID){
-            employeesInBranches.put(1,new HashMap<>());
-            employeesInBranches.get(1).put(personnelID,toAdd);
-            return;
-        }
         log.debug("enter database - adding new instance of employee map");
         int branchNum = getEmployeeBranch(personnelID);
         employeesInBranches.get(branchNum).put(toAdd.getEID(), new Regular(toAdd));

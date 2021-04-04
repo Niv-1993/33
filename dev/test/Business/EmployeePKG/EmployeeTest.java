@@ -32,9 +32,8 @@ public class EmployeeTest {
     @Before
     public void setUp() throws Exception {
         personnelManager = new PersonnelManager(1, "Niv", bank, 1000, RoleType.PersonnelManager, LocalDate.now(), terms);
-        driver = new Regular(2, "dor", bank, 3000, RoleType.Driver, LocalDate.now(), terms);
-        Database.getInstance().addEmployee(1,personnelManager);
-        Database.getInstance().addEmployee(1,driver);
+        Database.getInstance().createBranch(personnelManager);
+        driver = personnelManager.addEmployee(2,"dor",bank,3000,RoleType.Driver,LocalDate.now(),terms,new HashMap<>());
         employees = new HashMap<>();
         employees.put(driver.getEID(),driver);
     }

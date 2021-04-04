@@ -4,9 +4,6 @@ import Business.ApplicationFacade.*;
 import Business.ApplicationFacade.outObjects.Constraint;
 import Business.ApplicationFacade.outObjects.Employee;
 import Business.ApplicationFacade.outObjects.Shift;
-import Business.EmployeePKG.PersonnelManager;
-import Business.Type.RoleType;
-import Business.Type.ShiftType;
 import Database.Database;
 import org.junit.*;
 
