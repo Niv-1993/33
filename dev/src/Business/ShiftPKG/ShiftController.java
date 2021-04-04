@@ -21,17 +21,22 @@ public class ShiftController {
     private Map<Integer, Constraint> constraints;
     private Map<Integer, TempConstraint> buildShiftConstraints;
     private Map<ShiftType, Map<RoleType, Integer>> defaultShifts;
+    private int shiftCounter;
+    private int constraintCounter;
     //------------------------------------constructor--------------------------------
 
-    public ShiftController(Map<Integer, Shift> shifts, Map<Integer, Constraint> constraints) throws Exception {
-        this.shifts = shifts;
-        this.constraints = constraints;
-        buildShiftConstraints = new HashMap<>(); //when create add build constraint for all employees in all shifts
-        for (Map.Entry<Integer, Shift> m : shifts.entrySet()) {
+    public ShiftController() throws Exception {
+        shifts = new HashMap<>();
+        constraints = new HashMap<>();
+        defaultShifts = new HashMap<>();
+        shiftCounter = 0;
+        constraintCounter = 0;
+        buildShiftConstraints = new HashMap<>();
+        //when will use DB shifts not empty so we need to create build constraints
+        /*for (Map.Entry<Integer, Shift> m : shifts.entrySet()) {
             Shift s = m.getValue();
             createBuildConstraints(new ArrayList<>(s.getEmployees().keySet()), s.getShiftType(), s.getDate());
-        }
-        this.defaultShifts = new HashMap<>();
+        }*/
         log.debug("finished constructor shiftController");
     }
 
@@ -39,16 +44,22 @@ public class ShiftController {
 
     public Constraint addConstConstraint(int EID, DayOfWeek day, ShiftType shiftType, String reason) {
         //create constraint and add to constraints field
-        Constraint newCon = new ConstConstraint(EID, day, shiftType, reason);
+        Constraint newCon = new ConstConstraint(constraintCounter,EID, day, shiftType, reason);
         constraints.put(newCon.getCID(), newCon);
+        constraintCounter++;
         log.debug("added new const constraint for EID: " + EID + ", Day: " + day.name() + " , ShiftType: " + shiftType);
         return newCon;
     }
 
     public Constraint addConstraint(int EID, LocalDate c_date, ShiftType shiftType, String reason) throws Exception {
         //create constraint and add to constraints field
-        Constraint newCon = new TempConstraint(EID, c_date, shiftType, reason);
+        if(checkIfExists(c_date,shiftType)){
+            log.error("EID: "+ EID +" try to add constraint for exists shift");
+            throw new Exception("You can't add constraint for this shift please talk with perssonel manger");
+        }
+        Constraint newCon = new TempConstraint(constraintCounter,EID, c_date, shiftType, reason);
         constraints.put(newCon.getCID(), newCon);
+        constraintCounter++;
         log.debug("added new const constraint for EID: " + EID + ", Date: " + c_date + " , ShiftType: " + shiftType);
         return newCon;
     }
@@ -101,6 +112,7 @@ public class ShiftController {
         return createShift(defaultShifts.get(shiftType), date, shiftType, optionals);
     }
 
+
     public Shift createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<String[]>> optionals) throws Exception {
         //delete from optionals by constraints
         checkIfAmountNegative(rolesAmount);
@@ -113,7 +125,7 @@ public class ShiftController {
                 RemoveEmpFromOptionals(c.getValue().getEID(), optionals);
             }
         }
-        Shift s = new Shift(rolesAmount, optionals, date, shiftType);
+        Shift s = new Shift(shiftCounter++,rolesAmount, optionals, date, shiftType);
         shifts.put(s.getSID(), s);
         List<Integer> listOfEmployees = s.self_make(); // algorithm that choose employees for the shift
         //add constraint for all the employees in this shift cause employee can work in 1 shift per day
@@ -121,26 +133,30 @@ public class ShiftController {
         return s;
     }
 
+
+
     //remove emp from every shift's optionals
     private void RemoveEmpFromOptionals(int EID, Map<RoleType, List<String[]>> optionals) {
         for (Map.Entry<RoleType, List<String[]>> e : optionals.entrySet()) {
             List<String[]> l = e.getValue();
-            for (String[] arr : l) {
-                if (Integer.parseInt(arr[0]) == EID) {
-                    l.remove(arr);
+            if(l!=null) {
+                for (String[] arr : l) {
+                    if (Integer.parseInt(arr[0]) == EID) {
+                        l.remove(arr);
+                    }
                 }
             }
         }
         log.debug("EID: " + EID + " remove from optionals");
     }
 
- /*   public boolean checkIfExists(LocalDate date, ShiftType shiftType) {
+    public boolean checkIfExists(LocalDate date, ShiftType shiftType) {
         for (Map.Entry<Integer, Shift> s : shifts.entrySet()) {
             if (s.getValue().getDate().equals(date) && s.getValue().getShiftType().equals(shiftType))
                 return true;
         }
         return false;
-    }*/
+    }
 
     public void removeEmpFromShift(int SID, int EID) throws Exception {
         shiftIsExsist(SID);
@@ -188,9 +204,6 @@ public class ShiftController {
         return l;
     }
 
-    public void LoadData(int BID) {
-
-    }
 
     private void constraintIsExist(int CID) throws Exception {
         Constraint c = constraints.get(CID);
@@ -211,10 +224,10 @@ public class ShiftController {
     private void createBuildConstraints(List<Integer> listOfEmployees, ShiftType shiftType, LocalDate date) throws Exception {
         for (Integer EID : listOfEmployees) {
             if (shiftType.equals(ShiftType.Morning)) {
-                TempConstraint bConstraint = new TempConstraint(EID, date, ShiftType.Night, "Work in morning shift this day");
+                TempConstraint bConstraint = new TempConstraint(constraintCounter, EID, date, ShiftType.Night, "Work in morning shift this day");
                 buildShiftConstraints.put(bConstraint.getCID(), bConstraint);
             } else {
-                TempConstraint bConstraint = new TempConstraint(EID, date, ShiftType.Morning, "Work in Night shift this day");
+                TempConstraint bConstraint = new TempConstraint(constraintCounter, EID, date, ShiftType.Morning, "Work in Night shift this day");
                 buildShiftConstraints.put(bConstraint.getCID(), bConstraint);
             }
         }

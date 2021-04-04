@@ -7,11 +7,11 @@ import java.time.LocalDate;
 public class TempConstraint extends Constraint {
     final static Logger log = Logger.getLogger(TempConstraint.class);
     //-------------------------------------fields------------------------------------
-    private LocalDate date;
+    private final LocalDate date;
 
     //------------------------------------constructor--------------------------------
-    TempConstraint(int EID, LocalDate date,ShiftType shiftType,String reason) throws Exception {
-        super(EID,shiftType,reason);
+    TempConstraint(int CID, int EID, LocalDate date, ShiftType shiftType, String reason) throws Exception {
+        super(CID, EID,shiftType,reason);
         if(LocalDate.now().compareTo(date)>0){
             log.error("date : " + date +" is from the past");
             throw new Exception("date : " + date +" is from the past");

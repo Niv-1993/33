@@ -11,7 +11,7 @@ import java.util.*;
 public class Shift {
     final static Logger log = Logger.getLogger(Shift.class);
     //-------------------------------------fields------------------------------------
-    private int SID;
+    private final int SID;
     private Map<Integer, String[]> employees;  // [0]->RoleType in String, [1]->name
     private Map<RoleType, Integer> rolesAmount;
     private Map<RoleType, List<String[]>> optionals; //[0]-ID, [1]-Name
@@ -20,11 +20,11 @@ public class Shift {
     private ShiftType shiftType;
 
     //------------------------------------constructor--------------------------------
-    public Shift(Map<RoleType, Integer> rolesAmount, Map<RoleType, List<String[]>> optionals, LocalDate date, ShiftType shiftType) throws Exception {
-        Database db = Database.getInstance();
-        this.SID = db.addShift();
+    public Shift(int SID,Map<RoleType, Integer> rolesAmount, Map<RoleType, List<String[]>> optionals, LocalDate date, ShiftType shiftType) throws Exception {
+
+        this.SID = SID;
         employees = new HashMap<>();
-        checkIfAmountNegative(rolesAmount);
+        checkIfAmountNegative(rolesAmount);  //check if legal (not negative)
         this.rolesAmount = rolesAmount;
         this.optionals = optionals;
         this.complete = false;
@@ -45,7 +45,7 @@ public class Shift {
             RoleType role = e.getKey();
             int amount = e.getValue();
             while (amount > 0) {
-                if (!optionals.get(role).isEmpty()) {
+                if (optionals.get(role)==null || optionals.get(role).isEmpty()) {
                     comp = false;
                     break;
                 } else {
@@ -74,14 +74,16 @@ public class Shift {
         //check if EID can work in this shift (in optionals)
         List<String[]> list = optionals.get(role);
         boolean canWork = false;
-        for (String[] s : list) {
-            if (Integer.parseInt(s[0]) == EID && s[1].equals(name)) {
-                canWork = true;
-                break;
+        if(list!=null) {
+            for (String[] s : list) {
+                if (Integer.parseInt(s[0]) == EID && s[1].equals(name)) {
+                    canWork = true;
+                    break;
+                }
             }
         }
         if (!canWork) {
-            log.error("EID: " + EID + "isn't option to be: " + role + " in SID: " + SID);
+            log.error("EID: " + EID + " isn't option to be: " + role + " in SID: " + SID);
             throw new Exception("EID: " + EID + " isn't option to be " + role + " in this shift");
         }
         //check if there is empty role for this roleType in rolesAmount
@@ -116,19 +118,25 @@ public class Shift {
     private void RemoveEmpFromOptionals(int EID) {
         for (Map.Entry<RoleType, List<String[]>> e : optionals.entrySet()) {
             List<String[]> l = e.getValue();
-            for (String[] arr : l) {
-                if (Integer.parseInt(arr[0]) == EID) {
-                    l.remove(arr);
-                }
+            if (l != null) {
+                l.removeIf(arr -> Integer.parseInt(arr[0]) == EID);
             }
         }
     }
 
-    public void addToOptionals(int EID, String name, List<RoleType> role) {
+    public String[] addToOptionals(int EID, String name, List<RoleType> role) {
+        String[] s = {String.valueOf(EID), name};
         for (RoleType roleType : role) {
-            String[] s = {String.valueOf(EID), name};
-            optionals.get(roleType).add(s);
+            List<String[]> l = optionals.get(roleType);
+            if(l==null){
+                ArrayList<String[]> list = new ArrayList<>();
+                list.add(s);
+                optionals.put(roleType,list);
+            }else{
+                l.add(s);
+            }
         }
+        return s;
     }
 
     public void removeFireEmp(int EID, String name) {
@@ -137,8 +145,10 @@ public class Shift {
             complete = false;
         for (Map.Entry<RoleType, List<String[]>> o : optionals.entrySet()) {
             List<String[]> listOfEmp = o.getValue();
-            String[] toRemove = {String.valueOf(EID), name};
-            listOfEmp.remove(toRemove);
+            if(listOfEmp!=null) {
+                String[] toRemove = {String.valueOf(EID), name};
+                listOfEmp.remove(toRemove);
+            }
         }
         log.debug("EID: "+EID + " removed(fire) from SID: "+ SID);
     }
