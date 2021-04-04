@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SupplierService implements ISupplierService {
-    private final SupplierController supplierController;
+    private SupplierController supplierController;
 
     public SupplierService() {
         supplierController = new SupplierController();

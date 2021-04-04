@@ -26,7 +26,7 @@ public class Order {
             if(qd == null) throw new Exception("quantity document does not exist.");
             totalAmount = totalAmount + item.getPrice();
             if(qd.getMinimalAmount() <= items.get(item)) {
-                double present = qd.getDiscount() / 100;
+                    double present = qd.getDiscount() / 100;
                 totalAmount = totalAmount - (item.getPrice()*present);
             }
         }

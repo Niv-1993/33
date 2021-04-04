@@ -1,6 +1,8 @@
 package PresentationLayer;
 
 import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -12,11 +14,15 @@ import BussniesLayer.facade.response;
 
 public class PresentationCL{
 
-    SupplierService service = new SupplierService();
+    private SupplierService service;
+
+    public PresentationCL() {
+        service = new SupplierService();
+    }
 
     public void mainRun(){
-        Scanner scanner = new Scanner(System.in);
         service.LoadData();
+        Scanner scanner = new Scanner(System.in);
         String[] mainMenueArray = {"method of showing." , "method of adding." , "method of removing." , "method of updating" ,"end program" };
         int option;
         while(true){

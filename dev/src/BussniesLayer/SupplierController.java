@@ -25,12 +25,13 @@ public class SupplierController{
 
     public void addSupplier(String supplierName, int bankAccount, String payWay) throws Exception {
         if(bankAccount < 0) throw new Exception("bank account must be a positive number");
-        while(suppliers.elements().hasMoreElements()){
-            SupplierCard supplierCard = suppliers.elements().nextElement();
-            if(supplierCard.getSupplierName().equals(supplierName)) throw new Exception("supplier name all ready exist");
+        Enumeration<Integer> enumeration = suppliers.keys();
+        while(enumeration.hasMoreElements()){
+            Integer supplierID = enumeration.nextElement();
+            if(suppliers.get(supplierID).getSupplierName().equals(supplierName)) throw new Exception("supplier name all ready exist");
         }
         BussniesLayer.SupplierCard supplierCard = new BussniesLayer.SupplierCard(suppliers.size() ,supplierName,bankAccount,payWay);
-        suppliers.put(suppliers.size() - 1 , supplierCard);
+        suppliers.put(suppliers.size() , supplierCard);
     }
 
     public void removeSupplier(int removeSupplier) throws Exception {
@@ -130,7 +131,7 @@ public class SupplierController{
         } catch (Exception e){
             throw new Exception(e);
         }
-    }
+    };
 
     public void updateContactEmail(int supplierBN, String email) throws Exception {
         try {
@@ -213,13 +214,19 @@ public class SupplierController{
     }
 
     public Order addOrder(int supplierBN) throws Exception {
+        Order order;
         try {
             suppliers.get(supplierBN);
         } catch (Exception e){
             throw new Exception("supplier BN is not exist");
         }
-        if(numOfOrders != 0) numOfOrders++;
-        return suppliers.get(supplierBN).addOrder(numOfOrders);
+        try {
+            order = suppliers.get(supplierBN).addOrder(numOfOrders);
+        }catch (Exception e){
+            throw new Exception(e);
+        }
+        numOfOrders++;
+        return order;
     }
 
     public void addItemToOrder(int supplierBN, int orderId, int itemId , int amount) throws Exception {
