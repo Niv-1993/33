@@ -22,10 +22,10 @@ public class Order {
     }
 
     public String toStringId(){
-        return orderId + "";
+        return orderId + "\n";
     }
 
-    public String toStringTotalAmount(){ return totalAmount + "";}
+    public String toStringTotalAmount(){ return totalAmount + "\n";}
 
     public String toStringDeliverTime(){ return deliverTime.toString();}
 }

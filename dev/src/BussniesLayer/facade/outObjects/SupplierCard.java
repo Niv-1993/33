@@ -28,5 +28,5 @@ public class SupplierCard{
                 "\tcontactEmail=" + contactEmail + "\n";
     }
 
-    public String toStringId(){ return supplierBN + "";}
+    public String toStringId(){ return supplierBN + "\n";}
 }

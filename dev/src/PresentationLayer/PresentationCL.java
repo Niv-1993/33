@@ -31,6 +31,7 @@ public class PresentationCL{
                 case 4: updatingMethods();
                 case 5:{
                     System.out.println("PROGRAM DONE.\n");
+                    service.deleteData();
                     System.exit(0);
                 }
                 default: System.out.println("illegal option!!!\n");
@@ -63,14 +64,14 @@ public class PresentationCL{
                         else {
                             List<Item> responsesItem = items.getOutObject();
                             for (Item item : responsesItem) {
-                                System.out.println(item.toString());
+                                System.out.println(item.toStringId());
                             }
                             Tresponse<List<Order>> orders = service.showAllOrdersOfSupplier(BN);
                             if(orders.isError()) System.out.println(orders.getError());
                             else {
                                 List<Order> responsesOrders = orders.getOutObject();
                                 for (Order order : responsesOrders) {
-                                    System.out.println(order.toString());
+                                    System.out.println(order.toStringId());
                                 }
                             }
                         }
