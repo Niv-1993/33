@@ -38,6 +38,11 @@ public class Controller {
         }
         return res.getValue();
     }
+   /* public void printDrivers(List<DriverServiceDTO> drivers){
+        for (DriverServiceDTO driver:drivers) {
+            System.out.println(driver);
+        }
+    }*/
     public List<ItemServiceDTO> getAllItems(){
         ResponseT<List<ItemServiceDTO>> res = serviceControl.getAllItems();
         if(res.ErrorOccured()) {

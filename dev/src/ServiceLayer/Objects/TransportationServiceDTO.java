@@ -30,16 +30,16 @@ public class TransportationServiceDTO {
     }
     @Override
     public String toString() {
-        return "TransportationServiceDTO{" +
-                "id=" + id +
-                ", date=" + date +
-                ", leavingTime=" + leavingTime +
-                ", driver=" + driver +
-                ", truck=" + truck +
-                ", suppliers=" + suppliers +
-                ", deliveryItems=" + deliveryItems +
-                ", weight=" + weight +
-                '}';
+        return "TransportationServiceDTO{\n" +
+                "\n\tid=" + id +
+                "\n\tdate=" + date +
+                "\n\tleavingTime=" + leavingTime +
+                "\n\tdriver=" + driver +
+                "\n\ttruck=" + truck +
+                "\n\tsuppliers=" + suppliers +
+                "\n\tdeliveryItems=" + deliveryItems +
+                "\n\tweight=" + weight +
+                "\n\t}\n";
     }
 
     public TransportationServiceDTO(long id, LocalDate date, LocalTime leavingTime, DriverServiceDTO driver, TruckServiceDTO truck, int weight, HashMap<BranchServiceDTO, List<ItemServiceDTO>> deliveryItems, List<SupplierServiceDTO> sup){

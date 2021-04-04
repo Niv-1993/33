@@ -9,11 +9,11 @@ public class main {
         boolean endProgram = true;
         while (endProgram){
             //when u finish the database try this
-            //menu.printAllTucks();
-            //menu.printAllDrivers();
-            //menu.printAllBranches();
-            //menu.PrintAllItems();
-            //menu.printAllTransportations();
+            menu.printAllTucks();
+            menu.printAllDrivers();
+            menu.printAllBranches();
+            menu.PrintAllItems();
+            menu.printAllTransportations();
 
             endProgram = menu.endOfProgram();
         }

@@ -14,11 +14,11 @@ public class DriverServiceDTO {
 
     @Override
     public String toString() {
-        return "DriverServiceDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", license=" + license +
-                '}';
+        return "DriverServiceDTO{\n" +
+                "\tid=" + id +
+                "\n\tname='" + name  +
+                "\n\tlicense=" + license +
+                "\n\t}\n";
     }
 
     public void setName(String name) { this.name = name; }

@@ -18,12 +18,12 @@ public class BranchServiceDTO {
 
     @Override
     public String toString() {
-        return "BranchServiceDTO{" +
-                "phone='" + phone + '\'' +
-                ", contactName='" + contactName + '\'' +
-                ", id=" + id +
-                ", Area='" + Area + '\'' +
-                '}';
+        return "BranchServiceDTO{\n" +
+                "\tphone='" + phone +
+                "\n\tcontactName='" + contactName + '\'' +
+                "\n\tid=" + id +
+                "\n\tArea='" + Area + '\'' +
+                "\n\t}\n";
     }
 
     public void setId(int id) { this.id = id; }

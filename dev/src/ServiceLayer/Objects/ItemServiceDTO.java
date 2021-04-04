@@ -7,10 +7,10 @@ public class ItemServiceDTO {
 
     @Override
     public String toString() {
-        return "ItemServiceDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "ItemServiceDTO{\n" +
+                "\tid=" + id +
+                "\n\tname='" + name+
+                "\n\t}\n";
     }
 
     public ItemServiceDTO(long id, String name){

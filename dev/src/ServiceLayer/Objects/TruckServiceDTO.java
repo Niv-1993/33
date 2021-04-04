@@ -13,13 +13,13 @@ public class TruckServiceDTO {
 
     @Override
     public String toString() {
-        return "TruckServiceDTO{" +
-                "id=" + id +
-                ", license=" + license +
-                ", model='" + model + '\'' +
-                ", netWeight=" + netWeight +
-                ", maxWeight=" + maxWeight +
-                '}';
+        return "TruckServiceDTO{\n" +
+                "\tid=" + id +
+                "\n\tlicense=" + license +
+                "\n\tmodel='" + model +
+                "\n\tnetWeight=" + netWeight +
+                "\n\tmaxWeight=" + maxWeight +
+                "\n\t}\n";
     }
 
     public TruckServiceDTO(long id, int license, int maxWeight, int netWeight, String model){
