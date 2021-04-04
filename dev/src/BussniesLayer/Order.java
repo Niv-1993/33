@@ -33,6 +33,10 @@ public class Order {
         return this;
     }
 
+    public List<Item> showAllItemsOfOrder(){
+        return new LinkedList<>(items.keySet());
+    }
+
     public Order showDeliverTime() { return this; }
 
     public void updateDeliverTime(Date deliverTime) throws Exception {

@@ -106,6 +106,13 @@ public class SupplierCard {
         return newItem;
     }
 
+    public List<Item> showAllItemsOfOrder(int orderId) throws Exception {
+        for(Order order : orders){
+            if(order.getOrderId() == orderId) return order.showAllItemsOfOrder();
+        }
+        throw new Exception("orderId does not exist.");
+    }
+
     public void removeItemFromSupplier(int itemId) {
         items.removeIf(item -> item.getItemId() == itemId);
     }

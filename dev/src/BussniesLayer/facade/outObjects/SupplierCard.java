@@ -21,11 +21,11 @@ public class SupplierCard{
     @Override
     public String toString() {
         return "SupplierCard: \n" +
-                "supplierBN = " + supplierBN + "\n" +
-                "accountNumber =" + accountNumber + "\n" +
-                "payWay ='" + payWay + "\n" +
-                "contactPhone=" + contactPhone + "\n" +
-                "contactEmail=" + contactEmail + "\n";
+                "\tsupplierBN = " + supplierBN + "\n" +
+                "\taccountNumber =" + accountNumber + "\n" +
+                "\tpayWay ='" + payWay + "\n" +
+                "\tcontactPhone=" + contactPhone + "\n" +
+                "\tcontactEmail=" + contactEmail + "\n";
     }
 
     public String toStringId(){ return supplierBN + "";}

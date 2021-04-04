@@ -17,9 +17,9 @@ public class SupplierAgreement {
     @Override
     public String toString() {
         return "SupplierAgreement: \n" +
-                "minimalAmount = " + minimalAmount + "\n" +
-                "discount = " + discount + "\n" +
-                "constantTime = " + constantTime + " \n" +
-                "shipToUs = " + shipToUs + "\n" ;
+                "\tminimalAmount = " + minimalAmount + "\n" +
+                "\tdiscount = " + discount + "\n" +
+                "\tconstantTime = " + constantTime + " \n" +
+                "\tshipToUs = " + shipToUs + "\n" ;
     }
 }

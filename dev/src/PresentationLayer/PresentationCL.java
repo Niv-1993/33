@@ -56,7 +56,25 @@ public class PresentationCL{
                     BN = BNScan(scanner);
                     Tresponse<SupplierCard> response = service.showSupplier(BN);
                     if (!response.isError()) System.out.println(response.getError());
-                    else System.out.println(response.getOutObject().toString());
+                    else{
+                        System.out.println(response.getOutObject().toString());
+                        Tresponse<List<Item>> items = service.showAllItemsOfSupplier(BN);
+                        if(items.isError()) System.out.println(items.getError());
+                        else {
+                            List<Item> responsesItem = items.getOutObject();
+                            for (Item item : responsesItem) {
+                                System.out.println(item.toString());
+                            }
+                            Tresponse<List<Order>> orders = service.showAllOrdersOfSupplier(BN);
+                            if(orders.isError()) System.out.println(orders.getError());
+                            else {
+                                List<Order> responsesOrders = orders.getOutObject();
+                                for (Order order : responsesOrders) {
+                                    System.out.println(order.toString());
+                                }
+                            }
+                        }
+                    }
                 }
                 case 2: {
                     String name = supplierNameScan(scanner);
@@ -100,7 +118,17 @@ public class PresentationCL{
                     int orderId = orderScan(scanner);
                     Tresponse<Order> response = service.showOrderOfSupplier(BN , orderId);
                     if (!response.isError()) System.out.println(response.getError());
-                    else System.out.println(response.getOutObject().toString());
+                    else{
+                        System.out.println(response.getOutObject().toString());
+                        Tresponse<List<Item>> items = service.showAllItemsOfOrder(BN , orderId);
+                        if(items.isError()) System.out.println(items.getError());
+                        else{
+                            List<Item> responseItem = items.getOutObject();
+                            for(Item item : responseItem){
+                                System.out.println(item.toString());
+                            }
+                        }
+                    }
 
                 }
                 case 7:{
@@ -111,6 +139,14 @@ public class PresentationCL{
                         List<Order> responses = responsesList.getOutObject();
                         for (Order order : responses) {
                             System.out.println(order.toString());
+                            Tresponse<List<Item>> items = service.showAllItemsOfOrder(BN , Integer.parseInt(order.toStringId()));
+                            if(items.isError()) System.out.println(items.getError());
+                            else{
+                                List<Item> responseItem = items.getOutObject();
+                                for(Item item : responseItem){
+                                    System.out.println(item.toString());
+                                }
+                            }
                         }
                     }
                 }
@@ -599,16 +635,19 @@ public class PresentationCL{
             System.out.println("please enter the new date in format of dd/mm/yy hour AM/PM\n");
             try {
                 tryDate = scanner.nextLine();
+                hasChanged = true;
             } catch (Exception e) {
                 System.out.println("you must enter a date.\n");
                 hasChanged = false;
             }
-            try {
-                date = new Date(tryDate);
-                hasChanged = true;
-            } catch (Exception e) {
-                System.out.println("you must enter a date in format of dd/mm/yy hour AM/PM\n");
-                hasChanged = false;
+            if(hasChanged) {
+                try {
+                    date = new Date(tryDate);
+                    hasChanged = true;
+                } catch (Exception e) {
+                    System.out.println("you must enter a date in format of dd/mm/yy hour AM/PM\n");
+                    hasChanged = false;
+                }
             }
         }
         return date;

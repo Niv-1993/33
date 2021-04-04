@@ -16,9 +16,9 @@ public class Order {
     @Override
     public String toString() {
         return "Order: \n" +
-                "orderId = " + orderId + "\n" +
-                "totalAmount = " + totalAmount + "\n" +
-                ", deliverTime = " + deliverTime + "\n";
+                "\torderId = " + orderId + "\n" +
+                "\ttotalAmount = " + totalAmount + "\n" +
+                "\tdeliverTime = " + deliverTime + "\n";
     }
 
     public String toStringId(){

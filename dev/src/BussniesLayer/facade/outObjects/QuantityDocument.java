@@ -12,7 +12,7 @@ public class QuantityDocument{
     @Override
     public String toString() {
         return "QuantityDocument: \n" +
-                "minimalAmount = " + minimalAmount + "\n" +
-                ", discount = " + discount + "\n";
+                "\tminimalAmount = " + minimalAmount + "\n" +
+                "\tdiscount = " + discount + "\n";
     }
 }

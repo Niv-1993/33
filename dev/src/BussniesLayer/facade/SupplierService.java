@@ -184,6 +184,21 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
+    public Tresponse<List<Item>> showAllItemsOfOrder(int SupplierBN, int orderId) {
+        List<BussniesLayer.Item> items;
+        List<Item> outItems = new LinkedList<>();
+        try {
+            items = supplierController.showAllItemsOfOrder(SupplierBN , orderId);
+            for(BussniesLayer.Item item : items){
+                outItems.add(new Item(item));
+            }
+        }catch (Exception e){
+            return new Tresponse<>("ERROR: " + e);
+        }
+        return new Tresponse<>(outItems);
+    }
+
+    @Override
     public Tresponse<List<Item>> showAllItems() {
         List<BussniesLayer.Item> items;
         List<Item> outItems = new LinkedList<>();

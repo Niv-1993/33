@@ -11,9 +11,9 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Items: \n" +
-                "ItemId = " + ItemId + "\n" +
-                "category = " + category + '\n';
+        return "Item: \n" +
+                "\tItemId = " + ItemId + "\n" +
+                "\tcategory = " + category + '\n';
     }
 
     public String toStringId(){

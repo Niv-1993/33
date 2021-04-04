@@ -162,6 +162,15 @@ public class SupplierController{
         return suppliers.get(supplierBN).showAllItemsOfSupplier();
     }
 
+    public List<Item> showAllItemsOfOrder(int supplierBN , int orderId) throws Exception {
+        try {
+            suppliers.get(supplierBN);
+        } catch (Exception e){
+            throw new Exception("supplier BN is not exist");
+        }
+        return suppliers.get(supplierBN).showAllItemsOfOrder(orderId);
+    }
+
     public List<Item> showAllItems() {
         List<Item> list = new LinkedList<>();
         while (suppliers.elements().hasMoreElements()) {

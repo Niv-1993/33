@@ -28,6 +28,7 @@ public interface ISupplierService {
     response updateContactEmail(int supplierBN , String email);
     Tresponse<List<SupplierCard>> showAllSuppliers();
     Tresponse<List<Item>> showAllItemsOfSupplier(int SupplierBN);
+    Tresponse<List<Item>> showAllItemsOfOrder(int SupplierBN , int orderId);
     Tresponse<List<Item>> showAllItems();
     Tresponse<Item> addItem(int supplierBN , String category, double price);
     response removeItem(int itemId);
