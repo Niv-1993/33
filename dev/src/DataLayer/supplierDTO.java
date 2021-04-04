@@ -1,19 +1,15 @@
 package DataLayer;
 
-import BussinessLayer.Address;
-import BussinessLayer.ShippingArea;
-
 import java.util.Objects;
 
-public class SiteDTO {
-
+public class supplierDTO {
     protected String phone;
     protected String contactName;
-    protected long id;
+    protected int id;
     protected AddressDTO address;
     protected ShippingAreaDTO shippingArea;
 
-    public SiteDTO(String phone, String contactName, long id, AddressDTO address, ShippingAreaDTO shippingArea){
+    public supplierDTO(String phone, String contactName, int id, AddressDTO address, ShippingAreaDTO shippingArea){
         this.phone = phone;
         this.contactName = contactName;
         this.id = id;
@@ -22,13 +18,13 @@ public class SiteDTO {
     }
     public void setPhone(String newPhone){ phone = newPhone; }
     public void setContactName(String newContactName){ contactName = newContactName; }
-    public void setId(long newId){id = newId; }
+    public void setId(int newId){id = newId; }
     public void setAddress(AddressDTO newAddress){ address = newAddress; }
     public void setShippingArea(ShippingAreaDTO newShippingArea){shippingArea = newShippingArea; }
 
     public String getPhone(){return phone;}
     public String getContactName(){return contactName;}
-    public long getId(){return id;}
+    public int getId(){return id;}
     public AddressDTO getAddress(){return address;}
     public ShippingAreaDTO getShippingArea(){return shippingArea;}
 
@@ -36,8 +32,8 @@ public class SiteDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SiteDTO siteDTO = (SiteDTO) o;
-        return id == siteDTO.id && Objects.equals(phone, siteDTO.phone) && Objects.equals(contactName, siteDTO.contactName) && Objects.equals(address, siteDTO.address) && Objects.equals(shippingArea, siteDTO.shippingArea);
+        supplierDTO branchDTO = (supplierDTO) o;
+        return id == branchDTO.id && Objects.equals(phone, branchDTO.phone) && Objects.equals(contactName, branchDTO.contactName) && Objects.equals(address, branchDTO.address) && Objects.equals(shippingArea, branchDTO.shippingArea);
     }
 
     @Override

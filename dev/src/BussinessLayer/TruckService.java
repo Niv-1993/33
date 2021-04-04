@@ -7,19 +7,17 @@ import java.util.*;
 //bar
 public class TruckService {
 
-    private final DataController dataController;
-    private HashMap<Integer,Truck> trucks;
+    private Map<Long,Truck> trucks;
 
     public TruckService(){
         trucks=new HashMap<>();
-        dataController=DataController.init();
     }
     public List<Truck> getTrucksList() { return new ArrayList<Truck>(trucks.values());}
 
 
     public List<Truck> getTrucksByWeight(int add) throws Exception {
         List<Truck> t = new LinkedList<>();
-        for (Map.Entry<Integer,Truck> entry: trucks.entrySet()) {
+        for (Map.Entry<Long,Truck> entry: trucks.entrySet()) {
             Truck truck = entry.getValue();
             if(truck.getMaxWeight()>= truck.getNetWeight()+add){
                 t.add(truck);
@@ -34,7 +32,7 @@ public class TruckService {
     @Override
     public String toString() {
         StringBuilder acc = new StringBuilder();
-        for (Map.Entry<Integer,Truck> entry: trucks.entrySet()) {
+        for (Map.Entry<Long,Truck> entry: trucks.entrySet()) {
             Truck t = entry.getValue();
             acc.append(t);
         }
@@ -63,5 +61,10 @@ public class TruckService {
             throw new IllegalArgumentException("truck with id: "+ truckId + "is not exist");
         }
         return trucks.get(truckId);
+    }
+
+    public void loadData(DataControl dataControl) {
+
+        trucks=dataControl.loadTrucks();
     }
 }

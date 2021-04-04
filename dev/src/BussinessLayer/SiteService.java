@@ -38,4 +38,11 @@ public class SiteService {
     public List<Site> getSites() {
         return sites;
     }
+
+    //TODO:complete method
+    public void loadData(DataControl dataControl) {
+
+        suppliers=dataControl.getSuppliers();
+        branches=dataControl.getBranches();
+    }
 }

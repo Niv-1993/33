@@ -5,12 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ItemService {
-    private HashMap<Integer,Item> items;
+    private HashMap<Long,Item> items;
 
-    public HashMap<Integer, Item> getItems() {
+    public HashMap<Long, Item> getItems() {
         return items;
     }
     public List<Item> getItemsList(){
         return new ArrayList<>(items.values());
+    }
+
+    //TODO:complete method
+    public void loadData(DataControl dataControl) {
+
+        items=dataControl.getItems();
     }
 }

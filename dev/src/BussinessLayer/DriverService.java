@@ -7,20 +7,18 @@ import java.util.*;
 //bar
 public class DriverService {
 
-    private HashMap<Integer,Driver> drivers;
-    private DataController dataController;
+    private Map<Integer,Driver> drivers;
 
     public DriverService(){drivers=new HashMap<>();
     drivers.put(1,new Driver(1,"bar",new License(200)));
     }
-    public DriverService(HashMap<Integer,Driver> driverList){
+    public DriverService(Map<Integer,Driver> driverList){
         this.drivers=driverList;
-        dataController=DataController.init();
     }
     public List<Driver> getDriversList(){
         return new ArrayList<Driver>(drivers.values());
     }
-    public HashMap<Integer,Driver> getDrivers() { return drivers;  }
+    public Map<Integer,Driver> getDrivers() { return drivers;  }
 
 
     public Driver getDriver(int id){
@@ -46,5 +44,10 @@ public class DriverService {
     @Override
     public int hashCode() {
         return Objects.hash(drivers);
+    }
+
+    //TODO:complete method
+    public void loadData(DataControl dataControl) {
+        drivers=dataControl.loadDrivers();
     }
 }

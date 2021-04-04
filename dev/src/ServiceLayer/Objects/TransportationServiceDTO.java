@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TransportationServiceDTO {
 
-    private int id;
+    private long id;
     private LocalDate date;
     private LocalTime leavingTime;
     private DriverServiceDTO driver;
@@ -42,7 +42,7 @@ public class TransportationServiceDTO {
                 '}';
     }
 
-    public TransportationServiceDTO(int id, LocalDate date, LocalTime leavingTime, DriverServiceDTO driver, TruckServiceDTO truck, int weight, HashMap<BranchServiceDTO, List<ItemServiceDTO>> deliveryItems, List<SupplierServiceDTO> sup){
+    public TransportationServiceDTO(long id, LocalDate date, LocalTime leavingTime, DriverServiceDTO driver, TruckServiceDTO truck, int weight, HashMap<BranchServiceDTO, List<ItemServiceDTO>> deliveryItems, List<SupplierServiceDTO> sup){
         this.date=date;
         this.deliveryItems=deliveryItems;
         this.id=id;

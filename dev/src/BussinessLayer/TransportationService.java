@@ -10,13 +10,13 @@ import java.util.List;
 //yuval
 public class TransportationService {
 
-    private final DataController dataController;
-    private HashMap<Integer,Transportation> transportations;
+    private final DataControl dataControl;
+    private HashMap<Long,Transportation> transportations;
 
 
     public TransportationService(){
         transportations=new HashMap<>();
-        dataController=DataController.init();
+        dataControl=DataControl.init();
     }
     public List<Transportation> getTransportationsList() {
         return new ArrayList<>(transportations.values());
@@ -27,5 +27,10 @@ public class TransportationService {
     public Transportation getTransportationById(long id){
 
         throw new IllegalArgumentException("No transportation match to id:" + id);
+    }
+
+    //TODO:complete method
+    public void loadData(DataControl dataControl) {
+        transportations=dataControl.loadTrans();
     }
 }

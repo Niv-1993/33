@@ -16,10 +16,11 @@ public class TransportationDTO {
     private DriverDTO driver;
     private TruckDTO truck;
     //ask if they call this item or product?
-    private HashMap<SiteDTO, List<ItemDTO>> deliveryItems;
+    private HashMap<BranchDTO, List<ItemDTO>> deliveryItems;
+    private List<supplierDTO> suppliers;
     private int weight;
 
-    public TransportationDTO(long id, LocalDate date,LocalTime leavingTime, DriverDTO driver,TruckDTO truck,int weight,HashMap<SiteDTO, List<ItemDTO>> deliveryItems){
+    public TransportationDTO(long id, LocalDate date,LocalTime leavingTime, DriverDTO driver,TruckDTO truck,int weight,HashMap<BranchDTO, List<ItemDTO>> deliveryItems,List<supplierDTO> supp ){
         this.date=date;
         this.deliveryItems=deliveryItems;
         this.id=id;
@@ -27,6 +28,7 @@ public class TransportationDTO {
         this.truck=truck;
         this.weight=weight;
         this.leavingTime=leavingTime;
+        this.suppliers=supp;
     }
     public long getId() { return id; }
     public LocalDate getDate() { return date; }
@@ -38,6 +40,9 @@ public class TransportationDTO {
     public TruckDTO getTruck() {
         return truck;
     }
+    public List<supplierDTO> getSuppliers(){return suppliers;}
+    public void addSupplier(supplierDTO sup){suppliers.add(sup);}
+    public void removeSupplier(supplierDTO sup){suppliers.remove(sup);}
     public List<ItemDTO> getSiteItems(Site site){
         if(!deliveryItems.containsKey(site)){
             throw new IllegalArgumentException("No items for this Site.");
@@ -52,7 +57,7 @@ public class TransportationDTO {
         }
         this.date = date;
     }
-    public void setDeliveryItems(HashMap<SiteDTO, List<ItemDTO>> deliveryItems) { this.deliveryItems = deliveryItems; }
+    public void setDeliveryItems(HashMap<BranchDTO, List<ItemDTO>> deliveryItems) { this.deliveryItems = deliveryItems; }
     public void setDriver(DriverDTO driver) {
         //not expected but just in case
         if(truck == null){
@@ -73,7 +78,7 @@ public class TransportationDTO {
         this.weight = weight;
     }
 
-    public HashMap<SiteDTO, List<ItemDTO>> getDeliveryItems() {
+    public HashMap<BranchDTO, List<ItemDTO>> getDeliveryItems() {
         return deliveryItems;
     }
 

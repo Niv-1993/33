@@ -13,18 +13,30 @@ public class ServiceFaced {
     private TransportationService transportationService;
     private ItemService itemService;
     private static ServiceFaced serviceFaced = null;
+    private DataControl dataControl;
+
+
     private ServiceFaced(){
         driverService = new DriverService();
         truckService = new TruckService();
         siteService = new SiteService();
         transportationService = new TransportationService();
         itemService = new ItemService();
+        dataControl=DataControl.init();
     }
-    private void loadData(){ };
+    private void loadData(){
+
+        this.truckService.loadData(dataControl);
+        this.driverService.loadData(dataControl);
+        this.transportationService.loadData(dataControl);
+        this.itemService.loadData(dataControl);
+        this.siteService.loadData(dataControl);
+    };
     public static ServiceFaced initial() {
         if(serviceFaced == null){
             serviceFaced = new ServiceFaced();
         }
+        serviceFaced.loadData();
         return serviceFaced;
     }
     public ResponseT<DriverServiceDTO> getDriver(int id){
