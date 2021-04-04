@@ -39,6 +39,46 @@ public class DataBase {
     }
 //TODO:create initializaion
     private void initFakeData() {
+        licenses.add(new LicenseDTO(1000));
+        licenses.add(new LicenseDTO(2000));
+        licenses.add(new LicenseDTO(3000));
+        licenses.add(new LicenseDTO(4000));
+        licenses.add(new LicenseDTO(5000));
+        drivers.add(new DriverDTO(1,"Meir malka",licenses.get(4000)));
+        drivers.add(new DriverDTO(2,"Ami vanunu",licenses.get(3000)));
+        drivers.add(new DriverDTO(3,"Roi rozenberg",licenses.get(5000)));
+        drivers.add(new DriverDTO(4,"Avi rozen",licenses.get(1000)));
+        trucks.add(new TruckDTO(12345678,licenses.get(5000),10000,1500,"Jumpy"));
+        trucks.add(new TruckDTO(12345678,licenses.get(3000),10000,1000,"Kangoo"));
+        trucks.add(new TruckDTO(12345678,licenses.get(5000),10000,1200,"Sprinter"));
+        trucks.add(new TruckDTO(12345678,licenses.get(3000),10000,1000,"Rapid"));
+        shippingAreas.add(new ShippingAreaDTO(Area.Sout));
+        shippingAreas.add(new ShippingAreaDTO(Area.North));
+        shippingAreas.add(new ShippingAreaDTO(Area.Central));
+        items.add(new ItemDTO(9876,"Doritos"));
+        items.add(new ItemDTO(9876,"Tapuchips"));
+        items.add(new ItemDTO(9876,"Bamba"));
+        items.add(new ItemDTO(9876,"Nachos"));
+        items.add(new ItemDTO(9876,"Coca Cola"));
+        items.add(new ItemDTO(9876,"Water"));
+        items.add(new ItemDTO(9876,"Salt"));
+        items.add(new ItemDTO(9876,"Sugar"));
+        items.add(new ItemDTO(9876,"Tea"));
+        items.add(new ItemDTO(9876,"Eggs L x12"));
+        items.add(new ItemDTO(9876,"Milk"));
+        addresses.add(new AddressDTO(9,"moshe rahim","Holon"));
+        addresses.add(new AddressDTO(19,"Hanna senesh","kiryat gat"));
+        addresses.add(new AddressDTO(90,"HaAvot","Ramat Gan"));
+        addresses.add(new AddressDTO(43,"Emek hasofrim ","Netivot"));
+        addresses.add(new AddressDTO(15,"shualey shimshon","Ofaquim"));
+        addresses.add(new AddressDTO(24,"Jabutinski","Beer Sheva"));
+        addresses.add(new AddressDTO(7,"Ha'Orgim","Beer Sheva"));
+        suppliers.add(new supplierDTO("0527745862","Amit Nahum",9845,addresses.get(2),shippingAreas.get(2)));
+        suppliers.add(new supplierDTO("0548569574","Omer Shalom",8542,addresses.get(0),shippingAreas.get(2)));
+        suppliers.add(new supplierDTO("0506328574","Ofer Neeman",2648,addresses.get(3),shippingAreas.get(0)));
+        branches.add(new BranchDTO("0506895718","Yogev Halom",1,addresses.get(1),shippingAreas.get(0)));
+        branches.add(new BranchDTO("0528759462","Ami Barlev",2,addresses.get(5),shippingAreas.get(0)));
+
     }
 
     public List<DriverDTO> getDrivers() { return drivers; }
