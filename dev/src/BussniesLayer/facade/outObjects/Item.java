@@ -17,6 +17,6 @@ public class Item {
     }
 
     public String toStringId(){
-        return ItemId + "\n";
+        return ItemId + "";
     }
 }

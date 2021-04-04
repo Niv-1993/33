@@ -23,7 +23,7 @@ public class PresentationCL{
     public void mainRun(){
         service.LoadData();
         Scanner scanner = new Scanner(System.in);
-        String[] mainMenueArray = {"method of showing." , "method of adding." , "method of removing." , "method of updating" ,"end program" };
+        String[] mainMenueArray = {"showing methods" , "adding methods" , "removing methods" , "updating methods" ,"end program" };
         int option;
         while(true){
             System.out.println("please select an option: \n");
@@ -75,6 +75,7 @@ public class PresentationCL{
                         if(items.isError()) System.out.println(items.getError());
                         else {
                             List<Item> responsesItem = items.getOutObject();
+                            System.out.println("Items:");
                             for (Item item : responsesItem) {
                                 System.out.println(item.toStringId());
                             }
@@ -82,6 +83,7 @@ public class PresentationCL{
                             if(orders.isError()) System.out.println(orders.getError());
                             else {
                                 List<Order> responsesOrders = orders.getOutObject();
+                                System.out.println("Orders:");
                                 for (Order order : responsesOrders) {
                                     System.out.println(order.toStringId());
                                 }
@@ -234,7 +236,7 @@ public class PresentationCL{
                 }
                 case 2: {
                     BN = BNScan(scanner);
-                    String phone = contactNameScan(scanner);
+                    String phone = contactPhoneScan(scanner);
                     String name = contactNameScan(scanner);
                     response response = service.addContactPhone(BN , phone , name);
                     if(response.isError()) System.out.println(response.getError());
@@ -588,8 +590,8 @@ public class PresentationCL{
 
     private String contactPhoneScan(Scanner scanner) {
         String phone = "";
+        System.out.println("please enter supplier contact phone\n");
         while(phone.equals("")){
-            System.out.println("please enter supplier contact phone\n");
             try {
                 phone = scanner.nextLine();
             }catch (Exception e){
