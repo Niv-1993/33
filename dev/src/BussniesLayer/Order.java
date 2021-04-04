@@ -15,9 +15,9 @@ public class Order {
         this.deliverTime = deliverTime;
     }
 
-    public void addItemToOrder(Item item) {
-        if(items.get(item) != null) items.put(item , items.get(item) + 1);
-        items.put(item , 1);
+    public void addItemToOrder(Item item , int amount) {
+        if(items.get(item) != null) items.put(item , items.get(item) + amount);
+        items.put(item , amount);
     }
 
     public Order showTotalAmount() throws Exception {

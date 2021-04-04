@@ -123,7 +123,7 @@ public class SupplierCard {
         return order;
     }
 
-    public void addItemToOrder(int orderId, int itemId) throws Exception {
+    public void addItemToOrder(int orderId, int itemId , int amount) throws Exception {
         Item toAdd = null;
         for (Item i : items) {
             if (i.getItemId() == itemId) {
@@ -135,7 +135,7 @@ public class SupplierCard {
         boolean hasFound = false;
         for (Order o : orders) {
             if (o.getOrderId() == orderId) {
-               o.addItemToOrder(toAdd);
+               o.addItemToOrder(toAdd , amount);
                 hasFound = true;
                 break;
             }

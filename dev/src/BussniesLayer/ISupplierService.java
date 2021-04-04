@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public interface ISupplierService {
-    response LoadDate();
+    response LoadData();
     response deleteData();
     Tresponse<SupplierCard> showSupplier(int supplierBN);
     response addSupplier(String supplierName , int bankAccount , String payWay);
@@ -34,7 +34,7 @@ public interface ISupplierService {
     response removeItem(int itemId);
     response removeItemFromSupplier(int supplierBN , int itemId);
     Tresponse<Order> addOrder(int supplierBN);
-    response addItemToOrder(int supplierBN , int orderId , int itemId);
+    response addItemToOrder(int supplierBN , int orderId , int itemId , int amount);
     Tresponse<Order> showOrderOfSupplier(int supplierBN , int orderId);
     Tresponse<List<Order>> showAllOrdersOfSupplier(int supplierBN);
     response showTotalAmount(int supplierBN , int orderId);

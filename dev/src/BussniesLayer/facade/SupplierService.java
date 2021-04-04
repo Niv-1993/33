@@ -7,7 +7,7 @@ import BussniesLayer.facade.outObjects.Item;
 import BussniesLayer.facade.outObjects.Order;
 import BussniesLayer.facade.outObjects.QuantityDocument;
 import BussniesLayer.facade.outObjects.SupplierAgreement;
-
+import DBMS.data;
 
 
 import java.util.Date;
@@ -22,14 +22,13 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public response LoadDate() {
-        return null;
+    public response LoadData() {
+        data.getInstance();
+        return new response();
     }
 
     @Override
-    public response deleteData() {
-        return null;
-    }
+    public response deleteData() { return new response(); } // check!
 
     @Override
     public Tresponse<SupplierCard> showSupplier(int supplierBN) {
@@ -256,9 +255,9 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public response addItemToOrder(int supplierBN, int orderId, int itemId) {
+    public response addItemToOrder(int supplierBN, int orderId, int itemId , int amount) {
         try{
-            supplierController.addItemToOrder(supplierBN, orderId, itemId);
+            supplierController.addItemToOrder(supplierBN, orderId, itemId , amount);
         }catch (Exception e){
             return new response("ERROR: " + e);
         }

@@ -222,14 +222,14 @@ public class SupplierController{
         return suppliers.get(supplierBN).addOrder(numOfOrders);
     }
 
-    public void addItemToOrder(int supplierBN, int orderId, int itemId) throws Exception {
+    public void addItemToOrder(int supplierBN, int orderId, int itemId , int amount) throws Exception {
         try {
             suppliers.get(supplierBN);
         } catch (Exception e){
             throw new Exception("supplier BN is not exist");
         }
         try{
-            suppliers.get(supplierBN).addItemToOrder(orderId, itemId);
+            suppliers.get(supplierBN).addItemToOrder(orderId, itemId , amount);
         } catch (Exception e){
             throw new Exception(e);
         }

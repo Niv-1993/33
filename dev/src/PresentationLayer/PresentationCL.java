@@ -16,6 +16,7 @@ public class PresentationCL{
 
     public void mainRun(){
         Scanner scanner = new Scanner(System.in);
+        service.LoadData();
         String[] mainMenueArray = {"method of showing." , "method of adding." , "method of removing." , "method of updating" ,"end program" };
         int option;
         while(true){
@@ -235,7 +236,8 @@ public class PresentationCL{
                     BN =BNScan(scanner);
                     int orderId = orderScan(scanner);
                     int itemId = itemScan(scanner);
-                    response response = service.addItemToOrder(BN , orderId , itemId);
+                    int amount = amountScan(scanner);
+                    response response = service.addItemToOrder(BN , orderId , itemId , amount);
                     if(response.isError()) System.out.println(response.getError());
                 }
                 case 7:{
@@ -652,6 +654,20 @@ public class PresentationCL{
             }
         }
         return date;
+    }
+
+    private int amountScan(Scanner scanner){
+        int amount = -1;
+        while(amount == -1){
+            System.out.println("please enter the amount of item\n");
+            try {
+                amount = scanner.nextInt();
+            }catch (Exception e){
+                System.out.println("amount must be a number.\n");
+                break;
+            }
+        }
+        return amount;
     }
 }
 
