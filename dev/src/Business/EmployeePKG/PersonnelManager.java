@@ -1,9 +1,7 @@
 package Business.EmployeePKG;
 
 import Business.ShiftPKG.*;
-import Business.Type.RoleType;
-import Business.Type.ShiftType;
-import Database.Database;
+import Business.Type.*;
 import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
@@ -35,7 +33,7 @@ public class PersonnelManager extends Employee {
             throw new Exception("Employee with id: " + newEID + " already exits in this branch");
         }
         Employee reg = new Regular(newEID, name, bankDetails, salary, role, startWorkDate, terms);
-        Database.getInstance().addEmployee(getEID(), reg);
+        //UPDATE DATABASE
         employees.put(reg.getEID(), reg);
         log.debug("successfully added new employee EID: " + newEID + " to system");
         return reg;
@@ -57,7 +55,7 @@ public class PersonnelManager extends Employee {
             log.error("a user cannot fire himself");
             throw new Exception("Cannot fire yourself");
         }
-        Database.getInstance().fireEmployee(fireEID);
+        //UPDATE DATABASE
         Employee removedE = employees.remove(fireEID);
         log.debug("successfully fired employee");
         return removedE;
@@ -68,7 +66,7 @@ public class PersonnelManager extends Employee {
         log.debug("entered update employee function of: " + updateEID + " to: " + newName);
         checkWorking(updateEID, employees);
         checkName(newName);
-        Database.getInstance().updateEmployeeName(employees.get(updateEID).getEID(), newName);
+        //UPDATE DATABASE
         employees.get(updateEID).setName(newName);
         log.debug("successfully updated name to: " + newName);
     }
@@ -78,7 +76,7 @@ public class PersonnelManager extends Employee {
         log.debug("entered update employee salary function of: " + updateEID + " to: " + newSalary);
         checkWorking(updateEID, employees);
         checkSalary(newSalary);
-        Database.getInstance().updateEmployeeSalary(employees.get(updateEID).getEID(), newSalary);
+        //UPDATE DATABASE
         employees.get(updateEID).setSalary(newSalary);
         log.debug("successfully updated salary to: " + newSalary);
     }
@@ -87,8 +85,8 @@ public class PersonnelManager extends Employee {
     public void updateEmployeeBANum(int updateEID, int newAccountNumber, Map<Integer, Employee> employees) throws Exception {
         log.debug("entered update employee bank account number function of: " + updateEID + " to: " + newAccountNumber);
         checkWorking(updateEID, employees);
+        //UPDATE DATABASE
         employees.get(updateEID).getBankAccount().setAccountNum(newAccountNumber);
-        Database.getInstance().updateEmployeeBANum(employees.get(updateEID).getEID(), newAccountNumber);
         log.debug("successfully updated bank account number to: " + newAccountNumber);
     }
 
@@ -96,8 +94,8 @@ public class PersonnelManager extends Employee {
     public void updateEmployeeBABranch(int updateEID, int newBranch, Map<Integer, Employee> employees) throws Exception {
         log.debug("entered update employee bank branch number function of: " + updateEID + " to: " + newBranch);
         checkWorking(updateEID, employees);
+        //UPDATE DATABASE
         employees.get(updateEID).getBankAccount().setBankBranch(newBranch);
-        Database.getInstance().updateEmployeeBABranch(employees.get(updateEID).getEID(), newBranch);
         log.debug("successfully updated bank branch number to: " + newBranch);
     }
 
@@ -105,8 +103,8 @@ public class PersonnelManager extends Employee {
     public void updateEmployeeBAID(int updateEID, int newBankID, Map<Integer, Employee> employees) throws Exception {
         log.debug("entered update employee bank ID number function of: " + updateEID + " to: " + newBankID);
         checkWorking(updateEID, employees);
+        //UPDATE DATABASE
         employees.get(updateEID).getBankAccount().setBankID(newBankID);
-        Database.getInstance().updateEmployeeBAID(employees.get(updateEID).getEID(), newBankID);
         log.debug("successfully updated bank ID number to: " + newBankID);
     }
 
@@ -114,8 +112,8 @@ public class PersonnelManager extends Employee {
     public void updateEmployeeEducationFund(int updateEID, int newEducationFund, Map<Integer, Employee> employees) throws Exception {
         log.debug("entered update employee education fund function of: " + updateEID + " to: " + newEducationFund);
         checkWorking(updateEID, employees);
+        //UPDATE DATABASE
         employees.get(updateEID).getTermsOfEmployment().setEducationFun(newEducationFund);
-        Database.getInstance().updateEmployeeEducationFund(employees.get(updateEID).getEID(), newEducationFund);
         log.debug("successfully updated education fund to: " + newEducationFund);
     }
 
@@ -123,8 +121,8 @@ public class PersonnelManager extends Employee {
     public void updateEmployeeDaysOff(int updateEID, int newAmount, Map<Integer, Employee> employees) throws Exception {
         log.debug("entered update employee days-off function of: " + updateEID + " to: " + newAmount);
         checkWorking(updateEID, employees);
+        //UPDATE DATABASE
         employees.get(updateEID).getTermsOfEmployment().setDaysOff(newAmount);
-        Database.getInstance().updateEmployeeDaysOff(employees.get(updateEID).getEID(), newAmount);
         log.debug("successfully updated days-off to: " + newAmount);
     }
 
@@ -132,16 +130,16 @@ public class PersonnelManager extends Employee {
     public void updateEmployeeSickDays(int updateEID, int newAmount, Map<Integer, Employee> employees) throws Exception {
         log.debug("entered update employee sick-days function of: " + updateEID + " to: " + newAmount);
         checkWorking(updateEID, employees);
+        //UPDATE DATABASE
         employees.get(updateEID).getTermsOfEmployment().setSickDays(newAmount);
-        Database.getInstance().updateEmployeeSickDays(employees.get(updateEID).getEID(), newAmount);
         log.debug("successfully updated sick-days to: " + newAmount);
     }
     @Override
     public void addRoleToEmployee(int eid, RoleType role,Map<Integer, Employee> employees) throws Exception {
         log.debug("entered add role to employee function with role: "+role.name()+" in EID: "+eid);
         checkWorking(eid,employees);
+        //UPDATE DATABASE
         employees.get(eid).getRole().add(role);
-        Database.getInstance().addRoleToEmployee(eid,role);
         log.debug("successfully added role: "+role.name()+"to employee: "+eid);
     }
 
@@ -197,6 +195,4 @@ public class PersonnelManager extends Employee {
         log.debug("returned to EmployeePKG successfully");
         return s;
     }
-
-
 }

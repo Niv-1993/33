@@ -2,7 +2,6 @@ package Business.EmployeePKG;
 
 import Business.ShiftPKG.*;
 import Business.Type.*;
-import Database.Database;
 import org.apache.log4j.Logger;
 
 import java.time.DayOfWeek;
@@ -20,6 +19,7 @@ public class EmployeeController {
 
     public EmployeeController() {
         employees = new HashMap<>();
+        shiftController = new ShiftController();
     }
 
     /**
@@ -64,8 +64,8 @@ public class EmployeeController {
         }
         log.debug("creating instance of the personnel manager in this new branch");
         Employee personnelM = new PersonnelManager(newEID, name, bankDetails, salary, RoleType.PersonnelManager, LocalDate.now(), terms);
+        //UPDATE DATABASE
         employees.put(newEID,personnelM);
-        Database.getInstance().createBranch(personnelM);
         log.debug("successfully created branch");
     }
 
@@ -485,9 +485,11 @@ public class EmployeeController {
         currConnectedEmpID = -1;
         currConnectedEmpRole = null;
         currBranchID = BID;
-        employees = new HashMap<>(Database.getInstance().getEmployeesInBranches(BID));
+        //WHEN THERE WILL BE DATABASE
+        employees = new HashMap<>();
         log.debug("loaded all employees.");
-        Map<Integer, Shift> shifts = new HashMap<>(); //WHAT EVER SHIFTPGK NEED TO MAKE SHIFTCONTOLLER
+        //WHAT EVER SHIFTPGK NEED TO MAKE SHIFTCONTOLLER
+        Map<Integer, Shift> shifts = new HashMap<>();
         Map<Integer, Constraint> constraints = new HashMap<>();
         shiftController = new ShiftController(shifts, constraints);
         log.debug("Done loading data");

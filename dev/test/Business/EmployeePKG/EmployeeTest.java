@@ -3,7 +3,6 @@ package Business.EmployeePKG;
 import Business.ShiftPKG.*;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
-import Database.Database;
 import org.junit.*;
 import org.junit.Test;
 import org.junit.jupiter.api.*;
@@ -28,19 +27,18 @@ public class EmployeeTest {
     @Mock
     private ShiftController shiftController = mock(ShiftController.class);
 
-
     @Before
     public void setUp() throws Exception {
         personnelManager = new PersonnelManager(1, "Niv", bank, 1000, RoleType.PersonnelManager, LocalDate.now(), terms);
-        Database.getInstance().createBranch(personnelManager);
         driver = personnelManager.addEmployee(2,"dor",bank,3000,RoleType.Driver,LocalDate.now(),terms,new HashMap<>());
         employees = new HashMap<>();
+        employees.put(personnelManager.getEID(),personnelManager);
         employees.put(driver.getEID(),driver);
     }
 
     @After
     public void tearDown() throws Exception {
-        Database.getInstance().init();
+
     }
 
     @Test
@@ -49,8 +47,8 @@ public class EmployeeTest {
         when(shiftController.addConstConstraint(driver.getEID(),DayOfWeek.MONDAY,ShiftType.Morning,"cant")).thenReturn(constraintMock);
         when(shiftController.getOnlyEmployeeConstraints(driver.getEID())).thenReturn(new ArrayList<>());
         when(constraintMock.getCID()).thenReturn(1);
-        Business.ShiftPKG.Constraint constraint = driver.addConstConstraint(DayOfWeek.MONDAY, ShiftType.Morning, "cant", shiftController);
-        List<Business.ShiftPKG.Constraint> list = driver.getOnlyEmployeeConstraints(shiftController);
+        Constraint constraint = driver.addConstConstraint(DayOfWeek.MONDAY, ShiftType.Morning, "cant", shiftController);
+        List<Constraint> list = driver.getOnlyEmployeeConstraints(shiftController);
         list.add(constraintMock);
         Assert.assertEquals(list.get(0).getCID(), constraint.getCID());
     }
