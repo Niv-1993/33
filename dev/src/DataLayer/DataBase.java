@@ -35,6 +35,10 @@ public class DataBase {
         shippingAreas=new LinkedList<>();
         addresses=new LinkedList<>();
         items=new LinkedList<>();
+        initFakeData();
+    }
+//TODO:create initializaion
+    private void initFakeData() {
     }
 
     public List<DriverDTO> getDrivers() { return drivers; }

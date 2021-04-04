@@ -14,7 +14,6 @@ public class ItemService {
         return new ArrayList<>(items.values());
     }
 
-    //TODO:complete method
     public void loadData(DataControl dataControl) {
 
         items=dataControl.getItems();

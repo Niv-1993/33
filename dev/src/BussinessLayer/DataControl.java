@@ -13,7 +13,7 @@ public class DataControl {
     private final DataController dataController;
 
     private DataControl(){dataController=DataController.init();}
-    //TODO:create method
+
     public static DataControl init(){
         if(dataControl==null){
             dataControl=new DataControl();

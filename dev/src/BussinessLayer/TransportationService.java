@@ -29,7 +29,7 @@ public class TransportationService {
         throw new IllegalArgumentException("No transportation match to id:" + id);
     }
 
-    //TODO:complete method
+
     public void loadData(DataControl dataControl) {
         transportations=dataControl.loadTrans();
     }

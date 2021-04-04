@@ -39,7 +39,7 @@ public class SiteService {
         return sites;
     }
 
-    //TODO:complete method
+
     public void loadData(DataControl dataControl) {
 
         suppliers=dataControl.getSuppliers();
