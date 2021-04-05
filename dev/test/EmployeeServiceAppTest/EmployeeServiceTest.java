@@ -192,12 +192,18 @@ public class EmployeeServiceTest {
         Assert.assertFalse(s6.isError());
         ResponseData<Constraint> res = service.addConstConstraint(DayOfWeek.MONDAY, "Morning", "i'm tired");
         Assert.assertFalse(res.isError());
+        Response D_logout = service.Logout();
+        Assert.assertFalse(D_logout.isError());
+        Response personnelManagerLog1 = service.Login(1, "PersonnelManager");
+        Assert.assertFalse(personnelManagerLog1.isError());
         ResponseData<Employee> driver3 = service.addEmployee(3, "moshe", bank, 10000, "Driver", LocalDate.now(), terms);
         Assert.assertFalse(driver3.isError());
+        Response p_logout2 = service.Logout();
+        Assert.assertFalse(p_logout2.isError());
         Response s9 = service.Login(3, "Driver");
         Assert.assertFalse(s9.isError());
         ResponseData<Constraint> removedC = service.removeConstraint(res.getData().CID);
-        Assert.assertTrue("Exception expected - a user can remove its own only", removedC.isError());
+        Assert.assertTrue("Exception expected - a user can remove its own constraints only", removedC.isError());
     }
 
     @Test
@@ -291,7 +297,7 @@ public class EmployeeServiceTest {
         Assert.assertFalse(s5.isError());
         Response s6 = service.Logout();
         Assert.assertFalse(s6.isError());
-        Response s7 = service.Login(1, "Driver");
+        Response s7 = service.Login(6, "Driver");
         Assert.assertFalse(s7.isError());
         Response s8 = service.addEmployee(4, "moshe", bank, 10000, "Driver", LocalDate.now(), terms);
         Assert.assertTrue("expected exception adding an employee by driver", s8.isError());
@@ -644,7 +650,7 @@ public class EmployeeServiceTest {
         ResponseData<Shift> created1 = service.createShift(rolesAmount, LocalDate.of(2021, 8, 8), "Mornining");
         Assert.assertTrue("Expected exception - shift typo", created1.isError());
         Map<String, Integer> rolesAmountFail = new HashMap<>();
-        rolesAmount.put("Driverr", 1);
+        rolesAmountFail.put("Driverr", 1);
         ResponseData<Shift> created2 = service.createShift(rolesAmountFail, LocalDate.of(2021, 8, 8), "Mornining");
         Assert.assertTrue("Expected exception - shift typo", created2.isError());
         ResponseData<Shift> created3 = service.createShift(rolesAmount, LocalDate.of(2021, 8, 8), "Morning");
@@ -727,14 +733,25 @@ public class EmployeeServiceTest {
         Assert.assertFalse("Unexpected Exception error", created.isError());
         ResponseData<Employee> driver1 = service.addEmployee(2, "moshe", bank, 10000, "Driver", LocalDate.now(), terms);
         Assert.assertFalse(driver1.isError());
+        Response addTo = service.addEmpToShift(created.getData().SID,driver1.getData().EID,driver1.getData().role);
+        Assert.assertFalse(addTo.isError());
+        Response logout_p = service.Logout();
+        Assert.assertFalse(logout_p.isError());
+        Response login_d = service.Login(2,"Driver");
+        Assert.assertFalse(login_d.isError());
+        ResponseData<Employee> d1Shifts = service.getOnlyEmployeeShiftsAndConstraints();
+        Response logout_d = service.Logout();
+        Assert.assertFalse(logout_d.isError());
+        Response login_p = service.Login(1,"PersonnelManager");
+        Assert.assertFalse(login_p.isError());
         Response remove = service.removeEmpFromShift(6, driver1.getData().EID);
         Assert.assertTrue("Exception expected - shift does not exist", remove.isError());
-        Response remove2 = service.removeEmpFromShift(created.getData().SID, driver1.getData().EID);
+        Response remove2 = service.removeEmpFromShift(created.getData().SID, d1Shifts.getData().EID);
         Assert.assertFalse(remove2.isError());
         Response logout = service.Logout();
         Assert.assertFalse(logout.isError());
-        Response login_d = service.Login(2, "Driver");
-        Assert.assertFalse(login_d.isError());
+        Response login_d1 = service.Login(2, "Driver");
+        Assert.assertFalse(login_d1.isError());
         Response remove3 = service.removeEmpFromShift(created.getData().SID, driver1.getData().EID);
         Assert.assertTrue("Exception expcected - driver cannot remove", remove3.isError());
        /* Response logout2 = service.Logout();

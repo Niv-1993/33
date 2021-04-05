@@ -556,6 +556,7 @@ public class EmployeeService implements iEmployeeService {
     public ResponseData<Employee> getOnlyEmployeeShiftsAndConstraints() {
         try {
             log.debug("get current employee's shifts and constraints service");
+            List<Business.ShiftPKG.Shift> l = employeeController.getOnlyEmployeeShifts();
             Employee emp = new Employee(employeeController.getCurrConnectedEmpID(), employeeController.getCurrentConEmpName(),
                     employeeController.getCurrConnectedEmpRole(), convertShifts(employeeController.getOnlyEmployeeShifts()),
                     convertConstrains(employeeController.getOnlyEmployeeConstraints()));

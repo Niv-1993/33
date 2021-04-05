@@ -66,20 +66,20 @@ public abstract class Employee {
 
     public Constraint removeConstraint(int CID, ShiftController shiftController) throws Exception {
         log.debug("enter remove constraint function CID: " + CID);
-        Constraint c = shiftController.removeConstraint(CID);
+        Constraint c = shiftController.removeConstraint(CID,getEID());
         log.debug("successfully removed constraint CID: " + CID);
         return c;
     }
 
     public void updateReasonConstraint(int CID, String newReason, ShiftController shiftController) throws Exception {
         log.debug("enter update reason constraint function CID: " + CID);
-        shiftController.updateReasonConstraint(CID, newReason);
+        shiftController.updateReasonConstraint(CID, newReason,getEID());
         log.debug("successfully updated reason constraint CID: " + CID);
     }
 
     public void updateShiftTypeConstraint(int CID, ShiftType newType, ShiftController shiftController) throws Exception {
         log.debug("enter update shift type in constraint CID: " + CID);
-        shiftController.updateShiftTypeConstraint(CID, newType);
+        shiftController.updateShiftTypeConstraint(CID, newType,getEID());
         log.debug("successfully updated shift type in constraint CID: " + CID);
     }
 
