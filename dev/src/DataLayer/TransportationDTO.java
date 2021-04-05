@@ -1,6 +1,7 @@
 package DataLayer;
 
 import BussinessLayer.*;
+import enums.Pair;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,11 +17,11 @@ public class TransportationDTO {
     private DriverDTO driver;
     private TruckDTO truck;
     //ask if they call this item or product?
-    private HashMap<BranchDTO, List<ItemDTO>> deliveryItems;
+    private HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> deliveryItems;
     private List<supplierDTO> suppliers;
     private int weight;
 
-    public TransportationDTO(long id, LocalDate date,LocalTime leavingTime, DriverDTO driver,TruckDTO truck,int weight,HashMap<BranchDTO, List<ItemDTO>> deliveryItems,List<supplierDTO> supp ){
+    public TransportationDTO(long id, LocalDate date,LocalTime leavingTime, DriverDTO driver,TruckDTO truck,int weight,HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> deliveryItems,List<supplierDTO> supp ){
         this.date=date;
         this.deliveryItems=deliveryItems;
         this.id=id;
@@ -43,7 +44,7 @@ public class TransportationDTO {
     public List<supplierDTO> getSuppliers(){return suppliers;}
     public void addSupplier(supplierDTO sup){suppliers.add(sup);}
     public void removeSupplier(supplierDTO sup){suppliers.remove(sup);}
-    public List<ItemDTO> getSiteItems(Site site){
+    public List<Pair<ItemDTO,Integer>> getSiteItems(Site site){
         if(!deliveryItems.containsKey(site)){
             throw new IllegalArgumentException("No items for this Site.");
         }
@@ -57,7 +58,7 @@ public class TransportationDTO {
         }
         this.date = date;
     }
-    public void setDeliveryItems(HashMap<BranchDTO, List<ItemDTO>> deliveryItems) { this.deliveryItems = deliveryItems; }
+    public void setDeliveryItems(HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> deliveryItems) { this.deliveryItems = deliveryItems; }
     public void setDriver(DriverDTO driver) {
         //not expected but just in case
         if(truck == null){
@@ -78,7 +79,7 @@ public class TransportationDTO {
         this.weight = weight;
     }
 
-    public HashMap<BranchDTO, List<ItemDTO>> getDeliveryItems() {
+    public HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> getDeliveryItems() {
         return deliveryItems;
     }
 

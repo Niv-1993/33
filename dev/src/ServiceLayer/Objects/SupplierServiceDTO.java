@@ -9,12 +9,12 @@ public class SupplierServiceDTO {
 
     @Override
     public String toString() {
-        return "SupplierServiceDTO{" +
-                "phone='" + phone + '\'' +
-                ", contactName='" + contactName + '\'' +
-                ", id=" + id +
-                ", Area='" + Area + '\'' +
-                '}';
+        return "SupplierServiceDTO{\n" +
+                "\tphone = " + phone +
+                "\n\tcontactName = " + contactName+
+                "\n\tid = " + id +
+                "\t\nArea = " + Area +
+                "\n\t}";
     }
 
     public SupplierServiceDTO(String phone, String contactName, int id, String area ){

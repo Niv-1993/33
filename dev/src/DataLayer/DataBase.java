@@ -2,10 +2,12 @@ package DataLayer;
 
 import BussinessLayer.*;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.*;
+
 import enums.Area;
+import enums.Pair;
 
 public class DataBase {
     private static DataBase db=null;
@@ -49,23 +51,23 @@ public class DataBase {
         drivers.add(new DriverDTO(3,"Roi rozenberg",licenses.get(4)));
         drivers.add(new DriverDTO(4,"Avi rozen",licenses.get(0)));
         trucks.add(new TruckDTO(12345678,licenses.get(4),10000,1500,"Jumpy"));
-        trucks.add(new TruckDTO(12345678,licenses.get(2),10000,1000,"Kangoo"));
-        trucks.add(new TruckDTO(12345678,licenses.get(4),10000,1200,"Sprinter"));
-        trucks.add(new TruckDTO(12345678,licenses.get(2),10000,1000,"Rapid"));
+        trucks.add(new TruckDTO(25954557,licenses.get(2),10000,1000,"Kangoo"));
+        trucks.add(new TruckDTO(68465185,licenses.get(4),10000,1200,"Sprinter"));
+        trucks.add(new TruckDTO(98775656,licenses.get(2),10000,1000,"Rapid"));
         shippingAreas.add(new ShippingAreaDTO(Area.Sout));
         shippingAreas.add(new ShippingAreaDTO(Area.North));
         shippingAreas.add(new ShippingAreaDTO(Area.Central));
         items.add(new ItemDTO(9876,"Doritos"));
-        items.add(new ItemDTO(9876,"Tapuchips"));
-        items.add(new ItemDTO(9876,"Bamba"));
-        items.add(new ItemDTO(9876,"Nachos"));
-        items.add(new ItemDTO(9876,"Coca Cola"));
-        items.add(new ItemDTO(9876,"Water"));
-        items.add(new ItemDTO(9876,"Salt"));
-        items.add(new ItemDTO(9876,"Sugar"));
-        items.add(new ItemDTO(9876,"Tea"));
-        items.add(new ItemDTO(9876,"Eggs L x12"));
-        items.add(new ItemDTO(9876,"Milk"));
+        items.add(new ItemDTO(8569,"Tapuchips"));
+        items.add(new ItemDTO(7458,"Bamba"));
+        items.add(new ItemDTO(3685,"Nachos"));
+        items.add(new ItemDTO(1548,"Coca Cola"));
+        items.add(new ItemDTO(8759,"Water"));
+        items.add(new ItemDTO(7895,"Salt"));
+        items.add(new ItemDTO(6258,"Sugar"));
+        items.add(new ItemDTO(5489,"Tea"));
+        items.add(new ItemDTO(3254,"Eggs L x12"));
+        items.add(new ItemDTO(9875,"Milk"));
         addresses.add(new AddressDTO(9,"moshe rahim","Holon"));
         addresses.add(new AddressDTO(19,"Hanna senesh","kiryat gat"));
         addresses.add(new AddressDTO(90,"HaAvot","Ramat Gan"));
@@ -78,7 +80,11 @@ public class DataBase {
         suppliers.add(new supplierDTO("0506328574","Ofer Neeman",2648,addresses.get(3),shippingAreas.get(0)));
         branches.add(new BranchDTO("0506895718","Yogev Halom",1,addresses.get(1),shippingAreas.get(0)));
         branches.add(new BranchDTO("0528759462","Ami Barlev",2,addresses.get(5),shippingAreas.get(0)));
-
+        HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> lis=new HashMap<>();
+        List<Pair<ItemDTO,Integer>> it=new LinkedList<>();
+        it.add(new Pair<>(items.get(4),15));
+        lis.put(branches.get(1),it);
+        trans.add(new TransportationDTO(123, LocalDate.now(), LocalTime.now(),drivers.get(1),trucks.get(1),1500,lis, Arrays.asList(suppliers.get(1),suppliers.get(0))));
     }
 
     public List<DriverDTO> getDrivers() { return drivers; }

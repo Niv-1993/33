@@ -1,8 +1,5 @@
 package ServiceLayer.Objects;
-
-import BussinessLayer.Driver;
-import BussinessLayer.Truck;
-
+import enums.Pair;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -17,7 +14,7 @@ public class TransportationServiceDTO {
     private DriverServiceDTO driver;
     private TruckServiceDTO truck;
     private List<SupplierServiceDTO> suppliers;
-    private HashMap<BranchServiceDTO, List<ItemServiceDTO>> deliveryItems;
+    private HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO,Integer>>> deliveryItems;
     private int weight;
     public TransportationServiceDTO(){
         id = -1;
@@ -30,19 +27,18 @@ public class TransportationServiceDTO {
     }
     @Override
     public String toString() {
-        return "TransportationServiceDTO{\n" +
-                "\n\tid=" + id +
-                "\n\tdate=" + date +
-                "\n\tleavingTime=" + leavingTime +
-                "\n\tdriver=" + driver +
-                "\n\ttruck=" + truck +
-                "\n\tsuppliers=" + suppliers +
-                "\n\tdeliveryItems=" + deliveryItems +
-                "\n\tweight=" + weight +
+        return "\n\tid = " + id +
+                "\n\tdate = " + date +
+                "\n\tleavingTime = " + leavingTime +
+                "\n\tdriver = " + driver +
+                "\n\ttruck = " + truck +
+                "\n\tsuppliers = " + suppliers +
+                "\n\tdeliveryItems = " + deliveryItems +
+                "\n\tweight = " + weight +
                 "\n\t}\n";
     }
 
-    public TransportationServiceDTO(long id, LocalDate date, LocalTime leavingTime, DriverServiceDTO driver, TruckServiceDTO truck, int weight, HashMap<BranchServiceDTO, List<ItemServiceDTO>> deliveryItems, List<SupplierServiceDTO> sup){
+    public TransportationServiceDTO(long id, LocalDate date, LocalTime leavingTime, DriverServiceDTO driver, TruckServiceDTO truck, int weight, HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO,Integer>>> deliveryItems, List<SupplierServiceDTO> sup){
         this.date=date;
         this.deliveryItems=deliveryItems;
         this.id=id;
@@ -67,11 +63,11 @@ public class TransportationServiceDTO {
 
     public TruckServiceDTO getTruck() { return truck; }
 
-    public HashMap<BranchServiceDTO, List<ItemServiceDTO>> getDeliveryItems() { return deliveryItems; }
+    public HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO,Integer>>> getDeliveryItems() { return deliveryItems; }
 
     public void setDate(LocalDate date) { this.date = date; }
 
-    public void setDeliveryItems(HashMap<BranchServiceDTO, List<ItemServiceDTO>> deliveryItems) { this.deliveryItems = deliveryItems; }
+    public void setDeliveryItems(HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO,Integer>>> deliveryItems) { this.deliveryItems = deliveryItems; }
 
     public void setDriver(DriverServiceDTO driver) { this.driver = driver; }
 

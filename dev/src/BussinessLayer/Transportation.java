@@ -1,10 +1,11 @@
 package BussinessLayer;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
+
+import  enums.Pair;
 
 //yuval
 public class Transportation {
@@ -14,11 +15,11 @@ public class Transportation {
     private Driver driver;
     private Truck truck;
     //ask if they call this item or product?
-    private HashMap<Branch, List<Item>> deliveryItems;
+    private HashMap<Branch, List<Pair<Item,Integer>>> deliveryItems;
     private int weight;
     private final List<Supplier> suppliers;
 
-    public Transportation(long id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, int weight, HashMap<Branch, List<Item>> deliveryItems, List<Supplier> suppliers){
+    public Transportation(long id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, int weight, HashMap<Branch,List<Pair<Item,Integer>>> deliveryItems, List<Supplier> suppliers){
         this.date=date;
         this.deliveryItems=deliveryItems;
         this.id=id;
@@ -44,7 +45,7 @@ public class Transportation {
         }
         this.date = date;
     }
-    public void setDeliveryItems(HashMap<Branch, List<Item>> deliveryItems) { this.deliveryItems = deliveryItems; }
+    public void setDeliveryItems(HashMap<Branch,List<Pair<Item,Integer>>> deliveryItems) { this.deliveryItems = deliveryItems; }
 
     public void setDriver(Driver driver) {
         //not expected but just in case
@@ -68,7 +69,7 @@ public class Transportation {
         this.weight = weight;
     }
 
-    public HashMap<Branch, List<Item>> getDeliveryItems() {
+    public HashMap<Branch, List<Pair<Item,Integer>>> getDeliveryItems() {
         return deliveryItems;
     }
 
@@ -84,7 +85,7 @@ public class Transportation {
         return truck;
     }
 
-    public List<Item> getSiteItems(Site site){
+    public List<Pair<Item,Integer>> getSiteItems(Site site){
         if(!deliveryItems.containsKey(site)){
             throw new IllegalArgumentException("No items for this Site.");
         }
@@ -103,16 +104,13 @@ public class Transportation {
         }
         return true;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Transportation that = (Transportation) o;
-        return id == that.id &&
-                Objects.equals(date, that.date) &&
-                Objects.equals(leavingTime, that.leavingTime) &&
-                Objects.equals(driver, that.driver) &&
-                Objects.equals(deliveryItems, that.deliveryItems);
+        return id == that.id && weight == that.weight && Objects.equals(date, that.date) && Objects.equals(leavingTime, that.leavingTime) && Objects.equals(driver, that.driver) && Objects.equals(truck, that.truck) && Objects.equals(deliveryItems, that.deliveryItems) && Objects.equals(suppliers, that.suppliers);
     }
 
     @Override

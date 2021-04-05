@@ -14,7 +14,6 @@ public class Menu {
 
         this.sc = sc;
     }
-
     public int chooseOption(){
         System.out.println("press 1 to see all available Transportations ");
         System.out.println("press 2 to create a new Transportation");

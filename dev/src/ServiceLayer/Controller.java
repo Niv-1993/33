@@ -108,4 +108,13 @@ public class Controller {
         }
         return res.getValue();
     }
+    public TransportationServiceDTO setDrivertoTransport(TransportationServiceDTO tr){
+
+        ResponseT<TransportationServiceDTO> res=serviceControl.setTransportationDriver(tr);
+        if(res.ErrorOccured())
+        {
+            throw new IllegalArgumentException(res.getErrorMessage());
+        }
+        return res.getValue();
+    }
 }

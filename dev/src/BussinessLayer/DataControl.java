@@ -1,6 +1,7 @@
 package BussinessLayer;
 
 import DataLayer.*;
+import enums.Pair;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -24,9 +25,10 @@ public class DataControl {
     public Map<Long, Truck> loadTrucks() {
 
         Map<Long, Truck> ret=new HashMap<>();
-        for (TruckDTO truck:dataController.getTrucks()) {
+        List<TruckDTO> trucks=dataController.getTrucks();
+        for (TruckDTO truck:trucks) {
 
-            ret.put(truck.getId(),new Truck(truck.getId(), new License(truck.getLicense().getKg()), truck.getMaxWeight(), truck.getNetWeight(),truck.getModel()));
+            ret.put(truck.getId(),new Truck(truck.getId(), getLicense(truck.getLicense()), truck.getMaxWeight(), truck.getNetWeight(),truck.getModel()));
         }
         return ret;
     }
@@ -59,14 +61,16 @@ public class DataControl {
     public License getLicense(LicenseDTO lic){
         return new License(lic.getKg());
     }
-    private HashMap<Branch, List<Item>> getItemsList(HashMap<BranchDTO, List<ItemDTO>> deliveryItems) {
-        HashMap<Branch, List<Item>> lis=new HashMap<>();
-        for(Map.Entry<BranchDTO, List<ItemDTO>> entry: deliveryItems.entrySet()){
+
+    private HashMap<Branch, List<Pair<Item,Integer>>> getItemsList(HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> deliveryItems) {
+
+        HashMap<Branch, List<Pair<Item,Integer>>> lis=new HashMap<>();
+        for(Map.Entry<BranchDTO, List<Pair<ItemDTO,Integer>>> entry: deliveryItems.entrySet()){
 
             Branch newSite= new Branch(entry.getKey().getPhone(),entry.getKey().getContactName(),entry.getKey().getId(),getAddress(entry.getKey().getAddress()),getShipping(entry.getKey().getShippingArea()));
-            List<Item> newLis=new LinkedList<>();
-            for (ItemDTO item:entry.getValue()) {
-                newLis.add(new Item(item.getId(),item.getName()));
+            List<Pair<Item,Integer>> newLis=new LinkedList<>();
+            for (Pair<ItemDTO,Integer> item:entry.getValue()) {
+                newLis.add(new Pair<Item,Integer>(new Item(item.getFir().getId(),item.getFir().getName()), item.getSec()));
             }
             lis.put(newSite,newLis);
         }

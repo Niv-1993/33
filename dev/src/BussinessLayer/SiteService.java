@@ -32,6 +32,9 @@ public class SiteService {
         }
         throw new IllegalArgumentException("supplier with id: " + id +"does not exist");
     }
+    public HashMap<Integer, Supplier> getSuppliers(){return suppliers;}
+    public HashMap<Integer, Branch> getBranches(){return branches;}
+
     public void setSites(List<Site> sites) {
         this.sites = sites;
     }

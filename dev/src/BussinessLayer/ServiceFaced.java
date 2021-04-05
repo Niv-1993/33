@@ -3,6 +3,7 @@ package BussinessLayer;
 import Responses.Response;
 import Responses.ResponseT;
 import ServiceLayer.Objects.*;
+import enums.Pair;
 
 import java.util.*;
 
@@ -140,19 +141,20 @@ public class ServiceFaced {
         }
     }
 
-    public ResponseT<StringBuilder> setTransportationDriver(TransportationServiceDTO t, int id){
+    public ResponseT<TransportationServiceDTO> setTransportationDriver(TransportationServiceDTO t){
         return null;
+
     }
-    public ResponseT<StringBuilder> setTransportationBranch(TransportationServiceDTO t, int id ){
+    public ResponseT<StringBuilder> setTransportationBranch(TransportationServiceDTO t ){
         return null;
     }
     public ResponseT<StringBuilder> setTransportationItems(TransportationServiceDTO t, List<Integer> items){
         return null;
     }
-    public ResponseT<StringBuilder> setTransportationSupplier(TransportationServiceDTO t, int id){
+    public ResponseT<StringBuilder> setTransportationSupplier(TransportationServiceDTO t){
         return null;
     }
-    public ResponseT<StringBuilder> setTransportationTruck(TransportationServiceDTO t, int id){
+    public ResponseT<StringBuilder> setTransportationTruck(TransportationServiceDTO t){
         return null;
     }
     public ResponseT<StringBuilder> setTransportation(TransportationServiceDTO t){
@@ -164,13 +166,16 @@ public class ServiceFaced {
         return new DriverServiceDTO(d.getId(),d.getName(),(d.getLicense()).getKg());
     }
     private BranchServiceDTO toBranchServiceDTO(Branch b){
-        return new BranchServiceDTO(b.getPhone(),b.getContactName(),b.getId(),b.getShippingArea().toString());
+        return new BranchServiceDTO(b.getPhone(),b.getContactName(),b.getId(),b.getShippingArea().getArea().toString());
+    }
+    private Pair<ItemServiceDTO,Integer> toItemPairServiceDTO(Pair<Item,Integer> i){
+        return new Pair<ItemServiceDTO,Integer>(new ItemServiceDTO(i.getFir().getId(),i.getFir().getName()),i.getSec());
     }
     private ItemServiceDTO toItemServiceDTO(Item i){
         return new ItemServiceDTO(i.getId(),i.getName());
     }
     private SupplierServiceDTO toSupplierServiceDTO(Supplier s){
-        return new SupplierServiceDTO(s.getPhone(),s.getContactName(),s.getId(),s.getShippingArea().toString());
+        return new SupplierServiceDTO(s.getPhone(),s.getContactName(),s.getId(),s.getShippingArea().getArea().toString());
     }
     private TruckServiceDTO toTruckServiceDTO(Truck t){
         return new TruckServiceDTO(t.getId(),t.getLicense().getKg(),t.getMaxWeight(),t.getNetWeight(),t.getModel());
@@ -181,13 +186,14 @@ public class ServiceFaced {
         for(Supplier sup: s){
             newSup.add(toSupplierServiceDTO(sup));
         }
-        HashMap<Branch,List<Item>> items = t.getDeliveryItems();
-        HashMap<BranchServiceDTO,List<ItemServiceDTO>> newItems = new HashMap<>();
-        for(Map.Entry<Branch,List<Item>> entry: items.entrySet()){
-            List<Item> i = entry.getValue();
-            List<ItemServiceDTO> iDTO = new LinkedList<>();
-            for (Item it: i){
-                iDTO.add(toItemServiceDTO(it));
+        //TODO:update
+        HashMap<Branch,List<Pair<Item,Integer>>> items = t.getDeliveryItems();
+        HashMap<BranchServiceDTO,List<Pair<ItemServiceDTO,Integer>>> newItems = new HashMap<>();
+        for(Map.Entry<Branch,List<Pair<Item,Integer>>> entry: items.entrySet()){
+            List<Pair<Item,Integer>> i = entry.getValue();
+            List<Pair<ItemServiceDTO,Integer>> iDTO = new LinkedList<>();
+            for (Pair<Item,Integer> it: i){
+                iDTO.add(toItemPairServiceDTO(it));
             }
             newItems.put(toBranchServiceDTO(entry.getKey()),iDTO);
         }

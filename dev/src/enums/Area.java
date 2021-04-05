@@ -5,4 +5,5 @@ public enum Area {
     Sout,
     North,
     Central
+
 }
