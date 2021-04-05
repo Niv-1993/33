@@ -204,14 +204,17 @@ public interface iEmployeeService {
     Response defaultShifts(Map<String,Map<String,Integer>> defaultRolesAmount);
 
     /**
-     * creates a default shit (etc Morning, Night...)
+     * creates shifts of week from SUNDAY to FRIDAY(FRIDAY only morning) default shifts
      * Note: Only the personnel manager is allowed to use this functionality
-     * @param date the date of the shift
-     * @param shiftType the type
-     * @returnA response object with a value set to the employee
-     *      *         otherwise the response should contain a error message in case of an error
+     * @return A response object. The response should contain a error message in case of an error
      */
-    ResponseData<Shift> createDefaultShift(LocalDate date, String shiftType);
+    Response createWeekShifts();
+    /**
+     * makes shifts of week from SUNDAY to FRIDAY(FRIDAY only morning) default shifts with all constraints and puts the employees in them
+     * Note: Only the personnel manager is allowed to use this functionality
+     * @return A response object. The response should contain a error message in case of an error
+     */
+    Response selfMakeWeekShifts();
     /**
      * Gets the details of a connected employee
      * @return A response object with a value set to the employee

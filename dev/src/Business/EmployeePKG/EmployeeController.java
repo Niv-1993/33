@@ -317,12 +317,39 @@ public class EmployeeController {
         return s;
     }
 
-    /**
-     * sets default shifts with roles and amount
-     *
-     * @param defaultRolesAmount the default map
-     * @throws Exception
-     */
+    public void createWeekShifts() throws Exception {
+        log.debug("entered create week shift function");
+        Map<RoleType, List<String[]>> optionals = new HashMap<>();
+        EnumSet<RoleType> allRoles = EnumSet.allOf(RoleType.class);
+        log.debug("initializing roles and amount map with all roles");
+        for (RoleType role : allRoles) {
+            optionals.put(role, new ArrayList<>());
+        }
+        log.debug("initialized.");
+        log.debug("putting in optionals map all names and roles into array of strings to each role");
+        for (Map.Entry<Integer, Employee> entry : employees.entrySet()) {
+            String[] pairIDName = new String[]{Integer.toString(entry.getKey()), entry.getValue().getName()};
+            for (RoleType role : entry.getValue().getRole()) {
+                optionals.get(role).add(pairIDName);
+            }
+        }
+        log.debug("done.");
+        employees.get(currConnectedEmpID).createWeekShifts(optionals,shiftController);
+        log.debug("successfully created week shifts");
+    }
+
+
+    public void selfMakeWeekShifts() throws Exception{
+        log.debug("entered self make week shift function");
+        employees.get(currConnectedEmpID).selfMakeWeekShifts(shiftController);
+        log.debug("successfully self made week shifts");
+    }
+        /**
+         * sets default shifts with roles and amount
+         *
+         * @param defaultRolesAmount the default map
+         * @throws Exception
+         */
     public void defaultShifts(Map<String, Map<String, Integer>> defaultRolesAmount) throws Exception {
         log.debug("entered default shifts function");
         Map<ShiftType, Map<RoleType, Integer>> defaults = new HashMap<>();
@@ -340,33 +367,6 @@ public class EmployeeController {
         log.debug("done.");
         employees.get(currConnectedEmpID).defaultShifts(defaults, shiftController);
         log.debug("successfully set default shifts");
-    }
-
-    /**
-     * @param date
-     * @param shiftType
-     * @return
-     */
-    public Shift createDefaultShift(LocalDate date, String shiftType) throws Exception {
-        log.debug("enter create default shift function");
-        isInEnum(shiftType, ShiftType.class);
-        Map<RoleType, List<String[]>> optionals = new HashMap<>();
-        EnumSet<RoleType> allRoles = EnumSet.allOf(RoleType.class);
-        log.debug("initializing roles and amount map with all roles");
-        for (RoleType role : allRoles) {
-            optionals.put(role, new ArrayList<>());
-        }
-        log.debug("putting in optionals map all names and roles into array of strings to each role");
-        for (Map.Entry<Integer, Employee> entry : employees.entrySet()) {
-            String[] pairIDName = new String[]{Integer.toString(entry.getKey()), entry.getValue().getName()};
-            for (RoleType role : entry.getValue().getRole()) {
-                optionals.get(role).add(pairIDName);
-            }
-        }
-        log.debug("done.");
-        Shift s = employees.get(currConnectedEmpID).createDefaultShift(date, ShiftType.valueOf(shiftType), shiftController,optionals);
-        log.debug("created default shift successfully");
-        return s;
     }
 
     /**

@@ -2,7 +2,6 @@ package EmployeeServiceAppTest;
 
 import Business.ApplicationFacade.*;
 import Business.ApplicationFacade.outObjects.*;
-import Business.Type.RoleType;
 import org.junit.*;
 
 import java.time.DayOfWeek;
@@ -104,6 +103,14 @@ public class EmployeeServiceTest {
         Assert.assertFalse(login.isError());
         ResponseData<Constraint> res1 = service.addConstraint(LocalDate.of(2021, 8, 2), "Morningg", "i'm tired");
         Assert.assertTrue("Exception expected - shift type does not match the date", res1.isError());
+        Response personnelManagerLog2 = service.Login(1, "PersonnelManager");
+        Assert.assertFalse(personnelManagerLog2.isError());
+        ResponseData<Shift> s = service.createShift(new HashMap<>(),LocalDate.of(2021, 8, 2),"Morning");
+        Assert.assertFalse(s.isError());
+        Response logout_p = service.Logout();
+        Assert.assertFalse(logout_p.isError());
+        Response loginD = service.Login(2,"Driver");
+        Assert.assertFalse(loginD.isError());
         ResponseData<Constraint> res2 = service.addConstraint(LocalDate.of(2021, 8, 2), "Morning", "i'm tired");
         Assert.assertFalse(res2.isError());
     }
@@ -126,6 +133,8 @@ public class EmployeeServiceTest {
     public void addConstraintPassProperly() {
         Response personnelManagerLog = service.Login(1, "PersonnelManager");
         Assert.assertFalse(personnelManagerLog.isError());
+        ResponseData<Shift> s = service.createShift(new HashMap<>(),LocalDate.of(2021, 8, 2),"Morning");
+        Assert.assertFalse(s.isError());
         ResponseData<Employee> driver = service.addEmployee(2, "moshe", bank, 10000, "Driver", LocalDate.now(), terms);
         Assert.assertFalse(driver.isError());
         Response p_logout = service.Logout();
@@ -154,6 +163,8 @@ public class EmployeeServiceTest {
     public void removeConstraintPassProperly() {
         Response personnelManagerLog = service.Login(1, "PersonnelManager");
         Assert.assertFalse(personnelManagerLog.isError());
+        ResponseData<Shift> s = service.createShift(new HashMap<>(),LocalDate.of(2021, 8, 2),"Morning");
+        Assert.assertFalse(s.isError());
         ResponseData<Employee> driver = service.addEmployee(2, "moshe", bank, 10000, "Driver", LocalDate.now(), terms);
         Assert.assertFalse(driver.isError());
         Response p_logout = service.Logout();

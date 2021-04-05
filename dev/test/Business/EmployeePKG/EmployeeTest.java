@@ -70,8 +70,8 @@ public class EmployeeTest {
         Constraint constraintMock = mock(Constraint.class);
         when(shiftController.addConstraint(driver.getEID(),LocalDate.now(),ShiftType.Morning,"cant")).thenReturn(constraintMock);
         Constraint constraint = driver.addConstraint(LocalDate.now(), ShiftType.Morning, "cant", shiftController);
-        when(shiftController.removeConstraint(constraintMock.getCID())).thenReturn(constraintMock);
-        when(shiftController.removeConstraint(constraintMock.getCID())).thenReturn(constraintMock);
+        when(shiftController.removeConstraint(constraintMock.getCID(),driver.getEID())).thenReturn(constraintMock);
+        when(shiftController.removeConstraint(constraintMock.getCID(),driver.getEID())).thenReturn(constraintMock);
         when(constraintMock.getCID()).thenReturn(1);
         driver.removeConstraint(constraintMock.getCID(), shiftController);
         when(shiftController.getOnlyEmployeeConstraints(driver.getEID())).thenReturn(new ArrayList<>());

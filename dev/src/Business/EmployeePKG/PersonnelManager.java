@@ -144,6 +144,20 @@ public class PersonnelManager extends Employee {
     }
 
     @Override
+    public void createWeekShifts(Map<RoleType, List<String[]>> optionals, ShiftController shiftController) throws Exception {
+        log.debug("forwarding command to shiftPKG");
+        shiftController.createWeekShifts(optionals);
+        log.debug("returned to EmployeePKG successfully");
+    }
+
+    @Override
+    public void selfMakeWeekShifts(ShiftController shiftController) throws Exception {
+        log.debug("forwarding command to shiftPKG");
+        shiftController.selfMakeWeekShifts();
+        log.debug("returned to EmployeePKG successfully");
+    }
+
+    @Override
     public Shift createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<String[]>> employees, ShiftController shiftController) throws Exception {
         log.debug("forwarding command to shiftPKG");
         Shift s = shiftController.createShift(rolesAmount, date, shiftType, employees);
@@ -188,11 +202,4 @@ public class PersonnelManager extends Employee {
         log.debug("returned to EmployeePKG successfully");
     }
 
-    @Override
-    public Shift createDefaultShift(LocalDate date, ShiftType shiftType, ShiftController shiftController,Map<RoleType, List<String[]>> optionals) throws Exception {
-        log.debug("forwarding command to shiftPKG");
-        Shift s = shiftController.createDefaultShift(date, shiftType,optionals);
-        log.debug("returned to EmployeePKG successfully");
-        return s;
-    }
 }

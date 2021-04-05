@@ -98,14 +98,20 @@ public class Regular extends Employee{
         throw new Exception("You are not allowed to set default shifts");
     }
 
-    @Override
-    public Shift createDefaultShift(LocalDate date, ShiftType shiftType, ShiftController shiftController,Map<RoleType, List<String[]>> optionals) throws Exception {
-        throw new Exception("You are not allowed to create default shifts");
-    }
 
     @Override
     public void addRoleToEmployee(int eid, RoleType role, Map<Integer, Employee> employees) throws Exception {
         throw new Exception("You are not allowed to add role to employee");
+    }
+
+    @Override
+    public void createWeekShifts(Map<RoleType, List<String[]>> optionals, ShiftController shiftController) throws Exception {
+        throw new Exception("You are not allowed to create week shifts");
+    }
+
+    @Override
+    public void selfMakeWeekShifts(ShiftController shiftController) throws Exception {
+        throw new Exception("You are not allowed to self make week shifts");
     }
 
 }

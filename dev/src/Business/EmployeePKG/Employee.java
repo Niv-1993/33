@@ -135,9 +135,10 @@ public abstract class Employee {
     public abstract void updateAmountRole(int SID, RoleType role, int newAmount, ShiftController shiftController) throws Exception;
 
     public abstract void defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaults, ShiftController shiftController) throws Exception;
-    public abstract Shift createDefaultShift(LocalDate date, ShiftType shiftType, ShiftController shiftController,Map<RoleType, List<String[]>> optionals) throws Exception;
 
     public abstract void addRoleToEmployee(int eid, RoleType role,Map<Integer, Employee> employees) throws Exception;
+    public abstract void createWeekShifts(Map<RoleType, List<String[]>> optionals, ShiftController shiftController) throws Exception;
+    public abstract void selfMakeWeekShifts(ShiftController shiftController) throws Exception;
     /**
      * Getters/Setters
      */
@@ -207,6 +208,7 @@ public abstract class Employee {
         }
         log.debug("checked that employee is working in this branch - success");
     }
+
 
 
 }

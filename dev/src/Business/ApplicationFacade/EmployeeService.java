@@ -427,25 +427,41 @@ public class EmployeeService implements iEmployeeService {
     }
 
     /**
-     * creates a default shit (etc Morning, Night...)
+     * creates shifts of week from SUNDAY to FRIDAY(FRIDAY only morning) default shifts
+     * Note: Only the personnel manager is allowed to use this functionality
      *
-     * @param date      the date of the shift
-     * @param shiftType the type
-     * @returnA response object with a value set to the employee
-     * *         otherwise the response should contain a error message in case of an error
+     * @return A response object. The response should contain a error message in case of an error
      */
-    public ResponseData<Shift> createDefaultShift(LocalDate date, String shiftType) {
+    public Response createWeekShifts() {
         try {
-            log.debug("create default shift request service");
-            Business.ShiftPKG.Shift s = employeeController.createDefaultShift(date,shiftType);
-            Shift shift = new Shift(s.getSID(),s.getDate(),s.getShiftType(),s.getEmployees());
+            log.debug("create week shifts service");
+            employeeController.createWeekShifts();
             log.debug("successful response from service");
-            return new ResponseData<>(shift);
-        } catch (Exception e) {
+            return new Response();
+        }catch (Exception e){
             log.error(e.getMessage());
-            return new ResponseData<>(e.getMessage());
+            return new Response(e.getMessage());
         }
     }
+
+    /**
+     * makes shifts of week from SUNDAY to FRIDAY(FRIDAY only morning) default shifts with all constraints and puts the employees in them
+     * Note: Only the personnel manager is allowed to use this functionality
+     *
+     * @return A response object. The response should contain a error message in case of an error
+     */
+    public Response selfMakeWeekShifts() {
+        try {
+            log.debug("self make week shifts service");
+            employeeController.selfMakeWeekShifts();
+            log.debug("successful response from service");
+            return new Response();
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return new Response(e.getMessage());
+        }
+    }
+
 
     /**
      * Gets the details of a connected employee

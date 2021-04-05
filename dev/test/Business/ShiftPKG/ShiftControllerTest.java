@@ -1,10 +1,8 @@
 package Business.ShiftPKG;
 
-import Business.ApplicationFacade.outObjects.Employee;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,6 +20,7 @@ public class ShiftControllerTest {
     @Before
     public void setUp() throws Exception {
         sc = new ShiftController();
+        sc.createShift(new HashMap<>(),LocalDate.now().plusDays(3),ShiftType.Morning,new HashMap<>());
     }
 
     @After
@@ -38,7 +37,7 @@ public class ShiftControllerTest {
     @Test
     public void addConstraint1() {
         try {
-            Constraint constraint = sc.addConstraint(2, LocalDate.now(), ShiftType.Morning, "sick");
+            Constraint constraint = sc.addConstraint(2, LocalDate.now().plusDays(3), ShiftType.Morning, "sick");
             Map<Integer, Constraint> constraints = sc.getConstraints();
             boolean cid = constraint.getCID()==0;
             assertTrue(cid & constraints.containsValue(constraint));
@@ -59,7 +58,8 @@ public class ShiftControllerTest {
     @Test
     public void addConstraint3() {
         try {
-            sc.createShift(new HashMap<>(),LocalDate.of(2021,12,19),ShiftType.Morning,new HashMap<>());
+            Shift s = sc.createShift(new HashMap<>(),LocalDate.of(2021,12,19),ShiftType.Morning,new HashMap<>());
+            s.self_make();
             Constraint constraint = sc.addConstraint(2, LocalDate.of(2021, 12, 19), ShiftType.Morning, "sick");
             fail();  //cant add constraint for exists shift
         } catch (Exception e) {
@@ -69,8 +69,8 @@ public class ShiftControllerTest {
     @Test
     public void removeConstraint() {
         try {
-            Constraint constraint = sc.addConstraint(2, LocalDate.now(), ShiftType.Morning, "sick");
-            sc.removeConstraint(0);
+            Constraint constraint = sc.addConstraint(2, LocalDate.now().plusDays(3), ShiftType.Morning, "sick");
+            sc.removeConstraint(0,2);
             Map<Integer, Constraint> constraints = sc.getConstraints();
             assertFalse(constraints.containsKey(0));
         } catch (Exception e) {
@@ -82,9 +82,9 @@ public class ShiftControllerTest {
     @Test
     public void updateReasonConstraint() {
         try {
-            Constraint constraint = sc.addConstraint(2, LocalDate.of(2022, 1, 12), ShiftType.Morning, "sick");
+            Constraint constraint = sc.addConstraint(2, LocalDate.now().plusDays(3), ShiftType.Morning, "sick");
             String str = "tired";
-            sc.updateReasonConstraint(0, str);
+            sc.updateReasonConstraint(0, str,2);
             Map<Integer, Constraint> constraints = sc.getConstraints();
             Constraint c = constraints.get(0);
             assertEquals(str, c.getReason());
@@ -96,8 +96,8 @@ public class ShiftControllerTest {
     @Test
     public void updateShiftTypeConstraint() {
         try {
-            Constraint constraint = sc.addConstraint(2, LocalDate.now(), ShiftType.Morning, "sick");
-            sc.updateShiftTypeConstraint(0, ShiftType.Night);
+            Constraint constraint = sc.addConstraint(2, LocalDate.now().plusDays(3), ShiftType.Morning, "sick");
+            sc.updateShiftTypeConstraint(0, ShiftType.Night,2);
             Map<Integer, Constraint> constraints = sc.getConstraints();
             Constraint c = constraints.get(0);
             assertEquals(ShiftType.Night, c.getShiftType());
@@ -140,8 +140,8 @@ public class ShiftControllerTest {
     @Test
     public void getOnlyEmployeeConstraints() {
         try {
-            Constraint constraint1 = sc.addConstConstraint(2, DayOfWeek.MONDAY, ShiftType.Morning, "sick");
-            Constraint constraint2 = sc.addConstraint(2, LocalDate.now(), ShiftType.Night, "feel bad");
+            Constraint constraint1 = sc.addConstConstraint(2, DayOfWeek.THURSDAY, ShiftType.Morning, "sick");
+            Constraint constraint2 = sc.addConstraint(2, LocalDate.now().plusDays(3), ShiftType.Morning, "feel bad");
             List<Constraint> list = sc.getOnlyEmployeeConstraints(2);
             boolean ok = list.size() == 2;
             for (Constraint c : list) {
