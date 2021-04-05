@@ -25,7 +25,7 @@ public class ShiftController {
     private int constraintCounter;
     //------------------------------------constructor--------------------------------
 
-    public ShiftController() throws Exception {
+    public ShiftController() {
         shifts = new HashMap<>();
         constraints = new HashMap<>();
         defaultShifts = new HashMap<>();

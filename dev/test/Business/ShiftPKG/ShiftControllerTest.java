@@ -21,7 +21,7 @@ public class ShiftControllerTest {
 
     @Before
     public void setUp() throws Exception {
-        sc = new ShiftController(new HashMap<>(), new HashMap<>());
+        sc = new ShiftController();
     }
 
     @After

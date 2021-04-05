@@ -2,7 +2,6 @@ package Business.ShiftPKG;
 
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
-import Database.Database;
 import org.apache.log4j.Logger;
 
 import java.time.LocalDate;

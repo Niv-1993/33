@@ -489,9 +489,7 @@ public class EmployeeController {
         employees = new HashMap<>();
         log.debug("loaded all employees.");
         //WHAT EVER SHIFTPGK NEED TO MAKE SHIFTCONTOLLER
-        Map<Integer, Shift> shifts = new HashMap<>();
-        Map<Integer, Constraint> constraints = new HashMap<>();
-        shiftController = new ShiftController(shifts, constraints);
+        shiftController = new ShiftController();
         log.debug("Done loading data");
 
     }
