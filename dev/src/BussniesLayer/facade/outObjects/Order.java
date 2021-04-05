@@ -22,7 +22,7 @@ public class Order {
     }
 
     public String toStringId(){
-        return orderId + "\n";
+        return orderId + "";
     }
 
     public String toStringTotalAmount(){ return totalAmount + "\n";}

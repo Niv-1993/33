@@ -19,10 +19,14 @@ public class SupplierServiceTest {
     }
 
     @Test
-    public void testGetItemIDWithoutLoad() {
+    public void testGetItemIDFailure() {
+        response r = service.addItem(1, "dairy", 3.5);
+        assertTrue(r.isError());
+        assertEquals("supplier BN is not exist" , r.getError());
         service.addSupplier("Test", 654321 , "cash");
-        Item item = service.addItem(0, "dairy", 3.5).getOutObject();
-        assertEquals("0" , item.toStringId());
+        response r2 = service.addItem(0, "dairy", -5);
+        assertTrue(r2.isError());
+        assertEquals("price must be a positive number!" , r2.getError());
     }
 
     @Test
