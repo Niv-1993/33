@@ -17,6 +17,7 @@ public class Shift {
     private boolean complete;
     private LocalDate date;
     private ShiftType shiftType;
+    private boolean wasSelfMake;
 
     //------------------------------------constructor--------------------------------
     public Shift(int SID,Map<RoleType, Integer> rolesAmount, Map<RoleType, List<String[]>> optionals, LocalDate date, ShiftType shiftType) throws Exception {
@@ -33,6 +34,7 @@ public class Shift {
         }
         this.date = date;
         this.shiftType = shiftType;
+        this.wasSelfMake = false;
         log.debug("shift: " + SID + " created");
     }
 
@@ -56,6 +58,7 @@ public class Shift {
             }
         }
         complete = comp;
+        wasSelfMake = true;
         return new ArrayList<>(employees.keySet());
     }
 
@@ -114,7 +117,7 @@ public class Shift {
         return count >= amount;
     }
 
-    private void RemoveEmpFromOptionals(int EID) {
+    public void RemoveEmpFromOptionals(int EID) {
         for (Map.Entry<RoleType, List<String[]>> e : optionals.entrySet()) {
             List<String[]> l = e.getValue();
             if (l != null) {
@@ -189,6 +192,10 @@ public class Shift {
 
     public boolean getComplete() {
         return complete;
+    }
+
+    public boolean WasSelfMake() {
+        return wasSelfMake;
     }
 
 
