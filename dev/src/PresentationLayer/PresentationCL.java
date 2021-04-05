@@ -21,8 +21,26 @@ public class PresentationCL{
     }
 
     public void mainRun(){
-        service.LoadData();
         Scanner scanner = new Scanner(System.in);
+        String[] load = {"load last data" , "new data"};
+        boolean legal = false;
+        while (!legal) {
+            System.out.println("please select an option: \n");
+            for (int i = 1; i <= load.length; i++) {
+                System.out.println(i + ") " + load[i - 1] + "\n");
+            }
+            int loadOption = scanner.nextInt();
+            if (loadOption == 1) {
+                service.LoadData();
+                legal = true;
+            }
+            if (loadOption == 2) {
+                legal = true;
+            }
+            else {
+                System.out.println("illegal option!!!\n");
+            }
+        }
         String[] mainMenueArray = {"showing methods" , "adding methods" , "removing methods" , "updating methods" ,"end program" };
         int option;
         while(true){

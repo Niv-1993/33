@@ -21,12 +21,24 @@ public class SupplierCard{
     @Override
     public String toString() {
         return "SupplierCard: \n" +
-                "\tsupplierBN = " + supplierBN + "\n" +
+                "\tsupplierBN =" + supplierBN + "\n" +
                 "\taccountNumber =" + accountNumber + "\n" +
-                "\tpayWay ='" + payWay + "\n" +
+                "\tpayWay =" + payWay + "\n" +
                 "\tcontactPhone=" + contactPhone + "\n" +
                 "\tcontactEmail=" + contactEmail + "\n";
     }
 
     public String toStringId(){ return supplierBN + "\n";}
+
+    public int getSupplierBN() {
+        return supplierBN;
+    }
+
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getPayWay() {
+        return payWay;
+    }
 }

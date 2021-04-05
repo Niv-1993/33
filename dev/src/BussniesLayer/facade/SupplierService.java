@@ -20,12 +20,11 @@ public class SupplierService implements ISupplierService {
 
     public SupplierService() {
         supplierController = new SupplierController();
-        load = new data(supplierController);
     }
 
     @Override
     public response LoadData() {
-        //data.getInstance();
+        load = new data(supplierController);
         return new response();
     }
 
@@ -40,7 +39,10 @@ public class SupplierService implements ISupplierService {
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<>(new SupplierCard(supplierCard));
+        if (supplierCard != null) {
+            return new Tresponse<>(new SupplierCard(supplierCard));
+        }
+        return new Tresponse<>("There is no such supplier");
     }
 
     @Override
@@ -71,7 +73,10 @@ public class SupplierService implements ISupplierService {
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<>(new SupplierCard(supplierCard));
+        if (supplierCard != null) {
+            return new Tresponse<>(new SupplierCard(supplierCard));
+        }
+        return new Tresponse<>("There is no such supplier");
     }
 
     @Override
@@ -167,6 +172,7 @@ public class SupplierService implements ISupplierService {
             return new Tresponse<>("ERROR: " + e);
         }
         return new Tresponse<>(outSupplierCard);
+
     }
 
     @Override
@@ -393,7 +399,10 @@ public class SupplierService implements ISupplierService {
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e);
         }
-        return new Tresponse<>(new SupplierAgreement(supplierAgreement));
+        if (supplierAgreement != null) {
+            return new Tresponse<>(new SupplierAgreement(supplierAgreement));
+        }
+        return new Tresponse<>("There is no such supplier agreement");
     }
 
     @Override

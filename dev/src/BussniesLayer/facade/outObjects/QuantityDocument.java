@@ -15,4 +15,8 @@ public class QuantityDocument{
                 "\tminimalAmount = " + minimalAmount + "\n" +
                 "\tdiscount = " + discount + "\n";
     }
+
+    public int getDiscount() {
+        return discount;
+    }
 }
