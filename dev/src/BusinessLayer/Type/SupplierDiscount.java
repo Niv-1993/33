@@ -13,4 +13,17 @@ public class SupplierDiscount extends Discount{
         super(_discountID, _percent, _start, _end);
         _discountID=sup;
     }
+    public int getSupplier(){
+        return _supplierID;
+    }
+
+    @Override
+    public void addTo(ProductType productType) {
+        productType.addDiscount(this);
+    }
+
+    @Override
+    public void removeFrom(ProductType productType) {
+        productType.removeDiscountFromList(this);
+    }
 }

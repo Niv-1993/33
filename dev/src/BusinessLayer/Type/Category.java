@@ -1,59 +1,150 @@
 package BusinessLayer.Type;
 
+import BusinessLayer.StoreController;
+import org.apache.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Category {
-    private List<Category> _categories;
+    private List<Category> _categories=new ArrayList<>();
     private int _categoryID;
     private String _name;
-    private List<Integer> _productTypes;
-    private List<Integer> _productDiscounts;
+    private Category _superCategory=null;
 
-    public Category(int _categoryID, String _name) {
+    private List<Integer> _productTypes= new ArrayList<>();
+    private List<Integer> _productDiscounts=new ArrayList<>();
+    final static Logger log=Logger.getLogger(StoreController.class);
+
+    public Category(int _categoryID, String _name, Category tmp) {
+        checkValues(_categoryID,_name);
         this._categoryID = _categoryID;
         this._name = _name;
-        _categories=new ArrayList<>();
-        _productTypes=new ArrayList<>();
-        _productDiscounts=new ArrayList<>();
+        _superCategory=tmp;
+    }
+    private void checkValues(Object... o){
+        for(Object o1: o){
+            if (o1 instanceof String && o1.equals(""))
+            {
+                String s="the value is illegal";
+                log.warn(s);
+                throw new IllegalArgumentException(s);
+            }
+            else if (o1 instanceof Integer && (Integer)o1<1){
+                String s="the value is illegal";
+                log.warn(s);
+                throw new IllegalArgumentException(s);
+            }
+        }
+    }
+
+    public Category(int catId, String name) {
+        checkValues(catId,name);
+        if (catId<1 | name==null || name.equals(""))
+        {
+            String s="the value is illegal";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        _categoryID-=catId;
+        _name=name;
     }
 
     public List<Category> get_categories() {
+        log.debug("get_categories()");
         return _categories;
     }
 
-    public void set_categories(List<Category> _categories) {
-        this._categories = _categories;
-    }
-
     public int get_categoryID() {
+        log.debug("get_categoryID()");
         return _categoryID;
     }
 
 
     public String get_name() {
+        log.debug("get_name()");
         return _name;
     }
 
-    public void set_name(String _name) {
-        this._name = _name;
+    public void set_name(String name) {
+        if (name==null || name.equals(""))
+        {
+            String s="the value is illegal";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        this._name = name;
     }
 
     public List<Integer> get_productTypes() {
+        log.debug("get_productTypes()");
         return _productTypes;
     }
 
-    public void set_productTypes(List<Integer> _productTypes) {
-        this._productTypes = _productTypes;
-    }
 
     public List<Integer> get_productDiscounts() {
+        log.debug("get_productDiscounts()");
         return _productDiscounts;
     }
 
-    public void set_productDiscounts(List<Integer> _productDiscounts) {
-        this._productDiscounts = _productDiscounts;
+
+    public void addCategory(Category output) {
+        if (output==null || output==this){
+            String s="the Category is illegal";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        _categories.add(output);
+    }
+
+    public void addProductType(int typeID) {
+        log.debug(String.format("addProductType(int typeID)",typeID));
+        if (typeID<1)
+        {
+            String s="the Category is illegal";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        _productTypes.add(typeID);
+    }
+
+    public List<Integer> getAllProductType() {
+        log.debug("getAllProductType()");
+        List<Integer> list=_productTypes;
+        _categories.stream().map(x->list.addAll(x.getAllProductType()));
+        return list;
+    }
+
+    public void addDiscount(int count) {
+        log.debug(String.format("addDiscount(int count)",count));
+        checkValues(count);
+        _productDiscounts.add(count);
     }
 
 
+    public void removeDiscount(int count) {
+        log.debug(String.format("removeDiscount(int count)",count));
+        checkValues(count);
+        _productDiscounts.remove(count);
+    }
+
+    public void edit(String name, Category superCategory) {
+        log.debug(String.format("edit(String name, Category superCategory) Value:",name));
+        checkValues(name);
+        if (superCategory==null || superCategory==_superCategory || superCategory==this)
+        {
+            String s="the superCategory is illegal";
+        }
+        _name=name;
+        _superCategory=superCategory;
+        log.info(String.format("the values of Category #? changed.",_categoryID));
+    }
+
+    public void edit(String name) {
+        log.debug(String.format("edit(String name) Value:",name));
+        checkValues(name);
+        _name=name;
+        _superCategory=null;
+        log.info(String.format("the values of Category #? changed.",_categoryID));
+    }
 }
