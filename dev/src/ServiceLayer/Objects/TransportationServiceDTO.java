@@ -2,6 +2,7 @@ package ServiceLayer.Objects;
 import enums.Pair;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -48,6 +49,15 @@ public class TransportationServiceDTO {
         this.leavingTime=leavingTime;
         this.suppliers=sup;
     }
+
+    public void setSuppliers(List<SupplierServiceDTO> suppliers) {
+        this.suppliers = suppliers;
+    }
+
+    public List<SupplierServiceDTO> getSuppliers() {
+        return suppliers;
+    }
+
 
     public void setId(int id) { this.id = id; }
 

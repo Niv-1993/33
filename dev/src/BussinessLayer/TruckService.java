@@ -56,7 +56,7 @@ public class TruckService {
         return Objects.hash(trucks);
     }
 
-    public Truck getTruck(int truckId) {
+    public Truck getTruck(Long truckId) {
         if(!trucks.containsKey(truckId)){
             throw new IllegalArgumentException("truck with id: "+ truckId + "is not exist");
         }

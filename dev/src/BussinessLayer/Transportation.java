@@ -17,8 +17,18 @@ public class Transportation {
     //ask if they call this item or product?
     private HashMap<Branch, List<Pair<Item,Integer>>> deliveryItems;
     private int weight;
-    private final List<Supplier> suppliers;
+    private List<Supplier> suppliers;
+    public Transportation(long id){
+        this.id = id;
+        date = null;
+        leavingTime = null;
+        driver = null;
+        truck = null;
+        deliveryItems = null;
+        suppliers = null;
+        weight = -1;
 
+    }
     public Transportation(long id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, int weight, HashMap<Branch,List<Pair<Item,Integer>>> deliveryItems, List<Supplier> suppliers){
         this.date=date;
         this.deliveryItems=deliveryItems;
@@ -38,6 +48,9 @@ public class Transportation {
     public LocalDate getDate() { return date; }
     public Driver getDriver() { return driver; }
     public LocalTime getLeavingTime() { return leavingTime; }
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public void setDate(LocalDate date) {
         if(!LocalDate.now().isEqual(date)){
@@ -46,6 +59,10 @@ public class Transportation {
         this.date = date;
     }
     public void setDeliveryItems(HashMap<Branch,List<Pair<Item,Integer>>> deliveryItems) { this.deliveryItems = deliveryItems; }
+
+    public void setSuppliers(List<Supplier> suppliers) {
+        this.suppliers = suppliers;
+    }
 
     public void setDriver(Driver driver) {
         //not expected but just in case
@@ -127,6 +144,4 @@ public class Transportation {
     public int hashCode() {
         return Objects.hash(id, date, leavingTime, driver, deliveryItems);
     }
-
-
 }

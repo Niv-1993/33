@@ -12,7 +12,6 @@ public class main {
             menu.printAllTucks();
             menu.printAllDrivers();
             menu.printAllBranches();
-            menu.printAllSuppliers();
             menu.PrintAllItems();
             menu.printAllTransportations();
 
