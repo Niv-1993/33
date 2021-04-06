@@ -121,8 +121,7 @@ public class CLIPresentation {
                 for(String s: ls){
                     ils.add(Integer.parseInt(s));
                 }
-                System.out.print("NOT IMPLEMENTED YET");///////////////////////////
-                //SS.getWeeklyReport(ils);
+                System.out.print(SS.getWeeklyReport(ils));
             }catch(Exception e) {
                 System.out.print("bad input, try again.\n");
             }
@@ -264,10 +263,10 @@ private void categories() {
             if(in.equals("return")) return;
             String[] tmp=in.split(",");
             if(tmp.length==7) {
-                if ((SS.addProductType(tmp[0],Integer.parseInt(tmp[1]),Float.parseFloat(tmp[2]),tmp[3],Integer.parseInt(tmp[5]),Integer.parseInt(tmp[6])).isError())) {
+                if ((SS.addProductType(tmp[0],Integer.parseInt(tmp[1]),Float.parseFloat(tmp[2]),Float.parseFloat(tmp[3]),tmp[4],Integer.parseInt(tmp[5]),Integer.parseInt(tmp[6])).isError())) {
                     System.out.print("bad input, try again.\n");
                 } else {
-                    System.out.print("Type added (notice no sale price impl)");////////////////////////
+                    System.out.print("Type added");
                 }
             }
             else System.out.print("bad input, try again.\n");
@@ -277,7 +276,7 @@ private void categories() {
     private void editType() {
         String in;
         while(true) {
-            System.out.print("To edit a type enter the type name then its minimum amount, its base price, sale price, name of producer, ID of supplier" +
+            System.out.print("To edit a type enter the type ID then its type name ,minimum amount, its base price, sale price, name of producer, ID of supplier" +
                     " and the ID of its parent category separated by comma"+
                     "\nTo return to category management enter 'return'" +
                     "\nTo exit the program enter 'exit'");
@@ -285,11 +284,11 @@ private void categories() {
             if(in.equals("exit")) System.exit(0);
             if(in.equals("return")) return;
             String[] tmp=in.split(",");
-            if(tmp.length==7) {
-                if ((SS.editProductType(tmp[0],Integer.parseInt(tmp[1]),Float.parseFloat(tmp[2]),tmp[3],Integer.parseInt(tmp[5]),Integer.parseInt(tmp[6])).isError())) {
+            if(tmp.length==8) {
+                if ((SS.editProductType(Integer.parseInt(tmp[0]),tmp[1],Integer.parseInt(tmp[2]),Float.parseFloat(tmp[3]),Float.parseFloat(tmp[4]),tmp[5],Integer.parseInt(tmp[6]),Integer.parseInt(tmp[7])).isError())) {
                     System.out.print("bad input, try again.\n");
                 } else {
-                    System.out.print("Type changed (notice no ID given)");///////////////////////
+                    System.out.print("Type changed");
                 }
             }
             else System.out.print("bad input, try again.\n");

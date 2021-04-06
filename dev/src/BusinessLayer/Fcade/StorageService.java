@@ -36,7 +36,7 @@ public class StorageService implements iStorageService {
     }
 
     @Override
-    public ResponseData<Report> getWeeklyReport(int... c) {
+    public ResponseData<Report> getWeeklyReport(List<Integer> c) {
         try {
             reports.Report rep=curr.getWeeklyReport(c);
             Report ret=new Report(rep.getStore(),rep.getDate(),rep.toString(),rep.getType());
@@ -126,9 +126,9 @@ public class StorageService implements iStorageService {
     }
 
     @Override
-    public Response addProductType(String name, int minAmount, float basePrice, String producer, int supID, int category) {
+    public Response addProductType(String name, int minAmount, float basePrice, float salePrice,String producer, int supID, int category) {
         try {
-            curr.addProductType(name,minAmount,basePrice,producer,supID,category);
+            curr.addProductType(name,minAmount,basePrice,salePrice,producer,supID,category);
             return new Response();
         }
         catch (Exception e) {
@@ -159,9 +159,9 @@ public class StorageService implements iStorageService {
     }
 
     @Override
-    public Response editProductType(String name, int minAmount, float basePrice, String producer, int supID, int category) {
+    public Response editProductType(int ID,String name, int minAmount, float basePrice,float salePrice, String producer, int supID, int category) {
         try {
-            curr.editProductType(name,minAmount,basePrice,producer,supID,category);
+            curr.editProductType(ID,name,minAmount,basePrice,salePrice,producer,supID,category);
             return new Response();
         }
         catch (Exception e) {
