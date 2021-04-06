@@ -15,7 +15,7 @@ public interface iStoreController {
     //res: SC
     public int getID();
     public Report getWeeklyReport();
-    public Report getWeeklyReport(int... c);
+    public Report getWeeklyReport(List<Integer> c);
     public Report getNeededReport();
     public Report getWasteReport();
 
@@ -23,7 +23,9 @@ public interface iStoreController {
     public Category getCategory(int catID);
     public Category addCategory(String name, int superCategory);
     public List<Integer> getCategories();
-    public void addProductType(String name, int minAmount, float basePrice, String producer, int supID, int category);
+    //added sale price
+    public void addProductType(String name, int minAmount, float basePrice,float salePrice, String producer, int supID, int category);
+
     public List<Integer> getProductTypes();
     public ProductType getProductTypeInfo(int id);
     public int getShelvesAmount(int typeID);
@@ -45,7 +47,9 @@ public interface iStoreController {
     public void editCategory(int Id, String name, int superCategory);
     public void editCategory(int Id, String name);
     //res:PT
-    public void editProductType(int id,String name, int minAmount, float basePrice, String producer, int supID, int category);
+
+    //added sale price
+    public void editProductType(int id,String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category);
 
     //res: InstanceController+PT
     public void addProduct(int typeID, Date expiration );
