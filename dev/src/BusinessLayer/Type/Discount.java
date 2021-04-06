@@ -1,20 +1,45 @@
 package BusinessLayer.Type;
 
+import org.apache.log4j.Logger;
+
 import java.util.Date;
 
 public abstract class Discount {
     protected int _discountID;
     protected float _percent;
     protected Date _start;
+    protected Date _end;
+    final static Logger log=Logger.getLogger(Discount.class);
 
-    public Discount(int _discountID, float _percent, Date _start, Date _end) {
-        this._discountID = _discountID;
-        this._percent = _percent;
-        this._start = _start;
-        this._end = _end;
+
+    public Discount(int id,float percent,Date start,Date end){
+        checkValue(id,percent);
+        if (end.before(start) || end.before(new Date(System.currentTimeMillis()))){
+            String s="the Date is illegal";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        _discountID= id;
+        _percent=percent;
+        _start=start;
+        _end=end;
+    }
+    private void checkValue(Object... o){
+        String s="the value of arg is illegal";;
+        for (int i = 0; i < o.length; i++) {
+            if (o[i] instanceof Integer && (Integer)o[i]<1)
+            {
+                log.debug(s);
+                throw new IllegalArgumentException(s);
+            }
+            if (o[i] instanceof Float && ((float)o[i]<0 | (float)o[i]>=1)) {
+                log.debug(s);
+                throw new IllegalArgumentException(s);
+            }
+        }
     }
 
-    protected Date _end;
+
 
     public int get_discountID() {
         return _discountID;
@@ -31,4 +56,8 @@ public abstract class Discount {
     public Date get_end() {
         return _end;
     }
+
+    public abstract void addTo(ProductType productType);
+
+    public abstract void removeFrom(ProductType productType);
 }

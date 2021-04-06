@@ -1,0 +1,20 @@
+[INFO ] 31-03-2021 05:03:46 [class: main,Line:10] - hiii
+[ERROR] 31-03-2021 05:03:46 [class: main,Line:11] - sdaf
+[FATAL] 31-03-2021 05:03:46 [class: main,Line:13] - asfd
+[INFO ] 31-03-2021 05:03:46 [class: main,Line:17] - f
+[INFO ] 31-03-2021 05:05:00 [class: main,Line:10] - hiii
+[ERROR] 31-03-2021 05:05:00 [class: main,Line:11] - sdaf
+[FATAL] 31-03-2021 05:05:00 [class: main,Line:13] - asfd
+[INFO ] 31-03-2021 05:05:00 [class: main,Line:17] - f
+[INFO ] 31-03-2021 05:05:07 [class: main,Line:10] - hiii
+[ERROR] 31-03-2021 05:05:07 [class: main,Line:11] - sdaf
+[FATAL] 31-03-2021 05:05:07 [class: main,Line:13] - asfd
+[INFO ] 31-03-2021 05:05:07 [class: main,Line:17] - f
+[INFO ] 31-03-2021 15:26:14 [class: main,Line:10] - hiii
+[ERROR] 31-03-2021 15:26:14 [class: main,Line:11] - sdaf
+[FATAL] 31-03-2021 15:26:14 [class: main,Line:13] - asfd
+[INFO ] 31-03-2021 15:26:14 [class: main,Line:17] - f
+[INFO ] 31-03-2021 15:26:29 [class: main,Line:10] - hiii
+[ERROR] 31-03-2021 15:26:29 [class: main,Line:11] - sdaf
+[FATAL] 31-03-2021 15:26:29 [class: main,Line:13] - asfd
+[INFO ] 31-03-2021 15:26:29 [class: main,Line:17] - f
