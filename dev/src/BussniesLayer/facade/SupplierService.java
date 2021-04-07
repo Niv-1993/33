@@ -10,6 +10,7 @@ import BussniesLayer.facade.outObjects.SupplierAgreement;
 import DBMS.data;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -37,20 +38,19 @@ public class SupplierService implements ISupplierService {
         try {
             supplierCard = supplierController.showSupplier(supplierBN);
         }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
-        if (supplierCard != null) {
+        if (supplierCard != null)
             return new Tresponse<>(new SupplierCard(supplierCard));
-        }
         return new Tresponse<>("There is no such supplier");
     }
 
     @Override
-    public response addSupplier(String supplierName, int bankAccount, String payWay) {
+    public response addSupplier(String supplierName, int bankNumber , int brunchNumber, int bankAccount, String payWay) {
         try{
-            supplierController.addSupplier(supplierName, bankAccount, payWay);
+          supplierController.addSupplier(supplierName,bankNumber ,brunchNumber , bankAccount, payWay);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -60,7 +60,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.removeSupplier(removeSupplier);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -71,7 +71,7 @@ public class SupplierService implements ISupplierService {
         try {
             supplierCard = supplierController.showSupplierBN(supplierName);
         }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
         if (supplierCard != null) {
             return new Tresponse<>(new SupplierCard(supplierCard));
@@ -84,7 +84,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.updateSupplierPayWay(supplierBN, payWay);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -94,7 +94,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.updateSupplierBankAccount(supplierBN, bankAccount);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -104,7 +104,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.addContactPhone(supplierBN, phone, name);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -114,7 +114,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.addContactEmail(supplierBN, Email, name);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -124,7 +124,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.removeContactPhone(supplierBN, phone);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -134,7 +134,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.removeContactEmail(supplierBN, email);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -144,7 +144,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.updateContactPhone(supplierBN, phone);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -154,7 +154,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.updateContactEmail(supplierBN, email);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -169,7 +169,7 @@ public class SupplierService implements ISupplierService {
                 outSupplierCard.add(new SupplierCard(supplierCard));
             }
         }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new Tresponse<>(outSupplierCard);
 
@@ -185,7 +185,7 @@ public class SupplierService implements ISupplierService {
                 outItems.add(new Item(item));
             }
         }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new Tresponse<>(outItems);
     }
@@ -200,7 +200,7 @@ public class SupplierService implements ISupplierService {
                 outItems.add(new Item(item));
             }
         }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new Tresponse<>(outItems);
     }
@@ -215,18 +215,18 @@ public class SupplierService implements ISupplierService {
                 outItems.add(new Item(item));
             }
         }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new Tresponse<>(outItems);
     }
 
     @Override
-    public Tresponse<Item> addItem(int supplierBN, String category , double price) {
+    public Tresponse<Item> addItem(int supplierBN, String category , String name , double price) {
         BussniesLayer.Item item;
         try{
-            item = supplierController.addItem(supplierBN, category , price);
+            item = supplierController.addItem(supplierBN, category , name , price);
         }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new Tresponse<>(new Item(item));
     }
@@ -236,7 +236,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.removeItem(itemId);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -246,18 +246,18 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.removeItemFromSupplier(supplierBN, itemId);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
 
     @Override
-    public Tresponse<Order> addOrder(int supplierBN) {  // return an empty order that show the orderID.
+    public Tresponse<Order> addOrder(int supplierBN) {
         BussniesLayer.Order order;
         try {
             order = supplierController.addOrder(supplierBN);
         }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new Tresponse<>(new Order(order));
     }
@@ -267,7 +267,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.addItemToOrder(supplierBN, orderId, itemId , amount);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -278,7 +278,7 @@ public class SupplierService implements ISupplierService {
         try {
             order = supplierController.showOrderOfSupplier(supplierBN, orderId);
         }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new Tresponse<>(new Order(order));
     }
@@ -293,7 +293,7 @@ public class SupplierService implements ISupplierService {
                 outOrder.add(new Order(order));
             }
         }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new Tresponse<>(outOrder);
     }
@@ -304,7 +304,7 @@ public class SupplierService implements ISupplierService {
         try{
             order = supplierController.showTotalAmount(supplierBN, orderId);
         }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new Tresponse<>(new Order(order));
     }
@@ -315,17 +315,17 @@ public class SupplierService implements ISupplierService {
         try{
             order = supplierController.showDeliverTime(supplierBN, orderId);
         }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new Tresponse<>(new Order(order));
     }
 
     @Override
-    public response updateDeliverTime(int supplierBN, int orderId, Date deliverTime){
+    public response updateDeliverTime(int supplierBN, int orderId, LocalDate deliverTime){
         try{
             supplierController.updateDeliverTime(supplierBN, orderId, deliverTime);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -335,7 +335,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.addQuantityDocument(supplierBN, itemId, minimalAmount,discount);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -345,7 +345,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.removeQuantityDocument(supplierBN , itemId);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -356,7 +356,7 @@ public class SupplierService implements ISupplierService {
         try {
             quantityDocument =  supplierController.showQuantityDocument(supplierBN, itemId);
         }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new Tresponse<>(new QuantityDocument(quantityDocument));
     }
@@ -366,7 +366,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.updateMinimalAmountOfQD(supplierBN, itemId, minimalAmount);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -376,7 +376,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.updateDiscountOfQD(supplierBN, itemId, discount);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -386,7 +386,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.addSupplierAgreement(supplierBN, minimalAmount, discount, constantTime, shipToUs);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -397,7 +397,7 @@ public class SupplierService implements ISupplierService {
         try {
             supplierAgreement = supplierController.showSupplierAgreement(supplierBN);
         }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e);
+            return new Tresponse<>("ERROR: " + e.getMessage());
         }
         if (supplierAgreement != null) {
             return new Tresponse<>(new SupplierAgreement(supplierAgreement));
@@ -410,7 +410,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.updateMinimalAmountOfSA(supplierBN, minimalAmount);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -420,7 +420,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.updateDiscountOfSA(supplierBN, discount);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -430,7 +430,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.updateConstantTime(supplierBN, constantTime);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -440,7 +440,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.updateShipToUs(supplierBN, ShipToUs);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -450,7 +450,7 @@ public class SupplierService implements ISupplierService {
         try{
             supplierController.updatePrice(supplierBN , itemId , price);
         }catch (Exception e){
-            return new response("ERROR: " + e);
+            return new response("ERROR: " + e.getMessage());
         }
         return new response();
     }

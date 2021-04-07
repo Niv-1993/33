@@ -4,6 +4,6 @@ public class main {
 
     public static void main(String[] args) {
         PresentationCL presentationCL = new PresentationCL();
-        presentationCL.mainRun();
+        presentationCL.mainRun(true);
     }
 }

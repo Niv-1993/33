@@ -14,12 +14,11 @@ public class SupplierAgreement {
         shipToUs = SA.getShipToUs();
     }
 
-    @Override
     public String toString() {
-        return "SupplierAgreement: \n" +
-                "\tminimalAmount = " + minimalAmount + "\n" +
-                "\tdiscount = " + discount + "\n" +
-                "\tconstantTime = " + constantTime + " \n" +
-                "\tshipToUs = " + shipToUs + "\n" ;
+        return "Supplier Agreement: \n" +
+                "\tminimal amount: " + minimalAmount + "\n" +
+                "\tdiscount: " + discount + "\n" +
+                "\tconstant time: " + constantTime + " \n" +
+                "\tship to us: " + shipToUs;
     }
 }

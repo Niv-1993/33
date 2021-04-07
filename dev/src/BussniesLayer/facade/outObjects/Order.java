@@ -1,11 +1,12 @@
 package BussniesLayer.facade.outObjects;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Order {
     private final int orderId;
     private final double totalAmount;
-    private final Date deliverTime;
+    private final LocalDate deliverTime;
 
     public Order(BussniesLayer.Order order) {
         orderId = order.getOrderId();
@@ -13,19 +14,26 @@ public class Order {
         deliverTime = order.getDeliverTime();
     }
 
-    @Override
     public String toString() {
+        if(deliverTime == null)
+            return "Order: \n" +
+                    "\torderId: " + orderId + "\n" +
+                    "\ttotal amount: " + totalAmount + "\n" +
+                    "\tdeliver time: unknown";
         return "Order: \n" +
-                "\torderId = " + orderId + "\n" +
-                "\ttotalAmount = " + totalAmount + "\n" +
-                "\tdeliverTime = " + deliverTime + "\n";
+                "\torderId: " + orderId + "\n" +
+                "\ttotal amount: " + totalAmount + "\n" +
+                "\tdeliver time: " + deliverTime;
     }
 
     public String toStringId(){
-        return orderId + "";
+        return ""+ orderId;
     }
 
-    public String toStringTotalAmount(){ return totalAmount + "\n";}
+    public String toStringTotalAmount(){ return totalAmount + "";}
 
-    public String toStringDeliverTime(){ return deliverTime.toString();}
+    public String toStringDeliverTime(){
+        if(deliverTime == null) return "unknown";
+        return deliverTime.toString();
+    }
 }

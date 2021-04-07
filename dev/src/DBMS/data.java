@@ -4,48 +4,40 @@ import BussniesLayer.SupplierController;
 
 public class data {
 
-    private SupplierController supplierController;
-    //private static data Instance = null;
+    private final SupplierController supplierController;
 
     public data(SupplierController supplierController){
         this. supplierController = supplierController;
         this.loadData();
     }
 
-    /*
-    public static data getInstance() {
-        if(Instance == null) Instance = new data();
-        return Instance;
-    }
-     */
-
     private void loadData(){
         try {
-            supplierController.addSupplier("BGU" , 1 , "check" );
-            supplierController.addSupplier("INTEL" , 2 , "check" );
-            supplierController.addSupplier("TAU" , 3, "cash" );
-            supplierController.addSupplier("MIT" , 4 , "bank transfer" );
-            supplierController.addSupplier("KingOfTheWorld" ,5 , "cash" );
-            supplierController.addSupplier("GOD" ,100 , "bank transfer" );
-            supplierController.addItem(0 , "meat" , 19.99);
-            supplierController.addItem(0 , "meat" , 39.99);
-            supplierController.addItem(0 , "meat" , 70.5);
-            supplierController.addItem(1 , "dairy" , 21.3);
-            supplierController.addItem(1 , "dairy" , 35.2);
-            supplierController.addItem(1 , "candy" , 1.99);
-            supplierController.addItem(1 , "candy" , 0.1);
-            supplierController.addItem(2 , "cleaning" , 15.99);
-            supplierController.addItem(2 , "cleaning" , 19.99);
-            supplierController.addItem(3 , "drink" , 10.99);
-            supplierController.addItem(3 , "drink" , 10.99);
-            supplierController.addItem(3 , "drink" , 10.99);
-            supplierController.addItem(3 , "drink" , 10.99);
-            supplierController.addItem(3 , "drink" , 10.99);
-            supplierController.addItem(3 , "drink" , 10.99);
-            supplierController.addItem(4 , "fruit" , 1.99);
-            supplierController.addItem(4 , "fruit" , 1.99);
-            supplierController.addItem(4 , "vegetable" , 0.99);
-            supplierController.addItem(4 , "vegetable" , 1.5);
+            supplierController.addSupplier("BGU" , 1 , 11 , 1 , "check" );
+            supplierController.addSupplier("INTEL" , 2 , 22 , 2 , "check" );
+            supplierController.addSupplier("TAU" , 1, 11 , 60, "cash" );
+            supplierController.addSupplier("MIT" , 6, 6 , 6 , "bank transfer" );
+            supplierController.addSupplier("KingOfTheWorld" , 5 , 5 ,5 , "cash" );
+            supplierController.addSupplier("GOD" ,100 , 100 , 100 , "bank transfer" );
+            supplierController.addItem(0 , "meat" , "chicken" , 19.99);
+            supplierController.addItem(0 , "meat" ,"minced meat" ,  39.99);
+            supplierController.addItem(0 , "meat" ,"stake" , 70.5);
+            supplierController.addItem(1 , "dairy" , "yogurt" ,  9.99);
+            supplierController.addItem(1 , "dairy" , "cheese cake",  35.2);
+            supplierController.addItem(1 , "candy" , "gum"  ,1.99);
+            supplierController.addItem(1 , "candy" , "lollipop" ,  0.5);
+            supplierController.addItem(2 , "cleaning" , "windshield wiper",  15.99);
+            supplierController.addItem(2 , "cleaning" , "broom", 19.99);
+            supplierController.addItem(3 , "drink" , "soda" , 10.99);
+            supplierController.addItem(3 , "drink" , "sprite ",  10.99);
+            supplierController.addItem(3 , "drink" , "fanta" ,10.99);
+            supplierController.addItem(3 , "drink" , "grape juice" , 10.99);
+            supplierController.addItem(3 , "drink" ,"orange juice" ,  10.99);
+            supplierController.addItem(3 , "drink" , "water", 5.99);
+            supplierController.addItem(4 , "fruit" , "apple", 1.99);
+            supplierController.addItem(4 , "fruit" , "orange",1.99);
+            supplierController.addItem(4 , "vegetable" , "tomato" ,0.99);
+            supplierController.addItem(4 , "vegetable" , "onion" ,1.5);
             for(int i = 0 ; i < 19 ; i++  ){
                 if(i<= 2) supplierController.addQuantityDocument(0 , i , 3 + i , 2 + i);
                 else if(i<= 6) supplierController.addQuantityDocument(1 , i , 2 + i , 1 + i);

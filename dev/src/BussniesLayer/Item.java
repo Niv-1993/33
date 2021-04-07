@@ -3,12 +3,14 @@ package BussniesLayer;
 public class Item{
     private final String category;
     private final int itemId;
+    private final String name;
     private QuantityDocument quantityDocument;
     private double price;
 
-    public Item(String category , int itemId , double price){
+    public Item(String category , int itemId , String name , double price){
         this.category = category;
         this.itemId = itemId;
+        this.name = name;
         quantityDocument = null;
         this.price = price;
     }
@@ -65,4 +67,6 @@ public class Item{
     public String getCategory() {
         return category;
     }
+
+    public String getName() { return name; }
 }

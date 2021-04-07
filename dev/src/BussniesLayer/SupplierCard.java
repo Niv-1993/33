@@ -1,11 +1,14 @@
 package BussniesLayer;
 
+import java.time.LocalDate;
 import java.util.*;
 
 
 public class SupplierCard {
     private final int supplierBN;
     private final String supplierName;
+    private final int bankNumber;
+    private final int BrunchNumber;
     private int accountNumber;
     private String payWay;
     private List<Order> orders;
@@ -14,9 +17,11 @@ public class SupplierCard {
     private Dictionary<String , String> contactPhone;
     private Dictionary<String , String> contactEmail;
 
-    public SupplierCard(int supplierBN , String supplierName , int accountNumber , String payWay){
+    public SupplierCard(int supplierBN , String supplierName ,int bankNumber , int brunchNumber, int accountNumber , String payWay){
         this.supplierBN = supplierBN;
         this.supplierName = supplierName;
+        this.bankNumber = bankNumber;
+        this.BrunchNumber = brunchNumber;
         this.accountNumber = accountNumber;
         this.payWay = payWay;
         orders = new LinkedList<>();
@@ -26,9 +31,16 @@ public class SupplierCard {
         contactEmail = new Hashtable<>();
     }
 
-
     public int getSupplierBN() {
         return supplierBN;
+    }
+
+    public int getSupplierBankNumber() {
+        return bankNumber;
+    }
+
+    public int getSupplierBrunchNumber() {
+        return BrunchNumber;
     }
 
     public int getSupplierAccountNumber() {
@@ -74,11 +86,15 @@ public class SupplierCard {
         contactEmail.put(email, name);
     }
 
-    public void removeContactPhone(String phone){
+    public void removeContactPhone(String phone) throws Exception {
+        if(contactPhone.get(phone) != null)
+            throw new Exception("contact email all ready exist, you may want to use: update contact email");
         contactPhone.remove(phone);
     }
 
-    public void removeContactEmail(String email){
+    public void removeContactEmail(String email) throws Exception {
+        if(contactPhone.get(email) != null)
+            throw new Exception("contact email all ready exist, you may want to use: update contact email");
         contactPhone.remove(email);
     }
 
@@ -99,9 +115,9 @@ public class SupplierCard {
         return items;
     }
 
-    public Item addItem(String category, int ItemId , double price) throws Exception {
+    public Item addItem(String category, int ItemId , String name , double price) throws Exception {
         if(price < 0) throw new Exception("price must be a positive number!");
-        Item newItem = new BussniesLayer.Item(category, ItemId , price);
+        Item newItem = new BussniesLayer.Item(category, ItemId , name , price);
         items.add(newItem);
         return newItem;
     }
@@ -156,15 +172,25 @@ public class SupplierCard {
     }
 
     public Order showTotalAmount(int orderId) throws Exception {
+        double totalAmount;
+        boolean found = false;
+        Order order = null;
         for(Order o : orders) {
             if (o.getOrderId() == orderId) {
+                found = true;
                 try {
-                    return o.showTotalAmount();
+                    totalAmount = o.showTotalAmount().getTotalAmount();
                 } catch (Exception e) {
                     throw new Exception(e);
                 }
+                order = o;
+                if(supplierAgreement.getMinimalAmount() <= order.getTotalAmount()){
+                    totalAmount = totalAmount * (supplierAgreement.getDiscount()/100);
+                    order.updateTotalAmount(totalAmount);
+                }
             }
         }
+        if(found) return order;
         throw new Exception("orderId does not exist.");
     }
 
@@ -180,7 +206,7 @@ public class SupplierCard {
         throw new Exception("orderId does not exist.");
     }
 
-    public void updateDeliverTime(int orderId, Date deliverTime) throws Exception {
+    public void updateDeliverTime(int orderId, LocalDate deliverTime) throws Exception {
         boolean hasFound = false;
         for (Order o : orders) {
             if (o.getOrderId() == orderId) {

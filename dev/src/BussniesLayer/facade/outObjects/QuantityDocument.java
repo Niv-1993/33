@@ -9,11 +9,10 @@ public class QuantityDocument{
         discount = QD.getDiscount();
     }
 
-    @Override
     public String toString() {
-        return "QuantityDocument: \n" +
-                "\tminimalAmount = " + minimalAmount + "\n" +
-                "\tdiscount = " + discount + "\n";
+        return "Quantity Document: \n" +
+                "\tminimal amount: " + minimalAmount + "\n" +
+                "\tdiscount: " + discount;
     }
 
     public int getDiscount() {
