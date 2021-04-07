@@ -11,21 +11,22 @@ public class SupplierServiceTest {
     private final SupplierService service = new SupplierService();
 
     @Test
-    public void testAddSupplier()  {
-        response r = service.addSupplier("Test", 1 , 11 , 654321 , "cash");
+    public void testAddSupplier() {
+        response r = service.addSupplier("Test1", 1, 11, 654321, "cash");
         assertFalse(r.isError());
         assertEquals(0, service.showSupplier(0).getOutObject().getSupplierBN());
-        response r2 =  service.addSupplier("Test", 2 , 3 , 123456 , "check");
-        assertTrue(r2.isError());
-        response r3 =  service.addSupplier("Test2", 6 , 5 , 123456 , "check");
-        assertFalse(r3.isError());
+        assertEquals("Test1", service.showSupplier(0).getOutObject().getSupplierName());
+        assertEquals(1, service.showSupplier(0).getOutObject().getBankNumber());
+        assertEquals(11, service.showSupplier(0).getOutObject().getBrunchNumber());
+        assertEquals(654321, service.showSupplier(0).getOutObject().getAccountNumber());
+        assertEquals("cash", service.showSupplier(0).getOutObject().getPayWay());
     }
 
     @Test
     public void testGetItemIDFailure() {
-        response r = service.addItem(1, "dairy" , "milk", 3.5);
-        assertTrue(r.isError());
-        assertEquals("ERROR: supplier BN does not exist." , r.getError());
+        response r1 = service.addItem(1, "dairy" , "milk", 3.5);
+        assertTrue(r1.isError());
+        assertEquals("ERROR: supplier BN does not exist." , r1.getError());
         service.addSupplier("Test", 2 , 5 , 654321 , "cash");
         response r2 = service.addItem(0, "dairy", "yogurt",  -5);
         assertTrue(r2.isError());
@@ -33,18 +34,16 @@ public class SupplierServiceTest {
     }
 
     @Test
-    public void testGetItemID(){
+    public void testGetItem(){
         service.LoadData();
         Item item = service.addItem(0, "dairy", "milk" ,  3.5).getOutObject();
-        assertEquals("19" , item.toStringId());
         Item item2 = service.addItem(0, "dairy", "chocolate" ,  3.5).getOutObject();
         Item item3 = service.addItem(0, "dairy", "cottage" , 3.5).getOutObject();
+        assertEquals("19" , item.toStringId());
         assertEquals("20" , item2.toStringId());
         assertEquals("21" , item3.toStringId());
         response r = service.addItem(0, "dairy", "milka" , 7);
         assertFalse(r.isError());
-        response r2 = service.addItem(10, "dairy", "delicacy" , 3.5);
-        assertTrue(r2.isError());
     }
 
     @Test
@@ -68,6 +67,8 @@ public class SupplierServiceTest {
         assertEquals("check", service.showSupplier(0).getOutObject().getPayWay());
         response r = service.updateSupplierPayWay(10, "check");
         assertTrue(r.isError());
+        response r1 = service.updateSupplierPayWay(0, "just pay me");
+        assertEquals("ERROR: pay way must be check/bank transfer/cash." , r1.getError());
     }
 
     @Test
@@ -77,6 +78,7 @@ public class SupplierServiceTest {
         service.removeSupplier(3);
         assertEquals(5, service.showAllSuppliers().getOutObject().size());
         assertTrue(service.showSupplier(3).isError());
+        assertTrue(service.addOrder(3).isError());
     }
 
     @Test

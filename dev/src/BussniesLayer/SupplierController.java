@@ -21,11 +21,15 @@ public class SupplierController{
     }
 
     public void addSupplier(String supplierName, int bankNumber , int brunchNumber, int bankAccount, String payWay) throws Exception {
+        if(bankNumber < 0) throw new Exception("bank number must be a positive number");
+        if(brunchNumber < 0) throw new Exception("brunch must be a positive number");
         if(bankAccount < 0) throw new Exception("bank account must be a positive number");
         Enumeration<Integer> enumeration = suppliers.keys();
         while(enumeration.hasMoreElements()){
-            Integer supplierID = enumeration.nextElement();
-            if(suppliers.get(supplierID).getSupplierName().equals(supplierName)) throw new Exception("supplier name all ready exist");
+            SupplierCard supplierCard = suppliers.get(enumeration.nextElement());
+            if(supplierCard.getSupplierName().equals(supplierName)) throw new Exception("supplier name all ready exist");
+            if(supplierCard.getSupplierBankNumber() == bankNumber && supplierCard.getSupplierBrunchNumber() == brunchNumber && supplierCard.getSupplierAccountNumber() == bankAccount)
+                throw new Exception("the combination of bank number , brunch number and bank account must be unique");
         }
         BussniesLayer.SupplierCard supplierCard = new BussniesLayer.SupplierCard(suppliers.size() ,supplierName, bankNumber,brunchNumber,bankAccount,payWay);
         suppliers.put(suppliers.size() , supplierCard);

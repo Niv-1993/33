@@ -1,9 +1,7 @@
 package PresentationLayer;
 
-import java.awt.image.TileObserver;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -149,6 +147,7 @@ public class PresentationCL{
                 case 6 -> {
                     BN = BNScan(scanner);
                     int orderId = orderScan(scanner);
+                    service.showTotalAmount(BN , orderId);
                     Tresponse<Order> response = service.showOrderOfSupplier(BN, orderId);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else {
@@ -177,7 +176,7 @@ public class PresentationCL{
                             else {
                                 List<Item> responseItem = items.getOutObject();
                                 for (Item item : responseItem) {
-                                    System.out.println(item.toString(false));
+                                    System.out.println(item.toString(true));
                                 }
                             }
                         }
@@ -189,7 +188,7 @@ public class PresentationCL{
                     int orderId = orderScan(scanner);
                     Tresponse<Order> response = service.showTotalAmount(BN, orderId);
                     if (response.isError()) System.out.println(response.getError() + "\n");
-                    else System.out.println(response.getOutObject().toStringTotalAmount());
+                    else System.out.println("total amount is: " + response.getOutObject().toStringTotalAmount());
                     toCountinune(scanner , false);
                 }
                 case 9 -> {
@@ -197,7 +196,7 @@ public class PresentationCL{
                     int orderId = orderScan(scanner);
                     Tresponse<Order> response = service.showDeliverTime(BN, orderId);
                     if (response.isError()) System.out.println(response.getError() + "\n");
-                    else System.out.println(response.getOutObject().toStringDeliverTime());
+                    else System.out.println("deliver time is : " + response.getOutObject().toStringDeliverTime());
                     toCountinune(scanner , false);
                 }
                 case 10 -> {

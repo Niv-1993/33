@@ -18,18 +18,14 @@ public class Order {
 
     public void addItemToOrder(Item item , int amount) throws Exception {
         if (items.get(item) != null) items.put(item, items.get(item) + amount);
-        items.put(item, amount);
+        else items.put(item, amount);
         QuantityDocument qd = item.getQuantityDocument();
         if (qd == null) throw new Exception("quantity document does not exist.");
-        totalAmount = totalAmount + item.getPrice();
+        totalAmount = totalAmount + item.getPrice()*amount;
         if (qd.getMinimalAmount() <= items.get(item)) {
-            double present = qd.getDiscount() / 100;
-            totalAmount = totalAmount - (item.getPrice() * present);
+            double discount = qd.getDiscount()/100.0;
+            totalAmount = totalAmount - item.getPrice()*discount*amount;
         }
-    }
-
-    public Order showTotalAmount(){
-        return this;
     }
 
     public List<Item> showAllItemsOfOrder(){

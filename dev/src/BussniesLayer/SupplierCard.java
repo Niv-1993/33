@@ -179,13 +179,14 @@ public class SupplierCard {
             if (o.getOrderId() == orderId) {
                 found = true;
                 try {
-                    totalAmount = o.showTotalAmount().getTotalAmount();
+                    totalAmount = o.getTotalAmount();
                 } catch (Exception e) {
                     throw new Exception(e);
                 }
                 order = o;
                 if(supplierAgreement.getMinimalAmount() <= order.getTotalAmount()){
-                    totalAmount = totalAmount * (supplierAgreement.getDiscount()/100);
+                    double discount = 1 - supplierAgreement.getDiscount()/100.0;
+                    totalAmount = totalAmount*discount;
                     order.updateTotalAmount(totalAmount);
                 }
             }
