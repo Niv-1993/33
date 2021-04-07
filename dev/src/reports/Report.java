@@ -7,4 +7,5 @@ public interface Report {
     public String getType();
     public int getStore();
     public Date getDate();
+    public int sizeOfList();
 }

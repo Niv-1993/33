@@ -5,10 +5,12 @@ import BusinessLayer.Type.Category;
 import BusinessLayer.Type.ProductType;
 import BusinessLayer.Type.SaleDiscount;
 import BusinessLayer.Type.SupplierDiscount;
+import BusinessLayer.instance.InstanceController;
 import BusinessLayer.instance.Product;
 import reports.Report;
 
 import java.util.Date;
+import java.util.Dictionary;
 import java.util.List;
 
 public interface iStoreController {
@@ -18,6 +20,7 @@ public interface iStoreController {
     public Report getWeeklyReport(List<Integer> c);
     public Report getNeededReport();
     public Report getWasteReport();
+    public void setList(Dictionary<ProductType, InstanceController> dictionary);//for testing
 
     public int counterCategory();
     public Category getCategory(int catID);

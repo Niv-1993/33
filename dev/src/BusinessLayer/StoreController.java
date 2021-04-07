@@ -44,6 +44,15 @@ public class StoreController implements iStoreController{
         for (int i=storeSelves+1;i<=shelves; i++)
             _shelves.add(new Shelf(i,Location.Storage,maxProductsInShelf));
     }
+    public StoreController(){//for testing
+        _storeID=1;
+        _numberOfShelves=10;
+        _storeShelves=5;
+        for (int i=1;i<=_storeShelves; i++)
+            _shelves.add(new Shelf(i,Location.Storage,1000));
+        for (int i=_storeShelves+1;i<=_numberOfShelves; i++)
+            _shelves.add(new Shelf(i,Location.Storage,1000));
+    }
 
     @Override
     public int getID() {
@@ -63,12 +72,12 @@ public class StoreController implements iStoreController{
     }
 
     @Override
-    public Report getWeeklyReport(int... c) {
+    public Report getWeeklyReport(List<Integer> c) {
         log.debug("got inside getWeeklyReport(int... c) Method.");
         Dictionary<Integer,Dictionary<Integer,Tuple<Integer,Boolean>>> output=new Hashtable<>();
-        for (int i=0; i<c.length; i++ )
+        for (int i=0; i<c.size(); i++ )
         {
-            ProductType p=checkIDProductTypeExist(c[i]);
+            ProductType p=checkIDProductTypeExist(c.get(i));
             output.put(p.get_typeID(), _products.get(p).getWeeklyReport());
         }
         return new WeeklyReport(_storeID,output);
@@ -95,6 +104,12 @@ public class StoreController implements iStoreController{
             ic.get(i).getWasteReport(list);
         }
         return new WasteReport(_storeID,list);
+    }
+
+    @Override
+    public void setList(Dictionary<ProductType, InstanceController> dictionary) {
+        log.debug("setList(Dictionary<ProductType, InstanceController> dictionary)");
+        _products=dictionary;
     }
 
     @Override
@@ -145,10 +160,10 @@ public class StoreController implements iStoreController{
     }
 
     @Override
-    public void addProductType(String name, int minAmount, float basePrice, String producer, int supID, int category) {
-        log.debug(String.format("got inside addProductType(String name, int minAmount," +
-                        " float basePrice, String producer, int supID, int category) Method  with: ?, ?, ?, ?, ?, ?",
-                name,minAmount,basePrice,producer,supID,category));
+    public void addProductType(String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category) {
+        log.debug(String.format("addProductType(String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category)" +
+                        " Method  with: ?, ?, ?, ?, ?, ?, ?",
+                name,minAmount,basePrice,salePrice,producer,supID,category));
         checkValidNameProductType(name);
         checkValidCategory(category);
         int typeID=++_typeCounter;
@@ -276,9 +291,9 @@ public class StoreController implements iStoreController{
     }
 
     @Override
-    public void editProductType(int id,String name, int minAmount, float basePrice, String producer, int supID, int category) {
-        log.debug(String.format("got inside editProductType(int id,String name, int minAmount, float basePrice," +
-                " String producer, int supID, int category) Method with: ?,?, ?,?,?,?,?",id,name,minAmount,basePrice,producer,supID,category));
+    public void editProductType(int id, String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category) {
+        log.debug(String.format("editProductType(int id, String name, int minAmount, float basePrice, float salePrice" +
+                ", String producer, int supID, int category) Method with: ?,?, ?,?,?,?,?",id,name,minAmount,basePrice,producer,supID,category));
         checkValidCategory(category);
         checkIDProductTypeExist(id).edit(name,minAmount,basePrice,producer,supID,category);
     }
@@ -472,6 +487,12 @@ public class StoreController implements iStoreController{
         {
             Shelf s=_shelves.get(i);
             if (s.get_typeID()==typeID && !s.isFull())
+                return s;
+        }
+        for (int i=0 ;i<_numberOfShelves; i++)
+        {
+            Shelf s=_shelves.get(i);
+            if (s.get_typeID()==0 && !s.isFull())
                 return s;
         }
         String s=String.format("does not have a place to newProduct of type #?",typeID);

@@ -40,6 +40,12 @@ public class WeeklyReport implements Report{
         log.debug("getDate()");
         return _date;
     }
+
+    @Override
+    public int sizeOfList() {
+        return _list.size();
+    }
+
     @Override
     public String toString(){
         return _list.toString();
