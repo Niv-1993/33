@@ -186,15 +186,15 @@ public class SupplierController{
 
     public Item addItem(int supplierBN, String category ,double price) throws Exception {
         Item item;
-        try {
-            suppliers.get(supplierBN);
-        }catch (Exception e){
+        SupplierCard s = suppliers.get(supplierBN);
+        if (s == null)
             throw new Exception("supplier BN is not exist");
-        }
-        try {
-            item = suppliers.get(supplierBN).addItem(category, numOfItems , price);
-        }catch (Exception e){
-            throw new Exception(e);
+        else {
+            try {
+                item = suppliers.get(supplierBN).addItem(category, numOfItems, price);
+            } catch (Exception e) {
+                throw new Exception(e);
+            }
         }
         numOfItems++;
         return item;
