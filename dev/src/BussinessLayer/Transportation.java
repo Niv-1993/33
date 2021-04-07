@@ -1,10 +1,12 @@
 package BussinessLayer;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import enums.Area;
 import  enums.Pair;
 
 //yuval
@@ -15,10 +17,12 @@ public class Transportation {
     private Driver driver;
     private Truck truck;
     //ask if they call this item or product?
-    private HashMap<Branch, List<Pair<Item,Integer>>> deliveryItems;
+    private HashMap<Branch, List<Pair<Item, Integer>>> deliveryItems;
     private int weight;
+    private ShippingArea shippingArea;
     private List<Supplier> suppliers;
-    public Transportation(long id){
+
+    public Transportation(long id) {
         this.id = id;
         date = null;
         leavingTime = null;
@@ -27,16 +31,17 @@ public class Transportation {
         deliveryItems = null;
         suppliers = null;
         weight = -1;
-
+        shippingArea = null;
     }
-    public Transportation(long id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, int weight, HashMap<Branch,List<Pair<Item,Integer>>> deliveryItems, List<Supplier> suppliers){
-        this.date=date;
-        this.deliveryItems=deliveryItems;
-        this.id=id;
-        this.driver=driver;
-        this.truck=truck;
-        this.weight=weight;
-        this.leavingTime=leavingTime;
+
+    public Transportation(long id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, int weight, HashMap<Branch, List<Pair<Item, Integer>>> deliveryItems, List<Supplier> suppliers) {
+        this.date = date;
+        this.deliveryItems = deliveryItems;
+        this.id = id;
+        this.driver = driver;
+        this.truck = truck;
+        this.weight = weight;
+        this.leavingTime = leavingTime;
         this.suppliers = suppliers;
     }
 
@@ -44,21 +49,56 @@ public class Transportation {
         return suppliers;
     }
 
-    public long getId() { return id; }
-    public LocalDate getDate() { return date; }
-    public Driver getDriver() { return driver; }
-    public LocalTime getLeavingTime() { return leavingTime; }
+    public ShippingArea getShippingArea() {
+        return shippingArea;
+    }
+
+    public void setShippingArea(ShippingArea shippingArea) {
+        this.shippingArea = shippingArea;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public LocalTime getLeavingTime() {
+        return leavingTime;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
 
     public void setDate(LocalDate date) {
-        if(!LocalDate.now().isEqual(date)){
-            throw new IllegalArgumentException("the date is: "+ LocalDate.now()+" but u set: " + date + "to be the date.");
+        if (!LocalDate.now().isEqual(date)) {
+            throw new IllegalArgumentException("the date is: " + LocalDate.now() + " but u set: " + date + "to be the date.");
         }
         this.date = date;
     }
-    public void setDeliveryItems(HashMap<Branch,List<Pair<Item,Integer>>> deliveryItems) { this.deliveryItems = deliveryItems; }
+
+    public void setDeliveryItems(HashMap<Branch, List<Pair<Item, Integer>>> deliveryItems) {
+        List<Branch> branches = new ArrayList<>(deliveryItems.keySet());
+        List<Branch> noSameArea = new ArrayList<>();
+        boolean exp = false;
+        for(Branch b: branches){
+            if(!b.getShippingArea().equals(shippingArea)){
+                noSameArea.add(b);
+                exp = true;
+            }
+        }
+        if(exp){
+            throw new IllegalArgumentException(noSameArea.toString() + "not in " + shippingArea .toString());
+        }
+        this.deliveryItems = deliveryItems;
+    }
 
     public void setSuppliers(List<Supplier> suppliers) {
         this.suppliers = suppliers;
@@ -66,16 +106,25 @@ public class Transportation {
 
     public void setDriver(Driver driver) {
         //not expected but just in case
-        if(truck == null){
-            throw new IllegalArgumentException ("Please choose a truck before u choose a Driver");
-        }else if(!(driver.getLicense()).equals(truck.getLicense())){
+        if (truck == null) {
+            throw new IllegalArgumentException("Please choose a truck before u choose a Driver");
+        } else if (!(driver.getLicense()).equals(truck.getLicense())) {
             throw new IllegalArgumentException("ur driver license is:" + driver.getLicense() + "but ur truck license is: " + truck.getNetWeight());
-        }else {
+        } else {
             this.driver = driver;
         }
     }
-    public void setId(int id) { this.id = id; }
-    public void setLeavingTime(LocalTime leavingTime) { this.leavingTime = leavingTime; }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setLeavingTime(LocalTime leavingTime) {
+        if ((LocalTime.now().compareTo(leavingTime) < 0) && date == LocalDate.now()) {
+            throw new IllegalArgumentException("u choose incorrect living time.");
+        }
+        this.leavingTime = leavingTime;
+    }
 
 
     public void setWeight(int weight){
@@ -102,11 +151,11 @@ public class Transportation {
         return truck;
     }
 
-    public List<Pair<Item,Integer>> getSiteItems(Site site){
-        if(!deliveryItems.containsKey(site)){
-            throw new IllegalArgumentException("No items for this Site.");
+    public List<Pair<Item,Integer>> getSiteItems(Branch b){
+        if(!deliveryItems.containsKey(b)){
+            throw new IllegalArgumentException("Site " + b + "does not in this delivery");
         }
-        return deliveryItems.get(site);
+        return deliveryItems.get(b);
     }
 
     private boolean checkSameArea(List<Site> sites){
