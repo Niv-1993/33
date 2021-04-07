@@ -22,8 +22,13 @@ public class TempConstraint extends Constraint {
     //--------------------------------------methods----------------------------------
 
     @Override
-    boolean relevant(LocalDate date, ShiftType shiftType) {
+    public boolean relevant(LocalDate date, ShiftType shiftType) {
         return ((this.date.equals(date)) && (this.shiftType.equals(shiftType)));
+    }
+
+    @Override
+    public String getStringDate() {
+        return date.toString();
     }
 
     public LocalDate getDate() {

@@ -20,8 +20,13 @@ public class ConstConstraint extends Constraint {
     //--------------------------------------methods----------------------------------
 
     @Override
-    boolean relevant(LocalDate date, ShiftType shiftType) {
+    public boolean relevant(LocalDate date, ShiftType shiftType) {
         return ((date.getDayOfWeek().equals(day)) && ((this.shiftType).equals(shiftType)));
+    }
+
+    @Override
+    public String getStringDate() {
+        return "Every "+ day;
     }
 
 

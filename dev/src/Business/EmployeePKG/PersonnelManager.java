@@ -139,7 +139,8 @@ public class PersonnelManager extends Employee {
         log.debug("entered add role to employee function with role: "+role.name()+" in EID: "+eid);
         checkWorking(eid,employees);
         //UPDATE DATABASE
-        employees.get(eid).getRole().add(role);
+        if(!employees.get(eid).getRole().contains(role))
+            employees.get(eid).getRole().add(role);
         log.debug("successfully added role: "+role.name()+"to employee: "+eid);
     }
 
@@ -166,18 +167,18 @@ public class PersonnelManager extends Employee {
     }
 
     @Override
-    public List<Shift> getShiftsAndEmployees(ShiftController shiftController) {
+    public List<Shift> getShifts(LocalDate until, ShiftController shiftController) {
         log.debug("forwarding command to shiftPKG");
-        List<Shift> shifts = shiftController.getShiftsAndEmployees();
+        List<Shift> shifts = shiftController.getShifts(until);
         log.debug("returned to EmployeePKG successfully");
         return shifts;
     }
 
 
     @Override
-    public void removeEmpFromShift(int SID, int removeEID, ShiftController shiftController) throws Exception {
+    public void removeEmpFromShift(int SID, int removeEID,List<RoleType> roles, ShiftController shiftController) throws Exception {
         log.debug("forwarding command to shiftPKG");
-        shiftController.removeEmpFromShift(SID, removeEID);
+        shiftController.removeEmpFromShift(SID, removeEID,roles);
         log.debug("returned to EmployeePKG successfully");
     }
 
@@ -192,13 +193,6 @@ public class PersonnelManager extends Employee {
     public void updateAmountRole(int SID, RoleType role, int newAmount, ShiftController shiftController) throws Exception {
         log.debug("forwarding command to shiftPKG");
         shiftController.updateAmountRole(SID, role, newAmount);
-        log.debug("returned to EmployeePKG successfully");
-    }
-
-    @Override
-    public void defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaults, ShiftController shiftController) throws Exception {
-        log.debug("forwarding command to shiftPKG");
-        shiftController.defaultShifts(defaults);
         log.debug("returned to EmployeePKG successfully");
     }
 

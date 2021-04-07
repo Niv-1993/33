@@ -21,7 +21,8 @@ public abstract class Constraint {
     }
     //---------------------------------methods----------------------------
 
-    abstract boolean relevant(LocalDate date, ShiftType shiftType);
+    public abstract boolean relevant(LocalDate date, ShiftType shiftType);
+    public abstract String getStringDate();
 
     public void updateReason(String newReason){
         reason = newReason;

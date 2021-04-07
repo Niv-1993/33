@@ -68,4 +68,8 @@ public class TermsOfEmployment {
             throw new Exception("Invalid terms of employment");
         }
     }
+
+    public int[] toArr() {
+        return new int[]{educationFun,daysOff,sickDays};
+    }
 }

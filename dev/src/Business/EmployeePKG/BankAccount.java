@@ -70,4 +70,7 @@ public class BankAccount {
             throw new Exception("Invalid bank details");
         }
     }
+    public int[] toArr(){
+        return new int[]{accountNum,bankBranch,bankID};
+    }
 }

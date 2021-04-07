@@ -6,17 +6,13 @@ import Business.Type.ShiftType;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.log4j.Logger;
 
 
 public class ShiftController {
-    final static Logger log = Logger.getLogger(ShiftController.class);
-
+   private final static Logger log = Logger.getLogger(ShiftController.class);
 
     //-------------------------------------fields------------------------------------
     private Map<Integer, Shift> shifts;
@@ -56,6 +52,7 @@ public class ShiftController {
 
     public Constraint addConstraint(int EID, LocalDate c_date, ShiftType shiftType, String reason) throws Exception {
         //create constraint and add to constraints field
+        if(c_date.isBefore(LocalDate.now())) throw new Exception("Invalid date - date is from the past");
         Shift s = getShiftByDate(c_date, shiftType);
         if (s != null) {
             if (s.WasSelfMake()) {
@@ -119,9 +116,14 @@ public class ShiftController {
     }
 
     //when add new employee to the branch
-    public void addToOptionals(int EID, String name, List<RoleType> role) {
+    public void addToOptionals(int EID, String name, RoleType role) {
         for (Map.Entry<Integer, Shift> s : shifts.entrySet()) {
             s.getValue().addToOptionals(EID, name, role);
+        }
+    }
+    public void updateName(int EID, List<RoleType> roles, String newName){
+        for (Map.Entry<Integer,Shift> s : shifts.entrySet()){
+            s.getValue().updateName(EID,roles,newName);
         }
     }
 
@@ -137,29 +139,61 @@ public class ShiftController {
             checkIfAmountNegative(e.getValue());
         }
         this.defaultShifts = defaultShifts;
+
         log.debug("default shifts defined");
     }
 
     //assume that sunday-thursday will be default shifts and on friday only morning shift.
     public void createWeekShifts(Map<RoleType, List<String[]>> optionals) throws Exception {
         LocalDate date = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
+        List<Shift> shifts = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             for (Map.Entry<ShiftType, Map<RoleType, Integer>> m : defaultShifts.entrySet()) {
                 ShiftType shiftType = m.getKey();
-                createShift(defaultShifts.get(shiftType), date.plusDays(0), shiftType, optionals);  // default shift
+                if(shiftAlreadyCreated(date.plusDays(i),shiftType)) continue;
+                Shift s= createShift(defaultShifts.get(shiftType), date.plusDays(i), shiftType, optionals);  // default shift
+                if(!s.HasShiftManager())
+                    shifts.add(s);
             }
         }
-        createShift(defaultShifts.get(ShiftType.Morning), date.plusDays(5), ShiftType.Morning, optionals);  // default shift
+       Shift friday =  createShift(defaultShifts.get(ShiftType.Morning), date.plusDays(5), ShiftType.Morning, optionals);  // default shift
+        if(!friday.HasShiftManager())
+            shifts.add(friday);
+        if(!shifts.isEmpty()){
+            StringBuilder s =new StringBuilder();
+            shifts.forEach(shift -> {
+                s.append("Shift Date: ").append(shift.getDate()).append("    Type: ").append(shift.getShiftType()).append("\n");
+            });
+            s.append("*** Do not have Shift Managers ***");
+            throw new Exception(s.toString());
+        }
     }
 
+    private boolean shiftAlreadyCreated(LocalDate date, ShiftType shiftType) {
+        for (Map.Entry<Integer,Shift> shift : shifts.entrySet()){
+            if(shift.getValue().getDate().equals(date) && shift.getValue().getShiftType().equals(shiftType))
+                return true;
+        }
+        return false;
+    }
 
-   /* public Shift createDefaultShift(LocalDate date, ShiftType shiftType, Map<RoleType, List<String[]>> optionals) throws Exception {
-        return createShift(defaultShifts.get(shiftType), date, shiftType, optionals);
-    }*/
+    private Map<RoleType, List<String[]>> deepCopy(Map<RoleType, List<String[]>> optionals) {
+        Map<RoleType, List<String[]>> copy = new HashMap<>();
+        optionals.forEach((roleType, strings) -> {
+            List<String[]> cloneL = new ArrayList<>();
+            strings.forEach(s ->{
+                String[] clonePair = new String[]{s[0], s[1]};
+                cloneL.add(clonePair);
+            } );
+            copy.put(roleType,cloneL);
+        });
+        return copy;
+    }
 
 
     public Shift createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<String[]>> optionals) throws Exception {
         //delete from optionals by constraints
+        optionals = deepCopy(optionals);
         checkIfAmountNegative(rolesAmount);
         for (Map.Entry<Integer, Constraint> c : constraints.entrySet()) {
             if (c.getValue().relevant(date, shiftType))
@@ -171,6 +205,10 @@ public class ShiftController {
             }
         }
         Shift s = new Shift(shiftCounter++, rolesAmount, optionals, date, shiftType);
+        if(s.HasShiftManager()) {
+            List<Integer> shiftManager = s.insertShiftManager();
+            createBuildConstraints(shiftManager, shiftType, date);  //creat build constraint for shift manager
+        }
         shifts.put(s.getSID(), s);
         return s;
     }
@@ -187,20 +225,16 @@ public class ShiftController {
 
     private boolean shiftIsNextWeek(LocalDate shiftDate) {   //shift date is between next sunday to next saturday
         LocalDate nextSunday = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
-        LocalDate nextSaturday = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
-        return !shiftDate.isAfter(nextSaturday) && !shiftDate.isBefore(nextSunday);
+        LocalDate nextSaturday = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SATURDAY)).plusWeeks(1);
+        return !(shiftDate.isBefore(nextSunday) || shiftDate.isAfter(nextSaturday));
     }
 
     //remove emp from every shift's optionals
     private void RemoveEmpFromOptionals(int EID, Map<RoleType, List<String[]>> optionals) {
         for (Map.Entry<RoleType, List<String[]>> e : optionals.entrySet()) {
             List<String[]> l = e.getValue();
-            if (l != null) {
-                for (String[] arr : l) {
-                    if (Integer.parseInt(arr[0]) == EID) {
-                        l.remove(arr);
-                    }
-                }
+            if (!e.getValue().isEmpty()) {
+                l.removeIf(arr -> Integer.parseInt(arr[0]) == EID);
             }
         }
         log.debug("EID: " + EID + " remove from optionals");
@@ -214,10 +248,10 @@ public class ShiftController {
         return false;
     }
 
-    public void removeEmpFromShift(int SID, int EID) throws Exception {
+    public void removeEmpFromShift(int SID, int EID, List<RoleType> roles) throws Exception {
         shiftIsExsist(SID);
         Shift s = shifts.get(SID);
-        s.removeEmpFromShift(EID);
+        s.removeEmpFromShift(EID,roles);
         for (Map.Entry<Integer, TempConstraint> e : buildShiftConstraints.entrySet()) {   //remove buildConstraint
             TempConstraint c = e.getValue();
             if (c.getEID() == EID && c.getDate().equals(s.getDate())) {
@@ -238,11 +272,17 @@ public class ShiftController {
         (shifts.get(SID)).updateRolesAmount(role, newAmount);
     }
 
-    public List<Shift> getShiftsAndEmployees() {
-        return new ArrayList<>(shifts.values());
+    public List<Shift> getShifts(LocalDate until) {
+        ArrayList<Shift> filterShifts = new ArrayList<>();
+        for(Map.Entry<Integer,Shift> m : shifts.entrySet()){
+            if (m.getValue().getDate().isAfter(LocalDate.now()) && m.getValue().getDate().isBefore(until)) {
+                filterShifts.add(m.getValue());
+            }
+        }
+        return filterShifts;
     }
 
-    public List<Shift> getOnlyEmployeeShifts(int EID) {
+    public List<Shift> getMyShifts(int EID) {
         List<Shift> list = new ArrayList<>();
         for (Map.Entry<Integer, Shift> s : shifts.entrySet()) {
             if (s.getValue().getEmployees().get(EID) != null)  //if EID is in this Shift
@@ -265,7 +305,7 @@ public class ShiftController {
         Constraint c = constraints.get(CID);
         if (c == null) {
             log.error("CID: " + CID + " is not exist");
-            throw new Exception("Not legal CID: " + CID);
+            throw new Exception("Not legal Constraint ID: " + CID);
         }
     }
 
@@ -295,6 +335,10 @@ public class ShiftController {
                 log.error("Role amount for role: " + e.getKey() + " is negative: " + e.getValue());
                 throw new Exception("Role amount for role: " + e.getKey() + " is negative");
             }
+            if (e.getKey().equals(RoleType.ShiftManager) && e.getValue()!=1) {
+                log.error("Shift Manager amount is not legal: "+ e.getValue());
+                throw new Exception("Shift Manager amount is not legal: "+ e.getValue());
+            }
 
         }
     }
@@ -316,5 +360,9 @@ public class ShiftController {
 
     public Map<ShiftType, Map<RoleType, Integer>> getDefaultShifts() {
         return defaultShifts;
+    }
+
+    public boolean hasDefaultShifts() {
+        return !defaultShifts.isEmpty();
     }
 }

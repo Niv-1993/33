@@ -429,8 +429,8 @@ public class EmployeeTest {
             Shift shiftMock = mock(Shift.class);
             when(shiftController.createShift(new HashMap<>(), LocalDate.of(2021, 8, 20), ShiftType.Morning, new HashMap<>())).thenReturn(shiftMock);
             Shift shift = personnelManager.createShift(new HashMap<>(), LocalDate.of(2021, 8, 20), ShiftType.Morning, new HashMap<>(), shiftController);
-            when(shiftController.getShiftsAndEmployees()).thenReturn(new ArrayList<>());
-            List<Shift> list = personnelManager.getShiftsAndEmployees(shiftController);
+            when(shiftController.getShifts(LocalDate.now().plusWeeks(2))).thenReturn(new ArrayList<>());
+            List<Shift> list = personnelManager.getShifts(LocalDate.now().plusWeeks(2),shiftController);
             list.add(shiftMock);
             when(list.get(0).getDate()).thenReturn(LocalDate.of(2021,8,20));
             when(list.get(0).getShiftType()).thenReturn(ShiftType.Morning);
@@ -455,7 +455,7 @@ public class EmployeeTest {
             Shift s = mock(Shift.class);
             Map<Integer, String[]> map_mock = mock(s.getEmployees().getClass());
             when(map_mock.containsKey(driver.getEID())).thenReturn(false);
-            personnelManager.removeEmpFromShift(s.getSID(), driver.getEID(), shiftController);
+            personnelManager.removeEmpFromShift(s.getSID(), driver.getEID(), employees.get(driver.getEID()).getRole(), shiftController);
             Assert.assertFalse(s.getEmployees().containsKey(driver.getEID()));
         } catch (Exception e) {
             Assert.fail();
@@ -465,7 +465,7 @@ public class EmployeeTest {
     public void removeEmpFromShift2() {
         try {
             Shift s = mock(Shift.class);
-            driver.removeEmpFromShift(s.getSID(), driver.getEID(), shiftController);
+            driver.removeEmpFromShift(s.getSID(), driver.getEID(), employees.get(driver.getEID()).getRole(), shiftController);
             Assert.fail();
         } catch (Exception e) {}
     }

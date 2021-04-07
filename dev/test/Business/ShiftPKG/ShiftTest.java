@@ -7,9 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -24,8 +22,13 @@ public class ShiftTest {
         HashMap<RoleType, List<String[]>> optionals = new HashMap<>();
         List<String[]> l = new LinkedList<>();
         l.add(new String[]{String.valueOf(312), "Dor"});
-        optionals.put(RoleType.Cashier, l);
-        optionals.put(RoleType.Sorter,null);
+        EnumSet<RoleType> allRoles = EnumSet.allOf(RoleType.class);
+        for (RoleType role : allRoles) {
+            optionals.put(role, new ArrayList<>());
+        }
+        optionals.put(RoleType.Cashier,l);
+
+
         s = new Shift(0,rolesAmount, optionals, LocalDate.of(2023, 10, 10), ShiftType.Morning);
     }
 
@@ -36,12 +39,8 @@ public class ShiftTest {
     @Test
     public void self_make1() {
         try {
-            List<RoleType> list = new LinkedList<>();
-            list.add(RoleType.Cashier);
-            List<RoleType> list2 = new LinkedList<>();
-            list2.add(RoleType.Sorter);
-            s.addToOptionals(333, "niv", list);
-            s.addToOptionals(123, "ron", list2);
+            s.addToOptionals(333, "niv", RoleType.Cashier);
+            s.addToOptionals(123, "ron", RoleType.Sorter);
             s.self_make();
             boolean sorter = s.getEmployees().get(123)[0].equals(RoleType.Sorter.name());
             boolean cashier1 = s.getEmployees().get(333)[0].equals(RoleType.Cashier.name());
@@ -55,12 +54,8 @@ public class ShiftTest {
     @Test
     public void self_make2Complete() {
         try {
-            List<RoleType> list = new LinkedList<>();
-            list.add(RoleType.Cashier);
-            List<RoleType> list2 = new LinkedList<>();
-            list2.add(RoleType.Sorter);
-            s.addToOptionals(333, "niv", list);
-            s.addToOptionals(123, "ron", list2);
+            s.addToOptionals(333, "niv", RoleType.Cashier);
+            s.addToOptionals(123, "ron", RoleType.Sorter);
             s.self_make();
             assertTrue(s.getComplete());
         } catch (Exception e) {
@@ -72,9 +67,7 @@ public class ShiftTest {
     @Test
     public void self_make3() {
         try {
-            List<RoleType> list = new LinkedList<>();
-            list.add(RoleType.Cashier);
-            s.addToOptionals(333, "niv", list);
+            s.addToOptionals(333, "niv", RoleType.Cashier);
             s.self_make();
             assertFalse(s.getComplete());
         } catch (Exception e) {
@@ -106,7 +99,9 @@ public class ShiftTest {
     public void removeEmpFromShift1() {
         try {
             s.addEmpToShift(312, RoleType.Cashier, "Dor");
-            s.removeEmpFromShift(312);
+            List<RoleType> list = new LinkedList<>();
+            list.add(RoleType.Cashier);
+            s.removeEmpFromShift(312, list);
             assertTrue(s.getEmployees().isEmpty());
         } catch (Exception e) {
             fail();
@@ -117,7 +112,9 @@ public class ShiftTest {
     public void removeEmpFromShift2() {
         try {
             s.addEmpToShift(312, RoleType.Cashier, "Dor");
-            s.removeEmpFromShift(31);
+            List<RoleType> list = new LinkedList<>();
+            list.add(RoleType.Cashier);
+            s.removeEmpFromShift(31, list);
             fail();  //31 not in this shift
         } catch (Exception ignored) {
         }
@@ -147,9 +144,7 @@ public class ShiftTest {
     @Test
     public void addToOptionals() {
         try {
-            List<RoleType> l = new LinkedList<>();
-            l.add(RoleType.Sorter);
-            String[] arr = s.addToOptionals(313, "niv", l);
+            String[] arr = s.addToOptionals(313, "niv", RoleType.Sorter);
             assertTrue(s.getOptionals().get(RoleType.Sorter).contains(arr));
         } catch (Exception e) {
             fail();

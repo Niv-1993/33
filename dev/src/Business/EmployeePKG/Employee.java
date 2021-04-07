@@ -83,9 +83,9 @@ public abstract class Employee {
         log.debug("successfully updated shift type in constraint CID: " + CID);
     }
 
-    public List<Shift> getOnlyEmployeeShifts(ShiftController shiftController) {
+    public List<Shift> getMyShifts(ShiftController shiftController) {
         log.debug("forwarding command to shiftPKG");
-        List<Shift> l = shiftController.getOnlyEmployeeShifts(getEID());
+        List<Shift> l = shiftController.getMyShifts(getEID());
         log.debug("returned to EmployeePKG successfully");
         return l;
     }
@@ -100,6 +100,8 @@ public abstract class Employee {
     public boolean isQualified(RoleType role) {
         return this.role.contains(role);
     }
+
+    public List<Constraint> getMyConstraints(ShiftController shiftController) {return shiftController.getOnlyEmployeeConstraints(EID);}
 
     /**
      * Abstract Functions for permissions management
@@ -126,19 +128,18 @@ public abstract class Employee {
 
     public abstract Shift createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<String[]>> employees, ShiftController shiftController) throws Exception;
 
-    public abstract List<Shift> getShiftsAndEmployees(ShiftController shiftController) throws Exception;
+    public abstract List<Shift> getShifts(LocalDate until, ShiftController shiftController) throws Exception;
 
-    public abstract void removeEmpFromShift(int SID, int removeEID, ShiftController shiftController) throws Exception;
+    public abstract void removeEmpFromShift(int SID, int removeEID, List<RoleType>roles, ShiftController shiftController) throws Exception;
 
     public abstract void addEmpToShift(int SID, int addEID, RoleType role, String name, ShiftController shiftController) throws Exception;
 
     public abstract void updateAmountRole(int SID, RoleType role, int newAmount, ShiftController shiftController) throws Exception;
 
-    public abstract void defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaults, ShiftController shiftController) throws Exception;
-
     public abstract void addRoleToEmployee(int eid, RoleType role,Map<Integer, Employee> employees) throws Exception;
     public abstract void createWeekShifts(Map<RoleType, List<String[]>> optionals, ShiftController shiftController) throws Exception;
     public abstract void selfMakeWeekShifts(ShiftController shiftController) throws Exception;
+
     /**
      * Getters/Setters
      */
@@ -195,6 +196,7 @@ public abstract class Employee {
 
     protected void checkName(String name) throws Exception {
         log.debug("checking name alphabetical");
+        name = name.replaceAll("\\s+","");
         boolean isValid = ((name != null) && (!name.equals("")) && (name.matches("^[a-zA-Z]*$")));
         if (!isValid) {
             log.error("name " + name + " is not alphabetical");
@@ -208,7 +210,6 @@ public abstract class Employee {
         }
         log.debug("checked that employee is working in this branch - success");
     }
-
 
 
 }

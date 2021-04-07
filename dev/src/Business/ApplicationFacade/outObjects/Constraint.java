@@ -7,17 +7,22 @@ public class Constraint {
     public int EID;
     public String shiftType;
     public String reason;
+    public String date;
 
-    public Constraint(int CID, int EID, String reason, ShiftType shiftType){
-        this.CID = CID;
-        this.EID = EID;
-        this.reason = reason;
-        this.shiftType = shiftType.name();
-    }
+
     public Constraint(Business.ShiftPKG.Constraint c){
         this.CID = c.getCID();
         this.EID = c.getEID();
         this.reason = c.getReason();
         this.shiftType = c.getShiftType().name();
+        this.date = c.getStringDate();
+    }
+    @Override
+    public String toString() {
+        return
+                "Constraint ID: " + CID +
+                 ", Date: " + date +
+                ", ShiftType: '" + shiftType + '\'' +
+                ", Reason: '" + reason + '\'';
     }
 }

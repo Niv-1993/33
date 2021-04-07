@@ -15,6 +15,7 @@ import java.util.Map;
 public class EmployeeService implements iEmployeeService {
     private EmployeeController employeeController;
     final static Logger log = Logger.getLogger(EmployeeService.class);
+
     public EmployeeService() {
         this.employeeController = new EmployeeController();
     }
@@ -30,7 +31,7 @@ public class EmployeeService implements iEmployeeService {
     public Response Login(int EID, String role) {
         try {
             log.debug("login request service");
-            employeeController.Login(EID,role);
+            employeeController.Login(EID, role);
             log.debug("successful response from service");
             return new Response();
         } catch (Exception e) {
@@ -50,7 +51,7 @@ public class EmployeeService implements iEmployeeService {
             employeeController.Logout();
             log.debug("successful response from service");
             return new Response();
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
             return new Response(e.getMessage());
         }
@@ -70,10 +71,10 @@ public class EmployeeService implements iEmployeeService {
     public Response createBranch(String code, int newEID, String name, int[] bankDetails, int salary, int[] terms) {
         try {
             log.debug("create a new branch service");
-            employeeController.createBranch(code,newEID,name,bankDetails,salary,terms);
+            employeeController.createBranch(code, newEID, name, bankDetails, salary, terms);
             log.debug("successful response from service");
             return new Response();
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
             return new Response(e.getMessage());
         }
@@ -197,7 +198,7 @@ public class EmployeeService implements iEmployeeService {
         try {
             log.debug("add a new employee service");
             Business.EmployeePKG.Employee emp = employeeController.addEmployee(newEID, name, bankDetails, salary, role, startWorkDate, terms);
-            Employee employee = new Employee(emp.getEID(),emp.getName(), RoleType.valueOf(role),emp.getBankAccount(),emp.getSalary(),emp.getTermsOfEmployment());
+            Employee employee = new Employee(emp.getEID(), emp.getName(), emp.getRole(), emp.getBankAccount(), emp.getSalary(), emp.getTermsOfEmployment());
             log.debug("successful response data from service");
             return new ResponseData<>(employee);
         } catch (Exception e) {
@@ -397,10 +398,9 @@ public class EmployeeService implements iEmployeeService {
     public ResponseData<Shift> createShift(Map<String, Integer> rolesAmount, LocalDate date, String shiftType) {
         try {
             log.debug("create new shift service");
-            Business.ShiftPKG.Shift s = employeeController.createShift(rolesAmount, date, ShiftType.valueOf(shiftType));
-            Shift shift = new Shift(s.getSID(),s.getDate(),s.getShiftType(),s.getEmployees());
+            Shift s = new Shift(employeeController.createShift(rolesAmount, date, ShiftType.valueOf(shiftType)));
             log.debug("successful response from service");
-            return new ResponseData<>(shift);
+            return new ResponseData<>(s);
         } catch (Exception e) {
             log.error(e.getMessage());
             return new ResponseData<>(e.getMessage());
@@ -420,7 +420,7 @@ public class EmployeeService implements iEmployeeService {
             employeeController.defaultShifts(defaultRolesAmount);
             log.debug("successful response from service");
             return new Response();
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
             return new Response(e.getMessage());
         }
@@ -438,7 +438,7 @@ public class EmployeeService implements iEmployeeService {
             employeeController.createWeekShifts();
             log.debug("successful response from service");
             return new Response();
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
             return new Response(e.getMessage());
         }
@@ -456,7 +456,7 @@ public class EmployeeService implements iEmployeeService {
             employeeController.selfMakeWeekShifts();
             log.debug("successful response from service");
             return new Response();
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
             return new Response(e.getMessage());
         }
@@ -473,7 +473,7 @@ public class EmployeeService implements iEmployeeService {
         try {
             log.debug("get employee details service");
             Business.EmployeePKG.Employee emp = employeeController.getEmployeeDetails();
-            Employee employee = new Employee(emp.getEID(), emp.getName(), employeeController.getCurrConnectedEmpRole(), emp.getBankAccount(),emp.getSalary(), emp.getTermsOfEmployment());
+            Employee employee = new Employee(emp.getEID(), emp.getName(), emp.getRole(), emp.getBankAccount(), emp.getSalary(), emp.getTermsOfEmployment());
             log.debug("successful response from service");
             return new ResponseData<>(employee);
         } catch (Exception e) {
@@ -489,10 +489,10 @@ public class EmployeeService implements iEmployeeService {
      * @return A response object with a value set to shift containing the employees in it,
      * otherwise the response should contain a error message in case of an error
      */
-    public ResponseData<List<Shift>> getShiftsAndEmployees() {
+    public ResponseData<List<Shift>> getShifts(LocalDate until) {
         try {
             log.debug("get all shifts and employee service");
-            List<Shift> shifts = convertShifts(employeeController.getShiftsAndEmployees());
+            List<Shift> shifts = convertShifts(employeeController.getShifts(until));
             log.debug("successful response from service");
             return new ResponseData<>(shifts);
         } catch (Exception e) {
@@ -564,20 +564,17 @@ public class EmployeeService implements iEmployeeService {
     }
 
     /**
-     * Gets the currently connected employee his/er's shifts and constraints
+     * Gets the currently connected employee his/er's shifts
      *
      * @return A response object with a value set to employee containing the details,
      * otherwise the response should contain a error message in case of an error
      */
-    public ResponseData<Employee> getOnlyEmployeeShiftsAndConstraints() {
+    public ResponseData<List<Shift>> getMyShifts() {
         try {
-            log.debug("get current employee's shifts and constraints service");
-            List<Business.ShiftPKG.Shift> l = employeeController.getOnlyEmployeeShifts();
-            Employee emp = new Employee(employeeController.getCurrConnectedEmpID(), employeeController.getCurrentConEmpName(),
-                    employeeController.getCurrConnectedEmpRole(), convertShifts(employeeController.getOnlyEmployeeShifts()),
-                    convertConstrains(employeeController.getOnlyEmployeeConstraints()));
+            log.debug("get current employee's shifts service");
+            List<Shift> l = convertShifts(employeeController.getMyShifts());
             log.debug("successful response from service");
-            return new ResponseData<>(emp);
+            return new ResponseData<>(l);
         } catch (Exception e) {
             log.error(e.getMessage());
             return new ResponseData<>(e.getMessage());
@@ -587,6 +584,7 @@ public class EmployeeService implements iEmployeeService {
     /**
      * Adds to a specific employee a role to his list
      * Note : Only the personnel manager is allowed to use this functionality
+     *
      * @param EID  the identifier of the employee to add the role
      * @param role the role
      * @return
@@ -594,10 +592,10 @@ public class EmployeeService implements iEmployeeService {
     public Response addRoleToEmployee(int EID, String role) {
         try {
             log.debug("add role to employee service");
-            employeeController.addRoleToEmployee(EID,role);
+            employeeController.addRoleToEmployee(EID, role);
             log.debug("successful response from service");
             return new Response();
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
             return new Response(e.getMessage());
         }
@@ -617,11 +615,115 @@ public class EmployeeService implements iEmployeeService {
             employeeController.loadData(BID);
             log.debug("successful response from service");
             return new Response();
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
             return new Response(e.getMessage());
         }
     }
+
+    /**
+     * gets all brnaches available from database
+     *
+     * @return A response String. The response should contain a error message in case of an error
+     */
+    public ResponseData<List<String>> getBranches() {
+        try {
+            log.debug("fetching all branches from database");
+            List<String> b = employeeController.getBranches();
+            log.debug("successfully got all branches list");
+            return new ResponseData<>(b);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseData<>(e.getMessage());
+        }
+    }
+
+    /**
+     * gets all shift types
+     *
+     * @return A response String. The response should contain a error message in case of an error
+     */
+    public ResponseData<List<String>> getShiftTypes() {
+        try {
+            log.debug("fetching all shift types");
+            List<String> s = employeeController.getShiftTypes();
+            log.debug("successfully got all shift types list");
+            return new ResponseData<>(s);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseData<>(e.getMessage());
+        }
+    }
+
+    /**
+     * get all current connected user's constraints
+     *
+     * @return A response String. The response should contain a error message in case of an error
+     */
+    public ResponseData<List<Constraint>> getMyConstraints() {
+        try {
+            log.debug("fetching all constraints");
+            List<Constraint> c = convertConstrains(employeeController.getMyConstraints());
+            log.debug("successfully got all constrains");
+            return new ResponseData<>(c);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseData<>(e.getMessage());
+        }
+    }
+
+    /**
+     * get all employees in current branch
+     * Note : Only the personnel manager is allowed to use this functionality
+     *
+     * @return A response List. The response should contain a error message in case of an error
+     */
+    public ResponseData<List<Employee>> getAllEmployees() {
+        try {
+            log.debug("fetching all employees");
+            List<Employee> emp = convertEmployee(employeeController.getAllEmployees());
+            log.debug("successfully got all employees");
+            return new ResponseData<>(emp);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseData<>(e.getMessage());
+        }
+    }
+
+    /**
+     * checks if default shifts are initialized
+     *
+     * @return true if yes else false
+     */
+    public ResponseData<Boolean> hasDefaultShifts() {
+        try {
+            log.debug("has defaults questions service");
+            boolean ans = employeeController.hasDefaultShifts();
+            log.debug("successfully answer");
+            return new ResponseData<>(ans);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseData<>(e.getMessage());
+        }
+    }
+
+    /**
+     * gets all role types
+     *
+     * @return A response String. The response should contain a error message in case of an error
+     */
+    public ResponseData<List<String>> getRoleTypes() {
+        try {
+            log.debug("fetching all role types");
+            List<String> rolesT = employeeController.getRoleTypes();
+            log.debug("successfully got all role types");
+            return new ResponseData<>(rolesT);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseData<>(e.getMessage());
+        }
+    }
+
 
     /**
      * Convert Help Functions of lists
@@ -630,7 +732,7 @@ public class EmployeeService implements iEmployeeService {
         log.debug("converting shift of business layer to out objects list");
         List<Shift> shifts = new ArrayList<>();
         allShifts.forEach(s -> {
-            shifts.add(new Shift(s.getSID(), s.getDate(), s.getShiftType(), s.getEmployees()));
+            shifts.add(new Shift(s));
         });
         log.debug("Done.");
         return shifts;
@@ -640,9 +742,19 @@ public class EmployeeService implements iEmployeeService {
         log.debug("converting constraints of business layer to out objects list");
         List<Constraint> constraints = new ArrayList<>();
         allConstraints.forEach(c -> {
-            constraints.add(new Constraint(c.getCID(), c.getEID(), c.getReason(),c.getShiftType()));
+            constraints.add(new Constraint(c));
         });
         log.debug("Done.");
         return constraints;
+    }
+
+    private List<Employee> convertEmployee(List<Business.EmployeePKG.Employee> allEmployees) {
+        log.debug("converting employees of business layer to out objects list");
+        List<Employee> employees = new ArrayList<>();
+        allEmployees.forEach(e -> {
+            employees.add(new Employee(e));
+        });
+        log.debug("Done.");
+        return employees;
     }
 }

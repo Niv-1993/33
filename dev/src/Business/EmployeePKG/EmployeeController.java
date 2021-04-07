@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class EmployeeController {
@@ -16,10 +17,18 @@ public class EmployeeController {
     private RoleType currConnectedEmpRole;
     protected Map<Integer, Employee> employees;
     private ShiftController shiftController;
+    //WILL BE DELETED WHEN THERE WILL BE DATABASE
+    private int branchCounter;
+    private List<String> allBranches;
 
     public EmployeeController() {
         employees = new HashMap<>();
         shiftController = new ShiftController();
+
+        //WILL BE DELETED WHEN THERE WILL BE DATABASE
+        allBranches = new ArrayList<>();
+        branchCounter = 1;
+
     }
 
     /**
@@ -60,12 +69,14 @@ public class EmployeeController {
         log.debug("enter create branch function");
         if (!code.equals("00000")) {
             log.error("enter code: " + code);
-            throw new Exception("Access denied!");
+            throw new Exception("Access code denied!");
         }
         log.debug("creating instance of the personnel manager in this new branch");
         Employee personnelM = new PersonnelManager(newEID, name, bankDetails, salary, RoleType.PersonnelManager, LocalDate.now(), terms);
         //UPDATE DATABASE
         employees.put(newEID,personnelM);
+        //will be deleted after database exits
+        allBranches.add(String.valueOf(branchCounter++));
         log.debug("successfully created branch");
     }
 
@@ -157,7 +168,7 @@ public class EmployeeController {
         log.debug("enter add employee function");
         isInEnum(role, RoleType.class);
         Employee e = employees.get(currConnectedEmpID).addEmployee(newEID, name, bankDetails, salary, RoleType.valueOf(role), startWorkDate, terms, employees);
-        shiftController.addToOptionals(e.getEID(), e.getName(), e.getRole());
+        shiftController.addToOptionals(e.getEID(), e.getName(), RoleType.valueOf(role));
         log.debug("successfully added a new employee");
         return e;
     }
@@ -185,6 +196,7 @@ public class EmployeeController {
     public void updateEmployeeName(int updateEID, String newName) throws Exception {
         log.debug("entered update employee name functions");
         employees.get(currConnectedEmpID).updateEmployeeName(updateEID, newName, employees);
+        shiftController.updateName(updateEID,employees.get(updateEID).getRole(),newName);
         log.debug("successfully updated employee name");
     }
 
@@ -309,10 +321,11 @@ public class EmployeeController {
         log.debug("checking map for valid role types and converting to enum");
         for (Map.Entry<String, Integer> entry : rolesAmount.entrySet()) {
             isInEnum(entry.getKey(), RoleType.class);
-            rolesAndAmount.put(RoleType.valueOf(entry.getKey()), entry.getValue() + 1);
+            rolesAndAmount.put(RoleType.valueOf(entry.getKey()), entry.getValue());
         }
         log.debug("done.");
         Shift s = employees.get(currConnectedEmpID).createShift(rolesAndAmount, date, shiftType, optionals, shiftController);
+        if(!s.HasShiftManager()) throw new Exception("Shift Date:" +s.getDate()+" has been created BUT does not have a ShiftManager");
         log.debug("successfully created a new shift");
         return s;
     }
@@ -365,7 +378,7 @@ public class EmployeeController {
             }
         }
         log.debug("done.");
-        employees.get(currConnectedEmpID).defaultShifts(defaults, shiftController);
+        shiftController.defaultShifts(defaults);
         log.debug("successfully set default shifts");
     }
 
@@ -387,9 +400,9 @@ public class EmployeeController {
      *
      * @return A list of all the shifts and the employees in every shift (names & roles)
      */
-    public List<Shift> getShiftsAndEmployees() throws Exception {
+    public List<Shift> getShifts(LocalDate until) throws Exception {
         log.debug("entered get shifts and employees function");
-        List<Shift> l = employees.get(currConnectedEmpID).getShiftsAndEmployees(shiftController);
+        List<Shift> l = employees.get(currConnectedEmpID).getShifts(until,shiftController);
         log.debug("successfully got all shifts and employees details");
         return l;
     }
@@ -403,7 +416,8 @@ public class EmployeeController {
      */
     public void removeEmpFromShift(int SID, int removeEID) throws Exception {
         log.debug("entered remove employee from shift functions");
-        employees.get(currConnectedEmpID).removeEmpFromShift(SID, removeEID, shiftController);
+        if(!employees.containsKey(removeEID)) throw new Exception("Employee does not exist in this branch");
+        employees.get(currConnectedEmpID).removeEmpFromShift(SID, removeEID, employees.get(removeEID).getRole(),shiftController);
         log.debug("successfully removed employee: " + removeEID + " from shift: " + SID);
     }
 
@@ -440,9 +454,9 @@ public class EmployeeController {
      *
      * @return A list of constraints of the current connected employee
      */
-    public List<Shift> getOnlyEmployeeShifts() {
+    public List<Shift> getMyShifts() {
         log.debug("entered getting shifts of employee: "+currConnectedEmpID);
-        List<Shift> l = employees.get(currConnectedEmpID).getOnlyEmployeeShifts(shiftController);
+        List<Shift> l = employees.get(currConnectedEmpID).getMyShifts(shiftController);
         log.debug("successfully got all shifts of employee: "+currConnectedEmpID);
         return l;
     }
@@ -470,7 +484,7 @@ public class EmployeeController {
         log.debug("entered add role to employee function");
         isInEnum(role,RoleType.class);
         employees.get(currConnectedEmpID).addRoleToEmployee(eid,RoleType.valueOf(role),employees);
-        shiftController.addToOptionals(eid, employees.get(eid).getName(), employees.get(eid).getRole());
+        shiftController.addToOptionals(eid, employees.get(eid).getName(), RoleType.valueOf(role));
         log.debug("successfully added role to role list of employee: "+eid);
     }
 
@@ -482,14 +496,15 @@ public class EmployeeController {
      */
     public void loadData(int BID) throws Exception {
         log.debug("loading data of branch id: "+BID);
+        if(!getBranches().contains(String.valueOf(BID))) throw new Exception("Branch does not exist");
         currConnectedEmpID = -1;
         currConnectedEmpRole = null;
         currBranchID = BID;
         //WHEN THERE WILL BE DATABASE
-        employees = new HashMap<>();
+        //employees = new HashMap<>();
         log.debug("loaded all employees.");
         //WHAT EVER SHIFTPGK NEED TO MAKE SHIFTCONTOLLER
-        shiftController = new ShiftController();
+       // shiftController = new ShiftController();
         log.debug("Done loading data");
 
     }
@@ -560,4 +575,28 @@ public class EmployeeController {
         throw new Exception("illegal string value");
     }
 
+    public List<String> getBranches() throws Exception {
+        if(allBranches.isEmpty()) throw new Exception("No available branches");
+        return allBranches;
+    }
+
+    public List<String> getShiftTypes() {
+        return (new ArrayList<>(EnumSet.allOf(ShiftType.class))).stream().map(Enum::name).collect(Collectors.toList());
+    }
+
+    public List<Constraint> getMyConstraints() {
+        return employees.get(currConnectedEmpID).getMyConstraints(shiftController);
+    }
+
+    public List<Employee> getAllEmployees() {
+        return new ArrayList<>(employees.values());
+    }
+
+    public boolean hasDefaultShifts() {
+        return shiftController.hasDefaultShifts();
+    }
+
+    public List<String> getRoleTypes() {
+        return (new ArrayList<>(EnumSet.allOf(RoleType.class))).stream().map(Enum::name).collect(Collectors.toList());
+    }
 }

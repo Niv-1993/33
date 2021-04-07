@@ -73,13 +73,13 @@ public class Regular extends Employee{
     }
 
     @Override
-    public List<Shift> getShiftsAndEmployees(ShiftController shiftController) throws Exception {
+    public List<Shift> getShifts(LocalDate until,ShiftController shiftController) throws Exception {
         throw new Exception("You are not allowed to request this kind of data in this branch");
     }
 
 
     @Override
-    public void removeEmpFromShift(int SID, int removeEID, ShiftController shiftController) throws Exception {
+    public void removeEmpFromShift(int SID, int removeEID, List<RoleType> roles, ShiftController shiftController) throws Exception {
         throw new Exception("You are not allowed to remove anyone from shifts");
     }
 
@@ -92,12 +92,6 @@ public class Regular extends Employee{
     public void updateAmountRole(int SID, RoleType role, int newAmount, ShiftController shiftController) throws Exception {
         throw new Exception("You are not allowed to update any shift");
     }
-
-    @Override
-    public void defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaults, ShiftController shiftController) throws Exception {
-        throw new Exception("You are not allowed to set default shifts");
-    }
-
 
     @Override
     public void addRoleToEmployee(int eid, RoleType role, Map<Integer, Employee> employees) throws Exception {

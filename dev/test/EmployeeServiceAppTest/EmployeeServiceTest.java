@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class EmployeeServiceTest {
     private iEmployeeService service;
@@ -73,10 +74,10 @@ public class EmployeeServiceTest {
         Assert.assertFalse(login.isError());
         ResponseData<Constraint> res = service.addConstConstraint(DayOfWeek.MONDAY, "Morning", "i'm tired");
         Assert.assertFalse(res.isError());
-        ResponseData<Employee> cons = service.getOnlyEmployeeShiftsAndConstraints();
+        ResponseData<List<Constraint>> cons = service.getMyConstraints();
         Assert.assertFalse(cons.isError());
-        boolean contains = cons.getData().containsConst(res.getData().CID);
-        Assert.assertTrue("The constraint wasn't added properly", contains);
+        boolean contains = cons.getData().isEmpty();
+        Assert.assertFalse("The constraint wasn't added properly", contains);
         /*
         Response logout = service.Logout();
         Assert.assertFalse(logout.isError());
@@ -105,8 +106,10 @@ public class EmployeeServiceTest {
         Assert.assertTrue("Exception expected - shift type does not match the date", res1.isError());
         Response personnelManagerLog2 = service.Login(1, "PersonnelManager");
         Assert.assertFalse(personnelManagerLog2.isError());
-        ResponseData<Shift> s = service.createShift(new HashMap<>(),LocalDate.of(2021, 8, 2),"Morning");
-        Assert.assertFalse(s.isError());
+        Map<String,Integer> a = new HashMap<>();
+        a.put("ShiftManager",1);
+        ResponseData<Shift> s = service.createShift(a,LocalDate.of(2021, 8, 2),"Morning");
+        Assert.assertTrue(s.isError());
         Response logout_p = service.Logout();
         Assert.assertFalse(logout_p.isError());
         Response loginD = service.Login(2,"Driver");
@@ -133,8 +136,10 @@ public class EmployeeServiceTest {
     public void addConstraintPassProperly() {
         Response personnelManagerLog = service.Login(1, "PersonnelManager");
         Assert.assertFalse(personnelManagerLog.isError());
-        ResponseData<Shift> s = service.createShift(new HashMap<>(),LocalDate.of(2021, 8, 2),"Morning");
-        Assert.assertFalse(s.isError());
+        Map<String,Integer> a = new HashMap<>();
+        a.put("ShiftManager",1);
+        ResponseData<Shift> s = service.createShift(a,LocalDate.of(2021, 8, 2),"Morning");
+        Assert.assertTrue(s.isError());
         ResponseData<Employee> driver = service.addEmployee(2, "moshe", bank, 10000, "Driver", LocalDate.now(), terms);
         Assert.assertFalse(driver.isError());
         Response p_logout = service.Logout();
@@ -143,9 +148,10 @@ public class EmployeeServiceTest {
         Assert.assertFalse(s6.isError());
         ResponseData<Constraint> res = service.addConstraint(LocalDate.of(2021, 8, 2), "Morning", "i'm tired");
         Assert.assertFalse(res.isError());
-        ResponseData<Employee> cons = service.getOnlyEmployeeShiftsAndConstraints();
-        boolean contains = cons.getData().containsConst(res.getData().CID);
-        Assert.assertTrue("The constraint wasn't added properly", contains);
+        ResponseData<List<Constraint>> cons = service.getMyConstraints();
+        Assert.assertFalse(cons.isError());
+        boolean contains = cons.getData().isEmpty();
+        Assert.assertFalse("The constraint wasn't added properly", contains);
         /*
         Response logout = service.Logout();
         Assert.assertFalse(logout.isError());
@@ -163,8 +169,11 @@ public class EmployeeServiceTest {
     public void removeConstraintPassProperly() {
         Response personnelManagerLog = service.Login(1, "PersonnelManager");
         Assert.assertFalse(personnelManagerLog.isError());
-        ResponseData<Shift> s = service.createShift(new HashMap<>(),LocalDate.of(2021, 8, 2),"Morning");
-        Assert.assertFalse(s.isError());
+        Map<String,Integer> a = new HashMap<>();
+        a.put("ShiftManager",1);
+        a.put("Driver",1);
+        ResponseData<Shift> s = service.createShift(a,LocalDate.of(2021, 8, 2),"Morning");
+        Assert.assertTrue(s.isError());
         ResponseData<Employee> driver = service.addEmployee(2, "moshe", bank, 10000, "Driver", LocalDate.now(), terms);
         Assert.assertFalse(driver.isError());
         Response p_logout = service.Logout();
@@ -175,9 +184,10 @@ public class EmployeeServiceTest {
         Assert.assertFalse(res.isError());
         ResponseData<Constraint> rem = service.removeConstraint(res.getData().CID);
         Assert.assertFalse(rem.isError());
-        ResponseData<Employee> consList = service.getOnlyEmployeeShiftsAndConstraints();
-        boolean contains = consList.getData().containsConst(rem.getData().CID);
-        Assert.assertFalse("The constraint wasn't removed properly", contains);
+        ResponseData<List<Constraint>> cons = service.getMyConstraints();
+        Assert.assertFalse(cons.isError());
+        boolean contains = cons.getData().isEmpty();
+        Assert.assertTrue("The constraint wasn't removed properly", contains);
         /*
         Response logout = service.Logout();
         Assert.assertFalse(logout.isError());
@@ -231,9 +241,9 @@ public class EmployeeServiceTest {
         Assert.assertFalse(s7.isError());
         Response s8 = service.updateReasonConstraint(s7.getData().CID, "xxx");
         Assert.assertFalse(s8.isError());
-        ResponseData<Employee> constList = service.getOnlyEmployeeShiftsAndConstraints();
+        ResponseData<List<Constraint>> constList = service.getMyConstraints();
         Assert.assertFalse(constList.isError());
-        Constraint c = constList.getData().constraints.get(0);
+        Constraint c = constList.getData().get(0);
         Assert.assertNotEquals("Update Reason in constraint didnt work properly", "i'm tired", c.reason);
         /*
         Response logout = service.Logout();
@@ -263,9 +273,9 @@ public class EmployeeServiceTest {
         Assert.assertFalse(s7.isError());
         Response s8 = service.updateShiftTypeConstraint(s7.getData().CID, "Night");
         Assert.assertFalse(s8.isError());
-        ResponseData<Employee> constList = service.getOnlyEmployeeShiftsAndConstraints();
+        ResponseData<List<Constraint>> constList = service.getMyConstraints();
         Assert.assertFalse(constList.isError());
-        Constraint c = constList.getData().constraints.get(0);
+        Constraint c = constList.getData().get(0);
         Assert.assertNotEquals("Update shift type in constraint didnt work properly", "Morning", c.shiftType);
         /*
         Response logout = service.Logout();
@@ -657,15 +667,17 @@ public class EmployeeServiceTest {
         Response login = service.Login(1, "PersonnelManager");
         Assert.assertFalse(login.isError());
         Map<String, Integer> rolesAmount = new HashMap<>();
+        rolesAmount.put("ShiftManager", 1);
         rolesAmount.put("Driver", 1);
         ResponseData<Shift> created1 = service.createShift(rolesAmount, LocalDate.of(2021, 8, 8), "Mornining");
         Assert.assertTrue("Expected exception - shift typo", created1.isError());
         Map<String, Integer> rolesAmountFail = new HashMap<>();
+        rolesAmountFail.put("ShiftManager", 1);
         rolesAmountFail.put("Driverr", 1);
         ResponseData<Shift> created2 = service.createShift(rolesAmountFail, LocalDate.of(2021, 8, 8), "Mornining");
         Assert.assertTrue("Expected exception - shift typo", created2.isError());
         ResponseData<Shift> created3 = service.createShift(rolesAmount, LocalDate.of(2021, 8, 8), "Morning");
-        Assert.assertFalse("Unexpected Exception error", created3.isError());
+        Assert.assertTrue("Exception error", created3.isError());
     }
 
     @Test
@@ -673,14 +685,15 @@ public class EmployeeServiceTest {
         Response login = service.Login(1, "PersonnelManager");
         Assert.assertFalse(login.isError());
         Map<String, Integer> rolesAmount = new HashMap<>();
+        rolesAmount.put("ShiftManager", 1);
         rolesAmount.put("Driver", 1);
         ResponseData<Shift> created = service.createShift(rolesAmount, LocalDate.of(2021, 8, 8), "Morning");
-        Assert.assertFalse("Unexpected Exception error", created.isError());
+        Assert.assertTrue("Exception error", created.isError());
         ResponseData<Employee> driver = service.addEmployee(2, "moshe", bank, 10000, "Driver", LocalDate.now(), terms);
         Assert.assertFalse(driver.isError());
-        Response fail = service.addEmpToShift(created.getData().SID, 2, "Driverr");
+        Response fail = service.addEmpToShift(0, 2, "Driverr");
         Assert.assertTrue("Expected typo exception", fail.isError());
-        Response suc = service.addEmpToShift(created.getData().SID, 2, "Driver");
+        Response suc = service.addEmpToShift(0, 2, "Driver");
         Assert.assertFalse(suc.isError());
     }
 
@@ -689,16 +702,17 @@ public class EmployeeServiceTest {
         Response login = service.Login(1, "PersonnelManager");
         Assert.assertFalse(login.isError());
         Map<String, Integer> rolesAmount = new HashMap<>();
+        rolesAmount.put("ShiftManager", 1);
         rolesAmount.put("Driver", 1);
-        ResponseData<Shift> created = service.createShift(rolesAmount, LocalDate.of(2021, 8, 8), "Morning");
-        Assert.assertFalse("Unexpected Exception error", created.isError());
+        ResponseData<Shift> created = service.createShift(rolesAmount, LocalDate.now().plusDays(5), "Morning");
+        Assert.assertTrue("Unexpected Exception error", created.isError());
         ResponseData<Employee> driver = service.addEmployee(2, "moshe", bank, 10000, "Driver", LocalDate.now(), terms);
         Assert.assertFalse(driver.isError());
-        Response suc = service.addEmpToShift(created.getData().SID, 2, "Driver");
+        Response suc = service.addEmpToShift(0, 2, "Driver");
         Assert.assertFalse(suc.isError());
-        ResponseData<List<Shift>> shiftList = service.getShiftsAndEmployees();
+        ResponseData<List<Shift>> shiftList = service.getShifts(LocalDate.now().plusWeeks(2));
         Assert.assertFalse(shiftList.isError());
-        boolean contains = shiftList.getData().get(0).SID == created.getData().SID;
+        boolean contains = shiftList.getData().get(0).SID == 0;
         Assert.assertTrue(contains);
         /*Response logout = service.Logout();
         Assert.assertFalse(logout.isError());
@@ -717,21 +731,22 @@ public class EmployeeServiceTest {
         Response login = service.Login(1, "PersonnelManager");
         Assert.assertFalse(login.isError());
         Map<String, Integer> rolesAmount = new HashMap<>();
+        rolesAmount.put("ShiftManager", 1);
         rolesAmount.put("Driver", 1);
         ResponseData<Shift> created = service.createShift(rolesAmount, LocalDate.of(2021, 8, 8), "Morning");
-        Assert.assertFalse("Unexpected Exception error", created.isError());
+        Assert.assertTrue(" Exception error", created.isError());
         ResponseData<Employee> driver1 = service.addEmployee(2, "moshe", bank, 10000, "Driver", LocalDate.now(), terms);
         Assert.assertFalse(driver1.isError());
         ResponseData<Employee> driver2 = service.addEmployee(6, "dorrr", bank, 10000, "Driver", LocalDate.now(), terms);
         Assert.assertFalse(driver2.isError());
-        Response suc = service.addEmpToShift(created.getData().SID, 2, "Driver");
+        Response suc = service.addEmpToShift(0, 2, "Driver");
         Assert.assertFalse(suc.isError());
-        Response fail = service.addEmpToShift(created.getData().SID, 6, "Driver");
-        Assert.assertFalse("Expected to fail because amount of driver is 1 ", fail.isError());
+        Response fail = service.addEmpToShift(0, 6, "Driver");
+        Assert.assertTrue("Expected to fail because amount of driver is 1 ", fail.isError());
         ResponseData<Employee> cashier = service.addEmployee(8, "blabla", bank, 10000, "Cashier", LocalDate.now(), terms);
         Assert.assertFalse(cashier.isError());
-        Response fail2 = service.addEmpToShift(created.getData().SID, 8, "Cashier");
-        Assert.assertFalse("Expected to fail because amount of cashier is 0 ", fail.isError());
+        Response fail2 = service.addEmpToShift(0, 8, "Cashier");
+        Assert.assertTrue("Expected to fail because amount of cashier is 0 ", fail.isError());
     }
 
     @Test
@@ -739,31 +754,32 @@ public class EmployeeServiceTest {
         Response login = service.Login(1, "PersonnelManager");
         Assert.assertFalse(login.isError());
         Map<String, Integer> rolesAmount = new HashMap<>();
+        rolesAmount.put("ShiftManager", 1);
         rolesAmount.put("Driver", 1);
         ResponseData<Shift> created = service.createShift(rolesAmount, LocalDate.of(2021, 8, 8), "Morning");
-        Assert.assertFalse("Unexpected Exception error", created.isError());
+        Assert.assertTrue("Unexpected Exception error", created.isError());
         ResponseData<Employee> driver1 = service.addEmployee(2, "moshe", bank, 10000, "Driver", LocalDate.now(), terms);
         Assert.assertFalse(driver1.isError());
-        Response addTo = service.addEmpToShift(created.getData().SID,driver1.getData().EID,driver1.getData().role);
+        Response addTo = service.addEmpToShift(0,driver1.getData().EID,driver1.getData().role.get(0));
         Assert.assertFalse(addTo.isError());
         Response logout_p = service.Logout();
         Assert.assertFalse(logout_p.isError());
         Response login_d = service.Login(2,"Driver");
         Assert.assertFalse(login_d.isError());
-        ResponseData<Employee> d1Shifts = service.getOnlyEmployeeShiftsAndConstraints();
+        ResponseData<List<Shift>> d1Shifts = service.getMyShifts();
         Response logout_d = service.Logout();
         Assert.assertFalse(logout_d.isError());
         Response login_p = service.Login(1,"PersonnelManager");
         Assert.assertFalse(login_p.isError());
         Response remove = service.removeEmpFromShift(6, driver1.getData().EID);
         Assert.assertTrue("Exception expected - shift does not exist", remove.isError());
-        Response remove2 = service.removeEmpFromShift(created.getData().SID, d1Shifts.getData().EID);
+        Response remove2 = service.removeEmpFromShift(0, 2);
         Assert.assertFalse(remove2.isError());
         Response logout = service.Logout();
         Assert.assertFalse(logout.isError());
         Response login_d1 = service.Login(2, "Driver");
         Assert.assertFalse(login_d1.isError());
-        Response remove3 = service.removeEmpFromShift(created.getData().SID, driver1.getData().EID);
+        Response remove3 = service.removeEmpFromShift(0, driver1.getData().EID);
         Assert.assertTrue("Exception expcected - driver cannot remove", remove3.isError());
        /* Response logout2 = service.Logout();
         Assert.assertFalse(logout2.isError());
@@ -783,16 +799,17 @@ public class EmployeeServiceTest {
         Response login = service.Login(1, "PersonnelManager");
         Assert.assertFalse(login.isError());
         Map<String, Integer> rolesAmount = new HashMap<>();
+        rolesAmount.put("ShiftManager", 1);
         rolesAmount.put("Driver", 1);
         ResponseData<Shift> created = service.createShift(rolesAmount, LocalDate.of(2021, 8, 8), "Morning");
-        Assert.assertFalse("Unexpected Exception error", created.isError());
-        Response fail1 = service.updateAmountRole(created.getData().SID, "Driver", -1);
+        Assert.assertTrue("Exception error", created.isError());
+        Response fail1 = service.updateAmountRole(0, "Driver", -1);
         Assert.assertTrue("Expected failure - amount is negative", fail1.isError());
-        Response fail2 = service.updateAmountRole(created.getData().SID, "Driverr", 5);
+        Response fail2 = service.updateAmountRole(0, "Driverr", 5);
         Assert.assertTrue("Expected failure - typo is incorrect", fail2.isError());
         Response fail3 = service.updateAmountRole(7, "Driver", 5);
         Assert.assertTrue("Expected failure - not shift with SID like this", fail3.isError());
-        Response pass = service.updateAmountRole(created.getData().SID, "Driver", 5);
+        Response pass = service.updateAmountRole(0, "Driver", 5);
         Assert.assertFalse("Unexpected Exception error", pass.isError());
         ResponseData<Employee> driver1 = service.addEmployee(7, "moshe", bank, 10000, "Driver", LocalDate.now(), terms);
         Assert.assertFalse(driver1.isError());
