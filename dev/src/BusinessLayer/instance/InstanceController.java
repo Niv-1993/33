@@ -12,6 +12,9 @@ public class InstanceController {
     private int _MAX_PRODUCTS_ON_PROTUCTTYPE=1000;
     private Dictionary<Integer,Product> _products=new Hashtable<>();
     final static Logger log=Logger.getLogger(InstanceController.class);
+    public InstanceController(){//for testing
+        _typeID=1;
+    }
 
     public InstanceController(int typeID) {
         _typeID=typeID;
@@ -78,6 +81,9 @@ public class InstanceController {
         int id=_typeID*_MAX_PRODUCTS_ON_PROTUCTTYPE+_counter;
         _products.put(id ,new Product(id, expiration, new Tuple<>(shelf,l)));
         return id;
+    }
+    public List<Integer> getProduts(){
+        return Collections.list(_products.keys());
     }
 
     public void reportDamage(int i) {

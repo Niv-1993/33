@@ -39,7 +39,7 @@ public class Product {
         log.debug(String.format("set_isDamage()"));
         if (_isDamage)
         {
-            String s=String.format("the product #? , is damage already.",_id);
+            String s=String.format("the product #%d , is damage already.",_id);
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
@@ -52,13 +52,13 @@ public class Product {
 
     public void set_location(Tuple<Integer, Location> location)
     {
-        log.debug(String.format("set_location(Tuple<Integer, Location> _location)",location));
+        log.debug(String.format("set_location(Tuple<Integer, Location> _location)"));
         checkLocation(location);
         this._location = location;
     }
     private void checkLocation(Tuple<Integer, Location> location){
         if (location.item1<1){
-            String s=String.format("the value of shelf (#?) is illegal",location.item1);
+            String s=String.format("the value of shelf (#%d) is illegal",location.item1);
             log.warn(s);
             throw new IllegalArgumentException(s);
         }

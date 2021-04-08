@@ -64,10 +64,15 @@ public class StoreController implements iStoreController{
     public Report getWeeklyReport() {
         log.debug("got inside getWeeklyReport() Method.");
         Dictionary<Integer,Dictionary<Integer, Tuple<Integer,Boolean>>> output=new Hashtable<>();
-        for (Enumeration<ProductType> pt=_products.keys(); pt.hasMoreElements();) {
-            ProductType p=pt.nextElement();
-            output.put(p.get_typeID(), _products.get(pt).getWeeklyReport());
+        List<ProductType> pt=Collections.list(_products.keys());
+        for (ProductType p: pt){
+            output.put(p.get_typeID(), _products.get(p).getWeeklyReport());
         }
+//        for (Enumeration<ProductType> pt=_products.keys(); pt.hasMoreElements();) {
+//            log.debug(Collections.list(pt).size());
+//            ProductType p=pt.nextElement();
+//
+//        }
         return new WeeklyReport(_storeID,output);
     }
 
@@ -90,7 +95,8 @@ public class StoreController implements iStoreController{
         for (Enumeration<ProductType> pt=_products.keys(); pt.hasMoreElements();)
         {
             ProductType p=pt.nextElement();
-            output.put(p.get_typeID(),p.getNeededReport());
+            if (p.getNeededReport()>0)
+                output.put(p.get_typeID(),p.getNeededReport());
         }
         return new NeededReport(_storeID,output);
     }
@@ -116,6 +122,26 @@ public class StoreController implements iStoreController{
     public int counterCategory() {
         log.debug("got inside counterCategory Method");
         return _category.size();
+    }
+
+    @Override
+    public boolean containCategory(Category c) {
+        return Collections.list(_category.elements()).contains(c);
+    }
+
+    @Override
+    public boolean containProductType(String c) {
+        for (Enumeration<ProductType> pt=_products.keys();pt.hasMoreElements();)
+            if (pt.nextElement().get_name().equals(c))
+            {
+                return true;
+            }
+        return false;
+    }
+
+    @Override
+    public void setCategories(Dictionary<Integer, Category> dic) {
+        _category=dic;
     }
 
     @Override
@@ -147,7 +173,7 @@ public class StoreController implements iStoreController{
             _category.remove(catID);
             throw e;
         }
-        log.info(String.format("new Category '?' added the Store #?",name,_storeID));
+        log.info(String.format("new Category '%s' added the Store #%d",name,_storeID));
         return output;
     }
 
@@ -162,7 +188,7 @@ public class StoreController implements iStoreController{
     @Override
     public void addProductType(String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category) {
         log.debug(String.format("addProductType(String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category)" +
-                        " Method  with: ?, ?, ?, ?, ?, ?, ?",
+                        " Method  with: %s, %d, %f, %f, %s, %d, %d",
                 name,minAmount,basePrice,salePrice,producer,supID,category));
         checkValidNameProductType(name);
         checkValidCategory(category);
@@ -176,7 +202,7 @@ public class StoreController implements iStoreController{
             _typeCounter--;
             _products.remove(typeID);
         }
-        log.info(String.format("new ProductType ? added the Store #?",name,_storeID));
+        log.info(String.format("new ProductType %s added the Store #%d",name,_storeID));
     }
 
     @Override
@@ -187,13 +213,13 @@ public class StoreController implements iStoreController{
 
     @Override
     public ProductType getProductTypeInfo(int id) {
-        log.debug(String.format("got inside  getProductTypeInfo(int id) Method with:?",id));
+        log.debug(String.format("got inside  getProductTypeInfo(int id) Method with:%d",id));
         return checkIDProductTypeExist(id);
     }
 
     @Override
     public int getShelvesAmount(int typeID) {
-        log.debug(String.format("got inside  getShelvesAmount(int typeID) Method with:?",typeID));
+        log.debug(String.format("got inside  getShelvesAmount(int typeID) Method with:%d",typeID));
         return (int)_shelves.stream().filter(x -> (x.get_typeID() == typeID & x.get_location()==Location.Shelves)).count();
     }
 
@@ -211,17 +237,19 @@ public class StoreController implements iStoreController{
 
     @Override
     public int getStorageAmount(int typeID) {
-        log.debug(String.format("got inside  getShelvesAmount(int typeID) Method with: ?",typeID));
+        log.debug(String.format("got inside  getShelvesAmount(int typeID) Method with: %d",typeID));
         return (int)_shelves.stream().filter(x -> (x.get_typeID() == typeID & x.get_location()==Location.Storage)).count();
     }
 
     @Override
     public Category addCategory(String name) {
-        log.debug(String.format("got inside addCategory(String name) Method with: ?",name));
+        log.debug(String.format("got inside addCategory(String name) Method with: %s",name));
         checkValidNameCategory(name);
         int catId=++_categoryCounter;
         try{
-            return new Category(catId,name);
+            Category c=new Category(catId,name);
+            _category.put(catId,c);
+            return c;
         }
         catch (Exception e)
         {
@@ -233,7 +261,7 @@ public class StoreController implements iStoreController{
     @Override
     public void addSaleProductDiscount(int productTypeID, float percent, Date start, Date end) {
         log.debug(String.format("got inside addSaleProductDiscount(int productTypeID, float percent, Date start, Date end)" +
-                " Method with: ?, ?, ?, ?",productTypeID,percent,start,end));
+                " Method with: %d, %f, %d, %d",productTypeID,percent,start,end));
         ProductType p=checkIDProductTypeExist(productTypeID);
         try {
             p.addSaleProductDiscount(++_discountCounter, percent, start, end);
@@ -251,9 +279,9 @@ public class StoreController implements iStoreController{
     }
 
     @Override
-    public void addSaleCategoryDiscount(int catID, float percent, Date start, Date end) {//???????????
+    public void addSaleCategoryDiscount(int catID, float percent, Date start, Date end) {//%s%s%s%s%s%s%s%s%s%s%s
         log.debug(String.format("got inside addSaleCategoryDiscount(int CatID, float percent, Date start, Date end)" +
-                " Method with: ?, ?, ?, ?",catID,percent,start,end));
+                " Method with: %d, %f, %d, %d",catID,percent,start,end));
         createDiscountForCategory(catID,percent,start,end);
     }
 
@@ -261,47 +289,48 @@ public class StoreController implements iStoreController{
     @Override
     public void addSupplierDiscount(int categoryID, float percent, Date start, Date end, int supId) {
         log.debug(String.format("got inside addSupplierDiscount(int categoryID, float percent, Date start, Date end, int supId)" +
-                " Method with: ?, ?, ?, ?, ?",categoryID,percent,start,end,supId));
+                " Method with: %d, %f, %d, %d, %d",categoryID,percent,start,end,supId));
         createDiscountForCategory(categoryID,percent,start,end,supId);
     }
 
     @Override
     public List<SupplierDiscount> getSupplierDiscounts(int typeID) {
-        log.debug(String.format("got inside getSupplierDiscounts(int typeID) Method with: ?",typeID));
+        log.debug(String.format("got inside getSupplierDiscounts(int typeID) Method with: %d",typeID));
         return checkIDProductTypeExist(typeID).getSupplierDiscounts();
     }
 
     @Override
     public List<SaleDiscount> getSaleDiscounts(int typeID) {
-        log.debug(String.format("got inside getSaleDiscounts(int typeID) Method with: ?",typeID));
+        log.debug(String.format("got inside getSaleDiscounts(int typeID) Method with: %d",typeID));
         return checkIDProductTypeExist(typeID).getSalePrice();
     }
 
     @Override
     public void editCategory(int Id, String name, int superCategory) {
-        log.debug(String.format("got inside editCategory(int Id, String name, int superCategory) Method with: ?, ?, ?",Id,name,superCategory));
+        log.debug(String.format("got inside editCategory(int Id, String name, int superCategory) Method with: %d, %s, %d",Id,name,superCategory));
         editCategoryInBL(Id,name,superCategory);
     }
 
 
     @Override
     public void editCategory(int Id, String name) {
-        log.debug(String.format("got inside editCategory(int Id, String name) Method with: ?, ?",Id,name));
+        log.debug(String.format("got inside editCategory(int Id, String name) Method with: %d, %s",Id,name));
         editCategoryInBL(Id,name);
     }
 
     @Override
     public void editProductType(int id, String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category) {
         log.debug(String.format("editProductType(int id, String name, int minAmount, float basePrice, float salePrice" +
-                ", String producer, int supID, int category) Method with: ?,?, ?,?,?,?,?",id,name,minAmount,basePrice,producer,supID,category));
+                ", String producer, int supID, int category) Method with: %d,%s,%d,%f,%f,%s,%d,%d",id,name,minAmount,basePrice,producer,supID,category));
         checkValidCategory(category);
         checkIDProductTypeExist(id).edit(name,minAmount,basePrice,producer,supID,category);
     }
 
     @Override
     public void addProduct(int typeID, Date expiration) {
-        log.debug(String.format("got inside addProduct(int typeID, Date expiration) Method with: ?, ?",typeID,expiration));
+        log.debug(String.format("got inside addProduct(int typeID, Date expiration) Method with: %d, "+expiration,typeID));
         Shelf s=findPlaceForNewProduct(typeID);
+
         ProductType tmp=checkIDProductTypeExist(typeID);
         int productID=_products.get(tmp).addProduct(expiration,s.get_location(),s.get_shelfID());
         try {
@@ -316,7 +345,7 @@ public class StoreController implements iStoreController{
 
     @Override
     public void removeProduct(int ID) {
-        log.debug(String.format("got inside removeProduct(int ID) Method with: ?",ID));
+        log.debug(String.format("got inside removeProduct(int ID) Method with: %d",ID));
         int typeID=ID/MAX_PRODUCTS_ON_PROTUCTTYPE;
         int productID=ID%MAX_PRODUCTS_ON_PROTUCTTYPE;
         ProductType tmp=checkIDProductTypeExist(typeID);
@@ -333,7 +362,7 @@ public class StoreController implements iStoreController{
 
     @Override
     public void reportDamage(int ID) {
-        log.debug(String.format("got inside reportDamage(int ID) Method with: ?",ID));
+        log.debug(String.format("got inside reportDamage(int ID) Method with: %d",ID));
         ProductType p=checkIDProductTypeExist(ID/MAX_PRODUCTS_ON_PROTUCTTYPE);
         _products.get(p).getProduct(ID%MAX_PRODUCTS_ON_PROTUCTTYPE);
         _products.get(p).reportDamage(ID%MAX_PRODUCTS_ON_PROTUCTTYPE);
@@ -342,13 +371,13 @@ public class StoreController implements iStoreController{
 
     @Override
     public Product getProductInfo(int ID) {
-        log.debug(String.format("got inside getProductInfo(int ID) Method with: ?",ID));
+        log.debug(String.format("got inside getProductInfo(int ID) Method with: %d",ID));
         return _products.get(checkIDProductTypeExist(ID/MAX_PRODUCTS_ON_PROTUCTTYPE)).getProduct(ID%MAX_PRODUCTS_ON_PROTUCTTYPE);
     }
 
     @Override
     public void relocateProduct(int ID, boolean toStorage, int targetShelf) {
-        log.debug(String.format("got inside relocateProduct(int ID, boolean toStorage, int targetShelf) Method with: ?,?,?",ID,toStorage,targetShelf));
+        log.debug(String.format("got inside relocateProduct(int ID, boolean toStorage, int targetShelf) Method with: %d,%s,%d",ID,toStorage,targetShelf));
         String s;
         Shelf shelf=_shelves.get(targetShelf);
         if (shelf==null)
@@ -363,20 +392,29 @@ public class StoreController implements iStoreController{
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
+        if (shelf.get_typeID()==0){
+            shelf.set_typeID(ID%MAX_PRODUCTS_ON_PROTUCTTYPE);
+        }
         shelf.addProduct();
         _shelves.get(p.getShelf()).removeProduct();
         checkIDProductTypeExist(ID/MAX_PRODUCTS_ON_PROTUCTTYPE).relocateProduct(toStorage);
     }
+
+    @Override
+    public void setShelves(List<Shelf> list) {//for testing
+        _shelves=list;
+    }
+
     private void checkValidCategory(int catID){
         log.debug("got inside checkValidCategory(int catID) Method with: "+catID);
         String s;
         if (catID<0) {
-            s=String.format("the value: ? is not valid. (<0)",catID);
+            s=String.format("the value: %d is not valid. (<0)",catID);
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
         if (_category.get(catID)==null) {
-            s=String.format("the value: ? is not exist in the system.",catID);
+            s=String.format("the value: %d is not exist in the system.",catID);
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
@@ -391,7 +429,7 @@ public class StoreController implements iStoreController{
         }
         for (Enumeration<Category> c = _category.elements(); c.hasMoreElements();){
             if (c.nextElement().get_name().equals(name)){
-                s=String.format("the name ? is exist in other category.",name);
+                s=String.format("the name %s is exist in other category.",name);
                 log.warn(s);
                 throw new IllegalArgumentException(s);
             }
@@ -407,7 +445,7 @@ public class StoreController implements iStoreController{
         }
         for (Enumeration<ProductType> c = _products.keys(); c.hasMoreElements();) {
             if (c.nextElement().get_name().equals(name)){
-                s=String.format("the name ? is exist in other ProductType.",name);
+                s=String.format("the name %s is exist in other ProductType.",name);
                 log.warn(s);
                 throw new IllegalArgumentException(s);
             }
@@ -426,7 +464,7 @@ public class StoreController implements iStoreController{
             if (tmp.get_typeID() == check)
                 return tmp;
         }
-        s=String.format("the number #?, is not ID of any ProductType in Store #?",check,_storeID);
+        s=String.format("the number #%s, is not ID of any ProductType in Store #%s",check,_storeID);
         log.warn(s);
         throw new IllegalArgumentException(s);
     }
@@ -447,7 +485,7 @@ public class StoreController implements iStoreController{
                 tmp=checkIDProductTypeExist(list.get(i));
                 tmp.addSaleProductDiscount(discount);
             }
-            log.info(String.format("add new discount #? to Category #?",count,catID));
+            log.info(String.format("add new discount #%s to Category #%s",count,catID));
         }
         catch (Exception e){
             _discountCounter--;
@@ -469,7 +507,7 @@ public class StoreController implements iStoreController{
             Category tmp=c.nextElement();
             if (tmp.get_categoryID()!=Id & tmp.get_name().equals(name))
             {
-                String s=String.format("the name: ? , is exist in the system ",name);
+                String s=String.format("the name: %s , is exist in the system ",name);
                 log.warn(s);
                 throw new IllegalArgumentException(s);
             }
@@ -479,7 +517,7 @@ public class StoreController implements iStoreController{
 
         else
             _category.get(Id).edit(name);
-        log.info(String.format("the Category #?, edit his details",Id));
+        log.info(String.format("the Category #%d, edit his details",Id));
     }
 
     private Shelf findPlaceForNewProduct(int typeID) {
@@ -495,7 +533,7 @@ public class StoreController implements iStoreController{
             if (s.get_typeID()==0 && !s.isFull())
                 return s;
         }
-        String s=String.format("does not have a place to newProduct of type #?",typeID);
+        String s=String.format("does not have a place to newProduct of type #%d",typeID);
         log.warn(s);
         throw new IllegalArgumentException(s);
     }

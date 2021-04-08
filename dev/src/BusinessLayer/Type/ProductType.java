@@ -24,6 +24,9 @@ public class ProductType {
     private List<SaleDiscount> _saleDiscounts;
     private List<SupplierDiscount> _supplierDiscounts;
     final static Logger log=Logger.getLogger(ProductType.class);
+    public ProductType(){//for testing
+        _typeID=1000;
+    }
 
 
 

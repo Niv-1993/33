@@ -7,6 +7,7 @@ import BusinessLayer.Type.SaleDiscount;
 import BusinessLayer.Type.SupplierDiscount;
 import BusinessLayer.instance.InstanceController;
 import BusinessLayer.instance.Product;
+import BusinessLayer.instance.Shelf;
 import reports.Report;
 
 import java.util.Date;
@@ -23,6 +24,9 @@ public interface iStoreController {
     public void setList(Dictionary<ProductType, InstanceController> dictionary);//for testing
 
     public int counterCategory();
+    public boolean containCategory(Category c);//for testing
+    public boolean containProductType(String c);//for testing
+    public void setCategories(Dictionary<Integer,Category> dic);
     public Category getCategory(int catID);
     public Category addCategory(String name, int superCategory);
     public List<Integer> getCategories();
@@ -60,6 +64,7 @@ public interface iStoreController {
     public void reportDamage(int ID);
     public Product getProductInfo(int ID);
     public void relocateProduct(int ID, boolean toStorage, int targetShelf);
+    public void setShelves(List<Shelf> list);
 
 
 }

@@ -98,6 +98,8 @@ public class Shelf {
             throw new IllegalArgumentException(s);
         }
         _cur--;
+        if (_cur==0)
+            _typeID=0;
     }
     private void checkTypeID(){
         if (_typeID<1)
