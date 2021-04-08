@@ -117,7 +117,14 @@ class ControllerTest {
         t = controller.createNewTransportation();
     }
 
-
+    @DisplayName("create new transportation")
+    @Test
+    void creatTransportation(){
+        TransportationServiceDTO check = controller.createNewTransportation();
+        Assertions.assertTrue(t.getArea()==null&&t.getDate() ==null &&t.getDeliveryItems() == null&&t.getDriver()==null
+        &&t.getLeavingTime() == null&&t.getSuppliers()==null&&t.getTruck()==null&&t.getWeight()==-1
+        );
+    }
     //test 1:
     @DisplayName("should add a Truck")
     @ParameterizedTest
@@ -234,11 +241,10 @@ class ControllerTest {
         );
     }
 
-    @DisplayName("fail an success setDate")
+    @DisplayName("fail and success setDate tests")
     @ParameterizedTest
     @MethodSource("DateTestParameters")
     void dateTest(String fl,String sc){
-        Assertions.assertNull(controller.getTransportation(t.getId()).getDate());
         LocalDate date = LocalDate.parse(fl);
         t.setDate(date);
         Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () ->controller.setTransportationDate(t));
@@ -256,14 +262,13 @@ class ControllerTest {
         );
     }
 
-    @DisplayName("fail an success setLeavingTime")
+    @DisplayName("fail and success setLeavingTime")
     @ParameterizedTest
     @MethodSource("LeavingTimeParameters")
     void leavingTimeTests(String sc,String fl){
         t.setDate(LocalDate.now());
         controller.setTransportationDate(t);
 
-        Assertions.assertNull(controller.getTransportation(t.getId()).getLeavingTime());
 
         t.setLeavingTime(LocalTime.parse(fl));
         Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () ->controller.setTransportationLeavingTime(t));
@@ -276,10 +281,42 @@ class ControllerTest {
         Assertions.assertEquals(controller.getTransportation(t.getId()).getLeavingTime(),t.getLeavingTime());
 
     }
-
     private static Stream<Arguments>
     LeavingTimeParameters() {
         return Stream.of(Arguments.of( "23:59",LocalTime.now().minusMinutes(1).toString()),Arguments.of( "23:59","00:01"));
+    }
+
+    @DisplayName("transportation weight tests")
+    @ParameterizedTest
+    @MethodSource("weightParams")
+    void setWeightTest(int weight){
+        TruckServiceDTO t3 = new TruckServiceDTO(68465185, 3000, 10000, 1200, "Sprinter");
+        t.setTruck(t3);
+        controller.setTruckOnTransportation(t);
+        t.setWeight(weight);
+        controller.setTransportationWeight(t);
+        Assertions.assertEquals(weight,controller.getTransportation(t.getId()).getWeight());
+    }
+    private static Stream<Arguments>
+    weightParams() {
+        return Stream.of(Arguments.of( 10000),Arguments.of(9999),Arguments.of(1200));
+    }
+    @DisplayName("fail transportation weight tests")
+    @ParameterizedTest
+    @MethodSource("weightFailParams")
+    void setWrongWeight(int weight){
+        TruckServiceDTO t3 = new TruckServiceDTO(68465185, 3000, 10000, 1200, "Sprinter");
+        t.setTruck(t3);
+        controller.setTruckOnTransportation(t);
+        t.setWeight(weight);
+        Exception ex = Assertions.assertThrows(IllegalArgumentException.class,()->controller.setTransportationWeight(t));
+        String msg = ex.getMessage();
+        Assertions.assertTrue(msg.contains("weight"));
+        Assertions.assertNotEquals(controller.getTransportation(t.getId()).getWeight(),weight);
+    }
+    private static Stream<Arguments>
+    weightFailParams() {
+        return Stream.of(Arguments.of( 10001),Arguments.of(1199));
     }
 
 }
