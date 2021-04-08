@@ -28,9 +28,8 @@ public class PresentationCL{
                 for (int i = 1; i <= load.length; i++) {
                     System.out.println(i + ") " + load[i - 1]);
                 }
-                String str = "";
                 int n = -1;
-                n= menuCheck(n, str, scanner);
+                n= menuCheck(n, scanner);
                 switch (n) {
                     case 1 -> {
                         service.LoadData();
@@ -49,7 +48,7 @@ public class PresentationCL{
             for(int i = 1 ; i <= mainMenuArray.length ; i++){
                 System.out.println(i + ") " + mainMenuArray[i-1]);
             }
-            option = menuCheck(option, check, scanner);
+            option = menuCheck(option,scanner);
             switch (option) {
                 case 1 -> showingMethods();
                 case 2 -> addingMethods();
@@ -70,14 +69,14 @@ public class PresentationCL{
         int option = -1;
         String check = "";
         String[] showingMethodArray = {"show Supplier","show SupplierBN","show All Suppliers","show All Items Of Supplier","show All Items",
-                                       "show Order Of Supplier","show All Orders Of Supplier","show Total Amount","show Deliver Time",
-                                       "show Quantity Document","show Supplier Agreement","back to the main menu"};
+                                       "show Item Of Supplier", "show Order Of Supplier","show All Orders Of Supplier","show Total Amount",
+                                        "show Deliver Time", "show Quantity Document","show Supplier Agreement","back to the main menu"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= showingMethodArray.length ; i++) {
                 System.out.println(i + ") " + showingMethodArray[i - 1]);
             }
-            option = menuCheck(option, check, scanner);
+            option = menuCheck(option, scanner);
             int BN;
             switch (option) {
                 case 1 -> {
@@ -123,7 +122,7 @@ public class PresentationCL{
                             System.out.println(supplierCard.toString());
                         }
                     }
-                    toContinue(scanner , false);
+                    toContinue(scanner , true);
                 }
                 case 4 -> {
                     BN = BNScan(scanner);
@@ -146,9 +145,17 @@ public class PresentationCL{
                             System.out.println(item.toString(false));
                         }
                     }
-                    toContinue(scanner , false);
+                    toContinue(scanner , true);
                 }
-                case 6 -> {
+                case 6 ->{
+                    BN = BNScan(scanner);
+                    int itemId = itemScan(scanner);
+                    Tresponse<Item> response = service.showItemOfSupplier(BN , itemId);
+                    if (response.isError()) System.out.println(response.getError() + "\n");
+                    else System.out.println(response.getOutObject().toString(false));
+                    toContinue(scanner , true);
+                }
+                case 7 -> {
                     BN = BNScan(scanner);
                     int orderId = orderScan(scanner);
                     service.showTotalAmount(BN , orderId);
@@ -167,7 +174,7 @@ public class PresentationCL{
                     }
                     toContinue(scanner , false);
                 }
-                case 7 -> {
+                case 8 -> {
                     BN = BNScan(scanner);
                     Tresponse<List<Order>> responsesList = service.showAllOrdersOfSupplier(BN);
                     if (responsesList.isError()) System.out.println(responsesList.getError() + "\n");
@@ -187,7 +194,7 @@ public class PresentationCL{
                     }
                     toContinue(scanner , false);
                 }
-                case 8 -> {
+                case 9 -> {
                     BN = BNScan(scanner);
                     int orderId = orderScan(scanner);
                     Tresponse<Order> response = service.showTotalAmount(BN, orderId);
@@ -195,7 +202,7 @@ public class PresentationCL{
                     else System.out.println("total amount is: " + response.getOutObject().toStringTotalAmount());
                     toContinue(scanner , false);
                 }
-                case 9 -> {
+                case 10 -> {
                     BN = BNScan(scanner);
                     int orderId = orderScan(scanner);
                     Tresponse<Order> response = service.showDeliverTime(BN, orderId);
@@ -203,7 +210,7 @@ public class PresentationCL{
                     else System.out.println("deliver time is : " + response.getOutObject().toStringDeliverTime());
                     toContinue(scanner , false);
                 }
-                case 10 -> {
+                case 11 -> {
                     BN = BNScan(scanner);
                     int itemId = itemScan(scanner);
                     Tresponse<QuantityDocument> response = service.showQuantityDocument(BN, itemId);
@@ -211,14 +218,14 @@ public class PresentationCL{
                     else System.out.println(response.getOutObject().toString());
                     toContinue(scanner  ,false);
                 }
-                case 11 -> {
+                case 12 -> {
                     BN = BNScan(scanner);
                     Tresponse<SupplierAgreement> response = service.showSupplierAgreement(BN);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println(response.getOutObject().toString());
                     toContinue(scanner , false);
                 }
-                case 12 -> mainRun(false);
+                case 13 -> mainRun(false);
                 default -> {
                     System.out.println("illegal option!!!");
                     toContinue(scanner , false);
@@ -238,7 +245,7 @@ public class PresentationCL{
             for (int i = 1; i <= showingMethodArray.length; i++) {
                 System.out.println(i + ") " + showingMethodArray[i - 1]);
             }
-            option = menuCheck(option, check, scanner);
+            option = menuCheck(option,scanner);
             int BN;
             switch (option) {
                 case 1 -> {
@@ -253,7 +260,7 @@ public class PresentationCL{
                 }
                 case 2 -> {
                     BN = BNScan(scanner);
-                    String phone = contactPhoneScan(scanner);
+                    String phone = contactPhoneScan(scanner , "");
                     String name = contactNameScan(scanner);
                     response response = service.addContactPhone(BN, phone, name);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
@@ -261,7 +268,7 @@ public class PresentationCL{
                 }
                 case 3 -> {
                     BN = BNScan(scanner);
-                    String email = contactEmailScan(scanner);
+                    String email = contactEmailScan(scanner , "");
                     String name = contactNameScan(scanner);
                     response response = service.addContactEmail(BN, email, name);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
@@ -332,7 +339,7 @@ public class PresentationCL{
             for (int i = 1; i <= removeMethodArray.length; i++) {
                 System.out.println(i + ") " + removeMethodArray[i - 1]);
             }
-            option = menuCheck(option, check, scanner);
+            option = menuCheck(option,scanner);
             int BN;
             switch (option) {
                 case 1 -> {
@@ -343,14 +350,14 @@ public class PresentationCL{
                 }
                 case 2 -> {
                     BN = BNScan(scanner);
-                    String phone = contactPhoneScan(scanner);
+                    String phone = contactPhoneScan(scanner , "");
                     response response = service.removeContactPhone(BN, phone);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 3 -> {
                     BN = BNScan(scanner);
-                    String email = contactEmailScan(scanner);
+                    String email = contactEmailScan(scanner , "");
                     response response = service.removeContactEmail(BN, email);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
@@ -387,7 +394,6 @@ public class PresentationCL{
     private void updatingMethods() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int option  = -1;
-        String check = "";
         int BN;
         String[] updateMethodArray = {"update Supplier PayWay", "update Supplier BankAccount", "update Contact Phone", "update Contact Email",
                 "update Deliver Time", "update Minimal Amount Of Quantity Document", "update Discount Of Quantity Document",
@@ -398,7 +404,7 @@ public class PresentationCL{
             for (int i = 1; i <= updateMethodArray.length; i++) {
                 System.out.println(i + ") " + updateMethodArray[i - 1]);
             }
-            option = menuCheck(option, check, scanner);
+            option = menuCheck(option, scanner);
             switch (option) {
                 case 1 -> {
                     BN = BNScan(scanner);
@@ -409,22 +415,26 @@ public class PresentationCL{
                 }
                 case 2 -> {
                     BN = BNScan(scanner);
+                    int bankNumber = bankNumberScan(scanner);
+                    int brunchNumber = brunchNumberScan(scanner);
                     int bankAccount = bankAccountScan(scanner);
-                    response response = service.updateSupplierBankAccount(BN, bankAccount);
+                    response response = service.updateSupplierBankAccount(BN, bankNumber , brunchNumber, bankAccount);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 3 -> {
                     BN = BNScan(scanner);
-                    String phone = contactPhoneScan(scanner);
-                    response response = service.updateContactPhone(BN, phone);
+                    String phone = contactPhoneScan(scanner , "new");
+                    String name = contactNameScan(scanner);
+                    response response = service.updateContactPhone(BN, phone , name);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 4 -> {
                     BN = BNScan(scanner);
-                    String email = contactEmailScan(scanner);
-                    response response = service.updateContactEmail(BN, email);
+                    String email = contactEmailScan(scanner , "new");
+                    String name = contactNameScan(scanner);
+                    response response = service.updateContactEmail(BN, email , name);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
@@ -504,7 +514,8 @@ public class PresentationCL{
             try {
                 BN = scanner.nextInt();
             } catch (Exception e) {
-                System.out.println("supplier BN must be a number");
+                System.out.println("supplier BN must be a number\n");
+                scanner.nextLine();
             }
         }
         return BN;
@@ -515,10 +526,10 @@ public class PresentationCL{
         while (itemId == -1) {
             System.out.println("please enter the itemId.");
             try {
-                scanner.nextLine();
                 itemId = scanner.nextInt();
+                scanner.nextLine();
             } catch (Exception e) {
-                System.out.println("itemId must be a number");
+                System.out.println("itemId must be a number\n");
             }
         }
         return itemId;
@@ -529,10 +540,9 @@ public class PresentationCL{
         while (orderId == -1) {
             System.out.println("please enter the orderId.");
             try {
-                scanner.nextLine();
                 orderId = scanner.nextInt();
             } catch (Exception e) {
-                System.out.println("orderId must be a number");
+                System.out.println("orderId must be a number\n");
             }
         }
         return orderId;
@@ -543,12 +553,11 @@ public class PresentationCL{
         String name = "";
         while (toContinue) {
             try {
-                System.out.println("please enter supplier name");
                 name = scanner.nextLine();
                 if(!name.equals("")) toContinue = false;
                 if(toContinue)System.out.println("please enter supplier name");
             }catch (Exception e) {
-                System.out.println("you must enter a name");
+                System.out.println("you must enter a name\n");
             }
         }
         return name;
@@ -559,10 +568,9 @@ public class PresentationCL{
         while(bankNumber== -1){
             System.out.println("please enter supplier bank number");
             try {
-                scanner.nextLine();
                 bankNumber = scanner.nextInt();
             }catch (Exception e) {
-                System.out.println("bank account must be a number");
+                System.out.println("bank account must be a number\n");
             }
         }
         return bankNumber;
@@ -570,13 +578,13 @@ public class PresentationCL{
 
     private int brunchNumberScan(Scanner scanner){
         int brunchNumber = -1;
-        while(brunchNumber== -1){
+        while(brunchNumber == -1){
             System.out.println("please enter supplier bank brunch number");
             try {
                 scanner.nextLine();
                 brunchNumber = scanner.nextInt();
             }catch (Exception e) {
-                System.out.println("bank account must be a number");
+                System.out.println("bank account must be a number\n");
             }
         }
         return brunchNumber;
@@ -590,7 +598,7 @@ public class PresentationCL{
                 scanner.nextLine();
                 bankAccount = scanner.nextInt();
             }catch (Exception e) {
-                System.out.println("bank account must be a number");
+                System.out.println("bank account must be a number\n");
             }
         }
         return bankAccount;
@@ -601,13 +609,12 @@ public class PresentationCL{
         String payWay = "";
         while (toContinue) {
             try {
-                System.out.println("please enter supplier payWay");
-                scanner.nextLine();
-                payWay = scanner.nextLine();
+                if(payWay.equals("")) payWay = scanner.nextLine();
                 if(!payWay.equals("")) toContinue = false;
                 if(toContinue) System.out.println("please enter supplier payWay");
             }catch (Exception e) {
-                System.out.println("you must enter payWay.");
+                System.out.println("you must enter payWay.\n");
+                toContinue = true;
             }
         }
         return payWay;
@@ -618,10 +625,9 @@ public class PresentationCL{
         while(minimalAmount == -1){
             System.out.println("please enter the minimal amount");
             try {
-                scanner.nextLine();
                 minimalAmount = scanner.nextInt();
             }catch (Exception e){
-                System.out.println("minimal amount must be a number");
+                System.out.println("minimal amount must be a number\n");
             }
         }
         return minimalAmount;
@@ -635,38 +641,37 @@ public class PresentationCL{
             try {
                 discount = scanner.nextInt();
             }catch (Exception e){
-                System.out.println("discount must be a number.");
-                break;
+                System.out.println("discount must be a number.\n");
             }
         }
         return discount;
     }
 
-    private String contactPhoneScan(Scanner scanner) {
+    private String contactPhoneScan(Scanner scanner , String isNew) {
         boolean toContinue = true;
         String phone = "";
         while (toContinue) {
             try {
                 phone = scanner.nextLine();
                 if(!phone.equals("")) toContinue = false;
-                if(toContinue) System.out.println("please enter supplier contact phone");
+                if(toContinue) System.out.println("please enter the" + isNew + " supplier contact phone");
             }catch (Exception e) {
-                System.out.println("you must enter a phone");
+                System.out.println("you must enter a phone\n");
             }
         }
         return phone;
     }
 
-    private String contactEmailScan(Scanner scanner) {
+    private String contactEmailScan(Scanner scanner , String isNew) {
         boolean toContinue = true;
         String email = "";
         while (toContinue) {
             try {
                 email = scanner.nextLine();
                 if(!email.equals("")) toContinue = false;
-                if(toContinue) System.out.println("please enter supplier contact email");
+                if(toContinue) System.out.println("please enter the" + isNew +" supplier contact email");
             }catch (Exception e) {
-                System.out.println("you must enter an email");
+                System.out.println("you must enter an email\n");
             }
         }
         return email;
@@ -677,11 +682,11 @@ public class PresentationCL{
         String name = "";
         while (toContinue) {
             try {
-                name = scanner.nextLine();
                 if(!name.equals("")) toContinue = false;
                 if(toContinue) System.out.println("please enter supplier contact name");
+                name = scanner.nextLine();
             } catch (Exception e) {
-                System.out.println("you must enter a name");
+                System.out.println("you must enter a name\n");
             }
         }
         return name;
@@ -693,11 +698,10 @@ public class PresentationCL{
         while(!hasChanged){
             System.out.println("please enter true for constant time or false otherwise");
             try {
-                scanner.nextLine();
                 constantTime = scanner.nextBoolean();
                 hasChanged = true;
             } catch (Exception e){
-                System.out.println("you must enter true or false.");
+                System.out.println("you must enter true or false.\n");
                 hasChanged = false;
             }
         }
@@ -714,7 +718,7 @@ public class PresentationCL{
                 shipToUs = scanner.nextBoolean();
                 hasChanged = true;
             } catch (Exception e){
-                System.out.println("shipToUs time must be true or false.");
+                System.out.println("shipToUs time must be true or false.\n");
                 hasChanged = false;
             }
         }
@@ -726,10 +730,10 @@ public class PresentationCL{
         while(price == -1){
             System.out.println("please enter the price");
             try {
-                scanner.nextLine();
                 price = scanner.nextDouble();
+                scanner.nextLine();
             }catch (Exception e){
-                System.out.println("price must be a number");
+                System.out.println("price must be a number\n");
             }
         }
         return price;
@@ -744,7 +748,7 @@ public class PresentationCL{
                 if(!category.equals("")) toContinue = false;
                 if(toContinue)  System.out.println("please enter item category");
             }catch (Exception e) {
-                System.out.println("you must enter a category");
+                System.out.println("you must enter a category\n");
             }
         }
         return category;
@@ -758,8 +762,7 @@ public class PresentationCL{
                 scanner.nextLine();
                 month = scanner.nextInt();
             }catch (Exception e){
-                System.out.println("month must be a number.");
-                break;
+                System.out.println("month must be a number.\n");
             }
         }
         int day = -1;
@@ -769,8 +772,7 @@ public class PresentationCL{
                 scanner.nextLine();
                 day = scanner.nextInt();
             }catch (Exception e){
-                System.out.println("day must be a number.");
-                break;
+                System.out.println("day must be a number.\n");
             }
         }
         return LocalDate.of(LocalDate.now().getYear(), month , day);
@@ -781,11 +783,10 @@ public class PresentationCL{
         while(amount == -1){
             System.out.println("please enter the amount of item");
             try {
-                scanner.nextLine();
                 amount = scanner.nextInt();
+                scanner.nextLine();
             }catch (Exception e){
-                System.out.println("amount must be a number.");
-                break;
+                System.out.println("amount must be a number.\n");
             }
         }
         return amount;
@@ -796,11 +797,11 @@ public class PresentationCL{
         String name = "";
         while (toContinue) {
             try {
-                name = scanner.nextLine();
+                if(name.equals("")) name = scanner.nextLine();
                 if(!name.equals("")) toContinue = false;
                 if(toContinue)  System.out.println("please enter item name");
             }catch (Exception e) {
-                System.out.println("you must enter a name");
+                System.out.println("you must enter a name\n");
             }
         }
         return name;
@@ -816,16 +817,15 @@ public class PresentationCL{
         }
     }
 
-    private int menuCheck(int n, String input, Scanner scanner) {
+    private int menuCheck(int n, Scanner scanner) {
         boolean flag = false;
         while (!flag) {
             try {
-                input = scanner.nextLine();
-                n = Integer.parseInt(input);
+                n = scanner.nextInt();
                 flag = true;
             }
             catch (NumberFormatException e) {
-                System.out.println("illegal! please enter a number");
+                System.out.println("illegal!\n please enter a number");
             }
         }
         return n;

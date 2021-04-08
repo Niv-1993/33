@@ -11,7 +11,6 @@ import DBMS.data;
 
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public response deleteData() { return new response(); } // check!
+    public response deleteData() { return new response(); }
 
     @Override
     public Tresponse<SupplierCard> showSupplier(int supplierBN) {
@@ -42,7 +41,7 @@ public class SupplierService implements ISupplierService {
         }
         if (supplierCard != null)
             return new Tresponse<>(new SupplierCard(supplierCard));
-        return new Tresponse<>("There is no such supplier");
+        return new Tresponse<>("ERROR: There is no such supplier");
     }
 
     @Override
@@ -76,7 +75,7 @@ public class SupplierService implements ISupplierService {
         if (supplierCard != null) {
             return new Tresponse<>(new SupplierCard(supplierCard));
         }
-        return new Tresponse<>("There is no such supplier");
+        return new Tresponse<>("ERROR: There is no such supplier");
     }
 
     @Override
@@ -90,9 +89,9 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public response updateSupplierBankAccount(int supplierBN, int bankAccount) {
+    public response updateSupplierBankAccount(int supplierBN,int bankNumber , int brunchNumber , int bankAccount) {
         try{
-            supplierController.updateSupplierBankAccount(supplierBN, bankAccount);
+            supplierController.updateSupplierBankAccount(supplierBN,bankNumber , brunchNumber , bankAccount);
         }catch (Exception e){
             return new response("ERROR: " + e.getMessage());
         }
@@ -140,9 +139,9 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public response updateContactPhone(int supplierBN, String phone) {
+    public response updateContactPhone(int supplierBN, String phone , String name) {
         try{
-            supplierController.updateContactPhone(supplierBN, phone);
+            supplierController.updateContactPhone(supplierBN, phone , name);
         }catch (Exception e){
             return new response("ERROR: " + e.getMessage());
         }
@@ -150,9 +149,9 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public response updateContactEmail(int supplierBN, String email) {
+    public response updateContactEmail(int supplierBN, String email , String name) {
         try{
-            supplierController.updateContactEmail(supplierBN, email);
+            supplierController.updateContactEmail(supplierBN, email , name);
         }catch (Exception e){
             return new response("ERROR: " + e.getMessage());
         }
@@ -171,6 +170,7 @@ public class SupplierService implements ISupplierService {
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
+        if(outSupplierCard.size() == 0) return new Tresponse<>("there is no suppliers.");
         return new Tresponse<>(outSupplierCard);
 
     }
@@ -187,7 +187,19 @@ public class SupplierService implements ISupplierService {
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
+        if(outItems.size() == 0) return new Tresponse<>("supplier does not have any items.");
         return new Tresponse<>(outItems);
+    }
+
+    @Override
+    public Tresponse<Item> showItemOfSupplier(int SupplierBN, int itemId) {
+        BussniesLayer.Item item;
+        try{
+            item = supplierController.showItemOfSupplier(SupplierBN, itemId);
+        }catch (Exception e){
+            return new Tresponse<>("ERROR: " + e.getMessage());
+        }
+        return new Tresponse<>(new Item(item));
     }
 
     @Override
@@ -202,6 +214,7 @@ public class SupplierService implements ISupplierService {
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
+        if(outItems.size() == 0) return new Tresponse<>("supplier does not have any orders.");
         return new Tresponse<>(outItems);
     }
 
@@ -217,6 +230,7 @@ public class SupplierService implements ISupplierService {
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
+        if(outItems.size() == 0) return new Tresponse<>("there is np items.");
         return new Tresponse<>(outItems);
     }
 
@@ -295,6 +309,7 @@ public class SupplierService implements ISupplierService {
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
+        if(outOrder.size() == 0) return new Tresponse<>("supplier does not have any orders.");
         return new Tresponse<>(outOrder);
     }
 
@@ -402,7 +417,7 @@ public class SupplierService implements ISupplierService {
         if (supplierAgreement != null) {
             return new Tresponse<>(new SupplierAgreement(supplierAgreement));
         }
-        return new Tresponse<>("There is no such supplier agreement");
+        return new Tresponse<>("ERROR: There is no such supplier agreement");
     }
 
     @Override

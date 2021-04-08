@@ -7,8 +7,8 @@ import java.util.*;
 public class SupplierCard {
     private final int supplierBN;
     private final String supplierName;
-    private final int bankNumber;
-    private final int BrunchNumber;
+    private int bankNumber;
+    private int BrunchNumber;
     private int accountNumber;
     private String payWay;
     private List<Order> orders;
@@ -69,8 +69,10 @@ public class SupplierCard {
         this.payWay = payWay;
     }
 
-    public void updateSupplierBankAccount(int bankAccount) throws Exception {
+    public void updateSupplierBankAccount(int bankNumber , int brunchNumber , int bankAccount) throws Exception {
         if(bankAccount < 0) throw new Exception("bank account must be a positive number");
+        this.bankNumber = bankNumber;
+        this.BrunchNumber = brunchNumber;
         this.accountNumber = bankAccount;
     }
 
@@ -87,32 +89,63 @@ public class SupplierCard {
     }
 
     public void removeContactPhone(String phone) throws Exception {
-        if(contactPhone.get(phone) != null)
-            throw new Exception("contact email all ready exist, you may want to use: update contact email");
+        if(contactPhone.get(phone) == null)
+            throw new Exception("contact phone does not exist");
         contactPhone.remove(phone);
     }
 
     public void removeContactEmail(String email) throws Exception {
-        if(contactPhone.get(email) != null)
-            throw new Exception("contact email all ready exist, you may want to use: update contact email");
+        if(contactPhone.get(email) == null)
+            throw new Exception("contact email does not exist");
         contactPhone.remove(email);
     }
 
-    public void updateContactPhone(String phone) throws Exception {
-        String name = contactPhone.get(phone);
-        if(name == null) throw new Exception("phone does not exist , you may want to use: add contact phone");
+    public void updateContactPhone(String phone , String name){
+        Enumeration<String> e1 = contactPhone.elements();
+        while (e1.hasMoreElements()) {
+            String element = e1.nextElement();
+            if(name.equals(element)){
+                Enumeration<String> e2 = contactPhone.keys();
+                while (e2.hasMoreElements()) {
+                    String oldPhone = e2.nextElement();
+                    if (contactPhone.get(oldPhone).equals(name)) {
+                        contactPhone.remove(oldPhone);
+                        break;
+                    }
+                }
+            }
+        }
         contactPhone.put(phone ,name);
     }
 
-    public void updateContactEmail(String email) throws Exception {
-        String name = contactPhone.get(email);
-        if(name == null) throw new Exception("email does not exist , you may want to use: add contact phone");
+    public void updateContactEmail(String email , String name) {
+        Enumeration<String> e1 = contactEmail.elements();
+        while (e1.hasMoreElements()) {
+            String element = e1.nextElement();
+            if(name.equals(element)){
+                Enumeration<String> e2 = contactEmail.keys();
+                while (e2.hasMoreElements()) {
+                    String oldEmail = e2.nextElement();
+                    if (contactEmail.get(oldEmail).equals(name)) {
+                        contactEmail.remove(oldEmail);
+                        break;
+                    }
+                }
+            }
+        }
         contactEmail.put(email ,name);
     }
 
 
     public List<Item> showAllItemsOfSupplier() {
         return items;
+    }
+
+    public Item showItemOfSupplier(int itemId) throws Exception {
+        for(Item item : items){
+            if(item.getItemId() == itemId) return item;
+        }
+        throw new Exception("itemId does net exist for this supplier");
     }
 
     public Item addItem(String category, int ItemId , String name , double price) throws Exception {
@@ -129,8 +162,17 @@ public class SupplierCard {
         throw new Exception("orderId does not exist.");
     }
 
-    public void removeItemFromSupplier(int itemId) {
-        items.removeIf(item -> item.getItemId() == itemId);
+    public void removeItemFromSupplier(int itemId , boolean single) throws Exception {
+        List<Item> copyItem = items;
+        boolean found = false;
+        for(Item item : copyItem){
+            if(item.getItemId() == itemId){
+                items.remove(item);
+                found = true;
+                break;
+            }
+        }
+        if(single && !found) throw new Exception("itemId does not exist for this supplier");
     }
 
     public Order addOrder(int orderID) {
@@ -248,7 +290,7 @@ public class SupplierCard {
             }
             if(hasFound) break;
         }
-        if(!hasFound) throw new Exception("itemId does not exist");
+        if(!hasFound) throw new Exception("itemId does not exist for this supplier");
     }
 
     public QuantityDocument showQuantityDocument(int itemId) throws Exception {

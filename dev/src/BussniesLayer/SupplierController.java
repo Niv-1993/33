@@ -62,11 +62,11 @@ public class SupplierController{
         }
     }
 
-    public void updateSupplierBankAccount(int supplierBN, int bankAccount) throws Exception {
+    public void updateSupplierBankAccount(int supplierBN, int bankNumber , int brunchNumber ,int bankAccount) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            suppliers.get(supplierBN).updateSupplierBankAccount(bankAccount);
+            suppliers.get(supplierBN).updateSupplierBankAccount(bankNumber , brunchNumber , bankAccount);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
@@ -98,7 +98,7 @@ public class SupplierController{
         try {
             suppliers.get(supplierBN).removeContactPhone(phone);
         } catch (Exception e){
-            throw new Exception("supplier BN is not exist");
+            throw new Exception(e.getMessage());
         }
     }
 
@@ -108,25 +108,25 @@ public class SupplierController{
         try {
             suppliers.get(supplierBN).removeContactEmail(email);
         } catch (Exception e){
-            throw new Exception("supplier BN is not exist");
+            throw new Exception(e.getMessage());
         }
     }
 
-    public void updateContactPhone(int supplierBN, String phone) throws Exception {
+    public void updateContactPhone(int supplierBN, String phone , String name) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            suppliers.get(supplierBN).updateContactPhone(phone);
+            suppliers.get(supplierBN).updateContactPhone(phone , name);
         } catch (Exception e){
             throw new Exception(e.getMessage());
         }
     };
 
-    public void updateContactEmail(int supplierBN, String email) throws Exception {
+    public void updateContactEmail(int supplierBN, String email , String name) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            suppliers.get(supplierBN).updateContactEmail(email);
+            suppliers.get(supplierBN).updateContactEmail(email , name);
         } catch (Exception e){
             throw new Exception(e.getMessage());
         }
@@ -136,7 +136,7 @@ public class SupplierController{
         List<SupplierCard> list = new LinkedList<>();
         Enumeration<SupplierCard> enumeration = suppliers.elements();
         while (enumeration.hasMoreElements()) {
-            list.add(enumeration.nextElement());
+            list.add(0 , enumeration.nextElement());
         }
         return list;
     }
@@ -163,6 +163,18 @@ public class SupplierController{
         return list;
     }
 
+    public Item showItemOfSupplier(int supplierBN , int itemId) throws Exception {
+        SupplierCard supplierCard = suppliers.get(supplierBN);
+        Item item;
+        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+        try {
+            item = supplierCard.showItemOfSupplier(itemId);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+        return item;
+    }
+
     public Item addItem(int supplierBN, String category , String name ,double price) throws Exception {
         Item item;
         SupplierCard supplierCard = suppliers.get(supplierBN);
@@ -176,18 +188,24 @@ public class SupplierController{
         return item;
     }
 
-    public void removeItem(int itemId) {
+    public void removeItem(int itemId) throws Exception {
+        if(numOfItems <= itemId || itemId < 0) throw new Exception("itemId does not exist.");
         Enumeration<SupplierCard> enumeration = suppliers.elements();
         while (enumeration.hasMoreElements()) {
             SupplierCard supplierCard = enumeration.nextElement();
-            supplierCard.removeItemFromSupplier(itemId);
+            supplierCard.removeItemFromSupplier(itemId , false);
         }
     }
 
     public void removeItemFromSupplier(int supplierBN, int itemId) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
-        suppliers.get(supplierBN).removeItemFromSupplier(itemId);
+        if(numOfItems < itemId || itemId < 0) throw new Exception("itemId does not exist.");
+        try {
+            suppliers.get(supplierBN).removeItemFromSupplier(itemId , true);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
     public Order addOrder(int supplierBN) throws Exception {

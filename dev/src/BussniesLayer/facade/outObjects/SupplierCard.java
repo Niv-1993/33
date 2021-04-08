@@ -2,6 +2,7 @@ package BussniesLayer.facade.outObjects;
 
 import javax.swing.*;
 import java.util.Dictionary;
+import java.util.Enumeration;
 
 
 public class SupplierCard{
@@ -40,8 +41,9 @@ public class SupplierCard{
     private String helpPrint(Dictionary<String , String> dictionary , boolean p_e){
         int size = 0;
         String toReturn = "";
-        while (dictionary.keys().hasMoreElements() && size < dictionary.size()){
-            String element = dictionary.keys().nextElement();
+        Enumeration<String> e = dictionary.keys();
+        while (e.hasMoreElements() && size < dictionary.size()){
+            String element = e.nextElement();
             if(p_e) toReturn = toReturn + "\n\t\tname: " + dictionary.get(element) + " , phone: " + element;
             else toReturn = toReturn + "\n\t\tname: " + dictionary.get(element) + " , email: " + element;
             size ++;

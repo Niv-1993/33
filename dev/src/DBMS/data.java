@@ -41,7 +41,7 @@ public class data {
             for(int i = 0 ; i < 19 ; i++  ){
                 if(i<= 2) supplierController.addQuantityDocument(0 , i , 3 + i , 2 + i);
                 else if(i<= 6) supplierController.addQuantityDocument(1 , i , 2 + i , 1 + i);
-                else if(i<= 8) supplierController.addQuantityDocument(2 , i , 1 + i , 3);
+                else if(i<= 8) supplierController.addQuantityDocument(2 , i , i , 3);
                 else if(i<= 14) supplierController.addQuantityDocument(3 , i , i - 8 ,1);
                 else supplierController.addQuantityDocument(4 , i , i - 14 , i-14);
             }
@@ -71,7 +71,7 @@ public class data {
             supplierController.addOrder(4);
             supplierController.addItemToOrder(0 , 0 , 0 , 2);
             supplierController.addItemToOrder(0 , 0 , 2 , 5);
-            supplierController.addItemToOrder(2 , 1 , 8 , 4);
+            supplierController.addItemToOrder(2 , 1 , 8 , 10);
             supplierController.addItemToOrder(3 , 2 ,  11, 4);
             supplierController.addItemToOrder(4 , 3 , 15 , 5);
             supplierController.addItemToOrder(4 , 4 , 18 , 1);
