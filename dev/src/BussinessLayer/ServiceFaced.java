@@ -259,8 +259,9 @@ public class ServiceFaced {
     private TransportationServiceDTO toTransportationServiceDTO(Transportation t){
         List<Pair<Item,Integer>> i;
         HashMap<Supplier, List<Pair<Item, Integer>>> suppliers = t.getSuppliers();
-        HashMap<SupplierServiceDTO, List<Pair<ItemServiceDTO, Integer>>> newSup = new HashMap<>();
+        HashMap<SupplierServiceDTO, List<Pair<ItemServiceDTO, Integer>>> newSup=null;
         if(t.getSuppliers()!=null) {
+            newSup = new HashMap<>();
             for (Map.Entry<Supplier, List<Pair<Item, Integer>>> entry : suppliers.entrySet()) {
                 i = entry.getValue();
                 List<Pair<ItemServiceDTO, Integer>> iDTO = new LinkedList<>();
@@ -271,8 +272,9 @@ public class ServiceFaced {
             }
         }
         HashMap<Branch, List<Pair<Item, Integer>>> items = t.getDeliveryItems();
-        HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO, Integer>>> newItems = new HashMap<>();
+        HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO, Integer>>> newItems = null;
         if(t.getDeliveryItems()!=null) {
+            newItems = new HashMap<>();
             for (Map.Entry<Branch, List<Pair<Item, Integer>>> entry : items.entrySet()) {
                 i = entry.getValue();
                 List<Pair<ItemServiceDTO, Integer>> iDTO = new LinkedList<>();

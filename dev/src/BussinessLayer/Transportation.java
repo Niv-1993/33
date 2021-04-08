@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
-
-import enums.Area;
 import  enums.Pair;
 
 //yuval
@@ -152,25 +150,6 @@ public class Transportation {
         return truck;
     }
 
-    public List<Pair<Item,Integer>> getSiteItems(Branch b){
-        if(!deliveryItems.containsKey(b)){
-            throw new IllegalArgumentException("Site " + b + "does not in this delivery");
-        }
-        return deliveryItems.get(b);
-    }
-
-    private boolean checkSameArea(List<Site> sites){
-        if(sites.isEmpty()){
-            throw new IllegalArgumentException("no sites...");
-        }
-        ShippingArea curr = sites.get(0).getShippingArea();
-        for (Site s: sites){
-            if(!(curr.equals(s.getShippingArea()))){
-                return false;
-            }
-        }
-        return true;
-    }
 
     @Override
     public boolean equals(Object o) {

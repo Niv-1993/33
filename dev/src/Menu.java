@@ -1,8 +1,5 @@
 import ServiceLayer.Controller;
-import ServiceLayer.Objects.BranchServiceDTO;
-import ServiceLayer.Objects.ItemServiceDTO;
-import ServiceLayer.Objects.SupplierServiceDTO;
-import ServiceLayer.Objects.TransportationServiceDTO;
+import ServiceLayer.Objects.*;
 import enums.Area;
 import enums.Pair;
 import java.time.LocalDate;
@@ -32,8 +29,7 @@ public class Menu {
      *
      */
     public void chooseOption(){
-        System.out.println("press 1 to see all available Transportations ");
-        System.out.println("press 2 to create a new Transportation");
+        System.out.println("press 1 to see all Transportations, press 2 to create a new Transportation");
         option = chooseOp(numOfOptions);
     }
     private void chooseArea(TransportationServiceDTO t){
@@ -159,6 +155,7 @@ public class Menu {
         }
         catch (Exception e){
             t.setSuppliers(null);
+            System.out.println("Error: "+e.getMessage());
         }
     }
     private void chooseBranch(TransportationServiceDTO t) {
@@ -195,6 +192,7 @@ public class Menu {
         }
         catch (Exception e){
             t.setDeliveryItems(null);
+            System.out.println("Error: "+e.getMessage());
         }
     }
     private void chooseDriver(TransportationServiceDTO t) {
@@ -206,7 +204,7 @@ public class Menu {
             controller.setDriverOnTransportation(t);
         }
         catch (Exception e){
-            t.setTruck(null);
+            t.setDriver(null);
         }
     }
 
@@ -225,22 +223,30 @@ public class Menu {
     }
 
     public void printAllDrivers(){
-        System.out.println(controller.getAllDrivers().toString());
+       List<DriverServiceDTO> lis=controller.getAllDrivers();
+        for (DriverServiceDTO dri:lis) { System.out.println(dri); }
     }
     public void printAllTucks(){
-        System.out.println(controller.getAllTrucks().toString());
+        List<TruckServiceDTO> lis=controller.getAllTrucks();
+        for (TruckServiceDTO tru:lis) { System.out.println(tru); }
     }
     public void printAllBranches(){
-        System.out.println(controller.getAllBranches().toString());
+        List<BranchServiceDTO> bra=controller.getAllBranches();
+        for (BranchServiceDTO tru:bra) { System.out.println(tru); }
     }
     public void printAllSuppliers(){
-        System.out.println(controller.getAllSuppliers().toString());
+        List<SupplierServiceDTO> sup=controller.getAllSuppliers();
+        for (SupplierServiceDTO tru:sup) { System.out.println(tru); }
+
     }
     public void PrintAllItems(){
-        System.out.println(controller.getAllItems());
+        List<ItemServiceDTO> sup=controller.getAllItems();
+        for (ItemServiceDTO tru:sup) { System.out.println(tru); }
+
     }
     public void printAllTransportations(){
-        System.out.println(controller.getAllTransportations());
+        List<TransportationServiceDTO> sup=controller.getAllTransportations();
+        for (TransportationServiceDTO tru:sup) { System.out.println(tru); }
     }
 
     public boolean endOfProgram(){

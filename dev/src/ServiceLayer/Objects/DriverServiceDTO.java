@@ -14,7 +14,7 @@ public class DriverServiceDTO {
 
     @Override
     public String toString() {
-        return "DriverServiceDTO{\tid=" + id +
+        return "Driver {\tid=" + id +
                 "\tname='" + name  +
                 "\tlicense=" + license +
                 "\t}\n";

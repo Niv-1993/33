@@ -1,6 +1,4 @@
 package BussinessLayer;
-
-import DataLayer.DataController;
 import enums.Area;
 import enums.Pair;
 
@@ -8,7 +6,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 //yuval
@@ -25,10 +22,9 @@ public class TransportationService {
     public List<Transportation> getTransportationsList() {
         return new ArrayList<>(transportations.values());
     }
-    public Transportation setDriver(long transId, Driver driver){
+    public void setDriver(long transId, Driver driver){
         Transportation t = getTransportationById(transId);
         t.setDriver(driver);
-        return t;
     }
     public Transportation newTransportation(){
         Transportation tra=new Transportation(idCounter);
@@ -36,52 +32,66 @@ public class TransportationService {
         idCounter++;
         return tra;
     }
-    public Transportation setSuppliersItem(long transId, HashMap<Supplier, List<Pair<Item, Integer>>> s){
+    public void setSuppliersItem(long transId, HashMap<Supplier, List<Pair<Item, Integer>>> s){
         Transportation t = getTransportationById(transId);
-       List< List<Pair<Item, Integer>>> pairs= new ArrayList<>(s.values());
-        for (List<Pair<Item, Integer>> quan:pairs) {
-            for (Pair<Item, Integer> pair: quan) {
+        List< List<Pair<Item, Integer>>> pairs= new ArrayList<>(s.values());
+        List< List<Pair<Item, Integer>>> pairs2=null;
+        if (t.getDeliveryItems()!=null)
+            pairs2= new ArrayList<>(t.getDeliveryItems().values());
+        checkValidation(pairs,pairs2);
+        for (List<Pair<Item, Integer>> quantity:pairs) {
+            for (Pair<Item, Integer> pair: quantity) {
                    if(pair.getSec()<0)
                        throw new IllegalArgumentException("illegal item quantity. item id: "+pair.getFir().getId());
             }
         }
         t.setSuppliers(s);
-        return t;
     }
-    public Transportation setItems(long transId, HashMap<Branch,List<Pair<Item,Integer>>> items){
-        Transportation t = getTransportationById(transId);
-        t.setDeliveryItems(items);
-        return t;
+
+    private void checkValidation(List<List<Pair<Item, Integer>>> pairss, List<List<Pair<Item, Integer>>> pairss2) {
+
+        if(pairss!=null&pairss2!=null){
+          for (List<Pair<Item, Integer>> lis1:pairss){
+                boolean contains=false;
+                for (Pair<Item, Integer> pair:lis1) {
+                    for (List<Pair<Item, Integer>> lis2:pairss2) {
+                       if(lis2.contains(pair))
+                           contains=true;
+                    }
+                    if(contains==false)
+                        throw new IllegalArgumentException("items in brances and suppliers and quantities must be equal.");
+                    contains=false;
+                }
+            }
+        }
     }
-    public Transportation setTruck(long transId,Truck truck){
+
+    public void setTruck(long transId, Truck truck){
         Transportation t = getTransportationById(transId);
         t.setTruck(truck);
-        return t;
     }
-    public Transportation setDateAndLivingTime(long transId, LocalDate date, LocalTime livingTime){
-        Transportation t = getTransportationById(transId);
-        t.setDate(date);
-        t.setLeavingTime(livingTime);
-        return t;
-    }
+
     public Transportation getTransportationById(long id){
         if(transportations.containsKey(id)){
             return transportations.get(id);
         }
         throw new IllegalArgumentException("No transportation match to id:" + id);
     }
-    public Transportation setDeliveryItems(long transId, HashMap<Branch,List<Pair<Item,Integer>>> deliveryItems){
+    public void setDeliveryItems(long transId, HashMap<Branch,List<Pair<Item,Integer>>> deliveryItems){
         Transportation t = getTransportationById(transId);
+        List< List<Pair<Item, Integer>>> pairs=new ArrayList(deliveryItems.values());
+        List< List<Pair<Item, Integer>>> pairs2=null;
+        if (t.getSuppliers()!=null)
+            pairs2= new ArrayList<>(t.getSuppliers().values());
+        checkValidation(pairs,pairs2);
+        for (List<Pair<Item, Integer>> quantity:pairs) {
+            for (Pair<Item, Integer> pair: quantity) {
+                if(pair.getSec()<0)
+                    throw new IllegalArgumentException("illegal item quantity. item id: "+pair.getFir().getId());
+            }
+        }
         t.setDeliveryItems(deliveryItems);
-        return t;
     }
-    public Transportation setWeight(long transId,int kg){
-        Transportation t = getTransportationById(transId);
-        t.setWeight(kg);
-        return t;
-    }
-
-
     public void loadData(DataControl dataControl) {
         transportations=dataControl.loadTrans();
     }
