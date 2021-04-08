@@ -3,27 +3,26 @@ package Business.ShiftPKG;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
 import org.apache.log4j.Logger;
-
-import javax.swing.*;
 import java.time.LocalDate;
 import java.util.*;
 
 public class Shift {
     private final static Logger log = Logger.getLogger(Shift.class);
     //-------------------------------------fields------------------------------------
+
     private final int SID;
     private Map<Integer, String[]> employees;  // [0]->RoleType in String, [1]->name
     private Map<RoleType, Integer> rolesAmount;
     private Map<RoleType, List<String[]>> optionals; //[0]-ID, [1]-Name
-    private boolean complete;
+    private boolean complete;  //employees == roles amount
     private LocalDate date;
     private ShiftType shiftType;
     private boolean wasSelfMake;
     private boolean hasShiftManager;
 
     //------------------------------------constructor--------------------------------
-    public Shift(int SID, Map<RoleType, Integer> rolesAmount, Map<RoleType, List<String[]>> optionals, LocalDate date, ShiftType shiftType) throws Exception {
 
+    public Shift(int SID, Map<RoleType, Integer> rolesAmount, Map<RoleType, List<String[]>> optionals, LocalDate date, ShiftType shiftType) throws Exception {
         this.SID = SID;
         employees = new HashMap<>();
         checkIfAmountNegAndHasSM(rolesAmount);  //check if legal (not negative)
@@ -40,13 +39,12 @@ public class Shift {
         log.debug("shift: " + SID + " created");
         if(optionals.containsKey(RoleType.ShiftManager))
             hasShiftManager = !optionals.get(RoleType.ShiftManager).isEmpty();
-        ;
     }
 
-    public boolean HasShiftManager() {
-        return hasShiftManager;
-    }
 
+    //-------------------------------------methods----------------------------------
+
+    //shift controller call this function after create shift to insert shift manager to this shift
     public List<Integer> insertShiftManager() {
         String[] sm = optionals.get(RoleType.ShiftManager).remove(0);
         employees.put(Integer.parseInt(sm[0]), new String[]{RoleType.ShiftManager.name(), sm[1]});
@@ -54,8 +52,6 @@ public class Shift {
         listOfSM.add(Integer.parseInt(sm[0]));
         return listOfSM;
     }
-
-    //-------------------------------------methods----------------------------------
 
     public List<Integer> self_make() throws Exception {
         if (!wasSelfMake) {
@@ -81,24 +77,6 @@ public class Shift {
         return new ArrayList<>();
     }
 
-
-    public void removeEmpFromShift(int EID, List<RoleType> roles) throws Exception {
-        String[] emp = employees.remove(EID);  //return null if EID isn't in this shift
-        if (emp == null) {
-            log.error("EID: " + EID + " isn't in this shift");
-            throw new Exception("EID: " + EID + " isn't in this shift");
-        }
-        complete = false;
-        if (RoleType.valueOf(emp[0]).equals(RoleType.ShiftManager)) {
-            hasShiftManager = false;
-        }
-        roles.forEach(roleType -> {
-            optionals.get(roleType).add(new String[]{String.valueOf(EID), emp[1]});
-        });
-
-        log.debug("EID: " + EID + "removed from SID: " + SID);
-    }
-
     public void addEmpToShift(int EID, RoleType role, String name) throws Exception {
         //check if EID can work in this shift (in optionals)
         List<String[]> list = optionals.get(role);
@@ -118,8 +96,7 @@ public class Shift {
         //check if there is empty role for this roleType in rolesAmount
         if (roleIsFull(role)) {
             log.error("all the option for Role: " + role + " are close");
-            throw new Exception("all the options for Role: " + role + " are close");
-
+            throw new Exception("All the options for Role: " + role + " are close");
         }
         employees.put(EID, new String[]{role.name(), name});
         RemoveEmpFromOptionals(EID);
@@ -128,37 +105,20 @@ public class Shift {
         log.debug("EID: " + EID + "added to SID: " + SID);
     }
 
-    public void updateRolesAmount(RoleType role, int newAmount) throws Exception {
-        if (newAmount < 0) {
-            throw new Exception("The new amount for role: " + role + " is negative");
+    public void removeEmpFromShift(int EID, List<RoleType> roles) throws Exception {
+        String[] emp = employees.remove(EID);  //return null if EID isn't in this shift
+        if (emp == null) {
+            log.error("EID: " + EID + " isn't in this shift");
+            throw new Exception("Employee ID: " + EID + " isn't in this shift");
         }
-        rolesAmount.replace(role, newAmount);
-    }
-
-    //for tests
-    public boolean employeeExists(int EID) {
-        return employees.containsKey(EID);
-    }
-
-    private boolean roleIsFull(RoleType role) {
-        int amount = rolesAmount.get(role);
-        long count = employees.entrySet().stream().filter(x -> x.getValue()[0].equals((role.name()))).count();
-        return count >= amount;
-    }
-
-    public void RemoveEmpFromOptionals(int EID) {
-        for (Map.Entry<RoleType, List<String[]>> e : optionals.entrySet()) {
-            List<String[]> l = e.getValue();
-            if (l != null) {
-                l.removeIf(arr -> Integer.parseInt(arr[0]) == EID);
-            }
+        complete = false;
+        if (RoleType.valueOf(emp[0]).equals(RoleType.ShiftManager)) {
+            hasShiftManager = false;
         }
-    }
-
-    public String[] addToOptionals(int EID, String name, RoleType role) {
-        String[] s = {String.valueOf(EID), name};
-        optionals.get(role).add(s);
-        return s;
+        roles.forEach(roleType -> {
+            optionals.get(roleType).add(new String[]{String.valueOf(EID), emp[1]});
+        });
+        log.debug("EID: " + EID + "removed from SID: " + SID);
     }
 
     public void removeFireEmp(int EID, String name) {
@@ -179,17 +139,18 @@ public class Shift {
         log.debug("EID: " + EID + " removed(fire) from SID: " + SID);
     }
 
-    private void checkIfAmountNegAndHasSM(Map<RoleType, Integer> defaultShifts) throws Exception {
-        for (Map.Entry<RoleType, Integer> e : defaultShifts.entrySet()) {
-            if (e.getValue() < 0) {
-                log.error("Role amount for role: " + e.getKey() + " is negative: " + e.getValue());
-                throw new Exception("Role amount for role: " + e.getKey() + " is negative");
-            }
-            if (e.getKey().equals(RoleType.ShiftManager) && e.getValue()!=1) {
-                log.error("Shift Manager amount is not legal: "+ e.getValue());
-                throw new Exception("Shift Manager amount is not legal: "+ e.getValue());
-            }
+    public String[] addToOptionals(int EID, String name, RoleType role) {
+        String[] s = {String.valueOf(EID), name};
+        optionals.get(role).add(s);
+        return s;
+    }
 
+    public void RemoveEmpFromOptionals(int EID) {
+        for (Map.Entry<RoleType, List<String[]>> e : optionals.entrySet()) {
+            List<String[]> l = e.getValue();
+            if (l != null) {
+                l.removeIf(arr -> Integer.parseInt(arr[0]) == EID);
+            }
         }
     }
 
@@ -205,6 +166,32 @@ public class Shift {
         });
     }
 
+    public void updateRolesAmount(RoleType role, int newAmount) throws Exception {
+        if (newAmount < 0) {
+            throw new Exception("The new amount for role: " + role + " is negative");
+        }
+        rolesAmount.replace(role, newAmount);
+    }
+
+    private boolean roleIsFull(RoleType role) {
+        int amount = rolesAmount.get(role);
+        long count = employees.entrySet().stream().filter(x -> x.getValue()[0].equals((role.name()))).count();
+        return count >= amount;
+    }
+
+    private void checkIfAmountNegAndHasSM(Map<RoleType, Integer> defaultShifts) throws Exception {
+        for (Map.Entry<RoleType, Integer> e : defaultShifts.entrySet()) {
+            if (e.getValue() < 0) {
+                log.error("Role amount for role: " + e.getKey() + " is negative: " + e.getValue());
+                throw new Exception("Role amount for role: " + e.getKey() + " is negative");
+            }
+            if (e.getKey().equals(RoleType.ShiftManager) && e.getValue()!=1) {
+                log.error("Shift Manager amount is not legal: "+ e.getValue());
+                throw new Exception("Shift Manager amount is not legal: "+ e.getValue());
+            }
+        }
+    }
+
     private boolean isComplete() {
         int amount = 0;
         for (Map.Entry<RoleType, Integer> role : rolesAmount.entrySet())
@@ -213,6 +200,7 @@ public class Shift {
     }
 
     //-------------------getters&setters----------------------------------------
+
     public LocalDate getDate() {
         return date;
     }
@@ -245,5 +233,8 @@ public class Shift {
         return wasSelfMake;
     }
 
+    public boolean HasShiftManager() {
+        return hasShiftManager;
+    }
 
 }

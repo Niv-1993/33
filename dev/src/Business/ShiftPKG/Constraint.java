@@ -7,22 +7,26 @@ import java.time.LocalDate;
 public abstract class Constraint {
     final static Logger log = Logger.getLogger(Constraint.class);
     //--------------------------------fields-----------------------------
+
     private final int CID;
     private final int EID;
     protected ShiftType shiftType;
     private String reason;
 
     //------------------------------constructor---------------------------
+
     Constraint(int CID, int EID, ShiftType shiftType, String reason){
         this.CID = CID;
         this.EID = EID;
         this.shiftType = shiftType;
         this.reason = reason;
     }
+
     //---------------------------------methods----------------------------
 
     public abstract boolean relevant(LocalDate date, ShiftType shiftType);
-    public abstract String getStringDate();
+
+    public abstract String getStringDate();  //return date or "every"+day
 
     public void updateReason(String newReason){
         reason = newReason;
@@ -33,6 +37,7 @@ public abstract class Constraint {
     }
 
     //-------------------------------getters&setters----------------------
+
     public int getCID() {
         return CID;
     }

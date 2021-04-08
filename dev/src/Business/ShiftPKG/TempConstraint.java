@@ -7,6 +7,7 @@ import java.time.LocalDate;
 public class TempConstraint extends Constraint {
     final static Logger log = Logger.getLogger(TempConstraint.class);
     //-------------------------------------fields------------------------------------
+
     private final LocalDate date;
 
     //------------------------------------constructor--------------------------------
