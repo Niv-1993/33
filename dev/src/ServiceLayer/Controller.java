@@ -17,12 +17,12 @@ public class Controller {
     }
     public void loadDataT(){ serviceControl.loadData(); }
     private Controller (){
-        serviceControl = ServiceFaced.initial();
+        serviceControl = new ServiceFaced();
     }
 
     /**
-     * setter methods, for each field of the transportation object try to update in the business layer
-     * @param t
+     * Setter methods, for each field of the transportation object try to update in the business layer
+     * @param t : the presentation's transportation object to show the user and to contact the business layer
      */
     public void setDriverOnTransportation(TransportationServiceDTO t){
         ResponseT<TransportationServiceDTO> tra = serviceControl.setTransportationDriver(t);
@@ -82,8 +82,8 @@ public class Controller {
     }
 
     /**
-     * getters for every object's list.
-     * @return
+     * Getters for every object's list.
+     * @return : the objects list
      */
     public List<DriverServiceDTO> getAllDrivers(){
         ResponseT<List<DriverServiceDTO>> res = serviceControl.getDTODrivers();
@@ -93,7 +93,7 @@ public class Controller {
         return res.getValue();
     }
     public List<ItemServiceDTO> getAllItems(){
-        ResponseT<List<ItemServiceDTO>> res = serviceControl.getAllItems();
+        ResponseT<List<ItemServiceDTO>> res = serviceControl.getAllDTOItems();
         if(res.ErrorOccured()) {
             throw new IllegalArgumentException(res.getErrorMessage());
         }
@@ -173,7 +173,7 @@ public class Controller {
 
     /**
      * Method for initializing new transportation to create.
-     * @return
+     * @return : returns the new transportation object
      */
     public TransportationServiceDTO createNewTransportation() {
         ResponseT<TransportationServiceDTO> res = serviceControl.createNewTransportation();

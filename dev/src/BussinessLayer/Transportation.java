@@ -7,14 +7,13 @@ import java.util.List;
 import java.util.Objects;
 import  enums.Pair;
 
-//yuval
+
 public class Transportation {
     private long id;
     private LocalDate date;
     private LocalTime leavingTime;
     private Driver driver;
     private Truck truck;
-    //ask if they call this item or product?
     private HashMap<Branch, List<Pair<Item, Integer>>> deliveryItems;
     private int weight;
     private ShippingArea shippingArea;
@@ -42,39 +41,15 @@ public class Transportation {
         this.leavingTime = leavingTime;
         this.suppliers = suppliers;
     }
-
-    public HashMap<Supplier, List<Pair<Item, Integer>>> getSuppliers() {
-        return suppliers;
-    }
-
-    public ShippingArea getShippingArea() {
-        return shippingArea;
-    }
-
     public void setShippingArea(ShippingArea shippingArea) {
         this.shippingArea = shippingArea;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public Driver getDriver() {
-        return driver;
-    }
-
-    public LocalTime getLeavingTime() {
-        return leavingTime;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
+    /**
+     * Sets new data.
+     * Check if the date is later than the date it was typed..
+     * @param date: the date to set to.
+     */
     public void setDate(LocalDate date) {
         if (LocalDate.now().compareTo(date)>0) {
             throw new IllegalArgumentException("the date is: " + LocalDate.now() + " but u set: " + date + "to be the date.");
@@ -82,6 +57,11 @@ public class Transportation {
         this.date = date;
     }
 
+    /**
+     * Set the delivery items with branches.
+     * Checks that all areas of branches are the same, otherwise throws an exception.
+     * @param deliveryItems: the items and branched hashmap.
+     */
     public void setDeliveryItems(HashMap<Branch, List<Pair<Item, Integer>>> deliveryItems) {
         List<Branch> branches = new ArrayList<>(deliveryItems.keySet());
         List<Branch> noSameArea = new ArrayList<>();
@@ -103,8 +83,13 @@ public class Transportation {
         this.suppliers = suppliers;
     }
 
+    /**
+     * Set driver to the transportation.
+     * Will not allow to set driver before truck.
+     * Check that driver's license is compatible.
+     * @param driver: The driver to set to.
+     */
     public void setDriver(Driver driver) {
-        //not expected but just in case
         if (truck == null) {
             throw new IllegalArgumentException("Please choose a truck before u choose a Driver");
         } else if ((driver.getLicense().getKg())<(truck.getLicense().getKg())) {
@@ -118,6 +103,11 @@ public class Transportation {
         this.id = id;
     }
 
+    /**
+     * Adding the new transportation time.
+     * Checks the time and date are after the current time and dates(When the transportation was created).
+     * @param leavingTime
+     */
     public void setLeavingTime(LocalTime leavingTime) {
         if ((LocalTime.now().compareTo(leavingTime) < 0) &&  date.compareTo(LocalDate.now())==0) {
             throw new IllegalArgumentException("u choose incorrect living time.");
@@ -125,31 +115,46 @@ public class Transportation {
         this.leavingTime = leavingTime;
     }
 
-
+    /**
+     * sets the transportation weight.
+     * Checks if the weight is legal.
+     * @param weight : the weight to set to.
+     */
     public void setWeight(int weight){
+        if(weight< truck.getNetWeight())
+            throw new IllegalArgumentException("Warning! The weight must include the truck net weight ");
         if(weight > truck.getMaxWeight()){
-            //also print the options the user have..
-            throw new IllegalArgumentException("Warning the curr weight is mismatch to max truck wight");
+            throw new IllegalArgumentException("Warning! the curr weight is mismatch to max truck wight");
         }
         this.weight = weight;
     }
 
-    public HashMap<Branch, List<Pair<Item,Integer>>> getDeliveryItems() {
-        return deliveryItems;
-    }
 
-    public void setTruck(Truck truck) {
-        this.truck = truck;
+    public void setTruck(Truck truck) { this.truck = truck; }
+    public HashMap<Branch, List<Pair<Item,Integer>>> getDeliveryItems() { return deliveryItems; }
+    public int getWeight() { return weight; }
+    public Truck getTruck() { return truck; }
+    public long getId() {
+        return id;
     }
-
-    public int getWeight() {
-        return weight;
+    public HashMap<Supplier, List<Pair<Item, Integer>>> getSuppliers() {
+        return suppliers;
     }
-
-    public Truck getTruck() {
-        return truck;
+    public ShippingArea getShippingArea() {
+        return shippingArea;
     }
-
+    public LocalDate getDate() {
+        return date;
+    }
+    public Driver getDriver() {
+        return driver;
+    }
+    public LocalTime getLeavingTime() {
+        return leavingTime;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -174,6 +179,10 @@ public class Transportation {
         return Objects.hash(id, date, leavingTime, driver, deliveryItems);
     }
 
+    /**
+     * Method that returns if the user finished to fill all the fields needed to create the transportation.
+     * @return : if the trans is completed.
+     */
     public boolean isComplete() {
 
         return !(date == null | leavingTime == null|driver == null| truck == null|deliveryItems == null|shippingArea == null|weight == -1|suppliers == null);

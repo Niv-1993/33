@@ -1,12 +1,9 @@
 package BussinessLayer;
-
-import BussinessLayer.ShippingArea;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-//yuval
+
 public class SiteService {
     private List<Site> sites;
     private HashMap<Integer, Supplier> suppliers;
@@ -33,16 +30,12 @@ public class SiteService {
         throw new IllegalArgumentException("supplier with id: " + id +"does not exist");
     }
     public HashMap<Integer, Supplier> getSuppliers(){return suppliers;}
-    public HashMap<Integer, Branch> getBranches(){return branches;}
-
-    public void setSites(List<Site> sites) {
-        this.sites = sites;
-    }
-    public List<Site> getSites() {
-        return sites;
-    }
 
 
+    /**
+     * load all the sites from the database using the control
+     * @param dataControl : the control that ask the database for the data.
+     */
     public void loadData(DataControl dataControl) {
 
         suppliers=dataControl.getSuppliers();

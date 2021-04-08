@@ -1,7 +1,3 @@
-import BussinessLayer.Branch;
-import BussinessLayer.ShippingArea;
-import BussinessLayer.Supplier;
-import BussinessLayer.Transportation;
 import DataLayer.*;
 import ServiceLayer.Controller;
 import ServiceLayer.Objects.TransportationServiceDTO;
@@ -101,7 +97,7 @@ class ControllerTest {
     @DisplayName("Should set a Driver")
     void setDriverOnTransportation() {
 
-        controller.setDriverOnTransportation(t);
+        controller.setDriverOnTransportation();
     }
 
     @Test

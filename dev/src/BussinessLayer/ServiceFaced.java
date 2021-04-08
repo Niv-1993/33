@@ -11,33 +11,36 @@ public class ServiceFaced {
     private final SiteService siteService;
     private final TransportationService transportationService;
     private final ItemService itemService;
-    private static ServiceFaced serviceFaced = null;
     private final DataControl dataControl;
 
 
-    private ServiceFaced(){
+    public ServiceFaced(){
         driverService = new DriverService();
         truckService = new TruckService();
         siteService = new SiteService();
         transportationService = new TransportationService();
         itemService = new ItemService();
         dataControl=DataControl.init();
+        loadData();
     }
-    private void loadData(){
+
+    /**
+     * Load data from database
+     */
+    public void loadData(){
 
         this.truckService.loadData(dataControl);
         this.driverService.loadData(dataControl);
         this.transportationService.loadData(dataControl);
         this.itemService.loadData(dataControl);
         this.siteService.loadData(dataControl);
-    };
-    public static ServiceFaced initial() {
-        if(serviceFaced == null){
-            serviceFaced = new ServiceFaced();
-        }
-        serviceFaced.loadData();
-        return serviceFaced;
     }
+
+    /**
+     *Getters for return an object by it's identifier.
+     * @param id: the identifier of the object.
+     * @return : the object.
+     */
     public ResponseT<DriverServiceDTO> getDriver(long id){
         try {
             return new ResponseT<>(toDriverServiceDTO(driverService.getDriver(id)));
@@ -66,6 +69,20 @@ public class ServiceFaced {
             return new ResponseT<>(e.getMessage());
         }
     }
+    public ResponseT<ItemServiceDTO> getItem(long id){
+        try {
+            return new ResponseT<>(toItemServiceDTO(itemService.getItem(id)));
+        }catch (Exception e){
+            return new ResponseT<>(e.getMessage());
+        }
+    }
+
+
+    /**
+     * Getters for every object's DTO list.
+     * Converts from business objects to presentation objects
+     * @return : Response with the objects list inside or an Exception if failed.
+     */
     public ResponseT<List<DriverServiceDTO>> getDTODrivers(){
         List<DriverServiceDTO> returnD = new LinkedList<>();
         try {
@@ -102,37 +119,7 @@ public class ServiceFaced {
             return new ResponseT<>(e.getMessage());
         }
     }
-    public ResponseT<List<TransportationServiceDTO>> getDTOtransportations(){
-        List<TransportationServiceDTO> returnT = new LinkedList<>();
-        try {
-            List<Transportation> transportations = transportationService.getTransportationsList();
-            for (Transportation t: transportations){
-                returnT.add(toTransportationServiceDTO(t));
-            }
-            return new ResponseT<>(returnT);
-        }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
-        }
-    }
-    public ResponseT<List<ItemServiceDTO>> getAllItems(){
-        List<ItemServiceDTO> returnI = new LinkedList<>();
-        try {
-            List<Item> allItems = itemService.getItemsList();
-            for (Item i: allItems){
-                returnI.add(toItemServiceDTO(i));
-            }
-            return new ResponseT<>(returnI);
-        }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
-        }
-    }
-    public ResponseT<ItemServiceDTO> getItem(long id){
-        try {
-            return new ResponseT<>(toItemServiceDTO(itemService.getItem(id)));
-        }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
-        }
-    }
+
     public ResponseT<List<TruckServiceDTO>> getDTOTrucks(){
         List<TruckServiceDTO> returnT = new LinkedList<>();
         try {
@@ -146,6 +133,37 @@ public class ServiceFaced {
         }
     }
 
+    public ResponseT<List<TransportationServiceDTO>> getDTOTransportations() {
+        List<TransportationServiceDTO> returnT = new LinkedList<>();
+        try {
+            List<Transportation> transportations = transportationService.getTransportationsList();
+            for (Transportation t: transportations){
+                returnT.add(toTransportationServiceDTO(t));
+            }
+            return new ResponseT<>(returnT);
+        }catch (Exception e){
+            return new ResponseT<>(e.getMessage());
+        }
+    }
+
+    public ResponseT<List<ItemServiceDTO>> getAllDTOItems(){
+        List<ItemServiceDTO> returnI = new LinkedList<>();
+        try {
+            List<Item> allItems = itemService.getItemsList();
+            for (Item i: allItems){
+                returnI.add(toItemServiceDTO(i));
+            }
+            return new ResponseT<>(returnI);
+        }catch (Exception e){
+            return new ResponseT<>(e.getMessage());
+        }
+    }
+
+    /**
+     * Setter methods, for each field of the transportation object try to update in the business layer
+     * @param t : the presentation's transportation object to show the user and to contact the business layer
+     * @return: Response object with the Transportation obj inside or throws an Exception if failed.
+     */
     public ResponseT<TransportationServiceDTO> setTransportationDriver(TransportationServiceDTO t){
         try {
             Driver d = driverService.getDriver(t.getDriver().getId());
@@ -157,7 +175,7 @@ public class ServiceFaced {
         }
     }
     public ResponseT<TransportationServiceDTO> setTransportationDeliveryItems(TransportationServiceDTO t ){
-             HashMap<Branch,List<Pair<Item,Integer>>> deliveryItemsb = new HashMap<>();
+             HashMap<Branch,List<Pair<Item,Integer>>> deliveryItemsB = new HashMap<>();
         try {
             HashMap<BranchServiceDTO,List<Pair<ItemServiceDTO,Integer>>> deliveryItems = t.getDeliveryItems();
             for (Map.Entry<BranchServiceDTO,List<Pair<ItemServiceDTO,Integer>>> entry: deliveryItems.entrySet()){
@@ -166,16 +184,16 @@ public class ServiceFaced {
                 for (Pair<ItemServiceDTO,Integer> item : entry.getValue()){
                     delivery.add(new Pair<>(itemService.getItem(item.getFir().getId()),item.getSec()));
                 }
-                deliveryItemsb.put(b,delivery);
+                deliveryItemsB.put(b,delivery);
             }
-            transportationService.setDeliveryItems(t.getId(),deliveryItemsb);
+            transportationService.setDeliveryItems(t.getId(),deliveryItemsB);
             return new ResponseT<>(t);
         }catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
     }
     public ResponseT<TransportationServiceDTO> setTransportationSuppliersItems(TransportationServiceDTO t ){
-        HashMap<Supplier,List<Pair<Item,Integer>>> deliveryItemsb = new HashMap<>();
+        HashMap<Supplier,List<Pair<Item,Integer>>> deliveryItemsB = new HashMap<>();
         try {
             HashMap<SupplierServiceDTO,List<Pair<ItemServiceDTO,Integer>>> deliveryItems = t.getSuppliers();
             for (Map.Entry<SupplierServiceDTO,List<Pair<ItemServiceDTO,Integer>>> entry: deliveryItems.entrySet()){
@@ -184,9 +202,9 @@ public class ServiceFaced {
                 for (Pair<ItemServiceDTO,Integer> item : entry.getValue()){
                     delivery.add(new Pair<>(itemService.getItem(item.getFir().getId()),item.getSec()));
                 }
-                deliveryItemsb.put(b,delivery);
+                deliveryItemsB.put(b,delivery);
             }
-            transportationService.setSuppliersItem(t.getId(),deliveryItemsb);
+            transportationService.setSuppliersItem(t.getId(),deliveryItemsB);
             return new ResponseT<>(t);
         }catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
@@ -218,8 +236,38 @@ public class ServiceFaced {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
+    public ResponseT<TransportationServiceDTO> setTransportation(TransportationServiceDTO t){
+        try {
 
+            return new ResponseT<>(toTransportationServiceDTO( transportationService.saveTransportation(t.getId())));
+        }
+        catch (Exception e){
+            return new ResponseT<>(e.getMessage());
+        }
+    }
+    public ResponseT<TransportationServiceDTO> setArea(TransportationServiceDTO t){
+        try {
+            transportationService.setArea(t.getId(),t.getArea());
+            return new ResponseT<>(t);
+        }catch (Exception e){
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
 
+    public ResponseT<TransportationServiceDTO> setTransportationWeight(TransportationServiceDTO t) {
+        try {
+            transportationService.setTransportationWeight(t.getId(),t.getWeight());
+            return new ResponseT<>(t);
+        }catch (Exception e){
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
+    /**
+     * Method for converting an object to its presentation's form.
+     * @param d :the business object.
+     * @return : it's form for the presentation.
+     */
     private DriverServiceDTO toDriverServiceDTO(Driver d){
         if(d==null){
             return null;
@@ -234,7 +282,7 @@ public class ServiceFaced {
     private Pair<ItemServiceDTO,Integer> toItemPairServiceDTO(Pair<Item,Integer> i){
         if(i==null)
             return null;
-        return new Pair<ItemServiceDTO,Integer>(new ItemServiceDTO(i.getFir().getId(),i.getFir().getName()),i.getSec());
+        return new Pair<>(new ItemServiceDTO(i.getFir().getId(),i.getFir().getName()),i.getSec());
     }
     private ItemServiceDTO toItemServiceDTO(Item i){
         if(i==null)
@@ -277,9 +325,9 @@ public class ServiceFaced {
                 newItems.put(toBranchServiceDTO(entry.getKey()), iDTO);
             }
         }
-        TransportationServiceDTO ret=new TransportationServiceDTO(t.getId(),t.getDate(),t.getLeavingTime(),toDriverServiceDTO(t.getDriver()),toTruckServiceDTO(t.getTruck()),t.getWeight(),newItems,newSup,toArea( t.getShippingArea()));
-        return ret;
+        return new TransportationServiceDTO(t.getId(),t.getDate(),t.getLeavingTime(),toDriverServiceDTO(t.getDriver()),toTruckServiceDTO(t.getTruck()),t.getWeight(),newItems,newSup,toArea( t.getShippingArea()));
     }
+
 
     private Area toArea(ShippingArea shippingArea) {
         if(shippingArea==null)
@@ -287,41 +335,18 @@ public class ServiceFaced {
         return shippingArea.getArea();
     }
 
+    /**
+     * Method for initializing new transportation to create.
+     * @return : returns the new transportation object
+     */
     public ResponseT<TransportationServiceDTO> createNewTransportation() {
 
         try {
-            ResponseT<TransportationServiceDTO> ret=new ResponseT<>(toTransportationServiceDTO(transportationService.newTransportation()));
-            return ret;
+            return new ResponseT<>(toTransportationServiceDTO(transportationService.newTransportation()));
         }
         catch (Exception e){
             return new ResponseT<>(e.getMessage());
         }
 
-    }
-    public ResponseT<TransportationServiceDTO> setTransportation(TransportationServiceDTO t){
-        try {
-
-            return new ResponseT<>(toTransportationServiceDTO( transportationService.saveTransportation(t.getId())));
-        }
-        catch (Exception e){
-            return new ResponseT<>(e.getMessage());
-        }
-    }
-    public ResponseT<TransportationServiceDTO> setArea(TransportationServiceDTO t){
-        try {
-            transportationService.setArea(t.getId(),t.getArea());
-            return new ResponseT<>(t);
-        }catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
-        }
-    }
-
-    public ResponseT<TransportationServiceDTO> setTransportationWeight(TransportationServiceDTO t) {
-        try {
-            transportationService.setTransportationWeight(t.getId(),t.getWeight());
-            return new ResponseT<>(t);
-        }catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
-        }
     }
 }

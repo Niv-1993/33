@@ -1,10 +1,7 @@
 package BussinessLayer;
-
-import DataLayer.DataController;
-
 import java.util.*;
 
-//bar
+
 public class TruckService {
 
     private Map<Long,Truck> trucks;
@@ -12,22 +9,8 @@ public class TruckService {
     public TruckService(){
         trucks=new HashMap<>();
     }
-    public List<Truck> getTrucksList() { return new ArrayList<Truck>(trucks.values());}
+    public List<Truck> getTrucksList() { return new ArrayList<>(trucks.values());}
 
-
-    public List<Truck> getTrucksByWeight(int add) throws Exception {
-        List<Truck> t = new LinkedList<>();
-        for (Map.Entry<Long,Truck> entry: trucks.entrySet()) {
-            Truck truck = entry.getValue();
-            if(truck.getMaxWeight()>= truck.getNetWeight()+add){
-                t.add(truck);
-            }
-        }
-        if(t.isEmpty()) {
-            throw new Exception("there is no compatible truck for mission");
-        }
-        return t;
-    }
 
     @Override
     public String toString() {
@@ -37,10 +20,6 @@ public class TruckService {
             acc.append(t);
         }
         return acc.toString();
-    }
-
-    public void removeTruck(Truck tru){
-        trucks.remove(tru);
     }
 
     @Override
@@ -63,8 +42,11 @@ public class TruckService {
         return trucks.get(truckId);
     }
 
+    /**
+     * load all the trucks from the database using the control
+     * @param dataControl : the control that ask the database for the data.
+     */
     public void loadData(DataControl dataControl) {
-
         trucks=dataControl.loadTrucks();
     }
 }
