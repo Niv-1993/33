@@ -122,6 +122,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Delete new transportation
+     */
     private void Delete() {
 
         try {
