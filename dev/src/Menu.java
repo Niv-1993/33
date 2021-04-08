@@ -26,7 +26,7 @@ public class Menu {
     }
 
     /**
-     *The starting choise of the user if to keep run the system or shut it off.
+     *The starting choice of the user if to keep run the system or shut it off.
      */
     public void chooseOption(){
         System.out.println("press 1 to see all Transportations, press 2 to create a new Transportation");
@@ -34,7 +34,7 @@ public class Menu {
     }
 
     /**
-     * prints menu and received the user's choise for which area is the new transportation.
+     * prints menu and received the user's choice for which area is the new transportation.
      * @param t : the presentation's transportation object to show the user and to contact the business layer.
      */
     private void chooseArea(TransportationServiceDTO t){
@@ -199,7 +199,7 @@ public class Menu {
 
     /**
      *Menu of suppliers and their items.
-     * The method ask for a flow of brances until -1 number.
+     * The method ask for a flow of branches until -1 number.
      * After each input, ask in a loop for item and quantity until -2 number.
      * @param t: the presentation's transportation object to show the user and to contact the business layer
      */
@@ -333,7 +333,7 @@ public class Menu {
      *The starting menu of the system.
      * runs by the main of the project.
      * By user's input it keep running the system or shut it off.
-     * @return
+     * @return : if to keep run the program or terminate it
      */
     public boolean endOfProgram(){
         System.out.println("to continue press 1, to end press 2");
@@ -344,7 +344,7 @@ public class Menu {
     /**
      *Method to receive an input from the user with boundary limit.
      * @param con : the num of options the user can type. For boundary check.
-     * @return : the choise of the user.
+     * @return : the choice of the user.
      */
     private int chooseOp(int con){
         boolean validInput = false;
@@ -361,7 +361,7 @@ public class Menu {
     }
 
     /**
-     *Method to direct the menu by the user's choise in the starting menu.
+     *Method to direct the menu by the user's choice in the starting menu.
      */
     public void nextStep() {
 
