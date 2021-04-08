@@ -1,4 +1,5 @@
 package BussinessLayer;
+import Responses.Response;
 import Responses.ResponseT;
 import ServiceLayer.Objects.*;
 import enums.Area;
@@ -165,6 +166,7 @@ public class ServiceFaced {
      * @return: Response object with the Transportation obj inside or throws an Exception if failed.
      */
     public ResponseT<TransportationServiceDTO> setTransportationDriver(TransportationServiceDTO t){
+
         try {
             Driver d = driverService.getDriver(t.getDriver().getId());
             transportationService.setDriver(t.getId(), d);
@@ -302,8 +304,9 @@ public class ServiceFaced {
     private TransportationServiceDTO toTransportationServiceDTO(Transportation t){
         List<Pair<Item,Integer>> i;
         HashMap<Supplier, List<Pair<Item, Integer>>> suppliers = t.getSuppliers();
-        HashMap<SupplierServiceDTO, List<Pair<ItemServiceDTO, Integer>>> newSup = new HashMap<>();
+        HashMap<SupplierServiceDTO, List<Pair<ItemServiceDTO, Integer>>> newSup =null;
         if(t.getSuppliers()!=null) {
+            newSup= new HashMap<>();
             for (Map.Entry<Supplier, List<Pair<Item, Integer>>> entry : suppliers.entrySet()) {
                 i = entry.getValue();
                 List<Pair<ItemServiceDTO, Integer>> iDTO = new LinkedList<>();
@@ -314,8 +317,9 @@ public class ServiceFaced {
             }
         }
         HashMap<Branch, List<Pair<Item, Integer>>> items = t.getDeliveryItems();
-        HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO, Integer>>> newItems = new HashMap<>();
+        HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO, Integer>>> newItems=null;
         if(t.getDeliveryItems()!=null) {
+            newItems=new HashMap<>();
             for (Map.Entry<Branch, List<Pair<Item, Integer>>> entry : items.entrySet()) {
                 i = entry.getValue();
                 List<Pair<ItemServiceDTO, Integer>> iDTO = new LinkedList<>();
@@ -348,5 +352,20 @@ public class ServiceFaced {
             return new ResponseT<>(e.getMessage());
         }
 
+    }
+    public ResponseT<TransportationServiceDTO> getTransportation(long id) {
+        try {
+            return new ResponseT<>(toTransportationServiceDTO(transportationService.getTransportationById(id)));
+        }catch (Exception e) {
+            return new ResponseT<>(e.getMessage());
+        }
+    }
+
+    public void addDriver(Driver d) {
+        driverService.addDriver(d);
+    }
+
+    public void addTruck(Truck t) {
+        truckService.addTruck(t);
     }
 }

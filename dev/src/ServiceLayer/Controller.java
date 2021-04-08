@@ -1,5 +1,7 @@
 package ServiceLayer;
-import BussinessLayer.ServiceFaced;
+import BussinessLayer.*;
+import DataLayer.TransportationDTO;
+import Responses.Response;
 import Responses.ResponseT;
 import ServiceLayer.Objects.*;
 
@@ -135,6 +137,13 @@ public class Controller {
      * @param id: the identifier of the object.
      * @return : the object.
      */
+    public TransportationServiceDTO getTransportation(long id){
+        ResponseT<TransportationServiceDTO> res = serviceControl.getTransportation(id);
+        if(res.ErrorOccured()){
+            throw new IllegalArgumentException(res.getErrorMessage());
+        }
+        return res.getValue();
+     }
     public DriverServiceDTO getDriver(long id){
         ResponseT<DriverServiceDTO> driver =  serviceControl.getDriver(id);
         if(driver.ErrorOccured()){
@@ -182,5 +191,13 @@ public class Controller {
         }
         return res.getValue();
     }
+    //for tests
+    public void addDriver(Driver d){
+        serviceControl.addDriver(d);
+    }
+    public void addDriver(Truck t){
+        serviceControl.addTruck(t);
+    }
+
 
 }

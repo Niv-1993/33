@@ -1,5 +1,7 @@
 package ServiceLayer.Objects;
 
+import java.util.Objects;
+
 public class TruckServiceDTO {
 
     private long id;
@@ -25,6 +27,23 @@ public class TruckServiceDTO {
         this.model=model;
         this.netWeight=netWeight;
         this.id=id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TruckServiceDTO that = (TruckServiceDTO) o;
+        return id == that.id &&
+                license == that.license &&
+                netWeight == that.netWeight &&
+                maxWeight == that.maxWeight &&
+                Objects.equals(model, that.model);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, license, model, netWeight, maxWeight);
     }
 
     public long getId() { return id; }

@@ -25,7 +25,7 @@ public class DriverService {
         if(drivers.containsKey(id)){
             return drivers.get(id);
         }
-        throw new NoSuchElementException("driver is not exists");
+        throw new NoSuchElementException("driver with id: " + id + " is not exists");
     }
 
     @Override
@@ -44,5 +44,9 @@ public class DriverService {
 
     public void loadData(DataControl dataControl) {
         drivers=dataControl.loadDrivers();
+    }
+
+    public void addDriver(Driver d) {
+        drivers.put(d.getId(),d);
     }
 }

@@ -37,7 +37,7 @@ public class TruckService {
 
     public Truck getTruck(Long truckId) {
         if(!trucks.containsKey(truckId)){
-            throw new IllegalArgumentException("truck with id: "+ truckId + "is not exist");
+            throw new IllegalArgumentException("Truck with id: "+ truckId + "is not exist");
         }
         return trucks.get(truckId);
     }
@@ -48,5 +48,9 @@ public class TruckService {
      */
     public void loadData(DataControl dataControl) {
         trucks=dataControl.loadTrucks();
+    }
+
+    public void addTruck(Truck t) {
+        trucks.put(t.getId(),t);
     }
 }

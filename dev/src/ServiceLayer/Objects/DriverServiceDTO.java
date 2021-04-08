@@ -1,5 +1,7 @@
 package ServiceLayer.Objects;
 
+import java.util.Objects;
+
 public class DriverServiceDTO {
 
     private long id;
@@ -27,4 +29,19 @@ public class DriverServiceDTO {
     public String getName() { return name; }
     public long getId() { return id; }
     public int getLicense() { return license; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DriverServiceDTO that = (DriverServiceDTO) o;
+        return id == that.id &&
+                license == that.license &&
+                Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, license);
+    }
 }
