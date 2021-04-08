@@ -109,7 +109,7 @@ public class Transportation {
      * @param leavingTime
      */
     public void setLeavingTime(LocalTime leavingTime) {
-        if ((LocalTime.now().compareTo(leavingTime) < 0) &&  date.compareTo(LocalDate.now())==0) {
+        if ((LocalTime.now().compareTo(leavingTime) > 0) &&  date.compareTo(LocalDate.now())==0) {
             throw new IllegalArgumentException("u choose incorrect living time.");
         }
         this.leavingTime = leavingTime;

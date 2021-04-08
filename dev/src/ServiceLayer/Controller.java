@@ -197,13 +197,15 @@ public class Controller {
     }
 
 
-    public void delete() throws Exception {
-
+    public void delete() {
         try{
             serviceControl.deleteTrans();
         }
         catch (Exception e){
-            throw new Exception(e.getMessage());
+            throw new IllegalArgumentException(e.getMessage());
         }
+    }
+    public void clearTrans(){
+        serviceControl.clearTrans();
     }
 }

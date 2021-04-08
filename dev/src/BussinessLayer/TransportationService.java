@@ -68,7 +68,7 @@ public class TransportationService {
         List< List<Pair<Item, Integer>>> pairs2=null;
         if (t.getSuppliers()!=null)
             pairs2= new ArrayList<>(t.getSuppliers().values());
-        checkValidation(pairs,pairs2);
+        //checkValidation(pairs,pairs2);
         for (List<Pair<Item, Integer>> quantity:pairs) {
             for (Pair<Item, Integer> pair: quantity) {
                 if(pair.getSec()<0)
@@ -196,5 +196,9 @@ public class TransportationService {
     public void deleteTransport() {
         idCounter--;
         transportations.remove(idCounter);
+    }
+    public void clear(){
+        idCounter = 0;
+        transportations = new HashMap<>();
     }
 }

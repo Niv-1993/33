@@ -371,4 +371,7 @@ public class ServiceFaced {
     public void deleteTrans() {
         transportationService.deleteTransport();
     }
+    public void clearTrans(){
+        transportationService.clear();
+    }
 }

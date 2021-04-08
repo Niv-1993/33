@@ -9,6 +9,9 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+
+import java.sql.Date;
+import java.time.*;
 import java.util.stream.Stream;
 
 class ControllerTest {
@@ -110,6 +113,7 @@ class ControllerTest {
         db.addBranch(b1);
         db.addBranch(b2);
         controller = Controller.initial();
+        controller.clearTrans();
         t = controller.createNewTransportation();
     }
 
@@ -122,12 +126,12 @@ class ControllerTest {
         TruckServiceDTO truck= new TruckServiceDTO(id,lc,maxWeight,netWeight,model);
         t.setTruck(truck);
         controller.setTruckOnTransportation(t);
-        Assertions.assertEquals(truck, t.getTruck());
+        Assertions.assertEquals(truck, controller.getTransportation(t.getId()).getTruck());
     }
     private static Stream<Arguments>
     TrucksArgsAdd() {
         return Stream.of(Arguments.of(12345678,1000,10000,1500,"Jumpy"),Arguments.of(25954557, 2000, 10000, 1000, "Kangoo"),
-                Arguments.of(68465185, 3000, 10000, 1200, "Sprinter"), Arguments.of(98775656, 4000, 10000, 1000, "Rapid")
+                Arguments.of(68465185, 3000, 10000, 1200, "Sprinter"), Arguments.of(98775656, 5000, 10000, 1000, "Rapid")
         );
     }
     @DisplayName("Should fail to add truck")
@@ -146,7 +150,6 @@ class ControllerTest {
                 Arguments.of(684665185, 3000, 10000, 1200, "Sprinter"), Arguments.of(3, 4000, 10000, 1000, "Rapid")
         );
     }
-
     //test 2:
     @DisplayName("add Driver")
     @ParameterizedTest
@@ -155,7 +158,6 @@ class ControllerTest {
         //before checking
         t.setTruck(new TruckServiceDTO(12345678,1000,10000,1500,"Jumpy"));
         controller.setTruckOnTransportation(t);
-
         DriverServiceDTO expected = new DriverServiceDTO(id,name,lc);
         t.setDriver(expected);
         controller.setDriverOnTransportation(t);
@@ -167,155 +169,117 @@ class ControllerTest {
                 Arguments.of(3, "Roi rozenberg", 3000), Arguments.of(4, "Avi rozen", 4000)
         );
     }
-    @DisplayName("fail to add Driver")
+
+    @DisplayName("driver does not exist test")
     @ParameterizedTest
-    @MethodSource("notAddDriversParameters")
-    void shouldNotAddDriver(int id,String name,int lc,String failOp){
-        DriverServiceDTO d = new DriverServiceDTO(id,name,lc);
-        if(failOp.equals("getFail")){
-            t.setTruck(new TruckServiceDTO(12345678,1000,10000,1500,"Jumpy"));
-            controller.setTruckOnTransportation(t);
-            t.setDriver(d);
-            Exception ex = Assertions.assertThrows(IllegalArgumentException.class, ()->controller.setDriverOnTransportation(t));
-            String msg = ex.getMessage();
-            Assertions.assertTrue(msg.contains("exist"));
-            Assertions.assertNotEquals(controller.getTransportation(t.getId()).getDriver(),t.getDriver());
-            //not make it ok
-            db.addDriver(new DriverDTO(id,name,new LicenseDTO(lc)));
-            controller.addDriver(new Driver(id,name,new License(lc)));
-            controller.setDriverOnTransportation(t);
-            Assertions.assertEquals(t.getDriver(), controller.getTransportation(t.getId()).getDriver());
-            setUp();
-
-        }else if(failOp.equals("truckBeforeDriver")){
-            t.setDriver(d);
-            Exception ex = Assertions.assertThrows(IllegalArgumentException.class, ()->controller.setDriverOnTransportation(t));
-            String msg = ex.getMessage();
-            Assertions.assertTrue(msg.contains("truck"));
-
-            //check that the driver didnt change
-            Assertions.assertNotEquals(controller.getTransportation(t.getId()).getDriver(),t.getDriver());
-
-            //set default truck
-            t.setTruck(new TruckServiceDTO(12345678,1000,10000,1500,"Jumpy"));
-            controller.setTruckOnTransportation(t);
-
-            controller.setDriverOnTransportation(t);
-            //after add a truck
-            Assertions.assertEquals(controller.getTransportation(t.getId()).getDriver(),t.getDriver());
-        }else if(failOp.equals("weight")){
-
-            t.setTruck(new TruckServiceDTO(98775656, 5000, 10000, 1000, "Rapid"));
-            controller.setTruckOnTransportation(t);
-            t.setDriver(d);
-            Exception ex = Assertions.assertThrows(IllegalArgumentException.class, ()->controller.setDriverOnTransportation(t));
-            String msg = ex.getMessage();
-            Assertions.assertTrue(msg.contains("license"));
-
-            //check that the driver didnt change
-            Assertions.assertNotEquals(controller.getTransportation(t.getId()).getDriver(),t.getDriver());
-            t.setTruck(new TruckServiceDTO(12345678,1000,10000,1500,"Jumpy"));
-            controller.setTruckOnTransportation(t);
-            controller.setDriverOnTransportation(t);
-            //after add a truck
-            Assertions.assertEquals(controller.getTransportation(t.getId()).getDriver(),t.getDriver());
-
-        }
+    @MethodSource("DriversTestParameters")
+    void driverDontExist(int id,String name,int lc){
+        DriverServiceDTO d = new DriverServiceDTO(id+20,name,lc);
+        t.setDriver(d);
+        t.setTruck(new TruckServiceDTO(12345678,1000,10000,1500,"Jumpy"));
+        controller.setTruckOnTransportation(t);
+        t.setDriver(d);
+        Exception ex = Assertions.assertThrows(IllegalArgumentException.class, ()->controller.setDriverOnTransportation(t));
+        String msg = ex.getMessage();
+        Assertions.assertTrue(msg.contains("exist"));
+        Assertions.assertNotEquals(controller.getTransportation(t.getId()).getDriver(),t.getDriver());
+        //not make it ok
+        db.addDriver(new DriverDTO(id,name,new LicenseDTO(lc)));
+        controller.addDriver(new Driver(id+20,name,new License(lc)));
+        controller.setDriverOnTransportation(t);
+        Assertions.assertEquals(t.getDriver(), controller.getTransportation(t.getId()).getDriver());
     }
-
+    @DisplayName("driver before truck test")
+    @ParameterizedTest
+    @MethodSource("DriversTestParameters")
+    void driverBeforeTruck(int id,String name,int lc) {
+        DriverServiceDTO d = new DriverServiceDTO(id,name,lc);
+        t.setDriver(d);
+        Exception ex = Assertions.assertThrows(IllegalArgumentException.class, ()->controller.setDriverOnTransportation(t));
+        String msg = ex.getMessage();
+        Assertions.assertTrue(msg.contains("truck"));
+        //check that the driver didnt change
+        Assertions.assertNotEquals(controller.getTransportation(t.getId()).getDriver(),t.getDriver());
+        //set default truck
+        t.setTruck(new TruckServiceDTO(12345678,1000,10000,1500,"Jumpy"));
+        controller.setTruckOnTransportation(t);
+        controller.setDriverOnTransportation(t);
+        //after add a truck
+        Assertions.assertEquals(controller.getTransportation(t.getId()).getDriver(),t.getDriver());
+    }
+    @DisplayName("mismatch driver license test")
+    @ParameterizedTest
+    @MethodSource("DriversTestParameters")
+    void mismatchDriverLicense(int id,String name,int lc) {
+        DriverServiceDTO d = new DriverServiceDTO(id,name,lc);
+        t.setDriver(d);
+        t.setTruck(new TruckServiceDTO(98775656, 5000, 10000, 1000, "Rapid"));
+        controller.setTruckOnTransportation(t);
+        t.setDriver(d);
+        Exception ex = Assertions.assertThrows(IllegalArgumentException.class, ()->controller.setDriverOnTransportation(t));
+        String msg = ex.getMessage();
+        Assertions.assertTrue(msg.contains("license"));
+        //check that the driver didnt change
+        Assertions.assertNotEquals(controller.getTransportation(t.getId()).getDriver(),t.getDriver());
+        t.setTruck(new TruckServiceDTO(12345678,1000,10000,1500,"Jumpy"));
+        controller.setTruckOnTransportation(t);
+        controller.setDriverOnTransportation(t);
+        //after add a truck
+        Assertions.assertEquals(controller.getTransportation(t.getId()).getDriver(),t.getDriver());
+    }
     private static Stream<Arguments>
-    notAddDriversParameters() {
-        return Stream.of(Arguments.of(0, "Meir malka", 1000,"getFail"), Arguments.of(2, "Ami vanunu", 2000,"truckBeforeDriver"),
-                Arguments.of(3, "Roi rozenberg", 3000,"weight"), Arguments.of(4, "Avi rozen", 4000,"weight")
+    DriversTestParameters() {
+        return Stream.of(Arguments.of(1, "Meir malka", 1000), Arguments.of(2, "Ami vanunu", 2000),
+                Arguments.of(3, "Roi rozenberg", 3000), Arguments.of(4, "Avi rozen", 4000)
         );
     }
 
-    @Test
-    void initial() {
+    @DisplayName("fail an success setDate")
+    @ParameterizedTest
+    @MethodSource("DateTestParameters")
+    void dateTest(String fl,String sc){
+        Assertions.assertNull(controller.getTransportation(t.getId()).getDate());
+        LocalDate date = LocalDate.parse(fl);
+        t.setDate(date);
+        Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () ->controller.setTransportationDate(t));
+        String msg = ex.getMessage();
+        Assertions.assertTrue(msg.contains("date"));
+
+        LocalDate date1 = LocalDate.parse(sc);
+        t.setDate(date1);
+        controller.setTransportationDate(t);
+        Assertions.assertEquals(controller.getTransportation(t.getId()).getDate(),date1);
+    }
+    private static Stream<Arguments>
+    DateTestParameters() {
+        return Stream.of(Arguments.of("2021-01-01", "2050-11-11"), Arguments.of(LocalDate.now().minusDays(1).toString(), LocalDate.now().toString())
+        );
     }
 
-    @Test
-    @DisplayName("Should set a Driver")
-    void setDriverOnTransportation() {
+    @DisplayName("fail an success setLeavingTime")
+    @ParameterizedTest
+    @MethodSource("LeavingTimeParameters")
+    void leavingTimeTests(String sc,String fl){
+        t.setDate(LocalDate.now());
+        controller.setTransportationDate(t);
+
+        Assertions.assertNull(controller.getTransportation(t.getId()).getLeavingTime());
+
+        t.setLeavingTime(LocalTime.parse(fl));
+        Exception ex = Assertions.assertThrows(IllegalArgumentException.class, () ->controller.setTransportationLeavingTime(t));
+
+        String msg = ex.getMessage();
+        Assertions.assertTrue(msg.contains("time"));
+
+        t.setLeavingTime(LocalTime.parse(sc));
+        controller.setTransportationLeavingTime(t);
+        Assertions.assertEquals(controller.getTransportation(t.getId()).getLeavingTime(),t.getLeavingTime());
+
     }
 
-    @Test
-    void setTruckOnTransportation() {
+    private static Stream<Arguments>
+    LeavingTimeParameters() {
+        return Stream.of(Arguments.of( "23:59",LocalTime.now().minusMinutes(1).toString()),Arguments.of( "23:59","00:01"));
     }
 
-    @Test
-    void setTransportationWeight() {
-    }
-
-    @Test
-    void setTransportation() {
-    }
-
-    @Test
-    void setTransportationDate() {
-    }
-
-    @Test
-    void setTransportationLeavingTime() {
-    }
-
-    @Test
-    void setSuppliersToTransportation() {
-    }
-
-    @Test
-    void setDeliveryItemsToTransportation() {
-    }
-
-    @Test
-    void setTransportationArea() {
-    }
-
-    @Test
-    void getAllDrivers() {
-    }
-
-    @Test
-    void getAllItems() {
-    }
-
-    @Test
-    void getAllSuppliers() {
-    }
-
-    @Test
-    void getAllTransportations() {
-    }
-
-    @Test
-    void getAllTrucks() {
-    }
-
-    @Test
-    void getAllBranches() {
-    }
-
-    @Test
-    void getDriver() {
-    }
-
-    @Test
-    void getItem() {
-    }
-
-    @Test
-    void getBranch() {
-    }
-
-    @Test
-    void getSupplier() {
-    }
-
-    @Test
-    void getTruck() {
-    }
-
-    @Test
-    void createNewTransportation() {
-    }
 }
