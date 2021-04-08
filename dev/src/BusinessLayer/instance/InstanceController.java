@@ -1,6 +1,7 @@
 package BusinessLayer.instance;
 
 
+import BusinessLayer.StoreController;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
 
@@ -9,7 +10,7 @@ import java.util.*;
 public class InstanceController {
     private int _typeID;
     private int _counter=0;
-    private int _MAX_PRODUCTS_ON_PROTUCTTYPE=1000;
+    private static int _MAX_PRODUCTS_ON_PROTUCTTYPE= StoreController.getMaxProdOnType();
     private Dictionary<Integer,Product> _products=new Hashtable<>();
     final static Logger log=Logger.getLogger(InstanceController.class);
     public InstanceController(){//for testing
@@ -27,17 +28,17 @@ public class InstanceController {
 
 
     public Product removeProduct(int i) {
-        log.debug(String.format("removeProduct(int i) Value:?",i));
+        log.debug(String.format("removeProduct(int i) Value: "+i));
         Product p=checkProduct(i);
         _products.remove(i);
-        log.info(String.format("the IC remove Product #?",i));
+        log.info(String.format("the IC remove Product "+i));
         return p;
     }
     private Product checkProduct(int i){
         String s;
         if (i<=0)
         {
-            s=String.format("the value of i is illegal :?",i);
+            s=String.format("the value of i is illegal :"+i);
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
@@ -71,14 +72,16 @@ public class InstanceController {
     }
 
     public int addProduct(Date expiration, Location l,int shelf) {
-        log.debug(String.format("addProduct(Date expiration, Location l) Values: ?,?",expiration,l));
-        Date d=new Date();
-        if (expiration.before(new Date(System.currentTimeMillis()))){
-            String s=String.format("the value of expiration ? before ?",expiration, (new Date(System.currentTimeMillis())));
+        log.debug("addProduct(Date expiration, Location l) Values: "+expiration+", "+l+", "+shelf);
+
+        /*if (expiration.before(new Date(System.currentTimeMillis()))){
+            String s=String.format("the value of expiration "+expiration+" before "+(new Date(System.currentTimeMillis())));
             log.warn(s);
             throw new IllegalArgumentException(s);
-        }
+        }*/
+
         int id=_typeID*_MAX_PRODUCTS_ON_PROTUCTTYPE+_counter;
+        _counter++;
         _products.put(id ,new Product(id, expiration, new Tuple<>(shelf,l)));
         return id;
     }

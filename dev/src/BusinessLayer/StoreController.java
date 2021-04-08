@@ -21,7 +21,7 @@ public class StoreController implements iStoreController{
     private int _categoryCounter=0;
     private int _discountCounter=0;
     private int _numberOfShelves=10;
-    final private int MAX_PRODUCTS_ON_PROTUCTTYPE=1000;
+    static private int MAX_PRODUCTS_ON_PROTUCTTYPE=2;
     private List<Shelf> _shelves=new ArrayList<>();
     private Dictionary<ProductType,InstanceController> _products=new Hashtable<>();
     private Dictionary<Integer,Category> _category=new Hashtable<>();
@@ -52,6 +52,10 @@ public class StoreController implements iStoreController{
             _shelves.add(new Shelf(i,Location.Storage,1000));
         for (int i=_storeShelves+1;i<=_numberOfShelves; i++)
             _shelves.add(new Shelf(i,Location.Storage,1000));
+    }
+
+    public static int getMaxProdOnType() {
+        return MAX_PRODUCTS_ON_PROTUCTTYPE;
     }
 
     @Override
@@ -246,6 +250,7 @@ public class StoreController implements iStoreController{
         log.debug(String.format("got inside addCategory(String name) Method with: %s",name));
         checkValidNameCategory(name);
         int catId=++_categoryCounter;
+        log.debug(catId);
         try{
             Category c=new Category(catId,name);
             _category.put(catId,c);
@@ -329,14 +334,17 @@ public class StoreController implements iStoreController{
     @Override
     public void addProduct(int typeID, Date expiration) {
         log.debug(String.format("got inside addProduct(int typeID, Date expiration) Method with: %d, "+expiration,typeID));
+        logTypeProductList(typeID);
         Shelf s=findPlaceForNewProduct(typeID);
-
+        logTypeProductList(typeID);
         ProductType tmp=checkIDProductTypeExist(typeID);
+        log.debug("products="+tmp.get_products());
         int productID=_products.get(tmp).addProduct(expiration,s.get_location(),s.get_shelfID());
         try {
             tmp.addProduct(productID,s.get_location());
         }
         catch (Exception e){
+            log.warn(e);
             _products.get(tmp).removeProduct(productID);
             throw e;
         }
@@ -347,7 +355,7 @@ public class StoreController implements iStoreController{
     public void removeProduct(int ID) {
         log.debug(String.format("got inside removeProduct(int ID) Method with: %d",ID));
         int typeID=ID/MAX_PRODUCTS_ON_PROTUCTTYPE;
-        int productID=ID%MAX_PRODUCTS_ON_PROTUCTTYPE;
+        int productID=ID;
         ProductType tmp=checkIDProductTypeExist(typeID);
         Product p=_products.get(tmp).removeProduct(productID);
         try {
@@ -355,6 +363,7 @@ public class StoreController implements iStoreController{
         }
         catch (Exception e)
         {
+            log.warn(e);
             _products.get(tmp).addProduct(p);
         }
         _shelves.get(p.getShelf()).removeProduct();
@@ -363,16 +372,15 @@ public class StoreController implements iStoreController{
     @Override
     public void reportDamage(int ID) {
         log.debug(String.format("got inside reportDamage(int ID) Method with: %d",ID));
-        ProductType p=checkIDProductTypeExist(ID/MAX_PRODUCTS_ON_PROTUCTTYPE);
-        _products.get(p).getProduct(ID%MAX_PRODUCTS_ON_PROTUCTTYPE);
-        _products.get(p).reportDamage(ID%MAX_PRODUCTS_ON_PROTUCTTYPE);
-        p.reportDamage(_products.get(p).getProduct(ID%MAX_PRODUCTS_ON_PROTUCTTYPE));
+        ProductType pt=checkIDProductTypeExist(ID/MAX_PRODUCTS_ON_PROTUCTTYPE);
+        InstanceController ic=_products.get(pt);
+        ic.reportDamage(ID);
     }
 
     @Override
     public Product getProductInfo(int ID) {
         log.debug(String.format("got inside getProductInfo(int ID) Method with: %d",ID));
-        return _products.get(checkIDProductTypeExist(ID/MAX_PRODUCTS_ON_PROTUCTTYPE)).getProduct(ID%MAX_PRODUCTS_ON_PROTUCTTYPE);
+        return _products.get(checkIDProductTypeExist(ID/MAX_PRODUCTS_ON_PROTUCTTYPE)).getProduct(ID);
     }
 
     @Override
@@ -524,18 +532,35 @@ public class StoreController implements iStoreController{
         for (int i=0 ;i<_numberOfShelves; i++)
         {
             Shelf s=_shelves.get(i);
-            if (s.get_typeID()==typeID && !s.isFull())
+            if (s.get_typeID()==typeID && !s.isFull()) {
+                log.debug("found shelf: " + s.get_shelfID() + " for type: " + typeID + " for product: " + getID());
+                s.set_typeID(typeID);
                 return s;
+            }
         }
         for (int i=0 ;i<_numberOfShelves; i++)
         {
             Shelf s=_shelves.get(i);
-            if (s.get_typeID()==0 && !s.isFull())
+            if (s.get_typeID()==0 && !s.isFull()) {
+                log.debug("found shelf: " + s.get_shelfID() + " for type: " + typeID + " for product: " + getID());
+                s.set_typeID(typeID);
                 return s;
+            }
         }
         String s=String.format("does not have a place to newProduct of type #%d",typeID);
         log.warn(s);
         throw new IllegalArgumentException(s);
     }
 
+    public void logShelves(){
+        for(Shelf s: _shelves) log.debug("ID: "+s.get_shelfID()+" Location: "+s.get_location()+", type: "+ s.get_typeID()+", cur: "+ s.get_cur());
+    }
+
+    public void logTypeProductList(int tid){
+        Enumeration<ProductType> e=_products.keys();
+        while(e.hasMoreElements()) {
+            ProductType pt=e.nextElement();
+            if (pt.get_typeID()==tid) log.debug("products for: "+tid+" "+pt.get_products());
+        }
+    }
 }

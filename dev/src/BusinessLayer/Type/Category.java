@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Category {
     private List<Category> _categories=new ArrayList<>();
@@ -46,7 +47,7 @@ public class Category {
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
-        _categoryID-=catId;
+        _categoryID=catId;
         _name=name;
     }
 
@@ -146,5 +147,17 @@ public class Category {
         _name=name;
         _superCategory=null;
         log.info(String.format("the values of Category #? changed.",_categoryID));
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "_categories=" + _categories.stream().map(Category::get_categoryID).collect(Collectors.toList()) +
+                ", _categoryID=" + _categoryID +
+                ", _name='" + _name + '\'' +
+                ", _superCategory=" + _superCategory.get_categoryID() +
+                ", _productTypes=" + _productTypes +
+                ", _productDiscounts=" + _productDiscounts +
+                '}';
     }
 }

@@ -6,4 +6,12 @@ public class Tuple<T,S> {
     }
     public T item1;
     public S item2;
+
+    @Override
+    public String toString() {
+        return "Tuple{" +
+                "item1=" + item1 +
+                ", item2=" + item2 +
+                '}';
+    }
 }

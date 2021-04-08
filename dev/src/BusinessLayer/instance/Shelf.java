@@ -57,7 +57,7 @@ public class Shelf {
         log.debug(String.format("set_typeID(int typeID)",typeID));
         checkTypeID();
         if (typeID<1){
-            String s=String.format("the value of ProductType #? is illegal (<1)",typeID);
+            String s=String.format("the value of ProductType "+typeID+" is illegal (<1)");
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
@@ -102,7 +102,7 @@ public class Shelf {
             _typeID=0;
     }
     private void checkTypeID(){
-        if (_typeID<1)
+        if (_typeID<0)
         {
             String s=String.format("the shelf #? without product type.");
             log.warn(s);

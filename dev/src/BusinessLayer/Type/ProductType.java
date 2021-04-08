@@ -3,6 +3,7 @@ package BusinessLayer.Type;
 import BusinessLayer.instance.Location;
 import BusinessLayer.instance.Product;
 import Utility.Tuple;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -66,6 +67,15 @@ public class ProductType {
                     throw new IllegalArgumentException(s);
                 }
             }
+            else if (o[i] instanceof Float)
+            {
+                if ((Float)o[i]<0)
+                {
+                    s="the value is illegal(String)";
+                    log.warn(s);
+                    throw new IllegalArgumentException(s);
+                }
+            }
             else
                 log.warn("the checkValue get unanimous value");
         }
@@ -86,6 +96,7 @@ public class ProductType {
         _categoryID=category;
         _saleDiscounts=new ArrayList<>();
         _supplierDiscounts=new ArrayList<>();
+        _products=new ArrayList<>();
     }
 
     public int get_typeID() {
@@ -229,19 +240,22 @@ public class ProductType {
     }
 
     public void removeProduct(int productID, Tuple<Integer, Location> location) {
-        log.debug(String.format("removeProduct(int productID, Tuple<Integer, Location> location) Values: ?,?",productID,location));
+        log.debug(String.format("removeProduct(int productID, Tuple<Integer, Location> location) Values: "+productID+", "+location));
         if (!_products.contains(productID)){
             String s=String.format("the product #? , is not exist in the ProductType List.",productID);
             log.error(s);
             throw new IllegalArgumentException(s);
         }
+        log.debug("TypeID: "+ get_typeID()+" shelfcurr: "+_shelfCurr+" storagecurr: "+_storageCurr);
         if ((location.item2.equals(Location.Shelves)&&_shelfCurr<=0)|(location.item2.equals(Location.Storage)&&_storageCurr<=0)){
             String s=String.format("the product #? , is not accept to the value in ProductType.",productID);
             log.error(s);
             throw new IllegalArgumentException(s);
         }
-        _products.remove(productID);
-        if ((location.item2.equals(Location.Storage))) {
+        log.debug(_products);
+        _products.remove(_products.indexOf(productID));
+        log.debug("DONE REMOVE: "+productID);
+        if ((location.item2.equals(Location.Shelves))) {
             _shelfCurr--;
         } else {
             _storageCurr--;
@@ -249,14 +263,16 @@ public class ProductType {
     }
 
     public void addProduct(int productID, Location l) {
-        log.debug(String.format("addProduct(int productID, Location l) Values: ?,?",productID,l));
+        log.debug(String.format("addProduct(int productID, Location l) Values: "+productID+", "+l));
+        log.debug(_products);
         if (_products.contains(productID)){
-            String s=String.format("the product #? , is not exist in the ProductType List.",productID);
+            String s=String.format("the product "+productID+" , exists in the ProductType List already.");
             log.error(s);
             throw new IllegalArgumentException(s);
         }
+        log.info("ADDDING PROD:"+productID);
         _products.add(productID);
-        if ((l.equals(Location.Storage))) {
+        if ((l.equals(Location.Shelves))) {
             _shelfCurr++;
         } else {
             _storageCurr++;

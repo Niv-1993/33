@@ -67,4 +67,14 @@ public class Product {
     public int getShelf() {
         return _location.item1;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "_id=" + _id +
+                ", _expiration=" + _expiration +
+                ", _isDamage=" + _isDamage +
+                ", _location=" + _location +
+                '}';
+    }
 }

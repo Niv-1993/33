@@ -182,7 +182,7 @@ class iStoreControllerTest {
         }
     }
     @Test
-    void addCategory2() {
+    void addCategory2() { ///
         try {
             Category c1 = sc.addCategory("test1");
             Category c2 = sc.addCategory("test2", c1.get_categoryID());
