@@ -107,6 +107,7 @@ public class Menu {
             System.out.println("press 4 to add branches and items to a branches");
             System.out.println("press 5 to set the truck weight");
             System.out.println("press 6 to submit your transportation");
+            System.out.println("press 0 to cancel transportation");
             subOption = chooseOp(numOfOptions);
             switch (subOption) {
                 case 1 -> chooseTruck(newTrans);
@@ -115,8 +116,19 @@ public class Menu {
                 case 4 -> chooseBranch(newTrans);
                 case 5 -> chooseWeight(newTrans);
                 case 6 -> submit(newTrans);
+                case 0-> {Delete(); return;}
             }
             System.out.println(newTrans);
+        }
+    }
+
+    private void Delete() {
+
+        try {
+            controller.delete();
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -351,7 +363,7 @@ public class Menu {
         int userOption = -1;
         while (!validInput) {
             userOption = sc.nextInt();
-            if((userOption <= con) && (userOption > 0)) {
+            if((userOption <= con) && (userOption >= 0)) {
                 validInput = true;
             }else {
                 System.out.println("your choose without bounds");

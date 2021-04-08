@@ -200,4 +200,13 @@ public class Controller {
     }
 
 
+    public void delete() throws Exception {
+
+        try{
+            serviceControl.deleteTrans();
+        }
+        catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
 }

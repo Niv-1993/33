@@ -368,4 +368,8 @@ public class ServiceFaced {
     public void addTruck(Truck t) {
         truckService.addTruck(t);
     }
+
+    public void deleteTrans() {
+        transportationService.deleteTransport();
+    }
 }

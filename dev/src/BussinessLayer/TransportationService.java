@@ -193,4 +193,8 @@ public class TransportationService {
         return new ArrayList<>(transportations.values());
     }
 
+    public void deleteTransport() {
+        idCounter--;
+        transportations.remove(idCounter);
+    }
 }
