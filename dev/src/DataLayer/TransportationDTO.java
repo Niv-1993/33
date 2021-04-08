@@ -1,5 +1,4 @@
 package DataLayer;
-import enums.Area;
 import enums.Pair;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,10 +15,10 @@ public class TransportationDTO {
     private TruckDTO truck;
     //ask if they call this item or product?
     private HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> deliveryItems;
-    private HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> suppliers;
+    private HashMap<SupplierDTO, List<Pair<ItemDTO,Integer>>> suppliers;
     private int weight;
 
-    public TransportationDTO(long id, LocalDate date,LocalTime leavingTime, DriverDTO driver,TruckDTO truck,int weight,HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> deliveryItems,HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> supp ){
+    public TransportationDTO(long id, LocalDate date,LocalTime leavingTime, DriverDTO driver,TruckDTO truck,int weight,HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> deliveryItems,HashMap<SupplierDTO, List<Pair<ItemDTO,Integer>>> supp ){
         this.date=date;
         this.deliveryItems=deliveryItems;
         this.id=id;
@@ -39,7 +38,7 @@ public class TransportationDTO {
     public TruckDTO getTruck() {
         return truck;
     }
-    public HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> getSuppliers(){return suppliers;}
+    public HashMap<SupplierDTO, List<Pair<ItemDTO,Integer>>> getSuppliers(){return suppliers;}
 
 
     public void setDate(LocalDate date) {
@@ -49,7 +48,7 @@ public class TransportationDTO {
         this.date = date;
     }
     public void setDeliveryItems(HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> deliveryItems) { this.deliveryItems = deliveryItems; }
-    public void setSuppliersItems(HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> deliveryItems) { this.suppliers = deliveryItems; }
+    public void setSuppliersItems(HashMap<SupplierDTO, List<Pair<ItemDTO,Integer>>> deliveryItems) { this.suppliers = deliveryItems; }
     public void setDriver(DriverDTO driver) {
         //not expected but just in case
         if(truck == null){
@@ -73,7 +72,7 @@ public class TransportationDTO {
     public HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> getDeliveryItems() {
         return deliveryItems;
     }
-    public HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> getSuppliersItem() {
+    public HashMap<SupplierDTO, List<Pair<ItemDTO,Integer>>> getSuppliersItem() {
         return suppliers;
     }
 

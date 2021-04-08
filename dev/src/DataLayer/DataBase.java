@@ -16,7 +16,7 @@ public class DataBase {
     private List<TransportationDTO> trans;
     private List<LicenseDTO> licenses;
     private List<BranchDTO> branches;
-    private List<supplierDTO> suppliers;
+    private List<SupplierDTO> suppliers;
     private List<ShippingAreaDTO> shippingAreas;
     private List<AddressDTO> addresses;
     public List <ItemDTO> items;
@@ -24,6 +24,7 @@ public class DataBase {
     public static DataBase init() {
         if(db==null){
             db=new DataBase();
+            db.initFakeData();
         }
         return db;
     }
@@ -37,9 +38,14 @@ public class DataBase {
         shippingAreas=new LinkedList<>();
         addresses=new LinkedList<>();
         items=new LinkedList<>();
-        initFakeData();
     }
-//TODO:create initializaion
+    public static DataBase initForTests(){
+        if(db==null){
+            db=new DataBase();
+        }
+        return db;
+    }
+    //TODO:create initializaion
     private void initFakeData() {
         licenses.add(new LicenseDTO(1000));
         licenses.add(new LicenseDTO(2000));
@@ -75,16 +81,16 @@ public class DataBase {
         addresses.add(new AddressDTO(15,"shualey shimshon","Ofaquim"));
         addresses.add(new AddressDTO(24,"Jabutinski","Beer Sheva"));
         addresses.add(new AddressDTO(7,"Ha'Orgim","Beer Sheva"));
-        suppliers.add(new supplierDTO("0527745862","Amit Nahum",9845,addresses.get(2),shippingAreas.get(2)));
-        suppliers.add(new supplierDTO("0548569574","Omer Shalom",8542,addresses.get(0),shippingAreas.get(2)));
-        suppliers.add(new supplierDTO("0506328574","Ofer Neeman",2648,addresses.get(3),shippingAreas.get(0)));
+        suppliers.add(new SupplierDTO("0527745862","Amit Nahum",9845,addresses.get(2),shippingAreas.get(2)));
+        suppliers.add(new SupplierDTO("0548569574","Omer Shalom",8542,addresses.get(0),shippingAreas.get(2)));
+        suppliers.add(new SupplierDTO("0506328574","Ofer Neeman",2648,addresses.get(3),shippingAreas.get(0)));
         branches.add(new BranchDTO("0506895718","Yogev Halom",1,addresses.get(1),shippingAreas.get(0)));
         branches.add(new BranchDTO("0528759462","Ami Barlev",2,addresses.get(5),shippingAreas.get(0)));
         HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> lis=new HashMap<>();
         List<Pair<ItemDTO,Integer>> it=new LinkedList<>();
         it.add(new Pair<>(items.get(4),15));
         lis.put(branches.get(1),it);
-        HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> lis2=new HashMap<>();
+        HashMap<SupplierDTO, List<Pair<ItemDTO,Integer>>> lis2=new HashMap<>();
         List<Pair<ItemDTO,Integer>> it2=new LinkedList<>();
         it2.add(new Pair<>(items.get(4),15));
         lis2.put(suppliers.get(0),it);
@@ -101,10 +107,10 @@ public class DataBase {
     public List<ItemDTO> getItems() { return items; }
 
     public List<BranchDTO> getBranches() { return branches; }
-    public List<supplierDTO> getSuppliers(){return suppliers;}
+    public List<SupplierDTO> getSuppliers(){return suppliers;}
     public void setBranches(List<BranchDTO> branches) { this.branches = branches; }
 
-    public void setSuppliers(List<supplierDTO> suppliers) { this.suppliers = suppliers; }
+    public void setSuppliers(List<SupplierDTO> suppliers) { this.suppliers = suppliers; }
 
 
     public void setItems(List<ItemDTO> items) { this.items = items; }
@@ -119,7 +125,7 @@ public class DataBase {
     public void addLicense(LicenseDTO licenseDTO){if(!licenses.contains(licenseDTO)) licenses.add(licenseDTO);}
     public void addTransportation(TransportationDTO transportationDTO){if(!trans.contains(transportationDTO)) trans.add(transportationDTO);}
     public void addBranch(BranchDTO branchDTO){if(!branches.contains(branchDTO)) branches.add(branchDTO);}
-    public void addSupplier(supplierDTO branchDTO){if(!suppliers.contains(branchDTO)) suppliers.add(branchDTO);}
+    public void addSupplier(SupplierDTO branchDTO){if(!suppliers.contains(branchDTO)) suppliers.add(branchDTO);}
     public void addShippingArea(ShippingAreaDTO shippingAreaDTO){if(!shippingAreas.contains(shippingAreaDTO)) shippingAreas.add(shippingAreaDTO);}
     public void addAddress(AddressDTO address){if(!addresses.contains(address)) addresses.add(address);}
 
@@ -130,7 +136,7 @@ public class DataBase {
     public void removeLicense(LicenseDTO licenseDTO){if(licenses.contains(licenseDTO)) licenses.remove(licenseDTO);}
     public void removeTransportation(TransportationDTO transportationDTO){if(trans.contains(transportationDTO)) trans.remove(transportationDTO);}
     public void removeBranch(BranchDTO branchDTO){if(branches.contains(branchDTO)) branches.remove(branchDTO);}
-    public void removeSupplier(supplierDTO branchDTO){if(suppliers.contains(branchDTO)) suppliers.remove(branchDTO);}
+    public void removeSupplier(SupplierDTO branchDTO){if(suppliers.contains(branchDTO)) suppliers.remove(branchDTO);}
     public void removeShippingArea(ShippingAreaDTO shippingAreaDTO){if(shippingAreas.contains(shippingAreaDTO)) shippingAreas.remove(shippingAreaDTO);}
 
     public TruckDTO getTruck(long id){
@@ -168,8 +174,8 @@ public class DataBase {
         }
         return null;
     }
-    public supplierDTO getSupplier(String phone) {
-        for (supplierDTO site:suppliers) {
+    public SupplierDTO getSupplier(String phone) {
+        for (SupplierDTO site:suppliers) {
             if( site.phone==phone)
                 return site;
         }

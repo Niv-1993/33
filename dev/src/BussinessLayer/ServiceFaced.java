@@ -28,8 +28,7 @@ public class ServiceFaced {
         itemService = new ItemService();
         dataControl=DataControl.init();
     }
-    private void loadData(){
-
+    public void loadData(){
         this.truckService.loadData(dataControl);
         this.driverService.loadData(dataControl);
         this.transportationService.loadData(dataControl);

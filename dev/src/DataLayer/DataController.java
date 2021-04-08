@@ -10,7 +10,6 @@ public class DataController {
     private final DataBase dataBase;
 
     private DataController(){
-
         dataBase=DataBase.init();
     }
     public static DataController init(){
@@ -19,6 +18,9 @@ public class DataController {
         }
         return dataController;
     }
+
+
+
 
     private HashMap<BranchDTO, List<ItemDTO>> getItemsList(HashMap<Site, List<Item>> deliveryItems) {
         HashMap<BranchDTO, List<ItemDTO>> lis=new HashMap<>();
@@ -59,16 +61,16 @@ public class DataController {
     public void addShippingArea(ShippingAreaDTO ship){dataBase.addShippingArea(ship);}
     public void addAddress(AddressDTO add){dataBase.addAddress(add);}
     public void addBranch(BranchDTO site){dataBase.addBranch(site);}
-    public void addSupplier(supplierDTO site){dataBase.addSupplier(site);}
+    public void addSupplier(SupplierDTO site){dataBase.addSupplier(site);}
     public void addTruck(TruckDTO truck){ dataBase.addTruck(truck);}
     public void addTrucks(List<TruckDTO> trucks){ dataBase.setTrucks(trucks); }
     public void addBranches(List<BranchDTO> sites){dataBase.setBranches(sites);}
-    public void addSuppliers(List<supplierDTO > suppliers){dataBase.setSuppliers(suppliers);}
+    public void addSuppliers(List<SupplierDTO> suppliers){dataBase.setSuppliers(suppliers);}
     public void addItems(List<ItemDTO> items){dataBase.setItems(items);}
     public void addDrivers(List<DriverDTO> drivers){ dataBase.setDrivers(drivers); }
 
     public void removeDriver(int id) { dataBase.removeDriver(id); }
 
-    public List<supplierDTO> getSuppliers() {return dataBase.getSuppliers(); }
+    public List<SupplierDTO> getSuppliers() {return dataBase.getSuppliers(); }
     public void addTrns(TransportationDTO transportationDTO) { dataBase.addTransportation(transportationDTO); }
 }

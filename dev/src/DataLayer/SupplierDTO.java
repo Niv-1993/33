@@ -2,14 +2,14 @@ package DataLayer;
 
 import java.util.Objects;
 
-public class supplierDTO {
+public class SupplierDTO {
     protected String phone;
     protected String contactName;
     protected int id;
     protected AddressDTO address;
     protected ShippingAreaDTO shippingArea;
 
-    public supplierDTO(String phone, String contactName, int id, AddressDTO address, ShippingAreaDTO shippingArea){
+    public SupplierDTO(String phone, String contactName, int id, AddressDTO address, ShippingAreaDTO shippingArea){
         this.phone = phone;
         this.contactName = contactName;
         this.id = id;
@@ -32,7 +32,7 @@ public class supplierDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        supplierDTO branchDTO = (supplierDTO) o;
+        SupplierDTO branchDTO = (SupplierDTO) o;
         return id == branchDTO.id && Objects.equals(phone, branchDTO.phone) && Objects.equals(contactName, branchDTO.contactName) && Objects.equals(address, branchDTO.address) && Objects.equals(shippingArea, branchDTO.shippingArea);
     }
 

@@ -15,6 +15,7 @@ public class Controller {
         }
         return control;
     }
+    public void loadDataT(){ serviceControl.loadData(); }
     private Controller (){
         serviceControl = ServiceFaced.initial();
     }
