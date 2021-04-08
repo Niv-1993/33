@@ -12,8 +12,6 @@ public class Employee {
     public List<String> role;
     public int[] bankAccount;
     public int[] terms;
-    public List<Shift> shifts;
-    public List<Constraint> constraints;
     public int salary;
 
 
@@ -34,15 +32,6 @@ public class Employee {
         this.bankAccount = emp.getBankAccount().toArr();
         this.terms = emp.getTermsOfEmployment().toArr();
         this.salary = emp.getSalary();
-    }
-
-
-    public boolean containsConst(int cid) {
-        for (Constraint c : constraints)
-            if (c.CID == cid) {
-                return true;
-            }
-        return false;
     }
     public String toStringForAllEmployee(){
         return
