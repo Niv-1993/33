@@ -19,6 +19,10 @@ public class Controller {
         serviceControl = ServiceFaced.initial();
     }
 
+    /**
+     * setter methods, for each field of the transportation object try to update in the business layer
+     * @param t
+     */
     public void setDriverOnTransportation(TransportationServiceDTO t){
         ResponseT<TransportationServiceDTO> tra = serviceControl.setTransportationDriver(t);
         if (tra.ErrorOccured()){
@@ -76,7 +80,10 @@ public class Controller {
         }
     }
 
-
+    /**
+     * getters for every object's list.
+     * @return
+     */
     public List<DriverServiceDTO> getAllDrivers(){
         ResponseT<List<DriverServiceDTO>> res = serviceControl.getDTODrivers();
         if(res.ErrorOccured()){
@@ -101,7 +108,7 @@ public class Controller {
     }
     public List<TransportationServiceDTO> getAllTransportations(){
 
-        ResponseT<List<TransportationServiceDTO>> res = serviceControl.getDTOtransportations();
+        ResponseT<List<TransportationServiceDTO>> res = serviceControl.getDTOTransportations();
         if(res.ErrorOccured()){
             throw new IllegalArgumentException(res.getErrorMessage());
         }
@@ -122,7 +129,11 @@ public class Controller {
         return res.getValue();
     }
 
-
+    /**
+     * Getters for return an object by it's identifier.
+     * @param id: the identifier of the object.
+     * @return : the object.
+     */
     public DriverServiceDTO getDriver(long id){
         ResponseT<DriverServiceDTO> driver =  serviceControl.getDriver(id);
         if(driver.ErrorOccured()){
@@ -159,6 +170,10 @@ public class Controller {
         return res.getValue();
     }
 
+    /**
+     * Method for initializing new transportation to create.
+     * @return
+     */
     public TransportationServiceDTO createNewTransportation() {
         ResponseT<TransportationServiceDTO> res = serviceControl.createNewTransportation();
         if(res.ErrorOccured()){

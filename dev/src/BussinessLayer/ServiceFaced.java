@@ -1,23 +1,18 @@
 package BussinessLayer;
-
-import DataLayer.TransportationDTO;
-import Responses.Response;
 import Responses.ResponseT;
 import ServiceLayer.Objects.*;
 import enums.Area;
 import enums.Pair;
-
-import java.security.KeyStore;
 import java.util.*;
 
 public class ServiceFaced {
-    private DriverService driverService;
-    private TruckService truckService;
-    private SiteService siteService;
-    private TransportationService transportationService;
-    private ItemService itemService;
+    private final DriverService driverService;
+    private final TruckService truckService;
+    private final SiteService siteService;
+    private final TransportationService transportationService;
+    private final ItemService itemService;
     private static ServiceFaced serviceFaced = null;
-    private DataControl dataControl;
+    private final DataControl dataControl;
 
 
     private ServiceFaced(){
@@ -28,6 +23,8 @@ public class ServiceFaced {
         itemService = new ItemService();
         dataControl=DataControl.init();
     }
+
+
     private void loadData(){
 
         this.truckService.loadData(dataControl);
@@ -35,7 +32,8 @@ public class ServiceFaced {
         this.transportationService.loadData(dataControl);
         this.itemService.loadData(dataControl);
         this.siteService.loadData(dataControl);
-    };
+    }
+
     public static ServiceFaced initial() {
         if(serviceFaced == null){
             serviceFaced = new ServiceFaced();
@@ -107,7 +105,7 @@ public class ServiceFaced {
             return new ResponseT<>(e.getMessage());
         }
     }
-    public ResponseT<List<TransportationServiceDTO>> getDTOtransportations(){
+    public ResponseT<List<TransportationServiceDTO>> getDTOTransportations(){
         List<TransportationServiceDTO> returnT = new LinkedList<>();
         try {
             List<Transportation> transportations = transportationService.getTransportationsList();
@@ -155,14 +153,13 @@ public class ServiceFaced {
         try {
             Driver d = driverService.getDriver(t.getDriver().getId());
             transportationService.setDriver(t.getId(), d);
-            //if we success just return the same
             return new ResponseT<>(t);
         }catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
     }
     public ResponseT<TransportationServiceDTO> setTransportationDeliveryItems(TransportationServiceDTO t ){
-             HashMap<Branch,List<Pair<Item,Integer>>> deliveryItemsb = new HashMap<>();
+             HashMap<Branch,List<Pair<Item,Integer>>> deliveryItemsB = new HashMap<>();
         try {
             HashMap<BranchServiceDTO,List<Pair<ItemServiceDTO,Integer>>> deliveryItems = t.getDeliveryItems();
             for (Map.Entry<BranchServiceDTO,List<Pair<ItemServiceDTO,Integer>>> entry: deliveryItems.entrySet()){
@@ -171,16 +168,16 @@ public class ServiceFaced {
                 for (Pair<ItemServiceDTO,Integer> item : entry.getValue()){
                     delivery.add(new Pair<>(itemService.getItem(item.getFir().getId()),item.getSec()));
                 }
-                deliveryItemsb.put(b,delivery);
+                deliveryItemsB.put(b,delivery);
             }
-            transportationService.setDeliveryItems(t.getId(),deliveryItemsb);
+            transportationService.setDeliveryItems(t.getId(),deliveryItemsB);
             return new ResponseT<>(t);
         }catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
     }
     public ResponseT<TransportationServiceDTO> setTransportationSuppliersItems(TransportationServiceDTO t ){
-        HashMap<Supplier,List<Pair<Item,Integer>>> deliveryItemsb = new HashMap<>();
+        HashMap<Supplier,List<Pair<Item,Integer>>> deliveryItemsB = new HashMap<>();
         try {
             HashMap<SupplierServiceDTO,List<Pair<ItemServiceDTO,Integer>>> deliveryItems = t.getSuppliers();
             for (Map.Entry<SupplierServiceDTO,List<Pair<ItemServiceDTO,Integer>>> entry: deliveryItems.entrySet()){
@@ -189,9 +186,9 @@ public class ServiceFaced {
                 for (Pair<ItemServiceDTO,Integer> item : entry.getValue()){
                     delivery.add(new Pair<>(itemService.getItem(item.getFir().getId()),item.getSec()));
                 }
-                deliveryItemsb.put(b,delivery);
+                deliveryItemsB.put(b,delivery);
             }
-            transportationService.setSuppliersItem(t.getId(),deliveryItemsb);
+            transportationService.setSuppliersItem(t.getId(),deliveryItemsB);
             return new ResponseT<>(t);
         }catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
@@ -239,7 +236,7 @@ public class ServiceFaced {
     private Pair<ItemServiceDTO,Integer> toItemPairServiceDTO(Pair<Item,Integer> i){
         if(i==null)
             return null;
-        return new Pair<ItemServiceDTO,Integer>(new ItemServiceDTO(i.getFir().getId(),i.getFir().getName()),i.getSec());
+        return new Pair<>(new ItemServiceDTO(i.getFir().getId(), i.getFir().getName()), i.getSec());
     }
     private ItemServiceDTO toItemServiceDTO(Item i){
         if(i==null)
@@ -284,8 +281,7 @@ public class ServiceFaced {
                 newItems.put(toBranchServiceDTO(entry.getKey()), iDTO);
             }
         }
-        TransportationServiceDTO ret=new TransportationServiceDTO(t.getId(),t.getDate(),t.getLeavingTime(),toDriverServiceDTO(t.getDriver()),toTruckServiceDTO(t.getTruck()),t.getWeight(),newItems,newSup,toArea( t.getShippingArea()));
-        return ret;
+        return new TransportationServiceDTO(t.getId(),t.getDate(),t.getLeavingTime(),toDriverServiceDTO(t.getDriver()),toTruckServiceDTO(t.getTruck()),t.getWeight(),newItems,newSup,toArea( t.getShippingArea()));
     }
 
     private Area toArea(ShippingArea shippingArea) {
@@ -297,8 +293,7 @@ public class ServiceFaced {
     public ResponseT<TransportationServiceDTO> createNewTransportation() {
 
         try {
-            ResponseT<TransportationServiceDTO> ret=new ResponseT<>(toTransportationServiceDTO(transportationService.newTransportation()));
-            return ret;
+            return new ResponseT<>(toTransportationServiceDTO(transportationService.newTransportation()));
         }
         catch (Exception e){
             return new ResponseT<>(e.getMessage());
