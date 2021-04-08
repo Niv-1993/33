@@ -19,7 +19,7 @@ public interface iStorageService {
     public Response editCategory(int Id, String name);
     //added sale price
     public Response addProductType(String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category);
-    public Response getProductTypes();
+    public ResponseData<AllType> getProductTypes();
     public ResponseData<ProductType> getProductTypeInfo(int id);
     //added sale price + ID
     public Response editProductType(int ID,String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category);

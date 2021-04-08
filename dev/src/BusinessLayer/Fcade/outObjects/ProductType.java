@@ -13,6 +13,17 @@ public class ProductType {
     float basePrice;
     float salePrice;
 
+    public int getTypeID() {//for testing
+        return typeID;
+    }
+
+    public int getCategoryID() {//for testing
+        return categoryID;
+    }
+    public int getCount(){
+        return currShelves+currStorage;
+    }
+
     public ProductType(int typeID, int minAmount, int categoryID, String producer, List<Integer> supplierIDs, int currShelves, int currStorage, float basePrice, float salePrice) {
         this.typeID = typeID;
         this.minAmount = minAmount;

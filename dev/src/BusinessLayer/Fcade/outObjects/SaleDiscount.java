@@ -4,6 +4,19 @@ import java.util.Date;
 
 public class SaleDiscount {
     int dicountID;
+
+    public Date getStart() {
+        return start;
+    }
+
+    public Date getEnd() {
+        return end;
+    }
+
+    public float getPrecent() {
+        return precent;
+    }
+
     Date start;
     Date end;
     float precent;
@@ -20,4 +33,5 @@ public class SaleDiscount {
     public String toString() {
         return "Discount ID: "+dicountID+"\nDiscount is: "+precent+"%\nStarts on: "+start+"\nEnds on: "+end+"\n";
     }
+
 }

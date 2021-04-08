@@ -4,6 +4,11 @@ import java.util.List;
 
 public class SaleDiscounts {
     int productType;
+
+    public List<SaleDiscount> getDiscounts() {
+        return discounts;
+    }
+
     List<SaleDiscount> discounts;
 
     public SaleDiscounts(int productType, List<SaleDiscount> discounts) {
@@ -15,4 +20,5 @@ public class SaleDiscounts {
     public String toString() {
         return "All sale discounts for product type: "+productType+"\n"+discounts.toString();
     }
+
 }

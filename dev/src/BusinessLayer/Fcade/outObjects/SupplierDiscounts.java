@@ -15,4 +15,7 @@ public class SupplierDiscounts {
     public String toString() {
         return "All supplier discounts for product type: "+productType+"\n"+discounts.toString();
     }
+    public int size(){
+        return discounts.size();
+    }
 }

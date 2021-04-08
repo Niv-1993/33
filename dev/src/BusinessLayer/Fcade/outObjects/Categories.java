@@ -12,4 +12,10 @@ public class Categories {
     public String toString() {
         return "The IDs of all current categories: "+categoryIDs.toString()+"\n";
     }
+    public int size(){//for testing
+        return categoryIDs.size();
+    }
+    public List<Integer> getList(){
+        return categoryIDs;
+    }
 }

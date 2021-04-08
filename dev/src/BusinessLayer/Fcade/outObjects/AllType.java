@@ -1,6 +1,5 @@
 package BusinessLayer.Fcade.outObjects;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AllType {
@@ -12,5 +11,11 @@ public class AllType {
     @Override
     public String toString() {
         return "The IDs of all item types currently in storage: "+typeIDs.toString()+"\n";
+    }
+    public List<Integer> getData(){
+        return typeIDs;
+    }
+    public int size(){
+        return typeIDs.size();
     }
 }
