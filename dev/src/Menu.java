@@ -1,4 +1,3 @@
-import DataLayer.ItemDTO;
 import ServiceLayer.Controller;
 import ServiceLayer.Objects.BranchServiceDTO;
 import ServiceLayer.Objects.ItemServiceDTO;
@@ -17,11 +16,9 @@ public class Menu {
     Scanner sc;
     private int option;
     private int subOption;
-    private final int numOfEndProgramOp = 2;
     private final int numOfOptions = 7;
-    private Area[] areas={Area.Sout,Area.North,Area.Central };
-    private int numOfSteps = 7;
-    private Controller controller;
+    private final Area[] areas={Area.Sout,Area.North,Area.Central };
+    private final Controller controller;
     private boolean finish;
     public Menu(Scanner sc){
         controller = Controller.initial();
@@ -30,13 +27,16 @@ public class Menu {
         subOption=0;
         finish=false;
     }
-    public int chooseOption(){
+
+    /**
+     *
+     */
+    public void chooseOption(){
         System.out.println("press 1 to see all available Transportations ");
         System.out.println("press 2 to create a new Transportation");
         option = chooseOp(numOfOptions);
-        return option;
     }
-    private Area chooseArea(TransportationServiceDTO t){
+    private void chooseArea(TransportationServiceDTO t){
         System.out.println("Please chose an Area");
         for (int i=0; i<areas.length;i++) {
             System.out.println((i+1)+") "+areas[i]);
@@ -46,7 +46,6 @@ public class Menu {
         Area chosen=areas[area];
         t.setArea(chosen);
         controller.setTransportationArea(t);
-        return chosen;
     }
     private void chooseTime(TransportationServiceDTO tran){
         boolean success=false;
@@ -72,7 +71,7 @@ public class Menu {
                 String tim = sc.next();
                 LocalDate date=LocalDate.parse(tim);
                 tran.setDate(date);
-                tran = controller.setTransportationDate(tran);
+                controller.setTransportationDate(tran);
                 success = true;
             }
             catch (Exception e) {
@@ -95,25 +94,12 @@ public class Menu {
             System.out.println("press 6 to submit your transportation");
             subOption = chooseOp(numOfOptions);
             switch (subOption) {
-                case 1:
-                    chooseTruck(newTrans);
-                    break;
-                case 2:
-                    chooseDriver(newTrans);
-
-                    break;
-                case 3:
-                    chooseSupplier(newTrans);
-                    break;
-                case 4:
-                    chooseBranch(newTrans);
-                    break;
-                case 5:
-                    chooseWeight(newTrans);
-                    break;
-                case 6:
-                    submin(newTrans);
-                    break;
+                case 1 -> chooseTruck(newTrans);
+                case 2 -> chooseDriver(newTrans);
+                case 3 -> chooseSupplier(newTrans);
+                case 4 -> chooseBranch(newTrans);
+                case 5 -> chooseWeight(newTrans);
+                case 6 -> submit(newTrans);
             }
             System.out.println(newTrans);
         }
@@ -129,7 +115,7 @@ public class Menu {
             t.setTruck(null);
         }
     }
-    private void submin(TransportationServiceDTO t){
+    private void submit(TransportationServiceDTO t){
         try {
 
             controller.setTransportation(t);
@@ -259,13 +245,8 @@ public class Menu {
 
     public boolean endOfProgram(){
         System.out.println("to continue press 1, to end press 2");
-        if(chooseOp(numOfEndProgramOp) == 1){
-
-            return true;
-        }else {
-
-            return false;
-        }
+        int numOfEndProgramOp = 2;
+        return chooseOp(numOfEndProgramOp) == 1;
     }
     private int chooseOp(int con){
         boolean validInput = false;

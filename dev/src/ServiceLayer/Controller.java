@@ -1,18 +1,13 @@
 package ServiceLayer;
-import BussinessLayer.Branch;
 import BussinessLayer.ServiceFaced;
-import BussinessLayer.Transportation;
-import DataLayer.TransportationDTO;
-import Responses.Response;
 import Responses.ResponseT;
 import ServiceLayer.Objects.*;
-import enums.Area;
 
 import java.util.*;
 
 public class Controller {
     private static Controller control = null;
-    private ServiceFaced serviceControl;
+    private final ServiceFaced serviceControl;
 
     public static Controller initial(){
         if(control == null){
@@ -24,48 +19,61 @@ public class Controller {
         serviceControl = ServiceFaced.initial();
     }
 
-    public TransportationServiceDTO setDriverOnTransportation(TransportationServiceDTO t){
+    public void setDriverOnTransportation(TransportationServiceDTO t){
         ResponseT<TransportationServiceDTO> tra = serviceControl.setTransportationDriver(t);
         if (tra.ErrorOccured()){
             throw new IllegalArgumentException(tra.getErrorMessage());
         }
-        return t;
     }
 
-    public TransportationServiceDTO setTruckOnTransportation(TransportationServiceDTO t){
+    public void setTruckOnTransportation(TransportationServiceDTO t){
         ResponseT<TransportationServiceDTO> tra = serviceControl.setTransportationTruck(t);
         if (tra.ErrorOccured()){
             throw new IllegalArgumentException(tra.getErrorMessage());
         }
-        return t;
     }
-    public TransportationServiceDTO setTransportationWeight(TransportationServiceDTO t){
+    public void setTransportationWeight(TransportationServiceDTO t){
         ResponseT<TransportationServiceDTO> tra = serviceControl.setTransportationWeight(t);
         if (tra.ErrorOccured()){
             throw new IllegalArgumentException(tra.getErrorMessage());
         }
-        return t;
     }
-    public TransportationServiceDTO setTransportation(TransportationServiceDTO t){
+    public void setTransportation(TransportationServiceDTO t){
         ResponseT<TransportationServiceDTO> tra = serviceControl.setTransportation(t);
         if (tra.ErrorOccured()){
             throw new IllegalArgumentException(tra.getErrorMessage());
         }
-        return t;
     }
-    public TransportationServiceDTO setTransportationDate(TransportationServiceDTO t){
+    public void setTransportationDate(TransportationServiceDTO t){
         ResponseT<TransportationServiceDTO> tra = serviceControl.setTransportationDate(t);
         if (tra.ErrorOccured()){
             throw new IllegalArgumentException(tra.getErrorMessage());
         }
-        return t;
     }
-    public TransportationServiceDTO setTransportationLeavingTime(TransportationServiceDTO t){
+    public void setTransportationLeavingTime(TransportationServiceDTO t){
         ResponseT<TransportationServiceDTO> tra = serviceControl.setTransportationTime(t);
         if (tra.ErrorOccured()){
             throw new IllegalArgumentException(tra.getErrorMessage());
         }
-        return t;
+    }
+    public void setSuppliersToTransportation(TransportationServiceDTO tr){
+        ResponseT<TransportationServiceDTO> res = serviceControl.setTransportationSuppliersItems(tr);
+        if(res.ErrorOccured()){
+            throw new IllegalArgumentException(res.getErrorMessage());
+        }
+    }
+    public void setDeliveryItemsToTransportation(TransportationServiceDTO tr){
+        ResponseT<TransportationServiceDTO> res = serviceControl.setTransportationDeliveryItems(tr);
+        if(res.ErrorOccured()){
+            throw new IllegalArgumentException(res.getErrorMessage());
+        }
+    }
+    public void setTransportationArea(TransportationServiceDTO t){
+        ResponseT<TransportationServiceDTO> res=serviceControl.setArea(t);
+        if(res.ErrorOccured())
+        {
+            throw new IllegalArgumentException(res.getErrorMessage());
+        }
     }
 
 
@@ -76,11 +84,6 @@ public class Controller {
         }
         return res.getValue();
     }
-   /* public void printDrivers(List<DriverServiceDTO> drivers){
-        for (DriverServiceDTO driver:drivers) {
-            System.out.println(driver);
-        }
-    }*/
     public List<ItemServiceDTO> getAllItems(){
         ResponseT<List<ItemServiceDTO>> res = serviceControl.getAllItems();
         if(res.ErrorOccured()) {
@@ -118,6 +121,8 @@ public class Controller {
         }
         return res.getValue();
     }
+
+
     public DriverServiceDTO getDriver(long id){
         ResponseT<DriverServiceDTO> driver =  serviceControl.getDriver(id);
         if(driver.ErrorOccured()){
@@ -153,42 +158,6 @@ public class Controller {
         }
         return res.getValue();
     }
-    public TransportationServiceDTO setDriverToTransport(TransportationServiceDTO tr){
-        ResponseT<TransportationServiceDTO> res=serviceControl.setTransportationDriver(tr);
-        if(res.ErrorOccured())
-        {
-            throw new IllegalArgumentException(res.getErrorMessage());
-        }
-        return res.getValue();
-    }
-    public TransportationServiceDTO setDriverToTransportation(TransportationServiceDTO tr){
-        ResponseT<TransportationServiceDTO> res = serviceControl.setTransportationDriver(tr);
-        if(res.ErrorOccured()){
-            throw new IllegalArgumentException(res.getErrorMessage());
-        }
-        return res.getValue();
-    }
-    public TransportationServiceDTO setTruckToTransportation(TransportationServiceDTO tr){
-        ResponseT<TransportationServiceDTO> res = serviceControl.setTransportationTruck(tr);
-        if(res.ErrorOccured()){
-            throw new IllegalArgumentException(res.getErrorMessage());
-        }
-        return res.getValue();
-    }
-    public TransportationServiceDTO setSuppliersToTransportation(TransportationServiceDTO tr){
-        ResponseT<TransportationServiceDTO> res = serviceControl.setTransportationSuppliersItems(tr);
-        if(res.ErrorOccured()){
-            throw new IllegalArgumentException(res.getErrorMessage());
-        }
-        return res.getValue();
-    }
-    public TransportationServiceDTO setDeliveryItemsToTransportation(TransportationServiceDTO tr){
-        ResponseT<TransportationServiceDTO> res = serviceControl.setTransportationDeliveryItems(tr);
-        if(res.ErrorOccured()){
-            throw new IllegalArgumentException(res.getErrorMessage());
-        }
-        return res.getValue();
-    }
 
     public TransportationServiceDTO createNewTransportation() {
         ResponseT<TransportationServiceDTO> res = serviceControl.createNewTransportation();
@@ -197,12 +166,5 @@ public class Controller {
         }
         return res.getValue();
     }
-    public TransportationServiceDTO setTransportationArea(TransportationServiceDTO t){
-        ResponseT<TransportationServiceDTO> res=serviceControl.setArea(t);
-        if(res.ErrorOccured())
-        {
-            throw new IllegalArgumentException(res.getErrorMessage());
-        }
-        return res.getValue();
-    }
+
 }
