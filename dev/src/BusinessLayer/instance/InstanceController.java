@@ -14,7 +14,7 @@ public class InstanceController {
     private Dictionary<Integer,Product> _products=new Hashtable<>();
     final static Logger log=Logger.getLogger(InstanceController.class);
     public InstanceController(){//for testing
-        _typeID=1;
+        _typeID=1000;
     }
 
     public InstanceController(int typeID) {

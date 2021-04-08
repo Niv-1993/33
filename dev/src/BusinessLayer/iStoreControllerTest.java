@@ -85,7 +85,9 @@ class iStoreControllerTest {
     }
 
     void report(Report r){
-        Assertions.assertTrue(r.getDate().before(new Date(System.currentTimeMillis())),"the date is not valid");
+        Date date=new Date();
+        date.setDate(date.getDate()+1);
+        Assertions.assertTrue(r.getDate().before(date),"the date is not valid");
         Assertions.assertEquals(r.getStore(),sc.getID(),"the storeId is not equals");
     }
 
@@ -201,7 +203,7 @@ class iStoreControllerTest {
     @Test
     void getCategories() {
         sc.setCategories(categoryDictionary(20));
-        Assertions.assertEquals(20,sc.getCategories());
+        Assertions.assertEquals(20,sc.getCategories().size());
     }
 
     @Test
@@ -292,7 +294,11 @@ class iStoreControllerTest {
             setRealValue(20, pt);
             for (Enumeration<ProductType> p = pt.keys(); p.hasMoreElements(); ) {
                 ProductType pp = p.nextElement();
-                Assertions.assertEquals(pp.get_products(), pt.get(pp).getProduts());
+                List<Integer> list1=pp.get_products();
+                List<Integer> list2=pt.get(pp).getProduts();
+                Collections.sort(list1);
+                Collections.sort(list2);
+                Assertions.assertEquals(list1, list2);
             }
         }
         catch (Exception e){
@@ -307,19 +313,22 @@ class iStoreControllerTest {
         pt.put(p,ic);
         sc.setList(pt);
         List<Shelf> shelves=new ArrayList<>();
+
         for (int i = 0; i < 20; i++) {
             Shelf s=mock(Shelf.class);
             when(s.isFull()).thenReturn(false);
             when(s.get_location()).thenReturn(Location.Shelves);
-            when(s.get_shelfID()).thenReturn(i);
+            when(s.get_shelfID()).thenReturn(i+1);
             shelves.add(s);
         }
+
         sc.setShelves(shelves);
+
         for (int i=0; i<j ;i++) {
             Date tmp=new Date();
             tmp.setDate(tmp.getDate()+1);
 
-            sc.addProduct(1000+i, tmp );
+            sc.addProduct(1000, tmp );
         }
     }
 
@@ -330,11 +339,15 @@ class iStoreControllerTest {
             Dictionary<ProductType, InstanceController> pt = new Hashtable<>();
             setRealValue(20, pt);
             for (int i = 0; i < 10; i++) {
-                sc.removeProduct(1000 + i);
+                sc.removeProduct(1000*1000 + i);
             }
             for (Enumeration<ProductType> p = pt.keys(); p.hasMoreElements(); ) {
                 ProductType pp = p.nextElement();
-                Assertions.assertEquals(pp.get_products(), pt.get(pp).getProduts());
+                List<Integer> list1=pp.get_products();
+                List<Integer> list2=pt.get(pp).getProduts();
+                Collections.sort(list1);
+                Collections.sort(list2);
+                Assertions.assertEquals(list1, list2);
             }
         }
         catch (Exception e){
@@ -350,12 +363,14 @@ class iStoreControllerTest {
             Dictionary<ProductType, InstanceController> pt = new Hashtable<>();
             setRealValue(20, pt);
             for (int i = 0; i < 10; i++) {
-                sc.reportDamage(1000 + i);
+                sc.reportDamage(1000*1000 + i + 1);
             }
-            for (Enumeration<ProductType> p = pt.keys(); p.hasMoreElements(); ) {
-                System.out.println("hi");
-                ProductType pp = p.nextElement();
-                Assertions.assertEquals(pp.get_products(), pt.get(pp).getProduts());
+            for(ProductType pp: Collections.list(pt.keys())){
+                List<Integer> list1=pp.get_products();
+                List<Integer> list2=pt.get(pp).getProduts();
+                Collections.sort(list1);
+                Collections.sort(list2);
+                Assertions.assertEquals(list1, list2);
             }
         }
         catch (Exception e){

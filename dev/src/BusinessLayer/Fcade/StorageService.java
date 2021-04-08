@@ -1,8 +1,10 @@
 package BusinessLayer.Fcade;
 
 import BusinessLayer.Fcade.outObjects.*;
+import BusinessLayer.StoreController;
 import BusinessLayer.iStoreController;
 import BusinessLayer.instance.Location;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,11 +13,15 @@ import java.util.List;
 
 public class StorageService implements iStorageService {
     int counter=1;
+    int shelves=1000;
+    int storeShelves=500;
+    int MAX_PER_TYPE=999;
     List<iStoreController> stores;
     iStoreController curr;
+    final static Logger log= Logger.getLogger(StorageService.class);
 
     public StorageService() {
-        //stores=new StoreController();
+        stores=new ArrayList<>();
         curr=null;
     }
 
@@ -312,7 +318,7 @@ public class StorageService implements iStorageService {
     @Override
     public ResponseData<Integer> addStore() {
         try {
-            //stores.add(new StoreController());
+            stores.add(new StoreController(counter,shelves,storeShelves,MAX_PER_TYPE));
             counter++;
             return new ResponseData<>(counter-1);
         }
@@ -323,14 +329,15 @@ public class StorageService implements iStorageService {
     }
 
     @Override
-    public ResponseData<Integer[]> getStores() {
+    public ResponseData<List<Integer>> getStores() {
         try {
             List<Integer> ret=new LinkedList<>();
             for (iStoreController s:stores) {
                 ret.add(s.getID());
             }
+
             if(ret.size()==0) throw new Exception("no stores registered");
-            return new ResponseData<>((Integer[]) ret.toArray());
+            return new ResponseData<>(ret);
         }
         catch (Exception e) {
             return new ResponseData<>(e.toString());

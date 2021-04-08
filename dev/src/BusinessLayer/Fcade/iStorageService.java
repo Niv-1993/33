@@ -37,6 +37,6 @@ public interface iStorageService {
     public ResponseData<SaleDiscounts> getSaleDiscounts(int typeID);
     public Response relocateProduct(int ID, boolean toStorage, int targetShelf);
     public ResponseData<Integer> addStore();
-    public ResponseData<Integer[]> getStores();
+    public ResponseData<List<Integer>> getStores();
     public Response useStore(int ID);
 }

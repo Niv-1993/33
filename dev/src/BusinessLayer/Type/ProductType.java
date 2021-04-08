@@ -3,7 +3,6 @@ package BusinessLayer.Type;
 import BusinessLayer.instance.Location;
 import BusinessLayer.instance.Product;
 import Utility.Tuple;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.List;
 public class ProductType {
     private int _typeID;
     private int _categoryID;
-    private List<Integer> _products;
+    private List<Integer> _products=new ArrayList<>();
     private String _name;
     private int _minAmount;
     private int _shelfCurr=0;
@@ -21,9 +20,9 @@ public class ProductType {
     private float _basePrice;
     private float _salePrice;
     private String _producer;
-    private List<Integer> _suppliers;
-    private List<SaleDiscount> _saleDiscounts;
-    private List<SupplierDiscount> _supplierDiscounts;
+    private List<Integer> _suppliers=new ArrayList<>();
+    private List<SaleDiscount> _saleDiscounts=new ArrayList<>();
+    private List<SupplierDiscount> _supplierDiscounts=new ArrayList<>();
     final static Logger log=Logger.getLogger(ProductType.class);
     public ProductType(){//for testing
         _typeID=1000;
@@ -270,7 +269,7 @@ public class ProductType {
             log.error(s);
             throw new IllegalArgumentException(s);
         }
-        log.info("ADDDING PROD:"+productID);
+        log.info("ADDDING PROD:"+productID+" to type:"+_typeID);
         _products.add(productID);
         if ((l.equals(Location.Shelves))) {
             _shelfCurr++;

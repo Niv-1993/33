@@ -21,7 +21,7 @@ public class StoreController implements iStoreController{
     private int _categoryCounter=0;
     private int _discountCounter=0;
     private int _numberOfShelves=10;
-    static private int MAX_PRODUCTS_ON_PROTUCTTYPE=2;
+    static private int MAX_PRODUCTS_ON_PROTUCTTYPE=1000;
     private List<Shelf> _shelves=new ArrayList<>();
     private Dictionary<ProductType,InstanceController> _products=new Hashtable<>();
     private Dictionary<Integer,Category> _category=new Hashtable<>();
@@ -340,6 +340,7 @@ public class StoreController implements iStoreController{
         ProductType tmp=checkIDProductTypeExist(typeID);
         log.debug("products="+tmp.get_products());
         int productID=_products.get(tmp).addProduct(expiration,s.get_location(),s.get_shelfID());
+        log.debug(String.format("the productID: %d:",productID));
         try {
             tmp.addProduct(productID,s.get_location());
         }
@@ -533,7 +534,7 @@ public class StoreController implements iStoreController{
         {
             Shelf s=_shelves.get(i);
             if (s.get_typeID()==typeID && !s.isFull()) {
-                log.debug("found shelf: " + s.get_shelfID() + " for type: " + typeID + " for product: " + getID());
+                log.debug("found shelf: " + s.get_shelfID() + " for type: " + typeID);
                 s.set_typeID(typeID);
                 return s;
             }
@@ -542,7 +543,7 @@ public class StoreController implements iStoreController{
         {
             Shelf s=_shelves.get(i);
             if (s.get_typeID()==0 && !s.isFull()) {
-                log.debug("found shelf: " + s.get_shelfID() + " for type: " + typeID + " for product: " + getID());
+                log.debug("found shelf: " + s.get_shelfID() + " for type: " + typeID );
                 s.set_typeID(typeID);
                 return s;
             }

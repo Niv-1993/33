@@ -1,16 +1,19 @@
 package Presentation;
 
 import BusinessLayer.Fcade.StorageService;
+import org.apache.log4j.Logger;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+
+
 
 public class CLIPresentation {
     StorageService SS;
     Scanner scan=new Scanner(System.in);
+    final static Logger log= Logger.getLogger(CLIPresentation.class);
 
     String read(){
         return scan.nextLine().toLowerCase().replaceAll("\\s", "");
@@ -53,7 +56,7 @@ public class CLIPresentation {
                     "\nTo access product types enter 'types'\nTo access specific products enter 'products'" +
                     "\nTo access discounts enter 'discounts'"+
                     "\nTo return to store selection enter 'return'\n"+
-                    "\nTo exit the program enter 'exit'");
+                    "To exit the program enter 'exit'\n");
             in = read();
             if(in.equals("exit")) System.exit(0);
             if(in.equals("return")) return;
