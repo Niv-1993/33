@@ -5,7 +5,6 @@ import java.util.List;
 
 
 public class SiteService {
-    private List<Site> sites;
     private HashMap<Integer, Supplier> suppliers;
     private HashMap<Integer, Branch> branches;
 
