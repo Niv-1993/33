@@ -84,7 +84,11 @@ public class DataBase {
         List<Pair<ItemDTO,Integer>> it=new LinkedList<>();
         it.add(new Pair<>(items.get(4),15));
         lis.put(branches.get(1),it);
-        trans.add(new TransportationDTO(123, LocalDate.now(), LocalTime.now(),drivers.get(1),trucks.get(1),1500,lis, Arrays.asList(suppliers.get(1),suppliers.get(0))));
+        HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> lis2=new HashMap<>();
+        List<Pair<ItemDTO,Integer>> it2=new LinkedList<>();
+        it2.add(new Pair<>(items.get(4),15));
+        lis2.put(suppliers.get(0),it);
+        trans.add(new TransportationDTO(123, LocalDate.now(), LocalTime.now(),drivers.get(1),trucks.get(1),1500,lis, lis2));
     }
 
     public List<DriverDTO> getDrivers() { return drivers; }
@@ -136,7 +140,7 @@ public class DataBase {
         }
         return null;
     }
-    public DriverDTO getDriver(int id){
+    public DriverDTO getDriver(long id){
         for (DriverDTO driver:drivers) {
             if(id==driver.getId())
                 return driver;

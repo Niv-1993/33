@@ -6,16 +6,10 @@ public class main {
         Scanner sc = new Scanner(System.in);
         Menu menu = new Menu(sc);
         TransportationDisplay td = new TransportationDisplay();
-        boolean endProgram = true;
-        while (endProgram){
-            //when u finish the database try this
-            menu.printAllTucks();
-            menu.printAllDrivers();
-            menu.printAllBranches();
-            menu.PrintAllItems();
-            menu.printAllTransportations();
+        while (menu.endOfProgram()){
+            menu.chooseOption();
+            menu.nextStep();
 
-            endProgram = menu.endOfProgram();
         }
     }
 }

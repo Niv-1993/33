@@ -33,9 +33,9 @@ public class DataControl {
         return ret;
     }
 
-    public Map<Integer, Driver> loadDrivers() {
+    public Map<Long, Driver> loadDrivers() {
 
-        Map<Integer, Driver> ret=new HashMap<>();
+        Map<Long, Driver> ret=new HashMap<>();
         for (DriverDTO driver : dataController.getDrivers()) {
             ret.put(driver.getId(), new Driver(driver.getId(), driver.getName(), new License(driver.getLicense().getKg())));
         }
@@ -46,11 +46,11 @@ public class DataControl {
 
         HashMap<Long,Transportation> ret=new HashMap<>();
         for (TransportationDTO trans:dataController.getTransportations()) {
-            ret.put(trans.getId(),new Transportation(trans.getId(),trans.getDate(),trans.getLeavingTime(),getDriver(trans.getDriver().getId()),getTruck(trans.getTruck()), trans.getWeight(),getItemsList(trans.getDeliveryItems()),getSuppliers(trans.getSuppliers())));
+            ret.put(trans.getId(),new Transportation(trans.getId(),trans.getDate(),trans.getLeavingTime(),getDriver(trans.getDriver().getId()),getTruck(trans.getTruck()), trans.getWeight(),getItemsList(trans.getDeliveryItems()),getSupplierItemsList(trans.getSuppliers())));
         }
         return  ret;
     }
-    public Driver getDriver(int id){
+    public Driver getDriver(long id){
         DriverDTO dri=dataController.getDriverDTO(id);
         return new Driver(dri.getId(), dri.getName(),getLicense(dri.getLicense()));
     }
@@ -58,37 +58,78 @@ public class DataControl {
         TruckDTO truck=dataController.getTruckDTO(tru);
         return new Truck(truck.getId(), getLicense(truck.getLicense()), truck.getMaxWeight(), tru.getNetWeight(), truck.getModel());
     }
+    public TruckDTO getTruckDTO(Truck tru){
+        return dataController.getTruckDTO(tru.getId());
+    }
     public License getLicense(LicenseDTO lic){
         return new License(lic.getKg());
     }
 
     private HashMap<Branch, List<Pair<Item,Integer>>> getItemsList(HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> deliveryItems) {
 
+        List<Pair<Item,Integer>> newLis;
         HashMap<Branch, List<Pair<Item,Integer>>> lis=new HashMap<>();
         for(Map.Entry<BranchDTO, List<Pair<ItemDTO,Integer>>> entry: deliveryItems.entrySet()){
 
             Branch newSite= new Branch(entry.getKey().getPhone(),entry.getKey().getContactName(),entry.getKey().getId(),getAddress(entry.getKey().getAddress()),getShipping(entry.getKey().getShippingArea()));
-            List<Pair<Item,Integer>> newLis=new LinkedList<>();
+            newLis=new LinkedList<>();
             for (Pair<ItemDTO,Integer> item:entry.getValue()) {
-                newLis.add(new Pair<Item,Integer>(new Item(item.getFir().getId(),item.getFir().getName()), item.getSec()));
+                newLis.add(new Pair<>(new Item(item.getFir().getId(), item.getFir().getName()), item.getSec()));
             }
             lis.put(newSite,newLis);
+        }
+        return lis;
+    }
+    private HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> getItemsListDTO(HashMap<Branch, List<Pair<Item,Integer>>> deliveryItems) {
+
+        List<Pair<ItemDTO,Integer>> newLis;
+        HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> lis=new HashMap<>();
+        for(Map.Entry<Branch, List<Pair<Item,Integer>>> entry: deliveryItems.entrySet()){
+
+            BranchDTO newSite= new BranchDTO(entry.getKey().getPhone(),entry.getKey().getContactName(),entry.getKey().getId(),getAddressDTO(entry.getKey().getAddress()), dataController.getShippingAreaDTO(entry.getKey().getShippingArea().getArea()));
+            newLis=new LinkedList<>();
+            for (Pair<Item,Integer> item:entry.getValue()) {
+                newLis.add(new Pair<>(new ItemDTO(item.getFir().getId(), item.getFir().getName()), item.getSec()));
+            }
+            lis.put(newSite,newLis);
+        }
+        return lis;
+    }
+    private HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> getSupplierItemsListDTO(HashMap<Supplier, List<Pair<Item,Integer>>> deliveryItems) {
+
+        HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> lis=new HashMap<>();
+        for(Map.Entry<Supplier, List<Pair<Item,Integer>>> entry: deliveryItems.entrySet()){
+            supplierDTO newSite= new supplierDTO(entry.getKey().getPhone(),entry.getKey().getContactName(),entry.getKey().getId(),getAddressDTO(entry.getKey().getAddress()),dataController.getShippingAreaDTO(entry.getKey().getShippingArea().getArea()));
+            List<Pair<ItemDTO,Integer>> newLists=new LinkedList<>();
+            for (Pair<Item,Integer> item:entry.getValue()) {
+                newLists.add(new Pair<>(new ItemDTO(item.getFir().getId(),item.getFir().getName()), item.getSec()));
+            }
+            lis.put(newSite,newLists);
+        }
+        return lis;
+    }
+    private HashMap<Supplier, List<Pair<Item,Integer>>> getSupplierItemsList(HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> deliveryItems) {
+
+        HashMap<Supplier, List<Pair<Item,Integer>>> lis=new HashMap<>();
+        for(Map.Entry<supplierDTO, List<Pair<ItemDTO,Integer>>> entry: deliveryItems.entrySet()){
+
+            Supplier newSite= new Supplier(entry.getKey().getPhone(),entry.getKey().getContactName(),entry.getKey().getId(),getAddress(entry.getKey().getAddress()),getShipping(entry.getKey().getShippingArea()));
+            List<Pair<Item,Integer>> newLists=new LinkedList<>();
+            for (Pair<ItemDTO,Integer> item:entry.getValue()) {
+                newLists.add(new Pair<>(new Item(item.getFir().getId(),item.getFir().getName()), item.getSec()));
+            }
+            lis.put(newSite,newLists);
         }
         return lis;
     }
     private Address getAddress(AddressDTO add){
         return new Address(add.getNumber(),add.getStreet(),add.getCity());
     }
+    private AddressDTO getAddressDTO(Address add){
+        return new AddressDTO(add.getNumber(),add.getStreet(),add.getCity());
+    }
     private ShippingArea getShipping(ShippingAreaDTO ship){
         return new ShippingArea(ship.getArea());
-    }
-    private List<Supplier> getSuppliers(List<supplierDTO> supp){
-
-        List<Supplier> ret=new LinkedList<>();
-    for (supplierDTO sup: supp){
-        ret.add(new Supplier(sup.getPhone(), sup.getContactName(), sup.getId(),getAddress(sup.getAddress()),getShipping(sup.getShippingArea())));
-    }
-    return ret;
     }
 
     public HashMap<Long, Item> getItems() {
@@ -115,5 +156,9 @@ public class DataControl {
             ret.put(sup.getId(), new Branch(sup.getPhone(), sup.getContactName(), sup.getId(), getAddress(sup.getAddress()),getShipping(sup.getShippingArea())));
         }
         return ret;
+    }
+
+    public void addTransportation(Transportation trans) {
+       dataController.addTrns(new TransportationDTO(trans.getId(),trans.getDate(),trans.getLeavingTime(), dataController.getDriverDTO(trans.getDriver().getId()), getTruckDTO(trans.getTruck()), trans.getWeight(),getItemsListDTO(trans.getDeliveryItems()),getSupplierItemsListDTO(trans.getSuppliers())));
     }
 }

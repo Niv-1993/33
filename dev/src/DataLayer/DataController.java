@@ -1,7 +1,7 @@
 package DataLayer;
 
 import BussinessLayer.*;
-
+import enums.Area;
 import java.util.*;
 
 public class DataController {
@@ -41,13 +41,14 @@ public class DataController {
     public List<ItemDTO> getItems(){return dataBase.getItems();}
     public List<LicenseDTO> getLicenses(){return dataBase.getLicenses();}
 
-    public ShippingAreaDTO getShippingAreaDTO(ShippingArea shippingArea) { return dataBase.getShippingArea(shippingArea.getArea()); }
+    public ShippingAreaDTO getShippingAreaDTO(Area shippingArea) { return dataBase.getShippingArea(shippingArea); }
 
     public AddressDTO getAddress(Address address) { return dataBase.getAddress(address.getNumber(),address.getStreet(),address.getCity()); }
 
     public TruckDTO getTruckDTO(TruckDTO truck) { return dataBase.getTruck(truck.getId()); }
+    public TruckDTO getTruckDTO(long id) { return dataBase.getTruck(id); }
 
-    public DriverDTO getDriverDTO(int driver) { return dataBase.getDriver(driver); }
+    public DriverDTO getDriverDTO(long driver) { return dataBase.getDriver(driver); }
 
     public LicenseDTO getLicenseDTO(int kg) { return dataBase.getLicense(kg); }
 
@@ -69,5 +70,5 @@ public class DataController {
     public void removeDriver(int id) { dataBase.removeDriver(id); }
 
     public List<supplierDTO> getSuppliers() {return dataBase.getSuppliers(); }
-
+    public void addTrns(TransportationDTO transportationDTO) { dataBase.addTransportation(transportationDTO); }
 }

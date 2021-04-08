@@ -1,6 +1,7 @@
 package BussinessLayer;
 
 import DataLayer.DataController;
+import enums.Area;
 import enums.Pair;
 
 import java.time.LocalDate;
@@ -29,12 +30,21 @@ public class TransportationService {
         t.setDriver(driver);
         return t;
     }
-    public void newTransportation(){
-        transportations.put(idCounter,new Transportation(idCounter));
+    public Transportation newTransportation(){
+        Transportation tra=new Transportation(idCounter);
+        transportations.put(idCounter,tra);
         idCounter++;
+        return tra;
     }
-    public Transportation setSuppliers(long transId, List<Supplier> s){
+    public Transportation setSuppliersItem(long transId, HashMap<Supplier, List<Pair<Item, Integer>>> s){
         Transportation t = getTransportationById(transId);
+       List< List<Pair<Item, Integer>>> pairs= new ArrayList<>(s.values());
+        for (List<Pair<Item, Integer>> quan:pairs) {
+            for (Pair<Item, Integer> pair: quan) {
+                   if(pair.getSec()<0)
+                       throw new IllegalArgumentException("illegal item quantity. item id: "+pair.getFir().getId());
+            }
+        }
         t.setSuppliers(s);
         return t;
     }
@@ -74,5 +84,30 @@ public class TransportationService {
 
     public void loadData(DataControl dataControl) {
         transportations=dataControl.loadTrans();
+    }
+
+    public void setTransportationTime(long id, LocalTime leavingTime) {
+        getTransportationById(id).setLeavingTime(leavingTime);
+    }
+
+    public void setDate(long id, LocalDate date) {
+        getTransportationById(id).setDate(date);
+    }
+
+    public Transportation saveTransportation(long id) {
+        Transportation tra=getTransportationById(id);
+        if(!tra.isComplete())
+            throw new IllegalArgumentException("Please fill all details");
+        dataControl.addTransportation(tra);
+        return tra;
+    }
+
+    public void setArea(long id, Area area) {
+        getTransportationById(id).setShippingArea(new ShippingArea(area));
+    }
+
+    public void setTransportationWeight(long id, int weight) {
+
+        getTransportationById(id).setWeight(weight);
     }
 }

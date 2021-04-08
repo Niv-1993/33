@@ -1,8 +1,6 @@
 package DataLayer;
-
-import BussinessLayer.*;
+import enums.Area;
 import enums.Pair;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -18,10 +16,10 @@ public class TransportationDTO {
     private TruckDTO truck;
     //ask if they call this item or product?
     private HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> deliveryItems;
-    private List<supplierDTO> suppliers;
+    private HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> suppliers;
     private int weight;
 
-    public TransportationDTO(long id, LocalDate date,LocalTime leavingTime, DriverDTO driver,TruckDTO truck,int weight,HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> deliveryItems,List<supplierDTO> supp ){
+    public TransportationDTO(long id, LocalDate date,LocalTime leavingTime, DriverDTO driver,TruckDTO truck,int weight,HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> deliveryItems,HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> supp ){
         this.date=date;
         this.deliveryItems=deliveryItems;
         this.id=id;
@@ -41,15 +39,7 @@ public class TransportationDTO {
     public TruckDTO getTruck() {
         return truck;
     }
-    public List<supplierDTO> getSuppliers(){return suppliers;}
-    public void addSupplier(supplierDTO sup){suppliers.add(sup);}
-    public void removeSupplier(supplierDTO sup){suppliers.remove(sup);}
-    public List<Pair<ItemDTO,Integer>> getSiteItems(Site site){
-        if(!deliveryItems.containsKey(site)){
-            throw new IllegalArgumentException("No items for this Site.");
-        }
-        return deliveryItems.get(site);
-    }
+    public HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> getSuppliers(){return suppliers;}
 
 
     public void setDate(LocalDate date) {
@@ -59,6 +49,7 @@ public class TransportationDTO {
         this.date = date;
     }
     public void setDeliveryItems(HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> deliveryItems) { this.deliveryItems = deliveryItems; }
+    public void setSuppliersItems(HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> deliveryItems) { this.suppliers = deliveryItems; }
     public void setDriver(DriverDTO driver) {
         //not expected but just in case
         if(truck == null){
@@ -81,6 +72,9 @@ public class TransportationDTO {
 
     public HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> getDeliveryItems() {
         return deliveryItems;
+    }
+    public HashMap<supplierDTO, List<Pair<ItemDTO,Integer>>> getSuppliersItem() {
+        return suppliers;
     }
 
     public void setTruck(TruckDTO truck) {

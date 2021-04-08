@@ -2,11 +2,11 @@ package ServiceLayer.Objects;
 
 public class DriverServiceDTO {
 
-    private int id;
+    private long id;
     private String name;
     private int license;
 
-    public DriverServiceDTO(int id, String name, int license){
+    public DriverServiceDTO(long id, String name, int license){
         this.id=id;
         this.name=name;
         this.license=license;
@@ -26,6 +26,6 @@ public class DriverServiceDTO {
     public void setLicense(int license) { this.license = license; }
 
     public String getName() { return name; }
-    public int getId() { return id; }
+    public long getId() { return id; }
     public int getLicense() { return license; }
 }

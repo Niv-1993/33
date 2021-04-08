@@ -5,21 +5,21 @@ import DataLayer.LicenseDTO;
 import java.util.Objects;
 
 public class DriverDTO {
-    private int id;
+    private long id;
     private String name;
     private LicenseDTO license;
 
-    public DriverDTO(int id, String name, LicenseDTO license){
+    public DriverDTO(long id, String name, LicenseDTO license){
         this.id=id;
         this.name=name;
         this.license =license;
     }
 
     public void setName(String name) { this.name = name; }
-    public void setId(int id) { this.id = id; }
+    public void setId(long id) { this.id = id; }
     public void setLicense(LicenseDTO license) { this.license = license; }
 
-    public int getId() { return id; }
+    public long getId() { return id; }
     public String getName() { return name; }
     public LicenseDTO getLicense() { return license; }
 

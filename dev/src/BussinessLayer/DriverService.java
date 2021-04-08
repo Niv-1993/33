@@ -7,28 +7,28 @@ import java.util.*;
 //bar
 public class DriverService {
 
-    private Map<Integer,Driver> drivers;
+    private Map<Long,Driver> drivers;
 
-    public DriverService(){drivers=new HashMap<>();
-    drivers.put(1,new Driver(1,"bar",new License(200)));
+    public DriverService(){
+        drivers=new HashMap<>();
     }
-    public DriverService(Map<Integer,Driver> driverList){
+    public DriverService(Map<Long,Driver> driverList){
         this.drivers=driverList;
     }
     public List<Driver> getDriversList(){
         return new ArrayList<Driver>(drivers.values());
     }
-    public Map<Integer,Driver> getDrivers() { return drivers;  }
+    public Map<Long,Driver> getDrivers() { return drivers;  }
 
 
-    public Driver getDriver(int id){
+    public Driver getDriver(long id){
         if(drivers.containsKey(id)){
             return drivers.get(id);
         }
         throw new NoSuchElementException("driver is not exists");
     }
 
-    public void setDrivers(HashMap<Integer,Driver> drivers) { this.drivers = drivers; }
+    public void setDrivers(HashMap<Long,Driver> drivers) { this.drivers = drivers; }
 
 
     public boolean compatibleDriver(Driver driver , License lice){return driver.compatibleLicense(lice);}

@@ -20,7 +20,7 @@ public class Transportation {
     private HashMap<Branch, List<Pair<Item, Integer>>> deliveryItems;
     private int weight;
     private ShippingArea shippingArea;
-    private List<Supplier> suppliers;
+    private HashMap<Supplier, List<Pair<Item, Integer>>> suppliers;
 
     public Transportation(long id) {
         this.id = id;
@@ -34,7 +34,7 @@ public class Transportation {
         shippingArea = null;
     }
 
-    public Transportation(long id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, int weight, HashMap<Branch, List<Pair<Item, Integer>>> deliveryItems, List<Supplier> suppliers) {
+    public Transportation(long id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, int weight, HashMap<Branch, List<Pair<Item, Integer>>> deliveryItems, HashMap<Supplier, List<Pair<Item, Integer>>> suppliers) {
         this.date = date;
         this.deliveryItems = deliveryItems;
         this.id = id;
@@ -45,7 +45,7 @@ public class Transportation {
         this.suppliers = suppliers;
     }
 
-    public List<Supplier> getSuppliers() {
+    public HashMap<Supplier, List<Pair<Item, Integer>>> getSuppliers() {
         return suppliers;
     }
 
@@ -78,7 +78,7 @@ public class Transportation {
     }
 
     public void setDate(LocalDate date) {
-        if (!LocalDate.now().isEqual(date)) {
+        if (LocalDate.now().compareTo(date)>0) {
             throw new IllegalArgumentException("the date is: " + LocalDate.now() + " but u set: " + date + "to be the date.");
         }
         this.date = date;
@@ -100,7 +100,8 @@ public class Transportation {
         this.deliveryItems = deliveryItems;
     }
 
-    public void setSuppliers(List<Supplier> suppliers) {
+    public void setSuppliers(HashMap<Supplier, List<Pair<Item, Integer>>> suppliers) {
+
         this.suppliers = suppliers;
     }
 
@@ -108,7 +109,7 @@ public class Transportation {
         //not expected but just in case
         if (truck == null) {
             throw new IllegalArgumentException("Please choose a truck before u choose a Driver");
-        } else if (!(driver.getLicense()).equals(truck.getLicense())) {
+        } else if ((driver.getLicense().getKg())<(truck.getLicense().getKg())) {
             throw new IllegalArgumentException("ur driver license is:" + driver.getLicense() + "but ur truck license is: " + truck.getNetWeight());
         } else {
             this.driver = driver;
@@ -120,7 +121,7 @@ public class Transportation {
     }
 
     public void setLeavingTime(LocalTime leavingTime) {
-        if ((LocalTime.now().compareTo(leavingTime) < 0) && date == LocalDate.now()) {
+        if ((LocalTime.now().compareTo(leavingTime) < 0) &&  date.compareTo(LocalDate.now())==0) {
             throw new IllegalArgumentException("u choose incorrect living time.");
         }
         this.leavingTime = leavingTime;
@@ -192,5 +193,10 @@ public class Transportation {
     @Override
     public int hashCode() {
         return Objects.hash(id, date, leavingTime, driver, deliveryItems);
+    }
+
+    public boolean isComplete() {
+
+        return !(date == null | leavingTime == null|driver == null| truck == null|deliveryItems == null|shippingArea == null|weight == -1|suppliers == null);
     }
 }

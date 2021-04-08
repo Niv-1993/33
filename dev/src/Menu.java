@@ -1,18 +1,35 @@
+import DataLayer.ItemDTO;
 import ServiceLayer.Controller;
+import ServiceLayer.Objects.BranchServiceDTO;
+import ServiceLayer.Objects.ItemServiceDTO;
+import ServiceLayer.Objects.SupplierServiceDTO;
+import ServiceLayer.Objects.TransportationServiceDTO;
+import enums.Area;
+import enums.Pair;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
     Scanner sc;
     private int option;
+    private int subOption;
     private final int numOfEndProgramOp = 2;
-    private final int numOfOptions = 2;
+    private final int numOfOptions = 7;
+    private Area[] areas={Area.Sout,Area.North,Area.Central };
     private int numOfSteps = 7;
     private Controller controller;
+    private boolean finish;
     public Menu(Scanner sc){
         controller = Controller.initial();
-
         this.sc = sc;
+        this.option=0;
+        subOption=0;
+        finish=false;
     }
     public int chooseOption(){
         System.out.println("press 1 to see all available Transportations ");
@@ -20,16 +37,208 @@ public class Menu {
         option = chooseOp(numOfOptions);
         return option;
     }
-    public int chooseAddOption(){
-        System.out.println("press 1 to set the date and the living time of the transportation");
-        System.out.println("press 2 to add a truck");
-        System.out.println("press 3 to add a driver");
-        System.out.println("press 4 t add a supplier");
-        System.out.println("press 5 to add branches");
-        System.out.println("press 6 to add items to a branches");
-        System.out.println("press 7 to set the truck weight");
-        return chooseOp(numOfOptions);
+    private Area chooseArea(TransportationServiceDTO t){
+        System.out.println("Please chose an Area");
+        for (int i=0; i<areas.length;i++) {
+            System.out.println((i+1)+") "+areas[i]);
+        }
+        int area=chooseOp(areas.length)-1;
+        System.out.println("area num: "+ area);
+        Area chosen=areas[area];
+        t.setArea(chosen);
+        controller.setTransportationArea(t);
+        return chosen;
     }
+    private void chooseTime(TransportationServiceDTO tran){
+        boolean success=false;
+        while (!success) {
+            try {
+                System.out.println("Please chose time for transportation");
+                String tim = sc.next();
+                LocalTime time = LocalTime.parse(tim);
+                tran.setLeavingTime(time);
+                controller.setTransportationLeavingTime(tran);
+                success = true;
+            }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    private void chooseDate(TransportationServiceDTO tran){
+        boolean success=false;
+        while (!success) {
+            try {
+                System.out.println("Please chose a date for transportation");
+                String tim = sc.next();
+                LocalDate date=LocalDate.parse(tim);
+                tran.setDate(date);
+                tran = controller.setTransportationDate(tran);
+                success = true;
+            }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    private void chooseAddOption(){
+        finish=false;
+        TransportationServiceDTO newTrans=controller.createNewTransportation();
+        chooseArea(newTrans);
+        chooseDate(newTrans);
+        chooseTime(newTrans);
+        while (!finish) {
+            System.out.println("press 1 to add a truck");
+            System.out.println("press 2 to add a driver");
+            System.out.println("press 3 t add a supplier");
+            System.out.println("press 4 to add branches and items to a branches");
+            System.out.println("press 5 to set the truck weight");
+            System.out.println("press 6 to submit your transportation");
+            subOption = chooseOp(numOfOptions);
+            switch (subOption) {
+                case 1:
+                    chooseTruck(newTrans);
+                    break;
+                case 2:
+                    chooseDriver(newTrans);
+
+                    break;
+                case 3:
+                    chooseSupplier(newTrans);
+                    break;
+                case 4:
+                    chooseBranch(newTrans);
+                    break;
+                case 5:
+                    chooseWeight(newTrans);
+                    break;
+                case 6:
+                    submin(newTrans);
+                    break;
+            }
+            System.out.println(newTrans);
+        }
+    }
+    private void chooseWeight(TransportationServiceDTO t){
+        try {
+            System.out.println("please enter transportation total weight:");
+            int chose = sc.nextInt();
+            t.setWeight(chose);
+            controller.setTransportationWeight(t);
+        }
+        catch (Exception e){
+            t.setTruck(null);
+        }
+    }
+    private void submin(TransportationServiceDTO t){
+        try {
+
+            controller.setTransportation(t);
+            finish=true;
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    private void chooseSupplier(TransportationServiceDTO t) {
+        try {
+            System.out.println("please select suppliers and items from the lists below, press -1 to finish:");
+            printAllSuppliers();
+            PrintAllItems();
+            int chose;
+            HashMap<SupplierServiceDTO, List<Pair<ItemServiceDTO,Integer>>> suppliers=new HashMap<>();
+            do {
+                System.out.println("select supplier: ");
+                chose = sc.nextInt();
+                if(chose==-1)
+                    break;
+                System.out.println("choose items from this supplier and quantity. press -2 to finish.");
+                List<Pair<ItemServiceDTO, Integer>> lis =new LinkedList<>();
+                long id;
+                int num;
+                do{
+                    System.out.println("enter item and quantity: ");
+                    id= sc.nextLong();
+                    if(id==-2)
+                        break;
+                    num= sc.nextInt();
+
+                    lis.add(new Pair<>(controller.getItem(id),num));
+                }
+                while(true);
+                suppliers.put(controller.getSupplier(chose), lis);
+            }
+            while(true);
+            t.setSuppliers(suppliers);
+            controller.setSuppliersToTransportation(t);
+        }
+        catch (Exception e){
+            t.setSuppliers(null);
+        }
+    }
+    private void chooseBranch(TransportationServiceDTO t) {
+        try {
+            System.out.println("please select branches and items from the lists below, press -1 to finish:");
+            printAllBranches();
+            PrintAllItems();
+            int chose;
+            HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO,Integer>>> branches=new HashMap<>();
+            do {
+                System.out.println("select Branch: ");
+                chose = sc.nextInt();
+                if(chose==-1)
+                    break;
+                System.out.println("choose items to this branch and quantity. press -2 to finish.");
+                List<Pair<ItemServiceDTO, Integer>> lis =new LinkedList<>();
+                long id;
+                int num;
+                do{
+                    System.out.println("enter item and quantity: ");
+                    id= sc.nextLong();
+                    if(id==-2)
+                        break;
+                    num= sc.nextInt();
+
+                    lis.add(new Pair<>(controller.getItem(id),num));
+                }
+                while(true);
+                branches.put(controller.getBranch(chose), lis);
+            }
+            while(true);
+            t.setDeliveryItems(branches);
+            controller.setDeliveryItemsToTransportation(t);
+        }
+        catch (Exception e){
+            t.setDeliveryItems(null);
+        }
+    }
+    private void chooseDriver(TransportationServiceDTO t) {
+        try {
+            System.out.println("please select driver id from the trucks list below:");
+            printAllDrivers();
+            long chose = sc.nextLong();
+            t.setDriver(controller.getDriver(chose));
+            controller.setDriverOnTransportation(t);
+        }
+        catch (Exception e){
+            t.setTruck(null);
+        }
+    }
+
+    private void chooseTruck(TransportationServiceDTO t) {
+
+        try {
+            System.out.println("please select truck id from the trucks list below:");
+            printAllTucks();
+            long chose = sc.nextLong();
+            t.setTruck(controller.getTruck(chose));
+            controller.setTruckOnTransportation(t);
+        }
+        catch (Exception e){
+            t.setTruck(null);
+        }
+    }
+
     public void printAllDrivers(){
         System.out.println(controller.getAllDrivers().toString());
     }
@@ -52,8 +261,10 @@ public class Menu {
     public boolean endOfProgram(){
         System.out.println("to continue press 1, to end press 2");
         if(chooseOp(numOfEndProgramOp) == 1){
+
             return true;
         }else {
+
             return false;
         }
     }
@@ -70,18 +281,12 @@ public class Menu {
         }
         return userOption;
     }
-    private boolean setSDriver(){
-        System.out.println(controller.getAllDrivers().toString());
-        boolean isDone = false;
-        while (!isDone){
-            if(!controller.setDriverOnTransportation(null)){
-                //we choose maybe he want to change driver or end the transportation..
 
-            }else {
-                isDone = true;
-            }
+    public void nextStep() {
 
-        }
-        return isDone;
+        if(option==2)
+            chooseAddOption();
+        else
+            printAllTransportations();
     }
 }

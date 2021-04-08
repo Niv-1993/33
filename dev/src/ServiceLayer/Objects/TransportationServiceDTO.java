@@ -1,4 +1,5 @@
 package ServiceLayer.Objects;
+import enums.Area;
 import enums.Pair;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,8 +15,9 @@ public class TransportationServiceDTO {
     private LocalTime leavingTime;
     private DriverServiceDTO driver;
     private TruckServiceDTO truck;
-    private List<SupplierServiceDTO> suppliers;
+    private HashMap<SupplierServiceDTO,List<Pair<ItemServiceDTO,Integer>>> suppliers;
     private HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO,Integer>>> deliveryItems;
+    private Area area;
     private int weight;
     public TransportationServiceDTO(){
         id = -1;
@@ -23,9 +25,11 @@ public class TransportationServiceDTO {
         leavingTime = null;
         driver = null;
         truck = null;
-        suppliers = new LinkedList<>();
+        suppliers = new HashMap<>();
         deliveryItems = new HashMap<>();
+        area=null;
     }
+
     @Override
     public String toString() {
         return "\n\tid = " + id +
@@ -39,7 +43,7 @@ public class TransportationServiceDTO {
                 "\n\t}\n";
     }
 
-    public TransportationServiceDTO(long id, LocalDate date, LocalTime leavingTime, DriverServiceDTO driver, TruckServiceDTO truck, int weight, HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO,Integer>>> deliveryItems, List<SupplierServiceDTO> sup){
+    public TransportationServiceDTO(long id, LocalDate date, LocalTime leavingTime, DriverServiceDTO driver, TruckServiceDTO truck, int weight, HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO,Integer>>> deliveryItems, HashMap<SupplierServiceDTO,List<Pair<ItemServiceDTO,Integer>>> sup,Area area){
         this.date=date;
         this.deliveryItems=deliveryItems;
         this.id=id;
@@ -48,13 +52,14 @@ public class TransportationServiceDTO {
         this.weight=weight;
         this.leavingTime=leavingTime;
         this.suppliers=sup;
+        this.area=area;
     }
 
-    public void setSuppliers(List<SupplierServiceDTO> suppliers) {
+    public void setSuppliers(HashMap<SupplierServiceDTO,List<Pair<ItemServiceDTO,Integer>>> suppliers) {
         this.suppliers = suppliers;
     }
 
-    public List<SupplierServiceDTO> getSuppliers() {
+    public HashMap<SupplierServiceDTO,List<Pair<ItemServiceDTO,Integer>>>  getSuppliers() {
         return suppliers;
     }
 
@@ -86,5 +91,9 @@ public class TransportationServiceDTO {
     public void setTruck(TruckServiceDTO truck) { this.truck = truck; }
 
     public void setWeight(int weight) { this.weight = weight; }
+
+    public Area getArea() { return area; }
+
+    public void setArea(Area area) { this.area = area; }
 
 }

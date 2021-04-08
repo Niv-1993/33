@@ -1,8 +1,10 @@
 package BussinessLayer;
 
+import DataLayer.TransportationDTO;
 import Responses.Response;
 import Responses.ResponseT;
 import ServiceLayer.Objects.*;
+import enums.Area;
 import enums.Pair;
 
 import java.security.KeyStore;
@@ -41,7 +43,7 @@ public class ServiceFaced {
         serviceFaced.loadData();
         return serviceFaced;
     }
-    public ResponseT<DriverServiceDTO> getDriver(int id){
+    public ResponseT<DriverServiceDTO> getDriver(long id){
         try {
             return new ResponseT<>(toDriverServiceDTO(driverService.getDriver(id)));
         }catch (Exception e){
@@ -129,6 +131,13 @@ public class ServiceFaced {
             return new ResponseT<>(e.getMessage());
         }
     }
+    public ResponseT<ItemServiceDTO> getItem(long id){
+        try {
+            return new ResponseT<>(toItemServiceDTO(itemService.getItem(id)));
+        }catch (Exception e){
+            return new ResponseT<>(e.getMessage());
+        }
+    }
     public ResponseT<List<TruckServiceDTO>> getDTOTrucks(){
         List<TruckServiceDTO> returnT = new LinkedList<>();
         try {
@@ -170,20 +179,25 @@ public class ServiceFaced {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
-
-    public ResponseT<TransportationServiceDTO> setTransportationSupplier(TransportationServiceDTO t){
+    public ResponseT<TransportationServiceDTO> setTransportationSuppliersItems(TransportationServiceDTO t ){
+        HashMap<Supplier,List<Pair<Item,Integer>>> deliveryItemsb = new HashMap<>();
         try {
-            List<SupplierServiceDTO> suppliers = t.getSuppliers();
-            List<Supplier> suppliersb = new LinkedList<>();
-            for(SupplierServiceDTO s: suppliers){
-                suppliersb.add(siteService.getSupplier(s.getId()));
+            HashMap<SupplierServiceDTO,List<Pair<ItemServiceDTO,Integer>>> deliveryItems = t.getSuppliers();
+            for (Map.Entry<SupplierServiceDTO,List<Pair<ItemServiceDTO,Integer>>> entry: deliveryItems.entrySet()){
+                List<Pair<Item,Integer>> delivery = new LinkedList<>();
+                Supplier b = siteService.getSupplier(entry.getKey().getId());
+                for (Pair<ItemServiceDTO,Integer> item : entry.getValue()){
+                    delivery.add(new Pair<>(itemService.getItem(item.getFir().getId()),item.getSec()));
+                }
+                deliveryItemsb.put(b,delivery);
             }
-            transportationService.setSuppliers(t.getId(),suppliersb);
+            transportationService.setSuppliersItem(t.getId(),deliveryItemsb);
             return new ResponseT<>(t);
         }catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
     }
+
     public ResponseT<TransportationServiceDTO> setTransportationTruck(TransportationServiceDTO t){
         try {
             Truck truck = truckService.getTruck(t.getTruck().getId());
@@ -193,46 +207,126 @@ public class ServiceFaced {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
-    public ResponseT<StringBuilder> setTransportation(TransportationServiceDTO t){
-        return null;
+    public ResponseT<TransportationServiceDTO> setTransportationTime(TransportationServiceDTO t){
+        try {
+            transportationService.setTransportationTime(t.getId(),t.getLeavingTime());
+            return new ResponseT<>(t);
+        }catch (Exception e){
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+    public ResponseT<TransportationServiceDTO> setTransportationDate(TransportationServiceDTO t){
+        try {
+            transportationService.setDate(t.getId(),t.getDate());
+            return new ResponseT<>(t);
+        }catch (Exception e){
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
 
     private DriverServiceDTO toDriverServiceDTO(Driver d){
+        if(d==null){
+            return null;
+        }
         return new DriverServiceDTO(d.getId(),d.getName(),(d.getLicense()).getKg());
     }
     private BranchServiceDTO toBranchServiceDTO(Branch b){
+        if(b==null)
+            return null;
         return new BranchServiceDTO(b.getPhone(),b.getContactName(),b.getId(),b.getShippingArea().getArea().toString());
     }
     private Pair<ItemServiceDTO,Integer> toItemPairServiceDTO(Pair<Item,Integer> i){
+        if(i==null)
+            return null;
         return new Pair<ItemServiceDTO,Integer>(new ItemServiceDTO(i.getFir().getId(),i.getFir().getName()),i.getSec());
     }
     private ItemServiceDTO toItemServiceDTO(Item i){
+        if(i==null)
+            return null;
         return new ItemServiceDTO(i.getId(),i.getName());
     }
     private SupplierServiceDTO toSupplierServiceDTO(Supplier s){
+        if(s==null)
+            return null;
         return new SupplierServiceDTO(s.getPhone(),s.getContactName(),s.getId(),s.getShippingArea().getArea().toString());
     }
     private TruckServiceDTO toTruckServiceDTO(Truck t){
+        if(t==null)
+            return null;
         return new TruckServiceDTO(t.getId(),t.getLicense().getKg(),t.getMaxWeight(),t.getNetWeight(),t.getModel());
     }
     private TransportationServiceDTO toTransportationServiceDTO(Transportation t){
-        List<Supplier> s = t.getSuppliers();
-        List<SupplierServiceDTO> newSup = new LinkedList<>();
-        for(Supplier sup: s){
-            newSup.add(toSupplierServiceDTO(sup));
-        }
-        //TODO:update
-        HashMap<Branch,List<Pair<Item,Integer>>> items = t.getDeliveryItems();
-        HashMap<BranchServiceDTO,List<Pair<ItemServiceDTO,Integer>>> newItems = new HashMap<>();
-        for(Map.Entry<Branch,List<Pair<Item,Integer>>> entry: items.entrySet()){
-            List<Pair<Item,Integer>> i = entry.getValue();
-            List<Pair<ItemServiceDTO,Integer>> iDTO = new LinkedList<>();
-            for (Pair<Item,Integer> it: i){
-                iDTO.add(toItemPairServiceDTO(it));
+        List<Pair<Item,Integer>> i;
+        HashMap<Supplier, List<Pair<Item, Integer>>> suppliers = t.getSuppliers();
+        HashMap<SupplierServiceDTO, List<Pair<ItemServiceDTO, Integer>>> newSup = new HashMap<>();
+        if(t.getSuppliers()!=null) {
+            for (Map.Entry<Supplier, List<Pair<Item, Integer>>> entry : suppliers.entrySet()) {
+                i = entry.getValue();
+                List<Pair<ItemServiceDTO, Integer>> iDTO = new LinkedList<>();
+                for (Pair<Item, Integer> it : i) {
+                    iDTO.add(toItemPairServiceDTO(it));
+                }
+                newSup.put(toSupplierServiceDTO(entry.getKey()), iDTO);
             }
-            newItems.put(toBranchServiceDTO(entry.getKey()),iDTO);
         }
-        return new TransportationServiceDTO(t.getId(),t.getDate(),t.getLeavingTime(),toDriverServiceDTO(t.getDriver()),toTruckServiceDTO(t.getTruck()),t.getWeight(),newItems,newSup);
+        HashMap<Branch, List<Pair<Item, Integer>>> items = t.getDeliveryItems();
+        HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO, Integer>>> newItems = new HashMap<>();
+        if(t.getDeliveryItems()!=null) {
+            for (Map.Entry<Branch, List<Pair<Item, Integer>>> entry : items.entrySet()) {
+                i = entry.getValue();
+                List<Pair<ItemServiceDTO, Integer>> iDTO = new LinkedList<>();
+                for (Pair<Item, Integer> it : i) {
+                    iDTO.add(toItemPairServiceDTO(it));
+                }
+                newItems.put(toBranchServiceDTO(entry.getKey()), iDTO);
+            }
+        }
+        TransportationServiceDTO ret=new TransportationServiceDTO(t.getId(),t.getDate(),t.getLeavingTime(),toDriverServiceDTO(t.getDriver()),toTruckServiceDTO(t.getTruck()),t.getWeight(),newItems,newSup,toArea( t.getShippingArea()));
+        return ret;
+    }
+
+    private Area toArea(ShippingArea shippingArea) {
+        if(shippingArea==null)
+            return null;
+        return shippingArea.getArea();
+    }
+
+    public ResponseT<TransportationServiceDTO> createNewTransportation() {
+
+        try {
+            ResponseT<TransportationServiceDTO> ret=new ResponseT<>(toTransportationServiceDTO(transportationService.newTransportation()));
+            return ret;
+        }
+        catch (Exception e){
+            return new ResponseT<>(e.getMessage());
+        }
+
+    }
+    public ResponseT<TransportationServiceDTO> setTransportation(TransportationServiceDTO t){
+        try {
+
+            return new ResponseT<>(toTransportationServiceDTO( transportationService.saveTransportation(t.getId())));
+        }
+        catch (Exception e){
+            return new ResponseT<>(e.getMessage());
+        }
+    }
+    public ResponseT<TransportationServiceDTO> setArea(TransportationServiceDTO t){
+        try {
+            transportationService.setArea(t.getId(),t.getArea());
+            return new ResponseT<>(t);
+        }catch (Exception e){
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
+    public ResponseT<TransportationServiceDTO> setTransportationWeight(TransportationServiceDTO t) {
+        try {
+            transportationService.setTransportationWeight(t.getId(),t.getWeight());
+            return new ResponseT<>(t);
+        }catch (Exception e){
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 }

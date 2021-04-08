@@ -2,9 +2,11 @@ package ServiceLayer;
 import BussinessLayer.Branch;
 import BussinessLayer.ServiceFaced;
 import BussinessLayer.Transportation;
+import DataLayer.TransportationDTO;
 import Responses.Response;
 import Responses.ResponseT;
 import ServiceLayer.Objects.*;
+import enums.Area;
 
 import java.util.*;
 
@@ -22,13 +24,49 @@ public class Controller {
         serviceControl = ServiceFaced.initial();
     }
 
-    public boolean setDriverOnTransportation(TransportationServiceDTO t){return true;}
-    public boolean setSupplierOnTransportation(TransportationServiceDTO t){return true;}
-    public boolean setBranchOnTransportation(TransportationServiceDTO t){return true;}
-    public boolean setItemsOnTransportation(Transportation t){return true;}
-    public boolean setTruckOnTransportation(Transportation t){return true;}
-    public boolean setTransportation(Transportation t){return true;}
+    public TransportationServiceDTO setDriverOnTransportation(TransportationServiceDTO t){
+        ResponseT<TransportationServiceDTO> tra = serviceControl.setTransportationDriver(t);
+        if (tra.ErrorOccured()){
+            throw new IllegalArgumentException(tra.getErrorMessage());
+        }
+        return t;
+    }
 
+    public TransportationServiceDTO setTruckOnTransportation(TransportationServiceDTO t){
+        ResponseT<TransportationServiceDTO> tra = serviceControl.setTransportationTruck(t);
+        if (tra.ErrorOccured()){
+            throw new IllegalArgumentException(tra.getErrorMessage());
+        }
+        return t;
+    }
+    public TransportationServiceDTO setTransportationWeight(TransportationServiceDTO t){
+        ResponseT<TransportationServiceDTO> tra = serviceControl.setTransportationWeight(t);
+        if (tra.ErrorOccured()){
+            throw new IllegalArgumentException(tra.getErrorMessage());
+        }
+        return t;
+    }
+    public TransportationServiceDTO setTransportation(TransportationServiceDTO t){
+        ResponseT<TransportationServiceDTO> tra = serviceControl.setTransportation(t);
+        if (tra.ErrorOccured()){
+            throw new IllegalArgumentException(tra.getErrorMessage());
+        }
+        return t;
+    }
+    public TransportationServiceDTO setTransportationDate(TransportationServiceDTO t){
+        ResponseT<TransportationServiceDTO> tra = serviceControl.setTransportationDate(t);
+        if (tra.ErrorOccured()){
+            throw new IllegalArgumentException(tra.getErrorMessage());
+        }
+        return t;
+    }
+    public TransportationServiceDTO setTransportationLeavingTime(TransportationServiceDTO t){
+        ResponseT<TransportationServiceDTO> tra = serviceControl.setTransportationTime(t);
+        if (tra.ErrorOccured()){
+            throw new IllegalArgumentException(tra.getErrorMessage());
+        }
+        return t;
+    }
 
 
     public List<DriverServiceDTO> getAllDrivers(){
@@ -80,12 +118,19 @@ public class Controller {
         }
         return res.getValue();
     }
-    public DriverServiceDTO getDriver(int id){
+    public DriverServiceDTO getDriver(long id){
         ResponseT<DriverServiceDTO> driver =  serviceControl.getDriver(id);
         if(driver.ErrorOccured()){
             throw new IllegalArgumentException(driver.getErrorMessage());
         }
         return driver.getValue();
+    }
+    public ItemServiceDTO getItem(long id){
+        ResponseT<ItemServiceDTO> item =  serviceControl.getItem(id);
+        if(item.ErrorOccured()){
+            throw new IllegalArgumentException(item.getErrorMessage());
+        }
+        return item.getValue();
     }
     public BranchServiceDTO getBranch(int id){
         ResponseT<BranchServiceDTO> res = serviceControl.getBranch(id);
@@ -101,7 +146,7 @@ public class Controller {
         }
         return res.getValue();
     }
-    public TruckServiceDTO getTruck(int id){
+    public TruckServiceDTO getTruck(long id){
         ResponseT<TruckServiceDTO> res = serviceControl.getTruck(id);
         if(res.ErrorOccured()) {
             throw new IllegalArgumentException(res.getErrorMessage());
@@ -131,7 +176,7 @@ public class Controller {
         return res.getValue();
     }
     public TransportationServiceDTO setSuppliersToTransportation(TransportationServiceDTO tr){
-        ResponseT<TransportationServiceDTO> res = serviceControl.setTransportationSupplier(tr);
+        ResponseT<TransportationServiceDTO> res = serviceControl.setTransportationSuppliersItems(tr);
         if(res.ErrorOccured()){
             throw new IllegalArgumentException(res.getErrorMessage());
         }
@@ -140,6 +185,22 @@ public class Controller {
     public TransportationServiceDTO setDeliveryItemsToTransportation(TransportationServiceDTO tr){
         ResponseT<TransportationServiceDTO> res = serviceControl.setTransportationDeliveryItems(tr);
         if(res.ErrorOccured()){
+            throw new IllegalArgumentException(res.getErrorMessage());
+        }
+        return res.getValue();
+    }
+
+    public TransportationServiceDTO createNewTransportation() {
+        ResponseT<TransportationServiceDTO> res = serviceControl.createNewTransportation();
+        if(res.ErrorOccured()){
+            throw new IllegalArgumentException(res.getErrorMessage());
+        }
+        return res.getValue();
+    }
+    public TransportationServiceDTO setTransportationArea(TransportationServiceDTO t){
+        ResponseT<TransportationServiceDTO> res=serviceControl.setArea(t);
+        if(res.ErrorOccured())
+        {
             throw new IllegalArgumentException(res.getErrorMessage());
         }
         return res.getValue();

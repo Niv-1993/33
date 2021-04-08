@@ -6,16 +6,16 @@ import java.util.Objects;
 
 public class Driver {
 
-    private int id;
+    private long id;
     private String name;
     private License License;
 
-    public Driver(int id, String name, License license){
+    public Driver(long id, String name, License license){
         this.id=id;
         this.name=name;
         this.License =license;
     }
-    public int getId() { return id; }
+    public long getId() { return id; }
 
     public License getLicense() { return License; }
 
