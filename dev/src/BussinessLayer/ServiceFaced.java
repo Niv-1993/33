@@ -1,23 +1,18 @@
 package BussinessLayer;
-
-import DataLayer.TransportationDTO;
-import Responses.Response;
 import Responses.ResponseT;
 import ServiceLayer.Objects.*;
 import enums.Area;
 import enums.Pair;
-
-import java.security.KeyStore;
 import java.util.*;
 
 public class ServiceFaced {
-    private DriverService driverService;
-    private TruckService truckService;
-    private SiteService siteService;
-    private TransportationService transportationService;
-    private ItemService itemService;
+    private final DriverService driverService;
+    private final TruckService truckService;
+    private final SiteService siteService;
+    private final TransportationService transportationService;
+    private final ItemService itemService;
     private static ServiceFaced serviceFaced = null;
-    private DataControl dataControl;
+    private final DataControl dataControl;
 
 
     private ServiceFaced(){
@@ -28,7 +23,8 @@ public class ServiceFaced {
         itemService = new ItemService();
         dataControl=DataControl.init();
     }
-    public void loadData(){
+    private void loadData(){
+
         this.truckService.loadData(dataControl);
         this.driverService.loadData(dataControl);
         this.transportationService.loadData(dataControl);

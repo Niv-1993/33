@@ -32,15 +32,35 @@ public class TransportationServiceDTO {
 
     @Override
     public String toString() {
-        return "\n\tid = " + id +
-                "\n\tdate = " + date +
-                "\n\tleavingTime = " + leavingTime +
-                "\n\tdriver = " + driver +
-                "\n\ttruck = " + truck +
-                "\n\tsuppliers = " + suppliers +
-                "\n\tdeliveryItems = " + deliveryItems +
-                "\n\tweight = " + weight +
-                "\n\t}\n";
+        String output="Transportation { \tid = " + id ;
+        if(date==null)
+            output+="\tDate: ";
+        else
+            output+="\tDate = " + date;
+        if(leavingTime==null)
+            output+="\tLeavingTime : ";
+        else
+            output+="\tLeavingTime : " + leavingTime;
+        if(driver==null)
+            output+="\n\tDriver : ";
+        else
+            output+=  "\n\tDriver : " + driver;
+        if(truck==null)
+            output+="\n\tTruck : ";
+        else
+            output+=   "\n\tTruck : " + truck;
+        if(suppliers==null)
+            output+="\n\tSuppliers : ";
+        else
+            output+=   "\n\tSuppliers : " + suppliers ;
+        if(deliveryItems==null)
+            output+="\n\tDeliveryItems : ";
+        else
+            output+=   "\n\tDeliveryItems : " + deliveryItems  ;
+        output+=   "\n\tweight : " + weight + "\n}\n";
+
+        return output;
+
     }
 
     public TransportationServiceDTO(long id, LocalDate date, LocalTime leavingTime, DriverServiceDTO driver, TruckServiceDTO truck, int weight, HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO,Integer>>> deliveryItems, HashMap<SupplierServiceDTO,List<Pair<ItemServiceDTO,Integer>>> sup,Area area){

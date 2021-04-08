@@ -18,7 +18,7 @@ public class BranchServiceDTO {
 
     @Override
     public String toString() {
-        return "BranchServiceDTO{\tphone='" + phone +
+        return "Branch {\tphone='" + phone +
                 "\tcontactName='" + contactName +
                 "\tid=" + id +
                 "\tArea='" + Area +
