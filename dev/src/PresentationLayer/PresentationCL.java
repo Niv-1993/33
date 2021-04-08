@@ -28,8 +28,10 @@ public class PresentationCL{
                 for (int i = 1; i <= load.length; i++) {
                     System.out.println(i + ") " + load[i - 1]);
                 }
-                int loadOption = scanner.nextInt();
-                switch (loadOption) {
+                String str = "";
+                int n = -1;
+                n= menuCheck(n, str, scanner);
+                switch (n) {
                     case 1 -> {
                         service.LoadData();
                         legal = true;
@@ -40,13 +42,14 @@ public class PresentationCL{
             }
         }
         String[] mainMenuArray = {"showing methods" , "adding methods" , "removing methods" , "updating methods" ,"end program" };
-        int option;
+        int option = -1;
+        String check = "";
         while(true){
             System.out.println("please select an option: ");
             for(int i = 1 ; i <= mainMenuArray.length ; i++){
                 System.out.println(i + ") " + mainMenuArray[i-1]);
             }
-            option = scanner.nextInt();
+            option = menuCheck(option, check, scanner);
             switch (option) {
                 case 1 -> showingMethods();
                 case 2 -> addingMethods();
@@ -64,7 +67,8 @@ public class PresentationCL{
 
     private void showingMethods(){
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        int option;
+        int option = -1;
+        String check = "";
         String[] showingMethodArray = {"show Supplier","show SupplierBN","show All Suppliers","show All Items Of Supplier","show All Items",
                                        "show Order Of Supplier","show All Orders Of Supplier","show Total Amount","show Deliver Time",
                                        "show Quantity Document","show Supplier Agreement","back to the main menu"};
@@ -73,7 +77,7 @@ public class PresentationCL{
             for (int i = 1; i <= showingMethodArray.length ; i++) {
                 System.out.println(i + ") " + showingMethodArray[i - 1]);
             }
-            option = scanner.nextInt();
+            option = menuCheck(option, check, scanner);
             int BN;
             switch (option) {
                 case 1 -> {
@@ -101,14 +105,14 @@ public class PresentationCL{
                             }
                         }
                     }
-                    toCountinune(scanner , false);
+                    toContinue(scanner , false);
                 }
                 case 2 -> {
                     String name = supplierNameScan(scanner);
                     Tresponse<SupplierCard> response = service.showSupplierBN(name);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("supplierBN is: " + response.getOutObject().toStringId());
-                    toCountinune(scanner , true);
+                    toContinue(scanner , true);
                 }
                 case 3 -> {
                     Tresponse<List<SupplierCard>> responsesList = service.showAllSuppliers();
@@ -119,7 +123,7 @@ public class PresentationCL{
                             System.out.println(supplierCard.toString());
                         }
                     }
-                    toCountinune(scanner , false);
+                    toContinue(scanner , false);
                 }
                 case 4 -> {
                     BN = BNScan(scanner);
@@ -131,7 +135,7 @@ public class PresentationCL{
                             System.out.println(item.toString(false));
                         }
                     }
-                    toCountinune(scanner , false);
+                    toContinue(scanner , false);
                 }
                 case 5 -> {
                     Tresponse<List<Item>> responsesList = service.showAllItems();
@@ -142,7 +146,7 @@ public class PresentationCL{
                             System.out.println(item.toString(false));
                         }
                     }
-                    toCountinune(scanner , false);
+                    toContinue(scanner , false);
                 }
                 case 6 -> {
                     BN = BNScan(scanner);
@@ -161,7 +165,7 @@ public class PresentationCL{
                             }
                         }
                     }
-                    toCountinune(scanner , false);
+                    toContinue(scanner , false);
                 }
                 case 7 -> {
                     BN = BNScan(scanner);
@@ -181,7 +185,7 @@ public class PresentationCL{
                             }
                         }
                     }
-                    toCountinune(scanner , false);
+                    toContinue(scanner , false);
                 }
                 case 8 -> {
                     BN = BNScan(scanner);
@@ -189,7 +193,7 @@ public class PresentationCL{
                     Tresponse<Order> response = service.showTotalAmount(BN, orderId);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("total amount is: " + response.getOutObject().toStringTotalAmount());
-                    toCountinune(scanner , false);
+                    toContinue(scanner , false);
                 }
                 case 9 -> {
                     BN = BNScan(scanner);
@@ -197,7 +201,7 @@ public class PresentationCL{
                     Tresponse<Order> response = service.showDeliverTime(BN, orderId);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("deliver time is : " + response.getOutObject().toStringDeliverTime());
-                    toCountinune(scanner , false);
+                    toContinue(scanner , false);
                 }
                 case 10 -> {
                     BN = BNScan(scanner);
@@ -205,19 +209,19 @@ public class PresentationCL{
                     Tresponse<QuantityDocument> response = service.showQuantityDocument(BN, itemId);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println(response.getOutObject().toString());
-                    toCountinune(scanner  ,false);
+                    toContinue(scanner  ,false);
                 }
                 case 11 -> {
                     BN = BNScan(scanner);
                     Tresponse<SupplierAgreement> response = service.showSupplierAgreement(BN);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println(response.getOutObject().toString());
-                    toCountinune(scanner , false);
+                    toContinue(scanner , false);
                 }
                 case 12 -> mainRun(false);
                 default -> {
                     System.out.println("illegal option!!!");
-                    toCountinune(scanner , false);
+                    toContinue(scanner , false);
                 }
             }
         }
@@ -225,7 +229,8 @@ public class PresentationCL{
 
     private void addingMethods(){
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        int option;
+        int option = -1;
+        String check = "";
         String[] showingMethodArray = {"add supplier","add Contact Phone","add Contact Email","add Item","add Order",
                                        "add Item To Order","add Quantity Document","add Supplier Agreement","back to the main menu"};
         System.out.println("please select the showing method: ");
@@ -233,7 +238,7 @@ public class PresentationCL{
             for (int i = 1; i <= showingMethodArray.length; i++) {
                 System.out.println(i + ") " + showingMethodArray[i - 1]);
             }
-            option = scanner.nextInt();
+            option = menuCheck(option, check, scanner);
             int BN;
             switch (option) {
                 case 1 -> {
@@ -270,14 +275,14 @@ public class PresentationCL{
                     Tresponse<Item> response = service.addItem(BN, category, name, price);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("ItemId is: " + response.getOutObject().toStringId() + "\n");
-                    toCountinune(scanner , true);
+                    toContinue(scanner , true);
                 }
                 case 5 -> {
                     BN = BNScan(scanner);
                     Tresponse<Order> response = service.addOrder(BN);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("orderId is: " + response.getOutObject().toStringId() + "\n");
-                    toCountinune(scanner , false);
+                    toContinue(scanner , false);
                 }
                 case 6 -> {
                     BN = BNScan(scanner);
@@ -310,7 +315,7 @@ public class PresentationCL{
                 case 9 -> mainRun(false);
                 default ->{
                     System.out.println("illegal option!!!\n");
-                    toCountinune(scanner , false);
+                    toContinue(scanner , false);
                 }
             }
         }
@@ -318,7 +323,8 @@ public class PresentationCL{
 
     private void removingMethods(){
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        int option;
+        int option = -1;
+        String check = "";
         String[] removeMethodArray = {"remove Supplier","remove Contact Phone","remove Contact Email","remove Item",
                                       "remove Item From Supplier","remove Quantity Document","back to the main menu"};
         System.out.println("please select the showing method: ");
@@ -326,7 +332,7 @@ public class PresentationCL{
             for (int i = 1; i <= removeMethodArray.length; i++) {
                 System.out.println(i + ") " + removeMethodArray[i - 1]);
             }
-            option = scanner.nextInt();
+            option = menuCheck(option, check, scanner);
             int BN;
             switch (option) {
                 case 1 -> {
@@ -372,7 +378,7 @@ public class PresentationCL{
                 case 7 -> mainRun(false);
                 default ->{
                     System.out.println("illegal option!!!");
-                    toCountinune(scanner , false);
+                    toContinue(scanner , false);
                 }
             }
         }
@@ -380,7 +386,8 @@ public class PresentationCL{
 
     private void updatingMethods() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        int option;
+        int option  = -1;
+        String check = "";
         int BN;
         String[] updateMethodArray = {"update Supplier PayWay", "update Supplier BankAccount", "update Contact Phone", "update Contact Email",
                 "update Deliver Time", "update Minimal Amount Of Quantity Document", "update Discount Of Quantity Document",
@@ -391,7 +398,7 @@ public class PresentationCL{
             for (int i = 1; i <= updateMethodArray.length; i++) {
                 System.out.println(i + ") " + updateMethodArray[i - 1]);
             }
-            option = scanner.nextInt();
+            option = menuCheck(option, check, scanner);
             switch (option) {
                 case 1 -> {
                     BN = BNScan(scanner);
@@ -484,7 +491,7 @@ public class PresentationCL{
                 case 13 -> mainRun(false);
                 default ->{
                     System.out.println("illegal option!!!");
-                    toCountinune(scanner , false);
+                    toContinue(scanner , false);
                 }
             }
         }
@@ -495,7 +502,6 @@ public class PresentationCL{
         while (BN == -1) {
             System.out.println("please enter the SupplierBN");
             try {
-                scanner.nextLine();
                 BN = scanner.nextInt();
             } catch (Exception e) {
                 System.out.println("supplier BN must be a number");
@@ -537,6 +543,7 @@ public class PresentationCL{
         String name = "";
         while (toContinue) {
             try {
+                System.out.println("please enter supplier name");
                 name = scanner.nextLine();
                 if(!name.equals("")) toContinue = false;
                 if(toContinue)System.out.println("please enter supplier name");
@@ -550,7 +557,7 @@ public class PresentationCL{
     private int bankNumberScan(Scanner scanner){
         int bankNumber = -1;
         while(bankNumber== -1){
-            System.out.println("please enter supplier bank account");
+            System.out.println("please enter supplier bank number");
             try {
                 scanner.nextLine();
                 bankNumber = scanner.nextInt();
@@ -564,7 +571,7 @@ public class PresentationCL{
     private int brunchNumberScan(Scanner scanner){
         int brunchNumber = -1;
         while(brunchNumber== -1){
-            System.out.println("please enter supplier bank account");
+            System.out.println("please enter supplier bank brunch number");
             try {
                 scanner.nextLine();
                 brunchNumber = scanner.nextInt();
@@ -594,6 +601,7 @@ public class PresentationCL{
         String payWay = "";
         while (toContinue) {
             try {
+                System.out.println("please enter supplier payWay");
                 scanner.nextLine();
                 payWay = scanner.nextLine();
                 if(!payWay.equals("")) toContinue = false;
@@ -798,7 +806,7 @@ public class PresentationCL{
         return name;
     }
 
-    private void toCountinune(Scanner scanner , boolean first){
+    private void toContinue(Scanner scanner , boolean first){
         boolean toContinue = true;
         while (toContinue) {
             if(!first) scanner.nextLine();
@@ -806,6 +814,21 @@ public class PresentationCL{
             System.out.println("\nto continue please use enter");
             if(scanner.nextLine().equals("")) toContinue = false;
         }
+    }
+
+    private int menuCheck(int n, String input, Scanner scanner) {
+        boolean flag = false;
+        while (!flag) {
+            try {
+                input = scanner.nextLine();
+                n = Integer.parseInt(input);
+                flag = true;
+            }
+            catch (NumberFormatException e) {
+                System.out.println("illegal! please enter a number");
+            }
+        }
+        return n;
     }
 }
 

@@ -100,13 +100,13 @@ public class SupplierCard {
 
     public void updateContactPhone(String phone) throws Exception {
         String name = contactPhone.get(phone);
-        if(name == null) throw new Exception("phone does npt exist , you may want to use: add contact phone");
+        if(name == null) throw new Exception("phone does not exist , you may want to use: add contact phone");
         contactPhone.put(phone ,name);
     }
 
     public void updateContactEmail(String email) throws Exception {
         String name = contactPhone.get(email);
-        if(name == null) throw new Exception("phone does npt exist , you may want to use: add contact phone");
+        if(name == null) throw new Exception("email does not exist , you may want to use: add contact phone");
         contactEmail.put(email ,name);
     }
 
