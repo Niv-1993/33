@@ -14,7 +14,6 @@ public class Controller {
         }
         return control;
     }
-    public void loadDataT(){ serviceControl.loadData(); }
     private Controller (){
         serviceControl = new ServiceFaced();
     }
@@ -188,14 +187,6 @@ public class Controller {
         }
         return res.getValue();
     }
-    //for tests
-    public void addDriver(Driver d){
-        serviceControl.addDriver(d);
-    }
-    public void addDTruck(Truck t){
-        serviceControl.addTruck(t);
-    }
-
 
     public void delete() {
         try{
@@ -205,7 +196,19 @@ public class Controller {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
+
+
+    //for tests
+    public void addDriver(Driver d){
+        serviceControl.addDriver(d);
+    }
+    public void addDTruck(Truck t){
+        serviceControl.addTruck(t);
+    }
     public void clearTrans(){
         serviceControl.clearTrans();
     }
+
+
+
 }

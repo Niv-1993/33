@@ -9,7 +9,6 @@ public class main {
         while (menu.endOfProgram()){
             menu.chooseOption();
             menu.nextStep();
-
         }
     }
 }
