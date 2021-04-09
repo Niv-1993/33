@@ -86,15 +86,6 @@ public class DataBase {
         suppliers.add(new SupplierDTO("0506328574","Ofer Neeman",2648,addresses.get(3),shippingAreas.get(0)));
         branches.add(new BranchDTO("0506895718","Yogev Halom",1,addresses.get(1),shippingAreas.get(0)));
         branches.add(new BranchDTO("0528759462","Ami Barlev",2,addresses.get(5),shippingAreas.get(0)));
-        HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> lis=new HashMap<>();
-        List<Pair<ItemDTO,Integer>> it=new LinkedList<>();
-        it.add(new Pair<>(items.get(4),15));
-        lis.put(branches.get(1),it);
-        HashMap<SupplierDTO, List<Pair<ItemDTO,Integer>>> lis2=new HashMap<>();
-        List<Pair<ItemDTO,Integer>> it2=new LinkedList<>();
-        it2.add(new Pair<>(items.get(4),15));
-        lis2.put(suppliers.get(0),it);
-        trans.add(new TransportationDTO(123, LocalDate.now(), LocalTime.now(),drivers.get(1),trucks.get(1),1500,lis, lis2));
     }
 
     public List<DriverDTO> getDrivers() { return drivers; }
