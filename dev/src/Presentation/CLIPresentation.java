@@ -674,6 +674,7 @@ public class CLIPresentation {
     }
 
     private Map<String, Integer> chooseRolesAmount() {
+        System.out.println("Insert the amount of each role");
         Map<String, Integer> rolesAmount = new HashMap<>();
         List<String> roleTypes = service.getRoleTypes().getData();
         for (String role : roleTypes) {
@@ -706,14 +707,50 @@ public class CLIPresentation {
                 System.out.println("No shifts in this branch");
                 return false;
             } else {
-                for (Shift s : shifts.getData())
+                ArrayList<Shift> missing = new ArrayList<>();
+                ArrayList<Shift> hasSM = new ArrayList<>();
+                for (Shift s : shifts.getData()) {
                     if (all.equals("all")) {
                         System.out.println(s.toStringAll());
+                        if (s.status.equals("*** Missing ***")) missing.add(s);
+                        if(!s.hasShiftManager) hasSM.add(s);
                     } else
                         System.out.println(s.toStringWithoutOptAndEmp());
+                }
+                if (!missing.isEmpty())
+                    printMissing(missing);
+                else if (all.equals("all")) System.out.println("\nAll shifts are staffed in all positions");
+                if(!hasSM.isEmpty())
+                    printMissingShiftManager(hasSM);
             }
         }
         return true;
+    }
+
+    private void printMissingShiftManager(ArrayList<Shift> hasSM) {
+        System.out.print("*** Shift ID's are missing shift manager: ");
+        StringBuilder s = new StringBuilder();
+        s.append("[");
+        hasSM.forEach(shift -> {
+            s.append(shift.SID).append(", ");
+        });
+        s.deleteCharAt(s.length() - 1);
+        s.deleteCharAt(s.length() - 1);
+        s.append("] ***");
+        System.out.println(s.toString());
+    }
+
+    private void printMissing(ArrayList<Shift> missing) {
+        System.out.print("*** Shift ID's with unmanned positions: ");
+        StringBuilder s = new StringBuilder();
+        s.append("[");
+        missing.forEach(shift -> {
+            s.append(shift.SID).append(", ");
+        });
+        s.deleteCharAt(s.length() - 1);
+        s.deleteCharAt(s.length() - 1);
+        s.append("] ***");
+        System.out.println(s.toString());
     }
 
     private void addEmployeeToShift() {

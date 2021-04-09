@@ -24,7 +24,7 @@ public class Shift {
         this.shiftType = shift.getShiftType().name();
         this.optionals = Collections.unmodifiableMap(converterOp(shift.getOptionals()));
         this.rolesAmount = Collections.unmodifiableMap(converterRolesA(shift.getRolesAmount()));
-        this.status = (shift.getComplete()) ? "Closed" : "Open";
+        this.status = (shift.getComplete()) ? "Full" : "*** Missing ***";
         this.hasShiftManager = shift.HasShiftManager();
     }
 
