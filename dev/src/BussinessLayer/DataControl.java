@@ -13,7 +13,7 @@ public class DataControl {
     private static DataControl dataControl=null;
     private final DataController dataController;
 
-    private DataControl(){dataController=DataController.init();}
+    private DataControl(){dataController=new DataController();}
 
 
     public static DataControl init(){

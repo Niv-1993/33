@@ -6,17 +6,10 @@ import java.util.*;
 
 public class DataController {
 
-    private static DataController dataController=null;
     private final DataBase dataBase;
 
-    private DataController(){
+    public DataController(){
         dataBase=DataBase.init();
-    }
-    public static DataController init(){
-        if(dataController==null){
-            dataController=new DataController();
-        }
-        return dataController;
     }
 
 

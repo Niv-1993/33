@@ -99,20 +99,15 @@ public class DataBase {
 
     public List<DriverDTO> getDrivers() { return drivers; }
     public List<LicenseDTO> getLicenses() { return licenses; }
-    public List<ShippingAreaDTO> getShippingAreas() { return shippingAreas; }
     public List<TransportationDTO> getTrans() { return trans; }
     public void setDrivers(List<DriverDTO> drivers) { this.drivers = drivers; }
     public List<TruckDTO> getTrucks() { return trucks; }
-    public List<AddressDTO> getAddresses() { return addresses; }
     public List<ItemDTO> getItems() { return items; }
-
     public List<BranchDTO> getBranches() { return branches; }
     public List<SupplierDTO> getSuppliers(){return suppliers;}
+
     public void setBranches(List<BranchDTO> branches) { this.branches = branches; }
-
     public void setSuppliers(List<SupplierDTO> suppliers) { this.suppliers = suppliers; }
-
-
     public void setItems(List<ItemDTO> items) { this.items = items; }
     public void setLicenses(List<LicenseDTO> licenses) { this.licenses = licenses; }
     public void setShippingAreas(List<ShippingAreaDTO> shippingAreas) { this.shippingAreas = shippingAreas; }

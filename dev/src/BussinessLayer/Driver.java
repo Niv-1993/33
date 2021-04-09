@@ -2,12 +2,11 @@ package BussinessLayer;
 
 import java.util.Objects;
 
-//bar
 
 public class Driver {
 
-    private long id;
-    private String name;
+    private final long id;
+    private final String name;
     private License License;
 
     public Driver(long id, String name, License license){
@@ -21,11 +20,7 @@ public class Driver {
 
     public String getName() { return name; }
 
-    public boolean compatibleLicense(License license){ return this.License.getKg()>=license.getKg(); }
-
     public void setLicense(License license) { License = license; }
-
-    public void setName(String name) { this.name = name; }
 
     @Override
     public boolean equals(Object o) {
