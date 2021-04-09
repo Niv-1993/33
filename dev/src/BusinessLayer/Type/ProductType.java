@@ -269,7 +269,7 @@ public class ProductType {
             log.error(s);
             throw new IllegalArgumentException(s);
         }
-        log.info("ADDDING PROD:"+productID+" to type:"+_typeID);
+        //log.info("ADDDING PROD:"+productID+" to type:"+_typeID);
         _products.add(productID);
         if ((l.equals(Location.Shelves))) {
             _shelfCurr++;
@@ -280,6 +280,7 @@ public class ProductType {
 
     public void relocateProduct(boolean toStorage) {
         log.debug("relocateProduct()");
+        log.info(_typeID+" "+_shelfCurr+" "+_storageCurr+" "+toStorage);
         if ((toStorage && _shelfCurr<=0) ||(!toStorage && _storageCurr<=0))
         {
             String s="no have product in this place.";

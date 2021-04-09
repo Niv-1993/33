@@ -19,7 +19,7 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Category ID: "+categoryID+"Category name: "+name+"\nIs sub-category of: "+superID+
-                "\nIDs of child categories: "+childIDs.toString()+"\nIDs of item types in category: "+products+"\n";
+        return "Category ID: "+categoryID+"\nCategory name: "+name+"\nIs sub-category of: "+(superID==0?"None":superID)+
+                "\nIDs of child categories: "+childIDs.toString()+"\nIDs of item types in category: "+products+"\n\n";
     }
 }

@@ -10,6 +10,11 @@ import java.util.stream.Collectors;
 public class Category {
     private List<Category> _categories=new ArrayList<>();
     private int _categoryID;
+
+    public Category get_superCategory() {
+        return _superCategory;
+    }
+
     private String _name;
     private Category _superCategory=null;
 

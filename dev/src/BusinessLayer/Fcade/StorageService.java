@@ -15,9 +15,9 @@ public class StorageService implements iStorageService {
     int counter=1;
     int shelves=1000;
     int storeShelves=500;
-    int MAX_PER_TYPE=999;
-    List<iStoreController> stores;
-    iStoreController curr;
+    int MAX_PER_SHELF=100;
+    List<StoreController> stores;
+    StoreController curr;
     final static Logger log= Logger.getLogger(StorageService.class);
 
     public StorageService() {
@@ -110,13 +110,28 @@ public class StorageService implements iStorageService {
     }
 
     @Override
+    public ResponseData<Category> getCategoryInfo(int id) {
+        try {
+            BusinessLayer.Type.Category ret=curr.getCategory(id);
+            List<Integer> cids=new ArrayList<>();
+            for(BusinessLayer.Type.Category c:ret.get_categories()){
+                cids.add(c.get_categoryID());
+            }
+            return new ResponseData<>(new Category(ret.get_categoryID(),ret.get_superCategory()==null?0:ret.get_superCategory().get_categoryID(),ret.get_name(),cids,ret.get_productTypes()));
+        }
+        catch (Exception e) {
+            return new ResponseData<>(e.toString());
+        }
+    }
+
+    @Override
     public Response editCategory(int Id, String name, int superCategory) {
         try {
             curr.editCategory(Id,name,superCategory);
             return new Response();
         }
         catch (Exception e) {
-            return new ResponseData<>(e.toString());
+            return new ResponseData(e.toString());
         }
     }
 
@@ -171,6 +186,7 @@ public class StorageService implements iStorageService {
             return new Response();
         }
         catch (Exception e) {
+            log.warn(e);
             return new Response(e.toString());
         }
     }
@@ -205,6 +221,16 @@ public class StorageService implements iStorageService {
         }
         catch (Exception e) {
             return new Response(e.toString());
+        }
+    }
+
+    @Override
+    public ResponseData<List<Integer>> getProductsByType(int typeID) {
+        try {
+            return new ResponseData<>(curr.getProductByType(typeID));
+        }
+        catch (Exception e) {
+            return new ResponseData<>(e.toString());
         }
     }
 
@@ -318,7 +344,7 @@ public class StorageService implements iStorageService {
     @Override
     public ResponseData<Integer> addStore() {
         try {
-            stores.add(new StoreController(counter,shelves,storeShelves,MAX_PER_TYPE));
+            stores.add(new StoreController(counter,shelves,storeShelves,MAX_PER_SHELF));
             counter++;
             return new ResponseData<>(counter-1);
         }
@@ -347,8 +373,8 @@ public class StorageService implements iStorageService {
     @Override
     public Response useStore(int ID) {
         try {
-            iStoreController old=curr;
-            for(iStoreController s:stores){
+            StoreController old=curr;
+            for(StoreController s:stores){
                 if(s.getID()==ID) {
                     curr = s;
                     break;

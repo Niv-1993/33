@@ -327,8 +327,11 @@ class iStoreControllerTest {
         for (int i=0; i<j ;i++) {
             Date tmp=new Date();
             tmp.setDate(tmp.getDate()+1);
-
-            sc.addProduct(1000, tmp );
+            try {
+                sc.addProduct(1000, tmp);
+            }
+            catch (Exception e) {
+            }
         }
     }
 

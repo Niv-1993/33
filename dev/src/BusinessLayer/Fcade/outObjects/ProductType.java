@@ -38,8 +38,8 @@ public class ProductType {
 
     @Override
     public String toString() {
-        return "Product type ID: "+typeID+"\nIs in category: "+categoryID+"\nThere are : "+currShelves+"items in the store and "+currStorage+
-                "\nitems in storage\n"+currStorage+currShelves+"items in total\nThere should be at least: "+minAmount+
+        return "Product type ID: "+typeID+"\nIs in category: "+categoryID+"\nThere are: "+currShelves+" items in the store and "+currStorage+
+                " items in storage\n"+currShelves+" items in total\nThere should be at least: "+minAmount+
                 " items\nBase price: "+basePrice+"\nSale price: "+salePrice+"\n";
     }
 }

@@ -39,7 +39,7 @@ public interface iStoreController {
     public int shelvesAmountExist();
     public int storageAmountExist();
     public int getStorageAmount(int typeID);
-
+    public List<Integer> getProductByType(int typeID);
     //res: Category
     public Category addCategory(String name);
     //res:PT+SC
@@ -51,15 +51,15 @@ public interface iStoreController {
     public List<SaleDiscount> getSaleDiscounts(int typeID);
 
     //res:Category
-    public void editCategory(int Id, String name, int superCategory);
-    public void editCategory(int Id, String name);
+    public void editCategory(int Id, String name, int superCategory) throws Exception;
+    public void editCategory(int Id, String name) throws Exception;
     //res:PT
 
     //added sale price
     public void editProductType(int id,String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category);
 
     //res: InstanceController+PT
-    public void addProduct(int typeID, Date expiration );
+    public void addProduct(int typeID, Date expiration ) throws Exception;
     public void removeProduct(int ID);
     public void reportDamage(int ID);
     public Product getProductInfo(int ID);
