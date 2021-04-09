@@ -2,7 +2,6 @@ package BusinessLayer.instance;
 
 
 import BusinessLayer.StoreController;
-import BusinessLayer.Type.ProductType;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
 
@@ -115,7 +114,10 @@ public class InstanceController {
     public void getWasteReport(List<Integer> list) {
         log.debug("getWasteReport(List<Integer> list)");
         for(Product p: Collections.list(_products.elements())){
-            if(p.is_isDamage()) list.add(p.get_id());
+            if(p.is_isDamage()) {
+                list.add(p.get_id());
+                _products.remove(p.get_id());
+            }
         }
     }
 }

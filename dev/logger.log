@@ -31164,3 +31164,4 @@
 [WARN ] 09-04-2021 21:32:41 [class: BusinessLayer.StoreController,Line:514] - the value: 0 is not exist in the system.
 [WARN ] 09-04-2021 21:32:55 [class: BusinessLayer.StoreController,Line:514] - the value: 0 is not exist in the system.
 [WARN ] 09-04-2021 21:32:59 [class: BusinessLayer.StoreController,Line:514] - the value: 0 is not exist in the system.
+[WARN ] 09-04-2021 22:04:14 [class: BusinessLayer.StoreController,Line:566] - the number #0, is not ID of any ProductType in Store #1
