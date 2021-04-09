@@ -2,6 +2,7 @@ package reports;
 
 import org.apache.log4j.Logger;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.Dictionary;
 
@@ -47,6 +48,10 @@ public class NeededReport implements Report{
 
     @Override
     public String toString(){
-        return _list.toString();
+        String out="";
+        for(int i: Collections.list(_list.keys())){
+            out+=_list.get(i)+" items are missing from product type "+i+"\n";
+        }
+        return out;
     }
 }

@@ -3,8 +3,10 @@ package reports;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.Dictionary;
+import java.util.List;
 
 public class WeeklyReport implements Report{
     private Dictionary<Integer, Dictionary<Integer, Tuple<Integer,Boolean>>> _list;
@@ -48,6 +50,15 @@ public class WeeklyReport implements Report{
 
     @Override
     public String toString(){
-        return _list.toString();
+        List<Integer> ids= Collections.list(_list.keys());
+        String out="";
+        for(int i:ids){
+            out+="\nproducts for product type number: "+i+"\n";
+            List<Integer> pids=Collections.list(_list.get(i).keys());
+            for(int j:pids){
+                out+="product "+j+" is in "+(_list.get(i).get(j).item2==true?"storage":"the store")+" on shelf number "+_list.get(i).get(j).item1+"\n";
+            }
+        }
+        return out;
     }
 }

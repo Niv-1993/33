@@ -357,10 +357,12 @@ private void categories() {
                         if (SS.reportDamage(Integer.parseInt(tmp[1])).isError()) {
                             System.out.print("bad input, try again.\n");
                         }
+                        else System.out.print("damage reported.\n");
                     } else if (tmp[0].equals("remove")) {
                         if (SS.removeProduct(Integer.parseInt(tmp[1])).isError()) {
                             System.out.print("bad input, try again.\n");
                         }
+                        else System.out.print("product removed.\n");
                     }
                     else if (tmp[0].equals("list")) {
                         System.out.print(SS.getProductsByType(Integer.parseInt(tmp[1])));

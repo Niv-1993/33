@@ -2,6 +2,7 @@ package BusinessLayer.instance;
 
 
 import BusinessLayer.StoreController;
+import BusinessLayer.Type.ProductType;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
 
@@ -104,12 +105,17 @@ public class InstanceController {
     public Dictionary<Integer, Tuple<Integer,Boolean>> getWeeklyReport() {
         log.debug("getWeeklyReport()");
         Dictionary<Integer,Tuple<Integer,Boolean>> output=new Hashtable<>();
-        Collections.list(_products.elements()).stream().map(x-> output.put(x.get_id(),new Tuple<>(x.getShelf(),x.get_location().equals(Location.Storage))));
+        List<Integer> ids=Collections.list(_products.keys());
+        for(int i:ids){
+            output.put(i,new Tuple(_products.get(i).getShelf(),_products.get(i).get_location().equals(Location.Storage)));
+        }
         return output;
     }
 
     public void getWasteReport(List<Integer> list) {
         log.debug("getWasteReport(List<Integer> list)");
-        Collections.list(_products.elements()).stream().map(x->(x.is_isDamage())? list.add(x.get_id()):0 );
+        for(Product p: Collections.list(_products.elements())){
+            if(p.is_isDamage()) list.add(p.get_id());
+        }
     }
 }

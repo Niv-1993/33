@@ -72,12 +72,8 @@ public class StoreController implements iStoreController{
         List<ProductType> pt=Collections.list(_products.keys());
         for (ProductType p: pt){
             output.put(p.get_typeID(), _products.get(p).getWeeklyReport());
+
         }
-//        for (Enumeration<ProductType> pt=_products.keys(); pt.hasMoreElements();) {
-//            log.debug(Collections.list(pt).size());
-//            ProductType p=pt.nextElement();
-//
-//        }
         return new WeeklyReport(_storeID,output);
     }
 
@@ -87,11 +83,21 @@ public class StoreController implements iStoreController{
         Dictionary<Integer,Dictionary<Integer,Tuple<Integer,Boolean>>> output=new Hashtable<>();
         for (int i=0; i<c.size(); i++ )
         {
-            ProductType p=checkIDProductTypeExist(c.get(i));
-            output.put(p.get_typeID(), _products.get(p).getWeeklyReport());
+            checkValidCategory(c.get(i));
+            weeklyCatRec(c.get(i),output);
         }
         return new WeeklyReport(_storeID,output);
     }
+    private void weeklyCatRec(int cid, Dictionary<Integer,Dictionary<Integer,Tuple<Integer,Boolean>>> out){
+        for(int j:_category.get(cid).get_productTypes()) {
+            ProductType p = checkIDProductTypeExist(j);
+            out.put(p.get_typeID(), _products.get(p).getWeeklyReport());
+        }
+        for(Category cat: _category.get(cid).get_categories()){
+            weeklyCatRec(cat.get_categoryID(),out);
+        }
+    }
+
 
     @Override
     public Report getNeededReport() {

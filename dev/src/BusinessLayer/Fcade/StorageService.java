@@ -399,7 +399,7 @@ public class StorageService implements iStorageService {
         }
         for (int i = 1; i < 15; i++) {
             for (int j = 1; j < 10; j++) {
-                ss.addProductType("p" + i + "" + j, 2, i * j / 2, i * j * j / 4, "P" + i + "" + j, i, i);
+                ss.addProductType("p" + i + "" + j, 8, i * j / 2, i * j * j / 4, "P" + i + "" + j, i, i);
             }
         }
         for (int i = 0; i < ss.getProductTypes().data.size(); i++) {
