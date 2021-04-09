@@ -1,0 +1,448 @@
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch1' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch2' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch3' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch4' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch5' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch6' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch7' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch8' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch9' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch10' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch11' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch12' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch13' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch14' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch15' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch16' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch17' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch18' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch19' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:182] - new Category 'ch20' added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p11 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p12 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p13 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p14 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p15 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p16 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p17 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p18 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p19 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p21 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p22 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p23 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p24 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p25 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p26 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p27 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p28 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p29 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p31 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p32 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p33 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p34 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p35 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p36 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p37 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p38 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p39 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p41 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p42 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p43 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p44 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p45 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p46 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p47 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p48 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p49 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p51 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p52 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p53 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p54 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p55 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p56 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p57 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p58 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p59 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p61 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p62 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p63 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p64 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p65 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p66 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p67 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p68 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p69 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p71 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p72 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p73 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p74 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p75 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p76 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p77 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p78 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p79 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p81 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p82 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p83 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p84 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p85 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p86 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p87 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p88 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p89 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p91 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p92 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p93 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p94 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p95 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p96 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p97 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p98 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p99 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p101 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p102 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p103 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p104 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p105 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p106 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p107 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p108 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p109 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p111 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p112 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p113 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p114 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p115 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p116 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p117 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p118 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p119 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p121 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p122 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p123 added the Store #1
+[INFO ] 09-04-2021 19:55:49 [class: BusinessLayer.StoreController,Line:216] - new ProductType p124 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p125 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p126 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p127 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p128 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p129 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p131 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p132 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p133 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p134 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p135 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p136 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p137 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p138 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p139 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p141 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p142 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p143 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p144 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p145 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p146 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p147 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p148 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:216] - new ProductType p149 added the Store #1
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #1 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #2 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #3 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #4 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #5 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #6 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #7 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #8 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #9 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #10 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #11 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #12 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #13 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #14 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #15 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #16 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #17 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #18 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #19 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #20 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #21 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #22 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #23 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #24 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #25 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #26 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #27 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #28 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #29 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #30 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #31 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #32 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #33 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #34 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #34 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #35 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #35 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #36 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #36 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #37 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #37 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #38 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #38 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #39 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #39 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #40 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #40 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #41 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #41 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #42 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #42 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #43 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #43 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #44 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #44 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #45 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #45 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #46 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #46 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #47 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #47 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #48 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #48 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #49 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #49 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #50 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #50 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #51 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #51 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #52 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #52 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #53 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #53 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #54 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #54 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #55 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #55 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #56 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #56 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #57 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #57 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #58 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #58 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #59 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #59 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #60 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #60 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #61 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #61 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #62 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #62 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #63 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #63 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #64 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #64 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #65 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #65 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #66 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #66 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #67 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #67 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #67 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #68 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #68 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #68 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #69 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #69 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #69 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #70 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #70 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #70 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #71 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #71 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #71 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #72 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #72 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #72 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #73 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #73 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #73 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #74 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #74 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #74 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #75 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #75 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #75 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #76 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #76 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #76 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #77 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #77 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #77 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #78 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #78 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #78 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #79 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #79 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #79 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #80 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #80 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #80 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #81 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #81 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #81 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #82 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #82 need new shelf.
+[INFO ] 09-04-2021 19:55:50 [class: BusinessLayer.StoreController,Line:607] - the product with productType #82 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #83 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #83 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #83 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #84 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #84 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #84 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #85 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #85 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #85 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #86 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #86 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #86 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #87 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #87 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #87 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #88 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #88 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #88 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #89 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #89 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #89 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #90 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #90 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #90 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #91 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #91 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #91 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #92 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #92 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #92 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #93 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #93 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #93 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #94 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #94 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #94 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #95 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #95 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #95 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #96 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #96 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #96 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #97 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #97 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #97 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #98 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #98 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #98 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #99 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #99 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #99 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #100 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #100 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #100 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #101 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #101 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #101 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #101 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #102 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #102 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #102 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #102 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #103 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #103 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #103 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #103 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #104 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #104 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #104 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #104 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #105 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #105 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #105 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #105 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #106 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #106 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #106 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #106 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #107 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #107 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #107 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #107 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #108 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #108 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #108 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #108 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #109 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #109 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #109 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #109 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #110 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #110 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #110 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #110 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #111 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #111 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #111 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #111 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #112 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #112 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #112 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #112 need new shelf.
+[INFO ] 09-04-2021 19:55:51 [class: BusinessLayer.StoreController,Line:607] - the product with productType #113 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #113 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #113 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #113 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #114 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #114 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #114 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #114 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #115 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #115 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #115 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #115 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #116 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #116 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #116 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #116 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #117 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #117 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #117 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #117 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #118 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #118 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #118 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #118 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #119 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #119 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #119 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #119 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #120 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #120 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #120 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #120 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #121 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #121 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #121 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #121 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #122 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #122 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #122 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #122 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #123 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #123 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #123 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #123 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #124 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #124 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #124 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #124 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #125 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #125 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #125 need new shelf.
+[INFO ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:607] - the product with productType #125 need new shelf.
+[WARN ] 09-04-2021 19:55:52 [class: BusinessLayer.StoreController,Line:559] - the number #0, is not ID of any ProductType in Store #1

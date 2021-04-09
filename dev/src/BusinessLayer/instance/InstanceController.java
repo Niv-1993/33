@@ -89,10 +89,11 @@ public class InstanceController {
         return Collections.list(_products.keys());
     }
 
-    public void reportDamage(int i) {
+    public Product reportDamage(int i) {
         log.debug(String.format("reportDamage(int i) Value:?",i));
         Product p=checkProduct(i);
         p.set_isDamage();
+        return p;
     }
 
     public Product getProduct(int i) {

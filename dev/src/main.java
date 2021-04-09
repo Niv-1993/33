@@ -1,10 +1,8 @@
-import BusinessLayer.Fcade.ResponseData;
 import BusinessLayer.Fcade.StorageService;
 import BusinessLayer.Fcade.outObjects.ProductType;
 import BusinessLayer.StoreController;
 import Presentation.CLIPresentation;
 import org.apache.log4j.Logger;
-import org.junit.jupiter.api.Assertions;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -139,10 +137,10 @@ public class main {
             }
         }
         ss.addSaleCategoryDiscount(1,12,new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2000"),new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2050"));
-        System.out.println("DONE INIT");
+//        System.out.println("DONE INIT");
 
-        for(int i=0;i<ss.getProductTypes().data.size();i++){
-            System.out.println("products for type "+i+": "+ss.getProductsByType(i));
-        }
+//        for(int i=0;i<ss.getProductTypes().data.size();i++){
+//            System.out.println("products for type "+i+": "+ss.getProductsByType(i));
+//        }
     }
 }

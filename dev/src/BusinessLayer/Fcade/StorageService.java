@@ -203,9 +203,9 @@ public class StorageService implements iStorageService {
     }
 
     @Override
-    public Response addSaleCategoryDiscount(int productTypeID, float percent, Date start, Date end) {
+    public Response addSaleCategoryDiscount(int catID, float percent, Date start, Date end) {
         try {
-            curr.addSaleCategoryDiscount(productTypeID,percent,start,end);
+            curr.addSaleCategoryDiscount(catID,percent,start,end);
             return new Response();
         }
         catch (Exception e) {

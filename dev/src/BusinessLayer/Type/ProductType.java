@@ -185,15 +185,15 @@ public class ProductType {
         _saleDiscounts.add(new SaleDiscount(discountID,percent,start,end));
     }
 
-    public void addSaleProductDiscount(Discount discount) {
-        log.debug(String.format("addSaleProductDiscount(Discount discount)"));
-        discount.addTo(this);
-    }
 
     public void addDiscount(SaleDiscount discount){
-        _saleDiscounts.add(discount);
+        log.debug(String.format("addDiscount(SaleDiscount discount) typeID: %d DiscountID: %d",_typeID,discount.get_discountID()));
+        if (!_saleDiscounts.contains(discount)) {
+            _saleDiscounts.add(discount);
+        }
     }
     public void addDiscount(SupplierDiscount discount){
+        log.debug(String.format("addDiscount(SupplierDiscount discount) typeID: %d",_typeID));
         _supplierDiscounts.add(discount);
     }
     public void addDiscount(Discount discount){
@@ -202,14 +202,10 @@ public class ProductType {
         throw new IllegalArgumentException(s);
     }
 
-    public void removeDiscount(Discount discount) {
-        log.debug(String.format("removeDiscount(Discount discount)"));
-        discount.removeFrom(this);
-    }
-    public void removeDiscountFromList(SaleDiscount s){
+    public void removeDiscount(SaleDiscount s){
         _saleDiscounts.remove(s);
     }
-    public void removeDiscountFromList(SupplierDiscount s){
+    public void removeDiscount(SupplierDiscount s){
         _supplierDiscounts.remove(s);
     }
     public void removeDiscountFromList(Discount s){
@@ -226,7 +222,8 @@ public class ProductType {
         return _saleDiscounts;
     }
 
-    public void edit(String name, int minAmount, float basePrice, String producer, int supID, int category) {
+    public void edit(String name, int minAmount, float basePrice, String producer, int supID, int category
+            , List<SaleDiscount> saleDiscountsToDelete, List<SaleDiscount> saleDiscountsToAdd) {
         log.debug(String.format("edit(String name, int minAmount, float basePrice, String producer, int supID," +
                 " int category) Value:?,?,?,?,?,?" ,name,minAmount,basePrice,producer,supID,category));
         checkValues(name,minAmount,basePrice,producer,supID,category);
@@ -236,6 +233,12 @@ public class ProductType {
         set_minAmount(minAmount);
         set_producer(producer);
         _suppliers.add(supID);
+        for (SaleDiscount toDelete: saleDiscountsToDelete)
+            _saleDiscounts.remove(toDelete);
+        for (SaleDiscount toAdd: saleDiscountsToAdd){
+            if (!_saleDiscounts.contains(toAdd))
+                _saleDiscounts.add(toAdd);
+        }
     }
 
     public void removeProduct(int productID, Tuple<Integer, Location> location) {
@@ -269,7 +272,6 @@ public class ProductType {
             log.error(s);
             throw new IllegalArgumentException(s);
         }
-        //log.info("ADDDING PROD:"+productID+" to type:"+_typeID);
         _products.add(productID);
         if ((l.equals(Location.Shelves))) {
             _shelfCurr++;
@@ -280,7 +282,6 @@ public class ProductType {
 
     public void relocateProduct(boolean toStorage) {
         log.debug("relocateProduct()");
-        log.info(_typeID+" "+_shelfCurr+" "+_storageCurr+" "+toStorage);
         if ((toStorage && _shelfCurr<=0) ||(!toStorage && _storageCurr<=0))
         {
             String s="no have product in this place.";
@@ -320,5 +321,13 @@ public class ProductType {
     public Integer getNeededReport() {
         log.debug("getNeededReport()");
         return (_minAmount<=_storageCurr+_shelfCurr)? 0: _minAmount-_shelfCurr-_storageCurr;
+    }
+
+    public List<Integer> getDiscount() {
+        List<Integer> output=new ArrayList<>();
+        for (SaleDiscount s: _saleDiscounts){
+            output.add(s.get_discountID());
+        }
+        return output;
     }
 }

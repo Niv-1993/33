@@ -27,6 +27,7 @@ public class Category {
         this._categoryID = _categoryID;
         this._name = _name;
         _superCategory=tmp;
+        tmp.addAllDiscountCategory(_productTypes);
     }
     private void checkValues(Object... o){
         for(Object o1: o){
@@ -92,6 +93,13 @@ public class Category {
         log.debug("get_productDiscounts()");
         return _productDiscounts;
     }
+    public void addAllDiscountCategory(List<Integer> list){
+        for (Integer i: _productDiscounts)
+            if (!list.contains(i))
+                list.add(i);
+        if (_superCategory!=null)
+            _superCategory.addAllDiscountCategory(list);
+    }
 
 
     public void addCategory(Category output) {
@@ -137,13 +145,32 @@ public class Category {
     public void edit(String name, Category superCategory) {
         log.debug(String.format("edit(String name, Category superCategory) Value:",name));
         checkValues(name);
-        if (superCategory==null || superCategory==_superCategory || superCategory==this)
+        if (superCategory==null || superCategory==this)
         {
             String s="the superCategory is illegal";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        if (checkRec(superCategory))
+        {
+            String s=String.format("the Category #%d can not be a child of itself",_categoryID);
+            log.warn(s);
+            throw new IllegalArgumentException(s);
         }
         _name=name;
         _superCategory=superCategory;
+        _superCategory.addAllDiscountCategory(_productDiscounts);
         log.info(String.format("the values of Category #? changed.",_categoryID));
+    }
+
+    private boolean checkRec(Category superCategory) {
+        if (_categories.contains(superCategory))
+            return true;
+        for (Category c: _categories){
+            if (c.checkRec(superCategory))
+                return true;
+        }
+        return false;
     }
 
     public void edit(String name) {
@@ -164,5 +191,21 @@ public class Category {
                 ", _productTypes=" + _productTypes +
                 ", _productDiscounts=" + _productDiscounts +
                 '}';
+    }
+
+    public void removeCategory(Category c) {
+        _categories.remove(c);
+    }
+
+    public void fixDiscount() {
+        if (_superCategory!=null)
+            _superCategory.fixDiscount(_productDiscounts);
+    }
+    private void fixDiscount(List<Integer> list){
+        for (Integer i: _productDiscounts)
+            if (list.contains(i))
+                list.remove(i);
+        if (_superCategory!=null)
+            _superCategory.fixDiscount(list);
     }
 }

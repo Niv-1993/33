@@ -11,6 +11,7 @@ public class SaleDiscount extends Discount{
 
     @Override
     public void addTo(ProductType productType) {
+        log.info("addTo(ProductType productType)");
         productType.addDiscount(this);
     }
 

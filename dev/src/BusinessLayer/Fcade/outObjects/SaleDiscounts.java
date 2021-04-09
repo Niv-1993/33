@@ -21,4 +21,7 @@ public class SaleDiscounts {
         return "All sale discounts for product type: "+productType+"\n"+discounts.toString();
     }
 
+    public int size() {
+        return discounts.size();
+    }
 }

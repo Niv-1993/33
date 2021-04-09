@@ -93,8 +93,6 @@ class useCases {
             ProductType pt=ss.getProductTypeInfo(list.get(5)).data;
             ss.editProductType(pt.getTypeID(), "asdasd",15,59,15,"ddfd",15,4);
             ProductType pt2=ss.getProductTypeInfo(list.get(5)).getData();
-            System.out.println(pt.getCategoryID());
-            System.out.println(pt2.getCategoryID());
             Assertions.assertNotEquals(pt.getCategoryID(),pt2.getCategoryID());
         }
         catch (Exception e){
@@ -107,8 +105,9 @@ class useCases {
             List<Integer> list=ss.getProductTypes().getData().getData();
 
             for (Integer i: list){
+                List<Integer> products=ss.getProductsByType(i).getData();
                 for (int j=0; j<5; j++)
-                    ss.reportDamage(i* StoreController.getMaxProdOnType()+j+1);
+                    ss.reportDamage(products.get(j));
                 Assertions.assertEquals(10,ss.getProductTypeInfo(i).getData().getCount());
                 for (int j=0; j<5; j++)
                     ss.removeProduct(1);
@@ -143,7 +142,7 @@ class useCases {
             List<Integer> list=ss.getProductTypes().getData().getData();
             Integer checkStore=ss.getShelvesAmount(list.get(0)).data;
             Integer checkStorage=ss.getStorageAmount(list.get(0)).data;
-            for (int i=0 ;i<1000; i++) {
+            for (int i=0 ;i<950; i++) {
                 Date day=new Date(+1);
                 ss.addProduct(list.get(0), day);
             }
@@ -151,13 +150,14 @@ class useCases {
             Integer checkStorage2=ss.getStorageAmount(list.get(0)).data;
             Assertions.assertNotEquals(checkStore,checkStore2);
             Assertions.assertEquals(checkStorage2,checkStorage);
-            for (int i=0 ;i<999; i++) {
-                ss.relocateProduct(list.get(0)*StoreController.getMaxProdOnType()+i+1,true,990);
+            List<Integer> products=ss.getProductsByType(list.get(0)).data;
+            for (int i=0 ;i<100; i++) {
+                ss.relocateProduct(products.get(i),true,990);
             }
             checkStore=ss.getShelvesAmount(list.get(0)).data;
             checkStorage=ss.getStorageAmount(list.get(0)).data;
             Assertions.assertNotEquals(checkStore,checkStore2);
-            Assertions.assertEquals(checkStorage2,checkStorage);
+            Assertions.assertNotEquals(checkStorage2,checkStorage);
         }
         catch (Exception e){
             Assertions.fail();
@@ -185,7 +185,7 @@ class useCases {
     }
 
     @Test
-    void useCase9(){//supplier discount
+    void useCase9(){//sale category discount
         try {
             ss=new StorageService();
             ss.useStore(ss.addStore().data);
@@ -199,16 +199,22 @@ class useCases {
             }
 
             List<Integer> productType = ss.getProductTypes().getData().getData();
+            System.out.println(productType.size());
             for (Integer i: productType){
-                ss.addSupplierDiscount(categories.get(0), 0.5F,new Date(+15),new Date(+30),15);
-                ss.addSaleCategoryDiscount(categories.get(1),0.5F,new Date(+15),new Date(+30));
+            //    ss.addSupplierDiscount(categories.get(0), 0.5F,new Date(+15),new Date(+30),15);
+                Date start=new Date();
+                Date end=new Date();
+                start.setDate(start.getDate()+1);
+                end.setDate(start.getDate()+6);
+                ss.addSaleCategoryDiscount(categories.get(0),0.5F,start,end);
+                ss.addSaleCategoryDiscount(categories.get(1),0.5F,start,end);
             }
 
             for (Integer i: productType){
-                Assertions.assertEquals(20,ss.getSupplierDiscounts(i).getData().size());
+                Assertions.assertEquals(productType.size(),ss.getSaleDiscounts(i).getData().size());
                 ss.editProductType(i,"name"+i,15,59,15,"ddfd",
                         15,(cat.get(0)==categories.get(0)? categories.get(1): categories.get(0)));
-                Assertions.assertEquals(40,ss.getSupplierDiscounts(i));
+                Assertions.assertEquals(40,ss.getSaleDiscounts(i).getData().size());
             }
 
 
