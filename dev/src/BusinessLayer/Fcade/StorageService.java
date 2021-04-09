@@ -6,6 +6,8 @@ import BusinessLayer.iStoreController;
 import BusinessLayer.instance.Location;
 import org.apache.log4j.Logger;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -214,9 +216,9 @@ public class StorageService implements iStorageService {
     }
 
     @Override
-    public Response addSupplierDiscount(int categoryID, float percent, Date start, Date end, int supId) {
+    public Response addSupplierDiscount(int typeID, float percent, Date start, Date end, int supId) {
         try {
-            curr.addSupplierDiscount(categoryID,percent,start,end,supId);
+            curr.addSupplierDiscount(typeID,percent,start,end,supId);
             return new Response();
         }
         catch (Exception e) {
@@ -270,7 +272,7 @@ public class StorageService implements iStorageService {
     @Override
     public ResponseData<Product> getProductInfo(int ID) {
         try {
-            BusinessLayer.Type.ProductType Tret=curr.getProductTypeInfo(ID);
+            BusinessLayer.Type.ProductType Tret=curr.getProductTypeInfo(ID/curr.MAX_PRODUCTS_ON_PROTUCTTYPE);
             BusinessLayer.instance.Product Pret=curr.getProductInfo(ID);
             return new ResponseData<>(new Product(Pret.get_id(),Tret.get_typeID(),Pret.get_expiration(),
                     Pret.get_location().item2==Location.Storage,Pret.get_location().item1));
@@ -386,5 +388,25 @@ public class StorageService implements iStorageService {
         catch (Exception e) {
             return new ResponseData<>(e.toString());
         }
+    }
+    public static void init(StorageService ss) throws ParseException {
+        ss.addStore();
+        ss.useStore(1);
+        for (int i = 1; i < 11; i++) ss.addCategory("root" + i);
+        for (int i = 1; i < 21; i++) {
+            ss.addCategory("ch" + i, i);
+
+        }
+        for (int i = 1; i < 15; i++) {
+            for (int j = 1; j < 10; j++) {
+                ss.addProductType("p" + i + "" + j, 2, i * j / 2, i * j * j / 4, "P" + i + "" + j, i, i);
+            }
+        }
+        for (int i = 0; i < ss.getProductTypes().data.size(); i++) {
+            for (int j = 0; j < i * 3; j++) {
+                ss.addProduct(i, new Date(System.currentTimeMillis()+1000000000)); // expire in approx 20 days
+            }
+        }
+        ss.addSaleCategoryDiscount(1, 12, new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2000"), new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2050"));
     }
 }

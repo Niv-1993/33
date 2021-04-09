@@ -31031,3 +31031,5 @@
 [INFO ] 09-04-2021 19:50:11 [class: BusinessLayer.StoreController,Line:238] - typeID: 16 shelfID: 27 Location: Shelves, type: 16, cur: 85
 [INFO ] 09-04-2021 19:50:11 [class: BusinessLayer.StoreController,Line:238] - typeID: 16 shelfID: 28 Location: Shelves, type: 16, cur: 15
 [INFO ] 09-04-2021 19:50:11 [class: BusinessLayer.StoreController,Line:238] - typeID: 16 shelfID: 29 Location: Shelves, type: 16, cur: 65
+[WARN ] 09-04-2021 20:46:41 [class: BusinessLayer.StoreController,Line:559] - the number #5003, is not ID of any ProductType in Store #1
+[WARN ] 09-04-2021 20:50:41 [class: BusinessLayer.StoreController,Line:483] - the target does not in storage/store

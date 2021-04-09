@@ -25,15 +25,34 @@ public class CLIPresentation {
     public CLIPresentation(StorageService ss){
         SS=ss;
     }
+    public void setup(){
+        String in;
+        while(true) {
+            System.out.print("Welcome to SuperLi storage management setup.\n" +
+                    "To start with an empty system enter 'empty'\n to start with a pre-generated example enter 'pre'" +
+                    "\n'exit' to exit.\n");
+            in = read();
+            if (in.equals("exit")) return;
+            if (in.equals("empty")) start();
+            if (in.equals("pre")) {
+                try {
+                    StorageService.init(SS);
+                } catch (Exception e) {
+                    System.out.println("problem with initialization. system will start empty instead.");
+                }
+                start();
+            } else System.out.print("bad input, try again.\n");
+        }
+    }
     public void start() {
         String in;
         while (true) {
-            System.out.print("Welcome to SuperLi storage management.\n" +
+            System.out.print("\nWelcome to SuperLi storage management.\n" +
                     "The current stores are: " + (SS.getStores().isError ? "None" : SS.getStores()) +
                     "\nEnter store number to use with a store, 'add' to add new store or 'exit' to exit.\n"
             );
             in = read();
-            if(in.equals("exit")) return;
+            if(in.equals("exit")) System.exit(0);
             if(in.equals("add")){
                 SS.addStore();
                 System.out.print("new Store added.\n");
@@ -53,7 +72,7 @@ public class CLIPresentation {
     {
         String in;
         while(true) {
-            System.out.print("Welcome to store number: " + SS.getCurrID() +
+            System.out.print("\nWelcome to store number: " + SS.getCurrID() +
                     "\nTo get reports enter 'reports'\nTo access categories enter 'categories'" +
                     "\nTo access product types enter 'types'\nTo access specific products enter 'products'" +
                     "\nTo access discounts enter 'discounts'"+
@@ -75,7 +94,7 @@ public class CLIPresentation {
     private void reports() {
         String in;
         while(true) {
-            System.out.print("Welcome to report management for store number: " + SS.getCurrID() +
+            System.out.print("\nWelcome to report management for store number: " + SS.getCurrID() +
                     "\nTo get the weekly report enter 'weekly'\nTo get the waste report enter 'waste'" +
                     "\nTo get the missing items report enter 'missing'" +
                     "\nTo return to store "+SS.getCurrID()+" enter 'return'" +
@@ -94,7 +113,7 @@ public class CLIPresentation {
     private void weekly() {
         String in;
         while(true) {
-            System.out.print("Welcome to weekly report management for store number: " + SS.getCurrID() +
+            System.out.print("\nWelcome to weekly report management for store number: " + SS.getCurrID() +
                     "\nTo get the weekly report for the entire store enter 'all'" +
                     "\nTo get the weekly report for a specific categories enter 'category'" +
                     "\nTo return to store "+SS.getCurrID()+" report management enter 'return'"+
@@ -111,7 +130,7 @@ public class CLIPresentation {
     private void weeklyByCat() {
         String in;
         while(true) {
-            System.out.print("Welcome to weekly report by category for store number: " + SS.getCurrID() +
+            System.out.print("\nWelcome to weekly report by category for store number: " + SS.getCurrID() +
                     "\nTo list all of the categories enter 'list'" +
                     "\nTo get the weekly report for some categories enter the category ID numbers separated by commas" +
                     "\nTo return to store "+SS.getCurrID()+" weekly report management enter 'return'"+
@@ -137,7 +156,7 @@ public class CLIPresentation {
 private void categories() {
     String in;
     while(true) {
-        System.out.print("Welcome to category management for store number: " + SS.getCurrID() +
+        System.out.print("\nWelcome to category management for store number: " + SS.getCurrID() +
                 "\nTo list all of the categories enter 'list'" +
                 "\nTo get more information about a specific category enter 'info' followed by the category ID separated by comma"+
                 "\nTo add a new category enter 'add'" +
@@ -166,7 +185,7 @@ private void categories() {
     private void addCat() {
         String in;
         while(true) {
-            System.out.print("To add a category enter the category name then its parent category ID separated by comma"+
+            System.out.print("\nTo add a category enter the category name then its parent category ID separated by comma"+
                     "\nIf there is no parent category then just enter the category name" +
                     "\nTo return to category management enter 'return'" +
                     "\nTo exit the program enter 'exit'\n");
@@ -200,7 +219,7 @@ private void categories() {
     private void editCat() {
         String in;
         while(true) {
-            System.out.print("To edit a category enter the category ID then a new name then its new parent category ID separated by comma"+
+            System.out.print("\nTo edit a category enter the category ID then a new name then its new parent category ID separated by comma"+
                     "\nIf there is no parent category then just enter the category ID then a new name separated by comma" +
                     "\nTo return to category management enter 'return'" +
                     "\nTo exit the program enter 'exit'\n");
@@ -239,7 +258,7 @@ private void categories() {
     private void types() {
         String in;
         while(true) {
-            System.out.print("Welcome to product type management for store number: " + SS.getCurrID() +
+            System.out.print("\nWelcome to product type management for store number: " + SS.getCurrID() +
                     "\nTo list all of the product types enter 'list'" +
                     "\nTo get more information about a specific type enter 'info' followed by the type ID separated by comma"+
                     "\nTo get the amount in the store of a specific type enter 'store' followed by the type ID separated by comma"+
@@ -270,7 +289,7 @@ private void categories() {
     private void addType() {
         String in;
         while(true) {
-            System.out.print("To add a type enter the type name then its minimum amount, its base price, sale price, name of producer, ID of supplier" +
+            System.out.print("\nTo add a type enter the type name then its minimum amount, its base price, sale price, name of producer, ID of supplier" +
                     " and the ID of its parent category separated by comma"+
                     "\nTo return to category management enter 'return'" +
                     "\nTo exit the program enter 'exit'\n");
@@ -292,7 +311,7 @@ private void categories() {
     private void editType() {
         String in;
         while(true) {
-            System.out.print("To edit a type enter the type ID then its type name ,minimum amount, its base price, sale price, name of producer, ID of supplier" +
+            System.out.print("\nTo edit a type enter the type ID then its type name ,minimum amount, its base price, sale price, name of producer, ID of supplier" +
                     " and the ID of its parent category separated by comma"+
                     "\nTo return to category management enter 'return'" +
                     "\nTo exit the program enter 'exit'\n");
@@ -315,7 +334,9 @@ private void categories() {
     private void products() {
         String in;
         while(true) {
-            System.out.print("Welcome to product management for store number: " + SS.getCurrID() +
+            System.out.print("\nWelcome to product management for store number: " + SS.getCurrID() +
+                    "\nTo list all product type IDs enter 'types'"+
+                    "\nTo list all products of a specific type enter 'list' followed by the type ID separated by comma"+
                     "\nTo get more information about a specific product enter 'info' followed by the product ID separated by comma"+
                     "\nTo add a new product enter 'add'" +
                     "\nTo relocate an existing product enter 'relocate'" +
@@ -328,21 +349,21 @@ private void categories() {
             if(in.equals("return")) return;
             else if(in.equals("add")) addProd();
             else if(in.equals("relocate")) relocateProd();
+            else if(in.equals("types")) System.out.println(SS.getProductTypes());
             String[] tmp=in.split(",");
             if(tmp.length==2) {
                 try {
                     if (tmp[0].equals("damage")) {
                         if (SS.reportDamage(Integer.parseInt(tmp[1])).isError()) {
                             System.out.print("bad input, try again.\n");
-                        } else {
-                            System.out.print("bad input, try again.\\n");
                         }
                     } else if (tmp[0].equals("remove")) {
                         if (SS.removeProduct(Integer.parseInt(tmp[1])).isError()) {
                             System.out.print("bad input, try again.\n");
-                        } else {
-                            System.out.print("bad input, try again.\n");
                         }
+                    }
+                    else if (tmp[0].equals("list")) {
+                        System.out.print(SS.getProductsByType(Integer.parseInt(tmp[1])));
                     }
                     else if (tmp[0].equals("info")) System.out.print(SS.getProductInfo(Integer.parseInt(tmp[1])));
                     else System.out.print("bad input, try again.\n");
@@ -356,7 +377,7 @@ private void categories() {
     private void addProd() {
         String in;
         while(true) {
-            System.out.print("To add a product enter the product ID then its expiration date (in DD-MM-YYYY format) separated by comma"+
+            System.out.print("\nTo add a product enter the product ID then its expiration date (in DD-MM-YYYY format) separated by comma"+
                     "\nTo return to product management enter 'return'" +
                     "\nTo exit the program enter 'exit'\n");
             in = read();
@@ -382,7 +403,7 @@ private void categories() {
     private void relocateProd() {
         String in;
         while(true) {
-            System.out.print("To relocate a product enter the product ID then its target location (storage or store) then the new shelf number separated by comma"+
+            System.out.print("\nTo relocate a product enter the product ID then its target location (storage or store) then the new shelf number separated by comma"+
                     "\nTo return to product management enter 'return'" +
                     "\nTo exit the program enter 'exit'\n");
             in = read();
@@ -398,7 +419,7 @@ private void categories() {
                     if ((SS.relocateProduct(Integer.parseInt(tmp[0]),b,Integer.parseInt(tmp[2])).isError())) {
                         System.out.print("bad input, try again.\n");
                     } else {
-                        System.out.print("product added\n");
+                        System.out.print("product relocated\n");
                     }
                 }
                 catch(Exception e){
@@ -412,7 +433,7 @@ private void categories() {
     private void discounts() {
         String in;
         while(true) {
-            System.out.print("Welcome to discount management for store number: " + SS.getCurrID() +
+            System.out.print("\nWelcome to discount management for store number: " + SS.getCurrID() +
                     "\nTo access supplier discounts enter 'supplier'"+
                     "\nTo access sale discounts enter 'sale'"+
                     "\nTo return to store "+SS.getCurrID()+" enter 'return'" +
@@ -430,7 +451,7 @@ private void categories() {
     private void sale() {
         String in;
         while(true) {
-            System.out.print("Welcome to sale discount management for store number: " + SS.getCurrID() +
+            System.out.print("\nWelcome to sale discount management for store number: " + SS.getCurrID() +
                     "\nTo get sale discounts for a specific type enter 'get' then the type ID separated by comma"+
                     "\nTo add a new sale discount enter 'add'"+
                     "\nTo return discount management enter 'return'" +
@@ -456,7 +477,7 @@ private void categories() {
     private void addSaleDiscount(){
         String in;
         while(true) {
-        System.out.print("To add a sale discount for a specific type enter 'type' then the type ID then its discount percentage," +
+        System.out.print("\nTo add a sale discount for a specific type enter 'type' then the type ID then its discount percentage," +
                 " then the start and the end date (in DD-MM-YYYY format) separated by comma"+
                 "\nTo add a sale discount for a whole category enter 'category' then the category ID then its discount percentage," +
                 " then the start and the end date (in DD-MM-YYYY format) separated by comma"+
@@ -497,7 +518,7 @@ private void categories() {
     private void supplier() {
         String in;
         while(true) {
-            System.out.print("Welcome to supplier discount management for store number: " + SS.getCurrID() +
+            System.out.print("\nWelcome to supplier discount management for store number: " + SS.getCurrID() +
                     "\nTo get supplier discounts for a specific type enter 'get' then the type ID separated by comma"+
                     "\nTo add a new sale discount enter 'add'"+
                     "\nTo return discount management enter 'return'" +
@@ -522,7 +543,7 @@ private void categories() {
     private void addSupplierDiscount() {
         String in;
         while(true) {
-            System.out.print("To add a supplier discount for a specific category enter category ID then its discount percentage," +
+            System.out.print("\nTo add a supplier discount for a specific type enter type ID then its discount percentage," +
                     " then the start and the end date (in DD-MM-YYYY format) and then the supplier ID separated by comma"+
                     "\nTo return to product management enter 'return'" +
                     "\nTo exit the program enter 'exit'\n");

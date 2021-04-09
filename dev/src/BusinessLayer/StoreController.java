@@ -21,7 +21,7 @@ public class StoreController implements iStoreController{
     private int _categoryCounter=0;
     private int _discountCounter=0;
     private int _numberOfShelves=10;
-    static private int MAX_PRODUCTS_ON_PROTUCTTYPE=1000;
+    static public int MAX_PRODUCTS_ON_PROTUCTTYPE=1000;
     private List<Shelf> _shelves=new ArrayList<>();
     private Dictionary<ProductType,InstanceController> _products=new Hashtable<>();
     private Dictionary<Integer,Category> _category=new Hashtable<>();
@@ -489,6 +489,7 @@ public class StoreController implements iStoreController{
         shelf.addProduct();
         _shelves.get(p.getShelf()-1).removeProduct();
         checkIDProductTypeExist(ID/MAX_PRODUCTS_ON_PROTUCTTYPE).relocateProduct(toStorage);
+        p.set_location(new Tuple<>(targetShelf,toStorage?Location.Storage:Location.Shelves));
     }
 
     @Override
