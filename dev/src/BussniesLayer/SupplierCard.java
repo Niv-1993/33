@@ -8,7 +8,7 @@ public class SupplierCard {
     private final int supplierBN;
     private final String supplierName;
     private int bankNumber;
-    private int BrunchNumber;
+    private int branchNumber;
     private int accountNumber;
     private String payWay;
     private List<Order> orders;
@@ -17,16 +17,22 @@ public class SupplierCard {
     private Dictionary<String , String> contactPhone;
     private Dictionary<String , String> contactEmail;
 
-    public SupplierCard(int supplierBN , String supplierName ,int bankNumber , int brunchNumber, int accountNumber , String payWay){
+    public SupplierCard(int supplierBN , String supplierName ,int bankNumber , int branchNumber, int accountNumber , String payWay){
         this.supplierBN = supplierBN;
         this.supplierName = supplierName;
         this.bankNumber = bankNumber;
-        this.BrunchNumber = brunchNumber;
+        this.branchNumber = branchNumber;
         this.accountNumber = accountNumber;
         this.payWay = payWay;
+        items = new LinkedList<>();
+        orders = new LinkedList<>();
+        contactPhone = new Hashtable<>();
+        contactEmail = new Hashtable<>();
+    }
+
+    public void removeSupplier(){
         orders = new LinkedList<>();
         items = new LinkedList<>();
-        supplierAgreement = null;
         contactPhone = new Hashtable<>();
         contactEmail = new Hashtable<>();
     }
@@ -39,8 +45,8 @@ public class SupplierCard {
         return bankNumber;
     }
 
-    public int getSupplierBrunchNumber() {
-        return BrunchNumber;
+    public int getSupplierBranchNumber() {
+        return branchNumber;
     }
 
     public int getSupplierAccountNumber() {
@@ -69,10 +75,10 @@ public class SupplierCard {
         this.payWay = payWay;
     }
 
-    public void updateSupplierBankAccount(int bankNumber , int brunchNumber , int bankAccount) throws Exception {
+    public void updateSupplierBankAccount(int bankNumber , int branchNumber , int bankAccount) throws Exception {
         if(bankAccount < 0) throw new Exception("bank account must be a positive number");
         this.bankNumber = bankNumber;
-        this.BrunchNumber = brunchNumber;
+        this.branchNumber = branchNumber;
         this.accountNumber = bankAccount;
     }
 
@@ -199,6 +205,16 @@ public class SupplierCard {
             }
         }
         if(!hasFound) throw new Exception("orderId does not exist");
+    }
+
+    public void removeAllOrders(int orderId){
+        List<Order> copyOrder = orders;
+        for(Order order : copyOrder){
+            if(order.getOrderId() == orderId){
+                orders.remove(order);
+                break;
+            }
+        }
     }
 
     public Order showOrderOfSupplier(int orderId) throws Exception {

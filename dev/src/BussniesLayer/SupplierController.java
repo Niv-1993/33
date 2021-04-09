@@ -20,24 +20,35 @@ public class SupplierController{
         return supplierCard;
     }
 
-    public void addSupplier(String supplierName, int bankNumber , int brunchNumber, int bankAccount, String payWay) throws Exception {
+    public void addSupplier(String supplierName, int bankNumber , int branchNumber, int bankAccount, String payWay) throws Exception {
         if(bankNumber < 0) throw new Exception("bank number must be a positive number");
-        if(brunchNumber < 0) throw new Exception("brunch must be a positive number");
+        if(branchNumber < 0) throw new Exception("branch must be a positive number");
         if(bankAccount < 0) throw new Exception("bank account must be a positive number");
         Enumeration<Integer> enumeration = suppliers.keys();
         while(enumeration.hasMoreElements()){
             SupplierCard supplierCard = suppliers.get(enumeration.nextElement());
             if(supplierCard.getSupplierName().equals(supplierName)) throw new Exception("supplier name all ready exist");
-            if(supplierCard.getSupplierBankNumber() == bankNumber && supplierCard.getSupplierBrunchNumber() == brunchNumber && supplierCard.getSupplierAccountNumber() == bankAccount)
-                throw new Exception("the combination of bank number , brunch number and bank account must be unique");
+            if(supplierCard.getSupplierBankNumber() == bankNumber && supplierCard.getSupplierBranchNumber() == branchNumber && supplierCard.getSupplierAccountNumber() == bankAccount)
+                throw new Exception("the combination of bank number , branch number and bank account must be unique");
         }
-        BussniesLayer.SupplierCard supplierCard = new BussniesLayer.SupplierCard(suppliers.size() ,supplierName, bankNumber,brunchNumber,bankAccount,payWay);
+        if(!(payWay.equals("check") || payWay.equals("bank transfer") || payWay.equals("cash")))
+            throw new Exception("pay way must be check/bank transfer/cash.");
+        BussniesLayer.SupplierCard supplierCard = new BussniesLayer.SupplierCard(suppliers.size() ,supplierName, bankNumber,branchNumber,bankAccount,payWay);
         suppliers.put(suppliers.size() , supplierCard);
     }
 
     public void removeSupplier(int removeSupplier) throws Exception {
         SupplierCard supplierCard = suppliers.remove(removeSupplier);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+        else supplierCard.removeSupplier();
+        List<Item> toRemoveItems = supplierCard.showAllItemsOfSupplier();
+        for(Item item : toRemoveItems){
+            removeItemFromSupplier(removeSupplier , item.getItemId());
+        }
+        List<Order> toRemoveOrders = supplierCard.showAllOrdersOfSupplier();
+        for(Order order : toRemoveOrders){
+            supplierCard.removeAllOrders(order.getOrderId());
+        }
     }
 
     public SupplierCard showSupplierBN(String supplierName) throws Exception {
@@ -62,11 +73,11 @@ public class SupplierController{
         }
     }
 
-    public void updateSupplierBankAccount(int supplierBN, int bankNumber , int brunchNumber ,int bankAccount) throws Exception {
+    public void updateSupplierBankAccount(int supplierBN, int bankNumber , int branchNumber ,int bankAccount) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            suppliers.get(supplierBN).updateSupplierBankAccount(bankNumber , brunchNumber , bankAccount);
+            suppliers.get(supplierBN).updateSupplierBankAccount(bankNumber , branchNumber , bankAccount);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }

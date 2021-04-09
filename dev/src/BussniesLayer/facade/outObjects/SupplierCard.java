@@ -1,6 +1,5 @@
 package BussniesLayer.facade.outObjects;
 
-import javax.swing.*;
 import java.util.Dictionary;
 import java.util.Enumeration;
 
@@ -9,7 +8,7 @@ public class SupplierCard{
     private final int supplierBN;
     private final String supplierName;
     private final int bankNumber;
-    private final int brunchNumber;
+    private final int branchNumber;
     private final int accountNumber;
     private final String payWay;
     private final Dictionary<String , String> contactPhone;
@@ -19,7 +18,7 @@ public class SupplierCard{
         supplierBN = supplierCard.getSupplierBN();
         supplierName = supplierCard.getSupplierName();
         bankNumber = supplierCard.getSupplierBankNumber();
-        brunchNumber = supplierCard.getSupplierBrunchNumber();
+        branchNumber = supplierCard.getSupplierBranchNumber();
         accountNumber = supplierCard.getSupplierAccountNumber();
         payWay = supplierCard.getSupplierPayWay();
         contactPhone = supplierCard.getContactPhone();
@@ -31,7 +30,7 @@ public class SupplierCard{
                 "\tsupplierBN: " + supplierBN + "\n" +
                 "\tsupplier name: " + supplierName + "\n" +
                 "\tbank number: " + bankNumber + "\n" +
-                "\tbrunch number: " + brunchNumber + "\n" +
+                "\tbrunch number: " + branchNumber + "\n" +
                 "\taccount number: " + accountNumber + "\n" +
                 "\tpayWay: " + payWay + "\n" +
                 "\tcontact Phone: " + helpPrint(contactPhone , true) + "\n" +
@@ -74,6 +73,6 @@ public class SupplierCard{
     }
 
     public int getBrunchNumber() {
-        return brunchNumber;
+        return branchNumber;
     }
 }

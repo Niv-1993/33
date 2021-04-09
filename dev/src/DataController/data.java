@@ -1,4 +1,4 @@
-package DBMS;
+package DataController;
 
 import BussniesLayer.SupplierController;
 

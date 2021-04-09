@@ -1,9 +1,9 @@
 package BussniesLayer;
 
 public class Item{
-    private final String category;
     private final int itemId;
     private final String name;
+    private final String category;
     private QuantityDocument quantityDocument;
     private double price;
 

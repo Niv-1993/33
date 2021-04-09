@@ -7,7 +7,7 @@ import BussniesLayer.facade.outObjects.Item;
 import BussniesLayer.facade.outObjects.Order;
 import BussniesLayer.facade.outObjects.QuantityDocument;
 import BussniesLayer.facade.outObjects.SupplierAgreement;
-import DBMS.data;
+import DataController.data;
 
 
 import java.time.LocalDate;
@@ -16,7 +16,6 @@ import java.util.List;
 
 public class SupplierService implements ISupplierService {
     private SupplierController supplierController;
-    private data load;
 
     public SupplierService() {
         supplierController = new SupplierController();
@@ -24,7 +23,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public response LoadData() {
-        load = new data(supplierController);
+        data loadData = new data(supplierController);
         return new response();
     }
 
@@ -45,9 +44,9 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public response addSupplier(String supplierName, int bankNumber , int brunchNumber, int bankAccount, String payWay) {
+    public response addSupplier(String supplierName, int bankNumber , int branchNumber, int bankAccount, String payWay) {
         try{
-          supplierController.addSupplier(supplierName,bankNumber ,brunchNumber , bankAccount, payWay);
+          supplierController.addSupplier(supplierName,bankNumber ,branchNumber , bankAccount, payWay);
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
@@ -89,9 +88,9 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public response updateSupplierBankAccount(int supplierBN,int bankNumber , int brunchNumber , int bankAccount) {
+    public response updateSupplierBankAccount(int supplierBN,int bankNumber , int branchNumber , int bankAccount) {
         try{
-            supplierController.updateSupplierBankAccount(supplierBN,bankNumber , brunchNumber , bankAccount);
+            supplierController.updateSupplierBankAccount(supplierBN,bankNumber , branchNumber , bankAccount);
         }catch (Exception e){
             return new response("ERROR: " + e.getMessage());
         }
@@ -249,16 +248,6 @@ public class SupplierService implements ISupplierService {
     public response removeItem(int itemId) {
         try{
             supplierController.removeItem(itemId);
-        }catch (Exception e){
-            return new response("ERROR: " + e.getMessage());
-        }
-        return new response();
-    }
-
-    @Override
-    public response removeItemFromSupplier(int supplierBN, int itemId) {
-        try{
-            supplierController.removeItemFromSupplier(supplierBN, itemId);
         }catch (Exception e){
             return new response("ERROR: " + e.getMessage());
         }

@@ -67,9 +67,8 @@ public class PresentationCL{
     private void showingMethods(){
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int option = -1;
-        String check = "";
-        String[] showingMethodArray = {"show Supplier","show SupplierBN","show All Suppliers","show All Items Of Supplier","show All Items",
-                                       "show Item Of Supplier", "show Order Of Supplier","show All Orders Of Supplier","show Total Amount",
+        String[] showingMethodArray = {"show Supplier","show SupplierBN","show All Suppliers", "show Item Of Supplier","show All Items Of Supplier",
+                                       "show All Items", "show Order Of Supplier","show All Orders Of Supplier","show Total Amount",
                                         "show Deliver Time", "show Quantity Document","show Supplier Agreement","back to the main menu"};
         System.out.println("please select the showing method: ");
         while (true) {
@@ -126,6 +125,14 @@ public class PresentationCL{
                 }
                 case 4 -> {
                     BN = BNScan(scanner);
+                    int itemId = itemScan(scanner);
+                    Tresponse<Item> response = service.showItemOfSupplier(BN , itemId);
+                    if (response.isError()) System.out.println(response.getError() + "\n");
+                    else System.out.println(response.getOutObject().toString(false));
+                    toContinue(scanner , true);
+                }
+                case 5 -> {
+                    BN = BNScan(scanner);
                     Tresponse<List<Item>> responsesList = service.showAllItemsOfSupplier(BN);
                     if (responsesList.isError()) System.out.println(responsesList.getError() + "\n");
                     else {
@@ -136,7 +143,7 @@ public class PresentationCL{
                     }
                     toContinue(scanner , false);
                 }
-                case 5 -> {
+                case 6 ->{
                     Tresponse<List<Item>> responsesList = service.showAllItems();
                     if (responsesList.isError()) System.out.println(responsesList.getError() + "\n");
                     else {
@@ -147,14 +154,6 @@ public class PresentationCL{
                     }
                     toContinue(scanner , true);
                 }
-                case 6 ->{
-                    BN = BNScan(scanner);
-                    int itemId = itemScan(scanner);
-                    Tresponse<Item> response = service.showItemOfSupplier(BN , itemId);
-                    if (response.isError()) System.out.println(response.getError() + "\n");
-                    else System.out.println(response.getOutObject().toString(false));
-                    toContinue(scanner , true);
-                }
                 case 7 -> {
                     BN = BNScan(scanner);
                     int orderId = orderScan(scanner);
@@ -163,6 +162,9 @@ public class PresentationCL{
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else {
                         System.out.println(response.getOutObject().toString());
+                        Tresponse<SupplierAgreement> supplierAgreement = service.showSupplierAgreement(BN);
+                        if(supplierAgreement.isError()) System.out.println(supplierAgreement.getError() + "\n");
+                        else System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
                         Tresponse<List<Item>> items = service.showAllItemsOfOrder(BN, orderId);
                         if (items.isError()) System.out.println(items.getError() + "\n");
                         else {
@@ -185,6 +187,9 @@ public class PresentationCL{
                             Tresponse<List<Item>> items = service.showAllItemsOfOrder(BN, Integer.parseInt(order.toStringId()));
                             if (items.isError()) System.out.println(items.getError() + "\n");
                             else {
+                                Tresponse<SupplierAgreement> supplierAgreement = service.showSupplierAgreement(BN);
+                                if(supplierAgreement.isError()) System.out.println(supplierAgreement.getError() + "\n");
+                                else System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
                                 List<Item> responseItem = items.getOutObject();
                                 for (Item item : responseItem) {
                                     System.out.println(item.toString(true));
@@ -237,7 +242,6 @@ public class PresentationCL{
     private void addingMethods(){
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int option = -1;
-        String check = "";
         String[] showingMethodArray = {"add supplier","add Contact Phone","add Contact Email","add Item","add Order",
                                        "add Item To Order","add Quantity Document","add Supplier Agreement","back to the main menu"};
         System.out.println("please select the showing method: ");
@@ -251,10 +255,10 @@ public class PresentationCL{
                 case 1 -> {
                     String name = supplierNameScan(scanner);
                     int bankNumber = bankNumberScan(scanner);
-                    int brunchNumber = brunchNumberScan(scanner);
+                    int branchNumber = branchNumberScan(scanner);
                     int bankAccount = bankAccountScan(scanner);
                     String payWay = payWayScan(scanner);
-                    response response = service.addSupplier(name, bankNumber , brunchNumber , bankAccount, payWay);
+                    response response = service.addSupplier(name, bankNumber , branchNumber , bankAccount, payWay);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
@@ -333,7 +337,7 @@ public class PresentationCL{
         int option = -1;
         String check = "";
         String[] removeMethodArray = {"remove Supplier","remove Contact Phone","remove Contact Email","remove Item",
-                                      "remove Item From Supplier","remove Quantity Document","back to the main menu"};
+                                      "remove Quantity Document","back to the main menu"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= removeMethodArray.length; i++) {
@@ -346,7 +350,7 @@ public class PresentationCL{
                     BN = BNScan(scanner);
                     response response = service.removeSupplier(BN);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
-                    else System.out.println("The operation was completed successfully");
+                    else System.out.println("The operation was completed successfully\n");
                 }
                 case 2 -> {
                     BN = BNScan(scanner);
@@ -371,18 +375,11 @@ public class PresentationCL{
                 case 5 -> {
                     BN = BNScan(scanner);
                     int itemId = itemScan(scanner);
-                    response response = service.removeItemFromSupplier(BN, itemId);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
-                    else System.out.println("The operation was completed successfully\n");
-                }
-                case 6 -> {
-                    BN = BNScan(scanner);
-                    int itemId = itemScan(scanner);
                     response response = service.removeQuantityDocument(BN, itemId);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 7 -> mainRun(false);
+                case 6 -> mainRun(false);
                 default ->{
                     System.out.println("illegal option!!!");
                     toContinue(scanner , false);
@@ -416,9 +413,9 @@ public class PresentationCL{
                 case 2 -> {
                     BN = BNScan(scanner);
                     int bankNumber = bankNumberScan(scanner);
-                    int brunchNumber = brunchNumberScan(scanner);
+                    int branchNumber = branchNumberScan(scanner);
                     int bankAccount = bankAccountScan(scanner);
-                    response response = service.updateSupplierBankAccount(BN, bankNumber , brunchNumber, bankAccount);
+                    response response = service.updateSupplierBankAccount(BN, bankNumber , branchNumber, bankAccount);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
@@ -570,24 +567,24 @@ public class PresentationCL{
             try {
                 bankNumber = scanner.nextInt();
             }catch (Exception e) {
-                System.out.println("bank account must be a number\n");
+                System.out.println("bank number must be a number\n");
             }
         }
         return bankNumber;
     }
 
-    private int brunchNumberScan(Scanner scanner){
-        int brunchNumber = -1;
-        while(brunchNumber == -1){
-            System.out.println("please enter supplier bank brunch number");
+    private int branchNumberScan(Scanner scanner){
+        int branchNumber = -1;
+        while(branchNumber == -1){
+            System.out.println("please enter supplier bank branch number");
             try {
                 scanner.nextLine();
-                brunchNumber = scanner.nextInt();
+                branchNumber = scanner.nextInt();
             }catch (Exception e) {
-                System.out.println("bank account must be a number\n");
+                System.out.println("branch number must be a number\n");
             }
         }
-        return brunchNumber;
+        return branchNumber;
     }
 
     private int bankAccountScan(Scanner scanner){

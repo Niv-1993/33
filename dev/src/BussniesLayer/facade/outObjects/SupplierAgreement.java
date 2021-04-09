@@ -21,4 +21,8 @@ public class SupplierAgreement {
                 "\tconstant time: " + constantTime + " \n" +
                 "\tship to us: " + shipToUs;
     }
+
+    public String toStringShipToUs(){
+        return shipToUs + "\n";
+    }
 }
