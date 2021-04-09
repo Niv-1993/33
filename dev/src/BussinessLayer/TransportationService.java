@@ -34,16 +34,7 @@ public class TransportationService {
     public void setSuppliersItem(long transId, HashMap<Supplier, List<Pair<Item, Integer>>> s){
         Transportation t = getTransportationById(transId);
         List< List<Pair<Item, Integer>>> pairs= new ArrayList<>(s.values());
-        List< List<Pair<Item, Integer>>> pairs2=null;
-        if (t.getDeliveryItems()!=null)
-            pairs2= new ArrayList<>(t.getDeliveryItems().values());
-        checkValidation(pairs,pairs2);
-        for (List<Pair<Item, Integer>> quantity:pairs) {
-            for (Pair<Item, Integer> pair: quantity) {
-                if(pair.getSec()<0)
-                    throw new IllegalArgumentException("illegal item quantity. item id: "+pair.getFir().getId());
-            }
-        }
+        checkQuantity(pairs);
         t.setSuppliers(s);
     }
 
@@ -65,17 +56,16 @@ public class TransportationService {
     public void setDeliveryItems(long transId, HashMap<Branch,List<Pair<Item,Integer>>> deliveryItems){
         Transportation t = getTransportationById(transId);
         List< List<Pair<Item, Integer>>> pairs=new ArrayList<>(deliveryItems.values());
-        List< List<Pair<Item, Integer>>> pairs2=null;
-        if (t.getSuppliers()!=null)
-            pairs2= new ArrayList<>(t.getSuppliers().values());
-        //checkValidation(pairs,pairs2);
+        checkQuantity(pairs);
+        t.setDeliveryItems(deliveryItems);
+    }
+    private void checkQuantity(List< List<Pair<Item, Integer>>> pairs){
         for (List<Pair<Item, Integer>> quantity:pairs) {
             for (Pair<Item, Integer> pair: quantity) {
-                if(pair.getSec()<0)
+                if(pair.getSec()<=0)
                     throw new IllegalArgumentException("illegal item quantity. item id: "+pair.getFir().getId());
             }
         }
-        t.setDeliveryItems(deliveryItems);
     }
 
     /**
@@ -117,12 +107,15 @@ public class TransportationService {
         return tra;
     }
 
+
+
+    //maybe later
     /**
      * Method that check if all items from list's list pairsS are in list's list pairsS2.
      * @param pairsS:  the first list's list to check if all it's values are in the second list.
      * @param pairsS2: the second list we check in.
      */
-    private void checkValidation(List<List<Pair<Item, Integer>>> pairsS, List<List<Pair<Item, Integer>>> pairsS2) {
+    /*private void checkValidation(List<List<Pair<Item, Integer>>> pairsS, List<List<Pair<Item, Integer>>> pairsS2) {
 
         if(pairsS!=null&pairsS2!=null){
           for (List<Pair<Item, Integer>> lis1:pairsS){
@@ -140,7 +133,7 @@ public class TransportationService {
                 }
             }
         }
-    }
+    }*/
 
 
     /**

@@ -41,9 +41,7 @@ public class Transportation {
         this.leavingTime = leavingTime;
         this.suppliers = suppliers;
     }
-    public void setShippingArea(ShippingArea shippingArea) {
-        this.shippingArea = shippingArea;
-    }
+
 
     /**
      * Sets new data.
@@ -63,25 +61,33 @@ public class Transportation {
      * @param deliveryItems: the items and branched hashmap.
      */
     public void setDeliveryItems(HashMap<Branch, List<Pair<Item, Integer>>> deliveryItems) {
-        List<Branch> branches = new ArrayList<>(deliveryItems.keySet());
-        List<Branch> noSameArea = new ArrayList<>();
-        boolean exp = false;
-        for(Branch b: branches){
-            if(!b.getShippingArea().equals(shippingArea)){
-                noSameArea.add(b);
-                exp = true;
-            }
-        }
-        if(exp){
-            throw new IllegalArgumentException(noSameArea.toString() + "not in " + shippingArea .toString());
-        }
+        List<Branch> b = new ArrayList<>(deliveryItems.keySet());
+        checkArea(b);
         this.deliveryItems = deliveryItems;
     }
 
     public void setSuppliers(HashMap<Supplier, List<Pair<Item, Integer>>> suppliers) {
-
         this.suppliers = suppliers;
     }
+    private void checkArea(List<? extends Site> sites) {
+        List<Site> noSameArea = new ArrayList<>();
+        boolean exp = false;
+        for(Site site: sites){
+            if(!site.getShippingArea().equals(shippingArea)){
+                noSameArea.add(site);
+                exp = true;
+            }
+        }
+        if(exp){
+            throw new IllegalArgumentException("the site: " +noSameArea.toString() + "not in " + shippingArea .toString());
+        }
+    }
+    public void setShippingArea(ShippingArea shippingArea) {
+        this.shippingArea = shippingArea;
+    }
+
+
+
 
     /**
      * Set driver to the transportation.

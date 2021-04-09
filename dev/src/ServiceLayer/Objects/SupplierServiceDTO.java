@@ -1,5 +1,7 @@
 package ServiceLayer.Objects;
 
+import java.util.Objects;
+
 public class SupplierServiceDTO {
 
     private String phone;
@@ -39,4 +41,20 @@ public class SupplierServiceDTO {
     public void setContactName(String contactName) { this.contactName = contactName; }
 
     public void setPhone(String phone) { this.phone = phone; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SupplierServiceDTO that = (SupplierServiceDTO) o;
+        return id == that.id &&
+                Objects.equals(phone, that.phone) &&
+                Objects.equals(contactName, that.contactName) &&
+                Objects.equals(Area, that.Area);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(phone, contactName, id, Area);
+    }
 }

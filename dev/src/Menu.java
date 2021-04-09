@@ -103,7 +103,7 @@ public class Menu {
         while (!finish) {
             System.out.println("press 1 to add a truck");
             System.out.println("press 2 to add a driver");
-            System.out.println("press 3 t add a supplier");
+            System.out.println("press 3 to add a suppliers and items");
             System.out.println("press 4 to add branches and items to a branches");
             System.out.println("press 5 to set the truck weight");
             System.out.println("press 6 to submit your transportation");
