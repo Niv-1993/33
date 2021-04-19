@@ -17,7 +17,7 @@ public class ConstConstraint extends Constraint {
     ConstConstraint(int CID, int EID, DayOfWeek day, ShiftType shiftType, String reason) {
         super(CID, EID, shiftType, reason);
         this.day = day;
-        log.debug("Temp constraint " + getCID() + " created");
+        log.debug("Const constraint " + getCID() + " created");
     }
 
     //--------------------------------------methods----------------------------------

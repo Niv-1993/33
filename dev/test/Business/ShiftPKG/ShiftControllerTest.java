@@ -1,11 +1,14 @@
 package Business.ShiftPKG;
 
+import Business.EmployeePKG.Employee;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+import org.mockito.Mock;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -13,12 +16,17 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 public class ShiftControllerTest {
     ShiftController sc;
 
+    @Mock
+    private Employee emp = mock(Employee.class);
+
+
     @Before
-    public void setUp() throws Exception {
+    public void setUp()  {
         sc = new ShiftController();
         sc.createShift(new HashMap<>(),LocalDate.now().plusDays(3),ShiftType.Morning,new HashMap<>());
     }
@@ -29,131 +37,105 @@ public class ShiftControllerTest {
 
     @Test
     public void addConstConstraint() {
-        Constraint constraint = sc.addConstConstraint(2, DayOfWeek.MONDAY, ShiftType.Morning, "sick");
+        int size  = sc.getConstraints().size();
+        sc.addConstConstraint(2, DayOfWeek.MONDAY, ShiftType.Morning, "sick");
         Map<Integer, Constraint> constraints = sc.getConstraints();
-        assertTrue(constraints.containsValue(constraint));
+        assertEquals(constraints.size() - 1, size);
     }
 
     @Test
-    public void addConstraint1() {
-        try {
-            Constraint constraint = sc.addConstraint(2, LocalDate.now().plusDays(3), ShiftType.Morning, "sick");
+    public void addTempConstraint1() {
+            when(emp.getEID()).thenReturn(2);
+            int size  = sc.getConstraints().size();
+            sc.addTempConstraint(emp, LocalDate.now().plusDays(3), ShiftType.Morning, "sick");
             Map<Integer, Constraint> constraints = sc.getConstraints();
-            boolean cid = constraint.getCID()==0;
-            assertTrue(cid & constraints.containsValue(constraint));
-        } catch (Exception e) {
-            fail();
-        }
+            assertEquals(constraints.size() - 1, size);
     }
 
     @Test
-    public void addConstraint2() {
-        try {
-            Constraint constraint = sc.addConstraint(2, LocalDate.of(1990, 10, 19), ShiftType.Morning, "sick");
-            fail();
-        } catch (Exception e) {
-        }
+    public void addTempConstraint2() {
+            when(emp.getEID()).thenReturn(2);
+            String res = sc.addTempConstraint(emp, LocalDate.of(1990, 10, 19), ShiftType.Morning, "sick");
+            assertFalse(res.isEmpty());
     }
 
     @Test
-    public void addConstraint3() {
-        try {
-            Shift s = sc.createShift(new HashMap<>(),LocalDate.of(2021,12,19),ShiftType.Morning,new HashMap<>());
-            s.self_make();
-            Constraint constraint = sc.addConstraint(2, LocalDate.of(2021, 12, 19), ShiftType.Morning, "sick");
-            fail();  //cant add constraint for exists shift
-        } catch (Exception e) {
-        }
+    public void addTempConstraint3() {
+            when(emp.getEID()).thenReturn(2);
+            sc.createShift(new HashMap<>(),LocalDate.now().plusDays(8),ShiftType.Morning,new HashMap<>());
+            sc.selfMakeWeekShifts();
+            String res = sc.addTempConstraint(emp, LocalDate.now().plusDays(8), ShiftType.Morning, "sick");
+            assertFalse(res.isEmpty());  //cant add constraint for shift that was self
     }
 
     @Test
     public void removeConstraint() {
-        try {
-            Constraint constraint = sc.addConstraint(2, LocalDate.now().plusDays(3), ShiftType.Morning, "sick");
+            when(emp.getEID()).thenReturn(2);
+            String res = sc.addTempConstraint(emp, LocalDate.now().plusDays(3), ShiftType.Morning, "sick");
+            assertEquals(sc.getMyConstraints(2).size(), 1);
             sc.removeConstraint(0,2);
-            Map<Integer, Constraint> constraints = sc.getConstraints();
-            assertFalse(constraints.containsKey(0));
-        } catch (Exception e) {
-            fail();
-        }
+            assertEquals(0, sc.getMyConstraints(2).size());
     }
 
 
     @Test
     public void updateReasonConstraint() {
-        try {
-            Constraint constraint = sc.addConstraint(2, LocalDate.now().plusDays(3), ShiftType.Morning, "sick");
+            when(emp.getEID()).thenReturn(2);
+            String res = sc.addTempConstraint(emp, LocalDate.now().plusDays(3), ShiftType.Morning, "sick");
             String str = "tired";
             sc.updateReasonConstraint(0, str,2);
             Map<Integer, Constraint> constraints = sc.getConstraints();
             Constraint c = constraints.get(0);
             assertEquals(str, c.getReason());
-        } catch (Exception e) {
-            fail();
-        }
     }
 
     @Test
     public void updateShiftTypeConstraint() {
-        try {
-            Constraint constraint = sc.addConstraint(2, LocalDate.now().plusDays(3), ShiftType.Morning, "sick");
+            when(emp.getEID()).thenReturn(2);
+            String res = sc.addTempConstraint(emp, LocalDate.now().plusDays(3), ShiftType.Morning, "sick");
             sc.updateShiftTypeConstraint(0, ShiftType.Night,2);
             Map<Integer, Constraint> constraints = sc.getConstraints();
             Constraint c = constraints.get(0);
             assertEquals(ShiftType.Night, c.getShiftType());
-        } catch (Exception e) {
-            fail();
-        }
     }
 
 
     @Test
     public void defaultShifts1() {
-        try {
             Map<ShiftType, Map<RoleType, Integer>> defaultShifts = new HashMap<>();
             HashMap<RoleType, Integer> rolesAmount = new HashMap<>();
             rolesAmount.put(RoleType.Cashier, 2);
             rolesAmount.put(RoleType.Driver, 0);
             defaultShifts.put(ShiftType.Morning, rolesAmount);
             sc.defaultShifts(defaultShifts);
-            boolean cashier = sc.getDefaultShifts().get(ShiftType.Morning).get(RoleType.Cashier) == 2;
-            boolean driver = sc.getDefaultShifts().get(ShiftType.Morning).get(RoleType.Driver) == 0;
-            assertTrue(cashier & driver);
-        } catch (Exception e) {
-            fail();
-        }
+            assertEquals(2, (int) sc.getDefaultShifts().get(ShiftType.Morning).get(RoleType.Cashier));
+            assertEquals(0, (int) sc.getDefaultShifts().get(ShiftType.Morning).get(RoleType.Driver));
     }
 
     @Test
     public void defaultShifts2() {
-        try {
             Map<ShiftType, Map<RoleType, Integer>> defaultShifts = new HashMap<>();
             HashMap<RoleType, Integer> rolesAmount = new HashMap<>();
             rolesAmount.put(RoleType.Cashier, -2);
             defaultShifts.put(ShiftType.Morning, rolesAmount);
-            sc.defaultShifts(defaultShifts);
-            fail(); // role amount is negative
-        } catch (Exception ignored) {
-        }
+            String res = sc.defaultShifts(defaultShifts);
+            assertFalse(res.isEmpty()); // role amount is negative
     }
 
     @Test
     public void getOnlyEmployeeConstraints() {
-        try {
-            Constraint constraint1 = sc.addConstConstraint(2, DayOfWeek.THURSDAY, ShiftType.Morning, "sick");
-            Constraint constraint2 = sc.addConstraint(2, LocalDate.now().plusDays(3), ShiftType.Morning, "feel bad");
-            List<Constraint> list = sc.getOnlyEmployeeConstraints(2);
-            boolean ok = list.size() == 2;
-            for (Constraint c : list) {
-                if (c.getEID() != 2 || !(c.getReason().equals("sick") | c.getReason().equals("feel bad"))) {
-                    ok = false;
-                    break;
-                }
+        when(emp.getEID()).thenReturn(2);
+        sc.addConstConstraint(2, DayOfWeek.THURSDAY, ShiftType.Morning, "sick");
+        String res = sc.addTempConstraint(emp, LocalDate.now().plusDays(3), ShiftType.Morning, "feel bad");
+        List<Constraint> list = sc.getMyConstraints(2);
+        boolean ok = list.size() == 2;
+        for (Constraint c : list) {
+            if (c.getEID() != 2 || !(c.getReason().equals("sick") | c.getReason().equals("feel bad"))) {
+                ok = false;
+                break;
             }
-            assertTrue(ok);
-        } catch (Exception e) {
-            fail();
         }
+        assertTrue(ok);
     }
 
 }

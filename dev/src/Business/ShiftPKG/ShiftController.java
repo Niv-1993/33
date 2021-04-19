@@ -1,22 +1,21 @@
 package Business.ShiftPKG;
 
+import Business.EmployeePKG.Employee;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.*;
-
 import org.apache.log4j.Logger;
 
 public class ShiftController {
     private final static Logger log = Logger.getLogger(ShiftController.class);
     //-------------------------------------fields------------------------------------
 
-    private Map<Integer, Shift> shifts;
-    private Map<Integer, Constraint> constraints;
-    private Map<Integer, TempConstraint> buildShiftConstraints;
+    private final Map<Integer, Shift> shifts;
+    private final Map<Integer, Constraint> constraints;
+    private final Map<Integer, TempConstraint> buildShiftConstraints;
     private Map<ShiftType, Map<RoleType, Integer>> defaultShifts;
     private int shiftCounter;
     private int constraintCounter;
@@ -40,86 +39,122 @@ public class ShiftController {
 
     //--------------------------------------methods----------------------------------
 
-    public Constraint addConstConstraint(int EID, DayOfWeek day, ShiftType shiftType, String reason) {
+    public void addConstConstraint(int EID, DayOfWeek day, ShiftType shiftType, String reason) {
         //create constraint and add to constraints field
         Constraint newCon = new ConstConstraint(constraintCounter, EID, day, shiftType, reason);
         constraints.put(newCon.getCID(), newCon);
         constraintCounter++;
         log.debug("added new const constraint for EID: " + EID + ", Day: " + day.name() + " , ShiftType: " + shiftType);
-        return newCon;
     }
 
-    public Constraint addConstraint(int EID, LocalDate c_date, ShiftType shiftType, String reason) throws Exception {
+    public String addTempConstraint(Employee emp, LocalDate c_date, ShiftType shiftType, String reason) {
         //create constraint and add to constraints field
-        if (c_date.isBefore(LocalDate.now())) throw new Exception("Invalid date - date is from the past");
+        if (c_date.isBefore(LocalDate.now())) {
+            log.error("date : " + c_date +" is from the past");
+            return "Invalid date - date is from the past";
+        }
         Shift s = getShiftByDate(c_date, shiftType);
         if (s != null) {
             if (s.WasSelfMake()) {
-                log.error("EID: " + EID + " try to add constraint for shift that was self make");
-                throw new Exception("You can't add constraint for shift that close");
+                log.error("EID: " + emp.getEID() + " try to add constraint for shift that was self make");
+                return "You can't add constraint for shift that close";
             }
-            Constraint newCon = new TempConstraint(constraintCounter, EID, c_date, shiftType, reason);
+            Constraint newCon = new TempConstraint(constraintCounter, emp.getEID(), c_date, shiftType, reason);
             constraints.put(newCon.getCID(), newCon);
             constraintCounter++;
-            s.RemoveEmpFromOptionals(EID);
-            log.debug("added new const constraint for EID: " + EID + ", Date: " + c_date + " , ShiftType: " + shiftType);
-            return newCon;
+            s.RemoveEmpFromOptionals(emp);
+            log.debug("added new const constraint for EID: " + emp.getEID() + ", Date: " + c_date + " , ShiftType: " + shiftType);
+            return "";
         } else {
-            log.error("EID: " + EID + " try to add constraint for shift that not exists");
-            throw new Exception("You can't add constraint for shift that not exists");
+            log.error("EID: " + emp.getEID() + " try to add constraint for shift that not exists");
+            return "You can't add constraint for shift that not exists";
         }
     }
 
-    public Constraint removeConstraint(int CID, int EID) throws Exception {
-        constraintIsExist(CID);
-        CIDOfThisEID(CID, EID);
+    public String removeConstraint(int CID, int EID)  {
+        if(!constraintIsExist(CID)){
+            log.error("CID: " + CID + " is not exist");
+            return ("Not legal Constraint ID: " + CID);
+        }
+        if(constraints.get(CID).getEID() != EID){
+            log.error("CID: " + CID + " isn't constraint of EID: " + EID);
+            return ("This constraint is not yours");
+        }
         Constraint c = constraints.remove(CID);
         if (c == null) {
             log.error("CID: " + CID + " is not exist");
-            throw new Exception("Not legal CID :" + CID);
+            return ("Not legal CID :" + CID);
         }
         log.debug("CID: " + CID + " was removed");
-        return c;
+        return "";
     }
 
-    public void defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaultShifts) throws Exception {
+    public String defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaultShifts) {
         for (Map.Entry<ShiftType, Map<RoleType, Integer>> e : defaultShifts.entrySet()) {
-            checkIfAmountNegative(e.getValue());
+            String response = checkIfAmountNegative(e.getValue());
+            if(response!=null) return response;
         }
         this.defaultShifts = defaultShifts;
         log.debug("default shifts defined");
+        return "";
     }
 
     //assume that sunday-thursday will be default shifts and on friday only morning shift.
-    public void createWeekShifts(Map<RoleType, List<String[]>> optionals) throws Exception {
+    public List<Shift> createWeekShifts(Map<RoleType, List<Employee>> optionals) {
         LocalDate date = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
-        List<Shift> shifts = new ArrayList<>();
+        List<Shift> shiftsWithoutShiftManager = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             for (Map.Entry<ShiftType, Map<RoleType, Integer>> m : defaultShifts.entrySet()) {
                 ShiftType shiftType = m.getKey();
                 if (shiftAlreadyCreated(date.plusDays(i), shiftType)) continue;
-                Shift s = createShift(defaultShifts.get(shiftType), date.plusDays(i), shiftType, optionals);  // default shift
+                Shift s = createShiftPrivate(defaultShifts.get(shiftType), date.plusDays(i), shiftType, optionals);  // default shift
                 if (!s.HasShiftManager())
-                    shifts.add(s);
+                    shiftsWithoutShiftManager.add(s);
             }
         }
-        Shift friday = createShift(defaultShifts.get(ShiftType.Morning), date.plusDays(5), ShiftType.Morning, optionals);  // default shift
+        Shift friday = createShiftPrivate(defaultShifts.get(ShiftType.Morning), date.plusDays(5), ShiftType.Morning, optionals);  // default shift
         if (!friday.HasShiftManager())
-            shifts.add(friday);
-        if (!shifts.isEmpty()) {
-            StringBuilder s = new StringBuilder();
-            shifts.forEach(shift -> {
-                s.append("Shift Date: ").append(shift.getDate()).append("    Type: ").append(shift.getShiftType()).append("\n");
-            });
-            s.append("*** Do not have Shift Managers ***");
-            throw new Exception(s.toString());
-        }
+            shiftsWithoutShiftManager.add(friday);
+        return shiftsWithoutShiftManager;
     }
 
-    public Shift createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<String[]>> optionals) throws Exception {
+    private Shift createShiftPrivate(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<Employee>> optionals) {
         //delete from optionals by constraints
         optionals = deepCopy(optionals);
-        checkIfAmountNegative(rolesAmount);
+        createOptionals(optionals, date, shiftType);
+        Shift s = new Shift(shiftCounter++, rolesAmount, optionals, date, shiftType);
+        if (s.HasShiftManager()) {
+            List<Integer> shiftManager = s.insertShiftManager();
+            createBuildConstraints(shiftManager, shiftType, date);  //create build constraint for shift manager
+        }
+        shifts.put(s.getSID(), s);
+        return s;
+    }
+
+
+    public String createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<Employee>> optionals) {
+        //delete from optionals by constraints
+        optionals = deepCopy(optionals);
+        if (LocalDate.now().compareTo(date) > 0) {
+            log.error("date: " + date + "is from the past");
+            return ("date : " + date + " is from the past");
+        }
+        String response = checkIfAmountNegative(rolesAmount);
+        if ( response == null) {
+            createOptionals(optionals, date, shiftType);
+            Shift s = new Shift(shiftCounter++, rolesAmount, optionals, date, shiftType);
+            if (s.HasShiftManager()) {
+                List<Integer> shiftManager = s.insertShiftManager();
+                createBuildConstraints(shiftManager, shiftType, date);  //create build constraint for shift manager
+            }
+            shifts.put(s.getSID(), s);
+            if(!s.HasShiftManager()) return ("Shift Date:" +s.getDate()+" has been created BUT does not have a ShiftManager");
+            return "";
+        }
+        return response;
+    }
+
+    private void createOptionals(Map<RoleType, List<Employee>> optionals,LocalDate date ,ShiftType shiftType){
         for (Map.Entry<Integer, Constraint> c : constraints.entrySet()) {
             if (c.getValue().relevant(date, shiftType))
                 RemoveEmpFromOptionals(c.getValue().getEID(), optionals);
@@ -129,17 +164,10 @@ public class ShiftController {
                 RemoveEmpFromOptionals(c.getValue().getEID(), optionals);
             }
         }
-        Shift s = new Shift(shiftCounter++, rolesAmount, optionals, date, shiftType);
-        if (s.HasShiftManager()) {
-            List<Integer> shiftManager = s.insertShiftManager();
-            createBuildConstraints(shiftManager, shiftType, date);  //creat build constraint for shift manager
-        }
-        shifts.put(s.getSID(), s);
-        return s;
     }
 
     //self make for all shifts that next week and not was self make
-    public void selfMakeWeekShifts() throws Exception {
+    public void selfMakeWeekShifts()  {
         for (Map.Entry<Integer, Shift> m : shifts.entrySet()) {
             if (shiftIsNextWeek(m.getValue().getDate())) {
                 Shift s = m.getValue();
@@ -150,43 +178,44 @@ public class ShiftController {
     }
 
     //add to specific role in this Shift
-    public void addEmpToShift(int SID, int EID, RoleType role, String name) throws Exception {
-        shiftIsExists(SID);
-        (shifts.get(SID)).addEmpToShift(EID, role, name);
+    public String addEmpToShift(int SID, RoleType role, Employee emp){
+        if(shifts.get(SID)==null) {
+            log.error("SID: " + SID + " is not exists");
+            return ("Not legal SID: " + SID);
+        }
+        return (shifts.get(SID)).addEmpToShift(role, emp);
     }
 
-    /**
-     *
-     * @param SID
-     * @param EID
-     * @param roles
-     * @throws Exception
-     * @return return false if shift does not exits, else true
-     */
-    public void removeEmpFromShift(int SID, int EID, List<RoleType> roles) throws Exception {
-        shiftIsExists(SID);
+
+    public String removeEmpFromShift(int SID, Employee emp) {
         Shift s = shifts.get(SID);
-        s.removeEmpFromShift(EID, roles);
+        if(s==null) {
+            log.error("SID: " + SID + " is not exists");
+            return ("Not legal SID: " + SID);
+        }
+        String response = s.removeEmpFromShift(emp);
+        if(!response.isEmpty()) return response;
         for (Map.Entry<Integer, TempConstraint> e : buildShiftConstraints.entrySet()) {   //remove buildConstraint
             TempConstraint c = e.getValue();
-            if (c.getEID() == EID && c.getDate().equals(s.getDate())) {
-                buildShiftConstraints.remove(c);
+            if (c.getEID() == emp.getEID() && c.getDate().equals(s.getDate())) {
+                buildShiftConstraints.remove(c.getCID());
                 log.debug("Build constraint - CID: " + c.getCID() + " removed");
             }
         }
+        return "";
     }
 
     //when fire employee from the branch
-    public void removeFireEmp(int EID, String name) {
+    public void removeFireEmp(Employee emp) {
         for (Map.Entry<Integer, Shift> s : shifts.entrySet()) {
-            s.getValue().removeFireEmp(EID, name);
+            s.getValue().removeFireEmp(emp);
         }
     }
 
     //when add new employee to the branch
-    public void addToOptionals(int EID, String name, RoleType role) {
+    public void addToOptionals(Employee emp, RoleType role) {
         for (Map.Entry<Integer, Shift> s : shifts.entrySet()) {
-            s.getValue().addToOptionals(EID, name, role);
+            s.getValue().addToOptionals(emp, role);
         }
     }
 
@@ -200,16 +229,16 @@ public class ShiftController {
         return filterShifts;
     }
 
-    public List<Shift> getMyShifts(int EID) {
+    public List<Shift> getMyShifts(Employee emp) {
         List<Shift> list = new ArrayList<>();
         for (Map.Entry<Integer, Shift> s : shifts.entrySet()) {
-            if (s.getValue().getEmployees().get(EID) != null)  //if EID is in this Shift
+            if (s.getValue().getEmployees().get(emp) != null)  //if EID is in this Shift
                 list.add(s.getValue());
         }
         return list;
     }
 
-    public List<Constraint> getOnlyEmployeeConstraints(int EID) {
+    public List<Constraint> getMyConstraints(int EID) {
         ArrayList<Constraint> l = new ArrayList<>();
         for (Map.Entry<Integer, Constraint> c : constraints.entrySet()) {
             if (c.getValue().getEID() == EID)
@@ -218,52 +247,67 @@ public class ShiftController {
         return l;
     }
 
-    public void updateAmountRole(int SID, RoleType role, int newAmount) throws Exception {
-        shiftIsExists(SID);
-        (shifts.get(SID)).updateRolesAmount(role, newAmount);
-    }
-
-    public void updateReasonConstraint(int CID, String newReason, int EID) throws Exception {
-        constraintIsExist(CID);
-        CIDOfThisEID(CID, EID);
-        (constraints.get(CID)).updateReason(newReason);
-        log.debug("CID: " + CID + " update his reason");
-    }
-
-    public void updateShiftTypeConstraint(int CID, ShiftType newType, int EID) throws Exception {
-        constraintIsExist(CID);
-        CIDOfThisEID(CID, EID);
-        (constraints.get(CID)).updateShiftType(newType);
-        log.debug("CID: " + CID + " update his shift type");
-    }
-
-    public void updateName(int EID, List<RoleType> roles, String newName) {
-        for (Map.Entry<Integer, Shift> s : shifts.entrySet()) {
-            s.getValue().updateName(EID, roles, newName);
+    public String updateAmountRole(int SID, RoleType role, int newAmount) {
+        Shift s = shifts.get(SID);
+        if(s==null) {
+            log.error("SID: " + SID + " is not exists");
+            return ("Not legal SID: " + SID);
         }
+        return s.updateRolesAmount(role, newAmount);
     }
+
+    public String updateReasonConstraint(int CID, String newReason, int EID) {
+        if(!constraintIsExist(CID)){
+            log.error("CID: " + CID + " is not exist");
+            return ("Not legal Constraint ID: " + CID);
+        }
+        Constraint c = constraints.get(CID);
+        if(c.getEID() != EID){
+            log.error("CID: " + CID + " isn't constraint of EID: " + EID);
+            return ("This constraint is not yours");
+        }
+        c.updateReason(newReason);
+        log.debug("CID: " + CID + " update his reason");
+        return "";
+    }
+
+    public String updateShiftTypeConstraint(int CID, ShiftType newType, int EID) {
+        if(!constraintIsExist(CID)){
+            log.error("CID: " + CID + " is not exist");
+            return ("Not legal Constraint ID: " + CID);
+        }
+        Constraint c = constraints.get(CID);
+        if(c.getEID() != EID){
+            log.error("CID: " + CID + " isn't constraint of EID: " + EID);
+            return ("This constraint is not yours");
+        }
+        c.updateShiftType(newType);
+        log.debug("CID: " + CID + " update his shift type");
+        return "";
+    }
+
 
     //remove emp from every shift's optionals
-    private void RemoveEmpFromOptionals(int EID, Map<RoleType, List<String[]>> optionals) {
-        for (Map.Entry<RoleType, List<String[]>> e : optionals.entrySet()) {
-            List<String[]> l = e.getValue();
-            if (!e.getValue().isEmpty()) {
-                l.removeIf(arr -> Integer.parseInt(arr[0]) == EID);
+    private void RemoveEmpFromOptionals(int EID, Map<RoleType, List<Employee>> optionals) {
+        for (Map.Entry<RoleType, List<Employee>> e : optionals.entrySet()) {
+            List<Employee> l = e.getValue();
+            if (!l.isEmpty()) {
+                l.removeIf(emp -> emp.getEID() == EID);
             }
         }
         log.debug("EID: " + EID + " remove from optionals");
     }
 
 
-    private void createBuildConstraints(List<Integer> listOfEmployees, ShiftType shiftType, LocalDate date) throws Exception {
+    private void createBuildConstraints(List<Integer> listOfEmployees, ShiftType shiftType, LocalDate date)  {
         for (Integer EID : listOfEmployees) {
+            TempConstraint bConstraint;
             if (shiftType.equals(ShiftType.Morning)) {
-                TempConstraint bConstraint = new TempConstraint(constraintCounter, EID, date, ShiftType.Night, "Work in morning shift this day");
-                buildShiftConstraints.put(bConstraint.getCID(), bConstraint);
+                bConstraint = new TempConstraint(constraintCounter, EID, date, ShiftType.Night, "Work in morning shift this day");
             } else {
-                TempConstraint bConstraint = new TempConstraint(constraintCounter, EID, date, ShiftType.Morning, "Work in Night shift this day");
-                buildShiftConstraints.put(bConstraint.getCID(), bConstraint);
+                bConstraint = new TempConstraint(constraintCounter, EID, date, ShiftType.Morning, "Work in Night shift this day");
             }
+            buildShiftConstraints.put(bConstraint.getCID(), bConstraint);
         }
     }
 
@@ -273,7 +317,7 @@ public class ShiftController {
         return !(shiftDate.isBefore(nextSunday) || shiftDate.isAfter(nextSaturday));
     }
 
-    //return -1 if not exists
+    //return null if not exists
     private Shift getShiftByDate(LocalDate date, ShiftType shiftType) {
         for (Map.Entry<Integer, Shift> m : shifts.entrySet()) {
             Shift s = m.getValue();
@@ -283,13 +327,7 @@ public class ShiftController {
         return null;
     }
 
-    private void shiftIsExists(int SID) throws Exception {
-        Shift s = shifts.get(SID);
-        if (s == null) {
-            log.error("SID: " + SID + " is not exists");
-            throw new Exception("Not legal SID: " + SID);
-        }
-    }
+
 
     private boolean shiftAlreadyCreated(LocalDate date, ShiftType shiftType) {
         for (Map.Entry<Integer, Shift> shift : shifts.entrySet()) {
@@ -299,42 +337,30 @@ public class ShiftController {
         return false;
     }
 
-    private void constraintIsExist(int CID) throws Exception {
+    private boolean constraintIsExist(int CID) {
         Constraint c = constraints.get(CID);
-        if (c == null) {
-            log.error("CID: " + CID + " is not exist");
-            throw new Exception("Not legal Constraint ID: " + CID);
-        }
+        return c != null;
     }
 
-    private void CIDOfThisEID(int CID, int EID) throws Exception {
-        if (constraints.get(CID).getEID() != EID) {
-            log.error("CID: " + CID + " isn't constraint of EID: " + EID);
-            throw new Exception("This constraint is not yours");
-        }
-    }
 
-    private void checkIfAmountNegative(Map<RoleType, Integer> defaultShifts) throws Exception {
+    private String checkIfAmountNegative(Map<RoleType, Integer> defaultShifts){
         for (Map.Entry<RoleType, Integer> e : defaultShifts.entrySet()) {
             if (e.getValue() < 0) {
                 log.error("Role amount for role: " + e.getKey() + " is negative: " + e.getValue());
-                throw new Exception("Role amount for role: " + e.getKey() + " is negative");
+                return ("Role amount for role: " + e.getKey() + " is negative");
             }
             if (e.getKey().equals(RoleType.ShiftManager) && e.getValue() != 1) {
                 log.error("Shift Manager amount is not legal: " + e.getValue());
-                throw new Exception("Shift Manager amount is not legal: " + e.getValue());
+                return ("Shift Manager amount is not legal: " + e.getValue());
             }
         }
+        return null;
     }
 
-    private Map<RoleType, List<String[]>> deepCopy(Map<RoleType, List<String[]>> optionals) {
-        Map<RoleType, List<String[]>> copy = new HashMap<>();
-        optionals.forEach((roleType, strings) -> {
-            List<String[]> cloneL = new ArrayList<>();
-            strings.forEach(s -> {
-                String[] clonePair = new String[]{s[0], s[1]};
-                cloneL.add(clonePair);
-            });
+    private Map<RoleType, List<Employee>> deepCopy (Map<RoleType, List<Employee>> optionals) {
+        Map<RoleType, List<Employee>> copy = new HashMap<>();
+        optionals.forEach((roleType, employees) -> {
+            List<Employee> cloneL = new ArrayList<>(employees);
             copy.put(roleType, cloneL);
         });
         return copy;

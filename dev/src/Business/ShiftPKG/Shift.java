@@ -1,5 +1,6 @@
 package Business.ShiftPKG;
 
+import Business.EmployeePKG.Employee;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
 import org.apache.log4j.Logger;
@@ -11,34 +12,29 @@ public class Shift {
     //-------------------------------------fields------------------------------------
 
     private final int SID;
-    private Map<Integer, String[]> employees;  // [0]->RoleType in String, [1]->name
-    private Map<RoleType, Integer> rolesAmount;
-    private Map<RoleType, List<String[]>> optionals; //[0]-ID, [1]-Name
+    private final Map<Employee, RoleType> employees;
+    private final Map<RoleType, Integer> rolesAmount;
+    private final Map<RoleType, List<Employee>> optionals;
     private boolean complete;  //employees == roles amount
-    private LocalDate date;
-    private ShiftType shiftType;
+    private final LocalDate date;
+    private final ShiftType shiftType;
     private boolean wasSelfMake;
     private boolean hasShiftManager;
 
     //------------------------------------constructor--------------------------------
 
-    public Shift(int SID, Map<RoleType, Integer> rolesAmount, Map<RoleType, List<String[]>> optionals, LocalDate date, ShiftType shiftType) throws Exception {
+    public Shift(int SID, Map<RoleType, Integer> rolesAmount, Map<RoleType, List<Employee>> optionals, LocalDate date, ShiftType shiftType) {
         this.SID = SID;
         employees = new HashMap<>();
-        checkIfAmountNegAndHasSM(rolesAmount);  //check if legal (not negative)
         this.rolesAmount = rolesAmount;
         this.optionals = optionals;
         this.complete = false;
-        if (LocalDate.now().compareTo(date) > 0) {
-            log.error("date: " + date + "is from the past");
-            throw new Exception("date : " + date + " is from the past");
-        }
         this.date = date;
         this.shiftType = shiftType;
         this.wasSelfMake = false;
-        log.debug("shift: " + SID + " created");
         if(optionals.containsKey(RoleType.ShiftManager))
             hasShiftManager = !optionals.get(RoleType.ShiftManager).isEmpty();
+        log.debug("shift: " + SID + " created");
     }
 
 
@@ -46,14 +42,14 @@ public class Shift {
 
     //shift controller call this function after create shift to insert shift manager to this shift
     public List<Integer> insertShiftManager() {
-        String[] sm = optionals.get(RoleType.ShiftManager).remove(0);
-        employees.put(Integer.parseInt(sm[0]), new String[]{RoleType.ShiftManager.name(), sm[1]});
+        Employee sm = optionals.get(RoleType.ShiftManager).remove(0);
+        employees.put(sm,RoleType.ShiftManager);
         List<Integer> listOfSM = new LinkedList<>();
-        listOfSM.add(Integer.parseInt(sm[0]));
+        listOfSM.add(sm.getEID());
         return listOfSM;
     }
 
-    public List<Integer> self_make() throws Exception {
+    public List<Integer> self_make()  {
         if (!wasSelfMake) {
             for (Map.Entry<RoleType, Integer> e : rolesAmount.entrySet()) {
                 if (e.getKey().equals(RoleType.ShiftManager)) continue;
@@ -63,134 +59,104 @@ public class Shift {
                     if (optionals.get(role) == null || optionals.get(role).isEmpty()) {
                         break;
                     } else {
-                        String[] emp = optionals.get(role).remove(0);  // delete from optionals
-                        employees.put(Integer.parseInt(emp[0]), new String[]{role.name(), emp[1]});  //add to employees
-                        RemoveEmpFromOptionals(Integer.parseInt(emp[0]));
+                        Employee emp = optionals.get(role).remove(0);  // delete from optionals
+                        employees.put(emp,role);  //add to employees
+                        RemoveEmpFromOptionals(emp);
                         amount--;
                     }
                 }
             }
             complete = isComplete();
             wasSelfMake = true;
-            return new ArrayList<>(employees.keySet());
+            ArrayList<Integer> emps = new ArrayList<>();
+            employees.forEach((emp,roleType) -> emps.add(emp.getEID()));
+            return emps;
         }
         return new ArrayList<>();
     }
 
-    public void addEmpToShift(int EID, RoleType role, String name) throws Exception {
+    public String addEmpToShift(RoleType role,Employee emp) {
         //check if EID can work in this shift (in optionals)
-        List<String[]> list = optionals.get(role);
-        boolean canWork = false;
-        if (list != null) {
-            for (String[] s : list) {
-                if (Integer.parseInt(s[0]) == EID && s[1].equals(name)) {
-                    canWork = true;
-                    break;
-                }
-            }
-        }
+        List<Employee> list = optionals.get(role);
+        boolean canWork = list.contains(emp);
         if (!canWork) {
-            log.error("EID: " + EID + " isn't option to be: " + role + " in SID: " + SID);
-            throw new Exception("Employee ID: " + EID + " isn't option to be " + role + " in this shift");
+            log.error("EID: " + emp.getEID() + " isn't option to be: " + role + " in SID: " + SID);
+            return ("Employee ID: " + emp.getEID() + " isn't option to be " + role + " in this shift");
         }
         //check if there is empty role for this roleType in rolesAmount
         if (roleIsFull(role)) {
             log.error("all the option for Role: " + role + " are close");
-            throw new Exception("All the options for Role: " + role + " are close");
+            return ("All the options for Role: " + role + " are close");
         }
-        employees.put(EID, new String[]{role.name(), name});
-        RemoveEmpFromOptionals(EID);
+        employees.put(emp,role);
+        RemoveEmpFromOptionals(emp);
         complete = isComplete();
         hasShiftManager = role.equals(RoleType.ShiftManager);
-        log.debug("EID: " + EID + "added to SID: " + SID);
+        log.debug("EID: " + emp.getEID() + "added to SID: " + SID);
+        return "";
     }
 
-    public void removeEmpFromShift(int EID, List<RoleType> roles) throws Exception {
-        String[] emp = employees.remove(EID);  //return null if EID isn't in this shift
-        if (emp == null) {
-            log.error("EID: " + EID + " isn't in this shift");
-            throw new Exception("Employee ID: " + EID + " isn't in this shift");
+    public String removeEmpFromShift(Employee emp){
+        RoleType roleOfRemoved = employees.remove(emp);  //return null if EID isn't in this shift
+        if (roleOfRemoved == null) {
+            log.error("EID: " + emp.getEID() + " isn't in this shift");
+            return ("Employee ID: " + emp.getEID() + " isn't in this shift");
         }
         complete = false;
-        if (RoleType.valueOf(emp[0]).equals(RoleType.ShiftManager)) {
+        if (roleOfRemoved.equals(RoleType.ShiftManager)) {
             hasShiftManager = false;
         }
-        roles.forEach(roleType -> {
-            optionals.get(roleType).add(new String[]{String.valueOf(EID), emp[1]});
+        (emp.getRole()).forEach(roleType -> {
+            optionals.get(roleType).add(emp);
         });
-        log.debug("EID: " + EID + "removed from SID: " + SID);
+        log.debug("EID: " + emp.getEID() + "removed from SID: " + SID);
+        return "";
     }
 
-    public void removeFireEmp(int EID, String name) {
-        String[] s = employees.remove(EID);  //remove employee if he is in this shift
-        if (s != null) {
+    public void removeFireEmp(Employee emp) {
+        RoleType roleOfRemoved = employees.remove(emp);  //remove employee if he is in this shift
+        if (roleOfRemoved != null) {
             complete = false;
-            if (RoleType.valueOf(s[0]).equals(RoleType.ShiftManager)) {
+            if (roleOfRemoved.equals(RoleType.ShiftManager)) {
                 hasShiftManager = false;
             }
         }
-        for (Map.Entry<RoleType, List<String[]>> o : optionals.entrySet()) {
-            List<String[]> listOfEmp = o.getValue();
-            if (listOfEmp != null) {
-                String[] toRemove = {String.valueOf(EID), name};
-                listOfEmp.remove(toRemove);
-            }
+        for (Map.Entry<RoleType, List<Employee>> o : optionals.entrySet()) {
+            List<Employee> listOfEmp = o.getValue();
+            if (listOfEmp != null) listOfEmp.remove(emp);
         }
-        log.debug("EID: " + EID + " removed(fire) from SID: " + SID);
+        log.debug("EID: " + emp.getEID() + " removed(fire) from SID: " + SID);
     }
 
-    public String[] addToOptionals(int EID, String name, RoleType role) {
-        String[] s = {String.valueOf(EID), name};
-        optionals.get(role).add(s);
-        return s;
+    public void addToOptionals(Employee emp,RoleType role) {
+        optionals.get(role).add(emp);
     }
 
-    public void RemoveEmpFromOptionals(int EID) {
-        for (Map.Entry<RoleType, List<String[]>> e : optionals.entrySet()) {
-            List<String[]> l = e.getValue();
-            if (l != null) {
-                l.removeIf(arr -> Integer.parseInt(arr[0]) == EID);
-            }
+    public void RemoveEmpFromOptionals(Employee emp) {
+        for (Map.Entry<RoleType, List<Employee>> e : optionals.entrySet()) {
+            List<Employee> l = e.getValue();
+            if (!l.isEmpty())
+                l.remove(emp);
         }
+        log.debug("EID: " + emp.getEID() + " remove from optionals");
     }
 
-    public void updateName(int eid, List<RoleType> roles, String newName) {
-        if(employees.containsKey(eid))
-            employees.get(eid)[1] = newName;
-        roles.forEach(roleType -> {
-            List<String[]> emps = optionals.get(roleType);
-            emps.forEach(pair -> {
-                if(Integer.parseInt(pair[0]) == eid)
-                    pair[1] = newName;
-            });
-        });
-    }
 
-    public void updateRolesAmount(RoleType role, int newAmount) throws Exception {
+    public String updateRolesAmount(RoleType role, int newAmount){
         if (newAmount < 0) {
-            throw new Exception("The new amount for role: " + role + " is negative");
+            log.error("The new amount for role: " + role +" is negative");
+            return ("The new amount for role: " + role + " is negative");
         }
         rolesAmount.replace(role, newAmount);
+        return "";
     }
 
     private boolean roleIsFull(RoleType role) {
         int amount = rolesAmount.get(role);
-        long count = employees.entrySet().stream().filter(x -> x.getValue()[0].equals((role.name()))).count();
+        long count = employees.entrySet().stream().filter(x -> x.getValue().name().equals((role.name()))).count();
         return count >= amount;
     }
 
-    private void checkIfAmountNegAndHasSM(Map<RoleType, Integer> defaultShifts) throws Exception {
-        for (Map.Entry<RoleType, Integer> e : defaultShifts.entrySet()) {
-            if (e.getValue() < 0) {
-                log.error("Role amount for role: " + e.getKey() + " is negative: " + e.getValue());
-                throw new Exception("Role amount for role: " + e.getKey() + " is negative");
-            }
-            if (e.getKey().equals(RoleType.ShiftManager) && e.getValue()!=1) {
-                log.error("Shift Manager amount is not legal: "+ e.getValue());
-                throw new Exception("Shift Manager amount is not legal: "+ e.getValue());
-            }
-        }
-    }
 
     private boolean isComplete() {
         int amount = 0;
@@ -209,7 +175,7 @@ public class Shift {
         return shiftType;
     }
 
-    public Map<Integer, String[]> getEmployees() {
+    public Map<Employee, RoleType> getEmployees() {
         return employees;
     }
 
@@ -221,7 +187,7 @@ public class Shift {
         return rolesAmount;
     }
 
-    public Map<RoleType, List<String[]>> getOptionals() {
+    public Map<RoleType, List<Employee>> getOptionals() {
         return optionals;
     }
 

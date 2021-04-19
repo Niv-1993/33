@@ -11,12 +11,8 @@ public class TempConstraint extends Constraint {
     private final LocalDate date;
 
     //------------------------------------constructor--------------------------------
-    TempConstraint(int CID, int EID, LocalDate date, ShiftType shiftType, String reason) throws Exception {
+    TempConstraint(int CID, int EID, LocalDate date, ShiftType shiftType, String reason) {
         super(CID, EID,shiftType,reason);
-        if(LocalDate.now().compareTo(date)>0){
-            log.error("date : " + date +" is from the past");
-            throw new Exception("date : " + date +" is from the past");
-        }
         this.date = date;
         log.debug("Temp constraint "+getCID()+" created");
     }
