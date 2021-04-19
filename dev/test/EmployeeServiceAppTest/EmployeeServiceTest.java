@@ -9,10 +9,9 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class EmployeeServiceTest {
-    private iEmployeeService service;
+    private iManagerRoleController service;
     private final int[] bank = {1, 2, 3};
     private final int[] terms = {4, 5, 6};
 
@@ -27,7 +26,7 @@ public class EmployeeServiceTest {
      */
     @Before
     public void setUp() {
-        service = new EmployeeService();
+        service = new ManagerRoleController();
         service.createBranch("00000",1, "Niv", bank, 1000, terms);
     }
 

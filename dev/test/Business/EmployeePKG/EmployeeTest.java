@@ -29,7 +29,7 @@ public class EmployeeTest {
 
     @Before
     public void setUp() throws Exception {
-        personnelManager = new PersonnelManager(1, "Niv", bank, 1000, RoleType.PersonnelManager, LocalDate.now(), terms);
+        personnelManager = new Employee(1, "Niv", bank, 1000, RoleType.PersonnelManager, LocalDate.now(), terms);
         driver = personnelManager.addEmployee(2,"dor",bank,3000,RoleType.Driver,LocalDate.now(),terms,new HashMap<>());
         employees = new HashMap<>();
         employees.put(personnelManager.getEID(),personnelManager);

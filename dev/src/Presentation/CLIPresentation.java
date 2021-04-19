@@ -9,11 +9,11 @@ import java.util.*;
 
 public class CLIPresentation {
     private final Scanner input;
-    private final iEmployeeService service;
+    private final iManagerRoleController service;
     private boolean isManager = false;
 
     public CLIPresentation() {
-        service = new EmployeeService();
+        service = new ManagerRoleController();
         input = new Scanner(System.in);
     }
 
@@ -626,7 +626,15 @@ public class CLIPresentation {
                     createShift();
                     break;
                 case "4":
-                    showError(service.createWeekShifts());
+                    List<Shift> s = service.createWeekShifts().getData();
+                    if (!s.isEmpty()) {
+                        StringBuilder str = new StringBuilder();
+                        s.forEach(shift -> {
+                            str.append("Shift Date: ").append(shift.date).append("    Type: ").append(shift.shiftType).append("\n");
+                        });
+                        str.append("*** Do not have Shift Managers ***");
+                        System.out.println(str.toString());
+                    }else System.out.println("Successfully created shifts for all week\n");
                     break;
                 case "5":
                     showError(service.selfMakeWeekShifts());

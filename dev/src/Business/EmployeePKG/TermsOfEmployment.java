@@ -8,8 +8,7 @@ public class TermsOfEmployment {
     private int daysOff;
     private int sickDays;
 
-    public TermsOfEmployment(int[] terms) throws Exception {
-        checkTerms(terms);
+    public TermsOfEmployment(int[] terms){
         this.educationFun = terms[0];
         this.daysOff = terms[1];
         this.sickDays = terms[2];
@@ -37,37 +36,18 @@ public class TermsOfEmployment {
         return sickDays;
     }
 
-    public void setDaysOff(int daysOff) throws Exception {
-        if (daysOff < 0) {
-            log.error("the new amount of days off is negative: "+daysOff);
-            throw new Exception("invalid new amount of days off: "+daysOff);
-        }
+    public void setDaysOff(int daysOff){
         this.daysOff = daysOff;
     }
 
-    public void setEducationFun(int educationFun) throws Exception {
-        if (educationFun <= 0) {
-            log.error("the new education fund is 0 or negative: "+educationFun);
-            throw new Exception("invalid new education fund number: "+educationFun);
-        }
+    public void setEducationFun(int educationFun){
         this.educationFun = educationFun;
     }
 
-    public void setSickDays(int sickDays) throws Exception {
-        if (sickDays < 0) {
-            log.error("the new amount of sick-days is negative: "+sickDays);
-            throw new Exception("invalid new amount of sick-days: "+sickDays);
-        }
+    public void setSickDays(int sickDays){
         this.sickDays = sickDays;
     }
-    private void checkTerms(int[] terms) throws Exception {
-        log.debug("checking terms");
-        boolean isValid = terms[0] > 0 && terms[1] >= 0 && terms[2] >= 0;
-        if (!isValid) {
-            log.error("terms are invalid : education fund: " + terms[0] + " daysOff: " + terms[1] + " sickDays: " + terms[2]);
-            throw new Exception("Invalid terms of employment");
-        }
-    }
+
 
     public int[] toArr() {
         return new int[]{educationFun,daysOff,sickDays};

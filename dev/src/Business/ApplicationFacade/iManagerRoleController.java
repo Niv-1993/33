@@ -16,82 +16,10 @@ import java.util.Map;
  * ShiftType = {Morning, Night}
  */
 
-public interface iEmployeeService {
+public interface iManagerRoleController {
 
-    /**
-     * Logins EID with his/her role of to the system
-     *
-     * @param EID  The Identification number of the employee
-     * @param role The role he takes in "super-lee"
-     * @return A response object. The response should contain a error message in case of an error
-     */
-    Response Login(int EID, String role);
 
-    /**
-     * Logs out the connected employee
-     *
-     * @return A response object. The response should contain a error message in case of an error
-     */
-    Response Logout();
 
-    /**
-     * In order to create a new branch in the system, one must enter the unique code and all the details of the PersonnelEmployee of that branch
-     *
-     * @param code        for now code to create a branch = 00000;
-     * @param newEID      identifier of the new PersonnelManager
-     * @param name        his name
-     * @param bankDetails bank details of the PersonnelEmployee
-     * @param salary      his salary
-     * @param terms
-     * @return A response object. The response should contain a error message in case of an error
-     */
-    Response createBranch(String code, int newEID, String name, int[] bankDetails, int salary, int[] terms);
-
-    /**
-     * Add a constraint of const day-type with type-shift and reason of a employee
-     *
-     * @param day       Day of the week the employee can't work
-     * @param shiftType Type of shift of the day
-     * @param reason    The reason of the constraint
-     * @return A response object. The response should contain a error message in case of an error
-     */
-    ResponseData<Constraint> addConstConstraint(DayOfWeek day, String shiftType, String reason);
-
-    /**
-     * Add a constraint on date {@link LocalDate} with type-shift and reason of a employee
-     *
-     * @param c_date    The date that the employee can't work
-     * @param shiftType Type of shift of the day
-     * @param reason    The reason of the constraint
-     * @return A response object. The response should contain a error message in case of an error
-     */
-    ResponseData<Constraint> addConstraint(LocalDate c_date, String shiftType, String reason);
-
-    /**
-     * Remove a constraint with identifier CID that the employee sees
-     *
-     * @param CID Identifier of the constraint to be removed
-     * @return A response object. The response should contain a error message in case of an error
-     */
-    ResponseData<Constraint> removeConstraint(int CID);
-
-    /**
-     * Edit/Update an existing constraint with CID with the new reason
-     *
-     * @param CID       Identifier of the constraint to be updated
-     * @param newReason The new reason of the constraint
-     * @return A response object. The response should contain a error message in case of an error
-     */
-    Response updateReasonConstraint(int CID, String newReason);
-
-    /**
-     * Edit/Update an existing constraint with CID with a different shift-type
-     *
-     * @param CID     Identifier of the constraint to be updated
-     * @param newType The new shift type
-     * @return A response object. The response should contain a error message in case of an error
-     */
-    Response updateShiftTypeConstraint(int CID, String newType);
 
     /**
      * Add a new employee to the system with all his details
@@ -212,7 +140,7 @@ public interface iEmployeeService {
      * @returnA response object with a value set to the employee
      * *         otherwise the response should contain a error message in case of an error
      */
-    ResponseData<Shift> createShift(Map<String, Integer> rolesAmount, LocalDate date, String shiftType);
+    Response createShift(Map<String, Integer> rolesAmount, LocalDate date, String shiftType);
 
     /**
      * set the default Shifts with roles and amount of each role
@@ -229,7 +157,7 @@ public interface iEmployeeService {
      *
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response createWeekShifts();
+    ResponseData<List<Shift>> createWeekShifts();
 
     /**
      * makes shifts of week from SUNDAY to FRIDAY(FRIDAY only morning) default shifts with all constraints and puts the employees in them
@@ -239,13 +167,7 @@ public interface iEmployeeService {
      */
     Response selfMakeWeekShifts();
 
-    /**
-     * Gets the details of a connected employee
-     *
-     * @return A response object with a value set to the employee
-     * otherwise the response should contain a error message in case of an error
-     */
-    ResponseData<Employee> getEmployeeDetails();
+
 
     /**
      * Gets the details all the shifts and the employees in the shifts including optionals
@@ -288,13 +210,6 @@ public interface iEmployeeService {
      */
     Response updateAmountRole(int SID, String role, int newAmount);
 
-    /**
-     * Gets the currently connected employee his/er's shifts
-     *
-     * @return A response object with a value set to employee containing the details,
-     * otherwise the response should contain a error message in case of an error
-     */
-    ResponseData<List<Shift>> getMyShifts();
 
     /**
      * Adds to a specific employee a role to his list
@@ -306,34 +221,8 @@ public interface iEmployeeService {
      */
     Response addRoleToEmployee(int EID, String role);
 
-    /**
-     * Loads the relevant data of a spcific branch with BID identifier
-     * Note : the BID is chosen in the first window options before identifying to the system the employee
-     *
-     * @param BID Identifier of the branch (1-9)
-     * @return A response object. The response should contain a error message in case of an error
-     */
-    Response loadData(int BID);
 
-    /**
-     * gets all branches available from database
-     *
-     * @return A response List. The response should contain a error message in case of an error
-     */
-    ResponseData<List<String>> getBranches();
 
-    /**
-     * gets all shift types
-     *
-     * @return A response String. The response should contain a error message in case of an error
-     */
-    ResponseData<List<String>> getShiftTypes();
-
-    /**
-     * get all current connected user's constraints
-     * @return A response List. The response should contain a error message in case of an error
-     */
-    ResponseData<List<Constraint>> getMyConstraints();
 
     /**
      * get all employees in current branch
@@ -342,16 +231,5 @@ public interface iEmployeeService {
      */
     ResponseData<List<Employee>> getAllEmployees();
 
-    /**
-     * checks if default shifts are initialized
-     * @return true if yes else false
-     */
-    ResponseData<Boolean> hasDefaultShifts();
 
-    /**
-     * gets all role types
-     *
-     * @return A response String. The response should contain a error message in case of an error
-     */
-    ResponseData<List<String>> getRoleTypes();
 }
