@@ -508,6 +508,30 @@ public class EmployeeController {
         log.debug("Done loading data");
 
     }
+    public List<String> getBranches() throws Exception {
+        if(allBranches.isEmpty()) throw new Exception("No available branches");
+        return allBranches;
+    }
+
+    public List<String> getShiftTypes() {
+        return (new ArrayList<>(EnumSet.allOf(ShiftType.class))).stream().map(Enum::name).collect(Collectors.toList());
+    }
+
+    public List<Constraint> getMyConstraints() {
+        return employees.get(currConnectedEmpID).getMyConstraints(shiftController);
+    }
+
+    public List<Employee> getAllEmployees() {
+        return new ArrayList<>(employees.values());
+    }
+
+    public boolean hasDefaultShifts() {
+        return shiftController.hasDefaultShifts();
+    }
+
+    public List<String> getRoleTypes() {
+        return (new ArrayList<>(EnumSet.allOf(RoleType.class))).stream().map(Enum::name).collect(Collectors.toList());
+    }
 
     private void checkEID(int EID) throws Exception {
         if (!employees.containsKey(EID)) {
@@ -575,28 +599,5 @@ public class EmployeeController {
         throw new Exception("illegal string value");
     }
 
-    public List<String> getBranches() throws Exception {
-        if(allBranches.isEmpty()) throw new Exception("No available branches");
-        return allBranches;
-    }
 
-    public List<String> getShiftTypes() {
-        return (new ArrayList<>(EnumSet.allOf(ShiftType.class))).stream().map(Enum::name).collect(Collectors.toList());
-    }
-
-    public List<Constraint> getMyConstraints() {
-        return employees.get(currConnectedEmpID).getMyConstraints(shiftController);
-    }
-
-    public List<Employee> getAllEmployees() {
-        return new ArrayList<>(employees.values());
-    }
-
-    public boolean hasDefaultShifts() {
-        return shiftController.hasDefaultShifts();
-    }
-
-    public List<String> getRoleTypes() {
-        return (new ArrayList<>(EnumSet.allOf(RoleType.class))).stream().map(Enum::name).collect(Collectors.toList());
-    }
 }

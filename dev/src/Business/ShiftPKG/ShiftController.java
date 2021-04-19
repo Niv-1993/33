@@ -155,6 +155,14 @@ public class ShiftController {
         (shifts.get(SID)).addEmpToShift(EID, role, name);
     }
 
+    /**
+     *
+     * @param SID
+     * @param EID
+     * @param roles
+     * @throws Exception
+     * @return return false if shift does not exits, else true
+     */
     public void removeEmpFromShift(int SID, int EID, List<RoleType> roles) throws Exception {
         shiftIsExists(SID);
         Shift s = shifts.get(SID);
