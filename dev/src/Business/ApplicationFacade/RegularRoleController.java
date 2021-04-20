@@ -1,6 +1,7 @@
 package Business.ApplicationFacade;
 
 import Business.ApplicationFacade.outObjects.*;
+import Business.ShiftPKG.ShiftController;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
 import org.apache.log4j.Logger;
@@ -25,8 +26,7 @@ public class RegularRoleController implements iRegularRoleController {
     public RegularRoleController(){
        // this.currConnectedEmpRole = null;
         this.currConnectedEmp = null;
-        utils = new Utils();
-
+        utils = new Utils(new ShiftController());
         //WILL BE DELETED WHEN THERE WILL BE DATABASE
         allBranches = new ArrayList<>();
         branchCounter = 1;
@@ -80,7 +80,7 @@ public class RegularRoleController implements iRegularRoleController {
      */
     public Response addConstConstraint(DayOfWeek day, String shiftType, String reason) {
         log.debug("enter add const constraint function");
-        if(utils.isInEnum(shiftType, ShiftType.class)) return new Response("Invalid Shift Type");
+        if(!utils.isInEnum(shiftType, ShiftType.class)) return new Response("Invalid Shift Type");
         utils.getShiftController().addConstConstraint(currConnectedEmp.getEID(), day, ShiftType.valueOf(shiftType), reason);
         log.debug("successfully added const constraint");
         return new Response();
@@ -97,7 +97,7 @@ public class RegularRoleController implements iRegularRoleController {
     public Response addTempConstraint(LocalDate c_date, String shiftType, String reason) {
         log.debug("enter add constraint function");
         if(!utils.isInEnum(shiftType, ShiftType.class)) return new Response("Invalid Shift type.");
-        String res = utils.getShiftController().addConstraint(currConnectedEmp,c_date, ShiftType.valueOf(shiftType), reason);
+        String res = utils.getShiftController().addTempConstraint(currConnectedEmp,c_date, ShiftType.valueOf(shiftType), reason);
         return res.isEmpty() ? new Response() : new Response(res);
     }
 
@@ -182,6 +182,7 @@ public class RegularRoleController implements iRegularRoleController {
         log.debug("loading data of branch id: "+BID);
         if(!allBranches.contains(BID)) return new Response("Branch does not exist");
         currConnectedEmp = null;
+        //utils.setShiftController(new ShiftController());
         //currConnectedEmpRole = null;
         utils.setCurrBranchID(BID);
         //WHEN THERE WILL BE DATABASE
@@ -237,7 +238,7 @@ public class RegularRoleController implements iRegularRoleController {
      * @return A response String. The response should contain a error message in case of an error
      */
     public ResponseData<List<String>> getRoleTypes() {
-        return new ResponseData<>((new ArrayList<>(EnumSet.allOf(ShiftType.class))).stream().map(Enum::name).collect(Collectors.toList()));
+        return new ResponseData<>((new ArrayList<>(EnumSet.allOf(RoleType.class))).stream().map(Enum::name).collect(Collectors.toList()));
     }
 
     /**
@@ -246,7 +247,7 @@ public class RegularRoleController implements iRegularRoleController {
      * @return A response String. The response should contain a error message in case of an error
      */
     public ResponseData<List<String>> getShiftTypes() {
-        return new ResponseData<>((new ArrayList<>(EnumSet.allOf(RoleType.class))).stream().map(Enum::name).collect(Collectors.toList()));
+        return new ResponseData<>((new ArrayList<>(EnumSet.allOf(ShiftType.class))).stream().map(Enum::name).collect(Collectors.toList()));
     }
 
     /**
@@ -256,5 +257,9 @@ public class RegularRoleController implements iRegularRoleController {
      */
     public ResponseData<Boolean> hasDefaultShifts() {
         return new ResponseData<>(utils.getShiftController().hasDefaultShifts());
+    }
+
+    public Utils getUtils() {
+        return utils;
     }
 }

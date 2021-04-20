@@ -17,9 +17,6 @@ public class ManagerRoleController implements iManagerRoleController {
     /**
      * Constructors
      */
-    public ManagerRoleController() {
-    }
-
     public ManagerRoleController(Utils u) {
         utils = u;
         employees = u.getEmployees();
@@ -48,8 +45,7 @@ public class ManagerRoleController implements iManagerRoleController {
         log.debug("enter add employee function");
         String check = utils.checkEmpDetails(newEID, name, bankDetails, terms, salary, role);
         if (!check.isEmpty()) return new ResponseData<>(check);
-        String checkWorking = utils.checkWorking(newEID);
-        if (!checkWorking.isEmpty()) return new ResponseData<>(checkWorking);
+        if(utils.checkEIDExists(newEID)) return new ResponseData<>("Employee already exists in this branch");
         Business.EmployeePKG.Employee emp = new Business.EmployeePKG.Employee(newEID, name, bankDetails, salary, RoleType.valueOf(role), startWorkDate, terms);
         Employee employee = new Employee(emp);
         //UPDATE DATABASE
@@ -267,9 +263,9 @@ public class ManagerRoleController implements iManagerRoleController {
         }
         log.debug("checking map for valid role types and converting to enum");
         for (Map.Entry<String, Integer> entry : rolesAmount.entrySet()) {
-            rolesAndAmount.put(RoleType.valueOf(entry.getKey()), entry.getValue());
+            rolesAndAmount.replace(RoleType.valueOf(entry.getKey()), entry.getValue());
         }
-        if(utils.isInEnum(shiftType,ShiftType.class)) return new Response("Invalid shift type");
+        if(!utils.isInEnum(shiftType,ShiftType.class)) return new Response("Invalid shift type");
         String res = utils.getShiftController().createShift(rolesAndAmount, date, ShiftType.valueOf(shiftType),optionals);
         return res.isEmpty()? new Response() : new Response(res);
     }

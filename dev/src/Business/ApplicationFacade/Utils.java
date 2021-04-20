@@ -8,6 +8,7 @@ import Business.Type.RoleType;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,14 +18,10 @@ public class Utils {
     private Map<Integer, Employee> employees;
     private int currBranchID;
 
-    public Utils() {
-        shiftController = null;
-        employees = null;
+    public Utils(ShiftController s) {
+        shiftController = s;
+        employees = new HashMap<>();
         currBranchID = -1;
-    }
-
-    public void setShiftController(ShiftController shiftController) {
-        this.shiftController = shiftController;
     }
 
     public ShiftController getShiftController() {
@@ -60,6 +57,11 @@ public class Utils {
         return true;
 
     }
+
+    public void setShiftController(ShiftController shiftController) {
+        this.shiftController = shiftController;
+    }
+
     protected boolean checkName(String name) {
         log.debug("checking name alphabetical");
         name = name.replaceAll("\\s+", "");
@@ -146,7 +148,19 @@ public class Utils {
         log.debug("converting shift of business layer to out objects list");
         List<Shift> shifts = new ArrayList<>();
         allShifts.forEach(s -> {
-            shifts.add(new Shift(s));
+            Map<Business.ApplicationFacade.outObjects.Employee,String> emps = new HashMap<>();
+            Map<String,List<Business.ApplicationFacade.outObjects.Employee>> ops = new HashMap<>();
+            s.getEmployees().forEach((employee, roleType) -> {
+                emps.put(new Business.ApplicationFacade.outObjects.Employee(employee),roleType.name());
+            });
+            s.getOptionals().forEach((roleType, employees1) -> {
+                List<Business.ApplicationFacade.outObjects.Employee> e = new ArrayList<>();
+                employees1.forEach(employee -> {
+                    e.add(new Business.ApplicationFacade.outObjects.Employee(employee));
+                });
+                ops.put(roleType.name(),e);
+            });
+            shifts.add(new Shift(s,emps,ops));
         });
         log.debug("Done.");
         return shifts;

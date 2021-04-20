@@ -4,6 +4,7 @@ import Business.EmployeePKG.Employee;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
 import org.apache.log4j.Logger;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -32,7 +33,7 @@ public class Shift {
         this.date = date;
         this.shiftType = shiftType;
         this.wasSelfMake = false;
-        if(optionals.containsKey(RoleType.ShiftManager))
+        if (optionals.containsKey(RoleType.ShiftManager))
             hasShiftManager = !optionals.get(RoleType.ShiftManager).isEmpty();
         log.debug("shift: " + SID + " created");
     }
@@ -41,15 +42,15 @@ public class Shift {
     //-------------------------------------methods----------------------------------
 
     //shift controller call this function after create shift to insert shift manager to this shift
-    public List<Integer> insertShiftManager() {
+    public List<Employee> insertShiftManager() {
         Employee sm = optionals.get(RoleType.ShiftManager).remove(0);
-        employees.put(sm,RoleType.ShiftManager);
-        List<Integer> listOfSM = new LinkedList<>();
-        listOfSM.add(sm.getEID());
+        employees.put(sm, RoleType.ShiftManager);
+        List<Employee> listOfSM = new LinkedList<>();
+        listOfSM.add(sm);
         return listOfSM;
     }
 
-    public List<Integer> self_make()  {
+    public List<Employee> self_make() {
         if (!wasSelfMake) {
             for (Map.Entry<RoleType, Integer> e : rolesAmount.entrySet()) {
                 if (e.getKey().equals(RoleType.ShiftManager)) continue;
@@ -60,22 +61,22 @@ public class Shift {
                         break;
                     } else {
                         Employee emp = optionals.get(role).remove(0);  // delete from optionals
-                        employees.put(emp,role);  //add to employees
-                        RemoveEmpFromOptionals(emp);
+                        employees.put(emp, role);  //add to employees
+                        removeEmpFromOptionals(emp);
                         amount--;
                     }
                 }
             }
             complete = isComplete();
             wasSelfMake = true;
-            ArrayList<Integer> emps = new ArrayList<>();
-            employees.forEach((emp,roleType) -> emps.add(emp.getEID()));
+            ArrayList<Employee> emps = new ArrayList<>();
+            employees.forEach((emp, roleType) -> emps.add(emp));
             return emps;
         }
         return new ArrayList<>();
     }
 
-    public String addEmpToShift(RoleType role,Employee emp) {
+    public String addEmpToShift(RoleType role, Employee emp) {
         //check if EID can work in this shift (in optionals)
         List<Employee> list = optionals.get(role);
         boolean canWork = list.contains(emp);
@@ -88,15 +89,16 @@ public class Shift {
             log.error("all the option for Role: " + role + " are close");
             return ("All the options for Role: " + role + " are close");
         }
-        employees.put(emp,role);
-        RemoveEmpFromOptionals(emp);
+        employees.put(emp, role);
+        removeEmpFromOptionals(emp);
         complete = isComplete();
-        hasShiftManager = role.equals(RoleType.ShiftManager);
+        if (role.equals(RoleType.ShiftManager))
+            hasShiftManager = true;
         log.debug("EID: " + emp.getEID() + "added to SID: " + SID);
         return "";
     }
 
-    public String removeEmpFromShift(Employee emp){
+    public String removeEmpFromShift(Employee emp) {
         RoleType roleOfRemoved = employees.remove(emp);  //return null if EID isn't in this shift
         if (roleOfRemoved == null) {
             log.error("EID: " + emp.getEID() + " isn't in this shift");
@@ -128,11 +130,12 @@ public class Shift {
         log.debug("EID: " + emp.getEID() + " removed(fire) from SID: " + SID);
     }
 
-    public void addToOptionals(Employee emp,RoleType role) {
-        optionals.get(role).add(emp);
+    public void addToOptionals(Employee emp, RoleType role) {
+        if(!optionals.get(role).contains(emp))
+            optionals.get(role).add(emp);
     }
 
-    public void RemoveEmpFromOptionals(Employee emp) {
+    public void removeEmpFromOptionals(Employee emp) {
         for (Map.Entry<RoleType, List<Employee>> e : optionals.entrySet()) {
             List<Employee> l = e.getValue();
             if (!l.isEmpty())
@@ -142,13 +145,22 @@ public class Shift {
     }
 
 
-    public String updateRolesAmount(RoleType role, int newAmount){
-        if (newAmount < 0) {
-            log.error("The new amount for role: " + role +" is negative");
-            return ("The new amount for role: " + role + " is negative");
-        }
+    public List<Employee> updateRolesAmount(RoleType role, int newAmount) {
+        int oldAmount = rolesAmount.get(role);
         rolesAmount.replace(role, newAmount);
-        return "";
+        List<Employee> toRemove = new ArrayList<>();
+        for (int i = 0; i < oldAmount - newAmount; i++) {
+            for (Map.Entry<Employee, RoleType> m : employees.entrySet()) {
+                if (m.getValue().equals(role)) {
+                    employees.remove(m.getKey());
+                    addToOptionals(m.getKey(), m.getValue());
+                    toRemove.add(m.getKey());
+                    break;
+                }
+            }
+        }
+        complete = isComplete();
+        return toRemove;
     }
 
     private boolean roleIsFull(RoleType role) {

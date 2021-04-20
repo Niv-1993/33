@@ -11,18 +11,18 @@ public class Shift {
     public int SID;
     public LocalDate date;
     public String shiftType;
-    public Map<Integer, String[]> employees;
-    public Map<String, List<String[]>> optionals; //[0]-ID, [1]-Name
+    public Map<Employee, String> employees;
+    public Map<String, List<Employee>> optionals;
     public Map<String, Integer> rolesAmount;
     public String status;
     public boolean hasShiftManager;
 
-    public Shift(Business.ShiftPKG.Shift shift) {
+    public Shift(Business.ShiftPKG.Shift shift,Map<Employee, String> employees, Map<String, List<Employee>> optionals) {
         this.SID = shift.getSID();
         this.date = shift.getDate();
-        this.employees = Collections.unmodifiableMap(shift.getEmployees());
+        this.employees = Collections.unmodifiableMap(employees);
         this.shiftType = shift.getShiftType().name();
-        this.optionals = Collections.unmodifiableMap(converterOp(shift.getOptionals()));
+        this.optionals = Collections.unmodifiableMap(optionals);
         this.rolesAmount = Collections.unmodifiableMap(converterRolesA(shift.getRolesAmount()));
         this.status = (shift.getComplete()) ? "Full" : "*** Missing ***";
         this.hasShiftManager = shift.HasShiftManager();
@@ -67,12 +67,11 @@ public class Shift {
 
     private String printOptionals() {
         StringBuilder opt = new StringBuilder();
-        for (Map.Entry<String, List<String[]>> m : optionals.entrySet()) {
+        for (Map.Entry<String, List<Employee>> m : optionals.entrySet()) {
             if (rolesAmount.containsKey(m.getKey()) && rolesAmount.get(m.getKey()) > 0) {
                 opt.append("\t").append(m.getKey()).append(": ");
-                for (String[] s : m.getValue())
-                    opt.append(Arrays.toString(s));
-                opt.substring(0, opt.length() - 2);
+                for (Employee emp : m.getValue())
+                    opt.append("[").append(emp.EID).append(",").append(emp.name).append("] ");
                 opt.append("\n");
             }
         }
@@ -97,20 +96,14 @@ public class Shift {
         for (Map.Entry<String, Integer> role : rolesAmount.entrySet()) {
             if (role.getValue() > 0) {
                 emps.append("\t").append(role.getKey()).append(": ");
-                for (Map.Entry<Integer, String[]> m : employees.entrySet()) {
-                    if (m.getValue()[0].equals(role.getKey()))
-                        emps.append("[").append(m.getKey()).append(",").append(m.getValue()[1]).append("] ");
+                for (Map.Entry<Employee, String> m : employees.entrySet()) {
+                    if (m.getValue().equals(role.getKey()))
+                        emps.append("[").append(m.getKey().EID).append(",").append(m.getKey().name).append("] ");
                 }
                 emps.append("\n");
             }
         }
         return emps.toString();
-    }
-
-    private Map<String, List<String[]>> converterOp(Map<RoleType, List<String[]>> s) {
-        Map<String, List<String[]>> ret = new HashMap<>();
-        s.forEach((key, value) -> ret.put(key.name(), value));
-        return ret;
     }
 
     private Map<String, Integer> converterRolesA(Map<RoleType, Integer> rolesA) {

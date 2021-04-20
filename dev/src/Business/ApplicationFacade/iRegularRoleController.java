@@ -150,4 +150,5 @@ public interface iRegularRoleController {
     ResponseData<Boolean> hasDefaultShifts();
 
 
+    Utils getUtils();
 }
