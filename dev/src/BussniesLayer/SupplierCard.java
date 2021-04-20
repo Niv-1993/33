@@ -191,9 +191,23 @@ public class SupplierCard {
         if (item == null) {
             return null;
         }
-        neededOrder order = new neededOrder(orderID ,null, branchID, item, amount);
+        double totalAmount = calculateTotalAmount(item , amount);
+        neededOrder order = new neededOrder(orderID ,null, branchID, item, amount , totalAmount);
         orders.add(order);
         return order;
+    }
+
+    private double calculateTotalAmount(Item item , int amount){
+        double totalAmount =0.0;
+        QuantityDocument qd = item.getQuantityDocument();
+        if (qd != null) {
+            totalAmount = totalAmount + item.getPrice() * amount;
+            if (qd.getMinimalAmount() <= amount) {
+                double discount = qd.getDiscount() / 100.0;
+                totalAmount = totalAmount - item.getPrice() * discount * amount;
+            }
+        }
+        return totalAmount;
     }
 
     public void addItemToOrder(int orderId, int itemId , int amount) throws Exception {
@@ -208,7 +222,8 @@ public class SupplierCard {
         boolean hasFound = false;
         for (Order o : orders) {
             if (o.getOrderId() == orderId) {
-               o.addItemToOrder(toAdd , amount);
+                regularOrder temp = (regularOrder) o;
+                temp.addItemToOrder(toAdd , amount);
                 hasFound = true;
                 break;
             }
