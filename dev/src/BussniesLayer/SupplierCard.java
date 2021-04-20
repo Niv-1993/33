@@ -187,8 +187,11 @@ public class SupplierCard {
         return order;
     }
 
-    public Order addNeededOrder(int orderID, int branchID) {
-        neededOrder order = new neededOrder(orderID ,null, branchID);
+    public Order addNeededOrder(int orderID, int branchID, Item item, int amount) {
+        if (item == null) {
+            return null;
+        }
+        neededOrder order = new neededOrder(orderID ,null, branchID, item, amount);
         orders.add(order);
         return order;
     }
@@ -251,7 +254,8 @@ public class SupplierCard {
                 if(supplierAgreement.getMinimalAmount() <= order.getTotalAmount()){
                     double discount = 1 - supplierAgreement.getDiscount()/100.0;
                     totalAmount = totalAmount*discount;
-                    order.updateTotalAmount(totalAmount);
+                    regularOrder temp = (regularOrder) order;
+                    temp.updateTotalAmount(totalAmount);
                 }
             }
         }

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Item{
     private final int itemId;
     private final String name;
-    private final String category;
+    private final String category; //delete
     private QuantityDocument quantityDocument;
     private double price;
     private int typeId;

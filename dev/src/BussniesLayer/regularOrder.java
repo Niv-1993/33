@@ -16,5 +16,9 @@ public class regularOrder extends Order{
         else throw new Exception("deliver time must be at least one day after current time");
     }
 
+    public void updateTotalAmount(double totalAmount){
+        this.totalAmount = totalAmount;
+    }
+
 
 }

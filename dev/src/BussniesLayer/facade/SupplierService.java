@@ -269,6 +269,9 @@ public class SupplierService implements ISupplierService {
         BussniesLayer.Order order;
         try {
             order = supplierController.addNeededOrder(typeID, neededAmount, branchID);
+            if (order == null) {
+                return new Tresponse<>("ERROR: unsuccessful adding");
+            }
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }

@@ -238,6 +238,7 @@ public class SupplierController{
 
     public Order addNeededOrder(int typeID, int neededAmount, int branchID) throws Exception {
         Order order;
+        Item item = null;
         double bestPrice = Integer.MAX_VALUE;
         int bestSupplier = 0;
         try {
@@ -254,12 +255,11 @@ public class SupplierController{
                         if (currentPrice < bestPrice) {
                             bestSupplier = temp.getSupplierBN();
                         }
+                        item = i;
                     }
                 }
             }
-            order = suppliers.get(bestSupplier).addNeededOrder(numOfOrders, branchID);
-            //addItemToOrder(bestSupplier, numOfOrders, typeID, neededAmount);  //maybe we need to change the add item to order to be based on typeID?
-            //or add a method addItemToOrderByType?
+            order = suppliers.get(bestSupplier).addNeededOrder(numOfOrders, branchID, item, neededAmount);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
@@ -271,6 +271,10 @@ public class SupplierController{
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try{
+            Order order = supplierCard.showOrderOfSupplier(orderId);
+            if (!(order instanceof regularOrder)) {
+                throw new Exception("you cannot add new items to needed order");
+            }
             suppliers.get(supplierBN).addItemToOrder(orderId, itemId , amount);
         } catch (Exception e){
             throw new Exception(e.getMessage());

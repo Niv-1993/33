@@ -53,8 +53,5 @@ public class Order {
         return branchId;
     }
 
-    public void updateTotalAmount(double totalAmount){
-        this.totalAmount = totalAmount;
-    }
 
 }
