@@ -408,4 +408,8 @@ public class SupplierCard {
         }
         if(!hasFound) throw new Exception("itemId does not found");
     }
+
+    public List<Item> getSupplierItems() {
+        return items;
+    }
 }

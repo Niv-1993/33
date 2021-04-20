@@ -265,10 +265,10 @@ public class SupplierService implements ISupplierService {
         return new Tresponse<>(new Order(order));
     }
 
-    public Tresponse<Order> addNeededOrder(int supplierBN, int branchID) {
+    public Tresponse<Order> addNeededOrder(int typeID,int neededAmount, int branchID) {
         BussniesLayer.Order order;
         try {
-            order = supplierController.addNeededOrder(supplierBN, branchID);
+            order = supplierController.addNeededOrder(typeID, neededAmount, branchID);
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }

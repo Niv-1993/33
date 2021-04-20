@@ -188,6 +188,8 @@ public class SupplierController{
         return item;
     }
 
+
+
     public Item addItem(int supplierBN, String category , String name , double price, int typeID, LocalDate expirationDate) throws Exception {
         Item item;
         SupplierCard supplierCard = suppliers.get(supplierBN);
@@ -234,12 +236,30 @@ public class SupplierController{
         return order;
     }
 
-    public Order addNeededOrder(int supplierBN, int branchID) throws Exception {
-        SupplierCard supplierCard = suppliers.get(supplierBN);
-        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+    public Order addNeededOrder(int typeID, int neededAmount, int branchID) throws Exception {
         Order order;
+        double bestPrice = 0;
+        int bestSupplier = 0;
         try {
-            order = suppliers.get(supplierBN).addNeededOrder(numOfOrders, branchID);
+            Enumeration<SupplierCard> enumeration = suppliers.elements();
+            while(enumeration.hasMoreElements()) {
+                SupplierCard temp = enumeration.nextElement();
+                List<Item> items = temp.getSupplierItems();
+                for (Item i : items) {
+                    if (i.getTypeID() == typeID) {
+                        double currentPrice = i.getPrice()*neededAmount;
+                        if (neededAmount >= i.getQuantityDocument().getMinimalAmount()) {
+                            currentPrice = currentPrice * (100-i.getQuantityDocument().getDiscount()) /100;
+                        }
+                        if (currentPrice < bestPrice) {
+                            bestSupplier = temp.getSupplierBN();
+                        }
+                    }
+                }
+            }
+            order = suppliers.get(bestSupplier).addNeededOrder(numOfOrders, branchID);
+            //addItemToOrder(bestSupplier, numOfOrders, typeID, neededAmount);  //maybe we need to change the add item to order to be based on typeID?
+            //or add a method addItemToOrderByType?
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }

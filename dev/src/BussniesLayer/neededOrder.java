@@ -8,7 +8,4 @@ public class neededOrder extends Order{
         super(orderId, deliverTime, branchID);
     }
 
-    public int bestSupplierOfItem(int typeID){  // find the supplier who supplies the item in the best price.
-        return 0;
-    }
 }

@@ -299,9 +299,10 @@ public class PresentationCL{
                     toContinue(scanner , false);
                 }
                 case 6 -> {
-                    BN = BNScan(scanner);
+                    int typeID = typeScan(scanner);
+                    int neededAmount = amountScan(scanner);
                     int branchID = branchIDScan(scanner);
-                    Tresponse<Order> response = service.addNeededOrder(BN, branchID);
+                    Tresponse<Order> response = service.addNeededOrder(typeID, neededAmount, branchID);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("orderId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner , false);

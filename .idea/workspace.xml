@@ -6,38 +6,14 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e951e903-03d5-4632-872b-73d1c0509272" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+    <list default="true" id="e951e903-03d5-4632-872b-73d1c0509272" name="Default Changelist" comment="started neededOrder impl">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/.idea/src.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/ISupplierService.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/ISupplierService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierCard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierController.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/SupplierService.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/SupplierService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/outObjects/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/outObjects/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/outObjects/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/outObjects/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/DataController/data.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/DataController/data.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/PresentationLayer/PresentationCL.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/PresentationLayer/PresentationCL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/out/test/ADSS_Group_B/SupplierServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/test/ADSS_Group_B/SupplierServiceTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/ISupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/ISupplierService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/SupplierService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/neededOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/neededOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/regularOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/regularOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/DataController/data.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataController/data.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/PresentationLayer/PresentationCL.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/PresentationLayer/PresentationCL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/test/SupplierServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/test/SupplierServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,7 +224,13 @@
       <option name="presentableId" value="LOCAL‎00020" />
       <updated>1618856309058</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL‎00021" summary="fixed some part 2 implementations">
+      <created>1618928174763</created>
+      <option name="number" value="LOCAL‎00021" />
+      <option name="presentableId" value="LOCAL‎00021" />
+      <updated>1618928174763</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -288,7 +270,9 @@
     <MESSAGE value="hope that we finished" />
     <MESSAGE value="hope that er finished" />
     <MESSAGE value="finished part 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished part 1" />
+    <MESSAGE value="fixed some part 2 implementations" />
+    <MESSAGE value="started neededOrder impl" />
+    <option name="LAST_COMMIT_MESSAGE" value="started neededOrder impl" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ADSS_Group_B2$SupplierServiceTest_testRemoveSupplier.ic" NAME="SupplierServiceTest.testRemoveSupplier Coverage Results" MODIFIED="1617610528427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
