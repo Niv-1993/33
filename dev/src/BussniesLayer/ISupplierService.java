@@ -32,10 +32,10 @@ public interface ISupplierService {
     Tresponse<Item> showItemOfSupplier(int SupplierBN , int itemId);
     Tresponse<List<Item>> showAllItemsOfOrder(int SupplierBN , int orderId);
     Tresponse<List<Item>> showAllItems();
-    Tresponse<Item> addItem(int supplierBN , String category , String name, double price);
+    Tresponse<Item> addItem(int supplierBN , String category , String name, double price, int typeID, LocalDate expirationDate);
     response removeItem(int itemId);
-    Tresponse<Order> addOrder(int supplierBN);
-    // delete addOrder and insted do addRegularOrder and add addneddedOrder.
+    Tresponse<Order> addRegularOrder(int supplierBN, int branchID);
+    Tresponse<Order> addNeededOrder(int supplierBN, int branchID);
     response addItemToOrder(int supplierBN , int orderId , int itemId , int amount);
     Tresponse<Order> showOrderOfSupplier(int supplierBN , int orderId);
     Tresponse<List<Order>> showAllOrdersOfSupplier(int supplierBN);

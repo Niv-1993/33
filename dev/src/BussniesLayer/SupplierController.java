@@ -1,5 +1,7 @@
 package BussniesLayer;
 
+import com.sun.jdi.LocalVariable;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -131,7 +133,7 @@ public class SupplierController{
         } catch (Exception e){
             throw new Exception(e.getMessage());
         }
-    };
+    }
 
     public void updateContactEmail(int supplierBN, String email , String name) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
@@ -186,12 +188,12 @@ public class SupplierController{
         return item;
     }
 
-    public Item addItem(int supplierBN, String category , String name ,double price) throws Exception {
+    public Item addItem(int supplierBN, String category , String name , double price, int typeID, LocalDate expirationDate) throws Exception {
         Item item;
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            item = suppliers.get(supplierBN).addItem(category, numOfItems , name, price);
+            item = suppliers.get(supplierBN).addItem(category, numOfItems , name, price, typeID, expirationDate);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -219,12 +221,25 @@ public class SupplierController{
         }
     }
 
-    public Order addOrder(int supplierBN) throws Exception {
+    public Order addRegularOrder(int supplierBN, int branchID) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         Order order;
         try {
-            order = suppliers.get(supplierBN).addOrder(numOfOrders);
+            order = suppliers.get(supplierBN).addRegularOrder(numOfOrders, branchID);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+        numOfOrders++;
+        return order;
+    }
+
+    public Order addNeededOrder(int supplierBN, int branchID) throws Exception {
+        SupplierCard supplierCard = suppliers.get(supplierBN);
+        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+        Order order;
+        try {
+            order = suppliers.get(supplierBN).addNeededOrder(numOfOrders, branchID);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }

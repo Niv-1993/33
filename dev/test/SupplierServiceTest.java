@@ -5,6 +5,8 @@ import BussniesLayer.facade.outObjects.Item;
 import org.junit.Test;
 import BussniesLayer.facade.response;
 
+import java.time.LocalDate;
+
 public class SupplierServiceTest {
     private final SupplierService service = new SupplierService();
 
@@ -22,11 +24,11 @@ public class SupplierServiceTest {
 
     @Test
     public void testGetItemIDFailure() {
-        response r1 = service.addItem(1, "dairy" , "milk", 3.5);
+        response r1 = service.addItem(1, "dairy" , "milk", 3.5, 1, LocalDate.now());
         assertTrue(r1.isError());
         assertEquals("ERROR: supplier BN does not exist." , r1.getError());
         service.addSupplier("Test", 2 , 5 , 654321 , "cash");
-        response r2 = service.addItem(0, "dairy", "yogurt",  -5);
+        response r2 = service.addItem(0, "dairy", "yogurt",  -5, 2, LocalDate.now());
         assertTrue(r2.isError());
         assertEquals("ERROR: price must be a positive number!" , r2.getError());
     }
@@ -34,13 +36,13 @@ public class SupplierServiceTest {
     @Test
     public void testGetItem(){
         service.LoadData();
-        Item item = service.addItem(0, "dairy", "milk" ,  3.5).getOutObject();
-        Item item2 = service.addItem(0, "dairy", "chocolate" ,  3.5).getOutObject();
-        Item item3 = service.addItem(0, "dairy", "cottage" , 3.5).getOutObject();
+        Item item = service.addItem(0, "dairy", "milk" ,  3.5,1,LocalDate.now() ).getOutObject();
+        Item item2 = service.addItem(0, "dairy", "chocolate" ,  3.5,2, LocalDate.now()).getOutObject();
+        Item item3 = service.addItem(0, "dairy", "cottage" , 3.5,3, LocalDate.now() ).getOutObject();
         assertEquals("19" , item.toStringId());
         assertEquals("20" , item2.toStringId());
         assertEquals("21" , item3.toStringId());
-        response r = service.addItem(0, "dairy", "milka" , 7);
+        response r = service.addItem(0, "dairy", "milka" , 7, 4, LocalDate.now());
         assertFalse(r.isError());
     }
 
@@ -76,15 +78,15 @@ public class SupplierServiceTest {
         service.removeSupplier(3);
         assertEquals(5, service.showAllSuppliers().getOutObject().size());
         assertTrue(service.showSupplier(3).isError());
-        assertTrue(service.addOrder(3).isError());
+        assertTrue(service.addRegularOrder(3,1).isError());
     }
 
     @Test
     public void testAddItemToNullSupplier() {
         service.LoadData();
-        assertTrue(service.addItem(6,"Test" , "testItem", 10).isError());
+        assertTrue(service.addItem(6,"Test" , "testItem", 10, 1, LocalDate.now()).isError());
         service.addSupplier("shouldPass", 2 , 6, 11111, "cash");
-        assertFalse(service.addItem(6,"Test" , "testItem", 10).isError());
+        assertFalse(service.addItem(6,"Test" , "testItem", 10, 1, LocalDate.now()).isError());
     }
 
     @Test
@@ -109,12 +111,12 @@ public class SupplierServiceTest {
     public void testShowAllOrdersOfSupplier() {
         service.LoadData();
         assertEquals(2, service.showAllOrdersOfSupplier(4).getOutObject().size());
-        service.addOrder(4);
-        service.addOrder(4);
+        service.addRegularOrder(4,1);
+        service.addRegularOrder(4,1);
         assertEquals(4, service.showAllOrdersOfSupplier(4).getOutObject().size());
-        service.addOrder(4);
+        service.addRegularOrder(4,1);
         assertEquals(5, service.showAllOrdersOfSupplier(4).getOutObject().size());
-        service.addOrder(2);
+        service.addRegularOrder(2,2);
         assertEquals(5, service.showAllOrdersOfSupplier(4).getOutObject().size());
     }
 }

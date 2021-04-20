@@ -154,9 +154,9 @@ public class SupplierCard {
         throw new Exception("itemId does net exist for this supplier");
     }
 
-    public Item addItem(String category, int ItemId , String name , double price) throws Exception {
+    public Item addItem(String category, int ItemId , String name , double price, int typeID, LocalDate expirationDate) throws Exception {
         if(price < 0) throw new Exception("price must be a positive number!");
-        Item newItem = new BussniesLayer.Item(category, ItemId , name , price);
+        Item newItem = new BussniesLayer.Item(category, ItemId , name , price, typeID, expirationDate);
         items.add(newItem);
         return newItem;
     }
@@ -181,8 +181,14 @@ public class SupplierCard {
         if(single && !found) throw new Exception("itemId does not exist for this supplier");
     }
 
-    public Order addOrder(int orderID) {
-        Order order = new Order(orderID ,null);
+    public Order addRegularOrder(int orderID, int branchID) {
+        regularOrder order = new regularOrder(orderID ,null, branchID);
+        orders.add(order);
+        return order;
+    }
+
+    public Order addNeededOrder(int orderID, int branchID) {
+        neededOrder order = new neededOrder(orderID ,null, branchID);
         orders.add(order);
         return order;
     }
@@ -269,7 +275,8 @@ public class SupplierCard {
         boolean hasFound = false;
         for (Order o : orders) {
             if (o.getOrderId() == orderId) {
-                o.updateDeliverTime(deliverTime);
+                regularOrder temp = (regularOrder) o;
+                temp.updateDeliverTime(deliverTime);
                 hasFound = true;
             }
             if(hasFound) break;

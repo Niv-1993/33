@@ -15,6 +15,8 @@ public class Item {
         category = item.getCategory();
         name = item.getName();
         price = item.getPrice();
+        typeId = item.getTypeID();
+        expirationDate = item.getExpirationDate();
     }
 
     public String toString(boolean shift) {

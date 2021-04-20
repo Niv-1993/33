@@ -234,10 +234,10 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public Tresponse<Item> addItem(int supplierBN, String category , String name , double price) {
+    public Tresponse<Item> addItem(int supplierBN, String category , String name , double price, int typeID, LocalDate expirationDate) {
         BussniesLayer.Item item;
         try{
-            item = supplierController.addItem(supplierBN, category , name , price);
+            item = supplierController.addItem(supplierBN, category , name , price, typeID, expirationDate);
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
@@ -255,10 +255,20 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public Tresponse<Order> addOrder(int supplierBN) {
+    public Tresponse<Order> addRegularOrder(int supplierBN, int branchID) {
         BussniesLayer.Order order;
         try {
-            order = supplierController.addOrder(supplierBN);
+            order = supplierController.addRegularOrder(supplierBN, branchID);
+        }catch (Exception e){
+            return new Tresponse<>("ERROR: " + e.getMessage());
+        }
+        return new Tresponse<>(new Order(order));
+    }
+
+    public Tresponse<Order> addNeededOrder(int supplierBN, int branchID) {
+        BussniesLayer.Order order;
+        try {
+            order = supplierController.addNeededOrder(supplierBN, branchID);
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }

@@ -12,6 +12,7 @@ public class Order {
         orderId = order.getOrderId();
         totalAmount = order.getTotalAmount();
         deliverTime = order.getDeliverTime();
+        branchId = order.getBranchID();
     }
 
     public String toString() {

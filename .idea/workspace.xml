@@ -7,22 +7,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e951e903-03d5-4632-872b-73d1c0509272" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/neededOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/regularOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ADSS_Group_B.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ADSS_Group_B.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/.idea/src.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/.idea/src.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/ISupplierService.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/ISupplierService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Item.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierController.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/SupplierService.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/SupplierService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/outObjects/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/outObjects/Item.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/outObjects/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/outObjects/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/DataController/data.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/DataController/data.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/PresentationLayer/PresentationCL.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/PresentationLayer/PresentationCL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/test/ADSS_Group_B/SupplierServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/test/ADSS_Group_B/SupplierServiceTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/ISupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/ISupplierService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/SupplierService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/neededOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/neededOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/regularOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/regularOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataController/data.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataController/data.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/PresentationLayer/PresentationCL.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/PresentationLayer/PresentationCL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/test/SupplierServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/test/SupplierServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +77,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
@@ -82,7 +97,6 @@
     </configuration>
     <configuration name="SupplierServiceTest " type="JUnit" factoryName="JUnit" temporary="true">
       <module name="ADSS_Group_B" />
-      <useClassPathOnly />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="SupplierServiceTest" />
       <option name="METHOD_NAME" value="" />
@@ -276,129 +290,9 @@
     <MESSAGE value="finished part 1" />
     <option name="LAST_COMMIT_MESSAGE" value="finished part 1" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="249" y="0" key="#Project_Structure" timestamp="1617537831690">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1617537831690" />
-    <state x="382" y="0" width="962" height="824" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1617971564089">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="382" y="0" width="962" height="824" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1617971564089" />
-    <state x="93" y="93" width="1350" height="638" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1617799039376">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="93" y="93" width="1350" height="638" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1536.824@0.0.1536.824" timestamp="1617799039376" />
-    <state x="548" y="129" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1617537420237">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="548" y="129" key="#com.intellij.ide.macro.MacrosDialog/0.0.1536.824@0.0.1536.824" timestamp="1617537420237" />
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1617901308325">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1617901308325" />
-    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1617972730449">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1617972730449" />
-    <state x="527" y="167" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1617970342415">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="527" y="167" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1536.824@0.0.1536.824" timestamp="1617970342415" />
-    <state x="354" y="0" key="CommitChangelistDialog2" timestamp="1618856308203">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="354" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1618856308203" />
-    <state x="585" y="288" key="DetectedRootsChooserDialog" timestamp="1617971930722">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="585" y="288" key="DetectedRootsChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1617971930722" />
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1617537832043">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1617537832043" />
-    <state x="383" y="174" key="FileChooserDialogImpl" timestamp="1618917832061">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="383" y="174" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1618917832061" />
-    <state width="1493" height="431" key="GridCell.Tab.0.bottom" timestamp="1618164241447">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="431" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1618164241447" />
-    <state width="1493" height="431" key="GridCell.Tab.0.center" timestamp="1618164241446">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="431" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1618164241446" />
-    <state width="1493" height="431" key="GridCell.Tab.0.left" timestamp="1618164241446">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="431" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1618164241446" />
-    <state width="1493" height="431" key="GridCell.Tab.0.right" timestamp="1618164241447">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="431" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1618164241447" />
-    <state width="1493" height="419" key="GridCell.Tab.1.bottom" timestamp="1617907009306">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="419" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1617907009306" />
-    <state width="1493" height="419" key="GridCell.Tab.1.center" timestamp="1617907009306">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="419" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1617907009306" />
-    <state width="1493" height="419" key="GridCell.Tab.1.left" timestamp="1617907009306">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="419" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1617907009306" />
-    <state width="1493" height="419" key="GridCell.Tab.1.right" timestamp="1617907009306">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="419" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1617907009306" />
-    <state x="147" y="65" key="MergeDialog" timestamp="1618856342244">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="147" y="65" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1618856342244" />
-    <state x="407" y="174" key="MultipleFileMergeDialog" timestamp="1618856342256">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1618856342256" />
-    <state x="270" y="0" key="SettingsEditor" timestamp="1617973319166">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1617973319166" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1618856354123">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1618856354123" />
-    <state x="491" y="304" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1618918189912">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="491" y="304" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1618918189912" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618917969877">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1618917969877" />
-    <state width="600" height="428" key="javadoc.popup" timestamp="1617780118103">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="600" height="428" key="javadoc.popup/0.0.1536.824@0.0.1536.824" timestamp="1617780118103" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1617814231030">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1617814231030" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1617532278410">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1617532278410" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <default-breakpoints>
-        <breakpoint type="python-exception">
-          <properties notifyOnTerminate="true" exception="BaseException">
-            <option name="notifyOnTerminate" value="true" />
-          </properties>
-        </breakpoint>
-      </default-breakpoints>
-    </breakpoint-manager>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ADSS_Group_B2$SupplierServiceTest_testRemoveSupplier.ic" NAME="SupplierServiceTest.testRemoveSupplier Coverage Results" MODIFIED="1617610528427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>test.*</FILTER>
+    </SUITE>
   </component>
 </project>

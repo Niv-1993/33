@@ -12,11 +12,12 @@ public class Order {
     protected LocalDate deliverTime;
     protected int branchId;
 
-    public Order(int orderId , LocalDate deliverTime){
+    public Order(int orderId , LocalDate deliverTime , int branchId){
         this.orderId = orderId;
         items = new Hashtable<>();
         this.totalAmount = 0;
         this.deliverTime = deliverTime;
+        this.branchId=branchId;
     }
 
     public void addItemToOrder(Item item , int amount) throws Exception {
@@ -48,7 +49,12 @@ public class Order {
         return deliverTime;
     }
 
+    public int getBranchID() {
+        return branchId;
+    }
+
     public void updateTotalAmount(double totalAmount){
         this.totalAmount = totalAmount;
     }
+
 }

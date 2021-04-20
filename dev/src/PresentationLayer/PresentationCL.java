@@ -242,7 +242,7 @@ public class PresentationCL{
     private void addingMethods(){
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int option = -1;
-        String[] showingMethodArray = {"add supplier","add Contact Phone","add Contact Email","add Item","add Order",
+        String[] showingMethodArray = {"add supplier","add Contact Phone","add Contact Email","add Item","add Regular Order", "add Needed Order",
                                        "add Item To Order","add Quantity Document","add Supplier Agreement","back to the main menu"};
         System.out.println("please select the showing method: ");
         while (true) {
@@ -283,19 +283,30 @@ public class PresentationCL{
                     String category = categoryScan(scanner);
                     String name = itemNameScanner(scanner);
                     double price = priceScan(scanner);
-                    Tresponse<Item> response = service.addItem(BN, category, name, price);
+                    int typeID = typeScan(scanner);
+                    LocalDate expirationDate = dateScan(scanner);
+                    Tresponse<Item> response = service.addItem(BN, category, name, price, typeID, expirationDate );
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("ItemId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner , true);
                 }
                 case 5 -> {
                     BN = BNScan(scanner);
-                    Tresponse<Order> response = service.addOrder(BN);
+                    int branchID = branchIDScan(scanner);
+                    Tresponse<Order> response = service.addRegularOrder(BN, branchID);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("orderId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner , false);
                 }
                 case 6 -> {
+                    BN = BNScan(scanner);
+                    int branchID = branchIDScan(scanner);
+                    Tresponse<Order> response = service.addNeededOrder(BN, branchID);
+                    if (response.isError()) System.out.println(response.getError() + "\n");
+                    else System.out.println("orderId is: " + response.getOutObject().toStringId() + "\n");
+                    toContinue(scanner , false);
+                }
+                case 7 -> {
                     BN = BNScan(scanner);
                     int orderId = orderScan(scanner);
                     int itemId = itemScan(scanner);
@@ -304,7 +315,7 @@ public class PresentationCL{
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 7 -> {
+                case 8 -> {
                     BN = BNScan(scanner);
                     int itemId = itemScan(scanner);
                     int minimalAmount = minimalAmountScan(scanner);
@@ -313,7 +324,7 @@ public class PresentationCL{
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 8 -> {
+                case 9 -> {
                     BN = BNScan(scanner);
                     int minimalAmount = minimalAmountScan(scanner);
                     int discount = discountScan(scanner);
@@ -323,7 +334,7 @@ public class PresentationCL{
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 9 -> mainRun(false);
+                case 10 -> mainRun(false);
                 default ->{
                     System.out.println("illegal option!!!\n");
                     toContinue(scanner , false);
@@ -518,6 +529,34 @@ public class PresentationCL{
         return BN;
     }
 
+    private int typeScan(Scanner scanner){
+        int type = -1;
+        while (type == -1) {
+            System.out.println("please enter the typeID");
+            try {
+                type = scanner.nextInt();
+            } catch (Exception e) {
+                System.out.println("typeID must be a number\n");
+                scanner.nextLine();
+            }
+        }
+        return type;
+    }
+
+    private int branchIDScan(Scanner scanner){
+        int branchID = -1;
+        while (branchID == -1) {
+            System.out.println("please enter the branchID");
+            try {
+                branchID = scanner.nextInt();
+            } catch (Exception e) {
+                System.out.println("branchID must be a number\n");
+                scanner.nextLine();
+            }
+        }
+        return branchID;
+    }
+
     private int itemScan(Scanner scanner){
         int itemId = -1;
         while (itemId == -1) {
@@ -527,6 +566,7 @@ public class PresentationCL{
                 scanner.nextLine();
             } catch (Exception e) {
                 System.out.println("itemId must be a number\n");
+                scanner.nextLine();
             }
         }
         return itemId;
@@ -540,6 +580,7 @@ public class PresentationCL{
                 orderId = scanner.nextInt();
             } catch (Exception e) {
                 System.out.println("orderId must be a number\n");
+                scanner.nextLine();
             }
         }
         return orderId;
@@ -568,6 +609,7 @@ public class PresentationCL{
                 bankNumber = scanner.nextInt();
             }catch (Exception e) {
                 System.out.println("bank number must be a number\n");
+                scanner.nextLine();
             }
         }
         return bankNumber;
@@ -582,6 +624,7 @@ public class PresentationCL{
                 branchNumber = scanner.nextInt();
             }catch (Exception e) {
                 System.out.println("branch number must be a number\n");
+                scanner.nextLine();
             }
         }
         return branchNumber;
@@ -596,6 +639,7 @@ public class PresentationCL{
                 bankAccount = scanner.nextInt();
             }catch (Exception e) {
                 System.out.println("bank account must be a number\n");
+                scanner.nextLine();
             }
         }
         return bankAccount;
@@ -625,6 +669,7 @@ public class PresentationCL{
                 minimalAmount = scanner.nextInt();
             }catch (Exception e){
                 System.out.println("minimal amount must be a number\n");
+                scanner.nextLine();
             }
         }
         return minimalAmount;
@@ -639,6 +684,7 @@ public class PresentationCL{
                 discount = scanner.nextInt();
             }catch (Exception e){
                 System.out.println("discount must be a number.\n");
+                scanner.nextLine();
             }
         }
         return discount;
@@ -700,6 +746,7 @@ public class PresentationCL{
             } catch (Exception e){
                 System.out.println("you must enter true or false.\n");
                 hasChanged = false;
+                scanner.nextLine();
             }
         }
         return constantTime;
@@ -717,6 +764,7 @@ public class PresentationCL{
             } catch (Exception e){
                 System.out.println("shipToUs time must be true or false.\n");
                 hasChanged = false;
+                scanner.nextLine();
             }
         }
         return shipToUs;
@@ -731,6 +779,7 @@ public class PresentationCL{
                 scanner.nextLine();
             }catch (Exception e){
                 System.out.println("price must be a number\n");
+                scanner.nextLine();
             }
         }
         return price;
@@ -746,6 +795,7 @@ public class PresentationCL{
                 if(toContinue)  System.out.println("please enter item category");
             }catch (Exception e) {
                 System.out.println("you must enter a category\n");
+                scanner.nextLine();
             }
         }
         return category;
@@ -784,6 +834,7 @@ public class PresentationCL{
                 scanner.nextLine();
             }catch (Exception e){
                 System.out.println("amount must be a number.\n");
+                scanner.nextLine();
             }
         }
         return amount;

@@ -11,12 +11,14 @@ public class Item{
     private int typeId;
     private LocalDate expirationDate;
 
-    public Item(String category , int itemId , String name , double price){
+    public Item(String category , int itemId , String name , double price, int typeId, LocalDate expirationDate){
         this.category = category;
         this.itemId = itemId;
         this.name = name;
         quantityDocument = null;
         this.price = price;
+        this.typeId = typeId;
+        this.expirationDate = expirationDate;
     }
 
     public void addQuantityDocument(int minimalAmount, int discount) throws Exception {
@@ -73,4 +75,8 @@ public class Item{
     }
 
     public String getName() { return name; }
+
+    public int getTypeID() { return typeId; }
+
+    public LocalDate getExpirationDate() { return expirationDate; }
 }
