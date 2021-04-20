@@ -6,14 +6,14 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e951e903-03d5-4632-872b-73d1c0509272" name="Default Changelist" comment="started neededOrder impl">
+    <list default="true" id="e951e903-03d5-4632-872b-73d1c0509272" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/ISupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/ISupplierService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/ISupplierService.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/ISupplierService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierController.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/SupplierService.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/SupplierService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/PresentationLayer/PresentationCL.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/PresentationLayer/PresentationCL.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/SupplierService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/neededOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/neededOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/PresentationLayer/PresentationCL.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/PresentationLayer/PresentationCL.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +230,13 @@
       <option name="presentableId" value="LOCAL‎00021" />
       <updated>1618928174763</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL‎00022" summary="started neededOrder impl">
+      <created>1618935703878</created>
+      <option name="number" value="LOCAL‎00022" />
+      <option name="presentableId" value="LOCAL‎00022" />
+      <updated>1618935703878</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

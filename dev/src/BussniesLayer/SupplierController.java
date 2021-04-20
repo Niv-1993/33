@@ -238,7 +238,7 @@ public class SupplierController{
 
     public Order addNeededOrder(int typeID, int neededAmount, int branchID) throws Exception {
         Order order;
-        double bestPrice = 0;
+        double bestPrice = Integer.MAX_VALUE;
         int bestSupplier = 0;
         try {
             Enumeration<SupplierCard> enumeration = suppliers.elements();
