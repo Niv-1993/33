@@ -823,6 +823,7 @@ public class PresentationCL{
             }
             catch (NumberFormatException e) {
                 System.out.println("illegal!\n please enter a number");
+                scanner.nextLine();
             }
         }
         return n;

@@ -6,7 +6,24 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e951e903-03d5-4632-872b-73d1c0509272" name="Default Changelist" comment="" />
+    <list default="true" id="e951e903-03d5-4632-872b-73d1c0509272" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/neededOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/regularOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ADSS_Group_B.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ADSS_Group_B.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/.idea/src.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/ISupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/ISupplierService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/PresentationLayer/PresentationCL.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/PresentationLayer/PresentationCL.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -211,7 +228,13 @@
       <option name="presentableId" value="LOCAL‎00019" />
       <updated>1617972161172</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL‎00020" summary="finished part 1">
+      <created>1618856309058</created>
+      <option name="number" value="LOCAL‎00020" />
+      <option name="presentableId" value="LOCAL‎00020" />
+      <updated>1618856309058</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -282,10 +305,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="527" y="167" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.1536.824@0.0.1536.824" timestamp="1617970342415" />
-    <state x="354" y="0" key="CommitChangelistDialog2" timestamp="1617972160519">
+    <state x="354" y="0" key="CommitChangelistDialog2" timestamp="1618856308203">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="354" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1617972160519" />
+    <state x="354" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1618856308203" />
     <state x="585" y="288" key="DetectedRootsChooserDialog" timestamp="1617971930722">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -294,10 +317,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1617537832043" />
-    <state x="383" y="174" key="FileChooserDialogImpl" timestamp="1617972937895">
+    <state x="383" y="174" key="FileChooserDialogImpl" timestamp="1618917832061">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="383" y="174" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1617972937895" />
+    <state x="383" y="174" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1618917832061" />
     <state width="1493" height="431" key="GridCell.Tab.0.bottom" timestamp="1618164241447">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -330,30 +353,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="419" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1617907009306" />
-    <state x="147" y="65" key="MergeDialog" timestamp="1617030205172">
+    <state x="147" y="65" key="MergeDialog" timestamp="1618856342244">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="147" y="65" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1617030205172" />
-    <state x="407" y="174" key="MultipleFileMergeDialog" timestamp="1617030205187">
+    <state x="147" y="65" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1618856342244" />
+    <state x="407" y="174" key="MultipleFileMergeDialog" timestamp="1618856342256">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1617030205187" />
+    <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1618856342256" />
     <state x="270" y="0" key="SettingsEditor" timestamp="1617973319166">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="270" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1617973319166" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1617972163807">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1618856354123">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1617972163807" />
-    <state x="491" y="304" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1617642163942">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1618856354123" />
+    <state x="491" y="304" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1618918189912">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="491" y="304" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1617642163942" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617974792557">
+    <state x="491" y="304" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1618918189912" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618917969877">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1617974792557" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1618917969877" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1617780118103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

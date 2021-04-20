@@ -1,11 +1,15 @@
 package BussniesLayer;
 
+import java.time.LocalDate;
+
 public class Item{
     private final int itemId;
     private final String name;
     private final String category;
     private QuantityDocument quantityDocument;
     private double price;
+    private int typeId;
+    private LocalDate expirationDate;
 
     public Item(String category , int itemId , String name , double price){
         this.category = category;

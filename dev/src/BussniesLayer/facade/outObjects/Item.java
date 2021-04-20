@@ -1,10 +1,14 @@
 package BussniesLayer.facade.outObjects;
 
+import java.time.LocalDate;
+
 public class Item {
     private final int ItemId;
     private final String category;
     private final String name;
     private final double price;
+    private final int typeId;
+    private final LocalDate expirationDate;
 
     public Item(BussniesLayer.Item item) {
         ItemId = item.getItemId();

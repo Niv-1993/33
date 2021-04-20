@@ -1,12 +1,12 @@
 package BussniesLayer.facade.outObjects;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Order {
     private final int orderId;
     private final double totalAmount;
     private final LocalDate deliverTime;
+    private final int branchId;
 
     public Order(BussniesLayer.Order order) {
         orderId = order.getOrderId();

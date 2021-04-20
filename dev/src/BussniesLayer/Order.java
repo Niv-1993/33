@@ -1,13 +1,16 @@
 package BussniesLayer;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Order {
-    private final int orderId;
-    private Hashtable<Item , Integer> items;
-    private double totalAmount;
-    private LocalDate deliverTime;
+    protected final int orderId;
+    protected Hashtable<Item , Integer> items;
+    protected double totalAmount;
+    protected LocalDate deliverTime;
+    protected int branchId;
 
     public Order(int orderId , LocalDate deliverTime){
         this.orderId = orderId;
@@ -35,15 +38,7 @@ public class Order {
 
     public Order showDeliverTime() { return this; }
 
-    public void updateDeliverTime(LocalDate deliverTime) throws Exception {
-        if(deliverTime.isAfter(LocalDate.now())) this.deliverTime = deliverTime;
-        else throw new Exception("deliver time must be after current time");
-    }
-
-    public int getOrderId() {
-        return orderId;
-
-    }
+    public int getOrderId() { return orderId; }
 
     public double getTotalAmount() {
         return totalAmount;
