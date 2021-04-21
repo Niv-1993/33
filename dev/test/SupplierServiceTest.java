@@ -24,11 +24,11 @@ public class SupplierServiceTest {
 
     @Test
     public void testGetItemIDFailure() {
-        response r1 = service.addItem(1, "dairy" , "milk", 3.5, 1, LocalDate.now());
+        response r1 = service.addItem(1, "milk", 3.5, 1, LocalDate.now());
         assertTrue(r1.isError());
         assertEquals("ERROR: supplier BN does not exist." , r1.getError());
         service.addSupplier("Test", 2 , 5 , 654321 , "cash");
-        response r2 = service.addItem(0, "dairy", "yogurt",  -5, 2, LocalDate.now());
+        response r2 = service.addItem(0, "yogurt",  -5, 2, LocalDate.now());
         assertTrue(r2.isError());
         assertEquals("ERROR: price must be a positive number!" , r2.getError());
     }
@@ -36,13 +36,13 @@ public class SupplierServiceTest {
     @Test
     public void testGetItem(){
         service.LoadData();
-        Item item = service.addItem(0, "dairy", "milk" ,  3.5,1,LocalDate.now() ).getOutObject();
-        Item item2 = service.addItem(0, "dairy", "chocolate" ,  3.5,2, LocalDate.now()).getOutObject();
-        Item item3 = service.addItem(0, "dairy", "cottage" , 3.5,3, LocalDate.now() ).getOutObject();
+        Item item = service.addItem(0, "milk" ,  3.5,1,LocalDate.now() ).getOutObject();
+        Item item2 = service.addItem(0, "chocolate" ,  3.5,2, LocalDate.now()).getOutObject();
+        Item item3 = service.addItem(0, "cottage" , 3.5,3, LocalDate.now() ).getOutObject();
         assertEquals("19" , item.toStringId());
         assertEquals("20" , item2.toStringId());
         assertEquals("21" , item3.toStringId());
-        response r = service.addItem(0, "dairy", "milka" , 7, 4, LocalDate.now());
+        response r = service.addItem(0, "milka" , 7, 4, LocalDate.now());
         assertFalse(r.isError());
     }
 
@@ -84,9 +84,9 @@ public class SupplierServiceTest {
     @Test
     public void testAddItemToNullSupplier() {
         service.LoadData();
-        assertTrue(service.addItem(6,"Test" , "testItem", 10, 1, LocalDate.now()).isError());
+        assertTrue(service.addItem(6,"testItem", 10, 1, LocalDate.now()).isError());
         service.addSupplier("shouldPass", 2 , 6, 11111, "cash");
-        assertFalse(service.addItem(6,"Test" , "testItem", 10, 1, LocalDate.now()).isError());
+        assertFalse(service.addItem(6,"testItem", 10, 1, LocalDate.now()).isError());
     }
 
     @Test

@@ -190,12 +190,12 @@ public class SupplierController{
 
 
 
-    public Item addItem(int supplierBN, String category , String name , double price, int typeID, LocalDate expirationDate) throws Exception {
+    public Item addItem(int supplierBN,String name , double price, int typeID, LocalDate expirationDate) throws Exception {
         Item item;
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            item = suppliers.get(supplierBN).addItem(category, numOfItems , name, price, typeID, expirationDate);
+            item = suppliers.get(supplierBN).addItem(numOfItems , name, price, typeID, expirationDate);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

@@ -5,14 +5,12 @@ import java.time.LocalDate;
 public class Item{
     private final int itemId;
     private final String name;
-    private final String category; //delete
     private QuantityDocument quantityDocument;
     private double price;
     private int typeId;
     private LocalDate expirationDate;
 
-    public Item(String category , int itemId , String name , double price, int typeId, LocalDate expirationDate){
-        this.category = category;
+    public Item(int itemId , String name , double price, int typeId, LocalDate expirationDate){
         this.itemId = itemId;
         this.name = name;
         quantityDocument = null;
@@ -68,10 +66,6 @@ public class Item{
     public void updatePrice(double price) throws Exception {
         if(price < 0) throw new Exception("price must be a positive number");
         this.price = price;
-    }
-
-    public String getCategory() {
-        return category;
     }
 
     public String getName() { return name; }

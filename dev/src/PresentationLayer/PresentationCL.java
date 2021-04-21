@@ -280,12 +280,11 @@ public class PresentationCL{
                 }
                 case 4 -> {
                     BN = BNScan(scanner);
-                    String category = categoryScan(scanner);
                     String name = itemNameScanner(scanner);
                     double price = priceScan(scanner);
                     int typeID = typeScan(scanner);
                     LocalDate expirationDate = dateScan(scanner);
-                    Tresponse<Item> response = service.addItem(BN, category, name, price, typeID, expirationDate );
+                    Tresponse<Item> response = service.addItem(BN,name, price, typeID, expirationDate );
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("ItemId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner , true);
@@ -784,22 +783,6 @@ public class PresentationCL{
             }
         }
         return price;
-    }
-
-    private String categoryScan(Scanner scanner){
-        boolean toContinue = true;
-        String category = "";
-        while (toContinue) {
-            try {
-                category = scanner.nextLine();
-                if(!category.equals("")) toContinue = false;
-                if(toContinue)  System.out.println("please enter item category");
-            }catch (Exception e) {
-                System.out.println("you must enter a category\n");
-                scanner.nextLine();
-            }
-        }
-        return category;
     }
 
     private LocalDate dateScan(Scanner scanner){

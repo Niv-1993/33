@@ -154,9 +154,9 @@ public class SupplierCard {
         throw new Exception("itemId does net exist for this supplier");
     }
 
-    public Item addItem(String category, int ItemId , String name , double price, int typeID, LocalDate expirationDate) throws Exception {
+    public Item addItem(int ItemId , String name , double price, int typeID, LocalDate expirationDate) throws Exception {
         if(price < 0) throw new Exception("price must be a positive number!");
-        Item newItem = new BussniesLayer.Item(category, ItemId , name , price, typeID, expirationDate);
+        Item newItem = new BussniesLayer.Item(ItemId , name , price, typeID, expirationDate);
         items.add(newItem);
         return newItem;
     }

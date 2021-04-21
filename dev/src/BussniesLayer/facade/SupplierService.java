@@ -234,10 +234,10 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public Tresponse<Item> addItem(int supplierBN, String category , String name , double price, int typeID, LocalDate expirationDate) {
+    public Tresponse<Item> addItem(int supplierBN, String name , double price, int typeID, LocalDate expirationDate) {
         BussniesLayer.Item item;
         try{
-            item = supplierController.addItem(supplierBN, category , name , price, typeID, expirationDate);
+            item = supplierController.addItem(supplierBN,name , price, typeID, expirationDate);
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
