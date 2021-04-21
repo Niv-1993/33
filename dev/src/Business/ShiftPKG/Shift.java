@@ -67,10 +67,10 @@ public class Shift {
                     }
                 }
             }
-            complete = isComplete();
-            wasSelfMake = true;
             ArrayList<Employee> emps = new ArrayList<>();
             employees.forEach((emp, roleType) -> emps.add(emp));
+            complete = isComplete();
+            wasSelfMake = true;
             return emps;
         }
         return new ArrayList<>();

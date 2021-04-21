@@ -231,7 +231,7 @@ public class CLIPresentation {
         night.put("Cashier", 1);
         night.put("ShiftManager", 1);
         night.put("Driver", 0);
-        night.put("Sorter", 2);
+        night.put("Sorter", 0);
         night.put("StoreKeeper",0);
         SortedMap<String, Map<String, Integer>> defaultRolesAmount = new TreeMap<>();
         defaultRolesAmount.put("Night", night);

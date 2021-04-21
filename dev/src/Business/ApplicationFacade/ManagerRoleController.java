@@ -50,6 +50,7 @@ public class ManagerRoleController implements iManagerRoleController {
         Employee employee = new Employee(emp);
         //UPDATE DATABASE
         employees.put(emp.getEID(), emp);
+        utils.getShiftController().addToOptionals(emp,RoleType.valueOf(role));
         log.debug("successfully added new employee EID: " + newEID + " to system");
         return new ResponseData<>(employee);
     }
