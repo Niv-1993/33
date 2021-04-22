@@ -7,27 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e951e903-03d5-4632-872b-73d1c0509272" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/DalController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/ItemController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/OrderController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/QuantityDocumentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/SupplierAgreementController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/SupplierCardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalObjects/DalItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalObjects/DalObject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalObjects/DalOrder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalObjects/DalQuantityDocument.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalObjects/DalSupplierAgreement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalObjects/DalSupplierCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/ISupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/ISupplierService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/SupplierService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/DataController/data.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataController/data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/PresentationLayer/PresentationCL.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/PresentationLayer/PresentationCL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/test/SupplierServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/test/SupplierServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/DalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/DalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/ItemController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/QuantityDocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/QuantityDocumentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/SupplierAgreementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/SupplierAgreementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/SupplierCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccessLayer/DalControllers/SupplierCardController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +248,13 @@
       <option name="presentableId" value="LOCAL‎00024" />
       <updated>1618939756726</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL‎00025" summary="added DataAccessLayer">
+      <created>1618990472766</created>
+      <option name="number" value="LOCAL‎00025" />
+      <option name="presentableId" value="LOCAL‎00025" />
+      <updated>1618990472766</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -305,29 +297,30 @@
     <MESSAGE value="fixed some part 2 implementations" />
     <MESSAGE value="started neededOrder impl" />
     <MESSAGE value="fixed addNeededOrder" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed addNeededOrder" />
+    <MESSAGE value="added DataAccessLayer" />
+    <option name="LAST_COMMIT_MESSAGE" value="added DataAccessLayer" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1618988334948">
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1619081330711">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1618988334948" />
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1619081330711" />
     <state x="396" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1618985816548">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="396" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1618985816548" />
-    <state x="357" y="0" key="CommitChangelistDialog2" timestamp="1618989032057">
+    <state x="357" y="0" key="CommitChangelistDialog2" timestamp="1618990471936">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="357" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1618989032057" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1618939759038">
+    <state x="357" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1618990471936" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1618990475150">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1618939759038" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618985039630">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1618990475150" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1619080582658">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1618985039630" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1619080582658" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ADSS_Group_B2$SupplierServiceTest_testRemoveSupplier.ic" NAME="SupplierServiceTest.testRemoveSupplier Coverage Results" MODIFIED="1617610528427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
