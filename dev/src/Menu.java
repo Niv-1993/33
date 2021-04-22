@@ -43,7 +43,6 @@ public class Menu {
             System.out.println((i+1)+") "+areas[i]);
         }
         int area=chooseOp(areas.length)-1;
-        System.out.println("area num: "+ area);
         Area chosen=areas[area];
         t.setArea(chosen);
         controller.setTransportationArea(t);

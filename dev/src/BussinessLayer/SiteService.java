@@ -5,7 +5,6 @@ import java.util.List;
 
 
 public class SiteService {
-    private List<Site> sites;
     private HashMap<Integer, Supplier> suppliers;
     private HashMap<Integer, Branch> branches;
 
@@ -16,6 +15,8 @@ public class SiteService {
     public List<Branch> getBranchesList() {
         return new ArrayList<>(branches.values());
     }
+
+
     public Branch getBranch(int id){
         if(branches.containsKey(id)){
             return branches.get(id);
