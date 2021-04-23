@@ -188,9 +188,7 @@ public class SupplierCard {
     }
 
     public Order addNeededOrder(int orderID, int branchID, Item item, int amount) {
-        if (item == null) {
-            return null;
-        }
+        if (item == null || isItemExist(item.getItemId()) == null) return null;
         double totalAmount = calculateTotalAmount(item , amount);
         neededOrder order = new neededOrder(orderID ,null, branchID, item, amount , totalAmount);
         orders.add(order);
@@ -198,7 +196,7 @@ public class SupplierCard {
     }
 
     private double calculateTotalAmount(Item item , int amount){
-        double totalAmount =0.0;
+        double totalAmount = 0.0;
         QuantityDocument qd = item.getQuantityDocument();
         if (qd != null) {
             totalAmount = totalAmount + item.getPrice() * amount;
@@ -210,15 +208,18 @@ public class SupplierCard {
         return totalAmount;
     }
 
-    public void addItemToOrder(int orderId, int itemId , int amount) throws Exception {
-        Item toAdd = null;
+    private Item isItemExist(int itemId){
         for (Item i : items) {
             if (i.getItemId() == itemId) {
-                toAdd = i;
-                break;
+                return i;
             }
         }
-        if(toAdd == null) throw new Exception("the supplier does not have this item");
+        return null;
+    }
+
+    public void addItemToOrder(int orderId, int itemId , int amount) throws Exception {
+        Item toAdd = isItemExist(itemId);
+       if(toAdd == null) throw new Exception("the supplier does not have this item");
         boolean hasFound = false;
         for (Order o : orders) {
             if (o.getOrderId() == orderId) {

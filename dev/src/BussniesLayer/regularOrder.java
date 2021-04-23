@@ -24,12 +24,16 @@ public class regularOrder extends Order{
         if(amount < 1) throw new Exception("amount must be at least 1");
         if (items.get(item) != null) items.put(item, items.get(item) + amount);
         else items.put(item, amount);
+        updateTotalAmount(item , amount);
+    }
+
+    private void updateTotalAmount(Item item , int amount) throws Exception {
         QuantityDocument qd = item.getQuantityDocument();
         if (qd == null) throw new Exception("quantity document does not exist.");
-        totalAmount = totalAmount + item.getPrice()*amount;
+        totalAmount = totalAmount + item.getPrice() * amount;
         if (qd.getMinimalAmount() <= items.get(item)) {
-            double discount = qd.getDiscount()/100.0;
-            totalAmount = totalAmount - item.getPrice()*discount*amount;
+            double discount = qd.getDiscount() / 100.0;
+            totalAmount = totalAmount - item.getPrice() * discount * amount;
         }
     }
 }
