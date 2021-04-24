@@ -190,7 +190,7 @@ public class SupplierCard {
     public Order addNeededOrder(int orderID, int branchID, Item item, int amount) {
         if (item == null || isItemExist(item.getItemId()) == null) return null;
         double totalAmount = calculateTotalAmount(item , amount);
-        neededOrder order = new neededOrder(orderID ,null, branchID, item, amount , totalAmount);
+        neededOrder order = new neededOrder(orderID ,LocalDate.now().plusDays(1), branchID, item, amount , totalAmount);
         orders.add(order);
         return order;
     }

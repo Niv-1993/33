@@ -9,7 +9,6 @@
     <list default="true" id="e951e903-03d5-4632-872b-73d1c0509272" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/regularOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/regularOrder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,19 +243,7 @@
       <option name="presentableId" value="LOCAL‎00024" />
       <updated>1618939756726</updated>
     </task>
-    <task id="LOCAL‎00025" summary="added DataAccessLayer">
-      <created>1618990472766</created>
-      <option name="number" value="LOCAL‎00025" />
-      <option name="presentableId" value="LOCAL‎00025" />
-      <updated>1618990472766</updated>
-    </task>
-    <task id="LOCAL‎00026" summary="added methodes to controller">
-      <created>1619081918707</created>
-      <option name="number" value="LOCAL‎00026" />
-      <option name="presentableId" value="LOCAL‎00026" />
-      <updated>1619081918707</updated>
-    </task>
-    <option name="localTasksCounter" value="27" />
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -299,35 +286,29 @@
     <MESSAGE value="fixed some part 2 implementations" />
     <MESSAGE value="started neededOrder impl" />
     <MESSAGE value="fixed addNeededOrder" />
-    <MESSAGE value="added DataAccessLayer" />
-    <MESSAGE value="added methodes to controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="added methodes to controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed addNeededOrder" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="249" y="0" key="#Project_Structure" timestamp="1619178933965">
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1618988334948">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1619178933965" />
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1619081330711">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1619081330711" />
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1618988334948" />
     <state x="396" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1618985816548">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="396" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1618985816548" />
-    <state x="357" y="0" key="CommitChangelistDialog2" timestamp="1619081917919">
+    <state x="357" y="0" key="CommitChangelistDialog2" timestamp="1618989032057">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="357" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1619081917919" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1619081921540">
+    <state x="357" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1618989032057" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1618939759038">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1619081921540" />
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1619080582658">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1618939759038" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1618985039630">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1619080582658" />
+    <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1618985039630" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ADSS_Group_B2$SupplierServiceTest_testRemoveSupplier.ic" NAME="SupplierServiceTest.testRemoveSupplier Coverage Results" MODIFIED="1617610528427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
