@@ -25,12 +25,24 @@ public class Menu {
         finish=false;
     }
 
+
+    public void show(){
+
+        while(endOfProgram()){
+            chooseOption();
+            nextStep();
+        }
+    }
     /**
      *The starting choice of the user if to keep run the system or shut it off.
      */
     public void chooseOption(){
-        System.out.println("press 1 to see all Transportations, press 2 to create a new Transportation");
+        System.out.println("\n*************************************************");
+        System.out.println("******************* Main Menu *******************");
+        System.out.println("*************************************************\n");
+        System.out.print("1) See all Transportations.\n2) Create a new Transportation.\nOption: ");
         option = chooseOp(numOfOptions);
+        System.out.println("");
     }
 
     /**
@@ -42,7 +54,9 @@ public class Menu {
         for (int i=0; i<areas.length;i++) {
             System.out.println((i+1)+") "+areas[i]);
         }
+        System.out.print("Area number: ");
         int area=chooseOp(areas.length)-1;
+        System.out.println("");
         Area chosen=areas[area];
         t.setArea(chosen);
         controller.setTransportationArea(t);
@@ -56,8 +70,9 @@ public class Menu {
         boolean success=false;
         while (!success) {
             try {
-                System.out.println("Please chose time for transportation");
+                System.out.print("Please chose time for transportation.\nUse the format hh:mm.\nTime:");
                 String tim = sc.next();
+                System.out.println("");
                 LocalTime time = LocalTime.parse(tim);
                 tran.setLeavingTime(time);
                 controller.setTransportationLeavingTime(tran);
@@ -77,8 +92,9 @@ public class Menu {
         boolean success=false;
         while (!success) {
             try {
-                System.out.println("Please chose a date for transportation");
+                System.out.print("Please chose a date for transportation.\nUse the format yyyy-mm-dd.\nDate:");
                 String tim = sc.next();
+                System.out.println("");
                 LocalDate date=LocalDate.parse(tim);
                 tran.setDate(date);
                 controller.setTransportationDate(tran);
@@ -94,19 +110,25 @@ public class Menu {
      * This is the add transportation menu method. the whole user's input and dialog runs/called from here.
      */
     private void chooseAddOption(){
+
+        System.out.println("\n*************************************************");
+        System.out.println("************ New Transportation Menu ************");
+        System.out.println("*************************************************\n");
         finish=false;
         TransportationServiceDTO newTrans=controller.createNewTransportation();
         chooseArea(newTrans);
         chooseDate(newTrans);
         chooseTime(newTrans);
         while (!finish) {
-            System.out.println("press 1 to add a truck");
-            System.out.println("press 2 to add a driver");
-            System.out.println("press 3 to add a suppliers and items");
-            System.out.println("press 4 to add branches and items to a branches");
-            System.out.println("press 5 to set the truck weight");
-            System.out.println("press 6 to submit your transportation");
-            System.out.println("press 0 to cancel transportation");
+            System.out.println("\nChoose an option:");
+            System.out.println("0) Cancel transportation");
+            System.out.println("1) Add a truck");
+            System.out.println("2) Add a driver");
+            System.out.println("3) Add a suppliers and items");
+            System.out.println("4) Add branches and items to a branches");
+            System.out.println("5) Set the truck weight");
+            System.out.println("6) Submit your transportation");
+            System.out.print("Option:");
             subOption = chooseOp(numOfOptions);
             switch (subOption) {
                 case 1 -> chooseTruck(newTrans);
@@ -140,8 +162,13 @@ public class Menu {
      */
     private void chooseWeight(TransportationServiceDTO t){
         try {
+            System.out.println("\n*************************************************");
+            System.out.println("************ Adding Weight ************");
+            System.out.println("*************************************************\n");
             System.out.println("please enter transportation total weight:");
+            System.out.print("\nWeight: ");
             int chose = sc.nextInt();
+            System.out.println("");
             t.setWeight(chose);
             controller.setTransportationWeight(t);
         }
@@ -158,9 +185,10 @@ public class Menu {
      */
     private void submit(TransportationServiceDTO t){
         try {
-
+            System.out.println("\nTrying to submit transportation... \n\n");
             controller.setTransportation(t);
             finish=true;
+            System.out.println("Success to submit new transportation! ");
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -175,26 +203,32 @@ public class Menu {
      */
     private void chooseSupplier(TransportationServiceDTO t) {
         try {
-            System.out.println("please select suppliers and items from the lists below, press -1 to finish:");
+            System.out.println("\n*************************************************");
+            System.out.println("************ Adding Suppliers ************");
+            System.out.println("*************************************************\n");
+            System.out.println("Select suppliers and items from the lists below:");
             printAllSuppliers();
             PrintAllItems();
             int chose;
             HashMap<SupplierServiceDTO, List<Pair<ItemServiceDTO,Integer>>> suppliers=new HashMap<>();
             do {
-                System.out.println("select supplier: ");
+                System.out.print("\nselect supplier, to end press -1:\nSupplier Id: ");
                 chose = sc.nextInt();
+                System.out.println("");
                 if(chose==-1)
                     break;
-                System.out.println("choose items from this supplier and quantity. press -2 to finish.");
                 List<Pair<ItemServiceDTO, Integer>> lis =new LinkedList<>();
                 long id;
                 int num;
                 do{
-                    System.out.println("enter item and quantity: ");
+                    System.out.println("Enter item and quantity,to end press -2:");
+                    System.out.print("Item Id: ");
                     id= sc.nextLong();
                     if(id==-2)
                         break;
+                    System.out.print("Quantity: ");
                     num= sc.nextInt();
+                    System.out.println("");
 
                     lis.add(new Pair<>(controller.getItem(id),num));
                 }
@@ -219,25 +253,30 @@ public class Menu {
      */
     private void chooseBranch(TransportationServiceDTO t) {
         try {
-            System.out.println("please select branches and items from the lists below, press -1 to finish:");
+            System.out.println("\n*************************************************");
+            System.out.println("**************** Adding Suppliers ***************");
+            System.out.println("*************************************************\n");
+            System.out.println("Select branches and items from the lists below:");
             printAllBranches();
             PrintAllItems();
             int chose;
             HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO,Integer>>> branches=new HashMap<>();
             do {
-                System.out.println("select Branch: ");
+                System.out.print("\nselect branch, to end press -1:\nBranch Id:");
                 chose = sc.nextInt();
+                System.out.println("");
                 if(chose==-1)
                     break;
-                System.out.println("choose items to this branch and quantity. press -2 to finish.");
                 List<Pair<ItemServiceDTO, Integer>> lis =new LinkedList<>();
                 long id;
                 int num;
                 do{
-                    System.out.println("enter item and quantity: ");
+                    System.out.println("Enter item and quantity,to end press -2:");
+                    System.out.print("Item Id: ");
                     id= sc.nextLong();
                     if(id==-2)
                         break;
+                    System.out.print("Quantity: ");
                     num= sc.nextInt();
 
                     lis.add(new Pair<>(controller.getItem(id),num));
@@ -262,9 +301,14 @@ public class Menu {
      */
     private void chooseDriver(TransportationServiceDTO t) {
         try {
-            System.out.println("please select driver id from the trucks list below:");
+            System.out.println("\n*************************************************");
+            System.out.println("  ****************** Adding Driver ****************");
+            System.out.println("*************************************************\n");
+            System.out.println("please select driver id from the trucks list below:\n");
             printAllDrivers();
+            System.out.print("\nId: ");
             long chose = sc.nextLong();
+            System.out.println("");
             t.setDriver(controller.getDriver(chose));
             controller.setDriverOnTransportation(t);
         }
@@ -281,9 +325,14 @@ public class Menu {
     private void chooseTruck(TransportationServiceDTO t) {
 
         try {
-            System.out.println("please select truck id from the trucks list below:");
+            System.out.println("\n*************************************************");
+            System.out.println("****************** Adding Truck *****************");
+            System.out.println("*************************************************\n");
+            System.out.println("Type a truck id from the list below:\n");
             printAllTucks();
+            System.out.print("\nId: ");
             long chose = sc.nextLong();
+            System.out.println("");
             t.setTruck(controller.getTruck(chose));
             controller.setTruckOnTransportation(t);
         }
@@ -305,7 +354,9 @@ public class Menu {
      */
     public void printAllTucks(){
         List<TruckServiceDTO> lis=controller.getAllTrucks();
-        for (TruckServiceDTO tru:lis) { System.out.println(tru); }
+        for (TruckServiceDTO tru:lis) {
+            System.out.println(tru);
+        }
     }
 
     /**
@@ -339,6 +390,9 @@ public class Menu {
      * Used for the transportations printing option in the menu.
      */
     public void printAllTransportations(){
+        System.out.println("\n*************************************************");
+        System.out.println("************ Printing Transportation ************");
+        System.out.println("*************************************************\n");
         List<TransportationServiceDTO> sup=controller.getAllTransportations();
         for (TransportationServiceDTO tru:sup) { System.out.println(tru); }
     }
@@ -350,7 +404,11 @@ public class Menu {
      * @return : if to keep run the program or terminate it
      */
     public boolean endOfProgram(){
-        System.out.println("to continue press 1, to end press 2");
+        System.out.println("\n*************************************************");
+        System.out.println("****************** Start menu *******************");
+        System.out.println("*************************************************\n");
+        System.out.println("Hello.\nPlease choose an option:");
+        System.out.print("1)Continue\n2)Exit\nOption: ");
         int numOfEndProgramOp = 2;
         return chooseOp(numOfEndProgramOp) == 1;
     }

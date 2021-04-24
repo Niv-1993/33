@@ -32,7 +32,7 @@ public class TransportationServiceDTO {
 
     @Override
     public String toString() {
-        String output="Transportation { \tid = " + id ;
+        String output="Transportation : \tid = " + id ;
         if(date==null)
             output+="\tDate: ";
         else
@@ -57,7 +57,7 @@ public class TransportationServiceDTO {
             output+="\n\tDeliveryItems : ";
         else
             output+=   "\n\tDeliveryItems : " + deliveryItems  ;
-        output+=   "\n\tweight : " + weight + "\n}\n";
+        output+=   "\n\tweight : " + weight + "\n\n";
 
         return output;
 

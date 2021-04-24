@@ -13,12 +13,11 @@ public class TruckServiceDTO {
 
     @Override
     public String toString() {
-        return "Truck {\tid=" + id +
-                "\tlicense=" + license +
-                "\tmodel='" + model +
-                "\tnetWeight=" + netWeight +
-                "\tmaxWeight=" + maxWeight +
-                "\t}\n";
+        return "Id=" + id +
+                "\t\tLicense=" + license +
+                "\t\tModel='" + model +
+                "\t\tNetWeight=" + netWeight +
+                "\t\tMaxWeight=" + maxWeight;
     }
 
     public TruckServiceDTO(long id, int license, int maxWeight, int netWeight, String model){

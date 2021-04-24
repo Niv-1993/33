@@ -69,6 +69,7 @@ public class Transportation {
     public void setSuppliers(HashMap<Supplier, List<Pair<Item, Integer>>> suppliers) {
         this.suppliers = suppliers;
     }
+
     private void checkArea(List<? extends Site> sites) {
         List<Site> noSameArea = new ArrayList<>();
         boolean exp = false;

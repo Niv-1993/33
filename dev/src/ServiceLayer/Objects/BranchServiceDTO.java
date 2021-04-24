@@ -20,11 +20,11 @@ public class BranchServiceDTO {
 
     @Override
     public String toString() {
-        return "Branch {\tphone='" + phone +
-                "\tcontactName='" + contactName +
+        return "- Branch " +
                 "\tid=" + id +
                 "\tArea='" + Area +
-                "\t}\n";
+                "\tcontactName='" + contactName +
+                "\tphone='" + phone+"\n";
     }
 
     public void setId(int id) { this.id = id; }

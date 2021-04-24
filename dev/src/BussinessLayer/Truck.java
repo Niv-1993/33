@@ -31,13 +31,6 @@ public class Truck {
 
     public String getModel() { return model; }
 
-    public void setLicenseNumber(License licenseNumber) { this.license = licenseNumber; }
-
-    public void setMaxWeight(int maxWeight) { this.maxWeight = maxWeight; }
-
-    public void setModel(String model) { this.model = model; }
-
-    public void setNetWeight(int netWeight) { this.netWeight = netWeight; }
 
     @Override
     public boolean equals(Object o) {
@@ -62,6 +55,5 @@ public class Truck {
                 '}';
     }
 
-    public int getLicenseNumber() { return license.getKg();}
 }
 

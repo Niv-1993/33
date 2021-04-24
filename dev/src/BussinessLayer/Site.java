@@ -22,10 +22,7 @@ public abstract class Site {
         this.address = address;
         this.shippingArea = shippingArea;
     }
-    public void setPhone(String newPhone){ phone = newPhone; }
-    public void setContactName(String newContactName){ contactName = newContactName; }
     public void setId(int newId){id = newId; }
-    public void setAddress(Address newAddress){ address = newAddress; }
     public void setShippingArea(ShippingArea newShippingArea){shippingArea = newShippingArea; }
 
     public String getPhone(){return phone;}

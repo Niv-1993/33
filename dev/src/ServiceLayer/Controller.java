@@ -196,9 +196,6 @@ public class Controller {
     public void addDriver(Driver d){
         serviceControl.addDriver(d);
     }
-    public void addDTruck(Truck t){
-        serviceControl.addTruck(t);
-    }
     public void clearTrans(){
         serviceControl.clearTrans();
     }
