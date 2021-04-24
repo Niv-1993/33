@@ -113,7 +113,7 @@ class ControllerTest {
         db.addBranch(b1);
         db.addBranch(b2);
         db.addBranch(b3);
-        controller = Controller.initial();
+        controller = new Controller();
         controller.clearTrans();
         t = controller.createNewTransportation();
     }

@@ -5,16 +5,10 @@ import ServiceLayer.Objects.*;
 import java.util.*;
 
 public class Controller {
-    private static Controller control = null;
     private final ServiceFaced serviceControl;
 
-    public static Controller initial(){
-        if(control == null){
-            control=new Controller();
-        }
-        return control;
-    }
-    private Controller (){
+
+    public Controller (){
         serviceControl = new ServiceFaced();
     }
 

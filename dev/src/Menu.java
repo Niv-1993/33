@@ -18,7 +18,7 @@ public class Menu {
     private final Controller controller;
     private boolean finish;
     public Menu(Scanner sc){
-        controller = Controller.initial();
+        controller =new Controller();
         this.sc = sc;
         this.option=0;
         subOption=0;
