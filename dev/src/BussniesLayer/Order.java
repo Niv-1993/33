@@ -43,5 +43,11 @@ public class Order {
         return branchId;
     }
 
-
+    public Hashtable<Integer, Integer> getAmounts() {
+        Hashtable<Integer , Integer> amounts = new Hashtable<>();
+        for(Item item : items.keySet()){
+            amounts.put(item.getItemId() , items.get(item));
+        }
+        return amounts;
+    }
 }

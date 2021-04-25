@@ -8,8 +8,25 @@
   <component name="ChangeListManager">
     <list default="true" id="e951e903-03d5-4632-872b-73d1c0509272" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/ISupplierService.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/ISupplierService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Item.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierController.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/SupplierService.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/SupplierService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/outObjects/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/outObjects/Item.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/outObjects/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/outObjects/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/PresentationLayer/PresentationCL.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/PresentationLayer/PresentationCL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/ISupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/ISupplierService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/SupplierService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/regularOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/regularOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/PresentationLayer/PresentationCL.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/PresentationLayer/PresentationCL.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -308,10 +325,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1619178933965" />
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1619081330711">
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1619367758490">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1619081330711" />
+    <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1619367758490" />
     <state x="396" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1618985816548">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -320,10 +337,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="357" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1619081917919" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1619081921540">
+    <state width="1493" height="431" key="GridCell.Tab.0.bottom" timestamp="1619359084494">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1619081921540" />
+    <state width="1493" height="431" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619359084494" />
+    <state width="1493" height="431" key="GridCell.Tab.0.center" timestamp="1619359084494">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="431" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1619359084494" />
+    <state width="1493" height="431" key="GridCell.Tab.0.left" timestamp="1619359084494">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="431" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1619359084494" />
+    <state width="1493" height="431" key="GridCell.Tab.0.right" timestamp="1619359084494">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="431" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1619359084494" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1619351895228">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1619351895228" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1619080582658">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

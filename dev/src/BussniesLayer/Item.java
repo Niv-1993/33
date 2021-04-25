@@ -7,8 +7,8 @@ public class Item{
     private final String name;
     private QuantityDocument quantityDocument;
     private double price;
-    private int typeId;
-    private LocalDate expirationDate;
+    private final int typeId;
+    private final LocalDate expirationDate;
 
     public Item(int itemId , String name , double price, int typeId, LocalDate expirationDate){
         this.itemId = itemId;

@@ -29,6 +29,7 @@ public class SupplierCard {
         orders = new LinkedList<>();
         contactPhone = new Hashtable<>();
         contactEmail = new Hashtable<>();
+        constantOrder = null;
     }
 
     public void removeSupplier(){
@@ -186,20 +187,52 @@ public class SupplierCard {
         if(single && !found) throw new Exception("itemId does not exist for this supplier");
     }
 
-    public Order addRegularOrder(int orderID, int deliverDays , int branchID , Hashtable<Integer , Integer> items) throws Exception {
+    public void removeItemFromRegularOrder(int orderId, int itemId) throws Exception {
+        for(Order order : orders){
+            if(order.getOrderId() == orderId){
+                try {
+                    regularOrder regularOrder = (BussniesLayer.regularOrder) order;
+                    regularOrder.removeItemFromRegularOrder(itemId);
+                    break;
+                }catch (Exception e){
+                    throw new Exception(e.getMessage());
+                }
+            }
+        }
+    }
+
+    public void removeAmountItemFromRegularOrder(int orderId, int itemId, int amount) throws Exception {
+        for(Order order : orders){
+            if(order.getOrderId() == orderId){
+                try {
+                    regularOrder regularOrder = (BussniesLayer.regularOrder) order;
+                    regularOrder.removeAmountItemFromRegularOrder(itemId , amount);
+                    break;
+                }catch (Exception e){
+                    throw new Exception(e.getMessage());
+                }
+            }
+        }
+    }
+
+    public Order addRegularOrder(int orderId , int branchId){
+        Order order = new regularOrder(orderId , branchId);
+        orders.add(order);
+        return order;
+    }
+
+    public void addConstantOrder(int orderID, int branchID , Hashtable<Integer , Integer> items) throws Exception {
         // check if it's veiled branchId.
-        regularOrder order = new regularOrder(orderID ,deliverDays, branchID);
+        if(constantOrder == null) constantOrder = new regularOrder(orderID , branchID);
         for(Item item : this.items){
             if(items.keySet().contains(item.getItemId())) {
                 try {
-                    order.addItemToOrder(item , items.get(item.getItemId()));
+                    constantOrder.addItemToOrder(item , items.get(item.getItemId()));
                 }catch (Exception e) {
                     throw new Exception(e);
                 }
             }
         }
-        orders.add(order);
-        return order;
     }
 
     public Order addNeededOrder(int orderID, int branchID, Item item, int amount) {

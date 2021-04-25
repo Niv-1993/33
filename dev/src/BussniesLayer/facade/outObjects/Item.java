@@ -29,6 +29,14 @@ public class Item {
                 "\tprice: " + price;
     }
 
+    public String toString(String amount){
+        return "\tItem: \n" +
+                "\t\tItemId: " + ItemId + "\n" +
+                "\t\tAmount: " + amount + "\n" +
+                "\t\tname: " + name +"\n" +
+                "\t\tprice: " + price;
+    }
+
     public String toStringId(){
         return "" +  ItemId;
     }

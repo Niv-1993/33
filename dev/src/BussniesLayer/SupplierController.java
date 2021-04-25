@@ -13,7 +13,7 @@ public class SupplierController{
     public SupplierController(){
         suppliers = new Hashtable<>();
         numOfItems = 0;
-        numOfOrders = 0;
+        numOfOrders = 1;
     }
 
     public SupplierCard showSupplier(int supplierBN) throws Exception {
@@ -212,28 +212,58 @@ public class SupplierController{
         }
     }
 
-    public void removeItemFromSupplier(int supplierBN, int itemId) throws Exception {
+    public void removeItemFromRegularOrder(int supplierBN, int orderId, int itemId) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
-        if(numOfItems < itemId || itemId < 0) throw new Exception("itemId does not exist.");
         try {
-            suppliers.get(supplierBN).removeItemFromSupplier(itemId , true);
+            supplierCard.removeItemFromRegularOrder(orderId , itemId);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
     }
 
-    public Order addRegularOrder(int supplierBN, int deliverDays ,  int branchID , Hashtable<Integer , Integer> items) throws Exception {
+    public void removeAmountItemFromRegularOrder(int supplierBN, int orderId, int itemId, int amount) throws Exception {
+        SupplierCard supplierCard = suppliers.get(supplierBN);
+        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+        try {
+            supplierCard.removeAmountItemFromRegularOrder(orderId , itemId , amount);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public void removeItemFromSupplier(int supplierBN, int itemId) throws Exception {
+        SupplierCard supplierCard = suppliers.get(supplierBN);
+        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+        if(numOfItems < itemId || itemId < 0) throw new Exception("itemId does not exist.");
+        try {
+            supplierCard.removeItemFromSupplier(itemId , true);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public Order addRegularOrder(int supplierBN , int branchId) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         Order order;
         try {
-            order = suppliers.get(supplierBN).addRegularOrder(numOfOrders, deliverDays , branchID , items);
+            order = suppliers.get(supplierBN).addRegularOrder(numOfOrders, branchId);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
         numOfOrders++;
         return order;
+    }
+
+    public void addConstantOrder(int supplierBN, int branchID , Hashtable<Integer , Integer> items) throws Exception {
+        SupplierCard supplierCard = suppliers.get(supplierBN);
+        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+        try {
+            suppliers.get(supplierBN).addConstantOrder(0, branchID , items);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
     public Order addNeededOrder(int typeID, int neededAmount, int branchID) throws Exception {

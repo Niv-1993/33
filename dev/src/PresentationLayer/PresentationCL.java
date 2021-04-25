@@ -2,7 +2,6 @@ package PresentationLayer;
 
 import java.io.InputStreamReader;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
@@ -44,7 +43,6 @@ public class PresentationCL{
         }
         String[] mainMenuArray = {"showing methods" , "adding methods" , "removing methods" , "updating methods" ,"end program" };
         int option = -1;
-        String check = "";
         while(true){
             System.out.println("please select an option: ");
             for(int i = 1 ; i <= mainMenuArray.length ; i++){
@@ -172,7 +170,7 @@ public class PresentationCL{
                         else {
                             List<Item> responseItem = items.getOutObject();
                             for (Item item : responseItem) {
-                                System.out.println(item.toString(true));
+                                System.out.println(item.toString(response.getOutObject().toStringAmount(item.toStringId())));
                             }
                         }
                     }
@@ -194,7 +192,8 @@ public class PresentationCL{
                                 else System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
                                 List<Item> responseItem = items.getOutObject();
                                 for (Item item : responseItem) {
-                                    System.out.println(item.toString(true));
+                                    System.out.println(item.toString(order.toStringAmount(item.toStringId())));
+
                                 }
                             }
                         }
@@ -244,8 +243,9 @@ public class PresentationCL{
     private void addingMethods(){
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int option = -1;
-        String[] showingMethodArray = {"add supplier","add Contact Phone","add Contact Email","add Item","add Regular Order", "add Needed Order",
-                                       "add Item To Order","add Quantity Document","add Supplier Agreement","back to the main menu"};
+        String[] showingMethodArray = {"add supplier","add Contact Phone","add Contact Email","add Item", "add constant Order" ,
+                                       "add Regular Order", "add Needed Order","add Item To Order","add Quantity Document",
+                                       "add Supplier Agreement","back to the main menu"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= showingMethodArray.length; i++) {
@@ -294,14 +294,21 @@ public class PresentationCL{
                 case 5 -> {
                     BN = BNScan(scanner);
                     int branchID = branchIDScan(scanner);
-                    Hashtable<Integer , Integer> itmes = constantOrderScan(scanner);
-                    int deliverDays = deliverDaysScan(scanner);
-                    Tresponse<Order> response = service.addRegularOrder(BN, deliverDays,  branchID , itmes);
+                    Hashtable<Integer , Integer> items = constantOrderScan(scanner);
+                    response response = service.addConstantOrder(BN, branchID , items);
+                    if (response.isError()) System.out.println(response.getError() + "\n");
+                    else System.out.println("constant Order added successfully");
+                    toContinue(scanner , false);
+                }
+                case 6 ->{
+                    BN = BNScan(scanner);
+                    int branchID = branchIDScan(scanner);
+                    Tresponse<Order> response = service.addRegularOrder(BN, branchID);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("orderId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner , false);
                 }
-                case 6 -> {
+                case 7 -> {
                     int typeID = typeScan(scanner);
                     int neededAmount = amountScan(scanner);
                     int branchID = branchIDScan(scanner);
@@ -310,7 +317,7 @@ public class PresentationCL{
                     else System.out.println("orderId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner , false);
                 }
-                case 7 -> {
+                case 8 -> {
                     BN = BNScan(scanner);
                     int orderId = orderScan(scanner);
                     int itemId = itemScan(scanner);
@@ -319,7 +326,7 @@ public class PresentationCL{
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 8 -> {
+                case 9 -> {
                     BN = BNScan(scanner);
                     int itemId = itemScan(scanner);
                     int minimalAmount = minimalAmountScan(scanner);
@@ -328,7 +335,7 @@ public class PresentationCL{
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 9 -> {
+                case 10 -> {
                     BN = BNScan(scanner);
                     int minimalAmount = minimalAmountScan(scanner);
                     int discount = discountScan(scanner);
@@ -338,7 +345,7 @@ public class PresentationCL{
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 10 -> mainRun(false);
+                case 11 -> mainRun(false);
                 default ->{
                     System.out.println("illegal option!!!\n");
                     toContinue(scanner , false);
@@ -352,6 +359,7 @@ public class PresentationCL{
         int option = -1;
         String check = "";
         String[] removeMethodArray = {"remove Supplier","remove Contact Phone","remove Contact Email","remove Item",
+                                      "remove item from regular order" , "remove amount of item from regular order" ,
                                       "remove Quantity Document","back to the main menu"};
         System.out.println("please select the showing method: ");
         while (true) {
@@ -387,14 +395,31 @@ public class PresentationCL{
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 5 -> {
+                case 5->{
+                    BN = BNScan(scanner);
+                    int orderId = orderScan(scanner);
+                    int itemId = itemScan(scanner);
+                    response response = service.removeItemFromRegularOrder(BN , orderId , itemId);
+                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    else System.out.println("The operation was completed successfully\n");
+                }
+                case 6->{
+                    BN = BNScan(scanner);
+                    int orderId = orderScan(scanner);
+                    int itemId = itemScan(scanner);
+                    int amount = amountScan(scanner);
+                    response response = service.removeAmountItemFromRegularOrder(BN , orderId , itemId , amount);
+                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    else System.out.println("The operation was completed successfully\n");
+                }
+                case 7 -> {
                     BN = BNScan(scanner);
                     int itemId = itemScan(scanner);
                     response response = service.removeQuantityDocument(BN, itemId);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 6 -> mainRun(false);
+                case 8 -> mainRun(false);
                 default ->{
                     System.out.println("illegal option!!!");
                     toContinue(scanner , false);

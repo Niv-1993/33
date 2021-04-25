@@ -254,14 +254,45 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public Tresponse<Order> addRegularOrder(int supplierBN, int deliverDays , int branchID , Hashtable<Integer, Integer> items) {
+    public response removeItemFromRegularOrder(int supplierBN, int orderId, int itemId) {
+        try{
+            supplierController.removeItemFromRegularOrder(supplierBN , orderId , itemId);
+        }catch (Exception e){
+            return new response("ERROR: " + e.getMessage());
+        }
+        return new response();
+    }
+
+    @Override
+    public response removeAmountItemFromRegularOrder(int supplierBN, int orderId, int itemId, int amount) {
+        try{
+            supplierController.removeAmountItemFromRegularOrder(supplierBN , orderId , itemId , amount);
+        }catch (Exception e){
+            return new response("ERROR: " + e.getMessage());
+        }
+        return new response();
+    }
+
+    @Override
+    public Tresponse<Order> addRegularOrder(int supplierBN,int branchID) {
         BussniesLayer.Order order;
         try {
-            order = supplierController.addRegularOrder(supplierBN, deliverDays , branchID , items);
+            order = supplierController.addRegularOrder(supplierBN, branchID);
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new Tresponse<>(new Order(order));
+    }
+
+
+    @Override
+    public response addConstantOrder(int supplierBN,int branchID , Hashtable<Integer, Integer> items) {
+        try {
+            supplierController.addConstantOrder(supplierBN, branchID , items);
+        }catch (Exception e){
+            return new response("ERROR: " + e.getMessage());
+        }
+        return new response();
     }
 
     public Tresponse<Order> addNeededOrder(int typeID,int neededAmount, int branchID) {

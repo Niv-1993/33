@@ -2,12 +2,11 @@ package BussniesLayer;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Hashtable;
 
 public class regularOrder extends Order{
 
-    public regularOrder(int orderId ,int deliverDays, int branchId){
-        super(orderId , LocalDate.now().plusDays(deliverDays), branchId);
+    public regularOrder(int orderId , int branchId){
+        super(orderId , LocalDate.now().plusDays(7), branchId);
     }
 
     public void updateDeliverTime(LocalDate deliverTime) throws Exception {
@@ -35,6 +34,27 @@ public class regularOrder extends Order{
         if (qd.getMinimalAmount() <= items.get(item)) {
             double discount = qd.getDiscount() / 100.0;
             totalAmount = totalAmount - item.getPrice() * discount * amount;
+        }
+    }
+
+    public void removeItemFromRegularOrder(int itemId) throws Exception {
+        for(Item item : items.keySet()) {
+            if (item.getItemId() == itemId) {
+                items.remove(item);
+                break;
+            }
+        }
+    }
+
+    public void removeAmountItemFromRegularOrder(int itemId, int amount) throws Exception {
+        for(Item item : items.keySet()){
+            if(item.getItemId() == itemId){
+                int newAmount = items.get(item) - amount;
+                if(newAmount < 0) throw new Exception("amount must be less then the amount of the item in the order");
+                if(newAmount == 0) items.remove(item);
+                else items.put(item , items.get(item) - amount);
+                break;
+            }
         }
     }
 }
