@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class Item {
     private final int ItemId;
-    private final String category;
     private final String name;
     private final double price;
     private final int typeId;
@@ -12,7 +11,6 @@ public class Item {
 
     public Item(BussniesLayer.Item item) {
         ItemId = item.getItemId();
-        category = item.getCategory();
         name = item.getName();
         price = item.getPrice();
         typeId = item.getTypeID();
@@ -23,13 +21,11 @@ public class Item {
         if(shift)
             return "\tItem: \n" +
                 "\t\tItemId: " + ItemId + "\n" +
-                "\t\tcategory: " + category + '\n' +
                 "\t\tname: " + name +"\n" +
                 "\t\tprice: " + price;
         return "Item: \n" +
                 "\tItemId: " + ItemId + "\n" +
                 "\tname: " + name + "\n" +
-                "\tcategory: " + category + '\n' +
                 "\tprice: " + price;
     }
 

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Order {
-    protected final int orderId;
+    protected int orderId;
     protected Hashtable<Item , Integer> items;
     protected double totalAmount;
     protected LocalDate deliverTime;
@@ -19,6 +19,9 @@ public class Order {
         this.deliverTime = deliverTime;
         this.branchId=branchId;
     }
+
+    public Order(){}
+    //remove Item from Order.
 
     public List<Item> showAllItemsOfOrder(){
         return new LinkedList<>(items.keySet());

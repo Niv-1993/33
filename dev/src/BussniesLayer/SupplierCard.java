@@ -16,6 +16,7 @@ public class SupplierCard {
     private SupplierAgreement supplierAgreement;
     private Dictionary<String , String> contactPhone;
     private Dictionary<String , String> contactEmail;
+    private regularOrder constantOrder;
 
     public SupplierCard(int supplierBN , String supplierName ,int bankNumber , int branchNumber, int accountNumber , String payWay){
         this.supplierBN = supplierBN;
@@ -35,6 +36,10 @@ public class SupplierCard {
         items = new LinkedList<>();
         contactPhone = new Hashtable<>();
         contactEmail = new Hashtable<>();
+    }
+
+    public void addConstantOrder(HashMap<Integer , Integer> amountsOfItem , int deliverDays) throws Exception {
+
     }
 
     public int getSupplierBN() {
@@ -181,8 +186,18 @@ public class SupplierCard {
         if(single && !found) throw new Exception("itemId does not exist for this supplier");
     }
 
-    public Order addRegularOrder(int orderID, int branchID) {
-        regularOrder order = new regularOrder(orderID ,null, branchID);
+    public Order addRegularOrder(int orderID, int deliverDays , int branchID , Hashtable<Integer , Integer> items) throws Exception {
+        // check if it's veiled branchId.
+        regularOrder order = new regularOrder(orderID ,deliverDays, branchID);
+        for(Item item : this.items){
+            if(items.keySet().contains(item.getItemId())) {
+                try {
+                    order.addItemToOrder(item , items.get(item.getItemId()));
+                }catch (Exception e) {
+                    throw new Exception(e);
+                }
+            }
+        }
         orders.add(order);
         return order;
     }

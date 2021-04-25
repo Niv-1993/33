@@ -2,6 +2,8 @@ package PresentationLayer;
 
 import java.io.InputStreamReader;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
 
@@ -292,7 +294,9 @@ public class PresentationCL{
                 case 5 -> {
                     BN = BNScan(scanner);
                     int branchID = branchIDScan(scanner);
-                    Tresponse<Order> response = service.addRegularOrder(BN, branchID);
+                    Hashtable<Integer , Integer> itmes = constantOrderScan(scanner);
+                    int deliverDays = deliverDaysScan(scanner);
+                    Tresponse<Order> response = service.addRegularOrder(BN, deliverDays,  branchID , itmes);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("orderId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner , false);
@@ -822,6 +826,49 @@ public class PresentationCL{
             }
         }
         return amount;
+    }
+
+    private int deliverDaysScan(Scanner scanner){
+        int deliverDays = -1;
+        while(deliverDays == -1){
+            System.out.println("please enter the deliver days of the regular Order.");
+            try {
+                deliverDays = scanner.nextInt();
+                scanner.nextLine();
+            }catch (Exception e){
+                System.out.println("deliver days must be a number.\n");
+                scanner.nextLine();
+            }
+        }
+        return deliverDays;
+    }
+
+    private Hashtable<Integer , Integer> constantOrderScan(Scanner scanner){
+        Hashtable<Integer , Integer> items = new Hashtable<>();
+        int toStop = -2;
+        int ItemId;
+        int amount = -1;
+        while(toStop != -1){
+            ItemId = itemScan(scanner);
+            System.out.println("please enter the amount of item");
+            try {
+                amount = scanner.nextInt();
+                scanner.nextLine();
+            }catch (Exception e){
+                System.out.println("amount must be a number.\n");
+                scanner.nextLine();
+            }
+            items.put(ItemId , amount);
+            System.out.println("to put more item , pls press any number beside -1");
+            try {
+                toStop = scanner.nextInt();
+                scanner.nextLine();
+            }catch (Exception e){
+                System.out.println("amount must be a number.\n");
+                scanner.nextLine();
+            }
+        }
+        return items;
     }
 
     private String itemNameScanner(Scanner scanner){

@@ -2,11 +2,12 @@ package BussniesLayer;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Hashtable;
 
 public class regularOrder extends Order{
-    
-    public regularOrder(int orderId , LocalDate deliverTime, int branchId){
-        super(orderId , deliverTime, branchId);
+
+    public regularOrder(int orderId ,int deliverDays, int branchId){
+        super(orderId , LocalDate.now().plusDays(deliverDays), branchId);
     }
 
     public void updateDeliverTime(LocalDate deliverTime) throws Exception {

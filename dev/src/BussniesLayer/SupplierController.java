@@ -223,12 +223,12 @@ public class SupplierController{
         }
     }
 
-    public Order addRegularOrder(int supplierBN, int branchID) throws Exception {
+    public Order addRegularOrder(int supplierBN, int deliverDays ,  int branchID , Hashtable<Integer , Integer> items) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         Order order;
         try {
-            order = suppliers.get(supplierBN).addRegularOrder(numOfOrders, branchID);
+            order = suppliers.get(supplierBN).addRegularOrder(numOfOrders, deliverDays , branchID , items);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }

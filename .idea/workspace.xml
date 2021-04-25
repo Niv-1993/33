@@ -8,8 +8,26 @@
   <component name="ChangeListManager">
     <list default="true" id="e951e903-03d5-4632-872b-73d1c0509272" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/ISupplierService.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/ISupplierService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Item.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierController.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/SupplierController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/SupplierService.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/SupplierService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/outObjects/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/BussniesLayer/facade/outObjects/Item.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/DataController/data.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/PresentationLayer/PresentationCL.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/production/ADSS_Group_B/PresentationLayer/PresentationCL.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/out/test/ADSS_Group_B/SupplierServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/dev/out/test/ADSS_Group_B/SupplierServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/ISupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/ISupplierService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/SupplierController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/SupplierService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/facade/outObjects/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/BussniesLayer/regularOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/BussniesLayer/regularOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataController/data.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/PresentationLayer/PresentationCL.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/PresentationLayer/PresentationCL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/test/SupplierServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/test/SupplierServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,7 +274,13 @@
       <option name="presentableId" value="LOCAL‎00026" />
       <updated>1619081918707</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL‎00027" summary="added verified check">
+      <created>1619180354890</created>
+      <option name="number" value="LOCAL‎00027" />
+      <option name="presentableId" value="LOCAL‎00027" />
+      <updated>1619180354890</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -301,33 +325,66 @@
     <MESSAGE value="fixed addNeededOrder" />
     <MESSAGE value="added DataAccessLayer" />
     <MESSAGE value="added methodes to controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="added methodes to controller" />
+    <MESSAGE value="added verified check" />
+    <option name="LAST_COMMIT_MESSAGE" value="added verified check" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="249" y="0" key="#Project_Structure" timestamp="1619178933965">
+    <state x="249" y="0" key="#Project_Structure" timestamp="1619351020446">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1619178933965" />
+    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1619351020446" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1619351215825">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1619351215825" />
     <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1619081330711">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="574" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1619081330711" />
+    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1619351213906">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="498" y="202" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1619351213906" />
     <state x="396" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1618985816548">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="396" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1618985816548" />
-    <state x="357" y="0" key="CommitChangelistDialog2" timestamp="1619081917919">
+    <state x="357" y="0" key="CommitChangelistDialog2" timestamp="1619180353668">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="357" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1619081917919" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1619081921540">
+    <state x="357" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1619180353668" />
+    <state x="445" y="130" key="FileChooserDialogImpl" timestamp="1619351016724">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1619081921540" />
+    <state x="445" y="130" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1619351016724" />
+    <state width="1493" height="431" key="GridCell.Tab.0.bottom" timestamp="1619351805883">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="431" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1619351805883" />
+    <state width="1493" height="431" key="GridCell.Tab.0.center" timestamp="1619351805883">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="431" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1619351805883" />
+    <state width="1493" height="431" key="GridCell.Tab.0.left" timestamp="1619351805883">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="431" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1619351805883" />
+    <state width="1493" height="431" key="GridCell.Tab.0.right" timestamp="1619351805883">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="431" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1619351805883" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1619180357023">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1619180357023" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1619080582658">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1619080582658" />
+    <state x="562" y="160" key="refactoring.ChangeSignatureDialog" timestamp="1619349048265">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="562" y="160" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1619349048265" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ADSS_Group_B2$SupplierServiceTest_testRemoveSupplier.ic" NAME="SupplierServiceTest.testRemoveSupplier Coverage Results" MODIFIED="1617610528427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

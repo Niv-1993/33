@@ -7,10 +7,10 @@ import BussniesLayer.facade.outObjects.Item;
 import BussniesLayer.facade.outObjects.Order;
 import BussniesLayer.facade.outObjects.QuantityDocument;
 import BussniesLayer.facade.outObjects.SupplierAgreement;
-import DataController.data;
 
 
 import java.time.LocalDate;
+import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,8 +23,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public response LoadData() {
-        data loadData = new data(supplierController);
-        return new response();
+       return new response();
     }
 
     @Override
@@ -255,10 +254,10 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public Tresponse<Order> addRegularOrder(int supplierBN, int branchID) {
+    public Tresponse<Order> addRegularOrder(int supplierBN, int deliverDays , int branchID , Hashtable<Integer, Integer> items) {
         BussniesLayer.Order order;
         try {
-            order = supplierController.addRegularOrder(supplierBN, branchID);
+            order = supplierController.addRegularOrder(supplierBN, deliverDays , branchID , items);
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
