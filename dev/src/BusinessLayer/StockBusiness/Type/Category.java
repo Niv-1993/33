@@ -1,6 +1,6 @@
-package BusinessLayer.Type;
+package BusinessLayer.StockBusiness.Type;
 
-import BusinessLayer.StoreController;
+import BusinessLayer.StockBusiness.StoreController;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;

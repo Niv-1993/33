@@ -1,4 +1,4 @@
-package BusinessLayer.instance;
+package BusinessLayer.StockBusiness.instance;
 
 public enum Location {
     Storage,Shelves

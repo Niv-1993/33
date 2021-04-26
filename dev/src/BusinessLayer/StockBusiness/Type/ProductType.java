@@ -1,7 +1,7 @@
-package BusinessLayer.Type;
+package BusinessLayer.StockBusiness.Type;
 
-import BusinessLayer.instance.Location;
-import BusinessLayer.instance.Product;
+import BusinessLayer.StockBusiness.instance.Location;
+import BusinessLayer.StockBusiness.instance.Product;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
 

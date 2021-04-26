@@ -1,9 +1,9 @@
-package BusinessLayer.Fcade;
+package BusinessLayer.StockBusiness.Fcade;
 
-import BusinessLayer.Fcade.outObjects.*;
-import BusinessLayer.StoreController;
-import BusinessLayer.iStoreController;
-import BusinessLayer.instance.Location;
+import BusinessLayer.StockBusiness.Fcade.outObjects.*;
+import BusinessLayer.StockBusiness.StoreController;
+import BusinessLayer.StockBusiness.iStoreController;
+import BusinessLayer.StockBusiness.instance.Location;
 import org.apache.log4j.Logger;
 
 import java.text.ParseException;
@@ -114,9 +114,9 @@ public class StorageService implements iStorageService {
     @Override
     public ResponseData<Category> getCategoryInfo(int id) {
         try {
-            BusinessLayer.Type.Category ret=curr.getCategory(id);
+            BusinessLayer.StockBusiness.Type.Category ret=curr.getCategory(id);
             List<Integer> cids=new ArrayList<>();
-            for(BusinessLayer.Type.Category c:ret.get_categories()){
+            for(BusinessLayer.StockBusiness.Type.Category c:ret.get_categories()){
                 cids.add(c.get_categoryID());
             }
             return new ResponseData<>(new Category(ret.get_categoryID(),ret.get_superCategory()==null?0:ret.get_superCategory().get_categoryID(),ret.get_name(),cids,ret.get_productTypes()));
@@ -172,7 +172,7 @@ public class StorageService implements iStorageService {
     @Override
     public ResponseData<ProductType> getProductTypeInfo(int id) {
         try {
-            BusinessLayer.Type.ProductType ret=curr.getProductTypeInfo(id);
+            BusinessLayer.StockBusiness.Type.ProductType ret=curr.getProductTypeInfo(id);
             return new ResponseData<>(new ProductType(ret.get_typeID(),ret.get_minAmount(),ret.get_categoryID(),ret.get_producer(),
                     ret.get_suppliers(),ret.get_shelfCurr(),ret.get_storageCurr(),ret.get_basePrice(),ret.get_salePrice()));
         }
@@ -272,8 +272,8 @@ public class StorageService implements iStorageService {
     @Override
     public ResponseData<Product> getProductInfo(int ID) {
         try {
-            BusinessLayer.Type.ProductType Tret=curr.getProductTypeInfo(ID/curr.MAX_PRODUCTS_ON_PROTUCTTYPE);
-            BusinessLayer.instance.Product Pret=curr.getProductInfo(ID);
+            BusinessLayer.StockBusiness.Type.ProductType Tret=curr.getProductTypeInfo(ID/curr.MAX_PRODUCTS_ON_PROTUCTTYPE);
+            BusinessLayer.StockBusiness.instance.Product Pret=curr.getProductInfo(ID);
             return new ResponseData<>(new Product(Pret.get_id(),Tret.get_typeID(),Pret.get_expiration(),
                     Pret.get_location().item2==Location.Storage,Pret.get_location().item1));
         }
@@ -305,9 +305,9 @@ public class StorageService implements iStorageService {
     @Override
     public ResponseData<SupplierDiscounts> getSupplierDiscounts(int typeID) {
         try {
-            List<BusinessLayer.Type.SupplierDiscount> get=curr.getSupplierDiscounts(typeID);
+            List<BusinessLayer.StockBusiness.Type.SupplierDiscount> get=curr.getSupplierDiscounts(typeID);
             List<SupplierDiscount> ret=new ArrayList<>();
-            for (BusinessLayer.Type.SupplierDiscount d:get){
+            for (BusinessLayer.StockBusiness.Type.SupplierDiscount d:get){
                 ret.add(new SupplierDiscount(d.get_discountID(),d.get_start(),d.get_end(),d.get_percent(),d.get_supplierID()));
             }
             return new ResponseData<>(new SupplierDiscounts(typeID,ret));
@@ -320,9 +320,9 @@ public class StorageService implements iStorageService {
     @Override
     public ResponseData<SaleDiscounts> getSaleDiscounts(int typeID) {
         try {
-            List<BusinessLayer.Type.SaleDiscount> get=curr.getSaleDiscounts(typeID);
+            List<BusinessLayer.StockBusiness.Type.SaleDiscount> get=curr.getSaleDiscounts(typeID);
             List<SaleDiscount> ret=new ArrayList<>();
-            for (BusinessLayer.Type.SaleDiscount d:get){
+            for (BusinessLayer.StockBusiness.Type.SaleDiscount d:get){
                 ret.add(new SaleDiscount(d.get_discountID(),d.get_start(),d.get_end(),d.get_percent()));
             }
             return new ResponseData<>(new SaleDiscounts(typeID,ret));

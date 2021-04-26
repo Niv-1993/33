@@ -1,4 +1,4 @@
-package BusinessLayer.Type;
+package BusinessLayer.StockBusiness.Type;
 
 import java.util.Date;
 

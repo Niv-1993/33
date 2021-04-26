@@ -1,4 +1,4 @@
-package BusinessLayer.Fcade;
+package BusinessLayer.StockBusiness.Fcade;
 public class Response {
     public String error;
     public boolean isError=false;

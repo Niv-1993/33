@@ -1,7 +1,7 @@
-import BusinessLayer.Fcade.StorageService;
-import BusinessLayer.Fcade.outObjects.ProductType;
-import BusinessLayer.StoreController;
-import Presentation.CLIPresentation;
+import BusinessLayer.StockBusiness.Fcade.StorageService;
+import BusinessLayer.StockBusiness.Fcade.outObjects.ProductType;
+import BusinessLayer.StockBusiness.StoreController;
+import Presentation.StockCLI;
 import org.apache.log4j.Logger;
 
 import java.text.ParseException;
@@ -13,7 +13,7 @@ public class main {
     final static Logger log=Logger.getLogger(main.class);
     public static void main(String[] args) {
 
-        CLIPresentation cli= new CLIPresentation();
+        StockCLI cli= new StockCLI();
         cli.setup();
 
 //        StorageService ss= new StorageService();

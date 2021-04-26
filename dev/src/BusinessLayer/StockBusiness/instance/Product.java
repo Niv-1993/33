@@ -1,4 +1,4 @@
-package BusinessLayer.instance;
+package BusinessLayer.StockBusiness.instance;
 
 import Utility.Tuple;
 import org.apache.log4j.Logger;

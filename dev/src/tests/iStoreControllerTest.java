@@ -1,12 +1,12 @@
 package tests;
 
-import BusinessLayer.StoreController;
-import BusinessLayer.Type.Category;
-import BusinessLayer.Type.ProductType;
-import BusinessLayer.iStoreController;
-import BusinessLayer.instance.InstanceController;
-import BusinessLayer.instance.Location;
-import BusinessLayer.instance.Shelf;
+import BusinessLayer.StockBusiness.StoreController;
+import BusinessLayer.StockBusiness.Type.Category;
+import BusinessLayer.StockBusiness.Type.ProductType;
+import BusinessLayer.StockBusiness.iStoreController;
+import BusinessLayer.StockBusiness.instance.InstanceController;
+import BusinessLayer.StockBusiness.instance.Location;
+import BusinessLayer.StockBusiness.instance.Shelf;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

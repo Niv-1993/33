@@ -1,6 +1,6 @@
-package BusinessLayer.Fcade;
+package BusinessLayer.StockBusiness.Fcade;
 
-import BusinessLayer.Fcade.outObjects.*;
+import BusinessLayer.StockBusiness.Fcade.outObjects.*;
 
 import java.util.Date;
 import java.util.List;

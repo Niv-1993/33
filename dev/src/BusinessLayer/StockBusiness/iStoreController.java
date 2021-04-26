@@ -1,13 +1,13 @@
-package BusinessLayer;
+package BusinessLayer.StockBusiness;
 
 
-import BusinessLayer.Type.Category;
-import BusinessLayer.Type.ProductType;
-import BusinessLayer.Type.SaleDiscount;
-import BusinessLayer.Type.SupplierDiscount;
-import BusinessLayer.instance.InstanceController;
-import BusinessLayer.instance.Product;
-import BusinessLayer.instance.Shelf;
+import BusinessLayer.StockBusiness.Type.Category;
+import BusinessLayer.StockBusiness.Type.ProductType;
+import BusinessLayer.StockBusiness.Type.SaleDiscount;
+import BusinessLayer.StockBusiness.Type.SupplierDiscount;
+import BusinessLayer.StockBusiness.instance.InstanceController;
+import BusinessLayer.StockBusiness.instance.Product;
+import BusinessLayer.StockBusiness.instance.Shelf;
 import reports.Report;
 
 import java.util.Date;

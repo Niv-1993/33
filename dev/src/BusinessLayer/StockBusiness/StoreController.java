@@ -1,10 +1,8 @@
-package BusinessLayer;
+package BusinessLayer.StockBusiness;
 
-import BusinessLayer.Type.*;
-import BusinessLayer.instance.InstanceController;
-import BusinessLayer.instance.Location;
-import BusinessLayer.instance.Product;
-import BusinessLayer.instance.Shelf;
+import BusinessLayer.StockBusiness.iStoreController;
+import BusinessLayer.StockBusiness.Type.*;
+import BusinessLayer.StockBusiness.instance.*;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
 import reports.NeededReport;
@@ -15,7 +13,7 @@ import reports.WeeklyReport;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class StoreController implements iStoreController{
+public class StoreController implements iStoreController {
     private int _storeID=0;
     private int _typeCounter=0;
     private int _categoryCounter=0;

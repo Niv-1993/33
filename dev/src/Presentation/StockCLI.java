@@ -1,6 +1,6 @@
 package Presentation;
 
-import BusinessLayer.Fcade.StorageService;
+import BusinessLayer.StockBusiness.Fcade.StorageService;
 import org.apache.log4j.Logger;
 
 import java.text.SimpleDateFormat;
@@ -10,19 +10,19 @@ import java.util.Scanner;
 
 
 
-public class CLIPresentation {
+public class StockCLI {
     StorageService SS;
     Scanner scan=new Scanner(System.in);
-    final static Logger log= Logger.getLogger(CLIPresentation.class);
+    final static Logger log= Logger.getLogger(StockCLI.class);
 
     String read(){
         return scan.nextLine().toLowerCase().replaceAll("\\s", "");
     }
 
-    public CLIPresentation(){
+    public StockCLI(){
         SS=new StorageService();
     }
-    public CLIPresentation(StorageService ss){
+    public StockCLI(StorageService ss){
         SS=ss;
     }
     public void setup(){

@@ -1,7 +1,7 @@
-package BusinessLayer.instance;
+package BusinessLayer.StockBusiness.instance;
 
 
-import BusinessLayer.StoreController;
+import BusinessLayer.StockBusiness.StoreController;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
 
