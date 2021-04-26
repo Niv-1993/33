@@ -20,9 +20,6 @@ public class Order {
         this.branchId=branchId;
     }
 
-    public Order(){}
-    //remove Item from Order.
-
     public List<Item> showAllItemsOfOrder(){
         LinkedList<Item> toReturn = new LinkedList<>();
         toReturn.addAll(0 , items.keySet());

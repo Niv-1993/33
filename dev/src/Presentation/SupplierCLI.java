@@ -69,7 +69,7 @@ public class SupplierCLI{
         int option = -1;
         String[] showingMethodArray = {"show Supplier","show SupplierBN","show All Suppliers", "show Item Of Supplier","show All Items Of Supplier",
                                        "show All Items", "show Order Of Supplier","show All Orders Of Supplier","show Total Amount",
-                                        "show Deliver Time", "show Quantity Document","show Supplier Agreement","back to the main menu"};
+                                       "show Deliver Time", "show Quantity Document","show Supplier Agreement","back to the main menu"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= showingMethodArray.length ; i++) {
@@ -164,7 +164,7 @@ public class SupplierCLI{
                         System.out.println(response.getOutObject().toString());
                         Tresponse<SupplierAgreement> supplierAgreement = service.showSupplierAgreement(BN);
                         if(supplierAgreement.isError()) System.out.println(supplierAgreement.getError() + "\n");
-                        else System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
+                        else System.out.println(supplierAgreement.getOutObject().toStringShipToUs());
                         Tresponse<List<Item>> items = service.showAllItemsOfOrder(BN, orderId);
                         if (items.isError()) System.out.println(items.getError() + "\n");
                         else {
@@ -189,7 +189,7 @@ public class SupplierCLI{
                             else {
                                 Tresponse<SupplierAgreement> supplierAgreement = service.showSupplierAgreement(BN);
                                 if(supplierAgreement.isError()) System.out.println(supplierAgreement.getError() + "\n");
-                                else System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
+                                else System.out.println(supplierAgreement.getOutObject().toStringShipToUs());
                                 List<Item> responseItem = items.getOutObject();
                                 for (Item item : responseItem) {
                                     System.out.println(item.toString(order.toStringAmount(item.toStringId())));

@@ -23,6 +23,6 @@ public class SupplierAgreement {
     }
 
     public String toStringShipToUs(){
-        return shipToUs + "\n";
+        return "\tship to us: " + shipToUs + "\n";
     }
 }

@@ -326,6 +326,7 @@ public class SupplierController{
         return suppliers.get(supplierBN).showAllOrdersOfSupplier();
     }
 
+
     public Order showTotalAmount(int supplierBN, int orderId) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");

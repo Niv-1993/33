@@ -43,10 +43,6 @@ public class SupplierCard {
         contactEmail = new Hashtable<>();
     }
 
-    public void addConstantOrder(HashMap<Integer , Integer> amountsOfItem , int deliverDays) throws Exception {
-
-    }
-
     public int getSupplierBN() {
         return supplierBN;
     }
@@ -223,7 +219,9 @@ public class SupplierCard {
     }
 
     public Order addRegularOrder(int orderId , int branchId){
-        Order order = new regularOrder(orderId , branchId);
+        Order order;
+        if(constantOrder == null) order = new regularOrder(orderId , branchId);
+        else order = constantOrder;
         orders.add(order);
         return order;
     }
@@ -232,7 +230,7 @@ public class SupplierCard {
         // check if it's veiled branchId.
         if(constantOrder == null) constantOrder = new regularOrder(orderID , branchID);
         for(Item item : this.items){
-            if(items.keySet().contains(item.getItemId())) {
+            if(items.containsKey(item.getItemId())) {
                 try {
                     constantOrder.addItemToOrder(item , items.get(item.getItemId()));
                 }catch (Exception e) {
@@ -306,7 +304,7 @@ public class SupplierCard {
     }
 
     public List<Order> showAllOrdersOfSupplier() {
-        return orders;
+       return orders.subList(1 , orders.size() -1);
     }
 
     public Order showTotalAmount(int orderId) throws Exception {
