@@ -177,7 +177,7 @@ public class ShiftController {
             }
         }
     }
-
+    //TODO: add build constraint and remove from negative shift optionals
     //add to specific role in this Shift
     public String addEmpToShift(int SID, RoleType role, Employee emp){
         if(shifts.get(SID)==null) {

@@ -26415,3 +26415,274 @@ Shift Date: 2021-04-16    Type: Morning
 [DEBUG] 21-04-2021 10:15:42 [class: Business.ApplicationFacade.ManagerRoleController,Line:347] - entered get shifts and employees function
 [DEBUG] 21-04-2021 10:15:42 [class: Business.ApplicationFacade.Utils,Line:148] - converting shift of business layer to out objects list
 [DEBUG] 21-04-2021 10:15:42 [class: Business.ApplicationFacade.Utils,Line:165] - Done.
+[DEBUG] 23-04-2021 16:26:16 [class: Business.ShiftPKG.ShiftController,Line:32] - finished constructor shiftController
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:218] - enter create branch function
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:223] - creating instance of the personnel manager in this new branch
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:66] - checking name alphabetical
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:52] - checking salary
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:77] - checking bank details
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:87] - checking terms
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:231] - successfully created branch
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:43] - entered login function with user id: 1 and role PersonnelManager
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:112] - checked that employee is working in this branch - success
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:52] - successfully logged in - user fields are updated to +1 with role PersonnelManager
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:45] - enter add employee function
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:66] - checking name alphabetical
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:52] - checking salary
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:77] - checking bank details
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:87] - checking terms
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[ERROR] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:109] - user with id: 2 is not in map of employees
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:54] - successfully added new employee EID: 2 to system
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:45] - enter add employee function
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:66] - checking name alphabetical
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:52] - checking salary
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:77] - checking bank details
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:87] - checking terms
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[ERROR] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:109] - user with id: 3 is not in map of employees
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:54] - successfully added new employee EID: 3 to system
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:45] - enter add employee function
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:66] - checking name alphabetical
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:52] - checking salary
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:77] - checking bank details
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:87] - checking terms
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[ERROR] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:109] - user with id: 4 is not in map of employees
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:54] - successfully added new employee EID: 4 to system
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:45] - enter add employee function
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:66] - checking name alphabetical
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:52] - checking salary
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:77] - checking bank details
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:87] - checking terms
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[ERROR] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:109] - user with id: 5 is not in map of employees
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:54] - successfully added new employee EID: 5 to system
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:45] - enter add employee function
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:66] - checking name alphabetical
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:52] - checking salary
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:77] - checking bank details
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:87] - checking terms
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[ERROR] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:109] - user with id: 6 is not in map of employees
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:54] - successfully added new employee EID: 6 to system
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:45] - enter add employee function
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:66] - checking name alphabetical
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:52] - checking salary
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:77] - checking bank details
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:87] - checking terms
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[ERROR] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:109] - user with id: 7 is not in map of employees
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:54] - successfully added new employee EID: 7 to system
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:45] - enter add employee function
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:66] - checking name alphabetical
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:52] - checking salary
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:77] - checking bank details
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:87] - checking terms
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[ERROR] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:109] - user with id: 8 is not in map of employees
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:54] - successfully added new employee EID: 8 to system
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:282] - entered default shifts function
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:284] - parsing strings to enum types of map
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.ShiftController,Line:98] - default shifts defined
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:62] - enter logout function when current connected id is: 1
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:69] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:43] - entered login function with user id: 2 and role Driver
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:112] - checked that employee is working in this branch - success
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:52] - successfully logged in - user fields are updated to +2 with role Driver
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:82] - enter add const constraint function
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.ConstConstraint,Line:20] - Const constraint 0 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.ShiftController,Line:47] - added new const constraint for EID: 2, Day: SUNDAY , ShiftType: Night
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:85] - successfully added const constraint
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:62] - enter logout function when current connected id is: 2
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:69] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:43] - entered login function with user id: 1 and role PersonnelManager
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:112] - checked that employee is working in this branch - success
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:52] - successfully logged in - user fields are updated to +1 with role PersonnelManager
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:306] - entered create week shift function
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:309] - initializing roles and amount map with all roles
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:313] - initialized.
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:314] - putting in optionals map all names and roles into array of strings to each role
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:320] - done.
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.ShiftController,Line:325] - EID: 2 remove from optionals
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:38] - shift: 0 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 1 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.ShiftController,Line:325] - EID: 7 remove from optionals
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:38] - shift: 1 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:144] - EID: 8 remove from optionals
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 2 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:38] - shift: 2 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 3 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.ShiftController,Line:325] - EID: 7 remove from optionals
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:38] - shift: 3 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:144] - EID: 8 remove from optionals
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 4 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:38] - shift: 4 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 5 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.ShiftController,Line:325] - EID: 7 remove from optionals
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:38] - shift: 5 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:144] - EID: 8 remove from optionals
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 6 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:38] - shift: 6 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 7 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.ShiftController,Line:325] - EID: 7 remove from optionals
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:38] - shift: 7 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:144] - EID: 8 remove from optionals
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 8 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:38] - shift: 8 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 9 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.ShiftController,Line:325] - EID: 7 remove from optionals
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:38] - shift: 9 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:144] - EID: 8 remove from optionals
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 10 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.Shift,Line:38] - shift: 10 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 11 created
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:148] - converting shift of business layer to out objects list
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.Utils,Line:165] - Done.
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:62] - enter logout function when current connected id is: 1
+[DEBUG] 23-04-2021 16:26:20 [class: Business.ApplicationFacade.RegularRoleController,Line:69] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 23-04-2021 16:26:24 [class: Business.ApplicationFacade.RegularRoleController,Line:182] - loading data of branch id: 1
+[DEBUG] 23-04-2021 16:26:24 [class: Business.ApplicationFacade.RegularRoleController,Line:190] - loaded all employees.
+[DEBUG] 23-04-2021 16:26:24 [class: Business.ApplicationFacade.RegularRoleController,Line:193] - Done loading data
+[DEBUG] 23-04-2021 16:26:29 [class: Business.ApplicationFacade.RegularRoleController,Line:43] - entered login function with user id: 1 and role PersonnelManager
+[DEBUG] 23-04-2021 16:26:29 [class: Business.ApplicationFacade.Utils,Line:97] - checking if is enum
+[DEBUG] 23-04-2021 16:26:29 [class: Business.ApplicationFacade.Utils,Line:112] - checked that employee is working in this branch - success
+[DEBUG] 23-04-2021 16:26:29 [class: Business.ApplicationFacade.RegularRoleController,Line:52] - successfully logged in - user fields are updated to +1 with role PersonnelManager
+[DEBUG] 23-04-2021 16:26:57 [class: Business.ApplicationFacade.ManagerRoleController,Line:347] - entered get shifts and employees function
+[DEBUG] 23-04-2021 16:26:57 [class: Business.ApplicationFacade.Utils,Line:148] - converting shift of business layer to out objects list
+[DEBUG] 23-04-2021 16:26:57 [class: Business.ApplicationFacade.Utils,Line:165] - Done.
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ApplicationFacade.ManagerRoleController,Line:332] - entered self make week shift function
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 3 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 7 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 12 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 3 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 13 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 2 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 5 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 6 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 4 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 8 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 14 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 2 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 15 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 5 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 16 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 4 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 17 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 6 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 18 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 3 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 7 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 19 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 3 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 20 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 2 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 5 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 6 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 4 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 8 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 21 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 2 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 22 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 5 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 23 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 4 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 24 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 6 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 25 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 3 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 7 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 26 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 3 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 27 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 2 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 5 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 6 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 4 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 8 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 28 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 2 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 29 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 5 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 30 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 4 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 31 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 6 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 32 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 3 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 7 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 33 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 3 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 34 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 2 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 5 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 6 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 4 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 8 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 35 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 2 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 36 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 5 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 37 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 4 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 38 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 6 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 39 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 3 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 7 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 40 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 3 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 41 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 2 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 5 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 6 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 4 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 8 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 42 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 2 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 43 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 5 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 44 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 4 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 45 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 6 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 46 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 2 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 5 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 6 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.Shift,Line:144] - EID: 3 remove from optionals
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 47 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 48 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 49 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 50 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ShiftPKG.TempConstraint,Line:17] - Temp constraint 51 created
+[DEBUG] 23-04-2021 16:28:09 [class: Business.ApplicationFacade.ManagerRoleController,Line:334] - returned to EmployeePKG successfully
+[DEBUG] 23-04-2021 16:28:11 [class: Business.ApplicationFacade.ManagerRoleController,Line:347] - entered get shifts and employees function
+[DEBUG] 23-04-2021 16:28:11 [class: Business.ApplicationFacade.Utils,Line:148] - converting shift of business layer to out objects list
+[DEBUG] 23-04-2021 16:28:11 [class: Business.ApplicationFacade.Utils,Line:165] - Done.
+[DEBUG] 23-04-2021 16:28:39 [class: Business.ApplicationFacade.ManagerRoleController,Line:347] - entered get shifts and employees function
+[DEBUG] 23-04-2021 16:28:39 [class: Business.ApplicationFacade.Utils,Line:148] - converting shift of business layer to out objects list
+[DEBUG] 23-04-2021 16:28:39 [class: Business.ApplicationFacade.Utils,Line:165] - Done.
+[DEBUG] 23-04-2021 16:29:01 [class: Business.ApplicationFacade.ManagerRoleController,Line:360] - entered remove employee from shift functions
+[DEBUG] 23-04-2021 16:29:01 [class: Business.ShiftPKG.Shift,Line:114] - EID: 2removed from SID: 10
+[DEBUG] 23-04-2021 16:29:01 [class: Business.ShiftPKG.ShiftController,Line:214] - Build constraint - CID: 47 removed
+[DEBUG] 23-04-2021 16:29:03 [class: Business.ApplicationFacade.ManagerRoleController,Line:347] - entered get shifts and employees function
+[DEBUG] 23-04-2021 16:29:03 [class: Business.ApplicationFacade.Utils,Line:148] - converting shift of business layer to out objects list
+[DEBUG] 23-04-2021 16:29:03 [class: Business.ApplicationFacade.Utils,Line:165] - Done.

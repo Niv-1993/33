@@ -373,6 +373,7 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param role   The role of the employee will be in the shift
      * @return A response object. The response should contain a error message in case of an error
      */
+    //TODO: check if id has a role in his list
     public Response addEmpToShift(int SID, int addEID, String role) {
         log.debug("entered add employee to shift function");
         String checkWorking = utils.checkWorking(addEID);
