@@ -193,7 +193,6 @@ public class SupplierCLI{
                                 List<Item> responseItem = items.getOutObject();
                                 for (Item item : responseItem) {
                                     System.out.println(item.toString(order.toStringAmount(item.toStringId())));
-
                                 }
                             }
                         }
