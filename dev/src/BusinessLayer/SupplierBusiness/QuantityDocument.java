@@ -1,4 +1,4 @@
-package BussniesLayer;
+package BusinessLayer.SupplierBusiness;
 
 public class QuantityDocument {
 

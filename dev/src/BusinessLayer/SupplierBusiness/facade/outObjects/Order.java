@@ -1,4 +1,4 @@
-package BussniesLayer.facade.outObjects;
+package BusinessLayer.SupplierBusiness.facade.outObjects;
 
 import java.time.LocalDate;
 import java.util.Hashtable;
@@ -10,7 +10,7 @@ public class Order {
     private final int branchId;
     private final Hashtable<Integer , Integer> amounts;
 
-    public Order(BussniesLayer.Order order) {
+    public Order(BusinessLayer.SupplierBusiness.Order order) {
         orderId = order.getOrderId();
         totalAmount = order.getTotalAmount();
         deliverTime = order.getDeliverTime();

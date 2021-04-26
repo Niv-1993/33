@@ -1,4 +1,6 @@
-package BussniesLayer;
+package BusinessLayer.SupplierBusiness;
+
+import DalAccessLayer.DalSupplierCard;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -17,6 +19,7 @@ public class SupplierCard {
     private Dictionary<String , String> contactPhone;
     private Dictionary<String , String> contactEmail;
     private regularOrder constantOrder;
+    private DalSupplierCard dalSupplierCard;
 
     public SupplierCard(int supplierBN , String supplierName ,int bankNumber , int branchNumber, int accountNumber , String payWay){
         this.supplierBN = supplierBN;
@@ -162,7 +165,7 @@ public class SupplierCard {
 
     public Item addItem(int ItemId , String name , double price, int typeID, LocalDate expirationDate) throws Exception {
         if(price < 0) throw new Exception("price must be a positive number!");
-        Item newItem = new BussniesLayer.Item(ItemId , name , price, typeID, expirationDate);
+        Item newItem = new Item(ItemId , name , price, typeID, expirationDate);
         items.add(newItem);
         return newItem;
     }
@@ -177,21 +180,24 @@ public class SupplierCard {
     public void removeItemFromSupplier(int itemId , boolean single) throws Exception {
         List<Item> copyItem = items;
         boolean found = false;
+        Item i;
         for(Item item : copyItem){
             if(item.getItemId() == itemId){
                 items.remove(item);
                 found = true;
+                i = item;
                 break;
             }
         }
         if(single && !found) throw new Exception("itemId does not exist for this supplier");
+        dalSupplierCard.Delete("items" , "i.getId = id");
     }
 
     public void removeItemFromRegularOrder(int orderId, int itemId) throws Exception {
         for(Order order : orders){
             if(order.getOrderId() == orderId){
                 try {
-                    regularOrder regularOrder = (BussniesLayer.regularOrder) order;
+                    regularOrder regularOrder = (regularOrder) order;
                     regularOrder.removeItemFromRegularOrder(itemId);
                     break;
                 }catch (Exception e){
@@ -205,7 +211,7 @@ public class SupplierCard {
         for(Order order : orders){
             if(order.getOrderId() == orderId){
                 try {
-                    regularOrder regularOrder = (BussniesLayer.regularOrder) order;
+                    regularOrder regularOrder = (regularOrder) order;
                     regularOrder.removeAmountItemFromRegularOrder(itemId , amount);
                     break;
                 }catch (Exception e){

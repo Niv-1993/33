@@ -1,4 +1,4 @@
-package PresentationLayer;
+package Presentation;
 
 import java.io.InputStreamReader;
 import java.time.LocalDate;
@@ -6,16 +6,16 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
 
-import  BussniesLayer.facade.SupplierService;
-import BussniesLayer.facade.Tresponse;
-import BussniesLayer.facade.outObjects.*;
-import BussniesLayer.facade.response;
+import BusinessLayer.SupplierBusiness.facade.SupplierService;
+import BusinessLayer.SupplierBusiness.facade.Tresponse;
+import BusinessLayer.SupplierBusiness.facade.outObjects.*;
+import BusinessLayer.SupplierBusiness.facade.response;
 
-public class PresentationCL{
+public class SupplierCLI{
 
     private final SupplierService service;
 
-    public PresentationCL() {
+    public SupplierCLI() {
         service = new SupplierService();
     }
 

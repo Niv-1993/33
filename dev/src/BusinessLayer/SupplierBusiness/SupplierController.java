@@ -1,6 +1,5 @@
-package BussniesLayer;
+package BusinessLayer.SupplierBusiness;
 
-import com.sun.jdi.LocalVariable;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -35,7 +34,7 @@ public class SupplierController{
         }
         if(!(payWay.equals("check") || payWay.equals("bank transfer") || payWay.equals("cash")))
             throw new Exception("pay way must be check/bank transfer/cash.");
-        BussniesLayer.SupplierCard supplierCard = new BussniesLayer.SupplierCard(suppliers.size() ,supplierName, bankNumber,branchNumber,bankAccount,payWay);
+        SupplierCard supplierCard = new SupplierCard(suppliers.size() ,supplierName, bankNumber,branchNumber,bankAccount,payWay);
         suppliers.put(suppliers.size() , supplierCard);
     }
 

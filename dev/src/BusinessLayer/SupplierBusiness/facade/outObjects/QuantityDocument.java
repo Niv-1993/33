@@ -1,10 +1,10 @@
-package BussniesLayer.facade.outObjects;
+package BusinessLayer.SupplierBusiness.facade.outObjects;
 
 public class QuantityDocument{
     private final int minimalAmount;
     private final int discount;
 
-    public QuantityDocument(BussniesLayer.QuantityDocument QD) {
+    public QuantityDocument(BusinessLayer.SupplierBusiness.QuantityDocument QD) {
         minimalAmount = QD.getMinimalAmount();
         discount = QD.getDiscount();
     }

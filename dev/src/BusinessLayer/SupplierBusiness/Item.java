@@ -1,4 +1,6 @@
-package BussniesLayer;
+package BusinessLayer.SupplierBusiness;
+
+import DalAccessLayer.DalItem;
 
 import java.time.LocalDate;
 
@@ -9,6 +11,7 @@ public class Item{
     private double price;
     private final int typeId;
     private final LocalDate expirationDate;
+    private DalItem dalItem;
 
     public Item(int itemId , String name , double price, int typeId, LocalDate expirationDate){
         this.itemId = itemId;
@@ -17,6 +20,7 @@ public class Item{
         this.price = price;
         this.typeId = typeId;
         this.expirationDate = expirationDate;
+        //dalItem = new DalItem();
     }
 
     public void addQuantityDocument(int minimalAmount, int discount) throws Exception {
@@ -51,26 +55,23 @@ public class Item{
         }
     }
 
-    public int getItemId() {
-        return itemId;
-    }
+    public int getItemId() { return dalItem.GetId(); }
 
     public QuantityDocument getQuantityDocument(){
         return quantityDocument;
     }
 
-    public double getPrice() {
-        return price;
-    }
+    public double getPrice() { return dalItem.GetPrice(); }
 
     public void updatePrice(double price) throws Exception {
         if(price < 0) throw new Exception("price must be a positive number");
-        this.price = price;
+        dalItem.Save(price);
     }
 
-    public String getName() { return name; }
+    public String getName() { return dalItem.GetName(); }
 
-    public int getTypeID() { return typeId; }
+    public int getTypeID() { return dalItem.GetTypeID(); }
 
     public LocalDate getExpirationDate() { return expirationDate; }
+
 }

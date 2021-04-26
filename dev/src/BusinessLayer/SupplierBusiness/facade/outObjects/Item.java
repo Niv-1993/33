@@ -1,4 +1,4 @@
-package BussniesLayer.facade.outObjects;
+package BusinessLayer.SupplierBusiness.facade.outObjects;
 
 import java.time.LocalDate;
 
@@ -9,7 +9,7 @@ public class Item {
     private final int typeId;
     private final LocalDate expirationDate;
 
-    public Item(BussniesLayer.Item item) {
+    public Item(BusinessLayer.SupplierBusiness.Item item) {
         ItemId = item.getItemId();
         name = item.getName();
         price = item.getPrice();
