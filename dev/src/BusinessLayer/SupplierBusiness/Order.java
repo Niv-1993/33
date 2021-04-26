@@ -24,7 +24,9 @@ public class Order {
     //remove Item from Order.
 
     public List<Item> showAllItemsOfOrder(){
-        return new LinkedList<>(items.keySet());
+        LinkedList<Item> toReturn = new LinkedList<>();
+        toReturn.addAll(0 , items.keySet());
+        return toReturn;
     }
 
     public Order showDeliverTime() { return this; }

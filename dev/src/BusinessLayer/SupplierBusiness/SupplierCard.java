@@ -30,6 +30,7 @@ public class SupplierCard {
         this.payWay = payWay;
         items = new LinkedList<>();
         orders = new LinkedList<>();
+        supplierAgreement = null;
         contactPhone = new Hashtable<>();
         contactEmail = new Hashtable<>();
         constantOrder = null;
@@ -441,7 +442,8 @@ public class SupplierCard {
         supplierAgreement = new SupplierAgreement(minimalAmount, discount, constantTime, shipToUs);
     }
 
-    public SupplierAgreement showSupplierAgreement() {
+    public SupplierAgreement showSupplierAgreement() throws Exception {
+        if(supplierAgreement == null) throw new Exception("there is no supplier Agreement");
         return supplierAgreement;
     }
 

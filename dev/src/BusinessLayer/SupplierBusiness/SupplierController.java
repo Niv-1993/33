@@ -415,7 +415,11 @@ public class SupplierController{
     public SupplierAgreement showSupplierAgreement(int supplierBN) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
-        return suppliers.get(supplierBN).showSupplierAgreement();
+        try {
+            return suppliers.get(supplierBN).showSupplierAgreement();
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
     public void updateMinimalAmountOfSA(int supplierBN, int minimalAmount) throws Exception {
