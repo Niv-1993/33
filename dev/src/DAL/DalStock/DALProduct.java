@@ -4,11 +4,11 @@ import DAL.DALObject;
 
 public class DALProduct extends DALObject {
 
-    DALProduct(){}
+    public DALProduct(){}
 
-    DALProduct(int storeID, int id){}
+    public DALProduct(int storeID, int id){}
 
-    DALProduct(int storeID, int id, String date, boolean isDamaged){} //get location from controller
+    public DALProduct(int storeID, int id, String date, boolean isDamaged){} //get location from controller
 
 
 

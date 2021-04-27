@@ -2,11 +2,11 @@ package DAL.DalStock;
 
 public class DALSaleDiscount extends DALDiscount{
 
-    DALSaleDiscount(){}
+    public DALSaleDiscount(){}
 
-    DALSaleDiscount(int storeID, int id){}
+    public DALSaleDiscount(int storeID, int id){}
 
-    DALSaleDiscount(int storeID, int id, double precent, String startDate, String endDate){}
+    public DALSaleDiscount(int storeID, int id, double precent, String startDate, String endDate){}
 
     @Override
     public String getCreate() {

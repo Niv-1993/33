@@ -4,11 +4,11 @@ import DAL.DALObject;
 
 public class DALCategory extends DALObject {
 
-    DALCategory(){}
+    public DALCategory(){}
 
-    DALCategory(int storeID, int id){}
+    public DALCategory(int storeID, int id){}
 
-    DALCategory(int storeID, int id, String name){} // get child categories types and discounts from controller
+    public DALCategory(int storeID, int id, String name){} // get child categories types and discounts from controller
 
     @Override
     public String getCreate() {

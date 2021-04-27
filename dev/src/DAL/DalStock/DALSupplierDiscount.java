@@ -2,11 +2,11 @@ package DAL.DalStock;
 
 public class DALSupplierDiscount extends DALDiscount{
 
-    DALSupplierDiscount(){}
+    public DALSupplierDiscount(){}
 
-    DALSupplierDiscount(int storeID, int id){}
+    public DALSupplierDiscount(int storeID, int id){}
 
-    DALSupplierDiscount(int storeID, int id, double precent, String startDate, String endDate){} // get supplier id from controller
+    public DALSupplierDiscount(int storeID, int id, double precent, String startDate, String endDate){} // get supplier id from controller
 
 
     @Override

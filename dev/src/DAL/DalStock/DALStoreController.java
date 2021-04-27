@@ -4,11 +4,11 @@ import DAL.DALObject;
 
 public class DALStoreController extends DALObject {
 
-    DALStoreController(){}
+    public DALStoreController(){}
 
-    DALStoreController(int storeID){}
+    public DALStoreController(int storeID){}
 
-    DALStoreController(int storeID, int storeShelves, int shelves, int discountCounter,
+    public DALStoreController(int storeID, int storeShelves, int shelves, int discountCounter,
                        int typeCounter, int categoryCounter, int maxProductsOnType){}
     //get categories controllers discounts and product types from controller
 

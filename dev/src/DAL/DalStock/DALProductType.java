@@ -4,11 +4,11 @@ import DAL.DALObject;
 
 public class DALProductType extends DALObject {
 
-    DALProductType(){}
+    public DALProductType(){}
 
-    DALProductType(int storeID,int typeID){}
+    public DALProductType(int storeID,int typeID){}
 
-    DALProductType(int storeID, int typeID, String name, int category, int min, int shelfCurr,
+    public DALProductType(int storeID, int typeID, String name, int category, int min, int shelfCurr,
                    double basePrice, double salePrice, String producer){}
     // get products, suppliers and discounts from controller
 

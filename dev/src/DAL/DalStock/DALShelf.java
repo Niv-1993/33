@@ -4,11 +4,11 @@ import DAL.DALObject;
 
 public class DALShelf extends DALObject {
 
-    DALShelf(){}
+    public DALShelf(){}
 
-    DALShelf(int storeID, int id){}
+    public DALShelf(int storeID, int id){}
 
-    DALShelf(int storeID, int id, int isStorage, int type, int curr, int max){}
+    public DALShelf(int storeID, int id, int isStorage, int type, int curr, int max){}
 
     public String getCreate() {
         return null;

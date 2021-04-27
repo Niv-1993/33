@@ -4,11 +4,11 @@ import DAL.DALObject;
 
 public class DALInstanceController extends DALObject {
 
-    DALInstanceController(){}
+    public DALInstanceController(){}
 
-    DALInstanceController(int storeID, int typeID){}
+    public DALInstanceController(int storeID, int typeID){}
 
-    DALInstanceController(int storeID, int typeID, int counter){} // get products from controller
+    public DALInstanceController(int storeID, int typeID, int counter){} // get products from controller
 
     @Override
     public String getCreate() {

@@ -1,6 +1,6 @@
 package DAL;
 
-import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType;
+import DAL.DalStock.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -49,18 +49,32 @@ public class Mapper {
         }
     }
 
-
+    private static List<Class> allDAL=new ArrayList<>();
     private static Mapper instance=null;
     DalController DC;
     HashMap<Class,HashMap<IntKey, DALObject>> map;
     private Mapper(String dbname){
             DC=new DalController(dbname);
             map=new HashMap<>();
-            initLoop();
+            init();
     }
-    private void initLoop(){
-        //DO CREATE IF NOT EXIST
+    private void init(){
+        // THIS NEEDS UPDATE ON EACH NEW DAL OBJECT
+        allDAL.add(DALCategory.class);
+        allDAL.add(DALShelf.class);
+        allDAL.add(DALSaleDiscount.class);
+        allDAL.add(DALSupplierDiscount.class);
+        allDAL.add(DALProduct.class);
+        allDAL.add(DALStoreController.class);
+        allDAL.add(DALInstanceController.class);
+        allDAL.add(DALProductType.class);
 
+        for(Class c: allDAL){
+            try {
+                Method cre = c.getMethod("getCreate");
+                DC.noSelect((String) cre.invoke(null),null);
+            } catch (Exception e){ System.out.println("WARNING class "+c.getName()+" not loaded");}
+        }
     }
 
     public static Mapper getMap(String dbname) {
