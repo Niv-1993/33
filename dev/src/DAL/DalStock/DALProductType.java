@@ -9,8 +9,8 @@ public class DALProductType extends DALObject {
         super(null);
     }
 
-    public DALProductType(int storeID, int typeID, String name, int category, int min, int shelfCurr, int storageCurr,
-                   double basePrice, double salePrice, String producer, DalController dc){
+    public DALProductType(Integer storeID, Integer typeID, String name, Integer category, Integer min, Integer shelfCurr,
+                          Integer storageCurr, Double basePrice, Double salePrice, String producer, DalController dc){
         super(dc);
     }
     // get products, suppliers and discounts from controller

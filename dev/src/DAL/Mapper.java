@@ -1,6 +1,8 @@
 package DAL;
 
 import DAL.DalStock.*;
+import DAL.DalSuppliers.*;
+import Utility.Tuple;
 import org.apache.log4j.Logger;
 
 import java.lang.reflect.Constructor;
@@ -71,11 +73,20 @@ public class Mapper {
         allDAL.add(DALInstanceController.class);
         allDAL.add(DALProductType.class);
 
+        allDAL.add(DalItem.class);
+        allDAL.add(DalOrder.class);
+        allDAL.add(DalQuantityDocument.class);
+        allDAL.add(DalSupplierAgreement.class);
+        allDAL.add(DalSupplierCard.class);
+        allDAL.add(DalSupplierController.class);
+
+
         for(Class c: allDAL){
             try {
                 Constructor con = c.getConstructor(null);
                 Method cre = c.getMethod("getCreate");
                 DC.noSelect((String) cre.invoke(con.newInstance()),null);
+                log.info("creating "+c.getName());
             } catch (Exception e){ log.warn("Class "+c.getName()+" not created in DB");}
         }
     }
@@ -97,7 +108,9 @@ public class Mapper {
             IntKey k=new IntKey(pk);
             if(!map.get(cls).containsKey(k)){
                 try {
-                    DALObject out = fromRS(DC.Select(obj.getSelect(), pk), cls);
+                    String select=obj.getSelect();
+                    Tuple<List<Class>,List<Object>> tup=DC.Select(select, pk);
+                    DALObject out = fromRS(tup, cls);
                 if(out==null) return null;
                 map.get(cls).put(k, out);
                 return out;
@@ -113,44 +126,19 @@ public class Mapper {
         }
     }
 
-    private DALObject fromRS(ResultSet rs, Class cls) {
-        List<Class> types=new ArrayList<>();
-        List<Object> vals=new ArrayList<>();
+    private DALObject fromRS(Tuple<List<Class>,List<Object>> tup, Class cls) {
+        Class[] tarr= new Class[tup.item1.size()];
+        tarr=tup.item1.toArray(tarr);
+        Object[] varr= new Object[tup.item2.size()];
+        varr=tup.item2.toArray(varr);
 
-        if (rs != null) {
-            try {
-                rs.next();
-                ResultSetMetaData rsmd = rs.getMetaData();
-                for (int i = 1; i <= rsmd.getColumnCount(); i++) {
-                    int type = rsmd.getColumnType(i);
-                    if (type == Types.VARCHAR || type == Types.CHAR) {
-                        types.add(String.class);
-                        vals.add(rs.getString(i));
-                    } else if (type == Types.FLOAT || type==Types.DOUBLE || type == Types.REAL) {
-                        types.add(Double.class);
-                        vals.add(rs.getDouble(i));
-                    } else {
-                        types.add(Integer.class);
-                        vals.add(rs.getInt(i));
-                    }
-                }
-                if (rs.next()) return null;
-            }
-            catch (Exception e){ return null;}
-        } else return null;
-
-        types.add(DalController.class);
-        vals.add(DC);
-
-        Class[] tarr= new Class[types.size()];
-        tarr=types.toArray(tarr);
-        Object[] varr= new Class[vals.size()];
-        varr=types.toArray(varr);
         try {
             Constructor con = cls.getConstructor(tarr);
             DALObject out = (DALObject) con.newInstance(varr);
             return out;
         }
-        catch (Exception e) {return null;}
+        catch (Exception e) {
+            return null;
+        }
     }
 }

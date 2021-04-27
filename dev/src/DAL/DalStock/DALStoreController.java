@@ -2,15 +2,19 @@ package DAL.DalStock;
 
 import DAL.DALObject;
 import DAL.DalController;
+import DAL.Mapper;
+import org.apache.log4j.Logger;
 
 public class DALStoreController extends DALObject {
+
+    final static Logger log=Logger.getLogger(DALStoreController.class);
 
     public DALStoreController(){
         super(null);
     }
 
-    public DALStoreController(int storeID, int storeShelves, int shelves, int discountCounter,
-                       int typeCounter, int categoryCounter, int maxProductsOnType, DalController dc){
+    public DALStoreController(Integer storeID, Integer storeShelves, Integer shelves, Integer discountCounter,
+                              Integer typeCounter, Integer categoryCounter, Integer maxProductsOnType, DalController dc){
         super(dc);
     }
     //get categories controllers discounts and product types from controller
@@ -25,12 +29,12 @@ public class DALStoreController extends DALObject {
                 "\ttypeCounter INTEGER NOT NULL,\n" +
                 "\tcategoryCounter INTEGER NOT NULL,\n" +
                 "\tmaxProductsOnType INTEGER NOT NULL\n" +
-                ");\n";
+                ");";
     }
 
     @Override
     public String getSelect() {
-        return null;
+        return "SELECT * FROM StoreController WHERE storeID=?";
     }
 
     @Override

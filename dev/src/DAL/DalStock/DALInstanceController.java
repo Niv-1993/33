@@ -9,7 +9,7 @@ public class DALInstanceController extends DALObject {
         super(null);
     }
 
-    public DALInstanceController(int storeID, int typeID, int counter, DalController dc){
+    public DALInstanceController(Integer storeID, Integer typeID, Integer counter, DalController dc){
         super(dc);
     } // get products from controller
 

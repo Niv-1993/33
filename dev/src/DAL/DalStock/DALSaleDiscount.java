@@ -8,8 +8,8 @@ public class DALSaleDiscount extends DALDiscount{
         super(null);
     }
 
-    public DALSaleDiscount(int storeID, int id, int typeID, int categoryID, int supplierID,
-                           double percent, String startDate, String endDate, DalController dc){
+    public DALSaleDiscount(Integer storeID, Integer id, Integer typeID, Integer categoryID, Integer supplierID,
+                           Double percent, String startDate, String endDate, DalController dc){
         super(dc);
     }// get supplier id from controller
 

@@ -8,7 +8,7 @@ public class DalItem extends DALObject {
         super(null);
     }
 
-    public DalItem(int itemId , int supplierBN , String itemName , double price , int typeId , String expirationDate , DalController dalController){
+    public DalItem(Integer itemId , Integer supplierBN , String itemName , Double price , Integer typeId , String expirationDate , DalController dalController){
         super(dalController);
     }
 
@@ -21,7 +21,7 @@ public class DalItem extends DALObject {
                 "\t\"price\" DOUBLE NOT NULL ,\n" +
                 "\t\"typeId\" INTEGER NOT NULL,\n" +
                 "\t\"expirationDate\" TEXT NOT NULL,\n" +
-                "\tPRIMARY KEY(\"EID\"),\n" +
+                "\tPRIMARY KEY(\"itemID\"),\n" +
                 "\tFOREIGN KEY(\"supplierBN\") REFERENCES \"Suppliers\"(\"supplierBN\") ON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";
     }

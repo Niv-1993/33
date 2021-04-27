@@ -7,7 +7,7 @@ public class DalSupplierController extends DALObject {
     public DalSupplierController() {
         super(null);
     }
-    public DalSupplierController(int supplierBN , int numOfItems , int numOfOrders , DalController dalController) {
+    public DalSupplierController(Integer supplierBN , Integer numOfItems , Integer numOfOrders , DalController dalController) {
         super(dalController);
     }
 

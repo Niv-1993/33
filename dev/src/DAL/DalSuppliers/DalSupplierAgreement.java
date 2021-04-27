@@ -8,7 +8,7 @@ public class DalSupplierAgreement extends DALObject {
         super(null);
     }
 
-    public DalSupplierAgreement(int supplierBN , int minimalAmount , int discount , int constantTime , int shipToUs , DalController dalController){
+    public DalSupplierAgreement(Integer supplierBN , Integer minimalAmount , Integer discount , Integer constantTime , Integer shipToUs , DalController dalController){
         super(dalController);
     }
 

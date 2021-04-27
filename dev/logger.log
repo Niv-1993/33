@@ -31177,3 +31177,765 @@
 [WARN ] 09-04-2021 22:33:25 [class: BusinessLayer.StoreController,Line:547] - the name t1 is exist in other ProductType.
 [WARN ] 09-04-2021 22:33:25 [class: BusinessLayer.StoreController,Line:531] - the name test is exist in other category.
 [WARN ] 09-04-2021 22:33:25 [class: BusinessLayer.StoreController,Line:557] - the value of ProductType is illegal <0
+[WARN ] 27-04-2021 23:59:49 [class: DAL.Mapper,Line:79] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 27-04-2021 23:59:49 [class: DAL.Mapper,Line:79] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 27-04-2021 23:59:49 [class: DAL.Mapper,Line:79] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 27-04-2021 23:59:49 [class: DAL.Mapper,Line:79] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 27-04-2021 23:59:49 [class: DAL.Mapper,Line:79] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 27-04-2021 23:59:49 [class: DAL.Mapper,Line:79] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 27-04-2021 23:59:49 [class: DAL.Mapper,Line:79] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 27-04-2021 23:59:49 [class: DAL.Mapper,Line:79] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 28-04-2021 00:05:05 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 28-04-2021 00:05:05 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 28-04-2021 00:05:05 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 28-04-2021 00:05:05 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 28-04-2021 00:05:05 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 28-04-2021 00:05:05 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 00:05:05 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 28-04-2021 00:05:05 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 28-04-2021 00:05:05 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:05:05 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 28-04-2021 00:05:05 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:05:05 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 28-04-2021 00:05:05 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 28-04-2021 00:05:05 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 28-04-2021 00:18:02 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 28-04-2021 00:18:02 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 28-04-2021 00:18:02 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 28-04-2021 00:18:02 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 28-04-2021 00:18:02 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 28-04-2021 00:18:02 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 00:18:02 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 28-04-2021 00:18:02 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 28-04-2021 00:18:02 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:18:02 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 28-04-2021 00:18:02 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:18:02 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 28-04-2021 00:18:02 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 28-04-2021 00:18:02 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 28-04-2021 00:18:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 28-04-2021 00:18:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 28-04-2021 00:18:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 28-04-2021 00:18:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 28-04-2021 00:18:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 28-04-2021 00:18:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 00:18:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 28-04-2021 00:18:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 28-04-2021 00:18:53 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:18:53 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 28-04-2021 00:18:53 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:18:53 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 28-04-2021 00:18:53 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 28-04-2021 00:18:53 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 28-04-2021 00:20:37 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:20:37 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 28-04-2021 00:20:37 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:20:37 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 28-04-2021 00:20:37 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:20:37 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 28-04-2021 00:20:37 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:20:37 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 28-04-2021 00:20:37 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:20:37 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 28-04-2021 00:20:37 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:20:37 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 00:20:37 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:20:37 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 28-04-2021 00:20:37 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:20:37 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 28-04-2021 00:20:37 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:20:37 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:20:37 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:20:37 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 28-04-2021 00:20:37 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:20:37 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:20:37 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:20:37 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 28-04-2021 00:20:37 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:20:37 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 28-04-2021 00:20:37 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:20:37 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 28-04-2021 00:22:25 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:22:25 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 28-04-2021 00:22:25 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:22:25 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 28-04-2021 00:22:25 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:22:25 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 28-04-2021 00:22:25 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:22:25 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 28-04-2021 00:22:25 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:22:25 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 28-04-2021 00:22:25 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:22:25 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 00:22:25 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:22:25 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 28-04-2021 00:22:25 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:22:25 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 28-04-2021 00:22:25 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:22:25 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:22:25 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:22:25 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 28-04-2021 00:22:25 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:22:25 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:22:25 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:22:25 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 28-04-2021 00:22:25 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:22:25 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 28-04-2021 00:22:25 [class: DAL.DalController,Line:26] - failed to make SQL connection
+[WARN ] 28-04-2021 00:22:25 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 28-04-2021 00:25:26 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 28-04-2021 00:25:26 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 28-04-2021 00:25:26 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 28-04-2021 00:25:26 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 28-04-2021 00:25:26 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 28-04-2021 00:25:26 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 00:25:26 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 28-04-2021 00:25:26 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 28-04-2021 00:25:26 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:26 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:25:26 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:26 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 28-04-2021 00:25:26 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:26 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:25:26 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:26 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 28-04-2021 00:25:26 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:26 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 28-04-2021 00:25:26 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:26 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 28-04-2021 00:25:43 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:43 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 28-04-2021 00:25:43 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:43 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 28-04-2021 00:25:43 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:43 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 28-04-2021 00:25:43 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:43 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 28-04-2021 00:25:43 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:43 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 28-04-2021 00:25:43 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:43 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 00:25:43 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:43 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 28-04-2021 00:25:43 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:43 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 28-04-2021 00:25:43 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:43 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:25:43 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:43 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 28-04-2021 00:25:43 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:43 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:25:43 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:43 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 28-04-2021 00:25:43 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:43 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 28-04-2021 00:25:43 [class: DAL.DalController,Line:29] - failed to make SQL connection
+[WARN ] 28-04-2021 00:25:43 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 28-04-2021 00:28:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 28-04-2021 00:28:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 28-04-2021 00:28:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 28-04-2021 00:28:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 28-04-2021 00:28:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 28-04-2021 00:28:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 00:28:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 28-04-2021 00:28:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 28-04-2021 00:28:09 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:28:09 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 28-04-2021 00:28:09 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:28:09 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 28-04-2021 00:28:09 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 28-04-2021 00:28:09 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 28-04-2021 00:29:52 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 28-04-2021 00:29:52 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 28-04-2021 00:29:52 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 28-04-2021 00:29:52 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 28-04-2021 00:29:52 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 28-04-2021 00:29:52 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 00:29:52 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 28-04-2021 00:29:52 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 28-04-2021 00:29:52 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:29:52 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 28-04-2021 00:29:52 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:29:52 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 28-04-2021 00:29:52 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 28-04-2021 00:29:52 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 28-04-2021 00:30:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 28-04-2021 00:30:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 28-04-2021 00:30:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 28-04-2021 00:30:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 28-04-2021 00:30:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 28-04-2021 00:30:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 00:30:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 28-04-2021 00:30:53 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 28-04-2021 00:30:53 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:30:53 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 28-04-2021 00:30:53 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:30:53 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 28-04-2021 00:30:53 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 28-04-2021 00:30:53 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 28-04-2021 00:41:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 28-04-2021 00:41:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 28-04-2021 00:41:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 28-04-2021 00:41:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 28-04-2021 00:41:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 28-04-2021 00:41:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 00:41:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 28-04-2021 00:41:09 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 28-04-2021 00:41:09 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:41:09 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 28-04-2021 00:41:09 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:41:09 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 28-04-2021 00:41:09 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 28-04-2021 00:41:09 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 28-04-2021 00:42:26 [class: DAL.DalController,Line:59] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:42:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 28-04-2021 00:42:26 [class: DAL.DalController,Line:59] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:42:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 28-04-2021 00:42:26 [class: DAL.DalController,Line:59] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:42:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 28-04-2021 00:42:26 [class: DAL.DalController,Line:59] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:42:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 28-04-2021 00:42:26 [class: DAL.DalController,Line:59] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:42:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 28-04-2021 00:42:26 [class: DAL.DalController,Line:59] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:42:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 00:42:26 [class: DAL.DalController,Line:59] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:42:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 28-04-2021 00:42:26 [class: DAL.DalController,Line:59] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:42:26 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 28-04-2021 00:42:26 [class: DAL.DalController,Line:59] - noSelect quary failed due to [SQLITE_ERROR] SQL error or missing database (expressions prohibited in PRIMARY KEY and UNIQUE constraints)
+[WARN ] 28-04-2021 00:42:26 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:42:26 [class: DAL.DalController,Line:59] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:42:26 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 28-04-2021 00:42:26 [class: DAL.DalController,Line:59] - noSelect quary failed due to [SQLITE_ERROR] SQL error or missing database (near ""itemId"": syntax error)
+[WARN ] 28-04-2021 00:42:26 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:42:26 [class: DAL.DalController,Line:59] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:42:26 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 28-04-2021 00:42:26 [class: DAL.DalController,Line:59] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:42:26 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 28-04-2021 00:42:26 [class: DAL.DalController,Line:59] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:42:26 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 28-04-2021 00:43:26 [class: DAL.DalController,Line:58] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:43:26 [class: DAL.DalController,Line:58] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:43:26 [class: DAL.DalController,Line:58] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:43:26 [class: DAL.DalController,Line:58] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:43:26 [class: DAL.DalController,Line:58] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:43:26 [class: DAL.DalController,Line:58] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:43:26 [class: DAL.DalController,Line:58] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:43:26 [class: DAL.DalController,Line:58] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:43:26 [class: DAL.DalController,Line:58] - noSelect quary failed due to [SQLITE_ERROR] SQL error or missing database (expressions prohibited in PRIMARY KEY and UNIQUE constraints)
+[WARN ] 28-04-2021 00:43:26 [class: DAL.DalController,Line:58] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:43:26 [class: DAL.DalController,Line:58] - noSelect quary failed due to [SQLITE_ERROR] SQL error or missing database (near ""itemId"": syntax error)
+[WARN ] 28-04-2021 00:43:26 [class: DAL.DalController,Line:58] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:43:26 [class: DAL.DalController,Line:58] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:43:26 [class: DAL.DalController,Line:58] - noSelect quary failed due to Query does not return results
+[WARN ] 28-04-2021 00:45:48 [class: DAL.DalController,Line:58] - noSelect quary failed due to [SQLITE_ERROR] SQL error or missing database (expressions prohibited in PRIMARY KEY and UNIQUE constraints)
+[WARN ] 28-04-2021 00:45:48 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:45:48 [class: DAL.DalController,Line:58] - noSelect quary failed due to [SQLITE_ERROR] SQL error or missing database (near ""itemId"": syntax error)
+[WARN ] 28-04-2021 00:45:48 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:47:29 [class: DAL.DalController,Line:58] - noSelect quary: CREATE TABLE IF NOT EXISTS "Items"(
+	"itemId" INTEGER NOT NULL,
+	"supplierBN" INTEGER NOT NULL,
+	"itemName" VARCHAR NOT NULL,
+	"price" DOUBLE NOT NULL ,
+	"typeId" INTEGER NOT NULL,
+	"expirationDate" TEXT NOT NULL,
+	PRIMARY KEY("EID"),
+	FOREIGN KEY("supplierBN") REFERENCES "Suppliers"("supplierBN") ON DELETE CASCADE ON UPDATE CASCADE
+);
+failed due to [SQLITE_ERROR] SQL error or missing database (expressions prohibited in PRIMARY KEY and UNIQUE constraints)
+[WARN ] 28-04-2021 00:47:29 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:47:29 [class: DAL.DalController,Line:58] - noSelect quary: "itemId" INTEGER NOT NULL,
+	"totalAmount" DOUBLE NOT NULL,
+	"deliverTime" VARCHAR NOT NULL,
+	"branchId" INTEGER NOT NULL,
+	PRIMARY KEY("itemId"),
+	FOREIGN KEY("itemId") REFERENCES "Items"("itemId") ON DELETE CASCADE ON UPDATE CASCADE
+);
+failed due to [SQLITE_ERROR] SQL error or missing database (near ""itemId"": syntax error)
+[WARN ] 28-04-2021 00:47:29 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:49:25 [class: DAL.DalController,Line:58] - noSelect quary: CREATE TABLE IF NOT EXISTS "Items"(
+	"itemId" INTEGER NOT NULL,
+	"supplierBN" INTEGER NOT NULL,
+	"itemName" VARCHAR NOT NULL,
+	"price" DOUBLE NOT NULL ,
+	"typeId" INTEGER NOT NULL,
+	"expirationDate" TEXT NOT NULL,
+	PRIMARY KEY("EID"),
+	FOREIGN KEY("supplierBN") REFERENCES "Suppliers"("supplierBN") ON DELETE CASCADE ON UPDATE CASCADE
+);
+failed due to [SQLITE_ERROR] SQL error or missing database (expressions prohibited in PRIMARY KEY and UNIQUE constraints)
+[WARN ] 28-04-2021 00:49:25 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:58:52 [class: DAL.DalController,Line:63] - noSelect quary: 
+
+failed due to The prepared statement has been finalized
+[WARN ] 28-04-2021 00:58:52 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 00:59:50 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 28-04-2021 00:59:50 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 28-04-2021 00:59:50 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 28-04-2021 00:59:50 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 28-04-2021 00:59:50 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 28-04-2021 00:59:50 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 00:59:50 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 28-04-2021 00:59:50 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 28-04-2021 00:59:50 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 28-04-2021 00:59:50 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 28-04-2021 00:59:50 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 28-04-2021 00:59:50 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 28-04-2021 00:59:50 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 28-04-2021 00:59:50 [class: DAL.Mapper,Line:88] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 28-04-2021 01:00:18 [class: DAL.DalController,Line:64] - noSelect quary: 
+
+failed due to The prepared statement has been finalized
+[WARN ] 28-04-2021 01:00:18 [class: DAL.Mapper,Line:88] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 28-04-2021 01:08:10 [class: DAL.DalController,Line:38] - 2
+[WARN ] 28-04-2021 01:08:11 [class: DAL.DalController,Line:38] - 1
+[WARN ] 28-04-2021 01:08:11 [class: DAL.DalController,Line:38] - 1
+[WARN ] 28-04-2021 01:08:11 [class: DAL.DalController,Line:38] - 1
+[WARN ] 28-04-2021 01:08:11 [class: DAL.DalController,Line:38] - 2
+[WARN ] 28-04-2021 01:08:11 [class: DAL.DalController,Line:38] - 2
+[WARN ] 28-04-2021 01:08:11 [class: DAL.DalController,Line:38] - 1
+[WARN ] 28-04-2021 01:08:11 [class: DAL.DalController,Line:38] - 2
+[WARN ] 28-04-2021 01:08:11 [class: DAL.DalController,Line:38] - 1
+[WARN ] 28-04-2021 01:08:11 [class: DAL.DalController,Line:38] - 2
+[WARN ] 28-04-2021 01:08:11 [class: DAL.DalController,Line:38] - 1
+[WARN ] 28-04-2021 01:08:11 [class: DAL.DalController,Line:38] - 1
+[WARN ] 28-04-2021 01:08:11 [class: DAL.DalController,Line:38] - 4
+[WARN ] 28-04-2021 01:08:11 [class: DAL.DalController,Line:38] - 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:38] - doQ: 2
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:42] - doQ-off: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:42] - doQ-off: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:42] - doQ-off: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:42] - doQ-off: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:38] - doQ: 2
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:42] - doQ-off: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:38] - doQ: 2
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:42] - doQ-off: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:42] - doQ-off: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:38] - doQ: 2
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:42] - doQ-off: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:42] - doQ-off: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:38] - doQ: 2
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:42] - doQ-off: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:42] - doQ-off: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:42] - doQ-off: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:38] - doQ: 4
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:42] - doQ-off: 3
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:09:35 [class: DAL.DalController,Line:42] - doQ-off: 1
+[WARN ] 28-04-2021 01:11:23 [class: DAL.DalController,Line:38] - doQ: 2
+[WARN ] 28-04-2021 01:11:23 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:23 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:23 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:23 [class: DAL.DalController,Line:38] - doQ: 2
+[WARN ] 28-04-2021 01:11:23 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:23 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:23 [class: DAL.DalController,Line:38] - doQ: 2
+[WARN ] 28-04-2021 01:11:23 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:23 [class: DAL.DalController,Line:38] - doQ: 2
+[WARN ] 28-04-2021 01:11:23 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:23 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:23 [class: DAL.DalController,Line:38] - doQ: 4
+[WARN ] 28-04-2021 01:11:23 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:35 [class: DAL.DalController,Line:38] - doQ: 2
+[WARN ] 28-04-2021 01:11:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:35 [class: DAL.DalController,Line:38] - doQ: 2
+[WARN ] 28-04-2021 01:11:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:35 [class: DAL.DalController,Line:38] - doQ: 2
+[WARN ] 28-04-2021 01:11:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:35 [class: DAL.DalController,Line:38] - doQ: 2
+[WARN ] 28-04-2021 01:11:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:11:35 [class: DAL.DalController,Line:38] - doQ: 4
+[WARN ] 28-04-2021 01:11:35 [class: DAL.DalController,Line:38] - doQ: 1
+[WARN ] 28-04-2021 01:20:04 [class: DAL.Mapper,Line:110] - DO FROM RS
+[WARN ] 28-04-2021 01:22:20 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=?
+[WARN ] 28-04-2021 01:22:57 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:24:20 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:24:59 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:24:59 [class: DAL.DalController,Line:76] - org.sqlite.jdbc4.JDBC4PreparedStatement@6093dd95
+[WARN ] 28-04-2021 01:27:14 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:27:32 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:27:50 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:27:50 [class: DAL.DalController,Line:76] - preEXEC
+[WARN ] 28-04-2021 01:28:16 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:28:16 [class: DAL.DalController,Line:80] - column 0 out of bounds [1,7]
+[WARN ] 28-04-2021 01:28:28 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:28:28 [class: DAL.DalController,Line:77] - RS: 1
+[WARN ] 28-04-2021 01:28:36 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:28:36 [class: DAL.DalController,Line:77] - RS: 50
+[WARN ] 28-04-2021 01:28:44 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:28:44 [class: DAL.DalController,Line:77] - RS: 500
+[WARN ] 28-04-2021 01:29:59 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:29:59 [class: DAL.Mapper,Line:152] - SQLite JDBC: inconsistent internal state
+[WARN ] 28-04-2021 01:31:28 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:31:28 [class: DAL.Mapper,Line:154] - SQLite JDBC: inconsistent internal state
+[WARN ] 28-04-2021 01:32:42 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:32:42 [class: DAL.Mapper,Line:152] - SQLite JDBC: inconsistent internal state
+[WARN ] 28-04-2021 01:33:47 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:33:47 [class: DAL.Mapper,Line:153] - function not yet implemented for SQLite
+[WARN ] 28-04-2021 01:35:15 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:35:16 [class: DAL.Mapper,Line:156] - function not yet implemented for SQLite
+[WARN ] 28-04-2021 01:35:30 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:35:30 [class: DAL.Mapper,Line:157] - function not yet implemented for SQLite
+[WARN ] 28-04-2021 01:35:54 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:35:54 [class: DAL.Mapper,Line:152] - SQLite JDBC: inconsistent internal state
+[WARN ] 28-04-2021 01:36:35 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:36:35 [class: DAL.Mapper,Line:154] - ResultSet closed
+[WARN ] 28-04-2021 01:36:49 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:36:49 [class: DAL.Mapper,Line:154] - ResultSet closed
+[WARN ] 28-04-2021 01:37:20 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:37:20 [class: DAL.Mapper,Line:131] - RS:org.sqlite.jdbc4.JDBC4ResultSet@6093dd95
+[WARN ] 28-04-2021 01:37:20 [class: DAL.Mapper,Line:154] - ResultSet closed
+[WARN ] 28-04-2021 01:42:00 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:42:00 [class: DAL.DalController,Line:77] - ConRS: 1
+[WARN ] 28-04-2021 01:42:15 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:42:15 [class: DAL.DalController,Line:77] - ConRS: 1
+[WARN ] 28-04-2021 01:43:41 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:43:41 [class: DAL.DalController,Line:78] - ConRS: 1
+[WARN ] 28-04-2021 01:43:57 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:43:57 [class: DAL.DalController,Line:78] - ConRS: 1
+[WARN ] 28-04-2021 01:45:34 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:45:34 [class: DAL.DalController,Line:78] - ConRS: 1
+[WARN ] 28-04-2021 01:45:41 [class: DAL.Mapper,Line:111] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:45:41 [class: DAL.DalController,Line:78] - ConRS: 1
+[WARN ] 28-04-2021 01:45:41 [class: DAL.Mapper,Line:113] - MapRS: 1
+[WARN ] 28-04-2021 01:45:41 [class: DAL.Mapper,Line:135] - RS:1
+[WARN ] 28-04-2021 01:45:41 [class: DAL.Mapper,Line:137] - RS:1
+[WARN ] 28-04-2021 01:51:18 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:51:18 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 01:51:18 [class: DAL.DalController,Line:94] - RS:1
+[WARN ] 28-04-2021 01:51:18 [class: DAL.DalController,Line:96] - RS:1
+[WARN ] 28-04-2021 01:52:18 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:52:18 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 01:53:49 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:53:49 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 01:53:49 [class: DAL.Mapper,Line:114] - 50
+[WARN ] 28-04-2021 01:54:17 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:54:17 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 01:54:17 [class: DAL.Mapper,Line:114] - class java.lang.Integer 50
+[WARN ] 28-04-2021 01:56:42 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:56:42 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 01:56:42 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 01:56:42 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 01:56:42 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 01:56:42 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 01:56:42 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 01:56:42 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 01:56:42 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 01:56:42 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 01:57:33 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:57:33 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 01:57:33 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 01:57:33 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 01:57:33 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 01:57:33 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 01:57:33 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 01:57:33 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 01:57:33 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 01:57:33 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 01:59:25 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 01:59:25 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 01:59:25 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 01:59:25 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 01:59:25 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 01:59:25 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 01:59:25 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 01:59:25 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 01:59:25 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 01:59:25 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:00:52 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:00:53 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:00:53 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:00:53 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:00:53 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:00:53 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:00:53 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:00:53 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:00:53 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:00:53 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:01:26 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:01:26 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:01:26 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:01:26 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:01:26 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:01:26 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:01:26 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:01:26 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:01:26 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:01:26 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:02:03 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:02:03 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:02:03 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:02:03 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:02:03 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:02:03 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:02:03 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:02:03 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:02:03 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:02:03 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:02:03 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:02:03 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:02:03 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:02:03 [class: DAL.Mapper,Line:171] - 4
+[WARN ] 28-04-2021 02:02:19 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:02:19 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:02:19 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:02:19 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:02:19 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:02:19 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:02:19 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:02:19 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:02:19 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:02:19 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:02:19 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:02:19 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:02:19 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:02:19 [class: DAL.Mapper,Line:171] - 4
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:02:56 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:171] - 4
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:173] - 5
+[WARN ] 28-04-2021 02:02:56 [class: DAL.Mapper,Line:181] - DAL.DalStock.DALStoreController.<init>(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,DAL.DalController)
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:06:12 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:171] - 4
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:174] - arraycopy: element type mismatch: can not cast one of the elements of java.lang.Object[] to the type of the destination array, java.lang.Class
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:175] - 5
+[WARN ] 28-04-2021 02:06:12 [class: DAL.Mapper,Line:183] - DAL.DalStock.DALStoreController.<init>(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,DAL.DalController)
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:07:16 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:171] - 4
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:174] - arraycopy: element type mismatch: can not cast one of the elements of java.lang.Object[] to the type of the destination array, java.lang.Class
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:175] - 5
+[WARN ] 28-04-2021 02:07:16 [class: DAL.Mapper,Line:183] - DAL.DalStock.DALStoreController.<init>(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer)
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:07:29 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:171] - 4
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:174] - arraycopy: element type mismatch: can not cast one of the elements of java.lang.Object[] to the type of the destination array, java.lang.Class
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:175] - 5
+[WARN ] 28-04-2021 02:07:29 [class: DAL.Mapper,Line:183] - DAL.DalStock.DALStoreController.<init>(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,DAL.DalController)
+[WARN ] 28-04-2021 02:12:38 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:12:38 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:12:38 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:12:38 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:12:38 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:12:38 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:12:38 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:12:38 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:12:38 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:12:38 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:12:38 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:12:38 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:12:38 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:12:38 [class: DAL.Mapper,Line:171] - 4
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:13:04 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:171] - 4
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:176] - java.lang.Integer
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:177] - 5
+[WARN ] 28-04-2021 02:13:04 [class: DAL.Mapper,Line:185] - DAL.DalStock.DALStoreController.<init>(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,DAL.DalController)
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:14:21 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:171] - 8
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:178] - java.lang.Integer
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:180] - 5
+[WARN ] 28-04-2021 02:14:21 [class: DAL.Mapper,Line:188] - DAL.DalStock.DALStoreController.<init>(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,DAL.DalController)
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:15:09 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:171] - 8
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:178] - java.lang.ArrayStoreException: java.lang.Integer
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:180] - 5
+[WARN ] 28-04-2021 02:15:09 [class: DAL.Mapper,Line:188] - DAL.DalStock.DALStoreController.<init>(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,DAL.DalController)
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:15:52 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:171] - 8
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:180] - 5
+[WARN ] 28-04-2021 02:15:52 [class: DAL.Mapper,Line:188] - DAL.DalStock.DALStoreController.<init>(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,DAL.DalController)
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:16:31 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:171] - 8
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:181] - 5
+[WARN ] 28-04-2021 02:16:31 [class: DAL.Mapper,Line:189] - DAL.DalStock.DALStoreController.<init>(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,DAL.DalController)
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:17:04 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:171] - 8
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:173] - 5
+[WARN ] 28-04-2021 02:17:04 [class: DAL.Mapper,Line:181] - java.lang.NoSuchMethodException: DAL.DalStock.DALStoreController.<init>(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,DAL.DalController)
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:18:12 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:171] - 8
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:173] - 5
+[WARN ] 28-04-2021 02:18:12 [class: DAL.Mapper,Line:182] - java.lang.NoSuchMethodException: DAL.DalStock.DALStoreController.<init>(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,DAL.DalController)
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:19:10 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:171] - 8
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:173] - 5
+[WARN ] 28-04-2021 02:19:10 [class: DAL.Mapper,Line:182] - java.lang.NoSuchMethodException: DAL.DalStock.DALStoreController.<init>(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,DAL.DalController)
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:112] - SELECT * FROM StoreController WHERE storeID=? 1
+[WARN ] 28-04-2021 02:20:03 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:115] - class java.lang.Integer 50
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:115] - class java.lang.Integer 500
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:115] - class java.lang.Integer 1000
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:115] - class DAL.DalController DAL.DalController@754ba872
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:165] - 1
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:167] - 2
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:169] - 3
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:171] - 8
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:173] - 5
+[WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:177] - 6
+[WARN ] 28-04-2021 02:20:03 [class: DAL.DalStock.DALStoreController,Line:19] - DALSC: 1 500
+[WARN ] 28-04-2021 02:21:04 [class: DAL.DalController,Line:79] - ConRS: 1

@@ -8,13 +8,14 @@ public class DalQuantityDocument extends DALObject {
         super(null);
     }
 
-    public DalQuantityDocument(int itemId , double totalAmount , String deliverTime , int branchId , DalController dalController){
+    public DalQuantityDocument(Integer itemId , Double totalAmount , String deliverTime , Integer branchId , DalController dalController){
         super(dalController);
     }
 
     @Override
     public String getCreate() {
-        return "\"itemId\" INTEGER NOT NULL,\n" +
+        return "CREATE TABLE IF NOT EXISTS \"SupplierAgreements\"(\n"+
+                "\"itemId\" INTEGER NOT NULL,\n" +
                 "\t\"totalAmount\" DOUBLE NOT NULL,\n" +
                 "\t\"deliverTime\" VARCHAR NOT NULL,\n" +
                 "\t\"branchId\" INTEGER NOT NULL,\n" +

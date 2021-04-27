@@ -9,7 +9,7 @@ public class DALProduct extends DALObject {
         super(null);
     }
 
-    public DALProduct(int storeID, int typeID, int id, String date, boolean isDamaged, DalController dc){
+    public DALProduct(Integer storeID, Integer typeID, Integer id, String date, Integer isDamaged, DalController dc){
         super(dc);
     } //get location from controller
 
@@ -22,7 +22,7 @@ public class DALProduct extends DALObject {
                 "\ttypeID INTEGER NOT NULL,\n" +
                 "\tproductID INTEGER NOT NULL,\n" +
                 "\texpiration VARCHAR NOT NULL,\n" +
-                "\tisDamaged BOOLEAN NOT NULL,\n" +
+                "\tisDamaged INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, productID),\n" +
                 "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +

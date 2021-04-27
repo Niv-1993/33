@@ -9,7 +9,7 @@ public class DALCategory extends DALObject {
         super(null);
     }
 
-    public DALCategory(int storeID, int id, String name, DalController dc){
+    public DALCategory(Integer storeID, Integer id, String name, DalController dc){
         super(dc);
     } // get child categories types and discounts from controller
 

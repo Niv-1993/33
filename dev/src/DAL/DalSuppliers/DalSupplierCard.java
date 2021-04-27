@@ -9,7 +9,7 @@ public class DalSupplierCard extends DALObject {
         super(null);
     }
 
-    public DalSupplierCard(int supplierBN , String supplierName , String payWay , DalController dalController) {
+    public DalSupplierCard(Integer supplierBN , String supplierName , String payWay , DalController dalController) {
         super(dalController);
     }
 

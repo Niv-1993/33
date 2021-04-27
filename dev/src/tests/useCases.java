@@ -5,7 +5,7 @@ import BusinessLayer.StockBusiness.Fcade.StorageService;
 import BusinessLayer.StockBusiness.Fcade.iStorageService;
 import BusinessLayer.StockBusiness.Fcade.outObjects.ProductType;
 import BusinessLayer.StockBusiness.Fcade.outObjects.SaleDiscount;
-import BusinessLayer.StoreController;
+import BusinessLayer.StockBusiness.StoreController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

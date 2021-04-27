@@ -9,7 +9,7 @@ public class DALShelf extends DALObject {
         super(null);
     }
 
-    public DALShelf(int storeID, int typeID, int isStorage, int type, int curr, int max, DalController dc){
+    public DALShelf(Integer storeID, Integer typeID, Integer isStorage, Integer type, Integer curr, Integer max, DalController dc){
         super(dc);
     }
 
