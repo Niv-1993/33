@@ -1,12 +1,15 @@
-package BussniesLayer;
+package BusinessLayer.SupplierBusiness;
 
-import BussniesLayer.facade.response;
-import BussniesLayer.facade.Tresponse;
-import BussniesLayer.facade.outObjects.SupplierCard;
-import BussniesLayer.facade.outObjects.Item;
-import BussniesLayer.facade.outObjects.Order;
-import BussniesLayer.facade.outObjects.QuantityDocument;
-import BussniesLayer.facade.outObjects.SupplierAgreement;
+import BusinessLayer.SupplierBusiness.facade.response;
+import BusinessLayer.SupplierBusiness.facade.Tresponse;
+import BusinessLayer.SupplierBusiness.facade.outObjects.Item;
+import BusinessLayer.SupplierBusiness.facade.outObjects.Order;
+import BusinessLayer.SupplierBusiness.facade.outObjects.QuantityDocument;
+import BusinessLayer.SupplierBusiness.facade.outObjects.SupplierCard;
+import BusinessLayer.SupplierBusiness.facade.outObjects.SupplierAgreement;
+
+
+
 
 import java.time.LocalDate;
 import java.util.Hashtable;

@@ -1,4 +1,4 @@
-package PresentationLayer;
+package Presentation;
 
 import java.io.InputStreamReader;
 import java.time.LocalDate;
@@ -6,10 +6,10 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
 
-import  BussniesLayer.facade.SupplierService;
-import BussniesLayer.facade.Tresponse;
-import BussniesLayer.facade.outObjects.*;
-import BussniesLayer.facade.response;
+import  BusinessLayer.SupplierBusiness.facade.SupplierService;
+import BusinessLayer.SupplierBusiness.facade.Tresponse;
+import BusinessLayer.SupplierBusiness.facade.outObjects.*;
+import BusinessLayer.SupplierBusiness.facade.response;
 
 public class PresentationCL{
 
@@ -68,8 +68,8 @@ public class PresentationCL{
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int option = -1;
         String[] showingMethodArray = {"show Supplier","show SupplierBN","show All Suppliers", "show Item Of Supplier","show All Items Of Supplier",
-                                       "show All Items", "show Order Of Supplier","show All Orders Of Supplier","show Total Amount",
-                                        "show Deliver Time", "show Quantity Document","show Supplier Agreement","back to the main menu"};
+                "show All Items", "show Order Of Supplier","show All Orders Of Supplier","show Total Amount",
+                "show Deliver Time", "show Quantity Document","show Supplier Agreement","back to the main menu"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= showingMethodArray.length ; i++) {
@@ -244,8 +244,8 @@ public class PresentationCL{
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int option = -1;
         String[] showingMethodArray = {"add supplier","add Contact Phone","add Contact Email","add Item", "add constant Order" ,
-                                       "add Regular Order", "add Needed Order","add Item To Order","add Quantity Document",
-                                       "add Supplier Agreement","back to the main menu"};
+                "add Regular Order", "add Needed Order","add Item To Order","add Quantity Document",
+                "add Supplier Agreement","back to the main menu"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= showingMethodArray.length; i++) {
@@ -359,8 +359,8 @@ public class PresentationCL{
         int option = -1;
         String check = "";
         String[] removeMethodArray = {"remove Supplier","remove Contact Phone","remove Contact Email","remove Item",
-                                      "remove item from regular order" , "remove amount of item from regular order" ,
-                                      "remove Quantity Document","back to the main menu"};
+                "remove item from regular order" , "remove amount of item from regular order" ,
+                "remove Quantity Document","back to the main menu"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= removeMethodArray.length; i++) {

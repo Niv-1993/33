@@ -1,12 +1,9 @@
-package BussniesLayer.facade;
+package BusinessLayer.SupplierBusiness.facade;
 
-import BussniesLayer.SupplierController;
-import BussniesLayer.ISupplierService;
-import BussniesLayer.facade.outObjects.SupplierCard;
-import BussniesLayer.facade.outObjects.Item;
-import BussniesLayer.facade.outObjects.Order;
-import BussniesLayer.facade.outObjects.QuantityDocument;
-import BussniesLayer.facade.outObjects.SupplierAgreement;
+import BusinessLayer.SupplierBusiness.SupplierController;
+import BusinessLayer.SupplierBusiness.ISupplierService;
+import BusinessLayer.SupplierBusiness.facade.outObjects.*;
+
 
 
 import java.time.LocalDate;
@@ -31,7 +28,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<SupplierCard> showSupplier(int supplierBN) {
-        BussniesLayer.SupplierCard supplierCard;
+        BusinessLayer.SupplierBusiness.SupplierCard supplierCard;
         try {
             supplierCard = supplierController.showSupplier(supplierBN);
         }catch (Exception e){
@@ -64,7 +61,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<SupplierCard> showSupplierBN(String supplierName) {
-        BussniesLayer.SupplierCard supplierCard;
+        BusinessLayer.SupplierBusiness.SupplierCard supplierCard;
         try {
             supplierCard = supplierController.showSupplierBN(supplierName);
         }catch (Exception e){
@@ -158,11 +155,11 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<List<SupplierCard>> showAllSuppliers() {
-        List<BussniesLayer.SupplierCard> supplierCards;
+        List<BusinessLayer.SupplierBusiness.SupplierCard> supplierCards;
         List<SupplierCard> outSupplierCard = new LinkedList<>();
         try {
             supplierCards = supplierController.showAllSuppliers();
-            for(BussniesLayer.SupplierCard supplierCard : supplierCards){
+            for(BusinessLayer.SupplierBusiness.SupplierCard supplierCard : supplierCards){
                 outSupplierCard.add(new SupplierCard(supplierCard));
             }
         }catch (Exception e){
@@ -175,11 +172,11 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<List<Item>> showAllItemsOfSupplier(int SupplierBN) {
-        List<BussniesLayer.Item> items;
+        List<BusinessLayer.SupplierBusiness.Item> items;
         List<Item> outItems = new LinkedList<>();
         try {
             items = supplierController.showAllItemsOfSupplier(SupplierBN);
-            for(BussniesLayer.Item item : items){
+            for(BusinessLayer.SupplierBusiness.Item item : items){
                 outItems.add(new Item(item));
             }
         }catch (Exception e){
@@ -191,7 +188,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<Item> showItemOfSupplier(int SupplierBN, int itemId) {
-        BussniesLayer.Item item;
+        BusinessLayer.SupplierBusiness.Item item;
         try{
             item = supplierController.showItemOfSupplier(SupplierBN, itemId);
         }catch (Exception e){
@@ -202,11 +199,11 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<List<Item>> showAllItemsOfOrder(int SupplierBN, int orderId) {
-        List<BussniesLayer.Item> items;
+        List<BusinessLayer.SupplierBusiness.Item> items;
         List<Item> outItems = new LinkedList<>();
         try {
             items = supplierController.showAllItemsOfOrder(SupplierBN , orderId);
-            for(BussniesLayer.Item item : items){
+            for(BusinessLayer.SupplierBusiness.Item item : items){
                 outItems.add(new Item(item));
             }
         }catch (Exception e){
@@ -218,11 +215,11 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<List<Item>> showAllItems() {
-        List<BussniesLayer.Item> items;
+        List<BusinessLayer.SupplierBusiness.Item> items;
         List<Item> outItems = new LinkedList<>();
         try {
             items = supplierController.showAllItems();
-            for(BussniesLayer.Item item : items){
+            for(BusinessLayer.SupplierBusiness.Item item : items){
                 outItems.add(new Item(item));
             }
         }catch (Exception e){
@@ -234,7 +231,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<Item> addItem(int supplierBN, String name , double price, int typeID, LocalDate expirationDate) {
-        BussniesLayer.Item item;
+        BusinessLayer.SupplierBusiness.Item item;
         try{
             item = supplierController.addItem(supplierBN,name , price, typeID, expirationDate);
         }catch (Exception e){
@@ -275,7 +272,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<Order> addRegularOrder(int supplierBN,int branchID) {
-        BussniesLayer.Order order;
+        BusinessLayer.SupplierBusiness.Order order;
         try {
             order = supplierController.addRegularOrder(supplierBN, branchID);
         }catch (Exception e){
@@ -296,7 +293,7 @@ public class SupplierService implements ISupplierService {
     }
 
     public Tresponse<Order> addNeededOrder(int typeID,int neededAmount, int branchID) {
-        BussniesLayer.Order order;
+        BusinessLayer.SupplierBusiness.Order order;
         try {
             order = supplierController.addNeededOrder(typeID, neededAmount, branchID);
             if (order == null) {
@@ -320,7 +317,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<Order> showOrderOfSupplier(int supplierBN, int orderId) {
-        BussniesLayer.Order order;
+        BusinessLayer.SupplierBusiness.Order order;
         try {
             order = supplierController.showOrderOfSupplier(supplierBN, orderId);
         }catch (Exception e){
@@ -331,11 +328,11 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<List<Order>> showAllOrdersOfSupplier(int supplierBN) {
-        List<BussniesLayer.Order> orders;
+        List<BusinessLayer.SupplierBusiness.Order> orders;
         List<Order> outOrder = new LinkedList<>();
         try {
             orders = supplierController.showAllOrdersOfSupplier(supplierBN);
-            for(BussniesLayer.Order order : orders){
+            for(BusinessLayer.SupplierBusiness.Order order : orders){
                 outOrder.add(new Order(order));
             }
         }catch (Exception e){
@@ -347,7 +344,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<Order> showTotalAmount(int supplierBN, int orderId) {
-        BussniesLayer.Order order;
+        BusinessLayer.SupplierBusiness.Order order;
         try{
             order = supplierController.showTotalAmount(supplierBN, orderId);
         }catch (Exception e){
@@ -358,7 +355,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<Order> showDeliverTime(int supplierBN, int orderId) {
-        BussniesLayer.Order order;
+        BusinessLayer.SupplierBusiness.Order order;
         try{
             order = supplierController.showDeliverTime(supplierBN, orderId);
         }catch (Exception e){
@@ -399,7 +396,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<QuantityDocument> showQuantityDocument(int supplierBN, int itemId) {
-        BussniesLayer.QuantityDocument quantityDocument;
+        BusinessLayer.SupplierBusiness.QuantityDocument quantityDocument;
         try {
             quantityDocument =  supplierController.showQuantityDocument(supplierBN, itemId);
         }catch (Exception e){
@@ -440,7 +437,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public Tresponse<SupplierAgreement> showSupplierAgreement(int supplierBN) {
-        BussniesLayer.SupplierAgreement supplierAgreement;
+        BusinessLayer.SupplierBusiness.SupplierAgreement supplierAgreement;
         try {
             supplierAgreement = supplierController.showSupplierAgreement(supplierBN);
         }catch (Exception e){

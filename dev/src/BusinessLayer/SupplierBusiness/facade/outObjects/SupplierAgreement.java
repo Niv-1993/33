@@ -1,4 +1,4 @@
-package BussniesLayer.facade.outObjects;
+package BusinessLayer.SupplierBusiness.facade.outObjects;
 
 public class SupplierAgreement {
     private final int minimalAmount;
@@ -7,7 +7,7 @@ public class SupplierAgreement {
     private final boolean shipToUs;
 
 
-    public SupplierAgreement(BussniesLayer.SupplierAgreement SA) {
+    public SupplierAgreement(BusinessLayer.SupplierBusiness.SupplierAgreement SA) {
         minimalAmount = SA.getMinimalAmount();
         discount = SA.getDiscount();
         constantTime = SA.getConstantTime();

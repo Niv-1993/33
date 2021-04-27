@@ -1,4 +1,4 @@
-package BussniesLayer;
+package BusinessLayer.SupplierBusiness;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -162,7 +162,7 @@ public class SupplierCard {
 
     public Item addItem(int ItemId , String name , double price, int typeID, LocalDate expirationDate) throws Exception {
         if(price < 0) throw new Exception("price must be a positive number!");
-        Item newItem = new BussniesLayer.Item(ItemId , name , price, typeID, expirationDate);
+        Item newItem = new BusinessLayer.SupplierBusiness.Item(ItemId , name , price, typeID, expirationDate);
         items.add(newItem);
         return newItem;
     }
@@ -191,7 +191,7 @@ public class SupplierCard {
         for(Order order : orders){
             if(order.getOrderId() == orderId){
                 try {
-                    regularOrder regularOrder = (BussniesLayer.regularOrder) order;
+                    regularOrder regularOrder = (BusinessLayer.SupplierBusiness.regularOrder) order;
                     regularOrder.removeItemFromRegularOrder(itemId);
                     break;
                 }catch (Exception e){
@@ -205,7 +205,7 @@ public class SupplierCard {
         for(Order order : orders){
             if(order.getOrderId() == orderId){
                 try {
-                    regularOrder regularOrder = (BussniesLayer.regularOrder) order;
+                    regularOrder regularOrder = (BusinessLayer.SupplierBusiness.regularOrder) order;
                     regularOrder.removeAmountItemFromRegularOrder(itemId , amount);
                     break;
                 }catch (Exception e){
