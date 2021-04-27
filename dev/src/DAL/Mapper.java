@@ -126,10 +126,7 @@ public class Mapper {
                     if (type == Types.VARCHAR || type == Types.CHAR) {
                         types.add(String.class);
                         vals.add(rs.getString(i));
-                    } else if (type == Types.BOOLEAN) {
-                        types.add(Boolean.class);
-                        vals.add(rs.getBoolean(i));
-                    } else if (type == Types.FLOAT || type==Types.DOUBLE) {
+                    } else if (type == Types.FLOAT || type==Types.DOUBLE || type == Types.REAL) {
                         types.add(Double.class);
                         vals.add(rs.getDouble(i));
                     } else {
@@ -141,6 +138,9 @@ public class Mapper {
             }
             catch (Exception e){ return null;}
         } else return null;
+
+        types.add(DalController.class);
+        vals.add(DC);
 
         Class[] tarr= new Class[types.size()];
         tarr=types.toArray(tarr);

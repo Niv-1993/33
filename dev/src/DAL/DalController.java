@@ -36,7 +36,6 @@ public class DalController {
                     case "int" : preparedStatement.setInt(i , Integer.parseInt(tuple.item1));
                     case "String" : preparedStatement.setString(i , tuple.item1);
                     case "double" : preparedStatement.setDouble(i , Double.parseDouble(tuple.item1));
-                    case "boolean" :   preparedStatement.setBoolean(i , Boolean.parseBoolean(tuple.item1));
                     default : isDefault = true;
                 }
             }
