@@ -1,18 +1,30 @@
 package DAL.DalStock;
 
 import DAL.DALObject;
+import DAL.DalController;
 
 public class DALInstanceController extends DALObject {
 
-    public DALInstanceController(){}
+    public DALInstanceController(){
+        super(null);
+    }
 
-    public DALInstanceController(int storeID, int typeID){}
-
-    public DALInstanceController(int storeID, int typeID, int counter){} // get products from controller
+    public DALInstanceController(int storeID, int typeID, int counter, DalController dc){
+        super(dc);
+    } // get products from controller
 
     @Override
     public String getCreate() {
-        return null;
+        return "CREATE TABLE IF NOT EXISTS InstanceController (\n" +
+                "\tstoreID INTEGER NOT NULL,\n" +
+                "\ttypeID INTEGER NOT NULL,\n" +
+                "\tcounter INTEGER NOT NULL,\n" +
+                "\tPRIMARY KEY (storeID, typeID),\n" +
+                "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
+                "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
+                "\tFOREIGN KEY (typeID) REFERENCES ProductType(typeID)\n" +
+                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
+                ");";
     }
 
     @Override

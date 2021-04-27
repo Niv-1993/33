@@ -1,49 +1,39 @@
 package DAL.DalStock;
 
 import DAL.DALObject;
+import DAL.DalController;
 
 public class DALCategory extends DALObject {
 
-    public DALCategory(){}
+    public DALCategory(){
+        super(null);
+    }
 
-    public DALCategory(int storeID, int id){}
-
-    public DALCategory(int storeID, int id, String name){} // get child categories types and discounts from controller
+    public DALCategory(int storeID, int id, String name, DalController dc){
+        super(dc);
+    } // get child categories types and discounts from controller
 
     @Override
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS Category (\n" +
-                "\tcategoryID INTEGER PRIMARY KEY,\n" +
-                "\tname VARCHAR\n" +
+                "\tstoreID INTEGER NOT NULL,\n" +
+                "\tcategoryID INTEGER NOT NULL,\n" +
+                "\tname VARCHAR NOT NULL,\n" +
+                "\tPRIMARY KEY (storeID, categoryID),\n" +
+                "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
+                "\tON DELETE CASCADE ON UPDATE CASCADE\t\n" +
                 ");\n" +
                 "\n" +
                 "CREATE TABLE IF NOT EXISTS SubCategory (\n" +
-                "\tparentID INTEGER,\n" +
-                "\tchildID INTEGER,\n" +
-                "\tPRIMARY KEY (parentID, childID),\n" +
+                "\tstoreID INTEGER NOT NULL,\n" +
+                "\tparentID INTEGER NOT NULL,\n" +
+                "\tchildID INTEGER NOT NULL,\n" +
+                "\tPRIMARY KEY (storeID, parentID, childID),\n" +
+                "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
+                "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
                 "\tFOREIGN KEY (parentID) REFERENCES Category (categoryID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
                 "\tFOREIGN KEY (childID) REFERENCES Category (categoryID)\n" +
-                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
-                ");\n" +
-                "\n" +
-                "CREATE TABLE IF NOT EXISTS CategoryTypes (\n" +
-                "\tcategoryID INTEGER,\n" +
-                "\ttypeID INTEGER,\n" +
-                "\tPRIMARY KEY (categoryID, typeID),\n" +
-                "\tFOREIGN KEY (categoryID) REFERENCES Category (categoryID)\n" +
-                "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                "\tFOREIGN KEY (typeID) REFERENCES ProductType (typeID)\n" +
-                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
-                ");\n" +
-                "\n" +
-                "CREATE TABLE IF NOT EXISTS CategoryDiscounts (\n" +
-                "\tcategoryID INTEGER,\n" +
-                "\tdiscountID INTEGER,\n" +
-                "\tPRIMARY KEY (categoryID, discountID),\n" +
-                "\tFOREIGN KEY (categoryID) REFERENCES Category (categoryID)\n" +
-                "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                "\tFOREIGN KEY (discountID) REFERENCES Discount (discountID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";
     }

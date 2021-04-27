@@ -1,20 +1,46 @@
 package DAL.DalStock;
 
 import DAL.DALObject;
+import DAL.DalController;
 
 public class DALProduct extends DALObject {
 
-    public DALProduct(){}
+    public DALProduct(){
+        super(null);
+    }
 
-    public DALProduct(int storeID, int id){}
-
-    public DALProduct(int storeID, int id, String date, boolean isDamaged){} //get location from controller
+    public DALProduct(int storeID, int typeID, int id, String date, boolean isDamaged, DalController dc){
+        super(dc);
+    } //get location from controller
 
 
 
     @Override
     public String getCreate() {
-        return null;
+        return "CREATE TABLE IF NOT EXISTS Product (\n" +
+                "\tstoreID INTEGER NOT NULL,\n" +
+                "\ttypeID INTEGER NOT NULL,\n" +
+                "\tproductID INTEGER NOT NULL,\n" +
+                "\texpiration VARCHAR NOT NULL,\n" +
+                "\tisDamaged BOOLEAN NOT NULL,\n" +
+                "\tPRIMARY KEY (storeID, productID),\n" +
+                "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
+                "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
+                "\tFOREIGN KEY (typeID) REFERENCES InstanceController(typeID)\n" +
+                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
+                ");\n"+
+                "CREATE TABLE IF NOT EXISTS ShelfProduct (\n" +
+                "\tshelfID INTEGER NOT NULL,\n" +
+                "\tlocation INTEGER NOT NULL,\n" +
+                "\tproductID INTEGER NOT NULL,\n" +
+                "\ttypeID INTEGER NOT NULL,\n" +
+                "\tcurr INTEGER NOT NULL,\n" +
+                "\tPRIMARY KEY (shelfID, location, productID),\n" +
+                "\tFOREIGN KEY (productID) REFERENCES Product(productID)\n" +
+                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
+                "\tFOREIGN KEY (typeID) REFERENCES Product(typeID)\n" +
+                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
+                ");";
     }
 
     @Override

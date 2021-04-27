@@ -1,18 +1,20 @@
 package DAL.DalStock;
 
+import DAL.DalController;
+
 public class DALSupplierDiscount extends DALDiscount{
 
-    public DALSupplierDiscount(){}
-
-    public DALSupplierDiscount(int storeID, int id){}
-
-    public DALSupplierDiscount(int storeID, int id, double precent, String startDate, String endDate){} // get supplier id from controller
-
-
-    @Override
-    public String getCreate() {
-        return null;
+    public DALSupplierDiscount(){
+        super(null);
     }
+
+
+    public DALSupplierDiscount(int storeID, int id, int typeID, int categoryID, int supplierID,
+                               double percent, String startDate, String endDate, DalController dc){
+        super(dc);
+    } // get supplier id from controller
+
+
 
     @Override
     public String getSelect() {

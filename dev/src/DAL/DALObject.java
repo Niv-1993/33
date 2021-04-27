@@ -1,6 +1,8 @@
 package DAL;
 
 public abstract class DALObject {
+    protected DalController DC;
+    public DALObject(DalController dc){ DC=dc;}
     public abstract String getCreate();
     public abstract String getSelect();
     public abstract String getDelete();
