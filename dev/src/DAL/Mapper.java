@@ -1,6 +1,7 @@
 package DAL;
 
 import DAL.DalStock.*;
+import org.apache.log4j.Logger;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -51,6 +52,7 @@ public class Mapper {
 
     private static List<Class> allDAL=new ArrayList<>();
     private static Mapper instance=null;
+    final static Logger log=Logger.getLogger(Mapper.class);
     DalController DC;
     HashMap<Class,HashMap<IntKey, DALObject>> map;
     private Mapper(String dbname){
@@ -71,9 +73,10 @@ public class Mapper {
 
         for(Class c: allDAL){
             try {
+                Constructor con = c.getConstructor(null);
                 Method cre = c.getMethod("getCreate");
-                DC.noSelect((String) cre.invoke(null),null);
-            } catch (Exception e){ System.out.println("WARNING class "+c.getName()+" not loaded");}
+                DC.noSelect((String) cre.invoke(con.newInstance()),null);
+            } catch (Exception e){ log.warn("Class "+c.getName()+" not created in DB");}
         }
     }
 
@@ -83,10 +86,8 @@ public class Mapper {
         }
         return instance;
     }
+
     public static Mapper getMap() {
-        if (instance == null) {
-            instance = new Mapper("");
-        }
         return instance;
     }
     
