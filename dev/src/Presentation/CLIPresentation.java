@@ -11,13 +11,11 @@ import java.util.*;
 
 public class CLIPresentation {
     private final Scanner input;
-    private final iRegularRoleController rc;
-    private final iManagerRoleController mc;
+    private final Controllers r;
     private boolean isManager = false;
 
     public CLIPresentation() {
-        rc = new RegularRoleController();
-        mc = new ManagerRoleController(rc.getUtils());
+        r = new Controllers();
         input = new Scanner(System.in);
     }
 
@@ -30,7 +28,7 @@ public class CLIPresentation {
         System.out.println("\n***** If you want to return to previous menu while being in a menu, press any key that is not an option and after press 1 *****\n");
         while (true) {
             System.out.println("Current available branches are: "
-                    + ((rc.getBranches().isError()) ? "None.\n" : rc.getBranches().getData().toString()) +
+                    + ((r.getRc().getBranches().isError()) ? "None.\n" : r.getRc().getBranches().getData().toString()) +
                     "\nChoose an option:\n" +
                     "1) Enter a branch\n2) Create a new branch\n3) exit program");
             boolean success = false;
@@ -62,36 +60,175 @@ public class CLIPresentation {
         while (true) {
             System.out.println("Please enter code: ");
             code = read();
-            System.out.print("ID: ");
-            ID = enterInt(read());
-            System.out.print("name: ");
-            name = read();
-            System.out.print("bank account number: ");
-            AC = enterInt(read());
-            System.out.print("bank branch number: ");
-            BB = enterInt(read());
-            System.out.print("bank ID: ");
-            BID = enterInt(read());
-            System.out.print("salary: ");
-            salary = enterInt(read());
-            System.out.print("education fund: ");
-            fund = enterInt(read());
-            System.out.print("days-off: ");
-            DO = enterInt(read());
-            System.out.print("sick-days: ");
-            SD = enterInt(read());
-            System.out.println();
-            if (showError(rc.createBranch(code, ID, name, new int[]{AC, BB, BID}, salary, new int[]{fund, DO, SD}))) {
+            if (!checkCode(code)) {
+                System.out.println("Invalid Code permission.");
                 if (goBack()) return;
-            } else break;
+                else
+                    continue;
+            }
+            ID = getValidPMID();
+            if (ID == -1) return;
+            name = getNameOfPM();
+            if (name.equals("1")) return;
+            AC = getBankAccountNumber();
+            if (AC == -1) return;
+            BB = getBankBranchNumber();
+            if (BB == -1) return;
+            BID = getBankBID();
+            if (BID == -1) return;
+            salary = getSalary();
+            if (salary == -1) return;
+            fund = getEducationFund();
+            if (fund == -1) return;
+            DO = getDaysOff();
+            if (DO == -1) return;
+            SD = getSickDays();
+            if (SD == -1) return;
+            System.out.println();
+            r.getRc().createBranch(code, ID, name, new int[]{AC, BB, BID}, salary, new int[]{fund, DO, SD});
         }
+    }
+
+    private int getSickDays() {
+        while (true) {
+            System.out.print("sick-days: ");
+            int num = enterInt(read());
+            if (num < 0) {
+                System.out.println("invalid sick days input.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
+    private int getDaysOff() {
+        while (true) {
+            System.out.print("days-off: ");
+            int num = enterInt(read());
+            if (num < 0) {
+                System.out.println("invalid days off input.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
+    private int getEducationFund() {
+        while (true) {
+            System.out.print("education fund: ");
+            int num = enterInt(read());
+            if (num < 0) {
+                System.out.println("invalid education fund number");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
+    private int getSalary() {
+        while (true) {
+            System.out.print("salary: ");
+            int num = enterInt(read());
+            if (num < 0) {
+                System.out.println("invalid salary number");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
+    private int getBankBID() {
+        while (true) {
+            System.out.print("bank ID: ");
+            int num = enterInt(read());
+            if (num <= 0) {
+                System.out.println("invalid bank id number.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
+    private int getBankBranchNumber() {
+        while (true) {
+            System.out.print("bank branch number: ");
+            int num = enterInt(read());
+            if (num <= 0) {
+                System.out.println("invalid branch number.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
+    private int getBankAccountNumber() {
+        while (true) {
+            System.out.print("bank account number: ");
+            int num = enterInt(read());
+            if (num <= 0) {
+                System.out.println("invalid account number.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
+    private int getValidPMID() {
+        while (true) {
+            System.out.print("ID: ");
+            int num = enterInt(read());
+            if (num <= 0) {
+                System.out.println("invalid id - negative number.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
+    private String getNameOfPM() {
+        while (true) {
+            System.out.print("name: ");
+            String name = read();
+            if (!checkName(name)) {
+                System.out.println("name " + name + " is not alphabetical");
+                if (goBack()) return "1";
+                else
+                    continue;
+            }
+            return name;
+        }
+    }
+
+    private boolean checkName(String name) {
+        name = name.replaceAll("\\s+", "");
+        return !name.equals("") && name.matches("^[a-zA-Z]*$");
+    }
+
+    private boolean checkCode(String code) {
+        return code.equals("00000");
     }
 
     private boolean showError(Response response) {
         if (response.isError()) {
             System.out.println("ERROR: " + response.getError());
             return true;
-        }else System.out.println("Success.\n");
+        } else System.out.println("Success.\n");
         return false;
     }
 
@@ -106,16 +243,33 @@ public class CLIPresentation {
         }
     }
 
+    private int getExistingBranch() {
+        while (true) {
+            System.out.print("ID: ");
+            int num = enterInt(read());
+            if (num <= 0) {
+                System.out.println("invalid id - negative number.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            if (!r.getRc().getBranches().getData().contains(String.valueOf(num))) {
+                System.out.println("Id of this branch does not exist.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
 
     private void enterBranch() {
         while (true) {
             System.out.print("Branch Number to enter: ");
-            int branchNum = enterInt(read());
-            if (showError(rc.loadData(branchNum))) {
-                if (goBack()) return;
-                continue;
-            }
-            if (!rc.hasDefaultShifts().getData()) {
+            int branchNum = getExistingBranch();
+            if (branchNum == -1) return;
+            r.getRc().EnterBranch(branchNum);
+            if (!r.getRc().hasDefaultShifts().getData()) {
                 AddDefaultWeekShifts();
             }
             break;
@@ -125,18 +279,14 @@ public class CLIPresentation {
 
     private void AddDefaultWeekShifts() {
         Map<String, Map<String, Integer>> defaults = new HashMap<>();
-        List<String> shiftTypes = rc.getShiftTypes().getData();
-        while (true) {
-            System.out.println("\nNo default shifts were set, please set default shifts for this branch.");
-            for (String shiftType : shiftTypes) {
-                System.out.println("For shift type: " + shiftType + " enter default amounts for each role.");
-                Map<String, Integer> roleAmount = chooseRolesAmount();
-                defaults.put(shiftType, roleAmount);
-            }
-            if (showError(mc.defaultShifts(defaults))) {
-                if (goBack()) return;
-            } else break;
+        List<String> shiftTypes = r.getRc().getShiftTypes().getData();
+        System.out.println("\nNo default shifts were set, please set default shifts for this branch.");
+        for (String shiftType : shiftTypes) {
+            System.out.println("For shift type: " + shiftType + " enter default amounts for each role.");
+            Map<String, Integer> roleAmount = chooseRolesAmount();
+            defaults.put(shiftType, roleAmount);
         }
+        r.getMc().defaultShifts(defaults);
     }
 
     private void login() {
@@ -145,18 +295,38 @@ public class CLIPresentation {
         while (true) {
             System.out.println("\n\n************* Login **************");
             System.out.println("Please enter your ID and role");
-            System.out.print("ID: ");
-            EID = enterInt(read());
+            EID = getEmpID();
             role = chooseRole();
-            if (showError(rc.Login(EID, role)))
+            if (!r.getRc().isQualified(EID, role)) {
                 if (goBack()) return;
                 else continue;
+            }
+            r.getRc().Login(EID, role);
             break;
         }
         isManager = role.equals("PersonnelManager");
         allFunctionsMenu();
     }
 
+    private int getEmpID() {
+        while (true) {
+            System.out.print("ID: ");
+            int num = enterInt(read());
+            if (num <= 0) {
+                System.out.println("invalid id - negative number.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            if (!r.getRc().checkEIDExists(num)) {
+                System.out.println("invalid id -user with " + num + " does not exist .");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
 
 
     private boolean goBack() {
@@ -165,19 +335,19 @@ public class CLIPresentation {
     }
 
     private void allFunctionsMenu() {
-            if(!isManager){
-                Menu reg = new RegularMenu(rc,input);
-                reg.show();
-            }else {
-                Menu man = new ManagerMenu(rc,mc,input);
-                man.show();
-            }
+        if (!isManager) {
+            Menu reg = new RegularMenu(r, input);
+            reg.show();
+        } else {
+            Menu man = new ManagerMenu(r, input);
+            man.show();
+        }
     }
 
 
     private String chooseRole() {
         System.out.println("\nChoose a role");
-        List<String> roles = rc.getRoleTypes().getData();
+        List<String> roles = r.getRc().getRoleTypes().getData();
         int counter = 1;
         for (String r : roles) {
             System.out.println(counter++ + ") " + r);
@@ -191,17 +361,35 @@ public class CLIPresentation {
         }
         return roles.get(s - 1);
     }
+
     private Map<String, Integer> chooseRolesAmount() {
         System.out.println("Insert the amount of each role");
         Map<String, Integer> rolesAmount = new HashMap<>();
-        List<String> roleTypes = rc.getRoleTypes().getData();
+        List<String> roleTypes = r.getRc().getRoleTypes().getData();
         for (String role : roleTypes) {
             if (role.equals("PersonnelManager") || role.equals("BranchManager")) continue;
             System.out.print(role + ": ");
-            int amount = enterInt(read());
+            int amount = getAmount(role);
             rolesAmount.put(role, amount);
         }
         return rolesAmount;
+    }
+
+    private int getAmount(String role) {
+        int amount;
+        while (true) {
+            amount = enterInt(read());
+            if (amount < 0) {
+                System.out.println("Invalid amount - negative");
+                continue;
+            }
+            if (role.equals("ShiftManager") && amount != 1) {
+                System.out.println("Invalid amount - shift manager amount need to be 1");
+                continue;
+            }
+            break;
+        }
+        return amount;
     }
 
     private String read() {
@@ -212,38 +400,38 @@ public class CLIPresentation {
     private void init() {
         int[] bankDetails = {123, 456, 789};
         int[] terms = {1000, 5, 10};
-        rc.createBranch("00000", 1, "PersonnelManager", bankDetails, 150000, terms);
-        rc.Login(1, "PersonnelManager");
-        mc.addEmployee(2, "DriverA", bankDetails, 10000, "Driver", LocalDate.now(), terms);
-        mc.addEmployee(3, "CashierA", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
-        mc.addEmployee(4, "CashierB", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
-        mc.addEmployee(5, "SorterA", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
-        mc.addEmployee(6, "SorterB", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
-        mc.addEmployee(7, "ShiftManagerA", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
-        mc.addEmployee(8, "ShiftManagerB", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
+        r.getRc().createBranch("00000", 1, "PersonnelManager", bankDetails, 150000, terms);
+        r.getRc().Login(1, "PersonnelManager");
+        r.getMc().addEmployee(2, "DriverA", bankDetails, 10000, "Driver", LocalDate.now(), terms);
+        r.getMc().addEmployee(3, "CashierA", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
+        r.getMc().addEmployee(4, "CashierB", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
+        r.getMc().addEmployee(5, "SorterA", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
+        r.getMc().addEmployee(6, "SorterB", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
+        r.getMc().addEmployee(7, "ShiftManagerA", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
+        r.getMc().addEmployee(8, "ShiftManagerB", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
         Map<String, Integer> morning = new HashMap<>();
         morning.put("Driver", 1);
         morning.put("Cashier", 1);
         morning.put("Sorter", 2);
         morning.put("ShiftManager", 1);
-        morning.put("StoreKeeper",0);
+        morning.put("StoreKeeper", 0);
         Map<String, Integer> night = new HashMap<>();
         night.put("Cashier", 1);
         night.put("ShiftManager", 1);
         night.put("Driver", 0);
         night.put("Sorter", 0);
-        night.put("StoreKeeper",0);
+        night.put("StoreKeeper", 0);
         SortedMap<String, Map<String, Integer>> defaultRolesAmount = new TreeMap<>();
         defaultRolesAmount.put("Night", night);
         defaultRolesAmount.put("Morning", morning);
-        mc.defaultShifts(defaultRolesAmount);
-        rc.Logout();
-        rc.Login(2, "Driver");
-        rc.addConstConstraint(DayOfWeek.SUNDAY, "Night", "tired");
-        rc.Logout();
-        rc.Login(1, "PersonnelManager");
-        mc.createWeekShifts();
-        rc.Logout();
+        r.getMc().defaultShifts(defaultRolesAmount);
+        r.getRc().Logout();
+        r.getRc().Login(2, "Driver");
+        r.getRc().addConstConstraint(DayOfWeek.SUNDAY, "Night", "tired");
+        r.getRc().Logout();
+        r.getRc().Login(1, "PersonnelManager");
+        r.getMc().createWeekShifts();
+        r.getRc().Logout();
     }
 
 }

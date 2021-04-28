@@ -1,15 +1,13 @@
 package Presentation.Menu;
 
 import Business.ApplicationFacade.*;
+import Presentation.Controllers;
 
 import java.util.Scanner;
 
 public class ManagerMenu extends Menu {
-    private final iManagerRoleController mc;
-
-    public ManagerMenu(iRegularRoleController rc, iManagerRoleController mc, Scanner input) {
-        super(rc, input);
-        this.mc = mc;
+    public ManagerMenu(Controllers r,Scanner input) {
+        super(r, input);
     }
 
     @Override
@@ -30,7 +28,7 @@ public class ManagerMenu extends Menu {
                     printMyDetails();
                     break;
                 case "2":
-                    Menu consM = new ConstraintMenu(rc, input);
+                    Menu consM = new ConstraintMenu(r, input);
                     consM.show();
                     break;
                 case "3":
@@ -40,14 +38,14 @@ public class ManagerMenu extends Menu {
                     System.out.println();
                     break;
                 case "4":
-                    if (!showError(rc.Logout())) return;
-                    break;
+                    r.getRc().Logout();
+                    return;
                 case "5":
-                    Menu empM = new EmployeeMenu(rc, mc, input);
+                    Menu empM = new EmployeeMenu(r, input);
                     empM.show();
                     break;
                 case "6":
-                    Menu shftM = new ShiftMenu(rc, mc, input);
+                    Menu shftM = new ShiftMenu(r, input);
                     shftM.show();
                     break;
                 case "7":

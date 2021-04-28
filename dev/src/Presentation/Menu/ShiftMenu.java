@@ -2,19 +2,15 @@ package Presentation.Menu;
 
 import Business.ApplicationFacade.ResponseData;
 import Business.ApplicationFacade.iManagerRoleController;
-import Business.ApplicationFacade.iRegularRoleController;
 import Business.ApplicationFacade.outObjects.Shift;
-import Business.Type.RoleType;
+import Presentation.Controllers;
 
 import java.time.LocalDate;
 import java.util.*;
 
 public class ShiftMenu extends Menu {
-    private final iManagerRoleController mc;
-
-    public ShiftMenu(iRegularRoleController rc, iManagerRoleController mc, Scanner input) {
-        super(rc, input);
-        this.mc = mc;
+    public ShiftMenu(Controllers r , Scanner input) {
+        super(r, input);
     }
 
     @Override
@@ -42,7 +38,7 @@ public class ShiftMenu extends Menu {
                     createShift();
                     break;
                 case "4":
-                    List<Shift> s = mc.createWeekShifts().getData();
+                    List<Shift> s = r.getMc().createWeekShifts().getData();
                     if (!s.isEmpty()) {
                         StringBuilder str = new StringBuilder();
                         s.forEach(shift -> {
@@ -53,7 +49,7 @@ public class ShiftMenu extends Menu {
                     } else System.out.println("Successfully created shifts for all week\n");
                     break;
                 case "5":
-                    mc.selfMakeWeekShifts();
+                    r.getMc().selfMakeWeekShifts();
                     System.out.println("\nNext week's shifts were successfully placed automatically\n");
                     break;
                 case "6":
@@ -78,28 +74,28 @@ public class ShiftMenu extends Menu {
         String role = chooseRole();
         System.out.print("New amount: ");
         int amount = getAmount(role);
-        mc.updateAmountRole(SID, role, amount);
+        r.getMc().updateAmountRole(SID, role, amount);
     }
 
     private void removeEmployeeFromShift() {
         if (!printAllShifts("all", LocalDate.now().plusWeeks(2))) return;
         int SID = getSID();
-        if (mc.shiftIsEmpty(SID)) return;
+        if (r.getMc().shiftIsEmpty(SID)) return;
         int EID = getEIDToRemove(SID);
-        mc.removeEmpFromShift(SID, EID);
+        r.getMc().removeEmpFromShift(SID, EID);
     }
 
     private void addEmployeeToShift() {
         if (!printAllShifts("all", LocalDate.now().plusWeeks(2))) return;
         int SID = getSID();
-        if (mc.optionalIsEmpty(SID)) return;
+        if (r.getMc().optionalIsEmpty(SID)) return;
         int EID = getEIDToAdd(SID);
         String role = chooseRole();
-        if (!canWork(SID, EID, role)) {
+        if (!r.getMc().canWork(SID, EID, role)) {
             System.out.println("EID: " + EID + " can't be " + role + "in SID: " + SID);
             return;
         }
-        mc.addEmpToShift(SID, EID, role);
+        r.getMc().addEmpToShift(SID, EID, role);
     }
 
     private int getSID() {
@@ -110,8 +106,8 @@ public class ShiftMenu extends Menu {
                 System.out.println("Invalid SID - negative number");
                 continue;
             }
-            if (!mc.checkIfSIDExist(SID)) {
-                System.out.println("Invalid SID");
+            if (!r.getMc().checkIfSIDExist(SID)) {
+                System.out.println("Invalid SID - not exist");
                 continue;
             }
             return SID;
@@ -126,11 +122,11 @@ public class ShiftMenu extends Menu {
                 System.out.println("Invalid EID: negative number");
                 continue;
             }
-            if (!mc.EIDIsOptionForSID(SID, EID)) {
+            if (!r.getMc().EIDIsOptionForSID(SID, EID)) {
                 System.out.println("Invalid EID: is not optional");
                 continue;
             }
-            return SID;
+            return EID;
         }
     }
 
@@ -142,17 +138,17 @@ public class ShiftMenu extends Menu {
                 System.out.println("Invalid EID: negative number");
                 continue;
             }
-            if (!mc.EIDWorkInSID(SID, EID)) {
+            if (!r.getMc().EIDWorkInSID(SID, EID)) {
                 System.out.println("Invalid EID: is not work in this shift");
                 continue;
             }
-            return SID;
+            return EID;
         }
     }
 
     private boolean printAllShifts(String all, LocalDate until) {
         System.out.println("All shifts of this branch until " + until + " :");
-        ResponseData<List<Shift>> shifts = mc.getShifts(until);
+        ResponseData<List<Shift>> shifts = r.getMc().getShifts(until);
         if (shifts.getData().isEmpty()) {
             System.out.println("No shifts in this branch");
             return false;
@@ -212,9 +208,13 @@ public class ShiftMenu extends Menu {
                 continue;
             }
             String shiftType = chooseShiftType();
+            if(r.getRc().checkIfShiftExist(date,shiftType)){
+                System.out.println("shift already exists on this date");
+                continue;
+            }
             Map<String, Integer> rolesAmount = chooseRolesAmount();
-            mc.createShift(rolesAmount, date, shiftType);
-            if (!mc.hasShiftManager(date, shiftType))
+            r.getMc().createShift(rolesAmount, date, shiftType);
+            if (!r.getMc().hasShiftManager(date, shiftType))
                 System.out.println("Shift Date:" + date + " has been created BUT does not have a ShiftManager");
             break;
         }
@@ -223,7 +223,7 @@ public class ShiftMenu extends Menu {
     private Map<String, Integer> chooseRolesAmount() {
         System.out.println("Insert the amount of each role");
         Map<String, Integer> rolesAmount = new HashMap<>();
-        List<String> roleTypes = rc.getRoleTypes().getData();
+        List<String> roleTypes = r.getRc().getRoleTypes().getData();
         for (String role : roleTypes) {
             if (role.equals("PersonnelManager") || role.equals("BranchManager")) continue;
             System.out.print(role + ": ");

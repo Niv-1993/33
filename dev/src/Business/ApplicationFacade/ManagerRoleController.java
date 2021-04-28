@@ -43,9 +43,6 @@ public class ManagerRoleController implements iManagerRoleController {
      */
     public ResponseData<Employee> addEmployee(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms) {
         log.debug("enter add employee function");
-        String check = utils.checkEmpDetails(newEID, name, bankDetails, terms, salary, role);
-        if (!check.isEmpty()) return new ResponseData<>(check);
-        if(utils.checkEIDExists(newEID)) return new ResponseData<>("Employee already exists in this branch");
         Business.EmployeePKG.Employee emp = new Business.EmployeePKG.Employee(newEID, name, bankDetails, salary, RoleType.valueOf(role), startWorkDate, terms);
         Employee employee = new Employee(emp);
         //UPDATE DATABASE
@@ -66,17 +63,11 @@ public class ManagerRoleController implements iManagerRoleController {
      * will add this employee there.
      * for now only remove from RAM
      */
-    public Response fireEmployee(int fireEID) {
+    public void fireEmployee(int fireEID) {
         log.debug("enter fire employee function");
-        String checkWorking = utils.checkWorking(fireEID);
-        if (!checkWorking.isEmpty()) {
-            log.error("EID is not found");
-            return new Response(checkWorking);
-        }
         //UPDATE DATABASE
         utils.getShiftController().removeFireEmp(employees.remove(fireEID));
         log.debug("successfully fired employee");
-        return new Response();
     }
 
     /**
@@ -87,18 +78,11 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param newName   The new name
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response updateEmployeeName(int updateEID, String newName) {
+    public void updateEmployeeName(int updateEID, String newName) {
         log.debug("entered update employee function of: " + updateEID + " to: " + newName);
-        String checkWorking = utils.checkWorking(updateEID);
-        if(!checkWorking.isEmpty()){
-            log.error("user with id: " + updateEID + " is not in map of employees");
-            return new Response(checkWorking);
-        }
-        if(!utils.checkName(newName)) return new Response("name " + newName + " is not alphabetical");
         //UPDATE DATABASE
         employees.get(updateEID).setName(newName);
         log.debug("successfully updated name to: " + newName);
-        return new Response();
     }
 
     /**
@@ -109,18 +93,11 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param newSalary The new salary of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response updateEmployeeSalary(int updateEID, int newSalary) {
+    public void updateEmployeeSalary(int updateEID, int newSalary) {
         log.debug("entered update employee salary function of: " + updateEID + " to: " + newSalary);
-        String checkWorking = utils.checkWorking(updateEID);
-        if(!checkWorking.isEmpty()){
-            log.error("user with id: " + updateEID + " is not in map of employees");
-            return new Response(checkWorking);
-        }
-        if(!utils.checkSalary(newSalary)) return new Response("Invalid salary input (negative or zero)");
         //UPDATE DATABASE
         employees.get(updateEID).setSalary(newSalary);
         log.debug("successfully updated salary to: " + newSalary);
-        return new Response();
     }
 
     /**
@@ -131,15 +108,11 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param newAccountNumber The new account number of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response updateEmployeeBANum(int updateEID, int newAccountNumber) {
+    public void updateEmployeeBANum(int updateEID, int newAccountNumber) {
         log.debug("entered update employee bank account number function of: " + updateEID + " to: " + newAccountNumber);
-        String checkW = utils.checkWorking(updateEID);
-        if(!checkW.isEmpty()) return new Response(checkW);
-        if(newAccountNumber <=0) return new Response("Invalid account number");
         //UPDATE DATABASE
         employees.get(updateEID).getBankAccount().setAccountNum(newAccountNumber);
         log.debug("successfully updated bank account number to: " + newAccountNumber);
-        return new Response();
     }
 
     /**
@@ -150,15 +123,11 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param newBranch The new bank branch number of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response updateEmployeeBABranch(int updateEID, int newBranch) {
+    public void updateEmployeeBABranch(int updateEID, int newBranch) {
         log.debug("entered update employee bank branch number function of: " + updateEID + " to: " + newBranch);
-        String checkW = utils.checkWorking(updateEID);
-        if(!checkW.isEmpty()) return new Response(checkW);
-        if(newBranch <=0) return new Response("Invalid branch number");
         //UPDATE DATABASE
         employees.get(updateEID).getBankAccount().setBankBranch(newBranch);
         log.debug("successfully updated bank branch number to: " + newBranch);
-        return new Response();
     }
 
     /**
@@ -169,15 +138,11 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param newBankID The new bank id number of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response updateEmployeeBAID(int updateEID, int newBankID) {
+    public void updateEmployeeBAID(int updateEID, int newBankID) {
         log.debug("entered update employee bank ID number function of: " + updateEID + " to: " + newBankID);
-        String checkW = utils.checkWorking(updateEID);
-        if(!checkW.isEmpty()) return new Response(checkW);
-        if(newBankID <=0) return new Response("Invalid bank ID number");
         //UPDATE DATABASE
         employees.get(updateEID).getBankAccount().setBankID(newBankID);
         log.debug("successfully updated bank ID number to: " + newBankID);
-        return new Response();
     }
 
     /**
@@ -188,15 +153,11 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param newEducationFund The education fund of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response updateEmployeeEducationFund(int updateEID, int newEducationFund) {
+    public void updateEmployeeEducationFund(int updateEID, int newEducationFund) {
         log.debug("entered update employee education fund function of: " + updateEID + " to: " + newEducationFund);
-        String checkW = utils.checkWorking(updateEID);
-        if(!checkW.isEmpty()) return new Response(checkW);
-        if(newEducationFund <=0) return new Response("Invalid education fund number");
         //UPDATE DATABASE
         employees.get(updateEID).getTermsOfEmployment().setEducationFun(newEducationFund);
         log.debug("successfully updated education fund to: " + newEducationFund);
-        return new Response();
     }
 
     /**
@@ -207,15 +168,11 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param newAmount The new amount of days off of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response updateEmployeeDaysOff(int updateEID, int newAmount) {
+    public void updateEmployeeDaysOff(int updateEID, int newAmount) {
         log.debug("entered update employee days-off function of: " + updateEID + " to: " + newAmount);
-        String checkW = utils.checkWorking(updateEID);
-        if(!checkW.isEmpty()) return new Response(checkW);
-        if(newAmount < 0) return new Response("Invalid days-off amount");
         //UPDATE DATABASE
         employees.get(updateEID).getTermsOfEmployment().setDaysOff(newAmount);
         log.debug("successfully updated days-off to: " + newAmount);
-        return new Response();
     }
 
     /**
@@ -226,15 +183,11 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param newAmount The new amount of sick days of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response updateEmployeeSickDays(int updateEID, int newAmount) {
+    public void updateEmployeeSickDays(int updateEID, int newAmount) {
         log.debug("entered update employee sick-days function of: " + updateEID + " to: " + newAmount);
-        String checkW = utils.checkWorking(updateEID);
-        if(!checkW.isEmpty()) return new Response(checkW);
-        if(newAmount < 0) return new Response("Invalid sick-days amount");
         //UPDATE DATABASE
         employees.get(updateEID).getTermsOfEmployment().setSickDays(newAmount);
         log.debug("successfully updated sick-days to: " + newAmount);
-        return new Response();
     }
 
     /**
@@ -246,7 +199,7 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param shiftType   type of the shift
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response createShift(Map<String, Integer> rolesAmount, LocalDate date, String shiftType) {
+    public void createShift(Map<String, Integer> rolesAmount, LocalDate date, String shiftType) {
         log.debug("entered create shift function");
         Map<RoleType, List<Business.EmployeePKG.Employee>> optionals = new HashMap<>();
         Map<RoleType, Integer> rolesAndAmount = new HashMap<>();
@@ -266,9 +219,7 @@ public class ManagerRoleController implements iManagerRoleController {
         for (Map.Entry<String, Integer> entry : rolesAmount.entrySet()) {
             rolesAndAmount.replace(RoleType.valueOf(entry.getKey()), entry.getValue());
         }
-        if(!utils.isInEnum(shiftType,ShiftType.class)) return new Response("Invalid shift type");
-        String res = utils.getShiftController().createShift(rolesAndAmount, date, ShiftType.valueOf(shiftType),optionals);
-        return res.isEmpty()? new Response() : new Response(res);
+        utils.getShiftController().createShift(rolesAndAmount, date, ShiftType.valueOf(shiftType),optionals);
     }
 
     /**
@@ -278,22 +229,19 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param defaultRolesAmount Map<ShiftType, Map<RoleType,amount>>
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response defaultShifts(Map<String, Map<String, Integer>> defaultRolesAmount) {
+    public void defaultShifts(Map<String, Map<String, Integer>> defaultRolesAmount) {
         log.debug("entered default shifts function");
         Map<ShiftType, Map<RoleType, Integer>> defaults = new HashMap<>();
         log.debug("parsing strings to enum types of map");
         for (Map.Entry<String, Map<String, Integer>> entry : defaultRolesAmount.entrySet()) {
-            if(!utils.isInEnum(entry.getKey(), ShiftType.class)) return new Response("Invalid shift type");
             ShiftType s_type = ShiftType.valueOf(entry.getKey());
             defaults.put(s_type, new HashMap<>());
             Map<RoleType, Integer> rolesAmount = defaults.get(s_type);
             for (Map.Entry<String, Integer> r : entry.getValue().entrySet()) {
-                if(!utils.isInEnum(r.getKey(), RoleType.class)) return new Response("Invalid role type");
                 rolesAmount.put(RoleType.valueOf(r.getKey()), r.getValue());
             }
         }
-        String res = utils.getShiftController().defaultShifts(defaults);
-        return res.isEmpty()? new Response() : new Response(res);
+        utils.getShiftController().defaultShifts(defaults);
     }
 
     /**
@@ -328,11 +276,10 @@ public class ManagerRoleController implements iManagerRoleController {
      *
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response selfMakeWeekShifts() {
+    public void selfMakeWeekShifts() {
         log.debug("entered self make week shift function");
         utils.getShiftController().selfMakeWeekShifts();
         log.debug("returned to EmployeePKG successfully");
-        return new Response();
     }
 
 
@@ -356,12 +303,9 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param removeEID Identifier of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response removeEmpFromShift(int SID, int removeEID) {
+    public void removeEmpFromShift(int SID, int removeEID) {
         log.debug("entered remove employee from shift functions");
-        String checkWorking = utils.checkWorking(removeEID);
-        if(!checkWorking.isEmpty()) return new Response(checkWorking);
-        String res = utils.getShiftController().removeEmpFromShift(SID,employees.get(removeEID));
-        return res.isEmpty()? new Response() : new Response(res);
+        utils.getShiftController().removeEmpFromShift(SID,employees.get(removeEID));
     }
 
     /**
@@ -373,14 +317,10 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param role   The role of the employee will be in the shift
      * @return A response object. The response should contain a error message in case of an error
      */
-    //TODO: check if id has a role in his list
-    public Response addEmpToShift(int SID, int addEID, String role) {
+
+    public void addEmpToShift(int SID, int addEID, String role) {
         log.debug("entered add employee to shift function");
-        String checkWorking = utils.checkWorking(addEID);
-        if(!checkWorking.isEmpty()) return new Response(checkWorking);
-        if(!utils.isInEnum(role,RoleType.class)) return new Response("Invalid role type");
-        String res = utils.getShiftController().addEmpToShift(SID,RoleType.valueOf(role), employees.get(addEID));
-        return res.isEmpty()? new Response() : new Response(res);
+        utils.getShiftController().addEmpToShift(SID,RoleType.valueOf(role), employees.get(addEID));
     }
 
     /**
@@ -392,11 +332,10 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param newAmount nNew amount of the role
      * @return A response object. The response should contain a error message in case of an error
      */
-    public Response updateAmountRole(int SID, String role, int newAmount) {
+    public void updateAmountRole(int SID, String role, int newAmount) {
         log.debug("entered update amount in role function");
-        if(!utils.isInEnum(role,RoleType.class)) return new Response("Invalid role type");
-        String res = utils.getShiftController().updateAmountRole(SID, RoleType.valueOf(role), newAmount);
-        return res.isEmpty()? new Response() : new Response(res);
+        utils.getShiftController().updateAmountRole(SID, RoleType.valueOf(role), newAmount);
+        log.debug("updated amount of role");
     }
 
 
@@ -408,17 +347,13 @@ public class ManagerRoleController implements iManagerRoleController {
      * @param role the role
      * @return
      */
-    public Response addRoleToEmployee(int EID, String role) {
+    public void addRoleToEmployee(int EID, String role) {
         log.debug("entered add role to employee function");
-        if(!utils.isInEnum(role,RoleType.class)) return new Response("Invalid role type");
-        String working = utils.checkWorking(EID);
-        if(!working.isEmpty()) return new Response(working);
         //UPDATE DATABASE
         if(!employees.get(EID).getRole().contains(RoleType.valueOf(role)))
             employees.get(EID).getRole().add(RoleType.valueOf(role));
         utils.getShiftController().addToOptionals(employees.get(EID),RoleType.valueOf(role));
         log.debug("successfully added role to role list of employee: "+EID);
-        return new Response();
     }
 
 
@@ -430,6 +365,33 @@ public class ManagerRoleController implements iManagerRoleController {
      */
     public ResponseData<List<Employee>> getAllEmployees() {
         return new ResponseData<>(utils.convertEmployee(new ArrayList<>(employees.values())));
+    }
+    public boolean optionalIsEmpty(int SID){
+        return utils.getShiftController().optionalIsEmpty(SID);
+    }
+
+    public boolean EIDIsOptionForSID(int sid, int eid) {
+        return utils.getShiftController().EIDIsOptionForSID(sid,employees.get(eid));
+    }
+
+    public boolean canWork(int sid, int eid, String role) {
+        return utils.getShiftController().canWork(sid,employees.get(eid),RoleType.valueOf(role));
+    }
+
+    public boolean shiftIsEmpty(int sid) {
+        return utils.getShiftController().shiftIsEmpty(sid);
+    }
+
+    public boolean EIDWorkInSID(int sid, int eid) {
+        return utils.getShiftController().EIDWorkInSID(sid,employees.get(eid));
+    }
+
+    public boolean hasShiftManager(LocalDate date, String shiftType) {
+        return utils.getShiftController().hasShiftManager(date,ShiftType.valueOf(shiftType));
+    }
+
+    public boolean checkIfSIDExist(int sid){
+        return utils.getShiftController().checkIfSIDExist(sid);
     }
 
 

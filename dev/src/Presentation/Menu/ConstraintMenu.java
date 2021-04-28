@@ -1,13 +1,15 @@
 package Presentation.Menu;
 
 import Business.ApplicationFacade.iRegularRoleController;
+import Presentation.Controllers;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
-public class ConstraintMenu extends Menu{
+public class ConstraintMenu extends Menu {
 
-    public ConstraintMenu(iRegularRoleController rc, Scanner input){
-        super(rc, input);
+    public ConstraintMenu(Controllers r, Scanner input) {
+        super(r, input);
     }
 
     @Override
@@ -38,7 +40,8 @@ public class ConstraintMenu extends Menu{
                 case "5":
                     updateShiftType();
                     break;
-                case "6": return;
+                case "6":
+                    return;
                 default:
                     System.out.println("Invalid input,please choose a number again");
                     if (goBack()) return;
@@ -46,23 +49,60 @@ public class ConstraintMenu extends Menu{
             }
         }
     }
+
     private void addConstConstraint() {
         System.out.println("To add a const constraint details are requested");
-        showError(rc.addConstConstraint(chooseDayOfWeek(), chooseShiftType(), getReason()));
+        r.getRc().addConstConstraint(chooseDayOfWeek(), chooseShiftType(), getReason());
     }
 
     private void addTempConstraint() {
         System.out.println("To add a temporal constraint details are requested");
-        showError(rc.addTempConstraint(chooseDate(), chooseShiftType(), getReason()));
+        LocalDate date;
+        while (true) {
+            date = chooseDate();
+            if (date.isBefore(LocalDate.now())) {
+                System.out.println("Invalid date - date is from the past");
+                if (goBack()) {
+                    return;
+                } else continue;
+            }
+            break;
+        }
+        String shiftT;
+        while (true) {
+            shiftT = chooseShiftType();
+            if (!r.getRc().checkIfShiftExist(date, shiftT)) {
+                System.out.println("You can't add constraint for shift that not exists");
+                if (goBack()) {
+                    return;
+                } else continue;
+            }
+            break;
+        }
+        if(r.getRc().checkIfShiftIsClose(date,shiftT)){
+            System.out.println("You can't add constraint for shift that close");
+            return;
+        }
+        r.getRc().addTempConstraint(date, shiftT, getReason());
     }
+
     private void removeConstraint() {
         while (true) {
             if (!printMyConstraints()) break;
             System.out.println("Choose a constraint ID to remove");
             int CID = enterInt(read());
-            if (showError(rc.removeConstraint(CID))) {
+            if (!r.getRc().checkConstExist(CID)) {
+                System.out.println("Chosen CID does not exist.");
                 if (goBack()) return;
-            } else break;
+                else continue;
+            }
+            if (!r.getRc().checkIfMyConst(CID)) {
+                System.out.println("The chosen constraint is not yours to remove.");
+                if (goBack()) return;
+                else continue;
+            }
+            r.getRc().removeConstraint(CID);
+            break;
         }
     }
 
@@ -71,9 +111,18 @@ public class ConstraintMenu extends Menu{
             if (!printMyConstraints()) break;
             System.out.println("Choose a constraint ID to update shift type");
             int CID = enterInt(read());
-            if (showError(rc.updateShiftTypeConstraint(CID, chooseShiftType()))) {
+            if(!r.getRc().checkConstExist(CID)) {
+                System.out.println("Chosen cid is not available.");
                 if (goBack()) return;
-            } else break;
+                else continue;
+            }
+            if(!r.getRc().checkIfMyConst(CID)){
+                System.out.println("Chosen cid is not yours to update.");
+                if (goBack()) return;
+                else continue;
+            }
+            r.getRc().updateShiftTypeConstraint(CID, chooseShiftType());
+            break;
         }
     }
 
@@ -82,9 +131,18 @@ public class ConstraintMenu extends Menu{
             if (!printMyConstraints()) break;
             System.out.println("Choose a constraint ID to update reason");
             int CID = enterInt(read());
-            if (showError(rc.updateReasonConstraint(CID, getReason()))) {
+            if(!r.getRc().checkConstExist(CID)) {
+                System.out.println("Chosen cid is not available.");
                 if (goBack()) return;
-            } else break;
+                else continue;
+            }
+            if(!r.getRc().checkIfMyConst(CID)){
+                System.out.println("Chosen cid is not yours to update.");
+                if (goBack()) return;
+                else continue;
+            }
+            r.getRc().updateReasonConstraint(CID, getReason());
+            break;
         }
     }
 

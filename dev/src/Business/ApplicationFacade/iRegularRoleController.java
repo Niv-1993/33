@@ -16,14 +16,14 @@ public interface iRegularRoleController {
      * @param role The role he takes in "super-lee"
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response Login(int EID, String role);
+    void Login(int EID, String role);
 
     /**
      * Logs out the connected employee
      *
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response Logout();
+    void Logout();
 
 
     /**
@@ -34,7 +34,7 @@ public interface iRegularRoleController {
      * @param reason    The reason of the constraint
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response addConstConstraint(DayOfWeek day, String shiftType, String reason);
+    void addConstConstraint(DayOfWeek day, String shiftType, String reason);
 
     /**
      * Add a constraint on date {@link LocalDate} with type-shift and reason of a employee
@@ -44,7 +44,7 @@ public interface iRegularRoleController {
      * @param reason    The reason of the constraint
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response addTempConstraint(LocalDate c_date, String shiftType, String reason);
+    void addTempConstraint(LocalDate c_date, String shiftType, String reason);
 
 
     /**
@@ -53,7 +53,7 @@ public interface iRegularRoleController {
      * @param CID Identifier of the constraint to be removed
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response removeConstraint(int CID);
+    void removeConstraint(int CID);
 
 
     /**
@@ -63,7 +63,7 @@ public interface iRegularRoleController {
      * @param newReason The new reason of the constraint
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response updateReasonConstraint(int CID, String newReason);
+    void updateReasonConstraint(int CID, String newReason);
 
     /**
      * Edit/Update an existing constraint with CID with a different shift-type
@@ -72,7 +72,7 @@ public interface iRegularRoleController {
      * @param newType The new shift type
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response updateShiftTypeConstraint(int CID, String newType);
+    void updateShiftTypeConstraint(int CID, String newType);
 
 
     /**
@@ -105,7 +105,7 @@ public interface iRegularRoleController {
      * @param BID Identifier of the branch (1-9)
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response loadData(int BID);
+    void EnterBranch(int BID);
 
     /**
      * gets all branches available from database
@@ -125,7 +125,7 @@ public interface iRegularRoleController {
      * @param terms
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response createBranch(String code, int newEID, String name, int[] bankDetails, int salary, int[] terms);
+    void createBranch(String code, int newEID, String name, int[] bankDetails, int salary, int[] terms);
 
     /**
      * gets all role types
@@ -149,6 +149,14 @@ public interface iRegularRoleController {
      */
     ResponseData<Boolean> hasDefaultShifts();
 
-
+    boolean checkEIDExists(int id);
     Utils getUtils();
+
+    boolean isQualified(int eid, String role);
+
+     boolean checkConstExist(int CID);
+    boolean empConnected();
+    boolean checkIfMyConst(int cid);
+     boolean checkIfShiftExist(LocalDate date, String shiftType);
+     boolean checkIfShiftIsClose(LocalDate date, String shiftType);
 }

@@ -1,13 +1,14 @@
 package Presentation.Menu;
 
 import Business.ApplicationFacade.iRegularRoleController;
+import Presentation.Controllers;
 
 import java.util.Scanner;
 
 public class RegularMenu extends Menu {
 
-    public RegularMenu(iRegularRoleController rc, Scanner input) {
-        super(rc, input);
+    public RegularMenu(Controllers r, Scanner input) {
+        super(r, input);
     }
 
 
@@ -27,7 +28,7 @@ public class RegularMenu extends Menu {
                     printMyDetails();
                     break;
                 case "2":
-                    Menu consM = new ConstraintMenu(rc, input);
+                    Menu consM = new ConstraintMenu(r, input);
                     consM.show();
                     break;
                 case "3":
@@ -37,14 +38,13 @@ public class RegularMenu extends Menu {
                     System.out.println();
                     break;
                 case "4":
-                    if (!showError(rc.Logout())) return;
-                    break;
+                    r.getRc().Logout();
+                    return;
                 case "5":
                     return;
                 default:
                     System.out.println("Invalid input,please choose a number again");
                     if (goBack()) return;
-
                     break;
             }
         }

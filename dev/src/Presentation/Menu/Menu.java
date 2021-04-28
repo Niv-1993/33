@@ -6,6 +6,7 @@ import Business.ApplicationFacade.iRegularRoleController;
 import Business.ApplicationFacade.outObjects.Constraint;
 import Business.ApplicationFacade.outObjects.Employee;
 import Business.ApplicationFacade.outObjects.Shift;
+import Presentation.Controllers;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -14,10 +15,11 @@ import java.util.Scanner;
 
 public abstract class Menu {
     protected final Scanner input;
-    protected final iRegularRoleController rc;
-    public Menu(iRegularRoleController rc, Scanner input){
+    protected final Controllers r;
+
+    public Menu(Controllers r, Scanner input) {
         this.input = input;
-        this.rc = rc;
+        this.r = r;
     }
 
 
@@ -31,10 +33,12 @@ public abstract class Menu {
             }
         }
     }
+
     protected boolean goBack() {
         System.out.println("\n***[If you wish you go back to previous menu enter 1, else 0]***");
         return read().equals("1");
     }
+
     protected String read() {
         return input.nextLine();
     }
@@ -56,6 +60,7 @@ public abstract class Menu {
             }
         }
     }
+
     protected String getReason() {
         System.out.println("Reason:");
         return read();
@@ -63,7 +68,7 @@ public abstract class Menu {
 
     protected String chooseShiftType() {
         System.out.println("Choose a shift type");
-        List<String> shiftTypes = rc.getShiftTypes().getData();
+        List<String> shiftTypes = r.getRc().getShiftTypes().getData();
         int counter = 1;
         for (String shiftType : shiftTypes) {
             System.out.println(counter++ + ") " + shiftType);
@@ -93,9 +98,10 @@ public abstract class Menu {
         }
         return DayOfWeek.of(day);
     }
+
     protected String chooseRole() {
         System.out.println("\nChoose a role");
-        List<String> roles = rc.getRoleTypes().getData();
+        List<String> roles = r.getRc().getRoleTypes().getData();
         int counter = 1;
         for (String r : roles) {
             System.out.println(counter++ + ") " + r);
@@ -111,11 +117,12 @@ public abstract class Menu {
     }
 
     protected void printMyDetails() {
-        ResponseData<Employee> res = rc.getEmployeeDetails();
+        ResponseData<Employee> res = r.getRc().getEmployeeDetails();
         if (!showError(res)) {
             System.out.println(res.getData().toString());
         }
     }
+
     protected boolean showError(Response response) {
         if (response.isError()) {
             System.out.println("ERROR: " + response.getError());
@@ -126,7 +133,7 @@ public abstract class Menu {
 
     protected void printMyShifts() {
         System.out.println("Your Shifts: ");
-        ResponseData<List<Shift>> shifts = rc.getMyShifts();
+        ResponseData<List<Shift>> shifts = r.getRc().getMyShifts();
         if (!showError(shifts)) {
             if (shifts.getData().isEmpty()) System.out.println("You don't have any shifts");
             else {
@@ -135,9 +142,10 @@ public abstract class Menu {
             }
         }
     }
+
     protected boolean printMyConstraints() {
         System.out.println("Your constraints: ");
-        ResponseData<List<Constraint>> constraints = rc.getMyConstraints();
+        ResponseData<List<Constraint>> constraints = r.getRc().getMyConstraints();
         if (!showError(constraints)) {
             if (constraints.getData().isEmpty()) {
                 System.out.println("You don't have any constraint");
@@ -149,6 +157,144 @@ public abstract class Menu {
         }
         return true;
     }
+
     public abstract void show();
+
+    protected int getValidNewEmpID() {
+        while (true) {
+            System.out.print("ID: ");
+            int num = enterInt(read());
+            if (num <= 0) {
+                System.out.println("invalid id - negative number.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            if (r.getRc().checkEIDExists(num)) {
+                System.out.println("Chosen id already exists in system.");
+                if (goBack()) return -1;
+                else continue;
+            }
+            return num;
+        }
+    }
+
+    protected String getNameOfNewEmp() {
+        while (true) {
+            System.out.print("name: ");
+            String name = read();
+            if (!checkName(name)) {
+                System.out.println("name " + name + " is not alphabetical");
+                if (goBack()) return "1";
+                else
+                    continue;
+            }
+            return name;
+        }
+    }
+
+    protected boolean checkName(String name) {
+        name = name.replaceAll("\\s+", "");
+        return !name.equals("") && name.matches("^[a-zA-Z]*$");
+    }
+
+    protected int getSickDays() {
+        while (true) {
+            System.out.print("sick-days: ");
+            int num = enterInt(read());
+            if (num < 0) {
+                System.out.println("invalid sick days input.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
+    protected int getDaysOff() {
+        while (true) {
+            System.out.print("days-off: ");
+            int num = enterInt(read());
+            if (num < 0) {
+                System.out.println("invalid days off input.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
+    protected int getEducationFund() {
+        while (true) {
+            System.out.print("education fund: ");
+            int num = enterInt(read());
+            if (num < 0) {
+                System.out.println("invalid education fund number");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
+    protected int getSalary() {
+        while (true) {
+            System.out.print("salary: ");
+            int num = enterInt(read());
+            if (num < 0) {
+                System.out.println("invalid salary number");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
+    protected int getBankBID() {
+        while (true) {
+            System.out.print("bank ID: ");
+            int num = enterInt(read());
+            if (num <= 0) {
+                System.out.println("invalid bank id number.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
+    protected int getBankBranchNumber() {
+        while (true) {
+            System.out.print("bank branch number: ");
+            int num = enterInt(read());
+            if (num <= 0) {
+                System.out.println("invalid branch number.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
+    protected int getBankAccountNumber() {
+        while (true) {
+            System.out.print("bank account number: ");
+            int num = enterInt(read());
+            if (num <= 0) {
+                System.out.println("invalid account number.");
+                if (goBack()) return -1;
+                else
+                    continue;
+            }
+            return num;
+        }
+    }
+
 
 }

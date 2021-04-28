@@ -48,7 +48,7 @@ public interface iManagerRoleController {
      * @param fireEID Identifier of the employee to fire
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response fireEmployee(int fireEID);
+    void fireEmployee(int fireEID);
 
     /**
      * Update an existing employee's name in the system
@@ -58,7 +58,7 @@ public interface iManagerRoleController {
      * @param newName   The new name
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response updateEmployeeName(int updateEID, String newName);
+    void updateEmployeeName(int updateEID, String newName);
 
     /**
      * Update an existing employee's salary in the system
@@ -68,7 +68,7 @@ public interface iManagerRoleController {
      * @param newSalary The new salary of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response updateEmployeeSalary(int updateEID, int newSalary);
+    void updateEmployeeSalary(int updateEID, int newSalary);
 
     /**
      * Update an existing employee's bank account number in the system
@@ -78,7 +78,7 @@ public interface iManagerRoleController {
      * @param newAccountNumber The new account number of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response updateEmployeeBANum(int updateEID, int newAccountNumber);
+    void updateEmployeeBANum(int updateEID, int newAccountNumber);
 
     /**
      * Update an existing employee's bank branch  in the system
@@ -88,7 +88,7 @@ public interface iManagerRoleController {
      * @param newBranch The new bank branch number of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response updateEmployeeBABranch(int updateEID, int newBranch);
+    void updateEmployeeBABranch(int updateEID, int newBranch);
 
     /**
      * Update an existing employee's bank id number in the system
@@ -98,7 +98,7 @@ public interface iManagerRoleController {
      * @param newBankID The new bank id number of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response updateEmployeeBAID(int updateEID, int newBankID);
+    void updateEmployeeBAID(int updateEID, int newBankID);
 
     /**
      * Update an existing employee's education fund in the system
@@ -108,7 +108,7 @@ public interface iManagerRoleController {
      * @param newEducationFund The education fund of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response updateEmployeeEducationFund(int updateEID, int newEducationFund);
+    void updateEmployeeEducationFund(int updateEID, int newEducationFund);
 
     /**
      * Update an existing employee's days off in the system
@@ -118,7 +118,7 @@ public interface iManagerRoleController {
      * @param newAmount The new amount of days off of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response updateEmployeeDaysOff(int updateEID, int newAmount);
+    void updateEmployeeDaysOff(int updateEID, int newAmount);
 
     /**
      * Update an existing employee's sick days in the system
@@ -128,7 +128,7 @@ public interface iManagerRoleController {
      * @param newAmount The new amount of sick days of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response updateEmployeeSickDays(int updateEID, int newAmount);
+    void updateEmployeeSickDays(int updateEID, int newAmount);
 
     /**
      * Create a new shift with given roles and amount of each role at a specific date {@link LocalDate} and shift-type
@@ -140,7 +140,7 @@ public interface iManagerRoleController {
      * @returnA response object with a value set to the employee
      * *         otherwise the response should contain a error message in case of an error
      */
-    Response createShift(Map<String, Integer> rolesAmount, LocalDate date, String shiftType);
+    void createShift(Map<String, Integer> rolesAmount, LocalDate date, String shiftType);
 
     /**
      * set the default Shifts with roles and amount of each role
@@ -149,7 +149,7 @@ public interface iManagerRoleController {
      * @param defaultRolesAmount Map<ShiftType, Map<RoleType,amount>>
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response defaultShifts(Map<String, Map<String, Integer>> defaultRolesAmount);
+    void defaultShifts(Map<String, Map<String, Integer>> defaultRolesAmount);
 
     /**
      * creates shifts of week from SUNDAY to FRIDAY(FRIDAY only morning) default shifts
@@ -165,7 +165,7 @@ public interface iManagerRoleController {
      *
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response selfMakeWeekShifts();
+    void selfMakeWeekShifts();
 
 
 
@@ -186,7 +186,7 @@ public interface iManagerRoleController {
      * @param removeEID Identifier of the employee
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response removeEmpFromShift(int SID, int removeEID);
+    void removeEmpFromShift(int SID, int removeEID);
 
     /**
      * Adds an employee with  id(addEID) and  his/her role to shift(SID)
@@ -197,7 +197,7 @@ public interface iManagerRoleController {
      * @param role   The role of the employee will be in the shift
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response addEmpToShift(int SID, int addEID, String role);
+    void addEmpToShift(int SID, int addEID, String role);
 
     /**
      * Update the amount of a specific role in shift with SID id with new amount
@@ -208,7 +208,7 @@ public interface iManagerRoleController {
      * @param newAmount new amount of the role
      * @return A response object. The response should contain a error message in case of an error
      */
-    Response updateAmountRole(int SID, String role, int newAmount);
+    void updateAmountRole(int SID, String role, int newAmount);
 
 
     /**
@@ -219,7 +219,7 @@ public interface iManagerRoleController {
      * @param role the role
      * @return
      */
-    Response addRoleToEmployee(int EID, String role);
+    void addRoleToEmployee(int EID, String role);
 
 
 
@@ -230,6 +230,15 @@ public interface iManagerRoleController {
      * @return  A response List. The response should contain a error message in case of an error
      */
     ResponseData<List<Employee>> getAllEmployees();
+
+
+     boolean checkIfSIDExist(int sid);
+     boolean optionalIsEmpty(int SID);
+     boolean EIDIsOptionForSID(int sid, int eid);
+     boolean canWork(int sid,int eid, String role);
+     boolean shiftIsEmpty(int sid);
+     boolean EIDWorkInSID(int sid,int eid);
+     boolean hasShiftManager(LocalDate date, String shiftType);
 
 
 }
