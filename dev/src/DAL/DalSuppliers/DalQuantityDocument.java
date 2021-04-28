@@ -6,6 +6,8 @@ import DAL.DalController;
 public class DalQuantityDocument extends DALObject {
     private int minimalAmount;
     private int discount;
+    private int itemId;
+    private int branchId;
 
     public DalQuantityDocument() {
         super(null);
@@ -39,11 +41,17 @@ public class DalQuantityDocument extends DALObject {
 
     @Override
     public String getUpdate() {
-        return null;
+        return "UPDATE QunatityDocuments \n" +
+                "SET (?) = (?) \n"+
+                "WHERE ItemId = "+ itemId;
     }
 
     @Override
     public String getInsert() {
         return null;
+    }
+
+    public void updateDiscountOfQD(int discount) throws Exception {
+
     }
 }

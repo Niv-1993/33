@@ -4,6 +4,7 @@ import DAL.DALObject;
 import DAL.DalController;
 
 public class DalSupplierAgreement extends DALObject {
+    private int supplierBN;
     private int minimalAmount;
     private int discount;
     private boolean constantTime;

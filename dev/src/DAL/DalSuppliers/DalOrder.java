@@ -7,10 +7,11 @@ import DAL.DalController;
 import java.time.LocalDate;
 
 public class DalOrder extends DALObject {
-    protected int orderId;
-    protected double totalAmount;
-    protected String deliverTime;
-    protected int branchId;
+    private int orderId;
+    private int supplierBN;
+    private double totalAmount;
+    private String deliverTime;
+    private int branchId;
 
     public DalOrder() {
         super(null);

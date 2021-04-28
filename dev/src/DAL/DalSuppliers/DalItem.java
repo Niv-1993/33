@@ -6,6 +6,7 @@ import DAL.DalController;
 import java.time.LocalDate;
 
 public class DalItem extends DALObject {
+    private int supplierBN;
     private int itemId;
     private String name;
     private double price;

@@ -4,6 +4,7 @@ import DAL.DALObject;
 import DAL.DalController;
 
 public class DalSupplierController extends DALObject {
+    private int supplierBN;
     private int numOfItems;
     private int numOfOrders;
 
