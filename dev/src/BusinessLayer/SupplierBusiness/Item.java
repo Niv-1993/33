@@ -1,14 +1,12 @@
 package BusinessLayer.SupplierBusiness;
 
+import DAL.DalSuppliers.DalItem;
+
 import java.time.LocalDate;
 
 public class Item{
-    private final int itemId;
-    private final String name;
     private QuantityDocument quantityDocument;
-    private double price;
-    private final int typeId;
-    private final LocalDate expirationDate;
+    private DalItem dalItem;
 
     public Item(int itemId , String name , double price, int typeId, LocalDate expirationDate){
         this.itemId = itemId;
@@ -17,6 +15,7 @@ public class Item{
         this.price = price;
         this.typeId = typeId;
         this.expirationDate = expirationDate;
+        dalItem = new DalItem();
     }
 
     public void addQuantityDocument(int minimalAmount, int discount) throws Exception {

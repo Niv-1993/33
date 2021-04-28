@@ -4,7 +4,14 @@ package DAL.DalSuppliers;
 import DAL.DALObject;
 import DAL.DalController;
 
+import java.time.LocalDate;
+
 public class DalOrder extends DALObject {
+    protected int orderId;
+    protected double totalAmount;
+    protected String deliverTime;
+    protected int branchId;
+
     public DalOrder() {
         super(null);
     }

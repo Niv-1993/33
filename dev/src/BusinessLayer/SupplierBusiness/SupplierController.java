@@ -7,8 +7,7 @@ import java.util.*;
 
 public class SupplierController{
     private Dictionary<Integer , SupplierCard> suppliers;
-    private int numOfItems;
-    private int numOfOrders;
+
 
     public SupplierController(){
         suppliers = new Hashtable<>();

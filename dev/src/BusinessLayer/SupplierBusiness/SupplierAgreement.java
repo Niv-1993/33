@@ -1,10 +1,6 @@
 package BusinessLayer.SupplierBusiness;
 
 public class SupplierAgreement {
-    private int minimalAmount;
-    private int discount;
-    private boolean constantTime;
-    private boolean shipToUs;
 
     public SupplierAgreement(int minimalAmount , int discount , boolean constantTime , boolean shipToUs){
         this.minimalAmount = minimalAmount;

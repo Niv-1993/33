@@ -3,7 +3,15 @@ package DAL.DalSuppliers;
 import DAL.DALObject;
 import DAL.DalController;
 
+import java.time.LocalDate;
+
 public class DalItem extends DALObject {
+    private int itemId;
+    private String name;
+    private double price;
+    private int typeId;
+    private String expirationDate;
+
     public DalItem() {
         super(null);
     }

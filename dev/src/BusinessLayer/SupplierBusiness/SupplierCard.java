@@ -5,17 +5,9 @@ import java.util.*;
 
 
 public class SupplierCard {
-    private final int supplierBN;
-    private final String supplierName;
-    private int bankNumber;
-    private int branchNumber;
-    private int accountNumber;
-    private String payWay;
     private List<Order> orders;
     private List<Item> items;
     private SupplierAgreement supplierAgreement;
-    private Dictionary<String , String> contactPhone;
-    private Dictionary<String , String> contactEmail;
     private regularOrder constantOrder;
 
     public SupplierCard(int supplierBN , String supplierName ,int bankNumber , int branchNumber, int accountNumber , String payWay){

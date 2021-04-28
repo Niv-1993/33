@@ -3,7 +3,17 @@ package DAL.DalSuppliers;
 import DAL.DALObject;
 import DAL.DalController;
 
+import java.util.Dictionary;
+
 public class DalSupplierCard extends DALObject {
+    private int supplierBN;
+    private String supplierName;
+    private int bankNumber;
+    private int branchNumber;
+    private int accountNumber;
+    private String payWay;
+    private Dictionary<String , String> contactPhone;
+    private Dictionary<String , String> contactEmail;
 
     public DalSupplierCard() {
         super(null);

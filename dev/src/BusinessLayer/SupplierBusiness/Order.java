@@ -6,11 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Order {
-    protected int orderId;
     protected Hashtable<Item , Integer> items;
-    protected double totalAmount;
-    protected LocalDate deliverTime;
-    protected int branchId;
 
     public Order(int orderId , LocalDate deliverTime , int branchId){
         this.orderId = orderId;

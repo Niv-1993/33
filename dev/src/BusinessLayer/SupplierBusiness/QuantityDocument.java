@@ -2,9 +2,6 @@ package BusinessLayer.SupplierBusiness;
 
 public class QuantityDocument {
 
-    private int minimalAmount;
-    private int discount;
-
     public QuantityDocument(int minimalAmount , int discount){
         this.minimalAmount = minimalAmount;
         this.discount = discount;

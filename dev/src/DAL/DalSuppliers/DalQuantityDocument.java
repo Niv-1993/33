@@ -4,6 +4,9 @@ import DAL.DALObject;
 import DAL.DalController;
 
 public class DalQuantityDocument extends DALObject {
+    private int minimalAmount;
+    private int discount;
+
     public DalQuantityDocument() {
         super(null);
     }
