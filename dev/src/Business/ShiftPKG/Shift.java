@@ -76,34 +76,17 @@ public class Shift {
         return new ArrayList<>();
     }
 
-    public String addEmpToShift(RoleType role, Employee emp) {
-        //check if EID can work in this shift (in optionals)
-        List<Employee> list = optionals.get(role);
-        boolean canWork = list.contains(emp);
-        if (!canWork) {
-            log.error("EID: " + emp.getEID() + " isn't option to be: " + role + " in SID: " + SID);
-            return ("Employee ID: " + emp.getEID() + " isn't option to be " + role + " in this shift");
-        }
-        //check if there is empty role for this roleType in rolesAmount
-        if (roleIsFull(role)) {
-            log.error("all the option for Role: " + role + " are close");
-            return ("All the options for Role: " + role + " are close");
-        }
+    public void addEmpToShift(RoleType role, Employee emp) {
         employees.put(emp, role);
         removeEmpFromOptionals(emp);
         complete = isComplete();
         if (role.equals(RoleType.ShiftManager))
             hasShiftManager = true;
         log.debug("EID: " + emp.getEID() + "added to SID: " + SID);
-        return "";
     }
 
-    public String removeEmpFromShift(Employee emp) {
+    public void removeEmpFromShift(Employee emp) {
         RoleType roleOfRemoved = employees.remove(emp);  //return null if EID isn't in this shift
-        if (roleOfRemoved == null) {
-            log.error("EID: " + emp.getEID() + " isn't in this shift");
-            return ("Employee ID: " + emp.getEID() + " isn't in this shift");
-        }
         complete = false;
         if (roleOfRemoved.equals(RoleType.ShiftManager)) {
             hasShiftManager = false;
@@ -112,7 +95,6 @@ public class Shift {
             optionals.get(roleType).add(emp);
         });
         log.debug("EID: " + emp.getEID() + "removed from SID: " + SID);
-        return "";
     }
 
     public void removeFireEmp(Employee emp) {
@@ -177,6 +159,30 @@ public class Shift {
         return amount == employees.size();
     }
 
+    //check if there is employee that optionals and his role not full
+    public boolean optionalIsEmpty(){
+        for (Map.Entry<RoleType, List<Employee>> role : optionals.entrySet()){
+            if(!role.getValue().isEmpty() && !roleIsFull(role.getKey()))
+                return false;
+        }
+        return true;
+    }
+
+    public boolean EIDIsOptionForSID(Employee emp) {
+        for (Map.Entry<RoleType, List<Employee>> role : optionals.entrySet()){
+            if(role.getValue().contains(emp) && !roleIsFull(role.getKey()))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean canWork(Employee emp, RoleType role) {
+        //check if EID can work in this shift (in optionals)
+        //check if there is empty role for this roleType in rolesAmount
+        List<Employee> list = optionals.get(role);
+        boolean canWork = list.contains(emp);
+        return canWork && !roleIsFull((role));
+    }
     //-------------------getters&setters----------------------------------------
 
     public LocalDate getDate() {
@@ -214,5 +220,6 @@ public class Shift {
     public boolean HasShiftManager() {
         return hasShiftManager;
     }
+
 
 }

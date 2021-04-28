@@ -47,46 +47,17 @@ public class ShiftController {
         log.debug("added new const constraint for EID: " + EID + ", Day: " + day.name() + " , ShiftType: " + shiftType);
     }
 
-    public String addTempConstraint(Employee emp, LocalDate c_date, ShiftType shiftType, String reason) {
-        //create constraint and add to constraints field
-        if (c_date.isBefore(LocalDate.now())) {
-            log.error("date : " + c_date +" is from the past");
-            return "Invalid date - date is from the past";
-        }
+    public void addTempConstraint(Employee emp, LocalDate c_date, ShiftType shiftType, String reason) {
         Shift s = getShiftByDate(c_date, shiftType);
-        if (s != null) {
-            if (s.WasSelfMake()) {
-                log.error("EID: " + emp.getEID() + " try to add constraint for shift that was self make");
-                return "You can't add constraint for shift that close";
-            }
-            Constraint newCon = new TempConstraint(constraintCounter, emp.getEID(), c_date, shiftType, reason);
-            constraints.put(newCon.getCID(), newCon);
-            constraintCounter++;
-            s.removeEmpFromOptionals(emp);
-            log.debug("added new const constraint for EID: " + emp.getEID() + ", Date: " + c_date + " , ShiftType: " + shiftType);
-            return "";
-        } else {
-            log.error("EID: " + emp.getEID() + " try to add constraint for shift that not exists");
-            return "You can't add constraint for shift that not exists";
-        }
+        Constraint newCon = new TempConstraint(constraintCounter, emp.getEID(), c_date, shiftType, reason);
+        constraints.put(newCon.getCID(), newCon);
+        constraintCounter++;
+        s.removeEmpFromOptionals(emp);
+        log.debug("added new const constraint for EID: " + emp.getEID() + ", Date: " + c_date + " , ShiftType: " + shiftType);
     }
 
-    public String removeConstraint(int CID, int EID)  {
-        if(!constraintIsExist(CID)){
-            log.error("CID: " + CID + " is not exist");
-            return ("Not legal Constraint ID: " + CID);
-        }
-        if(constraints.get(CID).getEID() != EID){
-            log.error("CID: " + CID + " isn't constraint of EID: " + EID);
-            return ("This constraint is not yours");
-        }
-        Constraint c = constraints.remove(CID);
-        if (c == null) {
-            log.error("CID: " + CID + " is not exist");
-            return ("Not legal CID :" + CID);
-        }
-        log.debug("CID: " + CID + " was removed");
-        return "";
+    public void removeConstraint(int CID, int EID)  {
+        constraints.remove(CID);
     }
 
     public String defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaultShifts) {
@@ -132,15 +103,9 @@ public class ShiftController {
     }
 
 
-    public String createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<Employee>> optionals) {
+    public void createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<Employee>> optionals) {
         //delete from optionals by constraints
         optionals = deepCopy(optionals);
-        if (LocalDate.now().compareTo(date) > 0) {
-            log.error("date: " + date + "is from the past");
-            return ("date : " + date + " is from the past");
-        }
-        String response = checkIfAmountNegative(rolesAmount);
-        if ( response == null) {
             createOptionals(optionals, date, shiftType);
             Shift s = new Shift(shiftCounter++, rolesAmount, optionals, date, shiftType);
             if (s.HasShiftManager()) {
@@ -148,10 +113,6 @@ public class ShiftController {
                 createBuildConstraintsAndRemoveFromOpt(shiftManager, shiftType, date);  //create build constraint for shift manager
             }
             shifts.put(s.getSID(), s);
-            if(!s.HasShiftManager()) return ("Shift Date:" +s.getDate()+" has been created BUT does not have a ShiftManager");
-            return "";
-        }
-        return response;
     }
 
     private void createOptionals(Map<RoleType, List<Employee>> optionals,LocalDate date ,ShiftType shiftType){
@@ -173,32 +134,21 @@ public class ShiftController {
                 Shift s = m.getValue();
                 List<Employee> listOfEmployees = s.self_make();// algorithm that choose employees for the shift
                 createBuildConstraintsAndRemoveFromOpt(listOfEmployees, s.getShiftType(), s.getDate());  //add constraint for all the employees in this shift cause employee can work in 1 shift per day
-
             }
         }
     }
     //TODO: add build constraint and remove from negative shift optionals
     //add to specific role in this Shift
-    public String addEmpToShift(int SID, RoleType role, Employee emp){
-        if(shifts.get(SID)==null) {
-            log.error("SID: " + SID + " is not exists");
-            return ("Not legal SID: " + SID);
-        }
-        return (shifts.get(SID)).addEmpToShift(role, emp);
+    public void addEmpToShift(int SID, RoleType role, Employee emp){
+         (shifts.get(SID)).addEmpToShift(role, emp);
     }
 
 
-    public String removeEmpFromShift(int SID, Employee emp) {
+    public void removeEmpFromShift(int SID, Employee emp) {
         Shift s = shifts.get(SID);
-        if(s==null) {
-            log.error("SID: " + SID + " is not exists");
-            return ("Not legal SID: " + SID);
-        }
-        String response = s.removeEmpFromShift(emp);
-        if(!response.isEmpty()) return response;
+        s.removeEmpFromShift(emp);
         emp.getRole().forEach(roleType -> s.addToOptionals(emp,roleType));
         removeBuildConstraint(emp,s);
-        return "";
     }
 
     private void removeBuildConstraint(Employee emp, Shift s){
@@ -264,53 +214,22 @@ public class ShiftController {
         return l;
     }
 
-    public String updateAmountRole(int SID, RoleType role, int newAmount) {
+    public void updateAmountRole(int SID, RoleType role, int newAmount) {
         Shift s = shifts.get(SID);
-        if(s==null) {
-            log.error("SID: " + SID + " is not exists");
-            return ("Not legal SID: " + SID);
-        }
-        if (newAmount < 0) {
-            log.error("The new amount for role: " + role + " is negative");
-            return ("The new amount for role: " + role + " is negative");
-        }
-        if (role.equals(RoleType.ShiftManager) && newAmount == 0) {
-            log.error("Amount of shift manager need be at least 1");
-            return ("Amount of shift manager need be at least 1");
-        }
         List<Employee> toRemove = s.updateRolesAmount(role, newAmount);
         toRemove.forEach(employee -> {removeBuildConstraint(employee,s);});
-        return "";
     }
 
-    public String updateReasonConstraint(int CID, String newReason, int EID) {
-        if(!constraintIsExist(CID)){
-            log.error("CID: " + CID + " is not exist");
-            return ("Not legal Constraint ID: " + CID);
-        }
+    public void updateReasonConstraint(int CID, String newReason, int EID) {
         Constraint c = constraints.get(CID);
-        if(c.getEID() != EID){
-            log.error("CID: " + CID + " isn't constraint of EID: " + EID);
-            return ("This constraint is not yours");
-        }
         c.updateReason(newReason);
         log.debug("CID: " + CID + " update his reason");
-        return "";
     }
 
-    public String updateShiftTypeConstraint(int CID, ShiftType newType, int EID) {
-        if(!constraintIsExist(CID)){
-            log.error("CID: " + CID + " is not exist");
-            return ("Not legal Constraint ID: " + CID);
-        }
+    public void updateShiftTypeConstraint(int CID, ShiftType newType, int EID) {
         Constraint c = constraints.get(CID);
-        if(c.getEID() != EID){
-            log.error("CID: " + CID + " isn't constraint of EID: " + EID);
-            return ("This constraint is not yours");
-        }
         c.updateShiftType(newType);
         log.debug("CID: " + CID + " update his shift type");
-        return "";
     }
 
 
@@ -362,7 +281,7 @@ public class ShiftController {
 
 
 
-    private boolean shiftAlreadyCreated(LocalDate date, ShiftType shiftType) {
+    public boolean shiftAlreadyCreated(LocalDate date, ShiftType shiftType) {
         for (Map.Entry<Integer, Shift> shift : shifts.entrySet()) {
             if (shift.getValue().getDate().equals(date) && shift.getValue().getShiftType().equals(shiftType))
                 return true;
@@ -370,7 +289,7 @@ public class ShiftController {
         return false;
     }
 
-    private boolean constraintIsExist(int CID) {
+    public boolean constraintIsExist(int CID) {
         Constraint c = constraints.get(CID);
         return c != null;
     }
@@ -399,6 +318,38 @@ public class ShiftController {
         return copy;
     }
 
+
+    public boolean optionalIsEmpty(int SID){
+        return shifts.get(SID).optionalIsEmpty();
+    }
+
+    public boolean checkIfSIDExist(int SID){
+        return shifts.containsKey(SID);
+    }
+
+    public boolean EIDIsOptionForSID(int SID, Employee emp){
+        return shifts.get(SID).EIDIsOptionForSID(emp);
+    }
+    //can work in this shift - is optional and role is not full
+    public boolean canWork(int SID, Employee emp, RoleType role){
+        return shifts.get(SID).canWork(emp,role);
+    }
+
+    public boolean wasSelfMake(LocalDate date ,ShiftType shiftType){
+        return Objects.requireNonNull(getShiftByDate(date, shiftType)).WasSelfMake();
+    }
+
+    public boolean shiftIsEmpty(int SID){
+        return shifts.get(SID).getEmployees().isEmpty();
+    }
+
+    public boolean EIDWorkInSID(int SID, Employee emp){
+        return shifts.get(SID).getEmployees().containsKey(emp);
+    }
+
+    public boolean hasShiftManager(LocalDate date, ShiftType shiftType){
+        return Objects.requireNonNull(getShiftByDate(date, shiftType)).HasShiftManager();
+    }
     //---------------------------------------------getters------------------------------------------------------
 
     public Map<Integer, Shift> getShifts() {
