@@ -1,6 +1,7 @@
 import BusinessLayer.StockBusiness.Fcade.StorageService;
 import BusinessLayer.StockBusiness.Fcade.outObjects.ProductType;
 import BusinessLayer.StockBusiness.StoreController;
+import DAL.DalController;
 import DAL.DalStock.DALStoreController;
 import DAL.Mapper;
 import Presentation.StockCLI;
@@ -22,6 +23,6 @@ public class main {
         Mapper map = Mapper.getMap("test.db");
         List<Integer> a=new ArrayList<>();
         a.add(1);
-        DALStoreController sc=(DALStoreController) map.getItem(new DALStoreController(),a );
+        DALStoreController sc=(DALStoreController) map.getItem(DALStoreController.class,a );
     }
 }
