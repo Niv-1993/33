@@ -102,13 +102,14 @@ public class Mapper {
         return instance;
     }
     
-    public DALObject getItem(DALObject obj, List<Integer> pk) {
-        Class cls=obj.getClass();
+    public DALObject getItem(Class cls, List<Integer> pk) {
         if(map.containsKey(cls)){
             IntKey k=new IntKey(pk);
             if(!map.get(cls).containsKey(k)){
                 try {
-                    String select=obj.getSelect();
+                    Method met=cls.getMethod("getSelect");
+                    Constructor con=cls.getConstructor();
+                    String select=(String) met.invoke(con.newInstance(),null);
                     Tuple<List<Class>,List<Object>> tup=DC.Select(select, pk);
                     DALObject out = fromRS(tup, cls);
                 if(out==null) return null;
@@ -122,7 +123,7 @@ public class Mapper {
         }
         else{
             map.put(cls, new HashMap<>());
-            return getItem(obj,pk);
+            return getItem(cls,pk);
         }
     }
 
