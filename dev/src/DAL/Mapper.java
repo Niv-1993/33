@@ -142,4 +142,18 @@ public class Mapper {
             return null;
         }
     }
+    public int setItem(Class cls, List<Tuple<Object,Class>> params) {
+        try{
+            Method met=cls.getMethod("getInsert");
+            Constructor con=cls.getConstructor();
+            String insert=(String) met.invoke(con.newInstance(),null);
+            int ret= DC.noSelect(insert,params);
+            return ret;
+        }
+        catch (Exception e){
+            log.warn(e);
+            return 0;
+        }
+    }
+
 }

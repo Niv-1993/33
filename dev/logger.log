@@ -31939,3 +31939,61 @@ failed due to The prepared statement has been finalized
 [WARN ] 28-04-2021 02:20:03 [class: DAL.Mapper,Line:177] - 6
 [WARN ] 28-04-2021 02:20:03 [class: DAL.DalStock.DALStoreController,Line:19] - DALSC: 1 500
 [WARN ] 28-04-2021 02:21:04 [class: DAL.DalController,Line:79] - ConRS: 1
+[WARN ] 02-05-2021 01:04:25 [class: DAL.DalController,Line:111] - ResultSet closed
+[WARN ] 02-05-2021 01:11:04 [class: DAL.Mapper,Line:153] - wrong number of arguments
+[WARN ] 02-05-2021 01:11:04 [class: DAL.DalController,Line:111] - ResultSet closed
+[WARN ] 02-05-2021 01:17:12 [class: DAL.Mapper,Line:153] - illegal type
+[WARN ] 02-05-2021 01:17:12 [class: DAL.DalController,Line:111] - ResultSet closed
+[WARN ] 02-05-2021 01:18:10 [class: DAL.Mapper,Line:153] - illegal type
+[WARN ] 02-05-2021 01:18:10 [class: DAL.DalController,Line:111] - ResultSet closed
+[WARN ] 02-05-2021 01:19:00 [class: DAL.DalController,Line:49] - Tuple{item1=2, item2=int}
+[WARN ] 02-05-2021 01:19:00 [class: DAL.Mapper,Line:153] - illegal type
+[WARN ] 02-05-2021 01:19:00 [class: DAL.DalController,Line:112] - ResultSet closed
+[WARN ] 02-05-2021 01:19:48 [class: DAL.DalController,Line:49] - Tuple{item1=2, item2=int}
+[WARN ] 02-05-2021 01:19:48 [class: DAL.DalController,Line:49] - Tuple{item1=3, item2=int}
+[WARN ] 02-05-2021 01:19:48 [class: DAL.DalController,Line:49] - Tuple{item1=4, item2=int}
+[WARN ] 02-05-2021 01:19:48 [class: DAL.DalController,Line:49] - Tuple{item1=5, item2=int}
+[WARN ] 02-05-2021 01:19:48 [class: DAL.DalController,Line:49] - Tuple{item1=6, item2=int}
+[WARN ] 02-05-2021 01:19:48 [class: DAL.DalController,Line:49] - Tuple{item1=7, item2=int}
+[WARN ] 02-05-2021 01:19:48 [class: DAL.Mapper,Line:153] - Index 7 out of bounds for length 7
+[WARN ] 02-05-2021 01:19:48 [class: DAL.DalController,Line:115] - ResultSet closed
+[WARN ] 02-05-2021 01:20:47 [class: DAL.Mapper,Line:150] - 1
+[WARN ] 02-05-2021 01:20:47 [class: DAL.DalController,Line:49] - Tuple{item1=2, item2=int}
+[WARN ] 02-05-2021 01:20:47 [class: DAL.DalController,Line:49] - Tuple{item1=3, item2=int}
+[WARN ] 02-05-2021 01:20:47 [class: DAL.DalController,Line:49] - Tuple{item1=4, item2=int}
+[WARN ] 02-05-2021 01:20:47 [class: DAL.DalController,Line:49] - Tuple{item1=5, item2=int}
+[WARN ] 02-05-2021 01:20:47 [class: DAL.DalController,Line:49] - Tuple{item1=6, item2=int}
+[WARN ] 02-05-2021 01:20:47 [class: DAL.DalController,Line:49] - Tuple{item1=7, item2=int}
+[WARN ] 02-05-2021 01:20:47 [class: DAL.Mapper,Line:156] - Index 7 out of bounds for length 7
+[WARN ] 02-05-2021 01:20:47 [class: DAL.DalController,Line:115] - ResultSet closed
+[WARN ] 02-05-2021 01:21:39 [class: DAL.Mapper,Line:150] - 1
+[WARN ] 02-05-2021 01:21:39 [class: DAL.DalController,Line:49] - Tuple{item1=2, item2=int}
+[WARN ] 02-05-2021 01:21:39 [class: DAL.DalController,Line:49] - Tuple{item1=3, item2=int}
+[WARN ] 02-05-2021 01:21:39 [class: DAL.DalController,Line:49] - Tuple{item1=4, item2=int}
+[WARN ] 02-05-2021 01:21:39 [class: DAL.DalController,Line:49] - Tuple{item1=5, item2=int}
+[WARN ] 02-05-2021 01:21:39 [class: DAL.DalController,Line:49] - Tuple{item1=6, item2=int}
+[WARN ] 02-05-2021 01:21:39 [class: DAL.DalController,Line:49] - Tuple{item1=7, item2=int}
+[WARN ] 02-05-2021 01:21:39 [class: DAL.Mapper,Line:156] - java.lang.IndexOutOfBoundsException: Index 7 out of bounds for length 7
+[WARN ] 02-05-2021 01:21:39 [class: DAL.DalController,Line:115] - ResultSet closed
+[WARN ] 02-05-2021 01:23:06 [class: DAL.Mapper,Line:150] - 1
+[WARN ] 02-05-2021 01:23:06 [class: DAL.DalController,Line:49] - Tuple{item1=1, item2=int}
+[WARN ] 02-05-2021 01:23:06 [class: DAL.Mapper,Line:156] - java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 7
+[WARN ] 02-05-2021 01:23:06 [class: DAL.DalController,Line:115] - ResultSet closed
+[WARN ] 02-05-2021 01:23:47 [class: DAL.Mapper,Line:150] - 1
+[WARN ] 02-05-2021 01:23:47 [class: DAL.DalController,Line:49] - Tuple{item1=1, item2=int}
+[WARN ] 02-05-2021 01:23:47 [class: DAL.DalController,Line:68] - noSelect quary: INSERT INTO StoreController VALUES (?,?,?,?,?,?,?)
+failed due to Index -1 out of bounds for length 7
+[WARN ] 02-05-2021 01:23:47 [class: DAL.Mapper,Line:156] - java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 7
+[WARN ] 02-05-2021 01:23:47 [class: DAL.DalController,Line:115] - ResultSet closed
+[WARN ] 02-05-2021 01:24:24 [class: DAL.Mapper,Line:150] - 1
+[WARN ] 02-05-2021 01:24:24 [class: DAL.DalController,Line:49] - Tuple{item1=1, item2=int}
+[WARN ] 02-05-2021 01:24:24 [class: DAL.DalController,Line:49] - Tuple{item1=2, item2=int}
+[WARN ] 02-05-2021 01:24:24 [class: DAL.DalController,Line:49] - Tuple{item1=3, item2=int}
+[WARN ] 02-05-2021 01:24:24 [class: DAL.DalController,Line:49] - Tuple{item1=4, item2=int}
+[WARN ] 02-05-2021 01:24:24 [class: DAL.DalController,Line:49] - Tuple{item1=5, item2=int}
+[WARN ] 02-05-2021 01:24:24 [class: DAL.DalController,Line:49] - Tuple{item1=6, item2=int}
+[WARN ] 02-05-2021 01:24:24 [class: DAL.DalController,Line:49] - Tuple{item1=7, item2=int}
+[WARN ] 02-05-2021 01:24:24 [class: DAL.Mapper,Line:152] - 2
+[WARN ] 02-05-2021 01:25:06 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO StoreController VALUES (?,?,?,?,?,?,?)
+failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: StoreController.storeID)
+[WARN ] 02-05-2021 01:25:06 [class: DAL.Mapper,Line:154] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: StoreController.storeID)
