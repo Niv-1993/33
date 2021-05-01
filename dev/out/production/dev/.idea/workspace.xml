@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78ff1c32-b3a2-4583-b331-f69764ea4317" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../logger.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logger.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/dev/DAL/DalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/dev/DAL/DalController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/dev/DAL/DalStock/DALCategory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/dev/DAL/DalStock/DALCategory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/dev/DAL/DalStock/DALStoreController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/dev/DAL/DalStock/DALStoreController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/dev/DAL/Mapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/dev/DAL/Mapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/dev/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/dev/main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/dev/test.db" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/dev/test.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/DalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/DalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/DalStock/DALCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/DalStock/DALCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/DalStock/DALStoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/DalStock/DALStoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.db" beforeDir="false" afterPath="$PROJECT_DIR$/test.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +52,7 @@
       <workItem from="1619518453312" duration="12000" />
       <workItem from="1619539327396" duration="15000" />
       <workItem from="1619539357076" duration="12000" />
+      <workItem from="1619909538858" duration="122000" />
     </task>
     <servers />
   </component>

@@ -22,7 +22,7 @@ public class DalController {
     private Connection connect() throws Exception {
         //DriverManager.registerDriver(new com.sqlite.jdbc.Driver());
         Class.forName("org.sqlite.JDBC");
-        String url = "jdbc:sqlite:C:\\\\Users\\user\\Desktop\\assignments\\ADSS\\Group_B\\dev\\src\\" + dbname;
+        String url = "jdbc:sqlite:"+System.getProperty("user.dir")+"\\" + dbname;
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
