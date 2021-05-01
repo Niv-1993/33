@@ -18,6 +18,6 @@ public class main {
     final static Logger log=Logger.getLogger(main.class);
     public static void main(String[] args) {
         mainCLI cli = new mainCLI();
-        cli.choice();
+        cli.choice(true);
     }
 }
