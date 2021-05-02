@@ -36,5 +36,6 @@ public class main {
         List<Integer> a=new ArrayList<>();
         a.add(1);
         DALStoreController sc=(DALStoreController) map.getItem(DALStoreController.class,a );
+        map.deleteItem(DALStoreController.class,a);
     }
 }

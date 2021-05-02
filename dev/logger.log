@@ -31997,3 +31997,8 @@ failed due to Index -1 out of bounds for length 7
 [WARN ] 02-05-2021 01:25:06 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO StoreController VALUES (?,?,?,?,?,?,?)
 failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: StoreController.storeID)
 [WARN ] 02-05-2021 01:25:06 [class: DAL.Mapper,Line:154] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: StoreController.storeID)
+[WARN ] 02-05-2021 20:04:46 [class: DAL.Mapper,Line:174] - java.lang.NullPointerException: Cannot invoke "String.split(String)" because "query" is null
+[WARN ] 02-05-2021 20:05:34 [class: DAL.Mapper,Line:169] - 1
+[WARN ] 02-05-2021 20:05:34 [class: DAL.Mapper,Line:176] - java.lang.NullPointerException: Cannot invoke "String.split(String)" because "query" is null
+[WARN ] 02-05-2021 20:06:18 [class: DAL.Mapper,Line:169] - 1
+[WARN ] 02-05-2021 20:06:18 [class: DAL.Mapper,Line:171] - 2
