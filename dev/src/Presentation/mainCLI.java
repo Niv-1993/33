@@ -36,7 +36,7 @@ public class mainCLI {
         return toReturn;
     }
 
-    public void choice(boolean firstTime){
+    public void start(boolean firstTime){
         String in;
         if(firstTime) {
             String[] load = {"load last data", "new data"};
@@ -55,6 +55,7 @@ public class mainCLI {
                     case 2 -> { }
                     default -> System.out.println("illegal option!!!");
                 }
+                if(n == 1 || n == 2) break;
             }
         }
         while (true){

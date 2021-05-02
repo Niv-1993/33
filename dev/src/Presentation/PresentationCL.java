@@ -144,7 +144,10 @@ public class PresentationCL{
                         System.out.println(response.getOutObject().toString());
                         Tresponse<SupplierAgreement> supplierAgreement = service.showSupplierAgreement(BN);
                         if(supplierAgreement.isError()) System.out.println(supplierAgreement.getError() + "\n");
-                        else System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
+                        else{
+                            System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
+                            //System.out.println("\tconstant time: " + supplierAgreement.getOutObject().toStringConstantTime());
+                        }
                         Tresponse<List<Item>> items = service.showAllItemsOfOrder(BN, orderId);
                         if (items.isError()) System.out.println(items.getError() + "\n");
                         else {
@@ -169,7 +172,10 @@ public class PresentationCL{
                             else {
                                 Tresponse<SupplierAgreement> supplierAgreement = service.showSupplierAgreement(BN);
                                 if(supplierAgreement.isError()) System.out.println(supplierAgreement.getError() + "\n");
-                                else System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
+                                else{
+                                    System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
+                                    //System.out.println("\tconstant time: " + supplierAgreement.getOutObject().toStringConstantTime());
+                                }
                                 List<Item> responseItem = items.getOutObject();
                                 for (Item item : responseItem) {
                                     System.out.println(item.toString(order.toStringAmount(item.toStringId())));
@@ -265,7 +271,7 @@ public class PresentationCL{
                     String name = stringScan(scanner , "please enter item name");
                     double price = doubleScan(scanner , "please enter item price" , "price must be a number");
                     int typeID = intScan(scanner , "please enter item typeId" , "typeId must be a number");
-                    LocalDate expirationDate = dateScan(scanner);
+                    LocalDate expirationDate = dateScan(scanner , "expiration date of the item");
                     Tresponse<Item> response = service.addItem(BN,name, price, typeID, expirationDate );
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("ItemId is: " + response.getOutObject().toStringId() + "\n");
@@ -457,7 +463,7 @@ public class PresentationCL{
                 case 5 -> {
                     BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
                     int orderId = intScan(scanner , "please enter orderId" , "orderId must be a number");
-                    LocalDate date = dateScan(scanner);
+                    LocalDate date = dateScan(scanner , "deliver time of the order");
                     response response = service.updateDeliverTime(BN, orderId, date);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
@@ -584,13 +590,13 @@ public class PresentationCL{
         return toReturn;
     }
 
-    private LocalDate dateScan(Scanner scanner){
+    private LocalDate dateScan(Scanner scanner , String rest){
         LocalDate toReturn;
         while (true){
             try {
-                int year = intScan(scanner , "please enter the year of the deliver time of the order" , "year must be a number");
-                int month = intScan(scanner , "please enter the month of the deliver time of the order" , "month must be a number");
-                int day = intScan(scanner , "please enter the day of the deliver time of the order" , "day must be a number");
+                int year = intScan(scanner , "please enter the year of the " + rest , "year must be a number");
+                int month = intScan(scanner , "please enter the month of the " + rest , "month must be a number");
+                int day = intScan(scanner , "please enter the day of the " + rest , "day must be a number");
                 toReturn = LocalDate.of(LocalDate.now().getYear(), month , day);
                 break;
             }catch (Exception e){
