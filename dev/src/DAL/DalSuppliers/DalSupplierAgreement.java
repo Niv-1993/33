@@ -2,6 +2,9 @@ package DAL.DalSuppliers;
 
 import DAL.DALObject;
 import DAL.DalController;
+import Utility.Tuple;
+
+import java.util.LinkedList;
 
 public class DalSupplierAgreement extends DALObject {
     private int supplierBN;
@@ -33,21 +36,73 @@ public class DalSupplierAgreement extends DALObject {
 
     @Override
     public String getSelect() {
-        return null;
+        return "Select * FROM SupplierAgreements\n" +
+                "WHERE supplierBN = "+ supplierBN;
     }
 
     @Override
     public String getDelete() {
-        return null;
+        return "DELETE FROM SupplierAgreements\n" +
+                "WHERE supplierBN = "+ supplierBN;
     }
 
     @Override
     public String getUpdate() {
-        return null;
+        return "UPDATE SupplierAgreements\n" +
+                "SET (?) = (?)\n"+
+                "WHERE SupplierBN = "+ supplierBN;
     }
 
     @Override
     public String getInsert() {
-        return null;
+        return "INSERT INTO SupplierAgreements ?\n"+
+                "VALUES ?";
+    }
+
+    public int getMinimalAmount() {
+        return minimalAmount;
+    }
+
+    public int getDiscount() {
+        return discount;
+    }
+
+    public boolean getConstantTime() {
+        return constantTime;
+    }
+
+    public boolean getShipToUs() {
+        return shipToUs;
+    }
+
+    public void updateMinimalAmountOfSA(int minimalAmount) throws Exception {
+        this.minimalAmount = minimalAmount;
+        LinkedList<Tuple<String,String>> list = new LinkedList<>();
+        list.add(new Tuple<>("TEXT", "minimalAmount"));
+        list.add(new Tuple<>("INTEGER", Double.toString(minimalAmount)));
+        DC.noSelect(getUpdate(), list);
+    }
+
+    public void updateDiscountOfSA(int discount) throws Exception {
+        this.discount = discount;
+        LinkedList<Tuple<String,String>> list = new LinkedList<>();
+        list.add(new Tuple<>("TEXT", "discount"));
+        list.add(new Tuple<>("INTEGER", Double.toString(discount)));
+        DC.noSelect(getUpdate(), list);
+    }
+
+    public void updateConstantTime(boolean constantTime) throws Exception {
+        this.constantTime = constantTime;
+        LinkedList<Tuple<String,String>> list = new LinkedList<>();
+        list.add(new Tuple<>("TEXT", "constantTime"));
+        list.add(new Tuple<>("INTEGER", Boolean.toString(constantTime)));
+        DC.noSelect(getUpdate(), list);}
+
+    public void updateShipToUs(boolean shipToUs) throws Exception {
+        this.shipToUs = shipToUs;
+        LinkedList<Tuple<String,String>> list = new LinkedList<>();
+        list.add(new Tuple<>("TEXT", "shipToUs"));
+        list.add(new Tuple<>("INTEGER", Boolean.toString(shipToUs)));
+        DC.noSelect(getUpdate(), list);
     }
 }

@@ -9,12 +9,7 @@ public class Item{
     private DalItem dalItem;
 
     public Item(int itemId , String name , double price, int typeId, LocalDate expirationDate){
-        this.itemId = itemId;
-        this.name = name;
         quantityDocument = null;
-        this.price = price;
-        this.typeId = typeId;
-        this.expirationDate = expirationDate;
         dalItem = new DalItem();
     }
 
@@ -51,7 +46,7 @@ public class Item{
     }
 
     public int getItemId() {
-        return itemId;
+        return dalItem.getItemId();
     }
 
     public QuantityDocument getQuantityDocument(){
@@ -59,17 +54,17 @@ public class Item{
     }
 
     public double getPrice() {
-        return price;
+        return dalItem.getPrice();
     }
 
     public void updatePrice(double price) throws Exception {
         if(price < 0) throw new Exception("price must be a positive number");
-        this.price = price;
+        dalItem.updatePrice(price);
     }
 
-    public String getName() { return name; }
+    public String getName() { return dalItem.getName(); }
 
-    public int getTypeID() { return typeId; }
+    public int getTypeID() { return dalItem.getTypeID(); }
 
-    public LocalDate getExpirationDate() { return expirationDate; }
+    public LocalDate getExpirationDate() { return dalItem.getExpirationDate(); }
 }

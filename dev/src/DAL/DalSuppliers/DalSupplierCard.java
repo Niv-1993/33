@@ -2,8 +2,10 @@ package DAL.DalSuppliers;
 
 import DAL.DALObject;
 import DAL.DalController;
+import Utility.Tuple;
 
 import java.util.Dictionary;
+import java.util.LinkedList;
 
 public class DalSupplierCard extends DALObject {
     private int supplierBN;
@@ -60,21 +62,75 @@ public class DalSupplierCard extends DALObject {
 
     @Override
     public String getSelect() {
-        return null;
+        return "Select * FROM Suppliers\n" +
+                "WHERE supplierBN = "+ supplierBN;
     }
 
     @Override
     public String getDelete() {
-        return null;
+        return "DELETE FROM Suppliers\n" +
+                "WHERE supplierBN = "+ supplierBN;
     }
 
     @Override
     public String getUpdate() {
-        return null;
+        return "UPDATE (?)\n" +
+                "SET (?) = (?)\n"+
+                "WHERE SupplierBN = "+ supplierBN;
     }
 
     @Override
     public String getInsert() {
-        return null;
+        return "INSERT INTO ? (?)\n"+
+                "VALUES (?)";
+    }
+
+    public int getSupplierBN() {
+        return supplierBN;
+    }
+
+    public int getSupplierBankNumber() {
+        return bankNumber;
+    }
+
+    public int getSupplierBranchNumber() {
+        return branchNumber;
+    }
+
+    public int getSupplierAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getSupplierPayWay() {
+        return payWay;
+    }
+
+    public Dictionary<String , String> getContactPhone() {
+        return contactPhone;
+    }
+
+    public Dictionary<String , String> getContactEmail() {
+        return contactEmail;
+    }
+
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public void updateSupplierPayWay(String payWay) throws Exception {
+        this.payWay = payWay;
+        LinkedList<Tuple<String,String>> list = new LinkedList<>();
+        list.add(new Tuple<>("TEXT", "payWay"));
+        list.add(new Tuple<>("INTEGER", payWay));
+        DC.noSelect(getUpdate(), list);
+    }
+
+    public void addContactPhone(String phone, String name) throws Exception {
+        contactPhone.put(phone, name);
+        LinkedList<Tuple<String,String>> list = new LinkedList<>();
+        list.add(new Tuple<>("TEXT", "SupplierPhones"));
+        list.add(new Tuple<>("TEXT", "supplierBN, phone, name"));
+        list.add(new Tuple<>("TEXT", supplierBN +","+ phone +","+ name));
+        DC.noSelect(getUpdate(), list);
     }
 }

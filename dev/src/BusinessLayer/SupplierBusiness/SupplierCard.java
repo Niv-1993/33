@@ -1,5 +1,7 @@
 package BusinessLayer.SupplierBusiness;
 
+import DAL.DalSuppliers.DalSupplierCard;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -9,6 +11,7 @@ public class SupplierCard {
     private List<Item> items;
     private SupplierAgreement supplierAgreement;
     private regularOrder constantOrder;
+    private DalSupplierCard dalSupplierCard;
 
     public SupplierCard(int supplierBN , String supplierName ,int bankNumber , int branchNumber, int accountNumber , String payWay){
         this.supplierBN = supplierBN;
@@ -22,6 +25,7 @@ public class SupplierCard {
         contactPhone = new Hashtable<>();
         contactEmail = new Hashtable<>();
         constantOrder = null;
+        dalSupplierCard = new DalSupplierCard();
     }
 
     public void removeSupplier(){
@@ -36,41 +40,41 @@ public class SupplierCard {
     }
 
     public int getSupplierBN() {
-        return supplierBN;
+        return dalSupplierCard.getSupplierBN();
     }
 
     public int getSupplierBankNumber() {
-        return bankNumber;
+        return dalSupplierCard.getSupplierBankNumber();
     }
 
     public int getSupplierBranchNumber() {
-        return branchNumber;
+        return dalSupplierCard.getSupplierBranchNumber();
     }
 
     public int getSupplierAccountNumber() {
-        return accountNumber;
+        return dalSupplierCard.getSupplierAccountNumber();
     }
 
     public String getSupplierPayWay() {
-        return payWay;
+        return dalSupplierCard.getSupplierPayWay();
     }
 
     public Dictionary<String , String> getContactPhone() {
-        return contactPhone;
+        return dalSupplierCard.getContactPhone();
     }
 
     public Dictionary<String , String> getContactEmail() {
-        return contactEmail;
+        return dalSupplierCard.getContactEmail();
     }
 
     public String getSupplierName() {
-        return supplierName;
+        return dalSupplierCard.getSupplierName();
     }
 
     public void updateSupplierPayWay(String payWay) throws Exception {
         if(!(payWay.equals("check") || payWay.equals("bank transfer") || payWay.equals("cash")))
             throw new Exception("pay way must be check/bank transfer/cash.");
-        this.payWay = payWay;
+        dalSupplierCard.updateSupplierPayWay(payWay);
     }
 
     public void updateSupplierBankAccount(int bankNumber , int branchNumber , int bankAccount) throws Exception {
@@ -83,7 +87,7 @@ public class SupplierCard {
     public void addContactPhone(String phone, String name) throws Exception {
         if(contactPhone.get(phone) != null)
             throw new Exception("contact phone all ready exist, you may want to use: update contact phone");
-        contactPhone.put(phone, name);
+        dalSupplierCard.addContactPhone(phone, name);
     }
 
     public void addContactEmail(String email, String name) throws Exception {

@@ -1,43 +1,44 @@
 package BusinessLayer.SupplierBusiness;
 
+import DAL.DalSuppliers.DalSupplierAgreement;
+
 public class SupplierAgreement {
 
+    private DalSupplierAgreement dalSupplierAgreement;
+
     public SupplierAgreement(int minimalAmount , int discount , boolean constantTime , boolean shipToUs){
-        this.minimalAmount = minimalAmount;
-        this.discount = discount;
-        this.constantTime = constantTime;
-        this.shipToUs = shipToUs;
+        dalSupplierAgreement = new DalSupplierAgreement();
     }
 
     public void updateMinimalAmountOfSA(int minimalAmount) throws Exception {
         if(minimalAmount < 0) throw new Exception("minimal amount must be a positive number");
-        this.minimalAmount = minimalAmount;
+        dalSupplierAgreement.updateMinimalAmountOfSA(minimalAmount);
     }
 
     public void updateDiscountOfSA(int discount) throws Exception {
         if(discount < 0) throw new Exception("discount amount must be a positive number between 0 to 100");
-        this.discount = discount;
+        dalSupplierAgreement.updateDiscountOfSA(discount);
     }
 
-    public void updateConstantTime(boolean constantTime) { this.constantTime = constantTime; }
+    public void updateConstantTime(boolean constantTime) throws Exception { dalSupplierAgreement.updateConstantTime(constantTime); }
 
-    public void updateShipToUs(boolean shipToUs) {
-        this.shipToUs = shipToUs;
+    public void updateShipToUs(boolean shipToUs) throws Exception {
+        dalSupplierAgreement.updateShipToUs(shipToUs);
     }
 
     public int getMinimalAmount() {
-        return minimalAmount;
+        return dalSupplierAgreement.getMinimalAmount();
     }
 
     public int getDiscount() {
-        return discount;
+        return dalSupplierAgreement.getDiscount();
     }
 
     public boolean getConstantTime() {
-        return constantTime;
+        return dalSupplierAgreement.getConstantTime();
     }
 
     public boolean getShipToUs() {
-        return shipToUs;
+        return dalSupplierAgreement.getShipToUs();
     }
 }

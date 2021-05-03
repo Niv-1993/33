@@ -11,19 +11,19 @@ public class QuantityDocument {
 
     public void updateMinimalAmountOfQD(int minimalAmount) throws Exception {
         if(minimalAmount < 0) throw new Exception("minimal amount must be a positive number");
-        this.minimalAmount = minimalAmount;
+        dalQuantityDocument.updateMinimalAmountOfQD(minimalAmount);
     }
 
     public void updateDiscountOfQD(int discount) throws Exception {
         if(discount < 0) throw new Exception("discount amount must be a positive number");
-        this.discount = discount;
+        dalQuantityDocument.updateDiscountOfQD(discount);
     }
 
     public int getMinimalAmount(){
-        return minimalAmount;
+        return dalQuantityDocument.getMinimalAmount();
     }
 
     public int getDiscount(){
-        return discount;
+        return dalQuantityDocument.getDiscount();
     }
 }

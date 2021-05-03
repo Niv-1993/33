@@ -34,7 +34,7 @@ public class DalController {
     }
 
     // String String === Val Type
-    int noSelect(String query, List<Tuple<String,String>> params) throws Exception {
+    public int noSelect(String query, List<Tuple<String,String>> params) throws Exception {
         List<String> doQuary= Arrays.asList(query.split(";"));
         if(doQuary.size()>1 && params!=null) throw new Exception("non create multi-query");
         boolean isDefault = false;
@@ -68,7 +68,7 @@ public class DalController {
         return ret;
     }
 
-    Tuple<List<Class>,List<Object>> Select(String query, List<Integer> params) throws Exception {
+    public Tuple<List<Class>,List<Object>> Select(String query, List<Integer> params) throws Exception {
         Connection conn = this.connect();
         try {
             PreparedStatement preparedStatement  = conn.prepareStatement(query);

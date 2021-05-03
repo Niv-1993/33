@@ -44,21 +44,45 @@ public class DalOrder extends DALObject {
 
     @Override
     public String getSelect() {
-        return null;
+        return "Select * FROM Orders\n" +
+                "WHERE orderId = "+ orderId;
     }
 
     @Override
     public String getDelete() {
-        return null;
+        return "DELETE FROM Orders\n" +
+                "WHERE orderId = "+ orderId;
     }
 
     @Override
     public String getUpdate() {
-        return null;
+        return "UPDATE Orders\n" +
+                "SET (?) = (?)\n"+
+                "WHERE orderId = "+ orderId;
     }
 
     @Override
     public String getInsert() {
-        return null;
+        return "INSERT INTO Orders ?\n"+
+                "VALUES ?";
     }
+
+    public int getOrderID() {
+        return orderId;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public String getDeliverTime() {
+        return deliverTime;
+    }
+
+    public int getBranchID() {
+        return branchId;
+    }
+
+
+
 }
