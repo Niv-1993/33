@@ -22,7 +22,7 @@ public class DalController {
     private Connection connect() throws Exception {
         //DriverManager.registerDriver(new com.sqlite.jdbc.Driver());
         Class.forName("org.sqlite.JDBC");
-        String url = "jdbc:sqlite:C:\\\\Users\\user\\Desktop\\assignments\\ADSS\\Group_B\\dev\\src\\" + dbname;
+        String url = "jdbc:sqlite:"+System.getProperty("user.dir")+"\\" + dbname;
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
@@ -34,7 +34,8 @@ public class DalController {
     }
 
     // String String === Val Type
-    public int noSelect(String query, List<Tuple<String,String>> params) throws Exception {
+    public int noSelect(String query, List<Tuple<Object,Class>> params) throws Exception {
+        if (query==null) return 0;
         List<String> doQuary= Arrays.asList(query.split(";"));
         if(doQuary.size()>1 && params!=null) throw new Exception("non create multi-query");
         boolean isDefault = false;
@@ -45,22 +46,21 @@ public class DalController {
                  PreparedStatement preparedStatement = conn.prepareStatement(query)) {
                 if (params != null) {
                     for (int i = 1; i <= params.size() && !isDefault; i++) {
-                        Tuple<String, String> tuple = params.get(i);
-                        switch (tuple.item2) {
-                            case "int":
-                                preparedStatement.setInt(i, Integer.parseInt(tuple.item1));
-                            case "String":
-                                preparedStatement.setString(i, tuple.item1);
-                            case "double":
-                                preparedStatement.setDouble(i, Double.parseDouble(tuple.item1));
-                            default:
-                                isDefault = true;
+                        Tuple<Object, Class> tuple = params.get(i-1);
+                        if (Integer.class.equals(tuple.item2)) {
+                            preparedStatement.setInt(i, (Integer)(tuple.item1));
+                        } else if (String.class.equals(tuple.item2)) {
+                            preparedStatement.setString(i, (String) tuple.item1);
+                        } else if (Double.class.equals(tuple.item2)) {
+                            preparedStatement.setDouble(i, (Double)(tuple.item1));
+                        } else {
+                            isDefault = true;
                         }
                     }
                     if (isDefault) throw new Exception("illegal type");
                 }
                 ret += preparedStatement.executeUpdate();
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 log.warn("noSelect quary: " + query + "\nfailed due to " + e.getMessage());
                 throw e;
             }

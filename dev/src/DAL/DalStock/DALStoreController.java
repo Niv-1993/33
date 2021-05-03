@@ -49,6 +49,6 @@ public class DALStoreController extends DALObject {
 
     @Override
     public String getInsert() {
-        return null;
+        return "INSERT OR REPLACE INTO StoreController VALUES (?,?,?,?,?,?,?);";
     }
 }

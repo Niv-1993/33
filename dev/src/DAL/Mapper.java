@@ -142,4 +142,38 @@ public class Mapper {
             return null;
         }
     }
+
+    public int setItem(Class cls, List<Tuple<Object,Class>> params) {
+        try{
+            Method met=cls.getMethod("getInsert");
+            Constructor con=cls.getConstructor();
+            String insert=(String) met.invoke(con.newInstance(),null);
+            int ret= DC.noSelect(insert,params);
+            return ret;
+        }
+        catch (Exception e){
+            log.warn(e);
+            return 0;
+        }
+    }
+
+    public int deleteItem(Class cls, List<Integer> pk){
+        try{
+            Method met=cls.getMethod("getDelete");
+            Constructor con=cls.getConstructor();
+            String delete=(String) met.invoke(con.newInstance(),null);
+            List<Tuple<Object,Class>> ls=new ArrayList<>();
+            for(Integer k: pk){
+                ls.add(new Tuple<>(k,Integer.class));
+            }
+            int ret = DC.noSelect(delete,ls);
+            if(map.containsKey(cls) && map.get(cls).containsKey(pk)) map.get(cls).remove(pk);
+            return ret;
+        }
+        catch (Exception e){
+            log.warn(e);
+            return 0;
+        }
+    }
+
 }

@@ -18,6 +18,7 @@ public class DALCategory extends DALObject {
         return "CREATE TABLE IF NOT EXISTS Category (\n" +
                 "\tstoreID INTEGER NOT NULL,\n" +
                 "\tcategoryID INTEGER NOT NULL,\n" +
+                "\tparentID INTEGER,"+
                 "\tname VARCHAR NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, categoryID),\n" +
                 "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
@@ -28,7 +29,7 @@ public class DALCategory extends DALObject {
                 "\tstoreID INTEGER NOT NULL,\n" +
                 "\tparentID INTEGER NOT NULL,\n" +
                 "\tchildID INTEGER NOT NULL,\n" +
-                "\tPRIMARY KEY (storeID, parentID, childID),\n" +
+                "\tPRIMARY KEY (storeID, childID),\n" +
                 "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
                 "\tFOREIGN KEY (parentID) REFERENCES Category (categoryID)\n" +
