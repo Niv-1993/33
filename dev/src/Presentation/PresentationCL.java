@@ -23,7 +23,7 @@ public class PresentationCL{
 
     public void mainRun(boolean firstTime){
         Scanner scanner = new Scanner(System.in);
-        String[] mainMenuArray = {"showing methods" , "adding methods" , "removing methods" , "updating methods" ,"end program" };
+        String[] mainMenuArray = {"showing methods" , "adding methods" , "removing methods" , "updating methods" ,"back to choice menu" , "END PROGRAM"};
         int option = -1;
         while(true){
             System.out.println("please select an option: ");
@@ -36,9 +36,8 @@ public class PresentationCL{
                 case 2 -> addingMethods();
                 case 3 -> removingMethods();
                 case 4 -> updatingMethods();
-                case 5 -> {
-                    return;
-                }
+                case 5 -> { return; }
+                case 6 -> {System.exit(0);}
                 default -> System.out.println("illegal option!!!");
             }
         }
@@ -49,7 +48,7 @@ public class PresentationCL{
         int option = -1;
         String[] showingMethodArray = {"show Supplier","show SupplierBN","show All Suppliers", "show Item Of Supplier","show All Items Of Supplier",
                 "show All Items", "show Order Of Supplier","show All Orders Of Supplier","show Total Amount",
-                "show Deliver Time", "show Quantity Document","show Supplier Agreement","back to the main menu"};
+                "show Deliver Time", "show Quantity Document","show Supplier Agreement","back to the main menu" , "END PROGRAM"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= showingMethodArray.length ; i++) {
@@ -217,7 +216,8 @@ public class PresentationCL{
                     else System.out.println(response.getOutObject().toString());
                     toContinue(scanner);
                 }
-                case 13 -> mainRun(false);
+                case 13 -> {return; }
+                case 14 -> {System.exit(0);}
                 default -> {
                     System.out.println("illegal option!!!");
                     toContinue(scanner);
@@ -231,7 +231,7 @@ public class PresentationCL{
         int option = -1;
         String[] showingMethodArray = {"add supplier","add Contact Phone","add Contact Email","add Item", "add constant Order" ,
                 "add Regular Order", "add Needed Order","add Item To Order","add Quantity Document",
-                "add Supplier Agreement","back to the main menu"};
+                "add Supplier Agreement","back to the main menu" , "END PROGRAM"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= showingMethodArray.length; i++) {
@@ -331,7 +331,8 @@ public class PresentationCL{
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 11 -> mainRun(false);
+                case 11 -> { return; }
+                case 12 -> {System.exit(0);}
                 default ->{
                     System.out.println("illegal option!!!\n");
                     toContinue(scanner);
@@ -345,7 +346,7 @@ public class PresentationCL{
         int option = -1;
         String[] removeMethodArray = {"remove Supplier","remove Contact Phone","remove Contact Email","remove Item",
                 "remove item from regular order" , "remove amount of item from regular order" ,
-                "remove Quantity Document","back to the main menu"};
+                "remove Quantity Document","back to the main menu" , "END PROGRAM"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= removeMethodArray.length; i++) {
@@ -404,7 +405,8 @@ public class PresentationCL{
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 8 -> mainRun(false);
+                case 8 -> { return;}
+                case 9 -> {System.exit(0);}
                 default ->{
                     System.out.println("illegal option!!!");
                     toContinue(scanner);
@@ -420,7 +422,7 @@ public class PresentationCL{
         String[] updateMethodArray = {"update Supplier PayWay", "update Supplier BankAccount", "update Contact Phone", "update Contact Email",
                 "update Deliver Time", "update Minimal Amount Of Quantity Document", "update Discount Of Quantity Document",
                 "update Minimal Amount Of Supplier Agreement", "update Discount Of Supplier Agreement",
-                "update Constant Time", "update Ship To Us", "update Price", "back to the main menu"};
+                "update Constant Time", "update Ship To Us", "update Price", "back to the main menu" , "END PROGRAM"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= updateMethodArray.length; i++) {
@@ -520,7 +522,8 @@ public class PresentationCL{
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 13 -> mainRun(false);
+                case 13 -> {return; }
+                case 14 -> {System.exit(0);}
                 default ->{
                     System.out.println("illegal option!!!");
                     toContinue(scanner);
