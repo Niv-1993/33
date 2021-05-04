@@ -1,23 +1,22 @@
 package BusinessLayer.SupplierBusiness;
 
+import DAL.DalSuppliers.DalOrder;
+import DAL.DalSuppliers.DalSupplierCard;
+import Utility.Util;
+
 import java.time.LocalDate;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Order {
-    protected int orderId;
     protected Hashtable<Item , Integer> items;
-    protected double totalAmount;
-    protected LocalDate deliverTime;
-    protected int branchId;
+    protected DalOrder dalOrder;
 
     public Order(int orderId , LocalDate deliverTime , int branchId){
-        this.orderId = orderId;
+        dalOrder = Util.initDal(DalOrder.class, 0 , orderId, deliverTime, branchId);
         items = new Hashtable<>();
-        this.totalAmount = 0;
-        this.deliverTime = deliverTime;
-        this.branchId=branchId;
+        dalOrder = new DalOrder();
     }
 
     public Order(){}
@@ -29,18 +28,18 @@ public class Order {
 
     public Order showDeliverTime() { return this; }
 
-    public int getOrderId() { return orderId; }
+    public int getOrderId() { return dalOrder.getOrderID(); }
 
     public double getTotalAmount() {
-        return totalAmount;
+        return dalOrder.getTotalAmount();
     }
 
-    public LocalDate getDeliverTime() {
-        return deliverTime;
+    public String getDeliverTime() {
+        return dalOrder.getDeliverTime();
     }
 
     public int getBranchID() {
-        return branchId;
+        return dalOrder.getBranchID();
     }
 
     public Hashtable<Integer, Integer> getAmounts() {
@@ -49,5 +48,9 @@ public class Order {
             amounts.put(item.getItemId() , items.get(item));
         }
         return amounts;
+    }
+
+    public void removeOrder() {
+        dalOrder.removeOrder();
     }
 }

@@ -2,8 +2,15 @@ package DAL.DalSuppliers;
 
 import DAL.DALObject;
 import DAL.DalController;
+import Utility.Tuple;
+
+import java.util.LinkedList;
 
 public class DalSupplierController extends DALObject {
+    private int supplierBN;
+    private int numOfItems;
+    private int numOfOrders;
+
     public DalSupplierController() {
         super(null);
     }
@@ -23,21 +30,51 @@ public class DalSupplierController extends DALObject {
 
     @Override
     public String getSelect() {
-        return null;
+        return "Select * FROM SupplierController\n";
     }
 
     @Override
     public String getDelete() {
-        return null;
+        return "DELETE FROM SupplierController\n" +
+                "WHERE supplierBN= (?)";
     }
 
     @Override
     public String getUpdate() {
-        return null;
+        return "UPDATE SupplierController\n" +
+                "SET (?) = (?)\n"+
+                "WHERE supplierBN = (?)";
     }
 
     @Override
     public String getInsert() {
-        return null;
+        return "INSERT INTO SupplierController ?\n"+
+                "VALUES ?";
+    }
+
+    public int getNumOfItems() {
+        return numOfItems;
+    }
+
+    public int getNumOfOrders() {
+        return numOfOrders;
+    }
+
+    public void addNumOfItems() throws Exception {
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE SupplierController\n" +
+                "SET numOfItems = " + numOfItems+1+"\n" +
+                "WHERE supplierBN = "+ supplierBN;
+        DC.noSelect(query, list);
+        numOfItems++;
+    }
+
+    public void addNumOfOrders() throws Exception {
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE SupplierController\n" +
+                "SET numOfItems = " + numOfItems+1+"\n" +
+                "WHERE supplierBN = "+ supplierBN;
+        DC.noSelect(query, list);
+        numOfOrders++;
     }
 }
