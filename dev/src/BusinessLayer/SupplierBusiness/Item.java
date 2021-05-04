@@ -1,6 +1,7 @@
 package BusinessLayer.SupplierBusiness;
 
 import DAL.DalSuppliers.DalItem;
+import Utility.Util;
 
 import java.time.LocalDate;
 
@@ -10,7 +11,7 @@ public class Item{
 
     public Item(int itemId , String name , double price, int typeId, LocalDate expirationDate){
         quantityDocument = null;
-        dalItem = new DalItem();
+        dalItem = Util.initDal(DalItem.class, 0 , itemId, name, price, typeId,expirationDate);
     }
 
     public void addQuantityDocument(int minimalAmount, int discount) throws Exception {
@@ -67,4 +68,5 @@ public class Item{
     public int getTypeID() { return dalItem.getTypeID(); }
 
     public LocalDate getExpirationDate() { return dalItem.getExpirationDate(); }
+
 }

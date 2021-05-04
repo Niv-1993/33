@@ -67,18 +67,22 @@ public class DalQuantityDocument extends DALObject {
 
     public void updateMinimalAmountOfQD(int minimalAmount) throws Exception {
         this.minimalAmount = minimalAmount;
-        LinkedList<Tuple<String,String>> list = new LinkedList<>();
-        list.add(new Tuple<>("TEXT", "minimalAmount"));
-        list.add(new Tuple<>("INTEGER", Double.toString(minimalAmount)));
-        DC.noSelect(getUpdate(), list);
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE QuantityDocuments \n" +
+                    "SET minimalAmount = ? \n"+
+                    "WHERE itemId = "+ itemId;
+        list.add(new Tuple<>(minimalAmount, Integer.class));
+        DC.noSelect(query, list);
     }
 
     public void updateDiscountOfQD(int discount) throws Exception {
         this.discount = discount;
-        LinkedList<Tuple<String,String>> list = new LinkedList<>();
-        list.add(new Tuple<>("TEXT", "discount"));
-        list.add(new Tuple<>("INTEGER", Double.toString(discount)));
-        DC.noSelect(getUpdate(), list);
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE QuantityDocuments \n" +
+                "SET discount = ? \n"+
+                "WHERE itemId = "+ itemId;
+        list.add(new Tuple<>(discount, Integer.class));
+        DC.noSelect(query, list);
     }
 
 }

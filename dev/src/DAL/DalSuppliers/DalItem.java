@@ -78,9 +78,12 @@ public class DalItem extends DALObject {
 
     public void updatePrice(double price) throws Exception {
         this.price = price;
-        LinkedList<Tuple<String,String>> list = new LinkedList<>();
-        list.add(new Tuple<>("TEXT", "price"));
-        list.add(new Tuple<>("INTEGER", Double.toString(price)));
-        DC.noSelect(getUpdate(), list);
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE Items \n" +
+                "SET price = ? \n"+
+                "WHERE itemId = "+ itemId;
+        list.add(new Tuple<>(price, Integer.class));
+        DC.noSelect(query, list);
     }
+
 }

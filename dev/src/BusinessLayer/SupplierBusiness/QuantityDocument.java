@@ -1,12 +1,14 @@
 package BusinessLayer.SupplierBusiness;
 
 import DAL.DalSuppliers.DalQuantityDocument;
+import DAL.DalSuppliers.DalSupplierCard;
+import Utility.Util;
 
 public class QuantityDocument {
     DalQuantityDocument dalQuantityDocument;
 
     public QuantityDocument(int minimalAmount , int discount){
-        dalQuantityDocument = new DalQuantityDocument();
+        dalQuantityDocument = Util.initDal(DalQuantityDocument.class, 0 , minimalAmount, discount);
     }
 
     public void updateMinimalAmountOfQD(int minimalAmount) throws Exception {

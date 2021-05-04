@@ -77,32 +77,41 @@ public class DalSupplierAgreement extends DALObject {
 
     public void updateMinimalAmountOfSA(int minimalAmount) throws Exception {
         this.minimalAmount = minimalAmount;
-        LinkedList<Tuple<String,String>> list = new LinkedList<>();
-        list.add(new Tuple<>("TEXT", "minimalAmount"));
-        list.add(new Tuple<>("INTEGER", Double.toString(minimalAmount)));
-        DC.noSelect(getUpdate(), list);
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE SupplierAgreements \n" +
+                "SET minimalAmount = ? \n"+
+                "WHERE supplierBN = "+ supplierBN;
+        list.add(new Tuple<>(minimalAmount, Integer.class));
+        DC.noSelect(query, list);
     }
 
     public void updateDiscountOfSA(int discount) throws Exception {
         this.discount = discount;
-        LinkedList<Tuple<String,String>> list = new LinkedList<>();
-        list.add(new Tuple<>("TEXT", "discount"));
-        list.add(new Tuple<>("INTEGER", Double.toString(discount)));
-        DC.noSelect(getUpdate(), list);
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE SupplierAgreements \n" +
+                "SET discount = ? \n"+
+                "WHERE supplierBN = "+ supplierBN;
+        list.add(new Tuple<>(discount, Integer.class));
+        DC.noSelect(query, list);
     }
 
     public void updateConstantTime(boolean constantTime) throws Exception {
         this.constantTime = constantTime;
-        LinkedList<Tuple<String,String>> list = new LinkedList<>();
-        list.add(new Tuple<>("TEXT", "constantTime"));
-        list.add(new Tuple<>("INTEGER", Boolean.toString(constantTime)));
-        DC.noSelect(getUpdate(), list);}
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE SupplierAgreements \n" +
+                "SET constantTime = ? \n"+
+                "WHERE supplierBN = "+ supplierBN;
+        list.add(new Tuple<>(constantTime, Boolean.class));
+        DC.noSelect(query, list);
+    }
 
     public void updateShipToUs(boolean shipToUs) throws Exception {
         this.shipToUs = shipToUs;
-        LinkedList<Tuple<String,String>> list = new LinkedList<>();
-        list.add(new Tuple<>("TEXT", "shipToUs"));
-        list.add(new Tuple<>("INTEGER", Boolean.toString(shipToUs)));
-        DC.noSelect(getUpdate(), list);
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE SupplierAgreements \n" +
+                "SET shipToUs = ? \n"+
+                "WHERE supplierBN = "+ supplierBN;
+        list.add(new Tuple<>(shipToUs, Boolean.class));
+        DC.noSelect(query, list);
     }
 }

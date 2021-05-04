@@ -1,13 +1,15 @@
 package BusinessLayer.SupplierBusiness;
 
 import DAL.DalSuppliers.DalSupplierAgreement;
+import DAL.DalSuppliers.DalSupplierCard;
+import Utility.Util;
 
 public class SupplierAgreement {
 
     private DalSupplierAgreement dalSupplierAgreement;
 
     public SupplierAgreement(int minimalAmount , int discount , boolean constantTime , boolean shipToUs){
-        dalSupplierAgreement = new DalSupplierAgreement();
+        dalSupplierAgreement = Util.initDal(DalSupplierAgreement.class, 0 , minimalAmount, discount, constantTime, shipToUs);
     }
 
     public void updateMinimalAmountOfSA(int minimalAmount) throws Exception {

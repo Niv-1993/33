@@ -119,18 +119,74 @@ public class DalSupplierCard extends DALObject {
 
     public void updateSupplierPayWay(String payWay) throws Exception {
         this.payWay = payWay;
-        LinkedList<Tuple<String,String>> list = new LinkedList<>();
-        list.add(new Tuple<>("TEXT", "payWay"));
-        list.add(new Tuple<>("INTEGER", payWay));
-        DC.noSelect(getUpdate(), list);
+        String p = payWay;
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE Suppliers\n" +
+                "SET payWay = ?\n"+
+                "WHERE supplierBN = "+ supplierBN;
+        list.add(new Tuple<>(p, Integer.class));
+        DC.noSelect(query, list);
+
     }
 
     public void addContactPhone(String phone, String name) throws Exception {
         contactPhone.put(phone, name);
-        LinkedList<Tuple<String,String>> list = new LinkedList<>();
-        list.add(new Tuple<>("TEXT", "SupplierPhones"));
-        list.add(new Tuple<>("TEXT", "supplierBN, phone, name"));
-        list.add(new Tuple<>("TEXT", supplierBN +","+ phone +","+ name));
-        DC.noSelect(getUpdate(), list);
+        String query = "INSERT INTO SupplierPhones (supplierBN, phone, name)\n" +
+                "VALUES (?,?,?)";
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        list.add(new Tuple<>(supplierBN, Integer.class));
+        list.add(new Tuple<>(phone, String.class));
+        list.add(new Tuple<>(name, String.class));
+        DC.noSelect(query, list);
+    }
+
+    public void updateSupplierBankAccount(int bankNumber , int branchNumber , int bankAccount) throws Exception {
+        this.bankNumber = bankNumber;
+        this.branchNumber = branchNumber;
+        this.accountNumber = bankAccount;
+        String query = "INSERT INTO BankInfo (supplierBN, bankNumber, branchNumber, bankAccount)\n" +
+                "VALUES (?,?,?,?)";
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        list.add(new Tuple<>(supplierBN, Integer.class));
+        list.add(new Tuple<>(bankNumber, Integer.class));
+        list.add(new Tuple<>(branchNumber, Integer.class));
+        list.add(new Tuple<>(bankAccount, Integer.class));
+        DC.noSelect(query, list);
+    }
+
+    public void addContactEmail(String email, String name) throws Exception {
+        contactEmail.put(email, name);
+        String query = "INSERT INTO SupplierEmails (supplierBN, email, name)\n" +
+                "VALUES (?,?,?)";
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        list.add(new Tuple<>(supplierBN, Integer.class));
+        list.add(new Tuple<>(email, String.class));
+        list.add(new Tuple<>(name, String.class));
+        DC.noSelect(query, list);
+    }
+
+    public void removeContactPhone(String phone) throws Exception {
+        contactPhone.remove(phone);
+        String query = "DELETE From SupplierPhones\n" +
+                "WHERE phone = ?";
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        list.add(new Tuple<>(phone, String.class));;
+        DC.noSelect(query, list);
+    }
+
+    public void removeContactEmail(String email) throws Exception {
+        contactEmail.remove(email);
+        String query = "DELETE From SupplierEmails\n" +
+                "WHERE email = ?";
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        list.add(new Tuple<>(email, String.class));;
+        DC.noSelect(query, list);
+    }
+
+    public void removeSupplier() throws Exception {
+        String query = "DELETE From Suppliers\n" +
+                "WHERE supplierBN = "+supplierBN;
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();;
+        DC.noSelect(query, list);
     }
 }

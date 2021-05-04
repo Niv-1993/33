@@ -1,6 +1,8 @@
 package BusinessLayer.SupplierBusiness;
 
 import DAL.DalSuppliers.DalOrder;
+import DAL.DalSuppliers.DalSupplierCard;
+import Utility.Util;
 
 import java.time.LocalDate;
 import java.util.Hashtable;
@@ -9,9 +11,10 @@ import java.util.List;
 
 public class Order {
     protected Hashtable<Item , Integer> items;
-    private DalOrder dalOrder;
+    protected DalOrder dalOrder;
 
     public Order(int orderId , LocalDate deliverTime , int branchId){
+        dalOrder = Util.initDal(DalOrder.class, 0 , orderId, deliverTime, branchId);
         items = new Hashtable<>();
         dalOrder = new DalOrder();
     }
@@ -45,5 +48,9 @@ public class Order {
             amounts.put(item.getItemId() , items.get(item));
         }
         return amounts;
+    }
+
+    public void removeOrder() {
+        dalOrder.removeOrder();
     }
 }
