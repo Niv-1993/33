@@ -45,6 +45,7 @@ public class DalController {
             try (Connection conn = this.connect();
                  PreparedStatement preparedStatement = conn.prepareStatement(query)) {
                 if (params != null) {
+                    log.warn(query);
                     for (int i = 1; i <= params.size() && !isDefault; i++) {
                         Tuple<Object, Class> tuple = params.get(i-1);
                         if (Integer.class.equals(tuple.item2)) {
@@ -77,7 +78,7 @@ public class DalController {
             }
             ResultSet rs = preparedStatement.executeQuery();
             return fromRS(rs);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new Exception("select field");
         }
         finally{
@@ -105,6 +106,7 @@ public class DalController {
                         vals.add(rs.getInt(i));
                     }
                 }
+                log.warn("4");
                 if (rs.next()) return null;
             }
             catch (Exception e){

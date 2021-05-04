@@ -10,10 +10,12 @@ import  BusinessLayer.SupplierBusiness.facade.SupplierService;
 import BusinessLayer.SupplierBusiness.facade.Tresponse;
 import BusinessLayer.SupplierBusiness.facade.outObjects.*;
 import BusinessLayer.SupplierBusiness.facade.response;
+import org.apache.log4j.Logger;
 
 public class PresentationCL{
 
     private final SupplierService service;
+    final static Logger log=Logger.getLogger(PresentationCL.class);
 
     public PresentationCL() {
         service = new SupplierService();
@@ -32,12 +34,24 @@ public class PresentationCL{
             }
             option = menuCheck(scanner);
             switch (option) {
-                case 1 -> showingMethods();
-                case 2 -> addingMethods();
-                case 3 -> removingMethods();
-                case 4 -> updatingMethods();
+                case 1 -> {
+                    showingMethods();
+                    break;
+                }
+                case 2 ->{
+                    addingMethods();
+                    break;
+                }
+                case 3 -> {
+                    removingMethods();
+                    break;
+                }
+                case 4 -> {
+                    updatingMethods();
+                    break;
+                }
                 case 5 -> { return; }
-                case 6 -> {System.exit(0);}
+                case 6 -> {System.exit(0); }
                 default -> System.out.println("illegal option!!!");
             }
         }

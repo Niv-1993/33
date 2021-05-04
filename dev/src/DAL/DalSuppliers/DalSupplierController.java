@@ -48,8 +48,8 @@ public class DalSupplierController extends DALObject {
 
     @Override
     public String getInsert() {
-        return "INSERT INTO SupplierController ?\n"+
-                "VALUES ?";
+        return "INSERT OR REPLACE INTO SupplierController \n"+
+                "VALUES (?,?,?);";
     }
 
     public int getNumOfItems() {

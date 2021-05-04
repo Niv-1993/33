@@ -65,9 +65,9 @@ public class mainCLI {
                 if(Integer.parseInt(in) == 1) presentationCL.mainRun(true);
                 else if(Integer.parseInt(in) == 2) stockCLI.start();
                 else if(Integer.parseInt(in) == 3) System.exit(0);
-                else System.out.println("illegal input");
+                else System.out.println("illegal input!!!");
             }catch (Exception e){
-                System.out.println("illegal input");
+                System.out.println(e.getMessage());
             }
         }
     }

@@ -112,10 +112,13 @@ public class Mapper {
                     String select=(String) met.invoke(con.newInstance(),null);
                     Tuple<List<Class>,List<Object>> tup=DC.Select(select, pk);
                     DALObject out = fromRS(tup, cls);
-                if(out==null) return null;
+                if(out==null) {
+                    return null;
+                }
                 map.get(cls).put(k, out);
                 return out;
                 }catch (Exception e){
+                    log.warn("got 1");
                     return null;
                 }
             }

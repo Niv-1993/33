@@ -22,15 +22,15 @@ public  class Util {
         List<Integer> keyList=new ArrayList<>();
         keyList.add(storeID);
         keyList.add(key);
-        DALObject check =map.getItem(DALCategory.class,keyList);
-        if (c==null || (check.getClass()!=c)){
-            String s="the instance that return from Mapper isn't DalCategory";
+        DALObject check =map.getItem(c ,keyList);
+        if (c==null || check==null ||(check.getClass()!=c)){
+            String s="the instance that return from Mapper is null";
             log.warn(s);
             throw new IllegalArgumentException(s);
 
         }
         else{
-            log.info("create new DalCategory");
+            log.info("create new Object");
         }
         return (T) check;
     }

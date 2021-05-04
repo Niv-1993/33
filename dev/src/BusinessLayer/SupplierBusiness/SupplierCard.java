@@ -1,7 +1,12 @@
 package BusinessLayer.SupplierBusiness;
 
+import DAL.DALObject;
 import DAL.DalSuppliers.DalSupplierCard;
+import DAL.DalSuppliers.DalSupplierController;
+import DAL.Mapper;
+import Utility.Tuple;
 import Utility.Util;
+import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -13,9 +18,27 @@ public class SupplierCard {
     private SupplierAgreement supplierAgreement;
     private regularOrder constantOrder;
     private DalSupplierCard dalSupplierCard;
+    final static Logger log=Logger.getLogger(SupplierCard.class);
 
     public SupplierCard(int supplierBN , String supplierName ,int bankNumber , int branchNumber, int accountNumber , String payWay){
-        dalSupplierCard = Util.initDal(DalSupplierCard.class, 0 , supplierBN, supplierName, bankNumber, branchNumber,accountNumber, payWay);
+        //dalSupplierCard = Util.initDal(DalSupplierCard.class, 0 , supplierBN, supplierName, bankNumber, branchNumber,accountNumber, payWay);
+        List<Tuple<Object,Class>> list=new ArrayList<>();
+        list.add(new Tuple<>(supplierBN,Integer.class));
+        list.add(new Tuple<>(supplierName,String.class));
+        list.add(new Tuple<>(payWay,String.class));
+        Mapper map=Mapper.getMap();
+        map.setItem(DalSupplierCard.class,list);
+        List<Integer> keyList=new ArrayList<>();
+        DALObject check =map.getItem(DalSupplierCard.class ,keyList);
+        if (DalSupplierCard.class==null || check==null ||(check.getClass()!=DalSupplierCard.class)){
+            String s="the instance that return from Mapper is null";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        else{
+            log.info("create new Object");
+            dalSupplierCard = (DalSupplierCard) check;
+        }
         items = new LinkedList<>();
         orders = new LinkedList<>();
         constantOrder = null;
@@ -29,7 +52,6 @@ public class SupplierCard {
     }
 
     public void addConstantOrder(HashMap<Integer , Integer> amountsOfItem , int deliverDays) throws Exception {
-
     }
 
     public int getSupplierBN() {

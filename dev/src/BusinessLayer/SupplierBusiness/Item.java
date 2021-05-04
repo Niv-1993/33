@@ -67,6 +67,6 @@ public class Item{
 
     public int getTypeID() { return dalItem.getTypeID(); }
 
-    public LocalDate getExpirationDate() { return dalItem.getExpirationDate(); }
+    public LocalDate getExpirationDate() { return LocalDate.parse(dalItem.getExpirationDate()); }
 
 }

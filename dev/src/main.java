@@ -18,7 +18,7 @@ import java.util.List;
 public class main {
     final static Logger log=Logger.getLogger(main.class);
     public static void main(String[] args) {
-
+        Mapper.getMap("test.db");
          mainCLI CLI = new mainCLI();
          CLI.start(true);
 

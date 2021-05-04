@@ -32002,3 +32002,250 @@ failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (U
 [WARN ] 02-05-2021 20:05:34 [class: DAL.Mapper,Line:176] - java.lang.NullPointerException: Cannot invoke "String.split(String)" because "query" is null
 [WARN ] 02-05-2021 20:06:18 [class: DAL.Mapper,Line:169] - 1
 [WARN ] 02-05-2021 20:06:18 [class: DAL.Mapper,Line:171] - 2
+[WARN ] 04-05-2021 21:33:13 [class: DAL.DalController,Line:64] - noSelect quary: INSERT INTO SupplierController ?
+VALUES ?
+failed due to [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:33:13 [class: DAL.Mapper,Line:155] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:35:00 [class: DAL.DalController,Line:64] - noSelect quary: INSERT INTO SupplierController ?
+VALUES (?)
+failed due to [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:35:00 [class: DAL.Mapper,Line:155] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:38:45 [class: DAL.DalController,Line:64] - noSelect quary: INSERT INTO SupplierController ?
+VALUES (?)
+failed due to [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:38:45 [class: DAL.Mapper,Line:155] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:38:45 [class: Utility.Util,Line:28] - the instance that return from Mapper isn't DalCategory
+[WARN ] 04-05-2021 21:40:10 [class: DAL.DalController,Line:64] - noSelect quary: INSERT INTO SupplierController ?
+VALUES (?)
+failed due to [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:40:10 [class: DAL.Mapper,Line:155] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:40:10 [class: Utility.Util,Line:28] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 21:45:17 [class: Utility.Util,Line:18] - class java.lang.Integer
+[WARN ] 04-05-2021 21:45:17 [class: Utility.Util,Line:18] - class java.lang.Integer
+[WARN ] 04-05-2021 21:45:17 [class: DAL.DalController,Line:64] - noSelect quary: INSERT INTO SupplierController ?
+VALUES (?)
+failed due to [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:45:17 [class: DAL.Mapper,Line:155] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:45:17 [class: Utility.Util,Line:29] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 21:45:50 [class: Utility.Util,Line:18] - 0
+[WARN ] 04-05-2021 21:45:50 [class: Utility.Util,Line:18] - 0
+[WARN ] 04-05-2021 21:45:50 [class: DAL.DalController,Line:64] - noSelect quary: INSERT INTO SupplierController ?
+VALUES (?)
+failed due to [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:45:50 [class: DAL.Mapper,Line:155] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:45:50 [class: Utility.Util,Line:29] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@91161c7
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@6d4b1c02
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@5622fdf
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@6eebc39e
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@f6c48ac
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@239963d8
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@3abbfa04
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@31ef45e3
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@3c0ecd4b
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@5f341870
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@553f17c
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@271053e1
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@42dafa95
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@6500df86
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@59ec2012
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@2f686d1f
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@31a5c39e
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@3f49dace
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@1e397ed7
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@490ab905
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:47] - org.sqlite.jdbc4.JDBC4PreparedStatement@27c20538
+[WARN ] 04-05-2021 21:48:53 [class: DAL.DalController,Line:65] - noSelect quary: INSERT INTO SupplierController ?
+VALUES (?)
+failed due to [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:48:53 [class: DAL.Mapper,Line:155] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:48:53 [class: Utility.Util,Line:28] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 21:50:55 [class: DAL.DalController,Line:65] - noSelect quary: INSERT INTO SupplierController ?
+VALUES (?)
+failed due to [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:50:56 [class: DAL.Mapper,Line:155] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 21:50:56 [class: Utility.Util,Line:28] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 21:54:37 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController (supplierBN)
+VALUES (?)
+[WARN ] 04-05-2021 21:54:37 [class: DAL.DalController,Line:65] - noSelect quary: INSERT OR REPLACE INTO SupplierController (supplierBN)
+VALUES (?)
+failed due to Index 1 out of bounds for length 1
+[WARN ] 04-05-2021 21:54:37 [class: DAL.Mapper,Line:155] - java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+[WARN ] 04-05-2021 21:54:37 [class: Utility.Util,Line:28] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:01:13 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController (supplierBN)
+VALUES (?)
+[WARN ] 04-05-2021 22:01:13 [class: DAL.DalController,Line:65] - noSelect quary: INSERT OR REPLACE INTO SupplierController (supplierBN)
+VALUES (?)
+failed due to [SQLITE_CONSTRAINT_NOTNULL]  A NOT NULL constraint failed (NOT NULL constraint failed: SupplierController.numOfItems)
+[WARN ] 04-05-2021 22:01:13 [class: DAL.Mapper,Line:155] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_NOTNULL]  A NOT NULL constraint failed (NOT NULL constraint failed: SupplierController.numOfItems)
+[WARN ] 04-05-2021 22:01:13 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:34] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:02:43 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController (supplierBN)
+VALUES (?)
+[WARN ] 04-05-2021 22:02:43 [class: DAL.DalController,Line:65] - noSelect quary: INSERT OR REPLACE INTO SupplierController (supplierBN)
+VALUES (?)
+failed due to Index 1 out of bounds for length 1
+[WARN ] 04-05-2021 22:02:43 [class: DAL.Mapper,Line:155] - java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+[WARN ] 04-05-2021 22:02:43 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:36] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:04:08 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController (supplierBN)
+VALUES (?)
+[WARN ] 04-05-2021 22:04:08 [class: DAL.DalController,Line:65] - noSelect quary: INSERT OR REPLACE INTO SupplierController (supplierBN)
+VALUES (?)
+failed due to Index 1 out of bounds for length 1
+[WARN ] 04-05-2021 22:04:08 [class: DAL.Mapper,Line:155] - java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+[WARN ] 04-05-2021 22:04:08 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:36] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:05:00 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:05:00 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:36] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:06:55 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:06:55 [class: DAL.Mapper,Line:122] - got 1
+[WARN ] 04-05-2021 22:06:55 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:36] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:08:01 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:08:01 [class: DAL.DalController,Line:73] - Got here
+[WARN ] 04-05-2021 22:08:01 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 04-05-2021 22:08:01 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:36] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:08:34 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:08:34 [class: DAL.Mapper,Line:122] - got 1
+[WARN ] 04-05-2021 22:08:34 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:36] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:09:29 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:09:29 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 04-05-2021 22:09:29 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:36] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:09:58 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:09:58 [class: DAL.DalController,Line:75] - got in try
+[WARN ] 04-05-2021 22:09:58 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 04-05-2021 22:09:58 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:36] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:10:37 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:10:37 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 04-05-2021 22:10:37 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:36] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:10:54 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:10:54 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 04-05-2021 22:10:54 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:36] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:12:21 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:12:21 [class: DAL.DalController,Line:73] - [0]
+[WARN ] 04-05-2021 22:12:21 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 04-05-2021 22:12:21 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:36] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:13:07 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:13:07 [class: DAL.DalController,Line:73] - [0]
+[WARN ] 04-05-2021 22:13:07 [class: DAL.DalController,Line:74] - Select * FROM SupplierController
+
+[WARN ] 04-05-2021 22:13:07 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 04-05-2021 22:13:07 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:36] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:14:17 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:14:17 [class: DAL.DalController,Line:74] - Select * FROM SupplierController
+
+[WARN ] 04-05-2021 22:14:58 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:15:47 [class: DAL.DalController,Line:65] - noSelect quary: INSERT INTO ? (?)
+VALUES (?)
+failed due to [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 22:15:47 [class: DAL.Mapper,Line:158] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 04-05-2021 22:15:47 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 04-05-2021 22:15:47 [class: Utility.Util,Line:28] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:22:29 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:22:45 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:22:45 [class: DAL.DalController,Line:65] - noSelect quary: INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+failed due to class java.lang.String cannot be cast to class java.lang.Integer (java.lang.String and java.lang.Integer are in module java.base of loader 'bootstrap')
+[WARN ] 04-05-2021 22:22:45 [class: DAL.Mapper,Line:158] - java.lang.ClassCastException: class java.lang.String cannot be cast to class java.lang.Integer (java.lang.String and java.lang.Integer are in module java.base of loader 'bootstrap')
+[WARN ] 04-05-2021 22:24:05 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:24:22 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:24:22 [class: DAL.DalController,Line:65] - noSelect quary: INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+failed due to class java.lang.String cannot be cast to class java.lang.Integer (java.lang.String and java.lang.Integer are in module java.base of loader 'bootstrap')
+[WARN ] 04-05-2021 22:24:22 [class: DAL.Mapper,Line:158] - java.lang.ClassCastException: class java.lang.String cannot be cast to class java.lang.Integer (java.lang.String and java.lang.Integer are in module java.base of loader 'bootstrap')
+[WARN ] 04-05-2021 22:24:45 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:25:04 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:25:04 [class: DAL.DalController,Line:65] - noSelect quary: INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+failed due to class java.lang.String cannot be cast to class java.lang.Integer (java.lang.String and java.lang.Integer are in module java.base of loader 'bootstrap')
+[WARN ] 04-05-2021 22:25:04 [class: DAL.Mapper,Line:158] - java.lang.ClassCastException: class java.lang.String cannot be cast to class java.lang.Integer (java.lang.String and java.lang.Integer are in module java.base of loader 'bootstrap')
+[WARN ] 04-05-2021 22:28:04 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:28:20 [class: DAL.DalController,Line:48] - INSERT INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:28:20 [class: DAL.DalController,Line:65] - noSelect quary: INSERT INTO Suppliers
+VALUES (?,?,?)
+failed due to class java.lang.String cannot be cast to class java.lang.Integer (java.lang.String and java.lang.Integer are in module java.base of loader 'bootstrap')
+[WARN ] 04-05-2021 22:28:20 [class: DAL.Mapper,Line:158] - java.lang.ClassCastException: class java.lang.String cannot be cast to class java.lang.Integer (java.lang.String and java.lang.Integer are in module java.base of loader 'bootstrap')
+[WARN ] 04-05-2021 22:28:20 [class: DAL.DalController,Line:112] - ResultSet closed
+[WARN ] 04-05-2021 22:28:20 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 04-05-2021 22:28:20 [class: BusinessLayer.SupplierBusiness.SupplierCard,Line:35] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:29:59 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:29:59 [class: DAL.DalController,Line:94] - 0
+[WARN ] 04-05-2021 22:29:59 [class: DAL.DalController,Line:96] - 1
+[WARN ] 04-05-2021 22:29:59 [class: DAL.DalController,Line:98] - 2
+[WARN ] 04-05-2021 22:29:59 [class: DAL.DalController,Line:112] - 4
+[WARN ] 04-05-2021 22:30:19 [class: DAL.DalController,Line:48] - INSERT INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:30:19 [class: DAL.DalController,Line:65] - noSelect quary: INSERT INTO Suppliers
+VALUES (?,?,?)
+failed due to class java.lang.String cannot be cast to class java.lang.Integer (java.lang.String and java.lang.Integer are in module java.base of loader 'bootstrap')
+[WARN ] 04-05-2021 22:30:19 [class: DAL.Mapper,Line:158] - java.lang.ClassCastException: class java.lang.String cannot be cast to class java.lang.Integer (java.lang.String and java.lang.Integer are in module java.base of loader 'bootstrap')
+[WARN ] 04-05-2021 22:30:19 [class: DAL.DalController,Line:94] - 0
+[WARN ] 04-05-2021 22:30:19 [class: DAL.DalController,Line:96] - 1
+[WARN ] 04-05-2021 22:30:19 [class: DAL.DalController,Line:98] - 2
+[WARN ] 04-05-2021 22:30:19 [class: DAL.DalController,Line:116] - ResultSet closed
+[WARN ] 04-05-2021 22:30:19 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 04-05-2021 22:30:19 [class: BusinessLayer.SupplierBusiness.SupplierCard,Line:35] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 22:33:47 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:33:47 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 22:33:59 [class: DAL.DalController,Line:48] - INSERT INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:33:59 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 22:38:06 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:38:06 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 22:38:18 [class: DAL.DalController,Line:48] - INSERT INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:38:19 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 22:41:32 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:41:32 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 22:42:13 [class: DAL.DalController,Line:48] - INSERT INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:42:13 [class: DAL.DalController,Line:65] - noSelect quary: INSERT INTO Suppliers
+VALUES (?,?,?)
+failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: Suppliers.supplierBN)
+[WARN ] 04-05-2021 22:42:13 [class: DAL.Mapper,Line:158] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: Suppliers.supplierBN)
+[WARN ] 04-05-2021 22:42:13 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 22:43:03 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:43:03 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 22:43:17 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:43:17 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 22:45:08 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:45:08 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 22:45:23 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:45:23 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 22:47:54 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:47:54 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 22:48:07 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:48:07 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 22:49:59 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController 
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:49:59 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 22:50:11 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 04-05-2021 22:50:11 [class: DAL.DalController,Line:109] - 4

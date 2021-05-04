@@ -1,10 +1,15 @@
 package BusinessLayer.SupplierBusiness;
 
+import BusinessLayer.StockBusiness.StoreController;
+import DAL.DALObject;
 import DAL.DalStock.DALStoreController;
 import DAL.DalSuppliers.DalSupplierCard;
 import DAL.DalSuppliers.DalSupplierController;
+import DAL.Mapper;
+import Utility.Tuple;
 import Utility.Util;
 import com.sun.jdi.LocalVariable;
+import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -12,10 +17,28 @@ import java.util.*;
 public class SupplierController{
     private Dictionary<Integer , SupplierCard> suppliers;
     private DalSupplierController dalSupplierController;
+    final static Logger log=Logger.getLogger(SupplierController.class);
 
 
     public SupplierController(){
-        dalSupplierController = Util.initDal(DalSupplierController.class, 0 , 0, 0, 0);
+        //dalSupplierController = Util.initDal(DalSupplierController.class, 0 , 0, 0, 0);
+        List<Tuple<Object,Class>> list=new ArrayList<>();
+        list.add(new Tuple<>(0,Integer.class));
+        list.add(new Tuple<>(0,Integer.class));
+        list.add(new Tuple<>(1,Integer.class));
+        Mapper map=Mapper.getMap();
+        map.setItem(DalSupplierController.class,list);
+        List<Integer> keyList=new ArrayList<>();
+        DALObject check =map.getItem(DalSupplierController.class ,keyList);
+        if (DalSupplierController.class==null || check==null ||(check.getClass()!=DalSupplierController.class)){
+            String s="the instance that return from Mapper is null";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        else{
+            log.info("create new Object");
+            dalSupplierController = (DalSupplierController) check;
+        }
         suppliers = new Hashtable<>();
     }
 

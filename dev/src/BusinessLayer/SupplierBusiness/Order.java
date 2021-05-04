@@ -34,8 +34,8 @@ public class Order {
         return dalOrder.getTotalAmount();
     }
 
-    public String getDeliverTime() {
-        return dalOrder.getDeliverTime();
+    public LocalDate getDeliverTime() {
+        return LocalDate.parse(dalOrder.getDeliverTime());
     }
 
     public int getBranchID() {

@@ -81,8 +81,8 @@ public class DalSupplierCard extends DALObject {
 
     @Override
     public String getInsert() {
-        return "INSERT INTO ? (?)\n"+
-                "VALUES (?)";
+        return "INSERT OR REPLACE INTO Suppliers\n"+
+                "VALUES (?,?,?)";
     }
 
     public int getSupplierBN() {
