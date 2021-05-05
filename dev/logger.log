@@ -32587,3 +32587,15 @@ failed due to class java.lang.Integer cannot be cast to class java.lang.Double (
 [WARN ] 05-05-2021 17:37:31 [class: DAL.DalController,Line:111] - ResultSet closed
 [WARN ] 05-05-2021 17:37:31 [class: BusinessLayer.SupplierBusiness.Item,Line:36] - the instance that return from Mapper is null
 [WARN ] 05-05-2021 17:40:48 [class: BusinessLayer.SupplierBusiness.Order,Line:37] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 18:07:13 [class: DAL.DalController,Line:64] - noSelect quary: UPDATE Suppliers
+SET payWay = ?
+WHERE supplierBN = 0
+failed due to class java.lang.String cannot be cast to class java.lang.Integer (java.lang.String and java.lang.Integer are in module java.base of loader 'bootstrap')
+[WARN ] 05-05-2021 18:09:32 [class: DAL.DalController,Line:64] - noSelect quary: UPDATE Suppliers
+SET payWay = ?
+WHERE supplierBN = ?
+failed due to class java.lang.String cannot be cast to class java.lang.Integer (java.lang.String and java.lang.Integer are in module java.base of loader 'bootstrap')
+[WARN ] 05-05-2021 18:12:43 [class: DAL.DalController,Line:64] - noSelect quary: UPDATE SupplierAgreements
+SET constantTime = ? 
+WHERE supplierBN = 0
+failed due to illegal type

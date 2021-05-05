@@ -201,8 +201,9 @@ public class DalSupplierCard extends DALObject {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE Suppliers\n" +
                 "SET payWay = ?\n"+
-                "WHERE supplierBN = "+ supplierBN;
-        list.add(new Tuple<>(p, Integer.class));
+                "WHERE supplierBN = ?";
+        list.add(new Tuple<>(p, String.class));
+        list.add(new Tuple<>(supplierBN, Integer.class));
         DC.noSelect(query, list);
     }
 
