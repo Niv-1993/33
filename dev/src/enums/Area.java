@@ -2,8 +2,8 @@ package enums;
 
 public enum Area {
 
-    Sout,
+    South,
     North,
-    Central
+    Center
 
 }

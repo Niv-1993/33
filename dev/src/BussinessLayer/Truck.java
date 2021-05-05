@@ -6,12 +6,12 @@ import java.util.Objects;
 public class Truck {
 
     private long id;
-    private  License license;
+    private  int license;
     private String model;
     private int netWeight;
     private int maxWeight;
 
-    public  Truck(long id,License license, int maxWeight, int netWeight, String model){
+    public  Truck(long id,int license, int maxWeight, int netWeight, String model){
         this.license=license;
         this.maxWeight=maxWeight;
         this.model=model;
@@ -23,7 +23,7 @@ public class Truck {
 
     public void setId(long id) { this.id = id; }
 
-    public License getLicense() { return license; }
+    public int getLicense() { return license; }
 
     public int getMaxWeight() { return maxWeight; }
 

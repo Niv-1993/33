@@ -14,26 +14,13 @@ public class ServiceFaced {
     private final DataControl dataControl;
 
 
-    public ServiceFaced(){
+    public ServiceFaced()  {
         driverService = new DriverService();
         truckService = new TruckService();
         siteService = new SiteService();
         transportationService = new TransportationService();
         itemService = new ItemService();
-        dataControl=DataControl.init();
-        loadData();
-    }
-
-    /**
-     * Load data from database
-     */
-    public void loadData(){
-
-        this.truckService.loadData(dataControl);
-        this.driverService.loadData(dataControl);
-        this.transportationService.loadData(dataControl);
-        this.itemService.loadData(dataControl);
-        this.siteService.loadData(dataControl);
+        dataControl=new DataControl();
     }
 
     /**
@@ -120,6 +107,18 @@ public class ServiceFaced {
         }
     }
 
+    public ResponseT<List<ItemServiceDTO>> getDTOItemsBySupplier(int id) {
+        List<ItemServiceDTO> returnS = new LinkedList<>();
+        try {
+            List<Item> supplierItems = itemService.getItemsBySupplier(id);
+            for (Item s:supplierItems) {
+                returnS.add(toItemServiceDTO(s));
+            }
+            return new ResponseT<>(returnS);
+        }catch (Exception e){
+            return new ResponseT<>(e.getMessage());
+        }
+    }
     public ResponseT<List<TruckServiceDTO>> getDTOTrucks(){
         List<TruckServiceDTO> returnT = new LinkedList<>();
         try {
@@ -273,7 +272,7 @@ public class ServiceFaced {
         if(d==null){
             return null;
         }
-        return new DriverServiceDTO(d.getId(),d.getName(),(d.getLicense()).getKg());
+        return new DriverServiceDTO(d.getId(),(d.getLicense()));
     }
     private BranchServiceDTO toBranchServiceDTO(Branch b){
         if(b==null)
@@ -298,7 +297,7 @@ public class ServiceFaced {
     private TruckServiceDTO toTruckServiceDTO(Truck t){
         if(t==null)
             return null;
-        return new TruckServiceDTO(t.getId(),t.getLicense().getKg(),t.getMaxWeight(),t.getNetWeight(),t.getModel());
+        return new TruckServiceDTO(t.getId(),t.getLicense(),t.getMaxWeight(),t.getNetWeight(),t.getModel());
     }
     private TransportationServiceDTO toTransportationServiceDTO(Transportation t){
         List<Pair<Item,Integer>> i;
@@ -360,18 +359,10 @@ public class ServiceFaced {
         }
     }
 
-    public void addDriver(Driver d) {
-        driverService.addDriver(d);
-    }
-
-    public void addTruck(Truck t) {
-        truckService.addTruck(t);
-    }
-
     public void deleteTrans() {
         transportationService.deleteTransport();
     }
-    public void clearTrans(){
-        transportationService.clear();
-    }
+
+
+
 }

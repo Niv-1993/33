@@ -3,164 +3,120 @@ package BussinessLayer;
 import DataLayer.*;
 import enums.Pair;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class DataControl {
 
-    private static DataControl dataControl=null;
-    private final DataController dataController;
+    private BranchMapper branchMapper;
+    private ItemMapper itemMapper;
+    private SupplierMapper supplierMapper;
+    private TruckMapper truckMapper;
+    private DriverMapper driverMapper;
+    private TransportationMapper transportationMapper;
+    static  private String dbName;
 
-    private DataControl(){dataController=new DataController();}
+    public DataControl(){
+        dbName="databaseDemo.db";
+        branchMapper=BranchMapper.getMapper(dbName);
+        itemMapper=ItemMapper.getMapper(dbName);
+        supplierMapper=SupplierMapper.getMapper(dbName);
+        truckMapper=TruckMapper.getMapper(dbName);
+        transportationMapper=TransportationMapper.getMapper(dbName);
+        driverMapper=DriverMapper.getMapper(dbName);
 
-
-    public static DataControl init(){
-        if(dataControl==null){
-            dataControl=new DataControl();
-        }
-        return dataControl;
     }
 
-    public Map<Long, Truck> loadTrucks() {
-
-        Map<Long, Truck> ret=new HashMap<>();
-        List<TruckDTO> trucks=dataController.getTrucks();
-        for (TruckDTO truck:trucks) {
-
-            ret.put(truck.getId(),new Truck(truck.getId(), getLicense(truck.getLicense()), truck.getMaxWeight(), truck.getNetWeight(),truck.getModel()));
-        }
-        return ret;
+    public List< Branch> getBranches() throws Exception {
+        return branchMapper.getBranches();
+    }
+    public List<Supplier> getSuppliers() throws Exception {
+        return supplierMapper.getSuppliers();
+    }
+    public List<Item> getItems() throws Exception {
+        return itemMapper.getItems();
+    }
+    public List<Truck> getTrucks() throws Exception {
+        return truckMapper.getTrucks();
+    }
+    public HashMap<Long, Driver> getDrivers() throws Exception{
+        return driverMapper.selectAll();
+    }
+    public List< Transportation> getTransportations() throws Exception {
+        return transportationMapper.getTransportations(truckMapper,itemMapper,supplierMapper,branchMapper);
     }
 
-    public Map<Long, Driver> loadDrivers() {
-
-        Map<Long, Driver> ret=new HashMap<>();
-        for (DriverDTO driver : dataController.getDrivers()) {
-            ret.put(driver.getId(), new Driver(driver.getId(), driver.getName(), new License(driver.getLicense().getKg())));
-        }
-        return ret;
+    public Driver getDriver(long id) throws Exception{
+        return driverMapper.select(id);
+    }
+    public Branch getBranch(int id) throws Exception {
+        return branchMapper.getBranch(id);
+    }
+    public Supplier getSupplier(int id) throws Exception {
+        return supplierMapper.getSupplier(id);
+    }
+    public Item getItem(long id) throws Exception {
+        return itemMapper.getItem(id);
+    }
+    public Truck getTruck(long id) throws Exception {
+        return truckMapper.getTruck(id);
+    }
+    public Transportation getTransportation(long id) throws Exception {
+        return transportationMapper.getTransportation(id,truckMapper,itemMapper,supplierMapper,branchMapper);
+    }
+    public List<Item> getItemsBySupplier(int id) throws Exception {
+        return itemMapper.selectBySupplier(id);
     }
 
-    public HashMap<Long, Transportation> loadTrans() {
-
-        HashMap<Long,Transportation> ret=new HashMap<>();
-        for (TransportationDTO trans:dataController.getTransportations()) {
-            ret.put(trans.getId(),new Transportation(trans.getId(),trans.getDate(),trans.getLeavingTime(),getDriver(trans.getDriver().getId()),getTruck(trans.getTruck()), trans.getWeight(),getItemsList(trans.getDeliveryItems()),getSupplierItemsList(trans.getSuppliers())));
-        }
-        return  ret;
-    }
-    public Driver getDriver(long id){
-        DriverDTO dri=dataController.getDriverDTO(id);
-        return new Driver(dri.getId(), dri.getName(),getLicense(dri.getLicense()));
-    }
-    public Truck getTruck(TruckDTO tru){
-        TruckDTO truck=dataController.getTruckDTO(tru);
-        return new Truck(truck.getId(), getLicense(truck.getLicense()), truck.getMaxWeight(), tru.getNetWeight(), truck.getModel());
-    }
-    public TruckDTO getTruckDTO(Truck tru){
-        return dataController.getTruckDTO(tru.getId());
-    }
-    public License getLicense(LicenseDTO lic){
-        return new License(lic.getKg());
+    public void addTransportation(long idCounter, Transportation tra) {
+        transportationMapper.addTransportation(idCounter,tra);
     }
 
-    private HashMap<Branch, List<Pair<Item,Integer>>> getItemsList(HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> deliveryItems) {
-
-        List<Pair<Item,Integer>> newLis;
-        HashMap<Branch, List<Pair<Item,Integer>>> lis=new HashMap<>();
-        for(Map.Entry<BranchDTO, List<Pair<ItemDTO,Integer>>> entry: deliveryItems.entrySet()){
-
-            Branch newSite= new Branch(entry.getKey().getPhone(),entry.getKey().getContactName(),entry.getKey().getId(),getAddress(entry.getKey().getAddress()),getShipping(entry.getKey().getShippingArea()));
-            newLis=new LinkedList<>();
-            for (Pair<ItemDTO,Integer> item:entry.getValue()) {
-                newLis.add(new Pair<>(new Item(item.getFir().getId(), item.getFir().getName()), item.getSec()));
-            }
-            lis.put(newSite,newLis);
-        }
-        return lis;
-    }
-    private HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> getItemsListDTO(HashMap<Branch, List<Pair<Item,Integer>>> deliveryItems) {
-
-        List<Pair<ItemDTO,Integer>> newLis;
-        HashMap<BranchDTO, List<Pair<ItemDTO,Integer>>> lis=new HashMap<>();
-        for(Map.Entry<Branch, List<Pair<Item,Integer>>> entry: deliveryItems.entrySet()){
-
-            BranchDTO newSite= new BranchDTO(entry.getKey().getPhone(),entry.getKey().getContactName(),entry.getKey().getId(),getAddressDTO(entry.getKey().getAddress()), dataController.getShippingAreaDTO(entry.getKey().getShippingArea().getArea()));
-            newLis=new LinkedList<>();
-            for (Pair<Item,Integer> item:entry.getValue()) {
-                newLis.add(new Pair<>(new ItemDTO(item.getFir().getId(), item.getFir().getName()), item.getSec()));
-            }
-            lis.put(newSite,newLis);
-        }
-        return lis;
-    }
-    private HashMap<SupplierDTO, List<Pair<ItemDTO,Integer>>> getSupplierItemsListDTO(HashMap<Supplier, List<Pair<Item,Integer>>> deliveryItems) {
-
-        HashMap<SupplierDTO, List<Pair<ItemDTO,Integer>>> lis=new HashMap<>();
-        for(Map.Entry<Supplier, List<Pair<Item,Integer>>> entry: deliveryItems.entrySet()){
-            SupplierDTO newSite= new SupplierDTO(entry.getKey().getPhone(),entry.getKey().getContactName(),entry.getKey().getId(),getAddressDTO(entry.getKey().getAddress()),dataController.getShippingAreaDTO(entry.getKey().getShippingArea().getArea()));
-            List<Pair<ItemDTO,Integer>> newLists=new LinkedList<>();
-            for (Pair<Item,Integer> item:entry.getValue()) {
-                newLists.add(new Pair<>(new ItemDTO(item.getFir().getId(),item.getFir().getName()), item.getSec()));
-            }
-            lis.put(newSite,newLists);
-        }
-        return lis;
-    }
-    private HashMap<Supplier, List<Pair<Item,Integer>>> getSupplierItemsList(HashMap<SupplierDTO, List<Pair<ItemDTO,Integer>>> deliveryItems) {
-
-        HashMap<Supplier, List<Pair<Item,Integer>>> lis=new HashMap<>();
-        for(Map.Entry<SupplierDTO, List<Pair<ItemDTO,Integer>>> entry: deliveryItems.entrySet()){
-
-            Supplier newSite= new Supplier(entry.getKey().getPhone(),entry.getKey().getContactName(),entry.getKey().getId(),getAddress(entry.getKey().getAddress()),getShipping(entry.getKey().getShippingArea()));
-            List<Pair<Item,Integer>> newLists=new LinkedList<>();
-            for (Pair<ItemDTO,Integer> item:entry.getValue()) {
-                newLists.add(new Pair<>(new Item(item.getFir().getId(),item.getFir().getName()), item.getSec()));
-            }
-            lis.put(newSite,newLists);
-        }
-        return lis;
-    }
-    private Address getAddress(AddressDTO add){
-        return new Address(add.getNumber(),add.getStreet(),add.getCity());
-    }
-    private AddressDTO getAddressDTO(Address add){
-        return new AddressDTO(add.getNumber(),add.getStreet(),add.getCity());
-    }
-    private ShippingArea getShipping(ShippingAreaDTO ship){
-        return new ShippingArea(ship.getArea());
+    public List<Transportation> getTransportationsList() throws Exception {
+        return transportationMapper.getTransportations(truckMapper,itemMapper,supplierMapper,branchMapper);
     }
 
-    public HashMap<Long, Item> getItems() {
-
-        HashMap<Long,Item> ret=new HashMap<>();
-        for (ItemDTO item: dataController.getItems()) {
-            ret.put(item.getId(),new Item(item.getId(), item.getName()));
-        }
-        return ret;
+    public void remove(long idCounter) {
+        transportationMapper.remove(idCounter);
     }
 
-    public HashMap<Integer, Supplier> getSuppliers() {
-        HashMap<Integer,Supplier> ret=new HashMap<>();
-        for (SupplierDTO sup:dataController.getSuppliers()) {
-            ret.put(sup.getId(), new Supplier(sup.getPhone(), sup.getContactName(), sup.getId(), getAddress(sup.getAddress()),getShipping(sup.getShippingArea())));
-        }
-        return ret;
+    public void saveTransportation(long id) throws Exception {
+        transportationMapper.saveTransportation(id);
     }
 
-    public HashMap<Integer, Branch> getBranches() {
+    public void setDriverOnTrans(long transId, Driver driver) {
 
-        HashMap<Integer,Branch> ret=new HashMap<>();
-        for (BranchDTO sup:dataController.getBranches()) {
-            ret.put(sup.getId(), new Branch(sup.getPhone(), sup.getContactName(), sup.getId(), getAddress(sup.getAddress()),getShipping(sup.getShippingArea())));
-        }
-        return ret;
+        transportationMapper.setDriverOnTrans(transId,driver);
+    }
+    public void setTruckOnTrans(long transId, Truck truck) {
+
+        transportationMapper.setTruckOnTrans(transId,truck);
     }
 
-    public void addTransportation(Transportation trans) {
-       dataController.addTrns(new TransportationDTO(trans.getId(),trans.getDate(),trans.getLeavingTime(), dataController.getDriverDTO(trans.getDriver().getId()), getTruckDTO(trans.getTruck()), trans.getWeight(),getItemsListDTO(trans.getDeliveryItems()),getSupplierItemsListDTO(trans.getSuppliers())));
+    public void setDeliveryItems(long transId, HashMap<Branch, List<Pair<Item, Integer>>> deliveryItems) {
+
+        transportationMapper.setDeliveryItems(transId,deliveryItems);
     }
 
+    public void setSuppliersItems(long transId, HashMap<Supplier, List<Pair<Item, Integer>>> s) {
+        transportationMapper.setSuppliersItems(transId,s);
+    }
+
+    public void setTime(long id, LocalTime leavingTime) {
+        transportationMapper.setTime(id,leavingTime);
+    }
+
+    public void setWeight(long id, int weight) {
+        transportationMapper.setWeight(id,weight);
+    }
+
+    public void setDate(long id, LocalDate date) {
+        transportationMapper.setDate(id,date);
+    }
+
+    public long getCurrID() throws Exception {
+        return transportationMapper.getCurrId();
+    }
 }

@@ -99,7 +99,7 @@ public class Transportation {
     public void setDriver(Driver driver) {
         if (truck == null) {
             throw new IllegalArgumentException("Please choose a truck before u choose a Driver");
-        } else if ((driver.getLicense().getKg())<(truck.getLicense().getKg())) {
+        } else if ((driver.getLicense())<(truck.getLicense())) {
             throw new IllegalArgumentException("ur driver license is:" + driver.getLicense() + "but ur truck license is: " + truck.getNetWeight());
         } else {
             this.driver = driver;
@@ -128,9 +128,10 @@ public class Transportation {
      * @param weight : the weight to set to.
      */
     public void setWeight(int weight){
-        if(weight< truck.getNetWeight())
+
+        if(truck!=null && weight< truck.getNetWeight())
             throw new IllegalArgumentException("Warning! The weight must include the truck net weight ");
-        if(weight > truck.getMaxWeight()){
+        if(truck!=null && weight > truck.getMaxWeight()){
             throw new IllegalArgumentException("Warning! the curr weight is mismatch to max truck wight");
         }
         this.weight = weight;

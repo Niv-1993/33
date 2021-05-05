@@ -5,16 +5,21 @@ import java.util.*;
 public class DriverService {
 
     private Map<Long,Driver> drivers;
+    private DataControl dataControl;
 
     public DriverService(){
         drivers=new HashMap<>();
+        dataControl=new DataControl();
     }
 
     /**
      * returns all the drivers exists.
      * @return : the drivers list.
      */
-    public List<Driver> getDriversList(){ return new ArrayList<>(drivers.values()); }
+    public List<Driver> getDriversList() throws Exception {
+        if(drivers.isEmpty())
+            drivers=dataControl.getDrivers();
+        return new ArrayList<>(drivers.values()); }
 
     /**
      * returns a driver by it's id.
@@ -41,10 +46,6 @@ public class DriverService {
         return Objects.hash(drivers);
     }
 
-
-    public void loadData(DataControl dataControl) {
-        drivers=dataControl.loadDrivers();
-    }
 
     public void addDriver(Driver d) {
         drivers.put(d.getId(),d);

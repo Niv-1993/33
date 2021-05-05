@@ -5,23 +5,31 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ItemService {
-    private HashMap<Long,Item> items;
 
-    public HashMap<Long, Item> getItems() {
-        return items;
+    private DataControl dataControl;
+
+    public ItemService(){
+        dataControl=new DataControl();
+
     }
-    public Item getItem(long id){
-        if(items.containsKey(id)){
-            return items.get(id);
-        }
-        throw new IllegalArgumentException("item si id: " + id + "does not exists");
+    public List<Item> getItems() throws Exception {
+
+        return dataControl.getItems();
+
+
     }
-    public List<Item> getItemsList(){
-        return new ArrayList<>(items.values());
+    public Item getItem(long id) throws Exception {
+       return dataControl.getItem(id);
+
+    }
+    public List<Item> getItemsList() throws Exception {
+        return dataControl.getItems();
     }
 
-    public void loadData(DataControl dataControl) {
 
-        items=dataControl.getItems();
+    public List<Item> getItemsBySupplier(int id) throws Exception {
+
+        return dataControl.getItemsBySupplier(id);
+
     }
 }

@@ -6,40 +6,35 @@ import java.util.Objects;
 public class Driver {
 
     private final long id;
-    private final String name;
-    private License License;
+    private int License;
 
-    public Driver(long id, String name, License license){
+    public Driver(long id, int license){
         this.id=id;
-        this.name=name;
         this.License =license;
     }
     public long getId() { return id; }
 
-    public License getLicense() { return License; }
+    public int getLicense() { return License; }
 
-    public String getName() { return name; }
-
-    public void setLicense(License license) { License = license; }
+    public void setLicense(int license) { License = license; }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Driver driver = (Driver) o;
-        return id == driver.id && License == driver.License && name.equals(driver.name);
+        return id == driver.id && License == driver.License;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, License);
+        return Objects.hash(id, License);
     }
 
     @Override
     public String toString() {
         return "Driver: " +
                 "id=" + id + '\n' +
-                ", name='" + name + '\n' +
                 ", LicenseWeight=" + License + '\n';
     }
 }

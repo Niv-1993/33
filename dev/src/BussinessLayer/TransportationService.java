@@ -12,16 +12,26 @@ import java.util.List;
 public class TransportationService {
 
     private final DataControl dataControl;
-    private HashMap<Long,Transportation> transportations;
     private long idCounter = 0;
 
-    public TransportationService(){
-        transportations=new HashMap<>();
-        dataControl=DataControl.init();
+    public TransportationService() {
+
+        dataControl=new DataControl();
+        idCounter=getId();
     }
 
-    public void setDriver(long transId, Driver driver){
+    private long getId() {
+        try {
+            return dataControl.getCurrID()+1;
+        }
+        catch (Exception e){
+            return -1;
+        }
+    }
+
+    public void setDriver(long transId, Driver driver) throws Exception {
         Transportation t = getTransportationById(transId);
+        dataControl.setDriverOnTrans(transId,driver);
         t.setDriver(driver);
     }
 
@@ -31,11 +41,12 @@ public class TransportationService {
      * @param transId: the transportation id to add to.
      * @param s: the suppliers and their products to add.
      */
-    public void setSuppliersItem(long transId, HashMap<Supplier, List<Pair<Item, Integer>>> s){
+    public void setSuppliersItem(long transId, HashMap<Supplier, List<Pair<Item, Integer>>> s) throws Exception {
         Transportation t = getTransportationById(transId);
         List< List<Pair<Item, Integer>>> pairs= new ArrayList<>(s.values());
         checkQuantity(pairs);
         t.setSuppliers(s);
+        dataControl.setSuppliersItems(transId,s);
     }
 
     /**
@@ -43,9 +54,11 @@ public class TransportationService {
      * @param transId: to transportation id to add to.
      * @param truck : the truck object to add.
      */
-    public void setTruck(long transId, Truck truck){
+    public void setTruck(long transId, Truck truck) throws Exception {
         Transportation t = getTransportationById(transId);
         t.setTruck(truck);
+        dataControl.setTruckOnTrans(transId,truck);
+
     }
     /**
      * Adding the branches and their products for a specific transportation.
@@ -53,11 +66,12 @@ public class TransportationService {
      * @param transId: the transportation id to add to.
      * @param deliveryItems: the suppliers and their products to add.
      */
-    public void setDeliveryItems(long transId, HashMap<Branch,List<Pair<Item,Integer>>> deliveryItems){
+    public void setDeliveryItems(long transId, HashMap<Branch,List<Pair<Item,Integer>>> deliveryItems) throws Exception {
         Transportation t = getTransportationById(transId);
         List< List<Pair<Item, Integer>>> pairs=new ArrayList<>(deliveryItems.values());
         checkQuantity(pairs);
         t.setDeliveryItems(deliveryItems);
+        dataControl.setDeliveryItems(transId,deliveryItems);
     }
     private void checkQuantity(List< List<Pair<Item, Integer>>> pairs){
         for (List<Pair<Item, Integer>> quantity:pairs) {
@@ -73,8 +87,9 @@ public class TransportationService {
      * @param id :  the transportation id to add to.
      * @param leavingTime : the time to set.
      */
-    public void setTransportationTime(long id, LocalTime leavingTime) {
+    public void setTransportationTime(long id, LocalTime leavingTime) throws Exception {
         getTransportationById(id).setLeavingTime(leavingTime);
+        dataControl.setTime(id,leavingTime);
     }
 
     /**
@@ -82,8 +97,9 @@ public class TransportationService {
      * @param id :  the transportation id to add to.
      * @param date : the date to set.
      */
-    public void setDate(long id, LocalDate date) {
+    public void setDate(long id, LocalDate date) throws Exception {
         getTransportationById(id).setDate(date);
+        dataControl.setDate(id,date);
     }
 
     /**
@@ -91,9 +107,10 @@ public class TransportationService {
      * @param id :  the transportation id to add to.
      * @param weight: the weight to set.
      */
-    public void setTransportationWeight(long id, int weight) {
+    public void setTransportationWeight(long id, int weight) throws Exception {
 
         getTransportationById(id).setWeight(weight);
+        dataControl.setWeight(id,weight);
     }
 
     /**
@@ -102,70 +119,37 @@ public class TransportationService {
      */
     public Transportation newTransportation(){
         Transportation tra=new Transportation(idCounter);
-        transportations.put(idCounter,tra);
+        dataControl.addTransportation(idCounter,tra);
         idCounter++;
         return tra;
     }
-
-
-
-    //maybe later
-    /**
-     * Method that check if all items from list's list pairsS are in list's list pairsS2.
-     * @param pairsS:  the first list's list to check if all it's values are in the second list.
-     * @param pairsS2: the second list we check in.
-     */
-    /*private void checkValidation(List<List<Pair<Item, Integer>>> pairsS, List<List<Pair<Item, Integer>>> pairsS2) {
-
-        if(pairsS!=null&pairsS2!=null){
-          for (List<Pair<Item, Integer>> lis1:pairsS){
-                boolean contains=false;
-                for (Pair<Item, Integer> pair:lis1) {
-                    for (List<Pair<Item, Integer>> lis2:pairsS2) {
-                        if (lis2.contains(pair)) {
-                            contains = true;
-                            break;
-                        }
-                    }
-                    if(!contains)
-                        throw new IllegalArgumentException("items in branches and suppliers and quantities must be equal.");
-                    contains=false;
-                }
-            }
-        }
-    }*/
-
 
     /**
      * returns a transportation by it's id.
      * @param id :  the transportation id to add to.
      * @return: The transportation object that wanted.
      */
-    public Transportation getTransportationById(long id){
-        if(transportations.containsKey(id)){
-            return transportations.get(id);
-        }
-        throw new IllegalArgumentException("No transportation match to id:" + id);
+    public Transportation getTransportationById(long id) throws Exception {
+
+        return dataControl.getTransportation(id);
+
     }
 
     /**
      * Loads the database data.
      * @param dataControl : the data control that should bring the data from the database.
      */
-    public void loadData(DataControl dataControl) {
-        transportations=dataControl.loadTrans();
-    }
 
     /**
      * Save the new completed transportation to the database.
      * @param id : The transportation id.
      * @return :The added transportation after saved.
      */
-    public Transportation saveTransportation(long id) {
+    public Transportation saveTransportation(long id) throws Exception {
         Transportation tra=getTransportationById(id);
         if(!tra.isComplete())
             throw new IllegalArgumentException("Please fill all details");
-        dataControl.addTransportation(tra);
+        dataControl.saveTransportation(id);
         return tra;
     }
 
@@ -174,7 +158,8 @@ public class TransportationService {
      * @param id : The transportation id.
      * @param area : the area should be added.
      */
-    public void setArea(long id, Area area) {
+    public void setArea(long id, Area area) throws Exception {
+
         getTransportationById(id).setShippingArea(new ShippingArea(area));
     }
 
@@ -182,16 +167,12 @@ public class TransportationService {
      * Method to return all transportations that has been made.
      * @return : list of all transportations.
      */
-    public List<Transportation> getTransportationsList() {
-        return new ArrayList<>(transportations.values());
+    public List<Transportation> getTransportationsList() throws Exception {
+        return dataControl.getTransportationsList();
     }
 
     public void deleteTransport() {
         idCounter--;
-        transportations.remove(idCounter);
-    }
-    public void clear(){
-        idCounter = 0;
-        transportations = new HashMap<>();
+        dataControl.remove(idCounter);
     }
 }

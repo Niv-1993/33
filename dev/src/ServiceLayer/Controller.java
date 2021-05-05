@@ -99,6 +99,14 @@ public class Controller {
         }
         return res.getValue();
     }
+    public List<ItemServiceDTO> getItemsBySupplier(int id) {
+
+        ResponseT<List<ItemServiceDTO>> res=serviceControl.getDTOItemsBySupplier(id);
+        if(res.ErrorOccured()){
+            throw new IllegalArgumentException(res.getErrorMessage());
+        }
+        return res.getValue();
+    }
     public List<TransportationServiceDTO> getAllTransportations(){
 
         ResponseT<List<TransportationServiceDTO>> res = serviceControl.getDTOTransportations();
@@ -189,15 +197,6 @@ public class Controller {
         catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
-    }
-
-
-    //for tests
-    public void addDriver(Driver d){
-        serviceControl.addDriver(d);
-    }
-    public void clearTrans(){
-        serviceControl.clearTrans();
     }
 
 

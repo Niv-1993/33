@@ -5,26 +5,22 @@ import java.util.Objects;
 public class DriverServiceDTO {
 
     private long id;
-    private String name;
     private int license;
 
-    public DriverServiceDTO(long id, String name, int license){
+    public DriverServiceDTO(long id,  int license){
         this.id=id;
-        this.name=name;
         this.license=license;
     }
 
     @Override
     public String toString() {
         return "Id=" + id +
-                "\t\tName='" + name  +
                 "\t\tLicense=" + license;
     }
 
     public void setId(int id) { this.id = id; }
     public void setLicense(int license) { this.license = license; }
 
-    public String getName() { return name; }
     public long getId() { return id; }
     public int getLicense() { return license; }
 
@@ -34,12 +30,11 @@ public class DriverServiceDTO {
         if (o == null || getClass() != o.getClass()) return false;
         DriverServiceDTO that = (DriverServiceDTO) o;
         return id == that.id &&
-                license == that.license &&
-                Objects.equals(name, that.name);
+                license == that.license ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, license);
+        return Objects.hash(id,  license);
     }
 }

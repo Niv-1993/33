@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="adss_v0">
+  <library name="sqlite-jdbc-3.20.1">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/dev/out/artifacts/dev_jar/adss_v0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sqlite-jdbc-3.20.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

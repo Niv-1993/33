@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    Scanner sc;
+    private Scanner sc;
     private int option;
     private int subOption;
     private final int numOfOptions = 7;
-    private final Area[] areas={Area.Sout,Area.North,Area.Central };
+    private final Area[] areas={Area.South,Area.North,Area.Center };
     private final Controller controller;
     private boolean finish;
     public Menu(Scanner sc){
@@ -208,7 +208,6 @@ public class Menu {
             System.out.println("*************************************************\n");
             System.out.println("Select suppliers and items from the lists below:");
             printAllSuppliers();
-            PrintAllItems();
             int chose;
             HashMap<SupplierServiceDTO, List<Pair<ItemServiceDTO,Integer>>> suppliers=new HashMap<>();
             do {
@@ -221,6 +220,7 @@ public class Menu {
                 long id;
                 int num;
                 do{
+                    printItemsBySupplier(chose);
                     System.out.println("Enter item and quantity,to end press -2:");
                     System.out.print("Item Id: ");
                     id= sc.nextLong();
@@ -375,7 +375,10 @@ public class Menu {
         for (SupplierServiceDTO tru:sup) { System.out.println(tru); }
 
     }
-
+    public void printItemsBySupplier(int id){
+        List<ItemServiceDTO> items = controller.getItemsBySupplier(id);
+        for(ItemServiceDTO item: items) System.out.println(item);
+    }
     /**
      *Prints to the user all the available items in the database
      */
