@@ -4,10 +4,12 @@ package DAL.DalSuppliers;
 import DAL.DALObject;
 import DAL.DalController;
 import Utility.Tuple;
+import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.LinkedList;
+import java.util.List;
 
 public class DalOrder extends DALObject {
     private int orderId;
@@ -15,6 +17,7 @@ public class DalOrder extends DALObject {
     private double totalAmount;
     private String deliverTime;
     private int branchId;
+    final static Logger log=Logger.getLogger(DalOrder.class);
 
     public DalOrder() {
         super(null);
@@ -48,26 +51,26 @@ public class DalOrder extends DALObject {
     @Override
     public String getSelect() {
         return "Select * FROM Orders\n" +
-                "WHERE orderId = "+ orderId;
+                "WHERE orderId = ?;";
     }
 
     @Override
     public String getDelete() {
         return "DELETE FROM Orders\n" +
-                "WHERE orderId = "+ orderId;
+                "WHERE orderId = ?;";
     }
 
     @Override
     public String getUpdate() {
         return "UPDATE Orders\n" +
                 "SET (?) = (?)\n"+
-                "WHERE orderId = "+ orderId;
+                "WHERE orderId = ?;";
     }
 
     @Override
     public String getInsert() {
-        return "INSERT INTO Orders ?\n"+
-                "VALUES ?";
+        return "INSERT OR REPLACE INTO Orders\n"+
+                "VALUES (?,?,?,?,?);";
     }
 
     public int getOrderID() {
@@ -75,14 +78,49 @@ public class DalOrder extends DALObject {
     }
 
     public double getTotalAmount() {
+        try {
+            String query = "SELECT totalAmount FROM Orders\n" +
+                    "WHERE orderId = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(orderId);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            totalAmount = (Double) tuple.item2.get(0);
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
         return totalAmount;
     }
 
     public String getDeliverTime() {
+        String Temp = "";
+        try {
+            String query = "SELECT deliverTime FROM Orders\n" +
+                    "WHERE orderId = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(orderId);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            Temp = tuple.item2.get(0).toString();
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+        deliverTime= Temp;
         return deliverTime;
     }
 
     public int getBranchID() {
+        try {
+            String query = "SELECT branchId FROM Orders\n" +
+                    "WHERE orderId = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(orderId);
+            Tuple<List<Class>, List<Object>> tuple = DC.Select(query, list);
+            branchId = (Integer) tuple.item2.get(0);
+        }
+        catch (Exception e) {
+            log.warn(e);
+        }
         return branchId;
     }
 

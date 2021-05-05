@@ -36,19 +36,19 @@ public class DalSupplierController extends DALObject {
     @Override
     public String getDelete() {
         return "DELETE FROM SupplierController\n" +
-                "WHERE supplierBN= (?)";
+                "WHERE supplierBN= ?;";
     }
 
     @Override
     public String getUpdate() {
         return "UPDATE SupplierController\n" +
                 "SET (?) = (?)\n"+
-                "WHERE supplierBN = (?)";
+                "WHERE supplierBN = ?;";
     }
 
     @Override
     public String getInsert() {
-        return "INSERT OR REPLACE INTO SupplierController \n"+
+        return "INSERT OR REPLACE INTO SupplierController\n"+
                 "VALUES (?,?,?);";
     }
 

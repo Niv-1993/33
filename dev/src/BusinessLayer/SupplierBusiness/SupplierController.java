@@ -221,7 +221,7 @@ public class SupplierController{
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            item = suppliers.get(supplierBN).addItem(dalSupplierController.getNumOfItems() , name, price, typeID, expirationDate);
+            item = suppliers.get(supplierBN).addItem(supplierBN, dalSupplierController.getNumOfItems() , name, price, typeID, expirationDate);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -433,7 +433,7 @@ public class SupplierController{
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            suppliers.get(supplierBN).addSupplierAgreement(minimalAmount, discount, constantTime, shipToUs);
+            suppliers.get(supplierBN).addSupplierAgreement(supplierBN, minimalAmount, discount, constantTime, shipToUs);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

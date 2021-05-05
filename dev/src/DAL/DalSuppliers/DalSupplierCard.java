@@ -1,11 +1,15 @@
 package DAL.DalSuppliers;
 
+import BusinessLayer.SupplierBusiness.SupplierCard;
 import DAL.DALObject;
 import DAL.DalController;
 import Utility.Tuple;
+import org.apache.log4j.Logger;
 
 import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.LinkedList;
+import java.util.List;
 
 public class DalSupplierCard extends DALObject {
     private int supplierBN;
@@ -16,6 +20,7 @@ public class DalSupplierCard extends DALObject {
     private String payWay;
     private Dictionary<String , String> contactPhone;
     private Dictionary<String , String> contactEmail;
+    final static Logger log=Logger.getLogger(DalSupplierCard.class);
 
     public DalSupplierCard() {
         super(null);
@@ -23,6 +28,9 @@ public class DalSupplierCard extends DALObject {
 
     public DalSupplierCard(Integer supplierBN , String supplierName , String payWay , DalController dalController) {
         super(dalController);
+        this.supplierBN = supplierBN;
+        contactPhone = new Hashtable<>();
+        contactEmail = new Hashtable<>();
     }
 
     @Override
@@ -63,45 +71,102 @@ public class DalSupplierCard extends DALObject {
     @Override
     public String getSelect() {
         return "Select * FROM Suppliers\n" +
-                "WHERE supplierBN = "+ supplierBN;
+                "WHERE supplierBN = ?;";
     }
 
     @Override
     public String getDelete() {
         return "DELETE FROM Suppliers\n" +
-                "WHERE supplierBN = "+ supplierBN;
+                "WHERE supplierBN = ?;";
     }
 
     @Override
     public String getUpdate() {
         return "UPDATE (?)\n" +
                 "SET (?) = (?)\n"+
-                "WHERE SupplierBN = "+ supplierBN;
+                "WHERE SupplierBN = ?";
     }
 
     @Override
     public String getInsert() {
         return "INSERT OR REPLACE INTO Suppliers\n"+
-                "VALUES (?,?,?)";
+                "VALUES (?,?,?);";
     }
 
     public int getSupplierBN() {
+        try {
+            String query = "SELECT supplierBN FROM Suppliers\n" +
+                    "WHERE supplierBN = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(supplierBN);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            supplierBN = (Integer)tuple.item2.get(0);
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
         return supplierBN;
     }
 
     public int getSupplierBankNumber() {
+        try {
+            String query = "SELECT bankNumber FROM BankInfo\n" +
+                    "WHERE supplierBN = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(supplierBN);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            bankNumber = (Integer)tuple.item2.get(0);
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
         return bankNumber;
     }
 
     public int getSupplierBranchNumber() {
+        try {
+            String query = "SELECT branchNumber FROM BankInfo\n" +
+                    "WHERE supplierBN = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(supplierBN);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            branchNumber = (Integer)tuple.item2.get(0);
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
         return branchNumber;
     }
 
     public int getSupplierAccountNumber() {
+        try {
+            String query = "SELECT bankAccount FROM BankInfo\n" +
+                    "WHERE supplierBN = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(supplierBN);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            accountNumber = (Integer)tuple.item2.get(0);
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
         return accountNumber;
     }
 
     public String getSupplierPayWay() {
+        String paywayTemp = "";
+        try {
+            String query = "SELECT payWay FROM Suppliers\n" +
+                    "WHERE supplierBN = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(supplierBN);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            paywayTemp = tuple.item2.get(0).toString();
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+        payWay = paywayTemp;
         return payWay;
     }
 
@@ -114,6 +179,19 @@ public class DalSupplierCard extends DALObject {
     }
 
     public String getSupplierName() {
+        String supplierNameTemp = "";
+        try {
+            String query = "SELECT supplierName FROM Suppliers\n" +
+                    "WHERE supplierBN = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(supplierBN);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            supplierNameTemp = tuple.item2.get(0).toString();
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+        supplierName = supplierNameTemp;
         return supplierName;
     }
 
@@ -126,7 +204,6 @@ public class DalSupplierCard extends DALObject {
                 "WHERE supplierBN = "+ supplierBN;
         list.add(new Tuple<>(p, Integer.class));
         DC.noSelect(query, list);
-
     }
 
     public void addContactPhone(String phone, String name) throws Exception {
@@ -140,18 +217,23 @@ public class DalSupplierCard extends DALObject {
         DC.noSelect(query, list);
     }
 
-    public void updateSupplierBankAccount(int bankNumber , int branchNumber , int bankAccount) throws Exception {
-        this.bankNumber = bankNumber;
-        this.branchNumber = branchNumber;
-        this.accountNumber = bankAccount;
-        String query = "INSERT INTO BankInfo (supplierBN, bankNumber, branchNumber, bankAccount)\n" +
+    public void updateSupplierBankAccount(int bankNumber , int branchNumber , int bankAccount) {
+        String query = "INSERT OR REPLACE INTO BankInfo (supplierBN, bankNumber, branchNumber, bankAccount)\n" +
                 "VALUES (?,?,?,?)";
-        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
-        list.add(new Tuple<>(supplierBN, Integer.class));
-        list.add(new Tuple<>(bankNumber, Integer.class));
-        list.add(new Tuple<>(branchNumber, Integer.class));
-        list.add(new Tuple<>(bankAccount, Integer.class));
-        DC.noSelect(query, list);
+        try {
+            LinkedList<Tuple<Object, Class>> list = new LinkedList<>();
+            list.add(new Tuple<>(supplierBN, Integer.class));
+            list.add(new Tuple<>(bankNumber, Integer.class));
+            list.add(new Tuple<>(branchNumber, Integer.class));
+            list.add(new Tuple<>(bankAccount, Integer.class));
+            DC.noSelect(query, list);
+            this.bankNumber = bankNumber;
+            this.branchNumber = branchNumber;
+            this.accountNumber = bankAccount;
+        }
+        catch (Exception e ) {
+            log.warn(e);
+        }
     }
 
     public void addContactEmail(String email, String name) throws Exception {
@@ -189,4 +271,5 @@ public class DalSupplierCard extends DALObject {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();;
         DC.noSelect(query, list);
     }
+
 }

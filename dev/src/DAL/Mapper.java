@@ -118,7 +118,6 @@ public class Mapper {
                 map.get(cls).put(k, out);
                 return out;
                 }catch (Exception e){
-                    log.warn("got 1");
                     return null;
                 }
             }

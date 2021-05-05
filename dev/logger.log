@@ -32249,3 +32249,341 @@ VALUES (?,?,?)
 [WARN ] 04-05-2021 22:50:11 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
 VALUES (?,?,?)
 [WARN ] 04-05-2021 22:50:11 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 23:37:01 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 04-05-2021 23:37:01 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 23:37:18 [class: DAL.Mapper,Line:158] - java.lang.Exception: non create multi-query
+[WARN ] 04-05-2021 23:37:18 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 23:37:41 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 04-05-2021 23:37:41 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 23:37:56 [class: DAL.Mapper,Line:158] - java.lang.Exception: non create multi-query
+[WARN ] 04-05-2021 23:37:56 [class: DAL.DalController,Line:113] - ResultSet closed
+[WARN ] 04-05-2021 23:37:56 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 04-05-2021 23:37:56 [class: BusinessLayer.SupplierBusiness.SupplierCard,Line:39] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 23:39:24 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 04-05-2021 23:39:24 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 23:39:34 [class: DAL.Mapper,Line:158] - java.lang.Exception: non create multi-query
+[WARN ] 04-05-2021 23:39:34 [class: DAL.DalController,Line:113] - ResultSet closed
+[WARN ] 04-05-2021 23:39:34 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 04-05-2021 23:39:34 [class: BusinessLayer.SupplierBusiness.SupplierCard,Line:39] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 23:41:06 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 04-05-2021 23:41:06 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 23:41:25 [class: DAL.Mapper,Line:158] - java.lang.Exception: non create multi-query
+[WARN ] 04-05-2021 23:41:25 [class: DAL.DalController,Line:113] - ResultSet closed
+[WARN ] 04-05-2021 23:41:25 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 04-05-2021 23:41:25 [class: BusinessLayer.SupplierBusiness.SupplierCard,Line:35] - the instance that return from Mapper is null
+[WARN ] 04-05-2021 23:41:54 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 04-05-2021 23:41:54 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 23:42:18 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 04-05-2021 23:42:18 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 23:43:29 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 04-05-2021 23:43:29 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 23:43:49 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 04-05-2021 23:43:49 [class: DAL.DalController,Line:109] - 4
+[WARN ] 04-05-2021 23:44:11 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Items
+VALUES (?,?,?,?,?,?)
+[WARN ] 04-05-2021 23:44:11 [class: DAL.DalController,Line:65] - noSelect quary: INSERT OR REPLACE INTO Items
+VALUES (?,?,?,?,?,?)
+failed due to illegal type
+[WARN ] 04-05-2021 23:44:11 [class: DAL.Mapper,Line:158] - java.lang.Exception: illegal type
+[WARN ] 04-05-2021 23:44:11 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 04-05-2021 23:44:11 [class: Utility.Util,Line:28] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 09:09:45 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:09:45 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:10:29 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:10:29 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:11:28 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Items
+VALUES (?,?,?,?,?,?)
+[WARN ] 05-05-2021 09:11:28 [class: DAL.DalController,Line:65] - noSelect quary: INSERT OR REPLACE INTO Items
+VALUES (?,?,?,?,?,?)
+failed due to class java.lang.Double cannot be cast to class java.lang.String (java.lang.Double and java.lang.String are in module java.base of loader 'bootstrap')
+[WARN ] 05-05-2021 09:11:28 [class: DAL.Mapper,Line:158] - java.lang.ClassCastException: class java.lang.Double cannot be cast to class java.lang.String (java.lang.Double and java.lang.String are in module java.base of loader 'bootstrap')
+[WARN ] 05-05-2021 09:11:28 [class: DAL.DalController,Line:113] - ResultSet closed
+[WARN ] 05-05-2021 09:11:28 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 05-05-2021 09:11:28 [class: BusinessLayer.SupplierBusiness.Item,Line:35] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 09:12:04 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:12:04 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:12:19 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:12:19 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:12:47 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Items
+VALUES (?,?,?,?,?,?)
+[WARN ] 05-05-2021 09:12:47 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:12:47 [class: DAL.DalController,Line:48] - UPDATE SupplierController
+SET numOfItems = 01
+WHERE supplierBN = 0
+[WARN ] 05-05-2021 09:27:35 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:27:35 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:27:59 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:27:59 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:28:22 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Orders
+VALUES (?,?,?,?,?)
+[WARN ] 05-05-2021 09:28:22 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:28:22 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 09:28:58 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Items
+VALUES (?,?,?,?,?,?)
+[WARN ] 05-05-2021 09:28:58 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:28:58 [class: DAL.DalController,Line:48] - UPDATE SupplierController
+SET numOfItems = 01
+WHERE supplierBN = 0
+[WARN ] 05-05-2021 09:29:44 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Orders
+VALUES (?,?,?,?,?)
+[WARN ] 05-05-2021 09:29:44 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:29:44 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 09:40:40 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:40:40 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:40:54 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:40:54 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:41:53 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:41:53 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:42:07 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:42:07 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:42:17 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:42:17 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:42:33 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:42:33 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:43:24 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:43:24 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:43:35 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:43:35 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:44:28 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:46:21 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:46:25 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:46:25 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:46:42 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:46:42 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:47:49 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:47:49 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:48:02 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:48:02 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:48:46 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:48:46 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:49:13 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:49:13 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:49:39 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:49:39 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:50:18 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:50:18 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:50:24 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:50:25 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:50:37 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:50:37 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:50:47 [class: DAL.DalSuppliers.DalSupplierCard,Line:134] - java.lang.NullPointerException: Cannot invoke "DAL.DalController.Select(String, java.util.List)" because "this.DC" is null
+[WARN ] 05-05-2021 09:53:04 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:53:04 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:53:10 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:53:10 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:53:21 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:53:21 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:53:32 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:53:32 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:56:23 [class: DAL.DalSuppliers.DalSupplierCard,Line:134] - java.lang.NullPointerException: Cannot invoke "DAL.DalController.Select(String, java.util.List)" because "this.DC" is null
+[WARN ] 05-05-2021 09:56:27 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:56:27 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:56:44 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:56:44 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:57:00 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:57:57 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:57:57 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:58:08 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:58:08 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:58:14 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:59:03 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:59:03 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:59:22 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 09:59:22 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 09:59:28 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:00:50 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:00:50 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:01:06 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:01:06 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:01:14 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:01:14 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:26:06 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:26:06 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:26:17 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:26:17 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:26:26 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:26:26 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:29:01 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:29:01 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:29:16 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:29:16 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:29:16 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO BankInfo (supplierBN, bankNumber, branchNumber, bankAccount)
+VALUES (?,?,?,?)
+[WARN ] 05-05-2021 10:29:32 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:29:32 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:29:41 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:29:41 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:29:41 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO BankInfo (supplierBN, bankNumber, branchNumber, bankAccount)
+VALUES (?,?,?,?)
+[WARN ] 05-05-2021 10:29:45 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:29:45 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:31:44 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:31:44 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:31:55 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:31:55 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:32:26 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:32:26 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:32:30 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:32:30 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:32:44 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:32:44 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:32:44 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO BankInfo (supplierBN, bankNumber, branchNumber, bankAccount)
+VALUES (?,?,?,?)
+[WARN ] 05-05-2021 10:32:56 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:32:56 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:42:26 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:42:26 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:42:50 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:42:51 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:42:51 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO BankInfo (supplierBN, bankNumber, branchNumber, bankAccount)
+VALUES (?,?,?,?)
+[WARN ] 05-05-2021 10:43:14 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Items
+VALUES (?,?,?,?,?,?)
+[WARN ] 05-05-2021 10:43:14 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:43:14 [class: DAL.DalController,Line:48] - UPDATE SupplierController
+SET numOfItems = 01
+WHERE supplierBN = 0
+[WARN ] 05-05-2021 10:43:14 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:43:14 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:43:14 [class: DAL.DalSuppliers.DalItem,Line:82] - java.lang.ClassCastException: class java.lang.Double cannot be cast to class java.lang.Integer (java.lang.Double and java.lang.Integer are in module java.base of loader 'bootstrap')
+[WARN ] 05-05-2021 10:43:14 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:43:14 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:43:48 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:43:48 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:44:03 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:44:03 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:44:03 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO BankInfo (supplierBN, bankNumber, branchNumber, bankAccount)
+VALUES (?,?,?,?)
+[WARN ] 05-05-2021 10:44:24 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Items
+VALUES (?,?,?,?,?,?)
+[WARN ] 05-05-2021 10:44:24 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:44:24 [class: DAL.DalController,Line:48] - UPDATE SupplierController
+SET numOfItems = 01
+WHERE supplierBN = 0
+[WARN ] 05-05-2021 10:44:24 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:44:24 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:44:24 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:44:24 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:00 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:00 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:00 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:45:00 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO BankInfo (supplierBN, bankNumber, branchNumber, bankAccount)
+VALUES (?,?,?,?)
+[WARN ] 05-05-2021 10:45:09 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:09 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:09 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:09 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:42 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:42 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:42 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:42 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:42 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:42 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:42 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:42 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:42 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:45:42 [class: DAL.DalController,Line:109] - 4
+[WARN ] 05-05-2021 10:57:30 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:57:51 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:57:51 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO BankInfo (supplierBN, bankNumber, branchNumber, bankAccount)
+VALUES (?,?,?,?)
+[WARN ] 05-05-2021 10:58:24 [class: DAL.DalController,Line:65] - noSelect quary: INSERT OR REPLACE INTO SupplierAgreements
+VALUES (?,?,?,?,?)
+failed due to [SQLITE_ERROR] SQL error or missing database (table SupplierAgreements has 4 columns but 5 values were supplied)
+[WARN ] 05-05-2021 10:58:24 [class: DAL.Mapper,Line:158] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (table SupplierAgreements has 4 columns but 5 values were supplied)
+[WARN ] 05-05-2021 10:58:24 [class: DAL.Mapper,Line:121] - got 1
+[WARN ] 05-05-2021 10:58:24 [class: BusinessLayer.SupplierBusiness.SupplierAgreement,Line:43] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 10:59:12 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:59:29 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO Suppliers
+VALUES (?,?,?)
+[WARN ] 05-05-2021 10:59:29 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO BankInfo (supplierBN, bankNumber, branchNumber, bankAccount)
+VALUES (?,?,?,?)
+[WARN ] 05-05-2021 10:59:43 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierAgreements
+VALUES (?,?,?,?,?)
+[WARN ] 05-05-2021 12:09:50 [class: DAL.DalController,Line:48] - INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+[WARN ] 05-05-2021 12:12:19 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 12:12:55 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 12:14:09 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 12:14:17 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 12:16:53 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 12:17:51 [class: DAL.DalController,Line:64] - noSelect quary: INSERT OR REPLACE INTO Orders
+VALUES (?,?,?,?,?)
+failed due to class java.lang.Integer cannot be cast to class java.lang.Double (java.lang.Integer and java.lang.Double are in module java.base of loader 'bootstrap')
+[WARN ] 05-05-2021 12:17:51 [class: DAL.Mapper,Line:158] - java.lang.ClassCastException: class java.lang.Integer cannot be cast to class java.lang.Double (java.lang.Integer and java.lang.Double are in module java.base of loader 'bootstrap')
+[WARN ] 05-05-2021 12:19:34 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 12:20:23 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 12:35:56 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 17:09:08 [class: BusinessLayer.SupplierBusiness.SupplierCard,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 17:09:32 [class: BusinessLayer.SupplierBusiness.SupplierCard,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 17:14:31 [class: BusinessLayer.SupplierBusiness.SupplierCard,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 17:22:59 [class: BusinessLayer.SupplierBusiness.Order,Line:37] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 17:32:09 [class: BusinessLayer.SupplierBusiness.Order,Line:37] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 17:34:19 [class: BusinessLayer.SupplierBusiness.Order,Line:37] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 17:37:31 [class: DAL.DalController,Line:111] - ResultSet closed
+[WARN ] 05-05-2021 17:37:31 [class: BusinessLayer.SupplierBusiness.Item,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 17:40:48 [class: BusinessLayer.SupplierBusiness.Order,Line:37] - the instance that return from Mapper is null

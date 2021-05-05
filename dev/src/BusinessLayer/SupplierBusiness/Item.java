@@ -1,23 +1,52 @@
 package BusinessLayer.SupplierBusiness;
 
+import DAL.DALObject;
 import DAL.DalSuppliers.DalItem;
+import DAL.DalSuppliers.DalSupplierCard;
+import DAL.Mapper;
+import Utility.Tuple;
 import Utility.Util;
+import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Item{
     private QuantityDocument quantityDocument;
     private DalItem dalItem;
+    final static Logger log=Logger.getLogger(Item.class);
 
-    public Item(int itemId , String name , double price, int typeId, LocalDate expirationDate){
+    public Item(int supplierBN, int itemId , String name , double price, int typeId, LocalDate expirationDate){
+        //dalItem = Util.initDal(DalItem.class, 0 , itemId, name, price, typeId,expirationDate);
+        List<Tuple<Object,Class>> list=new ArrayList<>();
+        list.add(new Tuple<>(supplierBN,Integer.class));
+        list.add(new Tuple<>(itemId,Integer.class));
+        list.add(new Tuple<>(name,String.class));
+        list.add(new Tuple<>(price,Double.class));
+        list.add(new Tuple<>(typeId,Integer.class));
+        list.add(new Tuple<>(expirationDate.toString(),String.class));
+        Mapper map=Mapper.getMap();
+        map.setItem(DalItem.class,list);
+        List<Integer> keyList=new ArrayList<>();
+        keyList.add(itemId);
+        DALObject check =map.getItem(DalItem.class ,keyList);
+        if (DalItem.class==null || check==null ||(check.getClass()!=DalItem.class)){
+            String s="the instance that return from Mapper is null";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        else{
+            log.info("create new Object");
+            dalItem = (DalItem) check;
+        }
         quantityDocument = null;
-        dalItem = Util.initDal(DalItem.class, 0 , itemId, name, price, typeId,expirationDate);
     }
 
     public void addQuantityDocument(int minimalAmount, int discount) throws Exception {
         if(minimalAmount < 0) throw new Exception("minimal amount must be a positive number");
         if(discount < 0 || discount > 100) throw new Exception("discount must be a positive number between 0 to 100");
-        quantityDocument = new QuantityDocument(minimalAmount, discount);
+        quantityDocument = new QuantityDocument(dalItem.getItemId(), minimalAmount, discount, 0);
     }
 
     public void removeQuantityDocument() throws Exception {

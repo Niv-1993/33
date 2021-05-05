@@ -3,14 +3,17 @@ package DAL.DalSuppliers;
 import DAL.DALObject;
 import DAL.DalController;
 import Utility.Tuple;
+import org.apache.log4j.Logger;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class DalQuantityDocument extends DALObject {
     private int minimalAmount;
     private int discount;
     private int itemId;
     private int branchId;
+    final static Logger log=Logger.getLogger(DalQuantityDocument.class);
 
     public DalQuantityDocument() {
         super(null);
@@ -22,7 +25,7 @@ public class DalQuantityDocument extends DALObject {
 
     @Override
     public String getCreate() {
-        return "CREATE TABLE IF NOT EXISTS \"SupplierAgreements\"(\n"+
+        return "CREATE TABLE IF NOT EXISTS \"QuantityDocuments\"(\n"+
                 "\"itemId\" INTEGER NOT NULL,\n" +
                 "\t\"minimalAmount\" DOUBLE NOT NULL,\n" +
                 "\t\"discount\" VARCHAR NOT NULL,\n" +
@@ -35,33 +38,55 @@ public class DalQuantityDocument extends DALObject {
     @Override
     public String getSelect() {
         return "Select * FROM QuantityDocuments\n" +
-                "WHERE itemId = "+ itemId;
+                "WHERE itemId = ?;";
     }
 
     @Override
     public String getDelete() {
        return "DELETE FROM QuantityDocuments\n" +
-               "WHERE itemId = "+ itemId;
+               "WHERE itemId = ?;";
     }
 
     @Override
     public String getUpdate() {
         return "UPDATE QuantityDocuments \n" +
                 "SET (?) = (?) \n"+
-                "WHERE itemId = "+ itemId;
+                "WHERE itemId = ?;";
     }
 
     @Override
     public String getInsert() {
-        return "INSERT INTO QuantityDocuments ?\n"+
-                "VALUES ?";
+        return "INSERT OR REPLACE INTO QuantityDocuments\n"+
+                "VALUES (?,?,?,?);";
     }
 
     public int getMinimalAmount(){
+        try {
+            String query = "SELECT minimalAmount FROM QuantityDocuments\n" +
+                    "WHERE itemId = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(itemId);
+            Tuple<List<Class>, List<Object>> tuple = DC.Select(query, list);
+            minimalAmount = (Integer) tuple.item2.get(0);
+        }
+        catch (Exception e) {
+            log.warn(e);
+        }
         return minimalAmount;
     }
 
     public int getDiscount(){
+        try {
+            String query = "SELECT discount FROM QuantityDocuments\n" +
+                    "WHERE itemId = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(itemId);
+            Tuple<List<Class>, List<Object>> tuple = DC.Select(query, list);
+            discount = (Integer) tuple.item2.get(0);
+        }
+        catch (Exception e) {
+            log.warn(e);
+        }
         return discount;
     }
 

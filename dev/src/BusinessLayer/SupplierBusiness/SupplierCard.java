@@ -1,6 +1,7 @@
 package BusinessLayer.SupplierBusiness;
 
 import DAL.DALObject;
+import DAL.DalController;
 import DAL.DalSuppliers.DalSupplierCard;
 import DAL.DalSuppliers.DalSupplierController;
 import DAL.Mapper;
@@ -21,7 +22,6 @@ public class SupplierCard {
     final static Logger log=Logger.getLogger(SupplierCard.class);
 
     public SupplierCard(int supplierBN , String supplierName ,int bankNumber , int branchNumber, int accountNumber , String payWay){
-        //dalSupplierCard = Util.initDal(DalSupplierCard.class, 0 , supplierBN, supplierName, bankNumber, branchNumber,accountNumber, payWay);
         List<Tuple<Object,Class>> list=new ArrayList<>();
         list.add(new Tuple<>(supplierBN,Integer.class));
         list.add(new Tuple<>(supplierName,String.class));
@@ -29,6 +29,7 @@ public class SupplierCard {
         Mapper map=Mapper.getMap();
         map.setItem(DalSupplierCard.class,list);
         List<Integer> keyList=new ArrayList<>();
+        keyList.add(supplierBN);
         DALObject check =map.getItem(DalSupplierCard.class ,keyList);
         if (DalSupplierCard.class==null || check==null ||(check.getClass()!=DalSupplierCard.class)){
             String s="the instance that return from Mapper is null";
@@ -42,7 +43,7 @@ public class SupplierCard {
         items = new LinkedList<>();
         orders = new LinkedList<>();
         constantOrder = null;
-        dalSupplierCard = new DalSupplierCard();
+        dalSupplierCard.updateSupplierBankAccount(bankNumber, branchNumber, accountNumber);
     }
 
     public void removeSupplier() throws Exception {
@@ -98,14 +99,21 @@ public class SupplierCard {
     }
 
     public void addContactPhone(String phone, String name) throws Exception {
-        if(dalSupplierCard.getContactPhone().get(phone) != null)
-            throw new Exception("contact phone all ready exist, you may want to use: update contact phone");
+        try {
+            if (dalSupplierCard.getContactPhone().get(phone) != null)
+                throw new Exception("contact phone all ready exist, you may want to use: update contact phone");
+        }
+        catch (Exception e) {
+        }
         dalSupplierCard.addContactPhone(phone, name);
     }
 
     public void addContactEmail(String email, String name) throws Exception {
-        if(dalSupplierCard.getContactEmail().get(email) != null)
-            throw new Exception("contact email all ready exist, you may want to use: update contact email");
+        try {
+            if (dalSupplierCard.getContactEmail().get(email) != null)
+                throw new Exception("contact email all ready exist, you may want to use: update contact email");
+        } catch (Exception e) {
+        }
         dalSupplierCard.addContactEmail(email, name);
     }
 
@@ -171,9 +179,9 @@ public class SupplierCard {
         throw new Exception("itemId does net exist for this supplier");
     }
 
-    public Item addItem(int ItemId , String name , double price, int typeID, LocalDate expirationDate) throws Exception {
+    public Item addItem(int supplierBN, int ItemId , String name , double price, int typeID, LocalDate expirationDate) throws Exception {
         if(price < 0) throw new Exception("price must be a positive number!");
-        Item newItem = new BusinessLayer.SupplierBusiness.Item(ItemId , name , price, typeID, expirationDate);
+        Item newItem = new BusinessLayer.SupplierBusiness.Item(supplierBN, ItemId , name , price, typeID, expirationDate);
         items.add(newItem);
         return newItem;
     }////////////need to addsupplierBN to signatures
@@ -227,14 +235,14 @@ public class SupplierCard {
     }
 
     public Order addRegularOrder(int orderId , int branchId){
-        Order order = new regularOrder(orderId , branchId);
+        Order order = new regularOrder(dalSupplierCard.getSupplierBN(), orderId , branchId);
         orders.add(order);
         return order;
     }
 
     public void addConstantOrder(int orderID, int branchID , Hashtable<Integer , Integer> items) throws Exception {
         // check if it's veiled branchId.
-        if(constantOrder == null) constantOrder = new regularOrder(orderID , branchID);
+        if(constantOrder == null) constantOrder = new regularOrder(dalSupplierCard.getSupplierBN(), orderID , branchID);
         for(Item item : this.items){
             if(items.keySet().contains(item.getItemId())) {
                 try {
@@ -249,7 +257,7 @@ public class SupplierCard {
     public Order addNeededOrder(int orderID, int branchID, Item item, int amount) {
         if (item == null || isItemExist(item.getItemId()) == null) return null;
         double totalAmount = calculateTotalAmount(item , amount);
-        neededOrder order = new neededOrder(orderID ,LocalDate.now().plusDays(1), branchID, item, amount , totalAmount);
+        neededOrder order = new neededOrder(dalSupplierCard.getSupplierBN(), orderID ,LocalDate.now().plusDays(1), branchID, item, amount , totalAmount);
         orders.add(order);
         return order;
     }
@@ -441,10 +449,10 @@ public class SupplierCard {
         if(!hasFound) throw new Exception("itemId does not exist");
     }
 
-    public void addSupplierAgreement(int minimalAmount, int discount, boolean constantTime, boolean shipToUs) throws Exception {
+    public void addSupplierAgreement(int supplierBN, int minimalAmount, int discount, boolean constantTime, boolean shipToUs) throws Exception {
         if(minimalAmount < 0 ) throw new Exception("minimal amount must be a positive number");
         if(discount < 0 || discount > 100) throw new Exception("minimal amount must be a positive number between 0 to 100");
-        supplierAgreement = new SupplierAgreement(minimalAmount, discount, constantTime, shipToUs);
+        supplierAgreement = new SupplierAgreement(supplierBN, minimalAmount, discount, constantTime, shipToUs);
     }
 
     public SupplierAgreement showSupplierAgreement() {

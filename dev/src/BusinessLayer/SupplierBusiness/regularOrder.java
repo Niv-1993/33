@@ -5,8 +5,8 @@ import java.time.temporal.ChronoUnit;
 
 public class regularOrder extends Order{
 
-    public regularOrder(int orderId , int branchId){
-        super(orderId , LocalDate.now().plusDays(7), branchId);
+    public regularOrder(int supplierBN, int orderId , int branchId){
+        super(supplierBN, orderId , LocalDate.now().plusDays(7), branchId);
     }
 
     public void updateDeliverTime(LocalDate deliverTime) throws Exception {
