@@ -63,8 +63,10 @@ public class DalSupplierController extends DALObject {
     public void addNumOfItems() throws Exception {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE SupplierController\n" +
-                "SET numOfItems = " + numOfItems+1+"\n" +
-                "WHERE supplierBN = "+ supplierBN;
+                "SET numOfItems = ?\n" +
+                "WHERE supplierBN = ?;";
+        list.add(new Tuple<>(numOfItems+1, Integer.class));
+        list.add(new Tuple<>(supplierBN, Integer.class));
         DC.noSelect(query, list);
         numOfItems++;
     }
@@ -72,8 +74,10 @@ public class DalSupplierController extends DALObject {
     public void addNumOfOrders() throws Exception {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE SupplierController\n" +
-                "SET numOfItems = " + numOfItems+1+"\n" +
-                "WHERE supplierBN = "+ supplierBN;
+                "SET numOfItems = ?\n" +
+                "WHERE supplierBN = ?;";
+        list.add(new Tuple<>(numOfOrders+1, Integer.class));
+        list.add(new Tuple<>(supplierBN, Integer.class));
         DC.noSelect(query, list);
         numOfOrders++;
     }

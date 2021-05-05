@@ -268,8 +268,9 @@ public class DalSupplierCard extends DALObject {
 
     public void removeSupplier() throws Exception {
         String query = "DELETE From Suppliers\n" +
-                "WHERE supplierBN = "+supplierBN;
-        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();;
+                "WHERE supplierBN = ?";
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        list.add(new Tuple<>(supplierBN, Integer.class));
         DC.noSelect(query, list);
     }
 

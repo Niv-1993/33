@@ -184,7 +184,7 @@ public class SupplierCard {
         Item newItem = new BusinessLayer.SupplierBusiness.Item(supplierBN, ItemId , name , price, typeID, expirationDate);
         items.add(newItem);
         return newItem;
-    }////////////need to addsupplierBN to signatures
+    }
 
     public List<Item> showAllItemsOfOrder(int orderId) throws Exception {
         for(Order order : orders){

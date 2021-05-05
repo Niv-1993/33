@@ -128,8 +128,9 @@ public class DalOrder extends DALObject {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE Orders\n" +
                 "SET deliverTime = ?\n"+
-                "WHERE orderId = "+orderId;
+                "WHERE orderId = ?;";
         list.add(new Tuple<>(deliverTime.toString(), String.class));
+        list.add(new Tuple<>(orderId, Integer.class));
         DC.noSelect(query, list);
         this.deliverTime = deliverTime.toString();
     }
@@ -138,8 +139,9 @@ public class DalOrder extends DALObject {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE Orders\n" +
                 "SET totalAmount = ?\n"+
-                "WHERE orderId = "+orderId;
+                "WHERE orderId = ?;";
         list.add(new Tuple<>(totalAmount, Double.class));
+        list.add(new Tuple<>(orderId, Integer.class));
         try {
             DC.noSelect(query, list);
         } catch (Exception e) {
@@ -151,7 +153,8 @@ public class DalOrder extends DALObject {
     public void removeOrder() {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "DELETE FROM Orders\n" +
-                "WHERE orderId = "+orderId;
+                "WHERE orderId = ?;";
+        list.add(new Tuple<>(orderId, Integer.class));
         try {
             DC.noSelect(query, list);
         } catch (Exception e) {
@@ -163,7 +166,8 @@ public class DalOrder extends DALObject {
     public void removeItemFromOrder(int itemId) {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "DELETE FROM ItemsInOrders\n" +
-                "WHERE itemId = "+itemId;
+                "WHERE itemId = ?;";
+        list.add(new Tuple<>(itemId, Integer.class));
         try {
             DC.noSelect(query, list);
         } catch (Exception e) {
@@ -174,7 +178,10 @@ public class DalOrder extends DALObject {
     public void addItemToOrder(int itemId, int amount) {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "INSERT INTO ItemsInOrders\n" +
-                "VALUES ("+orderId+","+itemId+","+amount+")";
+                "VALUES (?,?,?);";
+        list.add(new Tuple<>(orderId, Integer.class));
+        list.add(new Tuple<>(itemId, Integer.class));
+        list.add(new Tuple<>(amount, Integer.class));
         try {
             DC.noSelect(query, list);
         } catch (Exception e) {

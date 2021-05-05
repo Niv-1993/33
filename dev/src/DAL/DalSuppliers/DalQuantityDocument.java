@@ -27,8 +27,8 @@ public class DalQuantityDocument extends DALObject {
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS \"QuantityDocuments\"(\n"+
                 "\"itemId\" INTEGER NOT NULL,\n" +
-                "\t\"minimalAmount\" DOUBLE NOT NULL,\n" +
-                "\t\"discount\" VARCHAR NOT NULL,\n" +
+                "\t\"minimalAmount\" INTEGER NOT NULL,\n" +
+                "\t\"discount\" INTEGER NOT NULL,\n" +
                 "\t\"branchId\" INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY(\"itemId\"),\n" +
                 "\tFOREIGN KEY(\"itemId\") REFERENCES \"Items\"(\"itemId\") ON DELETE CASCADE ON UPDATE CASCADE\n" +
@@ -95,8 +95,9 @@ public class DalQuantityDocument extends DALObject {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE QuantityDocuments \n" +
                     "SET minimalAmount = ? \n"+
-                    "WHERE itemId = "+ itemId;
+                    "WHERE itemId = ?;";
         list.add(new Tuple<>(minimalAmount, Integer.class));
+        list.add(new Tuple<>(itemId, Integer.class));
         DC.noSelect(query, list);
     }
 
@@ -105,8 +106,9 @@ public class DalQuantityDocument extends DALObject {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE QuantityDocuments \n" +
                 "SET discount = ? \n"+
-                "WHERE itemId = "+ itemId;
+                "WHERE itemId = ?;";
         list.add(new Tuple<>(discount, Integer.class));
+        list.add(new Tuple<>(itemId, Integer.class));
         DC.noSelect(query, list);
     }
 

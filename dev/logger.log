@@ -32599,3 +32599,33 @@ failed due to class java.lang.String cannot be cast to class java.lang.Integer (
 SET constantTime = ? 
 WHERE supplierBN = 0
 failed due to illegal type
+[WARN ] 05-05-2021 19:19:40 [class: BusinessLayer.SupplierBusiness.Order,Line:37] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 19:21:35 [class: DAL.DalController,Line:111] - ResultSet closed
+[WARN ] 05-05-2021 19:21:35 [class: BusinessLayer.SupplierBusiness.Item,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 19:24:06 [class: DAL.DalController,Line:111] - ResultSet closed
+[WARN ] 05-05-2021 19:24:06 [class: BusinessLayer.SupplierBusiness.Item,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 19:36:35 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 19:36:42 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 19:40:32 [class: DAL.DalController,Line:111] - ResultSet closed
+[WARN ] 05-05-2021 19:41:00 [class: BusinessLayer.SupplierBusiness.Item,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 19:43:29 [class: DAL.DalController,Line:111] - ResultSet closed
+[WARN ] 05-05-2021 19:43:33 [class: BusinessLayer.SupplierBusiness.Item,Line:36] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 20:19:09 [class: DAL.DalController,Line:64] - noSelect quary: INSERT OR REPLACE INTO QuantityDocuments
+VALUES (?,?,?,?)
+failed due to class java.lang.Integer cannot be cast to class java.lang.Double (java.lang.Integer and java.lang.Double are in module java.base of loader 'bootstrap')
+[WARN ] 05-05-2021 20:19:09 [class: DAL.Mapper,Line:157] - java.lang.ClassCastException: class java.lang.Integer cannot be cast to class java.lang.Double (java.lang.Integer and java.lang.Double are in module java.base of loader 'bootstrap')
+[WARN ] 05-05-2021 20:19:09 [class: DAL.DalController,Line:111] - ResultSet closed
+[WARN ] 05-05-2021 20:19:09 [class: BusinessLayer.SupplierBusiness.QuantityDocument,Line:32] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 20:21:17 [class: DAL.DalController,Line:64] - noSelect quary: INSERT OR REPLACE INTO QuantityDocuments
+VALUES (?,?,?,?)
+failed due to class java.lang.Integer cannot be cast to class java.lang.Double (java.lang.Integer and java.lang.Double are in module java.base of loader 'bootstrap')
+[WARN ] 05-05-2021 20:21:17 [class: DAL.Mapper,Line:157] - java.lang.ClassCastException: class java.lang.Integer cannot be cast to class java.lang.Double (java.lang.Integer and java.lang.Double are in module java.base of loader 'bootstrap')
+[WARN ] 05-05-2021 20:21:17 [class: DAL.DalController,Line:111] - ResultSet closed
+[WARN ] 05-05-2021 20:21:17 [class: BusinessLayer.SupplierBusiness.QuantityDocument,Line:32] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 20:22:55 [class: DAL.DalController,Line:64] - noSelect quary: INSERT OR REPLACE INTO QuantityDocuments
+VALUES (?,?,?,?)
+failed due to class java.lang.Integer cannot be cast to class java.lang.String (java.lang.Integer and java.lang.String are in module java.base of loader 'bootstrap')
+[WARN ] 05-05-2021 20:22:55 [class: DAL.Mapper,Line:157] - java.lang.ClassCastException: class java.lang.Integer cannot be cast to class java.lang.String (java.lang.Integer and java.lang.String are in module java.base of loader 'bootstrap')
+[WARN ] 05-05-2021 20:22:55 [class: DAL.DalController,Line:111] - ResultSet closed
+[WARN ] 05-05-2021 20:22:55 [class: BusinessLayer.SupplierBusiness.QuantityDocument,Line:32] - the instance that return from Mapper is null
+[WARN ] 05-05-2021 20:25:21 [class: BusinessLayer.SupplierBusiness.QuantityDocument,Line:32] - the instance that return from Mapper is null

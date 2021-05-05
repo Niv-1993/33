@@ -19,8 +19,8 @@ public class QuantityDocument {
         //dalQuantityDocument = Util.initDal(DalQuantityDocument.class, 0 , minimalAmount, discount);
         List<Tuple<Object,Class>> list=new ArrayList<>();
         list.add(new Tuple<>(itemId,Integer.class));
-        list.add(new Tuple<>(minimalAmount,Double.class));
-        list.add(new Tuple<>(discount,String.class));
+        list.add(new Tuple<>(minimalAmount,Integer.class));
+        list.add(new Tuple<>(discount,Integer.class));
         list.add(new Tuple<>(branchId,Integer.class));
         Mapper map=Mapper.getMap();
         map.setItem(DalQuantityDocument.class,list);

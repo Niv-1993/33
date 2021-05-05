@@ -136,9 +136,10 @@ public class DalSupplierAgreement extends DALObject {
         this.minimalAmount = minimalAmount;
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE SupplierAgreements\n" +
-                "SET minimalAmount = ? \n"+
-                "WHERE supplierBN = "+ supplierBN;
+                "SET minimalAmount = ?\n"+
+                "WHERE supplierBN = ?;";
         list.add(new Tuple<>(minimalAmount, Integer.class));
+        list.add(new Tuple<>(supplierBN, Integer.class));
         DC.noSelect(query, list);
     }
 
@@ -147,8 +148,9 @@ public class DalSupplierAgreement extends DALObject {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE SupplierAgreements\n" +
                 "SET discount = ? \n"+
-                "WHERE supplierBN = "+ supplierBN;
+                "WHERE supplierBN = ?;";
         list.add(new Tuple<>(discount, Integer.class));
+        list.add(new Tuple<>(supplierBN, Integer.class));
         DC.noSelect(query, list);
     }
 
@@ -157,8 +159,9 @@ public class DalSupplierAgreement extends DALObject {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE SupplierAgreements\n" +
                 "SET constantTime = ? \n"+
-                "WHERE supplierBN = "+ supplierBN;
+                "WHERE supplierBN = ?;";
         list.add(new Tuple<>(constantTime, Boolean.class));
+        list.add(new Tuple<>(supplierBN, Integer.class));
         DC.noSelect(query, list);
     }
 
@@ -167,8 +170,9 @@ public class DalSupplierAgreement extends DALObject {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE SupplierAgreements\n" +
                 "SET shipToUs = ? \n"+
-                "WHERE supplierBN = "+ supplierBN;
+                "WHERE supplierBN = ?;";
         list.add(new Tuple<>(shipToUs, Boolean.class));
+        list.add(new Tuple<>(supplierBN, Integer.class));
         DC.noSelect(query, list);
     }
 }
