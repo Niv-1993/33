@@ -16,6 +16,9 @@ public class DalSupplierController extends DALObject {
     }
     public DalSupplierController(Integer supplierBN , Integer numOfItems , Integer numOfOrders , DalController dalController) {
         super(dalController);
+        this.supplierBN = supplierBN;
+        this.numOfItems = numOfItems;
+        this.numOfOrders = numOfOrders;
     }
 
     @Override

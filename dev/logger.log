@@ -32629,3 +32629,8 @@ failed due to class java.lang.Integer cannot be cast to class java.lang.String (
 [WARN ] 05-05-2021 20:22:55 [class: DAL.DalController,Line:111] - ResultSet closed
 [WARN ] 05-05-2021 20:22:55 [class: BusinessLayer.SupplierBusiness.QuantityDocument,Line:32] - the instance that return from Mapper is null
 [WARN ] 05-05-2021 20:25:21 [class: BusinessLayer.SupplierBusiness.QuantityDocument,Line:32] - the instance that return from Mapper is null
+[WARN ] 06-05-2021 01:14:28 [class: DAL.DalSuppliers.DalItem,Line:162] - java.lang.ClassCastException: class java.lang.String cannot be cast to class java.lang.Double (java.lang.String and java.lang.Double are in module java.base of loader 'bootstrap')
+[WARN ] 06-05-2021 01:17:10 [class: DAL.DalSuppliers.DalItem,Line:162] - java.lang.ClassCastException: class java.lang.String cannot be cast to class java.lang.Double (java.lang.String and java.lang.Double are in module java.base of loader 'bootstrap')
+[WARN ] 06-05-2021 08:43:18 [class: BusinessLayer.SupplierBusiness.Order,Line:37] - the instance that return from Mapper is null
+[WARN ] 06-05-2021 09:04:09 [class: BusinessLayer.SupplierBusiness.QuantityDocument,Line:32] - the instance that return from Mapper is null
+[WARN ] 06-05-2021 09:27:12 [class: BusinessLayer.SupplierBusiness.Order,Line:37] - the instance that return from Mapper is null

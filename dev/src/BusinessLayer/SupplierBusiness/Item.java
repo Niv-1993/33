@@ -18,7 +18,6 @@ public class Item{
     final static Logger log=Logger.getLogger(Item.class);
 
     public Item(int supplierBN, int itemId , String name , double price, int typeId, LocalDate expirationDate){
-        //dalItem = Util.initDal(DalItem.class, 0 , itemId, name, price, typeId,expirationDate);
         List<Tuple<Object,Class>> list=new ArrayList<>();
         list.add(new Tuple<>(itemId,Integer.class));
         list.add(new Tuple<>(supplierBN,Integer.class));
@@ -40,6 +39,7 @@ public class Item{
             log.info("create new Object");
             dalItem = (DalItem) check;
         }
+        dalItem.load(itemId);
         quantityDocument = null;
     }
 

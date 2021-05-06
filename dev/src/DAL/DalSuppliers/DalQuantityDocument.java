@@ -19,8 +19,12 @@ public class DalQuantityDocument extends DALObject {
         super(null);
     }
 
-    public DalQuantityDocument(Integer itemId , Double totalAmount , String deliverTime , Integer branchId , DalController dalController){
+    public DalQuantityDocument(Integer itemId , Integer minimalAmount , Integer discount , Integer branchId , DalController dalController){
         super(dalController);
+        this.itemId = itemId;
+        this.minimalAmount = minimalAmount;
+        this.discount = discount;
+        this.branchId = branchId;
     }
 
     @Override

@@ -40,6 +40,7 @@ public class SupplierCard {
             log.info("create new Object");
             dalSupplierCard = (DalSupplierCard) check;
         }
+        dalSupplierCard.load(supplierBN);
         items = new LinkedList<>();
         orders = new LinkedList<>();
         constantOrder = null;

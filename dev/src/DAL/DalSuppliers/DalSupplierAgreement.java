@@ -22,6 +22,21 @@ public class DalSupplierAgreement extends DALObject {
 
     public DalSupplierAgreement(Integer supplierBN , Integer minimalAmount , Integer discount , Integer constantTime , Integer shipToUs , DalController dalController){
         super(dalController);
+        this.supplierBN = supplierBN;
+        this.minimalAmount = minimalAmount;
+        this.discount = discount;
+        if(constantTime == 0) {
+            this.constantTime = false;
+        }
+        else if (constantTime == 1) {
+            this.constantTime = true;
+        }
+        if(shipToUs == 0) {
+            this.shipToUs = false;
+        }
+        else if (shipToUs == 1) {
+            this.shipToUs = true;
+        }
     }
 
     @Override

@@ -29,6 +29,8 @@ public class DalSupplierCard extends DALObject {
     public DalSupplierCard(Integer supplierBN , String supplierName , String payWay , DalController dalController) {
         super(dalController);
         this.supplierBN = supplierBN;
+        this.supplierName = supplierName;
+        this.payWay = payWay;
         contactPhone = new Hashtable<>();
         contactEmail = new Hashtable<>();
     }
@@ -92,6 +94,7 @@ public class DalSupplierCard extends DALObject {
         return "INSERT OR REPLACE INTO Suppliers\n"+
                 "VALUES (?,?,?);";
     }
+
 
     public int getSupplierBN() {
         try {
@@ -274,4 +277,19 @@ public class DalSupplierCard extends DALObject {
         DC.noSelect(query, list);
     }
 
+    public void load(int supplierBN) {
+        try {
+            String query = "SELECT * FROM Suppliers\n" +
+                    "WHERE supplierBN = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(supplierBN);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            supplierBN = (Integer) tuple.item2.get(0);
+            supplierName = tuple.item2.get(1).toString();
+            payWay = tuple.item2.get(2).toString();
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+    }
 }

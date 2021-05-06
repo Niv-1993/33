@@ -24,6 +24,12 @@ public class DalItem extends DALObject {
 
     public DalItem(Integer itemId , Integer supplierBN , String itemName , Double price , Integer typeId , String expirationDate , DalController dalController){
         super(dalController);
+        this.itemId = itemId;
+        this.supplierBN = supplierBN;
+        this.name = itemName;
+        this.price = price;
+        this.typeId = typeId;
+        this.expirationDate = expirationDate;
     }
 
     @Override
@@ -142,6 +148,25 @@ public class DalItem extends DALObject {
         list.add(new Tuple<>(price, Integer.class));
         list.add(new Tuple<>(itemId, Integer.class));
         DC.noSelect(query, list);
+    }
+
+    public void load(int itemId) {
+        try {
+            String query = "SELECT * FROM Items\n" +
+                    "WHERE itemId = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(itemId);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            itemId = (Integer) tuple.item2.get(0);
+            supplierBN =(Integer) tuple.item2.get(1);
+            name = tuple.item2.get(2).toString();
+            price = (Double) tuple.item2.get(3);
+            typeId = (Integer) tuple.item2.get(4);
+            expirationDate = tuple.item2.get(5).toString();
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
     }
 
 }
