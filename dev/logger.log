@@ -32634,3 +32634,120 @@ failed due to class java.lang.Integer cannot be cast to class java.lang.String (
 [WARN ] 06-05-2021 08:43:18 [class: BusinessLayer.SupplierBusiness.Order,Line:37] - the instance that return from Mapper is null
 [WARN ] 06-05-2021 09:04:09 [class: BusinessLayer.SupplierBusiness.QuantityDocument,Line:32] - the instance that return from Mapper is null
 [WARN ] 06-05-2021 09:27:12 [class: BusinessLayer.SupplierBusiness.Order,Line:37] - the instance that return from Mapper is null
+[WARN ] 06-05-2021 12:49:05 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 06-05-2021 12:51:42 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 06-05-2021 12:53:13 [class: DAL.Mapper,Line:115] - DAL.DalSuppliers.DalSupplierController@57fffcd7
+[WARN ] 06-05-2021 12:53:25 [class: DAL.Mapper,Line:115] - DAL.DalSuppliers.DalSupplierCard@72d818d1
+[WARN ] 06-05-2021 12:53:32 [class: DAL.Mapper,Line:115] - 
+[WARN ] 06-05-2021 12:53:32 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 06-05-2021 12:54:02 [class: DAL.Mapper,Line:113] - []
+[WARN ] 06-05-2021 12:54:02 [class: DAL.Mapper,Line:116] - DAL.DalSuppliers.DalSupplierController@5f2108b5
+[WARN ] 06-05-2021 12:54:20 [class: DAL.Mapper,Line:113] - []
+[WARN ] 06-05-2021 12:54:20 [class: DAL.Mapper,Line:114] - Select * FROM SupplierController
+
+[WARN ] 06-05-2021 12:54:20 [class: DAL.Mapper,Line:117] - DAL.DalSuppliers.DalSupplierController@5f2108b5
+[WARN ] 06-05-2021 12:54:30 [class: DAL.Mapper,Line:113] - [0]
+[WARN ] 06-05-2021 12:54:30 [class: DAL.Mapper,Line:114] - Select * FROM Suppliers
+WHERE supplierBN = ?;
+[WARN ] 06-05-2021 12:54:30 [class: DAL.Mapper,Line:117] - DAL.DalSuppliers.DalSupplierCard@4566e5bd
+[WARN ] 06-05-2021 12:54:36 [class: DAL.Mapper,Line:113] - [1]
+[WARN ] 06-05-2021 12:54:36 [class: DAL.Mapper,Line:114] - Select * FROM Orders
+WHERE orderId = ?;
+[WARN ] 06-05-2021 12:54:36 [class: DAL.Mapper,Line:117] - 
+[WARN ] 06-05-2021 12:54:36 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 06-05-2021 12:56:34 [class: DAL.Mapper,Line:130] - gothere
+[WARN ] 06-05-2021 12:56:34 [class: DAL.Mapper,Line:113] - []
+[WARN ] 06-05-2021 12:56:34 [class: DAL.Mapper,Line:114] - Select * FROM SupplierController
+
+[WARN ] 06-05-2021 12:56:34 [class: DAL.Mapper,Line:117] - DAL.DalSuppliers.DalSupplierController@5f2108b5
+[WARN ] 06-05-2021 12:56:56 [class: DAL.Mapper,Line:130] - DAL.DalSuppliers.DalSupplierController
+[WARN ] 06-05-2021 12:56:56 [class: DAL.Mapper,Line:113] - []
+[WARN ] 06-05-2021 12:56:56 [class: DAL.Mapper,Line:114] - Select * FROM SupplierController
+
+[WARN ] 06-05-2021 12:56:57 [class: DAL.Mapper,Line:117] - DAL.DalSuppliers.DalSupplierController@5f2108b5
+[WARN ] 06-05-2021 12:57:10 [class: DAL.Mapper,Line:130] - DAL.DalSuppliers.DalSupplierCard
+[WARN ] 06-05-2021 12:57:10 [class: DAL.Mapper,Line:113] - [0]
+[WARN ] 06-05-2021 12:57:10 [class: DAL.Mapper,Line:114] - Select * FROM Suppliers
+WHERE supplierBN = ?;
+[WARN ] 06-05-2021 12:57:10 [class: DAL.Mapper,Line:117] - DAL.DalSuppliers.DalSupplierCard@4566e5bd
+[WARN ] 06-05-2021 12:57:14 [class: DAL.Mapper,Line:130] - DAL.DalSuppliers.DalOrder
+[WARN ] 06-05-2021 12:57:14 [class: DAL.Mapper,Line:113] - [1]
+[WARN ] 06-05-2021 12:57:14 [class: DAL.Mapper,Line:114] - Select * FROM Orders
+WHERE orderId = ?;
+[WARN ] 06-05-2021 12:57:14 [class: DAL.Mapper,Line:117] - 
+[WARN ] 06-05-2021 12:57:14 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 06-05-2021 12:58:28 [class: DAL.Mapper,Line:132] - DAL.DalSuppliers.DalSupplierController
+[WARN ] 06-05-2021 12:58:28 [class: DAL.Mapper,Line:113] - []
+[WARN ] 06-05-2021 12:58:28 [class: DAL.Mapper,Line:114] - Select * FROM SupplierController
+
+[WARN ] 06-05-2021 12:58:28 [class: DAL.Mapper,Line:116] - [class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController]
+[WARN ] 06-05-2021 12:58:28 [class: DAL.Mapper,Line:117] - [0, 0, 1, DAL.DalController@5f2108b5]
+[WARN ] 06-05-2021 12:58:28 [class: DAL.Mapper,Line:119] - DAL.DalSuppliers.DalSupplierController@31a5c39e
+[WARN ] 06-05-2021 12:58:39 [class: DAL.Mapper,Line:132] - DAL.DalSuppliers.DalSupplierCard
+[WARN ] 06-05-2021 12:58:39 [class: DAL.Mapper,Line:113] - [0]
+[WARN ] 06-05-2021 12:58:39 [class: DAL.Mapper,Line:114] - Select * FROM Suppliers
+WHERE supplierBN = ?;
+[WARN ] 06-05-2021 12:58:39 [class: DAL.Mapper,Line:116] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+[WARN ] 06-05-2021 12:58:39 [class: DAL.Mapper,Line:117] - [0, s, cash, DAL.DalController@5f2108b5]
+[WARN ] 06-05-2021 12:58:39 [class: DAL.Mapper,Line:119] - DAL.DalSuppliers.DalSupplierCard@1ed4004b
+[WARN ] 06-05-2021 12:58:46 [class: DAL.Mapper,Line:132] - DAL.DalSuppliers.DalOrder
+[WARN ] 06-05-2021 12:58:46 [class: DAL.Mapper,Line:113] - [1]
+[WARN ] 06-05-2021 12:58:46 [class: DAL.Mapper,Line:114] - Select * FROM Orders
+WHERE orderId = ?;
+[WARN ] 06-05-2021 12:58:46 [class: DAL.Mapper,Line:116] - [class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.String, class java.lang.Integer, class DAL.DalController]
+[WARN ] 06-05-2021 12:58:46 [class: DAL.Mapper,Line:117] - [1, 0, 0.0, 2021-05-13, 1, DAL.DalController@5f2108b5]
+[WARN ] 06-05-2021 12:58:46 [class: DAL.Mapper,Line:119] - 
+[WARN ] 06-05-2021 12:58:46 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 06-05-2021 13:00:31 [class: DAL.Mapper,Line:132] - DAL.DalSuppliers.DalSupplierController
+[WARN ] 06-05-2021 13:00:31 [class: DAL.Mapper,Line:113] - []
+[WARN ] 06-05-2021 13:00:31 [class: DAL.Mapper,Line:114] - Select * FROM SupplierController
+
+[WARN ] 06-05-2021 13:00:31 [class: DAL.Mapper,Line:116] - [class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController]
+[WARN ] 06-05-2021 13:00:31 [class: DAL.Mapper,Line:117] - [0, 0, 1, DAL.DalController@5f2108b5]
+[WARN ] 06-05-2021 13:00:31 [class: DAL.Mapper,Line:146] - 1
+[WARN ] 06-05-2021 13:00:31 [class: DAL.Mapper,Line:148] - 2
+[WARN ] 06-05-2021 13:00:31 [class: DAL.Mapper,Line:119] - DAL.DalSuppliers.DalSupplierController@27c20538
+[WARN ] 06-05-2021 13:00:46 [class: DAL.Mapper,Line:132] - DAL.DalSuppliers.DalSupplierCard
+[WARN ] 06-05-2021 13:00:46 [class: DAL.Mapper,Line:113] - [0]
+[WARN ] 06-05-2021 13:00:46 [class: DAL.Mapper,Line:114] - Select * FROM Suppliers
+WHERE supplierBN = ?;
+[WARN ] 06-05-2021 13:00:46 [class: DAL.Mapper,Line:116] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+[WARN ] 06-05-2021 13:00:46 [class: DAL.Mapper,Line:117] - [0, s, cash, DAL.DalController@5f2108b5]
+[WARN ] 06-05-2021 13:00:46 [class: DAL.Mapper,Line:146] - 1
+[WARN ] 06-05-2021 13:00:46 [class: DAL.Mapper,Line:148] - 2
+[WARN ] 06-05-2021 13:00:46 [class: DAL.Mapper,Line:119] - DAL.DalSuppliers.DalSupplierCard@49993335
+[WARN ] 06-05-2021 13:00:54 [class: DAL.Mapper,Line:132] - DAL.DalSuppliers.DalOrder
+[WARN ] 06-05-2021 13:00:54 [class: DAL.Mapper,Line:113] - [1]
+[WARN ] 06-05-2021 13:00:54 [class: DAL.Mapper,Line:114] - Select * FROM Orders
+WHERE orderId = ?;
+[WARN ] 06-05-2021 13:00:54 [class: DAL.Mapper,Line:116] - [class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.String, class java.lang.Integer, class DAL.DalController]
+[WARN ] 06-05-2021 13:00:54 [class: DAL.Mapper,Line:117] - [1, 0, 0.0, 2021-05-13, 1, DAL.DalController@5f2108b5]
+[WARN ] 06-05-2021 13:00:54 [class: DAL.Mapper,Line:119] - 
+[WARN ] 06-05-2021 13:00:54 [class: BusinessLayer.SupplierBusiness.Order,Line:36] - the instance that return from Mapper is null
+[WARN ] 06-05-2021 13:02:05 [class: DAL.Mapper,Line:132] - DAL.DalSuppliers.DalSupplierController
+[WARN ] 06-05-2021 13:02:05 [class: DAL.Mapper,Line:113] - []
+[WARN ] 06-05-2021 13:02:05 [class: DAL.Mapper,Line:114] - Select * FROM SupplierController
+
+[WARN ] 06-05-2021 13:02:05 [class: DAL.Mapper,Line:116] - [class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController]
+[WARN ] 06-05-2021 13:02:05 [class: DAL.Mapper,Line:117] - [0, 0, 1, DAL.DalController@5f2108b5]
+[WARN ] 06-05-2021 13:02:05 [class: DAL.Mapper,Line:146] - 1
+[WARN ] 06-05-2021 13:02:05 [class: DAL.Mapper,Line:148] - 2
+[WARN ] 06-05-2021 13:02:05 [class: DAL.Mapper,Line:119] - DAL.DalSuppliers.DalSupplierController@27c20538
+[WARN ] 06-05-2021 13:02:15 [class: DAL.Mapper,Line:132] - DAL.DalSuppliers.DalSupplierCard
+[WARN ] 06-05-2021 13:02:15 [class: DAL.Mapper,Line:113] - [0]
+[WARN ] 06-05-2021 13:02:15 [class: DAL.Mapper,Line:114] - Select * FROM Suppliers
+WHERE supplierBN = ?;
+[WARN ] 06-05-2021 13:02:15 [class: DAL.Mapper,Line:116] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+[WARN ] 06-05-2021 13:02:15 [class: DAL.Mapper,Line:117] - [0, s, cash, DAL.DalController@5f2108b5]
+[WARN ] 06-05-2021 13:02:15 [class: DAL.Mapper,Line:146] - 1
+[WARN ] 06-05-2021 13:02:15 [class: DAL.Mapper,Line:148] - 2
+[WARN ] 06-05-2021 13:02:15 [class: DAL.Mapper,Line:119] - DAL.DalSuppliers.DalSupplierCard@5025a98f
+[WARN ] 06-05-2021 13:02:34 [class: DAL.Mapper,Line:132] - DAL.DalSuppliers.DalOrder
+[WARN ] 06-05-2021 13:02:34 [class: DAL.Mapper,Line:113] - [1]
+[WARN ] 06-05-2021 13:02:34 [class: DAL.Mapper,Line:114] - Select * FROM Orders
+WHERE orderId = ?;
+[WARN ] 06-05-2021 13:02:34 [class: DAL.Mapper,Line:116] - [class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.String, class java.lang.Integer, class DAL.DalController]
+[WARN ] 06-05-2021 13:02:34 [class: DAL.Mapper,Line:117] - [1, 0, 0.0, 2021-05-13, 2, DAL.DalController@5f2108b5]
+[WARN ] 06-05-2021 13:02:34 [class: DAL.Mapper,Line:146] - 1
+[WARN ] 06-05-2021 13:02:34 [class: DAL.Mapper,Line:148] - 2
+[WARN ] 06-05-2021 13:02:34 [class: DAL.Mapper,Line:119] - DAL.DalSuppliers.DalOrder@544fe44c

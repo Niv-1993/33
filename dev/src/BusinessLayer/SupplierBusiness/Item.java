@@ -39,7 +39,7 @@ public class Item{
             log.info("create new Object");
             dalItem = (DalItem) check;
         }
-        dalItem.load(itemId);
+        //dalItem.load(itemId);
         quantityDocument = null;
     }
 

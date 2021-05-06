@@ -20,7 +20,6 @@ public class Order {
     final static Logger log=Logger.getLogger(Order.class);
 
     public Order(int supplierBN, int orderId , LocalDate deliverTime , int branchId){
-        //dalOrder = Util.initDal(DalOrder.class, 0 , orderId, deliverTime, branchId);
         List<Tuple<Object,Class>> list=new ArrayList<>();
         list.add(new Tuple<>(orderId,Integer.class));
         list.add(new Tuple<>(supplierBN,Integer.class));
@@ -42,7 +41,6 @@ public class Order {
             dalOrder = (DalOrder) check;
         }
         items = new Hashtable<>();
-        dalOrder = new DalOrder();
     }
 
     public Order(){}

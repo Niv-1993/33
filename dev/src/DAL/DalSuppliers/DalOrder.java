@@ -23,7 +23,7 @@ public class DalOrder extends DALObject {
         super(null);
     }
 
-    public DalOrder(Integer orderId , Integer supplierBN , Integer totalAmount , String deliverTime , Integer branchId , DalController dalController ){
+    public DalOrder(Integer orderId , Integer supplierBN , Double totalAmount , String deliverTime , Integer branchId , DalController dalController ){
         super(dalController);
         this.orderId = orderId;
         this.supplierBN = supplierBN;
