@@ -10,7 +10,6 @@ import Utility.Tuple;
 import Utility.Util;
 import com.sun.jdi.LocalVariable;
 import org.apache.log4j.Logger;
-
 import java.time.LocalDate;
 import java.util.*;
 
@@ -275,10 +274,10 @@ public class SupplierController{
         Order order;
         try {
             order = suppliers.get(supplierBN).addRegularOrder(dalSupplierController.getNumOfOrders(), branchId);
+            dalSupplierController.addNumOfOrders();
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
-        dalSupplierController.addNumOfOrders();
         return order;
     }
 
@@ -286,7 +285,7 @@ public class SupplierController{
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            suppliers.get(supplierBN).addConstantOrder(0, branchID , items);
+            suppliers.get(supplierBN).addConstantOrder(dalSupplierController.getNumOfOrders(), branchID , items);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
@@ -316,10 +315,10 @@ public class SupplierController{
                 }
             }
             order = suppliers.get(bestSupplier).addNeededOrder(dalSupplierController.getNumOfOrders(), branchID, item, neededAmount);
+            dalSupplierController.addNumOfOrders();
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
-        dalSupplierController.addNumOfOrders();
         return order;
     }
 

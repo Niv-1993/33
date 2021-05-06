@@ -27,10 +27,10 @@ public class DalSupplierController extends DALObject {
     @Override
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS \"SupplierController\"(\n" +
-                "\t\"supplierBN\" INTEGER NOT NULL,\n" +
+                "\t\"controller\" INTEGER NOT NULL,\n" +
                 "\t\"numOfItems\" INTEGER NOT NULL,\n" +
                 "\t\"numOfOrders\" INTEGER NOT NULL,\n" +
-                "\tPRIMARY KEY(\"supplierBN\")\n" +
+                "\tPRIMARY KEY(\"controller\")\n" +
                 ");";
     }
 
@@ -42,14 +42,14 @@ public class DalSupplierController extends DALObject {
     @Override
     public String getDelete() {
         return "DELETE FROM SupplierController\n" +
-                "WHERE supplierBN= ?;";
+                "WHERE controller= ?;";
     }
 
     @Override
     public String getUpdate() {
         return "UPDATE SupplierController\n" +
                 "SET (?) = (?)\n"+
-                "WHERE supplierBN = ?;";
+                "WHERE controller = ?;";
     }
 
     @Override
@@ -70,7 +70,7 @@ public class DalSupplierController extends DALObject {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE SupplierController\n" +
                 "SET numOfItems = ?\n" +
-                "WHERE supplierBN = ?;";
+                "WHERE controller = ?;";
         list.add(new Tuple<>(numOfItems+1, Integer.class));
         list.add(new Tuple<>(supplierBN, Integer.class));
         DC.noSelect(query, list);
@@ -81,7 +81,7 @@ public class DalSupplierController extends DALObject {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE SupplierController\n" +
                 "SET numOfItems = ?\n" +
-                "WHERE supplierBN = ?;";
+                "WHERE controller = ?;";
         list.add(new Tuple<>(numOfOrders+1, Integer.class));
         list.add(new Tuple<>(supplierBN, Integer.class));
         DC.noSelect(query, list);
@@ -91,7 +91,7 @@ public class DalSupplierController extends DALObject {
     public void load() {
         try {
             String query = "SELECT * FROM SupplierController\n" +
-                    "WHERE supplierBN = ?;";
+                    "WHERE controller = ?;";
             LinkedList<Integer> list = new LinkedList<>();
             list.add(0);
             Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);

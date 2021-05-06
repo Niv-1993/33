@@ -8,7 +8,7 @@ public class Order {
     private final double totalAmount;
     private final LocalDate deliverTime;
     private final int branchId;
-    private final Hashtable<Integer , Integer> amounts;
+    private final Hashtable<Integer, Integer> amounts;
 
     public Order(BusinessLayer.SupplierBusiness.Order order) {
         orderId = order.getOrderId();
@@ -19,31 +19,27 @@ public class Order {
     }
 
     public String toString() {
-        if(deliverTime == null)
-            return "Order: \n" +
-                    "\torderId: " + orderId + "\n" +
-                    "\ttotal amount: " + totalAmount + "\n" +
-                    "\tdeliver time: unknown" +
-                    "\tbranchId: " + branchId;
         return "Order: \n" +
                 "\torderId: " + orderId + "\n" +
                 "\ttotal amount: " + totalAmount + "\n" +
-                "\tdeliver time: " + deliverTime +
+                "\tdeliver time: " + toStringDeliverTime() + "\n" +
                 "\tbranchId: " + branchId;
     }
 
-    public String toStringId(){
-        return ""+ orderId;
+    public String toStringId() {
+        return "" + orderId;
     }
 
-    public String toStringTotalAmount(){ return totalAmount + "";}
+    public String toStringTotalAmount() {
+        return totalAmount + "";
+    }
 
-    public String toStringDeliverTime(){
-        if(deliverTime == null) return "unknown";
+    public String toStringDeliverTime() {
+        if (deliverTime == null) return "unknown";
         return deliverTime.toString();
     }
 
-    public String toStringAmount(String itemId){
+    public String toStringAmount(String itemId) {
         return "" + amounts.get(Integer.parseInt(itemId));
     }
 }

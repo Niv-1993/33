@@ -16,7 +16,6 @@ public class QuantityDocument {
     final static Logger log=Logger.getLogger(QuantityDocument.class);
 
     public QuantityDocument(int itemId, int minimalAmount , int discount, int branchId){
-        //dalQuantityDocument = Util.initDal(DalQuantityDocument.class, 0 , minimalAmount, discount);
         List<Tuple<Object,Class>> list=new ArrayList<>();
         list.add(new Tuple<>(itemId,Integer.class));
         list.add(new Tuple<>(minimalAmount,Integer.class));
@@ -44,7 +43,7 @@ public class QuantityDocument {
     }
 
     public void updateDiscountOfQD(int discount) throws Exception {
-        if(discount < 0) throw new Exception("discount amount must be a positive number");
+        if(discount < 0 || discount > 100) throw new Exception("discount amount must be a number between 0 to 100 ");
         dalQuantityDocument.updateDiscountOfQD(discount);
     }
 

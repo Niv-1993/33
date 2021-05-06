@@ -2,10 +2,8 @@ package BusinessLayer.SupplierBusiness;
 
 import DAL.DALObject;
 import DAL.DalSuppliers.DalItem;
-import DAL.DalSuppliers.DalSupplierCard;
 import DAL.Mapper;
 import Utility.Tuple;
-import Utility.Util;
 import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
@@ -45,7 +43,7 @@ public class Item{
 
     public void addQuantityDocument(int minimalAmount, int discount) throws Exception {
         if(minimalAmount < 0) throw new Exception("minimal amount must be a positive number");
-        if(discount < 0 || discount > 100) throw new Exception("discount must be a positive number between 0 to 100");
+        if(discount < 0 || discount > 100) throw new Exception("discount must be a number between 0 to 100");
         quantityDocument = new QuantityDocument(dalItem.getItemId(), minimalAmount, discount, 0);
     }
 

@@ -43,9 +43,6 @@ public class Order {
         items = new Hashtable<>();
     }
 
-    public Order(){}
-    //remove Item from Order.
-
     public List<Item> showAllItemsOfOrder(){
         return new LinkedList<>(items.keySet());
     }

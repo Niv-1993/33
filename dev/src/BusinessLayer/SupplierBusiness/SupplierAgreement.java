@@ -56,7 +56,7 @@ public class SupplierAgreement {
     }
 
     public void updateDiscountOfSA(int discount) throws Exception {
-        if(discount < 0) throw new Exception("discount amount must be a positive number between 0 to 100");
+        if(discount < 0 || discount > 100) throw new Exception("discount amount must be a number between 0 to 100");
         dalSupplierAgreement.updateDiscountOfSA(discount);
     }
 

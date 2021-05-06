@@ -42,8 +42,7 @@ public class DalSupplierCard extends DALObject {
                 "\t\"supplierName\" VARCHAR NOT NULL,\n" +
                 "\t\"payWay\" VARCHAR NOT NULL,\n" +
                 "\tPRIMARY KEY(\"supplierBN\")\n" +
-                "\tFOREIGN KEY(\"supplierBN\") REFERENCES \"SupplierController\"(\"supplierBN\") ON DELETE CASCADE ON UPDATE CASCADE\n" +
-                ");" +
+                ");\n" +
                 "CREATE TABLE IF NOT EXISTS \"BankInfo\"(\n" +
                 "\t\"supplierBN\" INTEGER NOT NULL,\n" +
                 "\t\"bankNumber\" INTEGER NOT NULL,\n" +

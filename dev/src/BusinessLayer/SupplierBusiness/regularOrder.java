@@ -24,6 +24,7 @@ public class regularOrder extends Order{
 
     public void addItemToOrder(Item item , int amount) throws Exception {
         if(amount < 1) throw new Exception("amount must be at least 1");
+        if(item.getQuantityDocument() == null) throw new Exception("quantity document does not exist.");
         if (items.get(item) != null) {
             items.put(item, items.get(item) + amount);
             dalOrder.addItemToOrder(item.getItemId(), items.get(item)+ amount);

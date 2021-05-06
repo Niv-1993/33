@@ -52,9 +52,6 @@ public class SupplierCard {
         items = new LinkedList<>();
     }
 
-    public void addConstantOrder(HashMap<Integer , Integer> amountsOfItem , int deliverDays) throws Exception {
-    }
-
     public int getSupplierBN() {
         return dalSupplierCard.getSupplierBN();
     }
@@ -181,6 +178,7 @@ public class SupplierCard {
 
     public Item addItem(int supplierBN, int ItemId , String name , double price, int typeID, LocalDate expirationDate) throws Exception {
         if(price < 0) throw new Exception("price must be a positive number!");
+        if(expirationDate.isBefore(LocalDate.now())) throw new IllegalAccessException("expiration date must be in the future");
         Item newItem = new BusinessLayer.SupplierBusiness.Item(supplierBN, ItemId , name , price, typeID, expirationDate);
         items.add(newItem);
         return newItem;
@@ -311,11 +309,14 @@ public class SupplierCard {
     }
 
     public Order showOrderOfSupplier(int orderId) throws Exception {
-        for (Order o : orders) {
-            if (o.getOrderId() == orderId)
-                return o;
+        if(constantOrder.getOrderId() == orderId) return constantOrder;
+        else {
+            for (Order o : orders) {
+                if (o.getOrderId() == orderId)
+                    return o;
+            }
+            throw new Exception("orderId does not exist.");
         }
-        throw new Exception("orderId does not exist.");
     }
 
     public List<Order> showAllOrdersOfSupplier() {

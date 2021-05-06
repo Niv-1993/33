@@ -2,6 +2,7 @@ package DAL;
 
 import Utility.Tuple;
 import org.apache.log4j.Logger;
+import org.sqlite.SQLiteConfig;
 
 
 import java.io.File;
@@ -25,7 +26,9 @@ public class DalController {
         String url = "jdbc:sqlite:"+System.getProperty("user.dir")+"\\" + dbname;
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection(url);
+            SQLiteConfig config = new SQLiteConfig();
+            config.enforceForeignKeys(true);
+            conn = DriverManager.getConnection(url , config.toProperties());
         } catch (SQLException e) {
             log.warn("failed to make SQL connection");
            throw new Exception("cant connect");

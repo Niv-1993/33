@@ -22,11 +22,13 @@ public class Item {
             return "\tItem: \n" +
                 "\t\tItemId: " + ItemId + "\n" +
                 "\t\tname: " + name +"\n" +
-                "\t\tprice: " + price;
+                "\t\tprice: " + price + "\n" +
+                "\t\texpiration date: " + expirationDate;
         return "Item: \n" +
                 "\tItemId: " + ItemId + "\n" +
                 "\tname: " + name + "\n" +
-                "\tprice: " + price;
+                "\tprice: " + price + "\n" +
+                "\texpiration date: " + expirationDate;
     }
 
     public String toString(String amount){
@@ -34,7 +36,8 @@ public class Item {
                 "\t\tItemId: " + ItemId + "\n" +
                 "\t\tAmount: " + amount + "\n" +
                 "\t\tname: " + name +"\n" +
-                "\t\tprice: " + price;
+                "\t\tprice: " + price + "\n" +
+                "\t\texpiration date: " + expirationDate;
     }
 
     public String toStringId(){

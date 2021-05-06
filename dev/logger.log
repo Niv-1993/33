@@ -32751,3 +32751,16 @@ WHERE orderId = ?;
 [WARN ] 06-05-2021 13:02:34 [class: DAL.Mapper,Line:146] - 1
 [WARN ] 06-05-2021 13:02:34 [class: DAL.Mapper,Line:148] - 2
 [WARN ] 06-05-2021 13:02:34 [class: DAL.Mapper,Line:119] - DAL.DalSuppliers.DalOrder@544fe44c
+[WARN ] 06-05-2021 18:05:03 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO ItemsInOrders
+VALUES (?,?,?)
+failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: ItemsInOrders.itemId)
+[WARN ] 06-05-2021 18:18:30 [class: DAL.DalController,Line:67] - noSelect quary: UPDATE SupplierController
+SET numOfItems = ?
+WHERE supplierBN = ?
+failed due to [SQLITE_ERROR] SQL error or missing database (no such column: supplierBN)
+[WARN ] 06-05-2021 18:51:25 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO ItemsInOrders
+VALUES (?,?,?)
+failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: ItemsInOrders.itemId)
+[WARN ] 06-05-2021 18:51:25 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO ItemsInOrders
+VALUES (?,?,?)
+failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: ItemsInOrders.itemId)
