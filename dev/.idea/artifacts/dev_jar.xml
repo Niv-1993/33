@@ -9,6 +9,7 @@
       <element id="module-source" name="dev" />
       <element id="library" level="application" name="log4j:apache-log4j-extras:1.2.17" />
       <element id="library" level="application" name="org.mockito:mockito-all:1.9.0" />
+      <element id="library" level="application" name="sqlite-jdbc-3.20.1" />
     </root>
   </artifact>
 </component>
