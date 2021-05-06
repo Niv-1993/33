@@ -1,22 +1,20 @@
 package DataAccess;
 
 import org.apache.log4j.Logger;
-import java.io.File;
+
 import java.sql.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DalController {
-    final static Logger log=Logger.getLogger(DalController.class);
-    String dbname;
+public class Mapper {
+    private final static Logger log=Logger.getLogger(Mapper.class);
+    private final String dbname = "database.db";
 
-    public DalController(String dbname) {
-        this.dbname = dbname;
-    }
+    public Mapper() {}
 
-    private Connection connect() throws Exception {
+    protected Connection connect() throws Exception {
         //DriverManager.registerDriver(new com.sqlite.jdbc.Driver());
         Class.forName("org.sqlite.JDBC");
         String url = "jdbc:sqlite:"+System.getProperty("user.dir")+"\\" + dbname;
@@ -110,7 +108,7 @@ public class DalController {
             }
         } else return null;
 
-        types.add(DalController.class);
+        types.add(Mapper.class);
         vals.add(this);
 
         return new Tuple<>(types,vals);
