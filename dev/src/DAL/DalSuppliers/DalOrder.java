@@ -3,14 +3,33 @@ package DAL.DalSuppliers;
 
 import DAL.DALObject;
 import DAL.DalController;
+import Utility.Tuple;
+import org.apache.log4j.Logger;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.LinkedList;
+import java.util.List;
 
 public class DalOrder extends DALObject {
+    private int orderId;
+    private int supplierBN;
+    private double totalAmount;
+    private String deliverTime;
+    private int branchId;
+    final static Logger log=Logger.getLogger(DalOrder.class);
+
     public DalOrder() {
         super(null);
     }
 
-    public DalOrder(Integer orderId , Integer supplierBN , Integer totalAmount , String deliverTime , Integer branchId , DalController dalController ){
+    public DalOrder(Integer orderId , Integer supplierBN , Double totalAmount , String deliverTime , Integer branchId , DalController dalController ){
         super(dalController);
+        this.orderId = orderId;
+        this.supplierBN = supplierBN;
+        this.totalAmount = totalAmount;
+        this.deliverTime = deliverTime;
+        this.branchId = branchId;
     }
 
     @Override
@@ -36,21 +55,142 @@ public class DalOrder extends DALObject {
 
     @Override
     public String getSelect() {
-        return null;
+        return "Select * FROM Orders\n" +
+                "WHERE orderId = ?;";
     }
 
     @Override
     public String getDelete() {
-        return null;
+        return "DELETE FROM Orders\n" +
+                "WHERE orderId = ?;";
     }
 
     @Override
     public String getUpdate() {
-        return null;
+        return "UPDATE Orders\n" +
+                "SET (?) = (?)\n"+
+                "WHERE orderId = ?;";
     }
 
     @Override
     public String getInsert() {
-        return null;
+        return "INSERT OR REPLACE INTO Orders\n"+
+                "VALUES (?,?,?,?,?);";
+    }
+
+    public int getOrderID() {
+        return orderId;
+    }
+
+    public double getTotalAmount() {
+        try {
+            String query = "SELECT totalAmount FROM Orders\n" +
+                    "WHERE orderId = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(orderId);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            totalAmount = (Double) tuple.item2.get(0);
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+        return totalAmount;
+    }
+
+    public String getDeliverTime() {
+        String Temp = "";
+        try {
+            String query = "SELECT deliverTime FROM Orders\n" +
+                    "WHERE orderId = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(orderId);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            Temp = tuple.item2.get(0).toString();
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+        deliverTime= Temp;
+        return deliverTime;
+    }
+
+    public int getBranchID() {
+        try {
+            String query = "SELECT branchId FROM Orders\n" +
+                    "WHERE orderId = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(orderId);
+            Tuple<List<Class>, List<Object>> tuple = DC.Select(query, list);
+            branchId = (Integer) tuple.item2.get(0);
+        }
+        catch (Exception e) {
+            log.warn(e);
+        }
+        return branchId;
+    }
+
+    public void updateDeliverTime(LocalDate deliverTime) throws Exception {
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE Orders\n" +
+                "SET deliverTime = ?\n"+
+                "WHERE orderId = ?;";
+        list.add(new Tuple<>(deliverTime.toString(), String.class));
+        list.add(new Tuple<>(orderId, Integer.class));
+        DC.noSelect(query, list);
+        this.deliverTime = deliverTime.toString();
+    }
+
+    public void updateTotalAmount(double totalAmount){
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE Orders\n" +
+                "SET totalAmount = ?\n"+
+                "WHERE orderId = ?;";
+        list.add(new Tuple<>(totalAmount, Double.class));
+        list.add(new Tuple<>(orderId, Integer.class));
+        try {
+            DC.noSelect(query, list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.totalAmount = totalAmount;
+    }
+
+    public void removeOrder() {
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "DELETE FROM Orders\n" +
+                "WHERE orderId = ?;";
+        list.add(new Tuple<>(orderId, Integer.class));
+        try {
+            DC.noSelect(query, list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void removeItemFromOrder(int itemId) {
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "DELETE FROM ItemsInOrders\n" +
+                "WHERE itemId = ?;";
+        list.add(new Tuple<>(itemId, Integer.class));
+        try {
+            DC.noSelect(query, list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addItemToOrder(int itemId, int amount) {
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "INSERT INTO ItemsInOrders\n" +
+                "VALUES (?,?,?);";
+        list.add(new Tuple<>(orderId, Integer.class));
+        list.add(new Tuple<>(itemId, Integer.class));
+        list.add(new Tuple<>(amount, Integer.class));
+        try {
+            DC.noSelect(query, list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -8,4 +8,5 @@ public abstract class DALObject {
     public abstract String getDelete();
     public abstract String getUpdate();
     public abstract String getInsert();
+
 }

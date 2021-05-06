@@ -77,7 +77,7 @@ public class DalController {
             }
             ResultSet rs = preparedStatement.executeQuery();
             return fromRS(rs);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             throw new Exception("select field");
         }
         finally{

@@ -1,19 +1,45 @@
 package BusinessLayer.SupplierBusiness;
 
+import BusinessLayer.StockBusiness.StoreController;
+import DAL.DALObject;
+import DAL.DalStock.DALStoreController;
+import DAL.DalSuppliers.DalSupplierCard;
+import DAL.DalSuppliers.DalSupplierController;
+import DAL.Mapper;
+import Utility.Tuple;
+import Utility.Util;
 import com.sun.jdi.LocalVariable;
+import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
 import java.util.*;
 
 public class SupplierController{
     private Dictionary<Integer , SupplierCard> suppliers;
-    private int numOfItems;
-    private int numOfOrders;
+    private DalSupplierController dalSupplierController;
+    final static Logger log=Logger.getLogger(SupplierController.class);
+
 
     public SupplierController(){
+        //dalSupplierController = Util.initDal(DalSupplierController.class, 0 , 0, 0, 0);
+        List<Tuple<Object,Class>> list=new ArrayList<>();
+        list.add(new Tuple<>(0,Integer.class));
+        list.add(new Tuple<>(0,Integer.class));
+        list.add(new Tuple<>(1,Integer.class));
+        Mapper map=Mapper.getMap();
+        map.setItem(DalSupplierController.class,list);
+        List<Integer> keyList=new ArrayList<>();
+        DALObject check =map.getItem(DalSupplierController.class ,keyList);
+        if (DalSupplierController.class==null || check==null ||(check.getClass()!=DalSupplierController.class)){
+            String s="the instance that return from Mapper is null";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        else{
+            log.info("create new Object");
+            dalSupplierController = (DalSupplierController) check;
+        }
         suppliers = new Hashtable<>();
-        numOfItems = 0;
-        numOfOrders = 1;
     }
 
     public SupplierCard showSupplier(int supplierBN) throws Exception {
@@ -195,16 +221,16 @@ public class SupplierController{
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            item = suppliers.get(supplierBN).addItem(numOfItems , name, price, typeID, expirationDate);
+            item = suppliers.get(supplierBN).addItem(supplierBN, dalSupplierController.getNumOfItems() , name, price, typeID, expirationDate);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
-        numOfItems++;
+        dalSupplierController.addNumOfItems();
         return item;
     }
 
     public void removeItem(int itemId) throws Exception {
-        if(numOfItems <= itemId || itemId < 0) throw new Exception("itemId does not exist.");
+        if(dalSupplierController.getNumOfItems() <= itemId || itemId < 0) throw new Exception("itemId does not exist.");
         Enumeration<SupplierCard> enumeration = suppliers.elements();
         while (enumeration.hasMoreElements()) {
             SupplierCard supplierCard = enumeration.nextElement();
@@ -235,7 +261,7 @@ public class SupplierController{
     public void removeItemFromSupplier(int supplierBN, int itemId) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
-        if(numOfItems < itemId || itemId < 0) throw new Exception("itemId does not exist.");
+        if(dalSupplierController.getNumOfItems() < itemId || itemId < 0) throw new Exception("itemId does not exist.");
         try {
             supplierCard.removeItemFromSupplier(itemId , true);
         }catch (Exception e){
@@ -248,11 +274,11 @@ public class SupplierController{
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         Order order;
         try {
-            order = suppliers.get(supplierBN).addRegularOrder(numOfOrders, branchId);
+            order = suppliers.get(supplierBN).addRegularOrder(dalSupplierController.getNumOfOrders(), branchId);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
-        numOfOrders++;
+        dalSupplierController.addNumOfOrders();
         return order;
     }
 
@@ -289,11 +315,11 @@ public class SupplierController{
                     }
                 }
             }
-            order = suppliers.get(bestSupplier).addNeededOrder(numOfOrders, branchID, item, neededAmount);
+            order = suppliers.get(bestSupplier).addNeededOrder(dalSupplierController.getNumOfOrders(), branchID, item, neededAmount);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
-        numOfOrders++;
+        dalSupplierController.addNumOfOrders();
         return order;
     }
 
@@ -407,7 +433,7 @@ public class SupplierController{
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            suppliers.get(supplierBN).addSupplierAgreement(minimalAmount, discount, constantTime, shipToUs);
+            suppliers.get(supplierBN).addSupplierAgreement(supplierBN, minimalAmount, discount, constantTime, shipToUs);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

@@ -59,14 +59,15 @@ public class mainCLI {
             }
         }
         while (true){
-            System.out.println("please enter 1 for Suppliers and 2 for Stock");
+            System.out.println("please enter 1 for Suppliers and 2 for Stock or 3 to exit");
             in = read();
             try {
                 if(Integer.parseInt(in) == 1) presentationCL.mainRun(true);
                 else if(Integer.parseInt(in) == 2) stockCLI.start();
-                else System.out.println("illegal input");
+                else if(Integer.parseInt(in) == 3) System.exit(0);
+                else System.out.println("illegal input!!!");
             }catch (Exception e){
-                System.out.println("illegal input");
+                System.out.println(e.getMessage());
             }
         }
     }

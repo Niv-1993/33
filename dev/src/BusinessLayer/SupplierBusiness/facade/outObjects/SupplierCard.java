@@ -38,6 +38,8 @@ public class SupplierCard{
     }
 
     private String helpPrint(Dictionary<String , String> dictionary , boolean p_e){
+        if (dictionary == null)
+            return "dictionary not exist";
         int size = 0;
         String toReturn = "";
         Enumeration<String> e = dictionary.keys();
