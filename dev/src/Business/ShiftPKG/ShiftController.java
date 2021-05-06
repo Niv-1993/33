@@ -20,7 +20,7 @@ public class ShiftController {
     private int shiftCounter;
     private int constraintCounter;
 
-    //------------------------------------constructor--------------------------------
+    //------------------------------------constructor---------------------------------
 
     public ShiftController() {
         shifts = new HashMap<>();
