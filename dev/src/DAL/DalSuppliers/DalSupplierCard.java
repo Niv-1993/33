@@ -236,7 +236,7 @@ public class DalSupplierCard extends DALObject {
 
     public void addContactPhone(String phone, String name) throws Exception {
         contactPhone.put(phone, name);
-        String query = "INSERT INTO SupplierPhones (supplierBN, phone, name)\n" +
+        String query = "INSERT OR REPLACE INTO SupplierPhones (supplierBN, phone, name)\n" +
                 "VALUES (?,?,?)";
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         list.add(new Tuple<>(supplierBN, Integer.class));
@@ -266,7 +266,7 @@ public class DalSupplierCard extends DALObject {
 
     public void addContactEmail(String email, String name) throws Exception {
         contactEmail.put(email, name);
-        String query = "INSERT INTO SupplierEmails (supplierBN, email, name)\n" +
+        String query = "INSERT OR REPLACE INTO SupplierEmails (supplierBN, email, name)\n" +
                 "VALUES (?,?,?)";
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         list.add(new Tuple<>(supplierBN, Integer.class));

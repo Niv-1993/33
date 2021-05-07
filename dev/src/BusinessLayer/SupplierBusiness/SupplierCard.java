@@ -264,17 +264,18 @@ public class SupplierCard {
         throw new Exception("orderId does not exist.");
     }
 
-    public void removeItemFromSupplier(int itemId , boolean single) throws Exception { /////////I think it need to be modified
+    public void removeItem(int itemId) throws Exception { /////////I think it need to be modified
         List<Item> copyItem = items;
         boolean found = false;
         for(Item item : copyItem){
             if(item.getItemId() == itemId){
                 items.remove(item);
+                item.removeItem();
                 found = true;
                 break;
             }
         }
-        if(single && !found) throw new Exception("itemId does not exist for this supplier");
+        if(!found) throw new Exception("itemId does not exist for this supplier");
     }
 
     public void removeItemFromRegularOrder(int orderId, int itemId) throws Exception {
@@ -373,19 +374,22 @@ public class SupplierCard {
         if(!hasFound) throw new Exception("orderId does not exist");
     }
 
-    public void removeAllOrders(int orderId){
-        List<Order> copyOrder = orders;
-        for(Order order : copyOrder){
+    public void removeOrder(int orderId) throws Exception {
+        List<Order> copyOrders = orders;
+        boolean found = false;
+        for(Order order : copyOrders){
             if(order.getOrderId() == orderId){
                 orders.remove(order);
                 order.removeOrder();
+                found = true;
                 break;
             }
         }
+        if(!found) throw new Exception("orderId does not exist");
     }
 
     public Order showOrderOfSupplier(int orderId) throws Exception {
-        if(constantOrder.getOrderId() == orderId) return constantOrder;
+        if(constantOrder != null && constantOrder.getOrderId() == orderId) return constantOrder;
         else {
             for (Order o : orders) {
                 if (o.getOrderId() == orderId)

@@ -242,9 +242,9 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public response removeItem(int itemId) {
+    public response removeItem(int supplierBN , int itemId) {
         try{
-            supplierController.removeItem(itemId);
+            supplierController.removeItem(supplierBN , itemId);
         }catch (Exception e){
             return new response("ERROR: " + e.getMessage());
         }
@@ -310,6 +310,16 @@ public class SupplierService implements ISupplierService {
     public response addItemToOrder(int supplierBN, int orderId, int itemId , int amount) {
         try{
             supplierController.addItemToOrder(supplierBN, orderId, itemId , amount);
+        }catch (Exception e){
+            return new response("ERROR: " + e.getMessage());
+        }
+        return new response();
+    }
+
+    @Override
+    public response removeOrder(int supplierBN, int orderId) {
+        try{
+            supplierController.removeOrder(supplierBN, orderId);
         }catch (Exception e){
             return new response("ERROR: " + e.getMessage());
         }

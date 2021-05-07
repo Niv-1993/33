@@ -175,7 +175,8 @@ public class DalSupplierAgreement extends DALObject {
         String query = "UPDATE SupplierAgreements\n" +
                 "SET constantTime = ? \n"+
                 "WHERE supplierBN = ?;";
-        list.add(new Tuple<>(constantTime, Boolean.class));
+        if(constantTime) list.add(new Tuple<>(1, Integer.class));
+        else list.add(new Tuple<>(0, Integer.class));
         list.add(new Tuple<>(supplierBN, Integer.class));
         DC.noSelect(query, list);
     }
@@ -186,7 +187,8 @@ public class DalSupplierAgreement extends DALObject {
         String query = "UPDATE SupplierAgreements\n" +
                 "SET shipToUs = ? \n"+
                 "WHERE supplierBN = ?;";
-        list.add(new Tuple<>(shipToUs, Boolean.class));
+        if(shipToUs) list.add(new Tuple<>(1, Integer.class));
+        else list.add(new Tuple<>(0, Integer.class));
         list.add(new Tuple<>(supplierBN, Integer.class));
         DC.noSelect(query, list);
     }

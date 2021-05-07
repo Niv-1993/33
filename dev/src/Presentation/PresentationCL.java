@@ -364,8 +364,8 @@ public class PresentationCL{
     private void removingMethods(){
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int option = -1;
-        String[] removeMethodArray = {"remove Supplier","remove Contact Phone","remove Contact Email","remove Item",
-                "remove item from regular order" , "remove amount of item from regular order" ,
+        String[] removeMethodArray = {"remove Supplier","remove Contact Phone","remove Contact Email","remove Item", "remove Order" ,
+                "remove item from regular order" , "remove amount of items from regular order" ,
                 "remove Quantity Document","back to the main menu" , "END PROGRAM"};
         System.out.println("please select the showing method: ");
         while (true) {
@@ -396,12 +396,20 @@ public class PresentationCL{
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 4 -> {
+                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
                     int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
-                    response response = service.removeItem(itemId);
+                    response response = service.removeItem(BN , itemId);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 5->{
+                case 5 ->{
+                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
+                    int orderId = intScan(scanner , "please enter orderId" , "orderId must be a number");
+                    response response = service.removeOrder(BN , orderId);
+                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    else System.out.println("The operation was completed successfully\n");
+                }
+                case 6->{
                     BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
                     int orderId = intScan(scanner , "please enter orderId" , "orderId must be a number");
                     int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
@@ -409,7 +417,7 @@ public class PresentationCL{
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 6->{
+                case 7->{
                     BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
                     int orderId = intScan(scanner , "please enter orderId" , "orderId must be a number");
                     int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
@@ -418,15 +426,15 @@ public class PresentationCL{
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 7 -> {
+                case 8 -> {
                     BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
                     int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
                     response response = service.removeQuantityDocument(BN, itemId);
                     if (response.isError()) System.out.println(response.getError()+ "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 8 -> { return;}
-                case 9 -> {System.exit(0);}
+                case 9 -> { return;}
+                case 10 -> {System.exit(0);}
                 default ->{
                     System.out.println("illegal option!!!");
                     toContinue(scanner);

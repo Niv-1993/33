@@ -33000,3 +33000,45 @@ failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (U
 [WARN ] 07-05-2021 14:44:14 [class: DAL.DalController,Line:114] - ResultSet closed
 [WARN ] 07-05-2021 14:44:14 [class: DAL.DalController,Line:114] - ResultSet closed
 [WARN ] 07-05-2021 14:44:14 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 16:43:58 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 16:43:58 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 16:57:34 [class: DAL.DalController,Line:67] - noSelect quary: SELECT * FROM Items
+WHERE itemId = ?
+failed due to Query returns results
+[WARN ] 07-05-2021 18:12:25 [class: DAL.DalController,Line:67] - noSelect quary: INSERT OR REPLACE INTO SupplierController
+VALUES (?,?,?)
+failed due to [SQLITE_BUSY]  The database file is locked (database is locked)
+[WARN ] 07-05-2021 18:12:25 [class: DAL.Mapper,Line:157] - org.sqlite.SQLiteException: [SQLITE_BUSY]  The database file is locked (database is locked)
+[WARN ] 07-05-2021 18:21:18 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO SupplierPhones (supplierBN, phone, name)
+VALUES (?,?,?)
+failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: SupplierPhones.phone)
+[WARN ] 07-05-2021 18:24:01 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO SupplierPhones (supplierBN, phone, name)
+VALUES (?,?,?)
+failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: SupplierPhones.phone)
+[WARN ] 07-05-2021 18:38:34 [class: DAL.DalController,Line:67] - noSelect quary: UPDATE SupplierAgreements
+SET constantTime = ? 
+WHERE supplierBN = ?
+failed due to illegal type
+[WARN ] 07-05-2021 18:42:31 [class: DAL.DalController,Line:67] - noSelect quary: UPDATE SupplierAgreements
+SET shipToUs = ? 
+WHERE supplierBN = ?
+failed due to illegal type
+[WARN ] 07-05-2021 18:44:10 [class: DAL.DalController,Line:67] - noSelect quary: UPDATE Items
+SET price = ?
+WHERE itemId = ?
+failed due to class java.lang.Double cannot be cast to class java.lang.Integer (java.lang.Double and java.lang.Integer are in module java.base of loader 'bootstrap')
+[WARN ] 07-05-2021 18:48:03 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 18:48:03 [class: DAL.DalSuppliers.DalSupplierCard,Line:122] - java.lang.NullPointerException: Cannot read field "item2" because "tuple" is null
+[WARN ] 07-05-2021 18:48:03 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 18:48:03 [class: DAL.DalSuppliers.DalSupplierCard,Line:137] - java.lang.NullPointerException: Cannot read field "item2" because "tuple" is null
+[WARN ] 07-05-2021 18:48:03 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 18:48:03 [class: DAL.DalSuppliers.DalSupplierCard,Line:152] - java.lang.NullPointerException: Cannot read field "item2" because "tuple" is null
+[WARN ] 07-05-2021 18:48:03 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 18:48:03 [class: DAL.DalSuppliers.DalSupplierCard,Line:122] - java.lang.NullPointerException: Cannot read field "item2" because "tuple" is null
+[WARN ] 07-05-2021 18:48:03 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 18:48:03 [class: DAL.DalSuppliers.DalSupplierCard,Line:137] - java.lang.NullPointerException: Cannot read field "item2" because "tuple" is null
+[WARN ] 07-05-2021 18:48:03 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 18:48:03 [class: DAL.DalSuppliers.DalSupplierCard,Line:152] - java.lang.NullPointerException: Cannot read field "item2" because "tuple" is null
+[WARN ] 07-05-2021 19:06:23 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO ItemsInOrders
+VALUES (?,?,?)
+failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: ItemsInOrders.itemId)

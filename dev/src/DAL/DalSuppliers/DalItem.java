@@ -146,7 +146,7 @@ public class DalItem extends DALObject {
         String query = "UPDATE Items\n" +
                 "SET price = ?\n"+
                 "WHERE itemId = ?;";
-        list.add(new Tuple<>(price, Integer.class));
+        list.add(new Tuple<>(price, Double.class));
         list.add(new Tuple<>(itemId, Integer.class));
         DC.noSelect(query, list);
     }
@@ -167,6 +167,18 @@ public class DalItem extends DALObject {
         }
         catch (Exception e){
             log.warn(e);
+        }
+    }
+
+    public void removeItem() {
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "DELETE FROM Items\n" +
+                "WHERE itemId = ?;";
+        list.add(new Tuple<>(itemId, Integer.class));
+        try {
+            DC.noSelect(query, list);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

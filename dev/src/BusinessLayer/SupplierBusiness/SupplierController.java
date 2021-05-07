@@ -89,14 +89,14 @@ public class SupplierController{
         SupplierCard supplierCard = suppliers.remove(removeSupplier);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         else supplierCard.removeSupplier();
-        List<Item> toRemoveItems = supplierCard.showAllItemsOfSupplier();
+        /*List<Item> toRemoveItems = supplierCard.showAllItemsOfSupplier();
         for(Item item : toRemoveItems){
             removeItemFromSupplier(removeSupplier , item.getItemId());
         }
         List<Order> toRemoveOrders = supplierCard.showAllOrdersOfSupplier();
         for(Order order : toRemoveOrders){
-            supplierCard.removeAllOrders(order.getOrderId());
-        }
+            supplierCard.removeOrder(order.getOrderId());
+        }*/
     }
 
     public SupplierCard showSupplierBN(String supplierName) throws Exception {
@@ -242,19 +242,22 @@ public class SupplierController{
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
             item = suppliers.get(supplierBN).addItem(supplierBN, dalSupplierController.getNumOfItems() , name, price, typeID, expirationDate);
+            dalSupplierController.addNumOfItems();
+
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
-        dalSupplierController.addNumOfItems();
         return item;
     }
 
-    public void removeItem(int itemId) throws Exception {
+    public void removeItem(int supplierBN , int itemId) throws Exception {
         if(dalSupplierController.getNumOfItems() <= itemId || itemId < 0) throw new Exception("itemId does not exist.");
-        Enumeration<SupplierCard> enumeration = suppliers.elements();
-        while (enumeration.hasMoreElements()) {
-            SupplierCard supplierCard = enumeration.nextElement();
-            supplierCard.removeItemFromSupplier(itemId , false);
+        SupplierCard supplierCard = suppliers.get(supplierBN);
+        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+        try {
+            supplierCard.removeItem(itemId);
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
         }
     }
 
@@ -273,17 +276,6 @@ public class SupplierController{
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
             supplierCard.removeAmountItemFromRegularOrder(orderId , itemId , amount);
-        }catch (Exception e){
-            throw new Exception(e.getMessage());
-        }
-    }
-
-    public void removeItemFromSupplier(int supplierBN, int itemId) throws Exception {
-        SupplierCard supplierCard = suppliers.get(supplierBN);
-        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
-        if(dalSupplierController.getNumOfItems() < itemId || itemId < 0) throw new Exception("itemId does not exist.");
-        try {
-            supplierCard.removeItemFromSupplier(itemId , true);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
@@ -348,10 +340,18 @@ public class SupplierController{
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try{
             Order order = supplierCard.showOrderOfSupplier(orderId);
-            if (!(order instanceof regularOrder)) {
-                throw new Exception("you cannot add new items to needed order");
-            }
+            if(order.getOrderType() == 1) throw new Exception("you cannot add new items to needed order");
             suppliers.get(supplierBN).addItemToOrder(orderId, itemId , amount);
+        } catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public void removeOrder(int supplierBN , int orderId) throws Exception {
+        SupplierCard supplierCard = suppliers.get(supplierBN);
+        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+        try{
+            suppliers.get(supplierBN).removeOrder(orderId);
         } catch (Exception e){
             throw new Exception(e.getMessage());
         }

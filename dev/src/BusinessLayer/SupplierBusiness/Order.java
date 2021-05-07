@@ -52,7 +52,6 @@ public class Order {
 
     private void loadItemsOfOrders() {
         items = new Hashtable<>();
-        int amount = 0;
         List<Tuple<List<Class>,List<Object>>> list1 = dalOrder.loadItems();
         if (list1.size() > 0) {
             for (int i = 0; i < list1.get(0).item2.size(); i = i + 6) {

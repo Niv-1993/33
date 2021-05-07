@@ -37,13 +37,14 @@ public interface ISupplierService {
     Tresponse<List<Item>> showAllItemsOfOrder(int SupplierBN , int orderId);
     Tresponse<List<Item>> showAllItems();
     Tresponse<Item> addItem(int supplierBN , String name, double price, int typeID, LocalDate expirationDate);
-    response removeItem(int itemId);
+    response removeItem(int supplierBN , int itemId);
     response removeAmountItemFromRegularOrder(int supplierBN , int orderId , int itemId , int amount);
     response removeItemFromRegularOrder(int supplierBN , int orderId , int itemId);
     Tresponse<Order> addRegularOrder(int supplierBn , int branchId);
     response addConstantOrder(int supplierBN, int branchID , Hashtable<Integer, Integer> items);
     Tresponse<Order> addNeededOrder(int typeID, int neededAmount, int branchID);
     response addItemToOrder(int supplierBN , int orderId , int itemId , int amount);
+    response removeOrder(int supplierBN , int orderId);
     Tresponse<Order> showOrderOfSupplier(int supplierBN , int orderId);
     Tresponse<List<Order>> showAllOrdersOfSupplier(int supplierBN);
     response showTotalAmount(int supplierBN , int orderId);

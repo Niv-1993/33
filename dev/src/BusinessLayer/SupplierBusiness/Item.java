@@ -124,4 +124,7 @@ public class Item{
 
     public LocalDate getExpirationDate() { return LocalDate.parse(dalItem.getExpirationDate()); }
 
+    public void removeItem() {
+        dalItem.removeItem();
+    }
 }

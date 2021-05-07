@@ -28,8 +28,10 @@ public class regularOrder extends Order{
             items.put(item, items.get(item) + amount);
             dalOrder.addItemToOrder(item.getItemId(), items.get(item)+ amount);
         }
-        else items.put(item, amount);
-        dalOrder.addItemToOrder(item.getItemId(), amount);
+        else {
+            items.put(item, amount);
+            dalOrder.addItemToOrder(item.getItemId(), amount);
+        }
         updateTotalAmount(item , amount);
     }
 

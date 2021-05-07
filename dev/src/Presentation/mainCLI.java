@@ -51,7 +51,7 @@ public class mainCLI {
                 switch (n) {
                     case 1 -> {
                         // Mapper.getMap("loadDB.db");
-                        presentationCL.loadData();
+                        presentationCL.loadData(); // make a test that chek if it was load correctlly
                     }
                     case 2 -> { /* Mapper.getMap("newDB.db"); */ }
                     default -> System.out.println("illegal option!!!");
