@@ -4,6 +4,8 @@ import Business.ApplicationFacade.outObjects.*;
 import Business.ShiftPKG.ShiftController;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
+import DataAccess.EmployeeMapper;
+import DataAccess.ShiftMapper;
 import org.apache.log4j.Logger;
 
 import java.time.DayOfWeek;
@@ -15,34 +17,35 @@ import java.util.stream.Collectors;
 
 public class RegularRoleController implements iRegularRoleController {
     final static Logger log = Logger.getLogger(RegularRoleController.class);
-    //private RoleType currConnectedEmpRole;
     private Business.EmployeePKG.Employee currConnectedEmp;
-    private Utils utils;
+    private final EmployeeMapper employeeMapper = EmployeeMapper.getInstance();
+    private final Utils utils;
+    private final ShiftController sc;
 
     //WILL BE DELETED WHEN THERE WILL BE DATABASE
-    private int branchCounter;
-    private List<Integer> allBranches;
+    //private int branchCounter;
+    //private List<Integer> allBranches;
 
     public RegularRoleController(){
        // this.currConnectedEmpRole = null;
         this.currConnectedEmp = null;
-        utils = new Utils(new ShiftController());
+        sc = new ShiftController();
+        utils = new Utils(sc);
         //WILL BE DELETED WHEN THERE WILL BE DATABASE
-        allBranches = new ArrayList<>();
-        branchCounter = 1;
+       // allBranches = new ArrayList<>();
+       // branchCounter = 1;
     }
 
     /**
      * Logins EID with his/her role of to the system
      *
      * @param EID  The Identification number of the employee
-     * @param role The role he takes in "super-lee"
      * @return A response object. The response should contain a error message in case of an error
      */
-    public void Login(int EID, String role) {
-        log.debug("entered login function with user id: " + EID + " and role " + role);
-        currConnectedEmp = utils.getEmployees().get(EID);
-        log.debug("successfully logged in - user fields are updated to +" + EID + " with role " + role);
+    public void Login(int EID) {
+        log.debug("entered login function with user id: " + EID);
+        currConnectedEmp = employeeMapper.get(EID);
+        log.debug("successfully logged in - user fields are updated to +" + EID);
     }
 
     /**
@@ -66,7 +69,7 @@ public class RegularRoleController implements iRegularRoleController {
      */
     public void addConstConstraint(DayOfWeek day, String shiftType, String reason) {
         log.debug("enter add const constraint function");
-        utils.getShiftController().addConstConstraint(currConnectedEmp.getEID(), day, ShiftType.valueOf(shiftType), reason);
+        sc.addConstConstraint(currConnectedEmp.getEID(), day, ShiftType.valueOf(shiftType), reason);
         log.debug("successfully added const constraint");
     }
 
@@ -80,7 +83,7 @@ public class RegularRoleController implements iRegularRoleController {
      */
     public void addTempConstraint(LocalDate c_date, String shiftType, String reason) {
         log.debug("enter add constraint function");
-        utils.getShiftController().addTempConstraint(currConnectedEmp,c_date, ShiftType.valueOf(shiftType), reason);
+        sc.addTempConstraint(currConnectedEmp,c_date, ShiftType.valueOf(shiftType), reason);
         log.debug("added temp constraint");
     }
 
@@ -92,7 +95,7 @@ public class RegularRoleController implements iRegularRoleController {
      */
     public void removeConstraint(int CID) {
         log.debug("enter remove constraint function");
-        utils.getShiftController().removeConstraint(CID,currConnectedEmp.getEID());
+        sc.removeConstraint(CID);
         log.debug("removed add constraint");
     }
 
@@ -106,7 +109,7 @@ public class RegularRoleController implements iRegularRoleController {
      */
     public void updateReasonConstraint(int CID, String newReason){
         log.debug("enter update reason constraint function");
-        utils.getShiftController().updateReasonConstraint(CID, newReason,currConnectedEmp.getEID());
+        sc.updateReasonConstraint(CID, newReason,currConnectedEmp.getEID());
         log.debug("updated reason constraint");
     }
 
@@ -119,7 +122,7 @@ public class RegularRoleController implements iRegularRoleController {
      */
     public void updateShiftTypeConstraint(int CID, String newType) {
         log.debug("enter update shift type in constraint function");
-        utils.getShiftController().updateShiftTypeConstraint(CID, ShiftType.valueOf(newType),currConnectedEmp.getEID());
+        sc.updateShiftTypeConstraint(CID, ShiftType.valueOf(newType),currConnectedEmp.getEID());
     }
 
     /**
@@ -130,7 +133,7 @@ public class RegularRoleController implements iRegularRoleController {
      */
     public ResponseData<List<Shift>> getMyShifts() {
         log.debug("entered getting shifts of employee: "+currConnectedEmp.getEID());
-        List<Business.ShiftPKG.Shift> myShifts = utils.getShiftController().getMyShifts(currConnectedEmp);
+        List<Business.ShiftPKG.Shift> myShifts = sc.getMyShifts(currConnectedEmp);
         return new ResponseData<>(utils.convertShifts(myShifts));
     }
 
@@ -150,7 +153,7 @@ public class RegularRoleController implements iRegularRoleController {
      * @return A response List. The response should contain a error message in case of an error
      */
     public ResponseData<List<Constraint>> getMyConstraints() {
-        return new ResponseData<>(utils.convertConstrains(utils.getShiftController().getMyConstraints(currConnectedEmp.getEID())));
+        return new ResponseData<>(utils.convertConstrains(sc.getMyConstraints(currConnectedEmp.getEID())));
     }
 
     /**
@@ -163,18 +166,11 @@ public class RegularRoleController implements iRegularRoleController {
     public void EnterBranch(int BID) {
         log.debug("loading data of branch id: "+BID);
         currConnectedEmp = null;
-        utils.reset(BID);
-        //utils.setShiftController(new ShiftController());
-        //currConnectedEmpRole = null;
-      //  utils.setCurrBranchID(BID);
-        //WHEN THERE WILL BE DATABASE
-        //employees = new HashMap<>();
-        //WHAT EVER SHIFTPGK NEED TO MAKE SHIFTCONTOLLER
-        // shiftController = new ShiftController();
+        employeeMapper.setCurrBranchID(BID);
+        ShiftMapper.getInstance().setCurrBranchID(BID);
     }
     public boolean checkEIDExists(int id){
-        //TODO : need to check from database that the id exist in database
-        return utils.getEmployees().containsKey(id);
+        return employeeMapper.containsKey(id);
     }
     /**
      * gets all branches available from database
@@ -182,6 +178,7 @@ public class RegularRoleController implements iRegularRoleController {
      * @return A response List. The response should contain a error message in case of an error
      */
     public ResponseData<List<String>> getBranches() {
+        List<Integer> allBranches = employeeMapper.getAllBranches();
         return new ResponseData<>(allBranches.stream().map(String::valueOf).collect(Collectors.toList()));
     }
 
@@ -200,10 +197,7 @@ public class RegularRoleController implements iRegularRoleController {
         log.debug("enter create branch function");
         log.debug("creating instance of the personnel manager in this new branch");
         Business.EmployeePKG.Employee m = new Business.EmployeePKG.Employee(newEID, name, bankDetails, salary, RoleType.PersonnelManager, LocalDate.now(), terms);
-        //UPDATE DATABASE
-        utils.getEmployees().put(newEID, m);
-        //will be deleted after database exits
-        allBranches.add(branchCounter++);
+        employeeMapper.insertNewBranch(newEID,m);
         log.debug("successfully created branch");
     }
 
@@ -231,7 +225,7 @@ public class RegularRoleController implements iRegularRoleController {
      * @return true if yes else false
      */
     public ResponseData<Boolean> hasDefaultShifts() {
-        return new ResponseData<>(utils.getShiftController().hasDefaultShifts());
+        return new ResponseData<>(sc.hasDefaultShifts());
     }
 
     public Utils getUtils() {
@@ -240,10 +234,10 @@ public class RegularRoleController implements iRegularRoleController {
 
 
     public boolean isQualified(int eid, String role) {
-        return utils.getEmployees().get(eid).isQualified(RoleType.valueOf(role));
+        return employeeMapper.get(eid).isQualified(RoleType.valueOf(role));
     }
     public boolean checkConstExist(int CID){
-        return utils.getShiftController().constraintIsExist(CID);
+        return sc.constraintIsExist(CID);
     }
 
     public boolean empConnected() {
@@ -251,14 +245,14 @@ public class RegularRoleController implements iRegularRoleController {
     }
 
     public boolean checkIfMyConst(int cid) {
-        return utils.getShiftController().getConstraints().get(cid).getEID() == currConnectedEmp.getEID();
+        return sc.getConstraints().get(cid).getEID() == currConnectedEmp.getEID();
     }
 
     public boolean checkIfShiftExist(LocalDate date, String shiftType) {
-        return utils.getShiftController().shiftAlreadyCreated(date,ShiftType.valueOf(shiftType));
+        return sc.shiftAlreadyCreated(date,ShiftType.valueOf(shiftType));
     }
 
     public boolean checkIfShiftIsClose(LocalDate date, String shiftType) {
-        return utils.getShiftController().wasSelfMake(date,ShiftType.valueOf(shiftType));
+        return sc.wasSelfMake(date,ShiftType.valueOf(shiftType));
     }
 }

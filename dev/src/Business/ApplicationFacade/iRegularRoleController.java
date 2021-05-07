@@ -13,10 +13,9 @@ public interface iRegularRoleController {
      * Logins EID with his/her role of to the system
      *
      * @param EID  The Identification number of the employee
-     * @param role The role he takes in "super-lee"
      * @return A response object. The response should contain a error message in case of an error
      */
-    void Login(int EID, String role);
+    void Login(int EID);
 
     /**
      * Logs out the connected employee

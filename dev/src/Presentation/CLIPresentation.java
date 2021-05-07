@@ -301,7 +301,7 @@ public class CLIPresentation {
                 if (goBack()) return;
                 else continue;
             }
-            r.getRc().Login(EID, role);
+            r.getRc().Login(EID);
             break;
         }
         isManager = role.equals("PersonnelManager");
@@ -401,7 +401,7 @@ public class CLIPresentation {
         int[] bankDetails = {123, 456, 789};
         int[] terms = {1000, 5, 10};
         r.getRc().createBranch("00000", 1, "PersonnelManager", bankDetails, 150000, terms);
-        r.getRc().Login(1, "PersonnelManager");
+        r.getRc().Login(1);
         r.getMc().addEmployee(2, "DriverA", bankDetails, 10000, "Driver", LocalDate.now(), terms);
         r.getMc().addEmployee(3, "CashierA", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
         r.getMc().addEmployee(4, "CashierB", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
@@ -426,10 +426,10 @@ public class CLIPresentation {
         defaultRolesAmount.put("Morning", morning);
         r.getMc().defaultShifts(defaultRolesAmount);
         r.getRc().Logout();
-        r.getRc().Login(2, "Driver");
+        r.getRc().Login(2);
         r.getRc().addConstConstraint(DayOfWeek.SUNDAY, "Night", "tired");
         r.getRc().Logout();
-        r.getRc().Login(1, "PersonnelManager");
+        r.getRc().Login(1);
         r.getMc().createWeekShifts();
         r.getRc().Logout();
     }

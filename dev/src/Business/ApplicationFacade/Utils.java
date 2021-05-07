@@ -14,34 +14,15 @@ import java.util.Map;
 public class Utils {
     final static Logger log = Logger.getLogger(Utils.class);
     private ShiftController shiftController;
-    private Map<Integer, Employee> employees;
-    private int currBranchID;
 
     public Utils(ShiftController s) {
         shiftController = s;
-        employees = new HashMap<>();
-        currBranchID = -1;
     }
 
     public ShiftController getShiftController() {
         return shiftController;
     }
 
-    public void setEmployees(Map<Integer, Employee> employees) {
-        this.employees = employees;
-    }
-
-    public Map<Integer, Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setCurrBranchID(int currBranchID) {
-        this.currBranchID = currBranchID;
-    }
-
-    public int getCurrBranchID() {
-        return currBranchID;
-    }
 
     /**
      * Input checks
@@ -63,10 +44,6 @@ public class Utils {
 //        return false;
 //    }
 //
-
-    public void reset(int bid){
-        setCurrBranchID(bid);
-    }
 
 
     /**

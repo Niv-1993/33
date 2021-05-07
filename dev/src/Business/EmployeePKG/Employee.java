@@ -4,6 +4,7 @@ import Business.Type.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class Employee {
@@ -28,6 +29,15 @@ public class Employee {
         this.role.add(role);
         this.startWorkingDate = startWorkDate;
 
+    }
+    public Employee(int EID, String name, int[] bankDetails, int salary, LocalDate startWorkDate, int[] terms) {
+        this.name = name;
+        this.salary = salary;
+        bankAccount = new BankAccount(bankDetails);
+        termsOfEmployment = new TermsOfEmployment(terms);
+        this.EID = EID;
+        this.role = new ArrayList<>();
+        this.startWorkingDate = startWorkDate;
     }
 
 
@@ -88,9 +98,11 @@ public class Employee {
     public void setSalary(int salary) {
         this.salary = salary;
     }
-
-
-
-
+    public void addRole(String role){
+        this.role.add(RoleType.valueOf(role));
+    }
+    public void setRole(List<String> role) {
+        this.role = role.stream().map(RoleType::valueOf).collect(Collectors.toList());
+    }
 }
 
