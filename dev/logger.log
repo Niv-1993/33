@@ -33000,3 +33000,103 @@ failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (U
 [WARN ] 07-05-2021 14:44:14 [class: DAL.DalController,Line:114] - ResultSet closed
 [WARN ] 07-05-2021 14:44:14 [class: DAL.DalController,Line:114] - ResultSet closed
 [WARN ] 07-05-2021 14:44:14 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:26:26 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:26:26 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:26:26 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:30:05 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:30:05 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:30:05 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:31:02 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:31:02 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:31:02 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:32:07 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:32:07 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:32:07 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:33:15 [class: DAL.DalController,Line:97] - 1
+[WARN ] 07-05-2021 15:33:15 [class: DAL.DalController,Line:99] - 2
+[WARN ] 07-05-2021 15:33:15 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:15 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:15 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:97] - 1
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:99] - 2
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:97] - 1
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:99] - 2
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:97] - 1
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:99] - 2
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:97] - 1
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:99] - 2
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:97] - 1
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:99] - 2
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:97] - 1
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:99] - 2
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:97] - 1
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:99] - 2
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:97] - 1
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:99] - 2
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:97] - 1
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:99] - 2
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:102] - 3
+[WARN ] 07-05-2021 15:33:44 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 07-05-2021 15:34:43 [class: DAL.DalController,Line:98] - []
+[WARN ] 07-05-2021 15:34:45 [class: DAL.DalController,Line:98] - []
+[WARN ] 07-05-2021 15:34:45 [class: DAL.DalController,Line:98] - []
+[WARN ] 07-05-2021 15:34:45 [class: DAL.DalController,Line:115] - ResultSet closed
+[WARN ] 07-05-2021 15:34:45 [class: DAL.DalController,Line:98] - []
+[WARN ] 07-05-2021 15:34:45 [class: DAL.DalController,Line:98] - []
+[WARN ] 07-05-2021 15:34:45 [class: DAL.DalController,Line:98] - []
+[WARN ] 07-05-2021 15:34:45 [class: DAL.DalController,Line:115] - ResultSet closed
+[WARN ] 07-05-2021 15:34:45 [class: DAL.DalController,Line:98] - []
+[WARN ] 07-05-2021 15:34:45 [class: DAL.DalController,Line:98] - []
+[WARN ] 07-05-2021 15:34:45 [class: DAL.DalController,Line:98] - []
+[WARN ] 07-05-2021 15:34:45 [class: DAL.DalController,Line:98] - []
+[WARN ] 07-05-2021 15:34:45 [class: DAL.DalController,Line:115] - ResultSet closed
+[WARN ] 07-05-2021 15:37:56 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:37:56 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:37:56 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:42:13 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:42:13 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:42:13 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:42:21 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:42:21 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:42:21 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:43:45 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:43:45 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:43:45 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:44:40 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:44:40 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:44:40 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:45:06 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:45:06 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:45:06 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:46:54 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:46:54 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 15:46:54 [class: DAL.DalController,Line:114] - ResultSet closed

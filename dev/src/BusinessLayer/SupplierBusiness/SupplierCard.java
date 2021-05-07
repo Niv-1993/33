@@ -54,7 +54,7 @@ public class SupplierCard {
 
     private void loadSupplierAgreement() {
         Tuple<List<Class>,List<Object>> tuple = dalSupplierCard.loadSupplierAgreement();
-        if (tuple != null) {
+        if (tuple != null &&  tuple.item2 != null && tuple.item2.size() > 0) {
             int key = (int) tuple.item2.get(0);
             Mapper map = Mapper.getMap();
             List<Integer> keyList = new ArrayList<>();

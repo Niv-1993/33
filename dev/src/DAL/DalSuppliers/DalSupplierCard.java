@@ -179,7 +179,9 @@ public class DalSupplierCard extends DALObject {
             list.add(supplierBN);
             List<Tuple<List<Class>,List<Object>>> list1 = DC.SelectMany(query, list);
             if (list1 != null && list1.size() > 0) {
-                contactPhone.put((String) list1.get(0).item2.get(1), (String) list1.get(0).item2.get(2));
+                for (int i = 1 ; i < list1.get(0).item2.size() ; i= i+4) {
+                    contactPhone.put((String) list1.get(0).item2.get(i), (String) list1.get(0).item2.get(i + 1));
+                }
             }
         }
         catch (Exception e){
@@ -196,7 +198,9 @@ public class DalSupplierCard extends DALObject {
             list.add(supplierBN);
             List<Tuple<List<Class>,List<Object>>> list1 = DC.SelectMany(query, list);
             if (list1 != null && list1.size() > 0) {
-                contactEmail.put((String) list1.get(0).item2.get(1), (String) list1.get(0).item2.get(2));
+                for (int i = 1 ; i < list1.get(0).item2.size() ; i= i+4) {
+                    contactEmail.put((String) list1.get(0).item2.get(i), (String) list1.get(0).item2.get(i+1));
+                }
             }
         }
         catch (Exception e){
@@ -356,7 +360,7 @@ public class DalSupplierCard extends DALObject {
         catch (Exception e) {
             log.warn(e);
         }
-        return null;
+        return new Tuple<>(new LinkedList<>(), new LinkedList<>());
     }
 
 
