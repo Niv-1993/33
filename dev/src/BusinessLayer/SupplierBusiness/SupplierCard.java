@@ -78,7 +78,7 @@ public class SupplierCard {
         orders = new LinkedList<>();
         List<Tuple<List<Class>,List<Object>>> list1 = dalSupplierCard.loadOrders();
         if (list1.size() > 0) {
-            for (int i = 0; i < list1.get(0).item2.size(); i = i + 6) {
+            for (int i = 0; i < list1.get(0).item2.size(); i = i + 7) {
                 int key = (int) list1.get(0).item2.get(i);
                 Mapper map = Mapper.getMap();
                 List<Integer> keyList = new ArrayList<>();
@@ -281,7 +281,8 @@ public class SupplierCard {
         for(Order order : orders){
             if(order.getOrderId() == orderId){
                 try {
-                    regularOrder regularOrder = (BusinessLayer.SupplierBusiness.regularOrder) order;
+                    if(order.getOrderType() == 1) throw new Exception("you can remove items only from regular order");
+                    regularOrder regularOrder = (regularOrder) order;
                     regularOrder.removeItemFromRegularOrder(itemId);
                     break;
                 }catch (Exception e){
@@ -295,6 +296,7 @@ public class SupplierCard {
         for(Order order : orders){
             if(order.getOrderId() == orderId){
                 try {
+                    if(order.getOrderType() == 1) throw new Exception("you can remove items only from regular order");
                     regularOrder regularOrder = (BusinessLayer.SupplierBusiness.regularOrder) order;
                     regularOrder.removeAmountItemFromRegularOrder(itemId , amount);
                     break;
@@ -360,6 +362,7 @@ public class SupplierCard {
         if(toAdd == null) throw new Exception("the supplier does not have this item");
         boolean hasFound = false;
         for (Order o : orders) {
+            if(o.getOrderType() == 1) throw new Exception("you can add more items to an existing order only for regular order");
             if (o.getOrderId() == orderId) {
                 regularOrder temp = (regularOrder) o;
                 temp.addItemToOrder(toAdd , amount);
@@ -437,6 +440,7 @@ public class SupplierCard {
         boolean hasFound = false;
         for (Order o : orders) {
             if (o.getOrderId() == orderId) {
+                if(o.getOrderType() == 1) throw new Exception("you can update deliver time only for regular order");
                 regularOrder temp = (regularOrder) o;
                 temp.updateDeliverTime(deliverTime);
                 hasFound = true;

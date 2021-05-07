@@ -1,5 +1,6 @@
 package Presentation;
 
+import DAL.Mapper;
 import org.apache.log4j.Logger;
 
 import java.util.Scanner;
@@ -49,10 +50,10 @@ public class mainCLI {
                 n = menuCheck(scan);
                 switch (n) {
                     case 1 -> {
+                        // Mapper.getMap("loadDB.db");
                         presentationCL.loadData();
-                        /// need to add here Stock.loadData();
                     }
-                    case 2 -> { }
+                    case 2 -> { /* Mapper.getMap("newDB.db"); */ }
                     default -> System.out.println("illegal option!!!");
                 }
                 if(n == 1 || n == 2) break;

@@ -17,19 +17,21 @@ public class DalOrder extends DALObject {
     private double totalAmount;
     private String deliverTime;
     private int branchId;
+    private int orderType;
     final static Logger log=Logger.getLogger(DalOrder.class);
 
     public DalOrder() {
         super(null);
     }
 
-    public DalOrder(Integer orderId , Integer supplierBN , Double totalAmount , String deliverTime , Integer branchId , DalController dalController ){
+    public DalOrder(Integer orderId , Integer supplierBN , Double totalAmount , String deliverTime , Integer branchId , Integer orderType , DalController dalController ){
         super(dalController);
         this.orderId = orderId;
         this.supplierBN = supplierBN;
         this.totalAmount = totalAmount;
         this.deliverTime = deliverTime;
         this.branchId = branchId;
+        this.orderType = orderType;
     }
 
     @Override
@@ -40,6 +42,7 @@ public class DalOrder extends DALObject {
                 "\t\"totalAmount\" DOUBLE NOT NULL,\n" +
                 "\t\"deliverTime\" VARCHAR NOT NULL,\n" +
                 "\t\"branchId\" INTEGER NOT NULL,\n" +
+                "\t\"orderType\" INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY(\"orderId\"),\n" +
                 "\tFOREIGN KEY(\"supplierBN\") REFERENCES \"Suppliers\"(\"supplierBN\") ON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");" +
@@ -75,7 +78,7 @@ public class DalOrder extends DALObject {
     @Override
     public String getInsert() {
         return "INSERT OR REPLACE INTO Orders\n"+
-                "VALUES (?,?,?,?,?);";
+                "VALUES (?,?,?,?,?,?);";
     }
 
     public int getOrderID() {
@@ -127,6 +130,21 @@ public class DalOrder extends DALObject {
             log.warn(e);
         }
         return branchId;
+    }
+
+    public int getOrderType() {
+        try {
+            String query = "SELECT orderType FROM Orders\n" +
+                    "WHERE orderId = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(orderId);
+            Tuple<List<Class>, List<Object>> tuple = DC.Select(query, list);
+            orderType = (Integer) tuple.item2.get(0);
+        }
+        catch (Exception e) {
+            log.warn(e);
+        }
+        return orderType;
     }
 
     public void updateDeliverTime(LocalDate deliverTime) throws Exception {

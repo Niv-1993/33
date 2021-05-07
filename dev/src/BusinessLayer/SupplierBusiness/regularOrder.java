@@ -6,11 +6,10 @@ import java.time.temporal.ChronoUnit;
 public class regularOrder extends Order{
 
     public regularOrder(int supplierBN, int orderId , int branchId){
-        super(supplierBN, orderId , LocalDate.now().plusDays(7), branchId);
+        super(supplierBN, orderId , LocalDate.now().plusDays(7), branchId , 0);
     }
 
     public void updateDeliverTime(LocalDate deliverTime) throws Exception {
-        // check if the date is at least one day before.
         long daysDiffrence = ChronoUnit.DAYS.between(LocalDate.now(), deliverTime);
         if(daysDiffrence >= 1) {
             dalOrder.updateDeliverTime(deliverTime);

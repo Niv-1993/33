@@ -21,7 +21,13 @@ public class PresentationCL{
         service = new SupplierService();
     }
 
-    public void loadData(){ service.LoadData();}
+    public void loadData(){
+        try {
+            service.LoadData();
+        }catch (Exception e){
+            System.out.println("there is no data here");
+        }
+    }
 
     public void mainRun(boolean firstTime){
         Scanner scanner = new Scanner(System.in);

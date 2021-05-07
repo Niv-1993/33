@@ -20,13 +20,14 @@ public class Order {
     protected DalOrder dalOrder;
     final static Logger log=Logger.getLogger(Order.class);
 
-    public Order(int supplierBN, int orderId , LocalDate deliverTime , int branchId){
+    public Order(int supplierBN, int orderId , LocalDate deliverTime , int branchId , int orderType){
         List<Tuple<Object,Class>> list=new ArrayList<>();
         list.add(new Tuple<>(orderId,Integer.class));
         list.add(new Tuple<>(supplierBN,Integer.class));
         list.add(new Tuple<>(0.0,Double.class));
         list.add(new Tuple<>(deliverTime.toString(),String.class));
         list.add(new Tuple<>(branchId,Integer.class));
+        list.add(new Tuple<>(orderType,Integer.class));
         Mapper map=Mapper.getMap();
         map.setItem(DalOrder.class,list);
         List<Integer> keyList=new ArrayList<>();
@@ -104,4 +105,6 @@ public class Order {
     public void removeOrder() {
         dalOrder.removeOrder();
     }
+
+    public int getOrderType() {return dalOrder.getOrderType();}
 }
