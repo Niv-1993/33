@@ -193,4 +193,19 @@ public class DalOrder extends DALObject {
             e.printStackTrace();
         }
     }
+
+    public List<Tuple<List<Class>, List<Object>>> loadItems() {
+        try {
+            String query = "SELECT * FROM ItemsInOrders\n" +
+                    "WHERE orderId = ?";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(orderId);
+            List<Tuple<List<Class>,List<Object>>> tuple = DC.SelectMany(query, list);
+            return tuple;
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+        return null;
+    }
 }

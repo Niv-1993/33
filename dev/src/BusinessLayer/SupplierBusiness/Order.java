@@ -1,6 +1,7 @@
 package BusinessLayer.SupplierBusiness;
 
 import DAL.DALObject;
+import DAL.DalSuppliers.DalItem;
 import DAL.DalSuppliers.DalOrder;
 import DAL.DalSuppliers.DalSupplierCard;
 import DAL.Mapper;
@@ -41,6 +42,35 @@ public class Order {
             dalOrder = (DalOrder) check;
         }
         items = new Hashtable<>();
+    }
+
+    public Order(DalOrder dalOrder) {
+        this.dalOrder = dalOrder;
+        loadItemsOfOrders();
+    }
+
+    private void loadItemsOfOrders() {
+        items = new Hashtable<>();
+        int amount = 0;
+        List<Tuple<List<Class>,List<Object>>> list1 = dalOrder.loadItems();
+        if (list1.size() > 0) {
+            for (int i = 0; i < list1.get(0).item2.size(); i = i + 6) {
+                int key = (int) list1.get(0).item2.get(i);
+                Mapper map = Mapper.getMap();
+                List<Integer> keyList = new ArrayList<>();
+                keyList.add(key);
+                DALObject check = map.getItem(DalItem.class, keyList);
+                if (DalItem.class == null || check == null || (check.getClass() != DalItem.class)) {
+                    String s = "the instance that return from Mapper is null";
+                    log.warn(s);
+                    throw new IllegalArgumentException(s);
+                } else {
+                    log.info("loaded new Object");
+                    Item item = new Item((DalItem) check);
+                    items.put(item, 0);
+                }
+            }
+        }
     }
 
     public List<Item> showAllItemsOfOrder(){

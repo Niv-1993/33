@@ -1,5 +1,6 @@
 package DAL.DalSuppliers;
 
+import BusinessLayer.SupplierBusiness.QuantityDocument;
 import DAL.DALObject;
 import DAL.DalController;
 import Utility.Tuple;
@@ -169,4 +170,18 @@ public class DalItem extends DALObject {
         }
     }
 
+    public Tuple<List<Class>,List<Object>> loadQuantityDocument() {
+        try {
+            String query = "SELECT * FROM QuantityDocuments\n" +
+                    "WHERE itemId = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(itemId);
+            Tuple<List<Class>, List<Object>> tuple = DC.Select(query, list);
+            return tuple;
+        }
+        catch (Exception e) {
+            log.warn(e);
+        }
+        return null;
+    }
 }

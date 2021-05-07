@@ -20,6 +20,7 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public response LoadData() {
+       supplierController.load();
        return new response();
     }
 

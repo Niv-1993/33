@@ -21,7 +21,7 @@ public class PresentationCL{
         service = new SupplierService();
     }
 
-    public void loadData(){service.LoadData();}
+    public void loadData(){ service.LoadData();}
 
     public void mainRun(boolean firstTime){
         Scanner scanner = new Scanner(System.in);

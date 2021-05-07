@@ -2,8 +2,7 @@ package BusinessLayer.SupplierBusiness;
 
 import DAL.DALObject;
 import DAL.DalController;
-import DAL.DalSuppliers.DalSupplierCard;
-import DAL.DalSuppliers.DalSupplierController;
+import DAL.DalSuppliers.*;
 import DAL.Mapper;
 import Utility.Tuple;
 import Utility.Util;
@@ -45,6 +44,80 @@ public class SupplierCard {
         constantOrder = null;
         dalSupplierCard.updateSupplierBankAccount(bankNumber, branchNumber, accountNumber);
     }
+
+    public SupplierCard(DalSupplierCard dalSupplierCard) {
+        this.dalSupplierCard = dalSupplierCard;
+        loadItems();
+        loadOrders();
+        loadSupplierAgreement();
+    }
+
+    private void loadSupplierAgreement() {
+        Tuple<List<Class>,List<Object>> tuple = dalSupplierCard.loadSupplierAgreement();
+        if (tuple != null) {
+            int key = (int) tuple.item2.get(0);
+            Mapper map = Mapper.getMap();
+            List<Integer> keyList = new ArrayList<>();
+            keyList.add(key);
+            DALObject check = map.getItem(DalSupplierAgreement.class, keyList);
+            if (DalSupplierAgreement.class == null || check == null || (check.getClass() != DalSupplierAgreement.class)) {
+                String s = "the instance that return from Mapper is null";
+                log.warn(s);
+                throw new IllegalArgumentException(s);
+            } else {
+                log.info("loaded new Object");
+                supplierAgreement = new SupplierAgreement((DalSupplierAgreement) check);
+            }
+        }
+        else {
+            supplierAgreement = null;
+        }
+    }
+
+    private void loadOrders() {
+        orders = new LinkedList<>();
+        List<Tuple<List<Class>,List<Object>>> list1 = dalSupplierCard.loadOrders();
+        if (list1.size() > 0) {
+            for (int i = 0; i < list1.get(0).item2.size(); i = i + 6) {
+                int key = (int) list1.get(0).item2.get(i);
+                Mapper map = Mapper.getMap();
+                List<Integer> keyList = new ArrayList<>();
+                keyList.add(key);
+                DALObject check = map.getItem(DalOrder.class, keyList);
+                if (DalOrder.class == null || check == null || (check.getClass() != DalOrder.class)) {
+                    String s = "the instance that return from Mapper is null";
+                    log.warn(s);
+                    throw new IllegalArgumentException(s);
+                } else {
+                    log.info("loaded new Object");
+                    orders.add(new Order((DalOrder) check));
+                }
+            }
+        }
+    }
+
+    private void loadItems() {
+        items = new LinkedList<>();
+        List<Tuple<List<Class>,List<Object>>> list1 = dalSupplierCard.loadItems();
+        if (list1.size() > 0) {
+            for (int i = 0; i < list1.get(0).item2.size(); i = i + 7) {
+                int key = (int) list1.get(0).item2.get(i);
+                Mapper map = Mapper.getMap();
+                List<Integer> keyList = new ArrayList<>();
+                keyList.add(key);
+                DALObject check = map.getItem(DalItem.class, keyList);
+                if (DalItem.class == null || check == null || (check.getClass() != DalItem.class)) {
+                    String s = "the instance that return from Mapper is null";
+                    log.warn(s);
+                    throw new IllegalArgumentException(s);
+                } else {
+                    log.info("loaded new Object");
+                    items.add(new Item((DalItem) check));
+                }
+            }
+        }
+    }
+
 
     public void removeSupplier() throws Exception {
         dalSupplierCard.removeSupplier();

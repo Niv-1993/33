@@ -50,6 +50,10 @@ public class SupplierAgreement {
         }
     }
 
+    public SupplierAgreement(DalSupplierAgreement dalSupplierAgreement) {
+        this.dalSupplierAgreement = dalSupplierAgreement;
+    }
+
     public void updateMinimalAmountOfSA(int minimalAmount) throws Exception {
         if(minimalAmount < 0) throw new Exception("minimal amount must be a positive number");
         dalSupplierAgreement.updateMinimalAmountOfSA(minimalAmount);

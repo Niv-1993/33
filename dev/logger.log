@@ -32764,3 +32764,128 @@ failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (U
 [WARN ] 06-05-2021 18:51:25 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO ItemsInOrders
 VALUES (?,?,?)
 failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: ItemsInOrders.itemId)
+[WARN ] 06-05-2021 22:20:25 [class: DAL.DalSuppliers.DalSupplierController,Line:98] - [Tuple{item1=[class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController], item2=[0, kfir, cash, DAL.DalController@31a5c39e, 1, ori, cash, DAL.DalController@31a5c39e]}, Tuple{item1=[class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController], item2=[0, kfir, cash, DAL.DalController@31a5c39e, 1, ori, cash, DAL.DalController@31a5c39e]}]
+[WARN ] 06-05-2021 22:22:07 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [0, kfir, cash, DAL.DalController@402a079c, 1, ori, cash, DAL.DalController@402a079c]/n
+[WARN ] 06-05-2021 22:22:07 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [0, kfir, cash, DAL.DalController@402a079c, 1, ori, cash, DAL.DalController@402a079c]/n
+[WARN ] 06-05-2021 22:55:26 [class: DAL.DalSuppliers.DalSupplierCard,Line:288] - java.lang.NullPointerException: Cannot invoke "DAL.DalController.Select(String, java.util.List)" because "this.DC" is null
+[WARN ] 06-05-2021 22:55:54 [class: DAL.DalSuppliers.DalSupplierCard,Line:288] - java.lang.NullPointerException: Cannot invoke "DAL.DalController.Select(String, java.util.List)" because "this.DC" is null
+[WARN ] 06-05-2021 23:04:19 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 06-05-2021 23:04:19 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@73ad2d6, 1, ori, cash, DAL.DalController@73ad2d6]
+
+[WARN ] 06-05-2021 23:04:19 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 06-05-2021 23:04:19 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@73ad2d6, 1, ori, cash, DAL.DalController@73ad2d6]
+
+[WARN ] 06-05-2021 23:06:42 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 06-05-2021 23:06:42 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@73ad2d6, 1, ori, cash, DAL.DalController@73ad2d6]
+
+[WARN ] 06-05-2021 23:06:42 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 06-05-2021 23:06:42 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@73ad2d6, 1, ori, cash, DAL.DalController@73ad2d6]
+
+[WARN ] 06-05-2021 23:06:42 [class: DAL.DalSuppliers.DalSupplierController,Line:116] - [class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController]
+
+[WARN ] 06-05-2021 23:06:42 [class: DAL.DalSuppliers.DalSupplierController,Line:117] - [0, 1, 1, 1, DAL.DalController@73ad2d6, 1, 454, 5, 5, DAL.DalController@73ad2d6]
+
+[WARN ] 06-05-2021 23:06:42 [class: DAL.DalSuppliers.DalSupplierController,Line:116] - [class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController]
+
+[WARN ] 06-05-2021 23:06:42 [class: DAL.DalSuppliers.DalSupplierController,Line:117] - [0, 1, 1, 1, DAL.DalController@73ad2d6, 1, 454, 5, 5, DAL.DalController@73ad2d6]
+
+[WARN ] 07-05-2021 10:20:39 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:20:39 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:20:39 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:20:39 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:25:53 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:25:53 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:25:53 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:25:53 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:26:14 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:26:14 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:26:14 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:26:14 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:29:56 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:29:56 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:29:56 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:29:56 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:30:45 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:30:45 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:30:45 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:30:45 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:31:54 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:31:54 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:31:54 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:31:54 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:32:09 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:32:09 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:32:09 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:32:09 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:32:49 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:32:49 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:32:49 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:32:49 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:33:20 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:33:20 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:33:20 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:33:20 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@49993335, 1, ori, cash, DAL.DalController@49993335]
+
+[WARN ] 07-05-2021 10:35:26 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:35:26 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@73ad2d6, 1, ori, cash, DAL.DalController@73ad2d6]
+
+[WARN ] 07-05-2021 10:35:26 [class: DAL.DalSuppliers.DalSupplierController,Line:99] - [class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController, class java.lang.Integer, class java.lang.String, class java.lang.String, class DAL.DalController]
+
+[WARN ] 07-05-2021 10:35:26 [class: DAL.DalSuppliers.DalSupplierController,Line:100] - [0, kfir, cash, DAL.DalController@73ad2d6, 1, ori, cash, DAL.DalController@73ad2d6]
+
+[WARN ] 07-05-2021 10:57:00 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 10:57:00 [class: BusinessLayer.SupplierBusiness.SupplierCard,Line:89] - the instance that return from Mapper is null
+[WARN ] 07-05-2021 10:58:09 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 10:58:09 [class: BusinessLayer.SupplierBusiness.SupplierCard,Line:89] - the instance that return from Mapper is null
+[WARN ] 07-05-2021 10:58:58 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 10:58:58 [class: BusinessLayer.SupplierBusiness.SupplierCard,Line:68] - the instance that return from Mapper is null
+[WARN ] 07-05-2021 11:00:01 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 11:00:01 [class: BusinessLayer.SupplierBusiness.SupplierCard,Line:68] - the instance that return from Mapper is null
+[WARN ] 07-05-2021 13:00:25 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:03:37 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:03:39 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:04:10 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:08:58 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:08:58 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:10:32 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:10:32 [class: DAL.DalController,Line:114] - ResultSet closed

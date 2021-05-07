@@ -66,6 +66,8 @@ public class DalSupplierController extends DALObject {
         return numOfOrders;
     }
 
+
+
     public void addNumOfItems() throws Exception {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE SupplierController\n" +
@@ -88,18 +90,17 @@ public class DalSupplierController extends DALObject {
         numOfOrders++;
     }
 
-    public void load() {
+    public List<Tuple<List<Class>,List<Object>>> load1() {
         try {
-            String query = "SELECT * FROM SupplierController\n" +
-                    "WHERE controller = ?;";
+            String query = "SELECT * FROM Suppliers;";
             LinkedList<Integer> list = new LinkedList<>();
-            list.add(0);
-            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
-            numOfItems = (int) tuple.item2.get(1);
-            numOfOrders = (int) tuple.item2.get(2);
+            List<Tuple<List<Class>,List<Object>>> tuple = DC.SelectMany(query, list);
+            return tuple;
         }
         catch (Exception e){
             log.warn(e);
         }
+        return null;
     }
+
 }

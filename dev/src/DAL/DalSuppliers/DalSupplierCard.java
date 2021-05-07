@@ -1,6 +1,5 @@
 package DAL.DalSuppliers;
 
-import BusinessLayer.SupplierBusiness.SupplierCard;
 import DAL.DALObject;
 import DAL.DalController;
 import Utility.Tuple;
@@ -276,19 +275,61 @@ public class DalSupplierCard extends DALObject {
         DC.noSelect(query, list);
     }
 
-    public void load(int supplierBN) {
+    public void load(Integer key) {
         try {
-            String query = "SELECT * FROM Suppliers\n" +
-                    "WHERE supplierBN = ?;";
+            String query = "SELECT * FROM Suppliers;" +
+                    "WHERE supplierBN = ?";
             LinkedList<Integer> list = new LinkedList<>();
-            list.add(supplierBN);
-            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
-            supplierBN = (Integer) tuple.item2.get(0);
-            supplierName = tuple.item2.get(1).toString();
-            payWay = tuple.item2.get(2).toString();
+            list.add(key);
+            DC.Select(query, list);
         }
         catch (Exception e){
             log.warn(e);
         }
+    }
+
+    public List<Tuple<List<Class>, List<Object>>> loadOrders() {
+        try {
+            String query = "SELECT * FROM Orders\n"+
+                    "WHERE supplierBN = ?";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(supplierBN);
+            List<Tuple<List<Class>,List<Object>>> tuple = DC.SelectMany(query, list);
+            return tuple;
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+        return null;
+    }
+
+    public List<Tuple<List<Class>, List<Object>>> loadItems() {
+        try {
+            String query = "SELECT * FROM Items\n" +
+                    "WHERE supplierBN = ?";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(supplierBN);
+            List<Tuple<List<Class>,List<Object>>> tuple = DC.SelectMany(query, list);
+            return tuple;
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+        return null;
+    }
+
+    public Tuple<List<Class>, List<Object>> loadSupplierAgreement() {
+        try {
+            String query = "SELECT * FROM SupplierAgreements\n" +
+                    "WHERE supplierBN = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(supplierBN);
+            Tuple<List<Class>, List<Object>> tuple = DC.Select(query, list);
+            return tuple;
+        }
+        catch (Exception e) {
+            log.warn(e);
+        }
+        return null;
     }
 }

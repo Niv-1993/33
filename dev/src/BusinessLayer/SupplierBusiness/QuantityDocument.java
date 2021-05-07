@@ -37,6 +37,10 @@ public class QuantityDocument {
         }
     }
 
+    public QuantityDocument(DalQuantityDocument dalQuantityDocument) {
+        this.dalQuantityDocument = dalQuantityDocument;
+    }
+
     public void updateMinimalAmountOfQD(int minimalAmount) throws Exception {
         if(minimalAmount < 0) throw new Exception("minimal amount must be a positive number");
         dalQuantityDocument.updateMinimalAmountOfQD(minimalAmount);

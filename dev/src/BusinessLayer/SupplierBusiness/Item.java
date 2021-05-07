@@ -2,6 +2,8 @@ package BusinessLayer.SupplierBusiness;
 
 import DAL.DALObject;
 import DAL.DalSuppliers.DalItem;
+import DAL.DalSuppliers.DalOrder;
+import DAL.DalSuppliers.DalQuantityDocument;
 import DAL.Mapper;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
@@ -37,8 +39,34 @@ public class Item{
             log.info("create new Object");
             dalItem = (DalItem) check;
         }
-        //dalItem.load(itemId);
         quantityDocument = null;
+    }
+
+    public Item(DalItem dalItem) {
+        this.dalItem = dalItem;
+        loadQuantityDocument();
+    }
+
+    private void loadQuantityDocument() {
+        Tuple<List<Class>,List<Object>> tuple = dalItem.loadQuantityDocument();
+        if (tuple != null) {
+            int key = (int) tuple.item2.get(0);
+            Mapper map = Mapper.getMap();
+            List<Integer> keyList = new ArrayList<>();
+            keyList.add(key);
+            DALObject check = map.getItem(DalQuantityDocument.class, keyList);
+            if (DalQuantityDocument.class == null || check == null || (check.getClass() != DalQuantityDocument.class)) {
+                String s = "the instance that return from Mapper is null";
+                log.warn(s);
+                throw new IllegalArgumentException(s);
+            } else {
+                log.info("loaded new Object");
+                quantityDocument = new QuantityDocument((DalQuantityDocument) check);
+            }
+        }
+        else {
+            quantityDocument = null;
+        }
     }
 
     public void addQuantityDocument(int minimalAmount, int discount) throws Exception {
