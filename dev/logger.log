@@ -32889,3 +32889,110 @@ failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (U
 [WARN ] 07-05-2021 13:08:58 [class: DAL.DalController,Line:114] - ResultSet closed
 [WARN ] 07-05-2021 13:10:32 [class: DAL.DalController,Line:114] - ResultSet closed
 [WARN ] 07-05-2021 13:10:32 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:41:09 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:41:09 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:43:22 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:43:22 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:44:44 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:44:44 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:45:31 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:59:19 [class: DAL.DalSuppliers.DalSupplierCard,Line:345] - java.lang.Exception: select field
+[WARN ] 07-05-2021 13:59:19 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:59:19 [class: DAL.DalSuppliers.DalSupplierCard,Line:345] - java.lang.Exception: select field
+[WARN ] 07-05-2021 13:59:19 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:59:19 [class: DAL.DalSuppliers.DalSupplierCard,Line:345] - java.lang.Exception: select field
+[WARN ] 07-05-2021 13:59:34 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 13:59:34 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:59:34 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 13:59:34 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:59:34 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 13:59:44 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 13:59:44 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 13:59:44 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:00:05 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:00:05 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:00:05 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:00:05 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:00:05 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:00:18 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:00:18 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:00:19 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:00:19 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:01:21 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:01:21 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:01:21 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:01:21 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:01:21 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:01:39 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:01:39 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:01:39 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:01:39 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:01:39 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:02:00 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:02:00 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:02:00 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:02:00 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:02:00 [class: DAL.DalSuppliers.DalSupplierCard,Line:346] - java.lang.Exception: select field
+[WARN ] 07-05-2021 14:02:10 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:02:36 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:02:36 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:02:36 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:02:36 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:02:45 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:02:56 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:02:56 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:02:56 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:02:56 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:03:06 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:03:20 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:03:20 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:03:20 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:03:20 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:04:09 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:04:09 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:04:09 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:04:09 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:04:09 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:14:15 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:14:15 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:14:34 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:15:38 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.NullPointerException: Cannot read field "item2" because "tuple" is null
+[WARN ] 07-05-2021 14:15:38 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:15:38 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.NullPointerException: Cannot read field "item2" because "tuple" is null
+[WARN ] 07-05-2021 14:15:38 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:15:38 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.NullPointerException: Cannot read field "item2" because "tuple" is null
+[WARN ] 07-05-2021 14:16:02 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:16:02 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:17:12 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:17:12 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:17:12 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:17:15 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:17:15 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:17:58 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:17:58 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:17:58 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:18:02 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:18:02 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:21:18 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:21:18 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:21:18 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:21:21 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:21:21 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:22:08 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:22:08 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:22:08 [class: DAL.DalSuppliers.DalSupplierCard,Line:185] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:22:13 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:22:13 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:23:36 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:23:36 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:24:17 [class: DAL.DalSuppliers.DalSupplierCard,Line:187] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:24:17 [class: DAL.DalSuppliers.DalSupplierCard,Line:187] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:24:17 [class: DAL.DalSuppliers.DalSupplierCard,Line:187] - java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+[WARN ] 07-05-2021 14:24:22 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:24:22 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:24:37 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:24:37 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:28:15 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:28:15 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:31:14 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 07-05-2021 14:31:14 [class: DAL.DalController,Line:114] - ResultSet closed

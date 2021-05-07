@@ -172,10 +172,36 @@ public class DalSupplierCard extends DALObject {
     }
 
     public Dictionary<String , String> getContactPhone() {
+        try {
+            String query = "SELECT * FROM SupplierPhones\n" +
+                    "WHERE supplierBN = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(supplierBN);
+            List<Tuple<List<Class>,List<Object>>> list1 = DC.SelectMany(query, list);
+            if (list1 != null && list1.size() > 0) {
+                contactPhone.put((String) list1.get(0).item2.get(1), (String) list1.get(0).item2.get(2));
+            }
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
         return contactPhone;
     }
 
     public Dictionary<String , String> getContactEmail() {
+        try {
+            String query = "SELECT * FROM SupplierEmails\n" +
+                    "WHERE supplierBN = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(supplierBN);
+            List<Tuple<List<Class>,List<Object>>> list1 = DC.SelectMany(query, list);
+            if (list1 != null && list1.size() > 0) {
+                contactEmail.put((String) list1.get(0).item2.get(1), (String) list1.get(0).item2.get(2));
+            }
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
         return contactEmail;
     }
 
@@ -332,4 +358,6 @@ public class DalSupplierCard extends DALObject {
         }
         return null;
     }
+
+
 }
