@@ -49,7 +49,7 @@ public class Item{
 
     private void loadQuantityDocument() {
         Tuple<List<Class>,List<Object>> tuple = dalItem.loadQuantityDocument();
-        if (tuple != null) {
+        if (tuple != null &&  tuple.item2 != null && tuple.item2.size()>0) {
             int key = (int) tuple.item2.get(0);
             Mapper map = Mapper.getMap();
             List<Integer> keyList = new ArrayList<>();
