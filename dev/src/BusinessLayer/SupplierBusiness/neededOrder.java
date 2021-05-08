@@ -1,5 +1,7 @@
 package BusinessLayer.SupplierBusiness;
 
+import DAL.DalSuppliers.DalOrder;
+
 import java.time.LocalDate;
 
 public final class neededOrder extends Order {
@@ -18,4 +20,7 @@ public final class neededOrder extends Order {
         dalOrder.updateTotalAmount(totalAmount);
     }
 
+    public neededOrder(DalOrder dalOrder) {
+        super(dalOrder);
+    }
 }

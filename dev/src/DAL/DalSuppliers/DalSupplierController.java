@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DalSupplierController extends DALObject {
-    private int supplierBN;
+    private int controller;
     private int numOfItems;
     private int numOfOrders;
     final static Logger log=Logger.getLogger(DalSupplierController.class);
@@ -17,9 +17,9 @@ public class DalSupplierController extends DALObject {
     public DalSupplierController() {
         super(null);
     }
-    public DalSupplierController(Integer supplierBN , Integer numOfItems , Integer numOfOrders , DalController dalController) {
+    public DalSupplierController(Integer controller , Integer numOfItems , Integer numOfOrders , DalController dalController) {
         super(dalController);
-        this.supplierBN = supplierBN;
+        this.controller = controller;
         this.numOfItems = numOfItems;
         this.numOfOrders = numOfOrders;
     }
@@ -36,7 +36,7 @@ public class DalSupplierController extends DALObject {
 
     @Override
     public String getSelect() {
-        return "Select * FROM SupplierController\n";
+        return "Select * FROM SupplierController;";
     }
 
     @Override
@@ -59,10 +59,32 @@ public class DalSupplierController extends DALObject {
     }
 
     public int getNumOfItems() {
+        try {
+            String query = "SELECT numOfItems FROM SupplierController\n" +
+                    "WHERE controller = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(controller);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            numOfItems = (Integer) tuple.item2.get(0);
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
         return numOfItems;
     }
 
     public int getNumOfOrders() {
+        try {
+            String query = "SELECT numOfOrders FROM SupplierController\n" +
+                    "WHERE controller = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(controller);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            numOfOrders = (Integer) tuple.item2.get(0);
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
         return numOfOrders;
     }
 
@@ -74,7 +96,7 @@ public class DalSupplierController extends DALObject {
                 "SET numOfItems = ?\n" +
                 "WHERE controller = ?;";
         list.add(new Tuple<>(numOfItems+1, Integer.class));
-        list.add(new Tuple<>(supplierBN, Integer.class));
+        list.add(new Tuple<>(controller, Integer.class));
         DC.noSelect(query, list);
         numOfItems++;
     }
@@ -82,15 +104,15 @@ public class DalSupplierController extends DALObject {
     public void addNumOfOrders() throws Exception {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE SupplierController\n" +
-                "SET numOfItems = ?\n" +
+                "SET numOfOrders = ?\n" +
                 "WHERE controller = ?;";
         list.add(new Tuple<>(numOfOrders+1, Integer.class));
-        list.add(new Tuple<>(supplierBN, Integer.class));
+        list.add(new Tuple<>(controller, Integer.class));
         DC.noSelect(query, list);
         numOfOrders++;
     }
 
-    public List<Tuple<List<Class>,List<Object>>> load1() {
+    public List<Tuple<List<Class>,List<Object>>> loadSuppliers() {
         try {
             String query = "SELECT * FROM Suppliers;";
             LinkedList<Integer> list = new LinkedList<>();

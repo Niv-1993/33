@@ -53,7 +53,9 @@ public class mainCLI {
                         // Mapper.getMap("loadDB.db");
                         presentationCL.loadData(); // make a test that chek if it was load correctlly
                     }
-                    case 2 -> { /* Mapper.getMap("newDB.db"); */ }
+                    case 2 -> { /* Mapper.getMap("newDB.db"); */
+                        presentationCL.newData();
+                    }
                     default -> System.out.println("illegal option!!!");
                 }
                 if(n == 1 || n == 2) break;

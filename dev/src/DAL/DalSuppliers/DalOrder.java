@@ -50,7 +50,7 @@ public class DalOrder extends DALObject {
                 "\t\"orderId\" INTEGER NOT NULL,\n" +
                 "\t\"itemId\" INTEGER NOT NULL,\n" +
                 "\t\"amount\" INTEGER NOT NULL,\n" +
-                "\tPRIMARY KEY(\"itemId\"), \n" +
+                "\tPRIMARY KEY(\"itemId\"),\n" +
                 "\tFOREIGN KEY(\"orderId\") REFERENCES \"Orders\"(\"orderId\")  ON DELETE CASCADE ON UPDATE CASCADE ,\n" +
                 "\tFOREIGN KEY(\"itemId\") REFERENCES \"Items\"(\"itemId\")  ON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";

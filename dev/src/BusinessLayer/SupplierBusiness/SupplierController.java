@@ -41,9 +41,27 @@ public class SupplierController{
         suppliers = new Hashtable<>();
     }
 
-    public void load() {
+    public SupplierController(boolean load) {
+        Mapper map=Mapper.getMap();
+        List<Integer> keyList=new ArrayList<>();
+        DALObject check =map.getItem(DalSupplierController.class ,keyList);
+        if (DalSupplierController.class==null || check==null ||(check.getClass()!=DalSupplierController.class)){
+            String s="the instance that return from Mapper is null";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        else{
+            log.info("create new Object");
+            dalSupplierController = (DalSupplierController) check;
+            dalSupplierController.getNumOfItems();
+            dalSupplierController.getNumOfOrders();
+        }
+        loadSuppliers();
+    }
+
+    private void loadSuppliers() {
         suppliers = new Hashtable<>();
-        List<Tuple<List<Class>,List<Object>>> list1 = dalSupplierController.load1();
+        List<Tuple<List<Class>,List<Object>>> list1 = dalSupplierController.loadSuppliers();
         for (int i=0; i<list1.get(0).item2.size() ; i=i+4) {
             int key = (int)list1.get(0).item2.get(i);
             Mapper map=Mapper.getMap();

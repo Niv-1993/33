@@ -1,5 +1,7 @@
 package BusinessLayer.SupplierBusiness;
 
+import DAL.DalSuppliers.DalOrder;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -7,6 +9,10 @@ public class regularOrder extends Order{
 
     public regularOrder(int supplierBN, int orderId , int branchId){
         super(supplierBN, orderId , LocalDate.now().plusDays(7), branchId , 0);
+    }
+
+    public regularOrder(DalOrder dalOrder) {
+        super(dalOrder);
     }
 
     public void updateDeliverTime(LocalDate deliverTime) throws Exception {

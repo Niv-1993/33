@@ -29,6 +29,10 @@ public class PresentationCL{
         }
     }
 
+    public void newData() {
+        service.newData();
+    }
+
     public void mainRun(boolean firstTime){
         Scanner scanner = new Scanner(System.in);
         String[] mainMenuArray = {"showing methods" , "adding methods" , "removing methods" , "updating methods" ,"back to choice menu" , "END PROGRAM"};

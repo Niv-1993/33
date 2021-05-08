@@ -15,12 +15,12 @@ public class SupplierService implements ISupplierService {
     private SupplierController supplierController;
 
     public SupplierService() {
-        supplierController = new SupplierController();
+        supplierController = null;
     }
 
     @Override
     public response LoadData() {
-       supplierController.load();
+       supplierController = new SupplierController(true);
        return new response();
     }
 
@@ -508,5 +508,9 @@ public class SupplierService implements ISupplierService {
             return new response("ERROR: " + e.getMessage());
         }
         return new response();
+    }
+
+    public void newData() {
+        supplierController = new SupplierController();
     }
 }

@@ -90,7 +90,12 @@ public class SupplierCard {
                     throw new IllegalArgumentException(s);
                 } else {
                     log.info("loaded new Object");
-                    orders.add(new Order((DalOrder) check));
+                    if ((Integer) ((DalOrder) check).getOrderType() == 0) {
+                        orders.add(new regularOrder((DalOrder) check));
+                    }
+                    else {
+                        orders.add(new neededOrder((DalOrder) check));
+                    }
                 }
             }
         }

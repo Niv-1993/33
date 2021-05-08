@@ -33042,3 +33042,130 @@ failed due to class java.lang.Double cannot be cast to class java.lang.Integer (
 [WARN ] 07-05-2021 19:06:23 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO ItemsInOrders
 VALUES (?,?,?)
 failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: ItemsInOrders.itemId)
+[WARN ] 08-05-2021 10:01:09 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:01:09 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:01:09 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:01:55 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:02:05 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:02:09 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:03:51 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:03:51 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:03:51 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:03:55 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:03:55 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:03:55 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:04:07 [class: DAL.DalController,Line:67] - noSelect quary: INSERT OR REPLACE INTO Orders
+VALUES (?,?,?,?,?,?)
+failed due to [SQLITE_ERROR] SQL error or missing database (table Orders has 5 columns but 6 values were supplied)
+[WARN ] 08-05-2021 10:04:07 [class: DAL.Mapper,Line:157] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (table Orders has 5 columns but 6 values were supplied)
+[WARN ] 08-05-2021 10:04:07 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:04:07 [class: BusinessLayer.SupplierBusiness.Order,Line:38] - the instance that return from Mapper is null
+[WARN ] 08-05-2021 10:04:41 [class: DAL.DalController,Line:67] - noSelect quary: CREATE TABLE IF NOT EXISTS "ItemsInOrders"(
+	"orderId" INTEGER NOT NULL,
+	"itemId" INTEGER NOT NULL,
+	"amount" INTEGER NOT NULL,
+	PRIMARY KEY("itemId"), 
+	PRIMARY KEY("orderId"), 
+	FOREIGN KEY("orderId") REFERENCES "Orders"("orderId")  ON DELETE CASCADE ON UPDATE CASCADE ,
+	FOREIGN KEY("itemId") REFERENCES "Items"("itemId")  ON DELETE CASCADE ON UPDATE CASCADE
+)
+failed due to [SQLITE_ERROR] SQL error or missing database (table "ItemsInOrders" has more than one primary key)
+[WARN ] 08-05-2021 10:04:41 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 08-05-2021 10:06:24 [class: DAL.DalController,Line:67] - noSelect quary: CREATE TABLE IF NOT EXISTS "ItemsInOrders"(
+	"orderId" INTEGER NOT NULL,
+	"itemId" INTEGER NOT NULL,
+	"amount" INTEGER NOT NULL,
+	PRIMARY KEY("itemId"), 
+	PRIMARY KEY("orderId"), 
+	FOREIGN KEY("orderId") REFERENCES "Orders"("orderId")  ON DELETE CASCADE ON UPDATE CASCADE ,
+	FOREIGN KEY("itemId") REFERENCES "Items"("itemId")  ON DELETE CASCADE ON UPDATE CASCADE
+)
+failed due to [SQLITE_ERROR] SQL error or missing database (table "ItemsInOrders" has more than one primary key)
+[WARN ] 08-05-2021 10:06:24 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 08-05-2021 10:08:32 [class: DAL.DalController,Line:67] - noSelect quary: CREATE TABLE IF NOT EXISTS "ItemsInOrders"(
+	"orderId" INTEGER NOT NULL,
+	"itemId" INTEGER NOT NULL,
+	"amount" INTEGER NOT NULL,
+	PRIMARY KEY("itemId"), 
+	PRIMARY KEY("orderId"), 
+	FOREIGN KEY("orderId") REFERENCES "Orders"("orderId")  ON DELETE CASCADE ON UPDATE CASCADE ,
+	FOREIGN KEY("itemId") REFERENCES "Items"("itemId")  ON DELETE CASCADE ON UPDATE CASCADE
+)
+failed due to [SQLITE_ERROR] SQL error or missing database (table "ItemsInOrders" has more than one primary key)
+[WARN ] 08-05-2021 10:08:32 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 08-05-2021 10:09:01 [class: DAL.DalController,Line:67] - noSelect quary: CREATE TABLE IF NOT EXISTS "ItemsInOrders"(
+	"orderId" INTEGER NOT NULL,
+	"itemId" INTEGER NOT NULL,
+	"amount" INTEGER NOT NULL,
+	PRIMARY KEY("itemId"), 
+	PRIMARY KEY("orderId"), 
+	FOREIGN KEY("orderId") REFERENCES "Orders"("orderId")  ON DELETE CASCADE ON UPDATE CASCADE ,
+	FOREIGN KEY("itemId") REFERENCES "Items"("itemId")  ON DELETE CASCADE ON UPDATE CASCADE
+)
+failed due to [SQLITE_ERROR] SQL error or missing database (table "ItemsInOrders" has more than one primary key)
+[WARN ] 08-05-2021 10:09:01 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 08-05-2021 10:09:22 [class: DAL.DalController,Line:67] - noSelect quary: CREATE TABLE IF NOT EXISTS "ItemsInOrders"(
+	"orderId" INTEGER NOT NULL,
+	"itemId" INTEGER NOT NULL,
+	"amount" INTEGER NOT NULL,
+	PRIMARY KEY("itemId"), 
+	PRIMARY KEY("orderId"), 
+	FOREIGN KEY("orderId") REFERENCES "Orders"("orderId")  ON DELETE CASCADE ON UPDATE CASCADE ,
+	FOREIGN KEY("itemId") REFERENCES "Items"("itemId")  ON DELETE CASCADE ON UPDATE CASCADE
+)
+failed due to [SQLITE_ERROR] SQL error or missing database (table "ItemsInOrders" has more than one primary key)
+[WARN ] 08-05-2021 10:09:22 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 08-05-2021 10:11:33 [class: DAL.DalController,Line:67] - noSelect quary: CREATE TABLE IF NOT EXISTS "ItemsInOrders"(
+	"orderId" INTEGER NOT NULL,
+	"itemId" INTEGER NOT NULL,
+	"amount" INTEGER NOT NULL,
+	PRIMARY KEY("itemId"), 
+	PRIMARY KEY("orderId"), 
+	FOREIGN KEY("orderId") REFERENCES "Orders"("orderId")  ON DELETE CASCADE ON UPDATE CASCADE ,
+	FOREIGN KEY("itemId") REFERENCES "Items"("itemId")  ON DELETE CASCADE ON UPDATE CASCADE
+)
+failed due to [SQLITE_ERROR] SQL error or missing database (table "ItemsInOrders" has more than one primary key)
+[WARN ] 08-05-2021 10:11:33 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 08-05-2021 10:13:22 [class: DAL.DalController,Line:67] - noSelect quary: CREATE TABLE IF NOT EXISTS "ItemsInOrders"(
+	"orderId" INTEGER NOT NULL,
+	"itemId" INTEGER NOT NULL,
+	"amount" INTEGER NOT NULL,
+	PRIMARY KEY("itemId"), 
+	PRIMARY KEY("orderId"), 
+	FOREIGN KEY("orderId") REFERENCES "Orders"("orderId")  ON DELETE CASCADE ON UPDATE CASCADE ,
+	FOREIGN KEY("itemId") REFERENCES "Items"("itemId")  ON DELETE CASCADE ON UPDATE CASCADE
+)
+failed due to [SQLITE_ERROR] SQL error or missing database (table "ItemsInOrders" has more than one primary key)
+[WARN ] 08-05-2021 10:13:22 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 08-05-2021 10:20:33 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:22:14 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:22:14 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:22:14 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:24:16 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:24:16 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:24:16 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:24:16 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:30:54 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:30:54 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:30:54 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:30:54 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:31:09 [class: DAL.DalSuppliers.DalSupplierController,Line:86] - java.lang.Exception: select field
+[WARN ] 08-05-2021 10:31:50 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:31:50 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:31:50 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:31:50 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:40:32 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:41:33 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:42:44 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:45:58 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:51] - the instance that return from Mapper is null
+[WARN ] 08-05-2021 10:47:52 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:51] - the instance that return from Mapper is null
+[WARN ] 08-05-2021 10:48:48 [class: BusinessLayer.SupplierBusiness.SupplierController,Line:51] - the instance that return from Mapper is null
+[WARN ] 08-05-2021 10:49:12 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:50:05 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:50:40 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:52:28 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:54:37 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 10:55:25 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 11:03:15 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 11:03:37 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 08-05-2021 11:08:52 [class: DAL.DalController,Line:114] - ResultSet closed
