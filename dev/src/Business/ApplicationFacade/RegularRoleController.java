@@ -22,18 +22,10 @@ public class RegularRoleController implements iRegularRoleController {
     private final Utils utils;
     private final ShiftController sc;
 
-    //WILL BE DELETED WHEN THERE WILL BE DATABASE
-    //private int branchCounter;
-    //private List<Integer> allBranches;
-
     public RegularRoleController(){
-       // this.currConnectedEmpRole = null;
         this.currConnectedEmp = null;
         sc = new ShiftController();
         utils = new Utils(sc);
-        //WILL BE DELETED WHEN THERE WILL BE DATABASE
-       // allBranches = new ArrayList<>();
-       // branchCounter = 1;
     }
 
     /**
@@ -133,7 +125,7 @@ public class RegularRoleController implements iRegularRoleController {
      */
     public ResponseData<List<Shift>> getMyShifts() {
         log.debug("entered getting shifts of employee: "+currConnectedEmp.getEID());
-        List<Business.ShiftPKG.Shift> myShifts = sc.getMyShifts(currConnectedEmp);
+        List<Business.ShiftPKG.Shift> myShifts = sc.getMyShifts(currConnectedEmp,utils.generate_optionals());
         return new ResponseData<>(utils.convertShifts(myShifts));
     }
 

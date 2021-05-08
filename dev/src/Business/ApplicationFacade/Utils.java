@@ -4,19 +4,22 @@ import Business.ApplicationFacade.outObjects.Constraint;
 import Business.ApplicationFacade.outObjects.Shift;
 import Business.EmployeePKG.Employee;
 import Business.ShiftPKG.ShiftController;
+import Business.Type.RoleType;
+import DataAccess.EmployeeMapper;
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Utils {
     final static Logger log = Logger.getLogger(Utils.class);
     private ShiftController shiftController;
+    private boolean needToUpdateOps;
+    private Map<RoleType, List<Business.EmployeePKG.Employee>> ops;
 
     public Utils(ShiftController s) {
         shiftController = s;
+        needToUpdateOps = true;
+        ops = null;
     }
 
     public ShiftController getShiftController() {
@@ -49,7 +52,24 @@ public class Utils {
     /**
      * Convert Help Functions of lists
      */
-
+    protected Map<RoleType, List<Business.EmployeePKG.Employee>> generate_optionals() {
+        if (needToUpdateOps) {
+            Map<RoleType, List<Business.EmployeePKG.Employee>> optionals = new HashMap<>();
+            EnumSet<RoleType> allRoles = EnumSet.allOf(RoleType.class);
+            for (RoleType role : allRoles) {
+                optionals.put(role, new ArrayList<>());
+            }
+            List<Business.EmployeePKG.Employee> empsInBranch = EmployeeMapper.getInstance().loadEmployeesInBranch();
+            empsInBranch.forEach(employee -> {
+                employee.getRole().forEach(roleType -> {
+                    optionals.get(roleType).add(employee);
+                });
+            });
+            ops = optionals;
+            setNeedToUpdateOps(false);
+            return optionals;
+        } else return ops;
+    }
 
     protected List<Business.ApplicationFacade.outObjects.Employee> convertEmployee(List<Business.EmployeePKG.Employee> allEmployees) {
         log.debug("converting employees of business layer to out objects list");
@@ -60,23 +80,24 @@ public class Utils {
         log.debug("Done.");
         return employees;
     }
+
     protected List<Shift> convertShifts(List<Business.ShiftPKG.Shift> allShifts) {
         log.debug("converting shift of business layer to out objects list");
         List<Shift> shifts = new ArrayList<>();
         allShifts.forEach(s -> {
-            Map<Business.ApplicationFacade.outObjects.Employee,String> emps = new HashMap<>();
-            Map<String,List<Business.ApplicationFacade.outObjects.Employee>> ops = new HashMap<>();
+            Map<Business.ApplicationFacade.outObjects.Employee, String> emps = new HashMap<>();
+            Map<String, List<Business.ApplicationFacade.outObjects.Employee>> ops = new HashMap<>();
             s.getEmployees().forEach((employee, roleType) -> {
-                emps.put(new Business.ApplicationFacade.outObjects.Employee(employee),roleType.name());
+                emps.put(new Business.ApplicationFacade.outObjects.Employee(employee), roleType.name());
             });
             s.getOptionals().forEach((roleType, employees1) -> {
                 List<Business.ApplicationFacade.outObjects.Employee> e = new ArrayList<>();
                 employees1.forEach(employee -> {
                     e.add(new Business.ApplicationFacade.outObjects.Employee(employee));
                 });
-                ops.put(roleType.name(),e);
+                ops.put(roleType.name(), e);
             });
-            shifts.add(new Shift(s,emps,ops));
+            shifts.add(new Shift(s, emps, ops));
         });
         log.debug("Done.");
         return shifts;
@@ -90,5 +111,9 @@ public class Utils {
         });
         log.debug("Done.");
         return constraints;
+    }
+
+    public void setNeedToUpdateOps(boolean needToUpdateOps) {
+        this.needToUpdateOps = needToUpdateOps;
     }
 }

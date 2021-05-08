@@ -27957,3 +27957,12 @@ Shift Date: 2021-04-16    Type: Morning
 [DEBUG] 04-05-2021 13:18:14 [class: Business.ApplicationFacade.RegularRoleController,Line:45] - successfully logged in - user fields are updated to +1 with role PersonnelManager
 [DEBUG] 04-05-2021 13:35:46 [class: Business.ShiftPKG.ShiftController,Line:32] - finished constructor shiftController
 [DEBUG] 06-05-2021 15:28:25 [class: Business.ShiftPKG.ShiftController,Line:32] - finished constructor shiftController
+[DEBUG] 08-05-2021 16:24:51 [class: Business.ShiftPKG.ShiftController,Line:24] - finished constructor shiftController
+[DEBUG] 08-05-2021 16:25:54 [class: Business.ApplicationFacade.RegularRoleController,Line:189] - enter create branch function
+[DEBUG] 08-05-2021 16:25:54 [class: Business.ApplicationFacade.RegularRoleController,Line:190] - creating instance of the personnel manager in this new branch
+[DEBUG] 08-05-2021 16:25:54 [class: Business.ApplicationFacade.RegularRoleController,Line:193] - successfully created branch
+[DEBUG] 08-05-2021 16:26:28 [class: Business.ShiftPKG.ShiftController,Line:24] - finished constructor shiftController
+[DEBUG] 08-05-2021 16:27:44 [class: Business.ShiftPKG.ShiftController,Line:24] - finished constructor shiftController
+[DEBUG] 08-05-2021 16:28:04 [class: Business.ApplicationFacade.RegularRoleController,Line:189] - enter create branch function
+[DEBUG] 08-05-2021 16:28:04 [class: Business.ApplicationFacade.RegularRoleController,Line:190] - creating instance of the personnel manager in this new branch
+[DEBUG] 08-05-2021 16:28:04 [class: Business.ApplicationFacade.RegularRoleController,Line:193] - successfully created branch

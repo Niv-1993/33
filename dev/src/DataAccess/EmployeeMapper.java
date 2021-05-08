@@ -37,7 +37,7 @@ public class EmployeeMapper extends Mapper {
         ResultSet res;
         if (employees.containsKey(EID))
             return employees.get(EID);
-        String query = String.format("SELECT * FROM %s WHERE %s=?", tableName, this.id);
+        String query = String.format("SELECT * FROM %s WHERE %s=? AND BID=%d", tableName, this.id,getCurrBranchID());
         try (Connection con = connect(); PreparedStatement pre = con.prepareStatement(query)) {
             pre.setInt(1, EID);
             res = pre.executeQuery();
@@ -70,7 +70,7 @@ public class EmployeeMapper extends Mapper {
     private void loadAllRoles(Employee emp) {
         String query = "SELECT * FROM RolesAndEmployees WHERE EID= ?";
         try (Connection con = connect();
-             PreparedStatement pre = connect().prepareStatement(query)) {
+             PreparedStatement pre = con.prepareStatement(query)) {
             pre.setInt(1, emp.getEID());
             ResultSet res = pre.executeQuery();
             List<String> roles = new ArrayList<>();

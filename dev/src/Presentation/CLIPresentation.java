@@ -86,6 +86,7 @@ public class CLIPresentation {
             if (SD == -1) return;
             System.out.println();
             r.getRc().createBranch(code, ID, name, new int[]{AC, BB, BID}, salary, new int[]{fund, DO, SD});
+            break;
         }
     }
 
