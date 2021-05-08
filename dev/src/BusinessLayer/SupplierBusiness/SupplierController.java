@@ -261,7 +261,6 @@ public class SupplierController{
         try {
             item = suppliers.get(supplierBN).addItem(supplierBN, dalSupplierController.getNumOfItems() , name, price, typeID, expirationDate);
             dalSupplierController.addNumOfItems();
-
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
