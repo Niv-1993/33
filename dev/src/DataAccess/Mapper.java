@@ -36,6 +36,18 @@ public class Mapper {
         }
     }
 
+    public void updateIntboolean(int id, boolean value, String column, String idn, String tableName) {
+        String query = String.format("UPDATE %s SET %s= ? WHERE %s= ?", tableName, column, idn);
+        try (Connection con = connect();
+             PreparedStatement pre = con.prepareStatement(query)) {
+            pre.setBoolean(1, value);
+            pre.setInt(2, id);
+            pre.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+
     public void updateIntString(int id, String value, String column, String idn, String tableName) {
         String query = String.format("UPDATE %s SET %s= ? WHERE %s= ?", tableName, column, idn);
         try (Connection con = connect();
@@ -45,6 +57,19 @@ public class Mapper {
             pre.executeUpdate();
         } catch (Exception e) {
         }
+    }
+
+    public int getNextID(String tableName,String column) {
+        int nextID = 1;
+        ResultSet res;
+        String query = String.format("SELECT Max(%s)+1 as nextID FROM %s", column, tableName);
+        try (Connection con = connect(); PreparedStatement pre = con.prepareStatement(query)) {
+            res = pre.executeQuery();
+            if (res.first())
+                nextID = res.getInt("nextID");
+        } catch (Exception e) {
+        }
+        return nextID;
     }
 
     public void setCurrBranchID(int currBranchID) {

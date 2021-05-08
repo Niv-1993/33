@@ -11,7 +11,7 @@ public abstract class Constraint {
     private final int CID;
     private final int EID;
     protected ShiftType shiftType;
-    private String reason;
+    private final String reason;
 
     //------------------------------constructor---------------------------
 
@@ -22,19 +22,25 @@ public abstract class Constraint {
         this.reason = reason;
     }
 
+    Constraint(int CID, int EID, String shiftType, String reason){
+        this.CID = CID;
+        this.EID = EID;
+        this.shiftType = ShiftType.valueOf(shiftType);
+        this.reason = reason;
+    }
     //---------------------------------methods----------------------------
 
     public abstract boolean relevant(LocalDate date, ShiftType shiftType);
 
     public abstract String getStringDate();  //return date or "every"+day
 
-    public void updateReason(String newReason){
+/*    public void updateReason(String newReason){
         reason = newReason;
-    }
+    }*/
 
-    public void updateShiftType(ShiftType newShiftType){
+    /*public void updateShiftType(ShiftType newShiftType){
         shiftType = newShiftType;
-    }
+    }*/
 
     //-------------------------------getters&setters----------------------
 

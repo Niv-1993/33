@@ -14,7 +14,14 @@ public class ConstConstraint extends Constraint {
 
     //------------------------------------constructor--------------------------------
 
-    ConstConstraint(int CID, int EID, DayOfWeek day, ShiftType shiftType, String reason) {
+    public ConstConstraint(int CID, int EID, DayOfWeek day, ShiftType shiftType, String reason) {
+        super(CID, EID, shiftType, reason);
+        this.day = day;
+        log.debug("Const constraint " + getCID() + " created");
+    }
+
+    //for db
+    public ConstConstraint(int CID, int EID, DayOfWeek day, String shiftType, String reason) {
         super(CID, EID, shiftType, reason);
         this.day = day;
         log.debug("Const constraint " + getCID() + " created");
@@ -31,6 +38,12 @@ public class ConstConstraint extends Constraint {
     public String getStringDate() {
         return "Every " + day;
     }
+
+
+    public DayOfWeek getDay() {
+        return day;
+    }
+
 
 
 }

@@ -11,7 +11,14 @@ public class TempConstraint extends Constraint {
     private final LocalDate date;
 
     //------------------------------------constructor--------------------------------
-    TempConstraint(int CID, int EID, LocalDate date, ShiftType shiftType, String reason) {
+    public TempConstraint(int CID, int EID, LocalDate date, ShiftType shiftType, String reason) {
+        super(CID, EID,shiftType,reason);
+        this.date = date;
+        log.debug("Temp constraint "+getCID()+" created");
+    }
+
+    //for db
+    public TempConstraint(int CID, int EID, LocalDate date, String shiftType, String reason) {
         super(CID, EID,shiftType,reason);
         this.date = date;
         log.debug("Temp constraint "+getCID()+" created");

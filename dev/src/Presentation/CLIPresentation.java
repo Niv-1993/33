@@ -344,7 +344,6 @@ public class CLIPresentation {
         }
     }
 
-
     private String chooseRole() {
         System.out.println("\nChoose a role");
         List<String> roles = r.getRc().getRoleTypes().getData();
