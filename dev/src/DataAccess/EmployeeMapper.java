@@ -18,6 +18,7 @@ public class EmployeeMapper extends Mapper {
     private final HashMap<Integer, Employee> employees;
     private final String tableName = "Employees";
     private final String id = "EID";
+    private boolean needToUpdateEmps = true;
 
     public static EmployeeMapper getInstance() {
         if (empMapper == null)
@@ -37,11 +38,10 @@ public class EmployeeMapper extends Mapper {
         ResultSet res;
         if (employees.containsKey(EID))
             return employees.get(EID);
-        String query = String.format("SELECT * FROM %s WHERE %s=? AND BID=%d", tableName, this.id,getCurrBranchID());
+        String query = String.format("SELECT * FROM %s WHERE %s=%d AND BID=%d", tableName, this.id, EID, getCurrBranchID());
         try (Connection con = connect(); PreparedStatement pre = con.prepareStatement(query)) {
-            pre.setInt(1, EID);
             res = pre.executeQuery();
-            if (res.first()) {
+            if (res.next()) {
                 int[] bankDetails = {res.getInt("AccountNumber"), res.getInt("BankID"), res.getInt("BranchNumber")};
                 int[] terms = {res.getInt("EducationFund"), res.getInt("DaysOff"), res.getInt("SickDays")};
                 emp = new Employee(res.getInt("EID"), res.getString("Name"), bankDetails, res.getInt("Salary"),
@@ -49,6 +49,7 @@ public class EmployeeMapper extends Mapper {
                 employees.put(emp.getEID(), emp);
             }
         } catch (Exception e) {
+            System.out.println("[get] ->" + e.getMessage());
         } finally {
             if (emp != null)
                 loadAllRoles(emp);
@@ -79,16 +80,18 @@ public class EmployeeMapper extends Mapper {
             }
             emp.setRole(roles);
         } catch (Exception e) {
+            System.out.println("[loadAllRoles] ->" + e.getMessage());
         }
     }
 
 
     public boolean insert(int EID, Employee emp) {
         boolean res = false;
-        String query = "INSERT INTO %s VALUES(?,?,?,?,?,?,?,?,?,?,?,?);\n" +
-                "INSERT INTO RolesAndEmployees VALUES(?,?)";
+        String query1 = String.format("INSERT INTO %s VALUES(?,?,?,?,?,?,?,?,?,?,?,?);", tableName);
+        String query2 = "INSERT INTO RolesAndEmployees VALUES(?,?)";
         try (Connection con = connect();
-             PreparedStatement pre = con.prepareStatement(query)) {
+             PreparedStatement pre = con.prepareStatement(query1);
+             PreparedStatement pre2 = con.prepareStatement(query2)) {
             pre.setInt(1, emp.getEID());
             pre.setString(2, emp.getName());
             pre.setString(3, emp.getStartWorkingDate().toString());
@@ -101,10 +104,12 @@ public class EmployeeMapper extends Mapper {
             pre.setInt(10, emp.getTermsOfEmployment().getSickDays());
             pre.setInt(11, 1);
             pre.setInt(12, getCurrBranchID());
-            pre.setInt(13, emp.getEID());
-            pre.setString(14, emp.getRole().get(0).name());
+            pre2.setInt(1, emp.getEID());
+            pre2.setString(2, emp.getRole().get(0).name());
             res = pre.executeUpdate() > 0;
+            res = res && pre2.executeUpdate() > 0;
         } catch (Exception e) {
+            System.out.println("[insert-emp] ->" + e.getMessage());
         } finally {
             if (res)
                 employees.put(EID, emp);
@@ -122,6 +127,7 @@ public class EmployeeMapper extends Mapper {
                 branches.add(res.getInt("BID"));
             }
         } catch (Exception e) {
+            System.out.println("[getAllBranches-emp] ->" + e.getMessage());
         }
         return branches;
     }
@@ -129,17 +135,20 @@ public class EmployeeMapper extends Mapper {
     //TODO: ask what to do with all the branches properties in database
     public void insertNewBranch(int newEID, Employee m) {
         String getNextBID = "SELECT max(BID)+1 AS mx FROM Branches";
-        String addBranch = "INSERT INTO BRANCHES (?,'','',0,0,'',0,0)";
+        String addBranch = "INSERT INTO Branches VALUES(?,'','',0,0,'',0,0)";
+        int bid = 0;
         try (Connection con = connect();
              PreparedStatement nextID = con.prepareStatement(getNextBID);
              PreparedStatement pre = con.prepareStatement(addBranch)) {
             ResultSet res = nextID.executeQuery();
-            int bid = res.getInt("mx");
+            bid = res.getInt("mx");
             if (bid == 0) bid++;
             pre.setInt(1, bid);
             pre.executeUpdate();
         } catch (Exception e) {
+            System.out.println("[insertNewBranch-emp] ->" + e.getMessage());
         } finally {
+            setCurrBranchID(bid);
             insert(newEID, m);
         }
     }
@@ -186,26 +195,46 @@ public class EmployeeMapper extends Mapper {
 
 
     public List<Employee> loadEmployeesInBranch() {
-        String query = String.format("SELECT * FROM %s as E JOIN RolesAndEmployees as R ON E.EID=R.EID WHERE BID=? AND Active = 1", tableName);
-        Map<Integer, Employee> emps = new HashMap<>();
-        try (Connection con = connect();
-             PreparedStatement pre = con.prepareStatement(query)) {
-            pre.setInt(1, getCurrBranchID());
-            ResultSet res = pre.executeQuery();
-            while (res.next()) {
-                if (emps.containsKey(res.getInt(id))) {
-                    emps.get(res.getInt(id)).addRole(res.getString("Role"));
-                } else {
-                    int[] bankDetails = {res.getInt("AccountNumber"), res.getInt("BankID"), res.getInt("BranchNumber")};
-                    int[] terms = {res.getInt("EducationFund"), res.getInt("DaysOff"), res.getInt("SickDays")};
-                    Employee emp = new Employee(res.getInt("EID"), res.getString("Name"), bankDetails, res.getInt("Salary"),
-                            LocalDate.parse(res.getString("StartWorkingDate")), terms);
-                    emp.addRole(res.getString("Role"));
-                    emps.put(emp.getEID(), emp);
+        if (needToUpdateEmps) {
+            String query = String.format("SELECT * FROM %s as E JOIN RolesAndEmployees as R ON E.EID=R.EID WHERE BID=? AND Active = 1", tableName);
+            try (Connection con = connect();
+                 PreparedStatement pre = con.prepareStatement(query)) {
+                pre.setInt(1, getCurrBranchID());
+                ResultSet res = pre.executeQuery();
+                while (res.next()) {
+                    if (!employees.containsKey(res.getInt(id))) {
+                        int[] bankDetails = {res.getInt("AccountNumber"), res.getInt("BankID"), res.getInt("BranchNumber")};
+                        int[] terms = {res.getInt("EducationFund"), res.getInt("DaysOff"), res.getInt("SickDays")};
+                        Employee emp = new Employee(res.getInt("EID"), res.getString("Name"), bankDetails, res.getInt("Salary"),
+                                LocalDate.parse(res.getString("StartWorkingDate")), terms);
+                        emp.addRole(res.getString("Role"));
+                        employees.put(emp.getEID(), emp);
+                    } else {
+                        String role = res.getString("Role");
+                        Employee employee = employees.get(res.getInt(id));
+                        employee.addRole(role);
+                    }
                 }
+            } catch (Exception e) {
+                System.out.println("[loadEmployeesInBranch-emp] ->" + e.getMessage());
             }
+            needToUpdateEmps = false;
+            return new ArrayList<>(employees.values());
+        } else return new ArrayList<>(employees.values());
+    }
+
+    public void addRole(int eid, String role) {
+        String addRole = String.format("INSERT INTO RolesAndEmployees VALUES (%d,'%s')", eid, role);
+        try (Connection con = connect();
+             PreparedStatement pre = con.prepareStatement(addRole)) {
+            pre.executeUpdate();
         } catch (Exception e) {
+            System.out.println("[addRole]-> " + e.getMessage());
         }
-        return new ArrayList<>(emps.values());
+    }
+
+    public void resetEmps() {
+        employees.clear();
+        needToUpdateEmps = true;
     }
 }

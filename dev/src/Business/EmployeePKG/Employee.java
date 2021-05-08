@@ -99,7 +99,8 @@ public class Employee {
         this.salary = salary;
     }
     public void addRole(String role){
-        this.role.add(RoleType.valueOf(role));
+        if(!this.role.contains(RoleType.valueOf(role)))
+            this.role.add(RoleType.valueOf(role));
     }
     public void setRole(List<String> role) {
         this.role = role.stream().map(RoleType::valueOf).collect(Collectors.toList());

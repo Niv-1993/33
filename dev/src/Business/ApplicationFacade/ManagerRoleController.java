@@ -323,8 +323,10 @@ public class ManagerRoleController implements iManagerRoleController {
     public void addRoleToEmployee(int EID, String role) {
         log.debug("entered add role to employee function");
         //UPDATE DATABASE
-        if(!employeeMapper.get(EID).getRole().contains(RoleType.valueOf(role)))
+        if(!employeeMapper.get(EID).getRole().contains(RoleType.valueOf(role))) {
             employeeMapper.get(EID).getRole().add(RoleType.valueOf(role));
+            employeeMapper.addRole(EID,role);
+        }
         sc.addToOptionals(employeeMapper.get(EID),RoleType.valueOf(role),utils.generate_optionals());
         utils.setNeedToUpdateOps(true);
         log.debug("successfully added role to role list of employee: "+EID);

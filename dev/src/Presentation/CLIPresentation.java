@@ -198,6 +198,11 @@ public class CLIPresentation {
                 else
                     continue;
             }
+            if (r.getRc().checkEIDExists(num)) {
+                System.out.println("Chosen id already exists in system.");
+                if (goBack()) return -1;
+                else continue;
+            }
             return num;
         }
     }
@@ -401,6 +406,7 @@ public class CLIPresentation {
         int[] bankDetails = {123, 456, 789};
         int[] terms = {1000, 5, 10};
         r.getRc().createBranch("00000", 1, "PersonnelManager", bankDetails, 150000, terms);
+        r.getRc().EnterBranch(1);
         r.getRc().Login(1);
         r.getMc().addEmployee(2, "DriverA", bankDetails, 10000, "Driver", LocalDate.now(), terms);
         r.getMc().addEmployee(3, "CashierA", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
@@ -430,6 +436,7 @@ public class CLIPresentation {
         r.getRc().addConstConstraint(DayOfWeek.SUNDAY, "Night", "tired");
         r.getRc().Logout();
         r.getRc().Login(1);
+        r.getRc().EnterBranch(1);
         r.getMc().createWeekShifts();
         r.getRc().Logout();
     }

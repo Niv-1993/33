@@ -15,12 +15,12 @@ public class ShiftController {
     private final static Logger log = Logger.getLogger(ShiftController.class);
     //-------------------------------------fields------------------------------------
 
-    private Map<ShiftType, Map<RoleType, Integer>> defaultShifts;
+    //private Map<ShiftType, Map<RoleType, Integer>> defaultShifts;
 
     //------------------------------------constructor---------------------------------
 
     public ShiftController() {
-        defaultShifts = new HashMap<>();
+       // defaultShifts = new HashMap<>();
         log.debug("finished constructor shiftController");
         //when will use DB shifts not empty so we need to create build constraints
         /*for (Map.Entry<Integer, Shift> m : shifts.entrySet()) {
@@ -38,7 +38,7 @@ public class ShiftController {
         ConstraintMapper.getInstance().insertConstConstraint(newCon);
         log.debug("added new const constraint for EID: " + EID + ", Day: " + day.name() + " , ShiftType: " + shiftType);
     }
-
+    //TODO: Doesnt work
     public void addTempConstraint(Employee emp, LocalDate c_date, ShiftType shiftType, String reason) {
         Shift s = getShiftByDate(c_date, shiftType);
         int CID = ConstraintMapper.getInstance().getNextCID();
@@ -47,20 +47,22 @@ public class ShiftController {
         s.removeEmpFromOptionals(emp);
         log.debug("added new const constraint for EID: " + emp.getEID() + ", Date: " + c_date + " , ShiftType: " + shiftType);
     }
-
+    //TODO: Doesnt work
     public void removeConstraint(int CID) {
         ConstraintMapper.getInstance().deleteConstraint(CID);
     }
 
     public void defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaultShifts) {
-        this.defaultShifts = defaultShifts;
+        ShiftMapper.getInstance().insertDefaults(convertToString(defaultShifts));
         log.debug("default shifts defined");
     }
+
 
     //assume that sunday-thursday will be default shifts and on friday only morning shift.
     public List<Shift> createWeekShifts(Map<RoleType, List<Employee>> optionals) {
         LocalDate date = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
         List<Shift> shiftsWithoutShiftManager = new ArrayList<>();
+        Map<ShiftType, Map<RoleType, Integer>> defaultShifts = getDefaults();
         for (int i = 0; i < 5; i++) {
             for (Map.Entry<ShiftType, Map<RoleType, Integer>> m : defaultShifts.entrySet()) {
                 ShiftType shiftType = m.getKey();
@@ -75,6 +77,31 @@ public class ShiftController {
             shiftsWithoutShiftManager.add(friday);
         return shiftsWithoutShiftManager;
     }
+
+    private Map<ShiftType, Map<RoleType, Integer>> getDefaults() {
+        Map<ShiftType, Map<RoleType, Integer>> defaults = new HashMap<>();
+        Map<String, Map<String, Integer>> df = ShiftMapper.getInstance().getDefaults();
+        df.forEach((shiftType, mapRoleAmount) -> {
+            defaults.put(ShiftType.valueOf(shiftType),new HashMap<>());
+            Map<RoleType,Integer> toAdd = defaults.get(ShiftType.valueOf(shiftType));
+            mapRoleAmount.forEach((role, amount) -> {
+                toAdd.put(RoleType.valueOf(role),amount);
+            });
+        });
+        return defaults;
+    }
+    private Map<String, Map<String, Integer>> convertToString(Map<ShiftType, Map<RoleType, Integer>> defaultShifts) {
+        Map<String, Map<String, Integer>> df = new HashMap<>();
+        defaultShifts.forEach((shiftType, mapRoleAmount) -> {
+            df.put(shiftType.name(),new HashMap<>());
+            Map<String,Integer> toAdd = df.get(shiftType.name());
+            mapRoleAmount.forEach((roleType, amount) -> {
+                toAdd.put(roleType.name(),amount);
+            });
+        });
+        return df;
+    }
+
 
     private Shift createShiftPrivate(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<Employee>> optionals) {
         //delete from optionals by constraints
@@ -119,6 +146,7 @@ public class ShiftController {
 
 
     //self make for all shifts that next week and not was self make
+    //TODO: look at the dates to select (2021-5-16, 2021-5-22)
     public void selfMakeWeekShifts(Map<RoleType, List<Employee>> optionals) {
         List<Shift> shifts = ShiftMapper.getInstance().selectShiftsFromUntil(LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY)), LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SATURDAY)).plusWeeks(1));
         loadShift(shifts,optionals);
@@ -222,12 +250,14 @@ public class ShiftController {
     }
 
     //Not need EID
+    //TODO: doesnt update on ram but yes updates in database!
     public void updateReasonConstraint(int CID, String newReason, int EID) {
         ConstraintMapper.getInstance().updateReason(CID, newReason);
         log.debug("CID: " + CID + " update his reason");
     }
 
     //Not need EID
+    //TODO: doesnt update on ram but yes updates in database!
     public void updateShiftTypeConstraint(int CID, ShiftType newType, int EID) {
         ConstraintMapper.getInstance().updateShiftType(CID, newType.name());
         log.debug("CID: " + CID + " update his shift type");
@@ -361,7 +391,7 @@ public class ShiftController {
     }*/
 
     public boolean hasDefaultShifts() {
-        return !defaultShifts.isEmpty();
+        return ShiftMapper.getInstance().hasDefaultShifts();
     }
 
 }

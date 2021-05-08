@@ -33,6 +33,7 @@ public class Mapper {
             pre.setInt(2, id);
             pre.executeUpdate();
         } catch (Exception e) {
+            System.out.println("[updateIntInt] ->" +e.getMessage());
         }
     }
 
@@ -44,6 +45,7 @@ public class Mapper {
             pre.setInt(2, id);
             pre.executeUpdate();
         } catch (Exception e) {
+            System.out.println("[updateIntboolean] ->" +e.getMessage());
         }
     }
 
@@ -56,6 +58,7 @@ public class Mapper {
             pre.setInt(2, id);
             pre.executeUpdate();
         } catch (Exception e) {
+            System.out.println("[updateIntString] ->" +e.getMessage());
         }
     }
 
@@ -65,9 +68,10 @@ public class Mapper {
         String query = String.format("SELECT Max(%s)+1 as nextID FROM %s", column, tableName);
         try (Connection con = connect(); PreparedStatement pre = con.prepareStatement(query)) {
             res = pre.executeQuery();
-            if (res.first())
-                nextID = res.getInt("nextID");
+            if (res.next())
+                nextID = res.getInt("nextID") == 0? 1: res.getInt("nextID");
         } catch (Exception e) {
+            System.out.println("[getNextID] ->" +e.getMessage());
         }
         return nextID;
     }
@@ -92,8 +96,10 @@ public class Mapper {
             s.addBatch(getCreateRolesAndEmps());
             s.addBatch(getCreateShiftsAndEmps());
             s.addBatch(getCreateShiftsAndRolesAmount());
+            s.addBatch(getCreateDefaults());
             s.executeBatch();
         } catch (Exception e) {
+            System.out.println("[createTables] ->"+e.getMessage());
         }
     }
 
@@ -111,7 +117,7 @@ public class Mapper {
                 "\t\"SickDays\"\tINTEGER NOT NULL,\n" +
                 "\t\"Active\"\tINTEGER NOT NULL DEFAULT 1,\n" +
                 "\t\"BID\"\tINTEGER,\n" +
-                "\tPRIMARY KEY(\"EID\"),\n" +
+                "\tPRIMARY KEY(\"EID\",\"BID\"),\n" +
                 "\tFOREIGN KEY(\"BID\") REFERENCES \"Branches\"(\"BID\") ON DELETE SET NULL\n" +
                 ");";
     }
@@ -148,7 +154,7 @@ public class Mapper {
                 "\t\"WasSelfMake\"\tINTEGER NOT NULL,\n" +
                 "\t\"BID\"\tINTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY(\"SID\"),\n" +
-                "\tFOREIGN KEY(\"BID\") REFERENCES \"Branchs\"(\"BID\") ON DELETE CASCADE\n" +
+                "\tFOREIGN KEY(\"BID\") REFERENCES \"Branches\"(\"BID\") ON DELETE CASCADE\n" +
                 ");\n";
     }
 
@@ -200,8 +206,19 @@ public class Mapper {
                 "\t\"SID\"\tINTEGER,\n" +
                 "\t\"Role\"\tINTEGER,\n" +
                 "\t\"Amount\"\tINTEGER,\n" +
-                "\tPRIMARY KEY(\"SID\",\"Role\",\"Amount\"),\n" +
+                "\tPRIMARY KEY(\"SID\",\"Role\"),\n" +
                 "\tFOREIGN KEY(\"SID\") REFERENCES \"Shifts\"(\"SID\") ON DELETE CASCADE\n" +
                 ");\n";
+    }
+
+    private String getCreateDefaults(){
+        return "CREATE TABLE IF NOT EXISTS \"Defaults\" (\n" +
+                "\t\"ShiftType\"\tTEXT,\n" +
+                "\t\"Role\"\tTEXT,\n" +
+                "\t\"Amount\"\tINTEGER,\n" +
+                "\t\"BID\"\tINTEGER,\n" +
+                "\tPRIMARY KEY(\"BID\",\"Role\",\"ShiftType\"),\n" +
+                "\tFOREIGN KEY(\"BID\") REFERENCES \"Branches\"(\"BID\") ON DELETE CASCADE\n" +
+                ");";
     }
 }

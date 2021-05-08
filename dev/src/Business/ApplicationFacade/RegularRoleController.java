@@ -48,6 +48,8 @@ public class RegularRoleController implements iRegularRoleController {
     public void Logout() {
         log.debug("enter logout function when current connected id is: " + currConnectedEmp.getEID());
         currConnectedEmp= null;
+        ShiftMapper.getInstance().resetDefaults();
+        employeeMapper.resetEmps();
         log.debug("successfully logged out - user fields are updated to -1 and null role");
     }
 
@@ -157,7 +159,6 @@ public class RegularRoleController implements iRegularRoleController {
      */
     public void EnterBranch(int BID) {
         log.debug("loading data of branch id: "+BID);
-        currConnectedEmp = null;
         employeeMapper.setCurrBranchID(BID);
         ShiftMapper.getInstance().setCurrBranchID(BID);
     }

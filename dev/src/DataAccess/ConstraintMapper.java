@@ -33,12 +33,13 @@ public class ConstraintMapper extends Mapper{
     public int getNextCID() {
         int nextCID = 1;
         ResultSet res;
-        String query = "SELECT max(CID)+1 as maxCID FROM (SELECT CID from ConstConstraints union all SELECT CID FROM TempConstraints";
+        String query = "SELECT max(CID)+1 as maxCID FROM (SELECT CID from ConstConstraints union all SELECT CID FROM TempConstraints)";
         try (Connection con = connect(); PreparedStatement pre = con.prepareStatement(query)) {
             res = pre.executeQuery();
-            if (res.first())
-                nextCID = res.getInt("nextCID");
+            if (res.next())
+                nextCID = res.getInt("maxCID")==0?1:res.getInt("maxCID");
         } catch (Exception e) {
+            System.out.println("[getNextCID] ->" +e.getMessage());
         }
         return nextCID;
 
@@ -46,7 +47,7 @@ public class ConstraintMapper extends Mapper{
 
     public void insertConstConstraint(ConstConstraint c) {
         boolean res =false;
-        String query = "INSERT INTO ConstConstraint (CID,EID,ShiftType,DayOfWeek,Reason) VALUES (?,?,?,?,?)";
+        String query = "INSERT INTO ConstConstraints (CID,EID,ShiftType,DayOfWeek,Reason) VALUES (?,?,?,?,?)";
         try (Connection con = connect();
              PreparedStatement pre = con.prepareStatement(query)) {
             pre.setInt(1, c.getCID());
@@ -56,6 +57,7 @@ public class ConstraintMapper extends Mapper{
             pre.setString(5, c.getReason());
             res = pre.executeUpdate()>0;
         } catch (Exception e) {
+            System.out.println("[insertConstConstraint] ->" +e.getMessage());
         }finally {
             if (res)
                 constraints.put(c.getCID(), c);
@@ -65,7 +67,7 @@ public class ConstraintMapper extends Mapper{
 
     public void insertTempConstraint(TempConstraint c) {
         boolean res =false;
-        String query = "INSERT INTO TempConstraint (CID,EID,ShiftType,Date,Reason) VALUES (?,?,?,?,?)";
+        String query = "INSERT INTO TempConstraints (CID,EID,ShiftType,Date,Reason) VALUES (?,?,?,?,?)";
         try (Connection con = connect();
              PreparedStatement pre = con.prepareStatement(query)) {
             pre.setInt(1, c.getCID());
@@ -75,6 +77,7 @@ public class ConstraintMapper extends Mapper{
             pre.setString(5, c.getReason());
             res = pre.executeUpdate()>0;
         } catch (Exception e) {
+            System.out.println("[insertTempConstrain] ->" +e.getMessage());
         }finally {
             if (res)
                 constraints.put(c.getCID(), c);
@@ -83,18 +86,19 @@ public class ConstraintMapper extends Mapper{
 
 
     public void deleteConstraint(int cid) {
-        String query = "DELETE FROM ConstConstraint WHERE CID= ?;\n" +"DELETE FROM TempConstraint WHERE CID= ?";
+        String query = "DELETE FROM ConstConstraints WHERE CID= ?;\n" +"DELETE FROM TempConstraints WHERE CID= ?";
         try (Connection con = connect();
              PreparedStatement pre = con.prepareStatement(query)) {
             pre.setInt(1,cid);
             pre.executeUpdate();
         } catch (Exception e) {
+            System.out.println("[deleteConstraint] ->" +e.getMessage());
         }
     }
 
     public Map<Integer, Constraint> selectAllConstraints() {
-        String query1 = "SELECT * FROM ConstConstraint";
-        String query2 = "SELECT * FROM TempConstraint";
+        String query1 = "SELECT * FROM ConstConstraints";
+        String query2 = "SELECT * FROM TempConstraints";
         try (Connection con = connect();
              PreparedStatement pre = con.prepareStatement(query1);PreparedStatement pre2 = con.prepareStatement(query2)) {
             ResultSet res = pre.executeQuery();
@@ -106,6 +110,7 @@ public class ConstraintMapper extends Mapper{
                 addTempConstraintToMap(res2);
             }
         } catch (Exception e) {
+            System.out.println("[selectAllConstraints] ->" +e.getMessage());
         }
         return constraints;
     }
@@ -116,7 +121,7 @@ public class ConstraintMapper extends Mapper{
             return constraints.get(CID);
         int EID = res.getInt("EID");
         String shiftType = res.getString("ShiftType");
-        DayOfWeek day = DayOfWeek.valueOf(res.getString("Day"));
+        DayOfWeek day = DayOfWeek.valueOf(res.getString("DayOfWeek"));
         String reason = res.getString("Reason");
         ConstConstraint constCon = new ConstConstraint(CID, EID, day, shiftType, reason);
         constraints.put(constCon.getCID(), constCon);
@@ -138,7 +143,7 @@ public class ConstraintMapper extends Mapper{
 
     public List<Constraint> getConstraint(int eid, LocalDate date) {
         List<Constraint> listCon = new ArrayList<>();
-        String query1 = "SELECT * FROM TempConstraint WHERE EID=? AND Date=?";
+        String query1 = "SELECT * FROM TempConstraints WHERE EID=? AND Date=?";
         try (Connection con = connect();
              PreparedStatement pre = con.prepareStatement(query1)) {
             pre.setInt(1,eid);
@@ -150,6 +155,7 @@ public class ConstraintMapper extends Mapper{
                 listCon.add(constraints.get(res.getInt("CID")));
             }
         } catch (Exception e) {
+            System.out.println("[getConstraint1] ->" +e.getMessage());
         }
         return listCon;
     }
@@ -158,8 +164,8 @@ public class ConstraintMapper extends Mapper{
         if (constraints.containsKey(cid))
             return constraints.get(cid);
         else {
-            String query1 = "SELECT * FROM TempConstraint WHERE CID=?";
-            String query2 = "SELECT * FROM ConstConstraint WHERE CID=?";
+            String query1 = "SELECT * FROM TempConstraints WHERE CID=?";
+            String query2 = "SELECT * FROM ConstConstraints WHERE CID=?";
             try (Connection con = connect();
                  PreparedStatement pre = con.prepareStatement(query1); PreparedStatement pre2 = con.prepareStatement(query2)) {
                 pre.setInt(1, cid);
@@ -174,6 +180,7 @@ public class ConstraintMapper extends Mapper{
                     }
                 }
             } catch (Exception e) {
+                System.out.println("[getConstraint2] ->" +e.getMessage());
             }
             return null;
         }
@@ -181,8 +188,8 @@ public class ConstraintMapper extends Mapper{
 
     public List<Constraint> getConstraintsOfEID(int eid) {
         ArrayList<Constraint> consList = new ArrayList<>();
-        String query1 ="SELECT * FROM ConstConstraint WHERE EID=?";
-        String query2 = "SELECT * FROM TempConstraint WHERE EID=?";
+        String query1 ="SELECT * FROM ConstConstraints WHERE EID=?";
+        String query2 = "SELECT * FROM TempConstraints WHERE EID=?";
         try (Connection con = connect();
              PreparedStatement pre = con.prepareStatement(query1);PreparedStatement pre2 = con.prepareStatement(query2)) {
             pre.setInt(1,eid);
@@ -198,17 +205,18 @@ public class ConstraintMapper extends Mapper{
                 consList.add(c);
             }
         } catch (Exception e) {
+            System.out.println("[getConstraintsOfEID] ->" +e.getMessage());
         }
         return consList;
     }
 
     public void updateReason(int cid, String newReason) {
-        updateIntString(cid,newReason,"Reason","CID","ConstConstraint");
-        updateIntString(cid,newReason,"Reason","CID","TempConstraint");
+        updateIntString(cid,newReason,"Reason","CID","ConstConstraints");
+        updateIntString(cid,newReason,"Reason","CID","TempConstraints");
     }
 
     public void updateShiftType(int cid, String newType) {
-        updateIntString(cid,newType,"ShiftType","CID","ConstConstraint");
-        updateIntString(cid,newType,"ShiftType","CID","TempConstraint");
+        updateIntString(cid,newType,"ShiftType","CID","ConstConstraints");
+        updateIntString(cid,newType,"ShiftType","CID","TempConstraints");
     }
 }
