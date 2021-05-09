@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_05_09_2021_3_19_PM_[Default_Changelist]" date="1620562778725" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2021_3_19_PM_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 05/09/2021 3:19 PM [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" />
+    <option name="AFTER_PATH" value="database.db" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2021_3_19_PM_[Default_Changelist]/database.db" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/dev/Business/ShiftPKG/Shift.class" />
+    <option name="AFTER_PATH" value="out/production/dev/Business/ShiftPKG/Shift.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2021_3_19_PM_[Default_Changelist]/Shift.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="logger.log" />
+    <option name="AFTER_PATH" value="logger.log" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_09_2021_3_19_PM_[Default_Changelist]/logger.log" />
+  </binary>
+</changelist>

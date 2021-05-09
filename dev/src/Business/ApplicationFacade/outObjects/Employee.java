@@ -1,6 +1,6 @@
 package Business.ApplicationFacade.outObjects;
 
-import Business.EmployeePKG.*;
+import Business.Employees.EmployeePKG.*;
 import Business.Type.RoleType;
 
 import java.util.*;
@@ -25,7 +25,7 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Employee(Business.EmployeePKG.Employee emp ){
+    public Employee(Business.Employees.EmployeePKG.Employee emp ){
         this.EID = emp.getEID();
         this.name = emp.getName();
         this.role = emp.getRole().stream().map(Enum::name).collect(Collectors.toUnmodifiableList());

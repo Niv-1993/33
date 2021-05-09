@@ -1,7 +1,5 @@
 package Business.ApplicationFacade.outObjects;
 
-import Business.Type.ShiftType;
-
 public class Constraint {
     public int CID;
     public int EID;
@@ -10,7 +8,7 @@ public class Constraint {
     public String date;
 
 
-    public Constraint(Business.ShiftPKG.Constraint c){
+    public Constraint(Business.Employees.ShiftPKG.Constraint c){
         this.CID = c.getCID();
         this.EID = c.getEID();
         this.reason = c.getReason();

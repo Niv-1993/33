@@ -1,18 +1,14 @@
 package DataAccess;
 
-import Business.EmployeePKG.Driver;
-import Business.EmployeePKG.Employee;
-
-
+import Business.Employees.EmployeePKG.Driver;
+import Business.Employees.EmployeePKG.Employee;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class EmployeeMapper extends Mapper {
     private static EmployeeMapper empMapper = null;

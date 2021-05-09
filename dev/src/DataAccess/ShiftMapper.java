@@ -1,8 +1,7 @@
 package DataAccess;
 
-import Business.EmployeePKG.Employee;
-import Business.ShiftPKG.Shift;
-import Business.Type.RoleType;
+import Business.Employees.EmployeePKG.Employee;
+import Business.Employees.ShiftPKG.Shift;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
