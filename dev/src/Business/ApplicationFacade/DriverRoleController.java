@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DriverRoleController implements iDriverRoleController {
     private iManagerRoleController mc;
-    private DriverMapper dm;
+    private final DriverMapper dm;
 
     public DriverRoleController(iManagerRoleController m) {
         mc = m;
