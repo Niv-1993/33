@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TruckMapper {
+public class TruckMapper extends Mapper{
 
     static  private TruckMapper mapper=null;
     static  private String dbName;

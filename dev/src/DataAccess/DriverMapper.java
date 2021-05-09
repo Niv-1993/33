@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DriverMapper {
+public class DriverMapper extends Mapper{
 
     static  private DriverMapper mapper=null;
     private Map <Long, Driver> drivers;

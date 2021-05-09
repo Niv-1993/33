@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SupplierMapper {
+public class SupplierMapper extends Mapper {
 
     static  private SupplierMapper mapper=null;
     static  private String dbName;

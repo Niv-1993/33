@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
-public class TransportationMapper {
+public class TransportationMapper extends Mapper{
 
     static  private TransportationMapper mapper=null;
     static  private String dbName;

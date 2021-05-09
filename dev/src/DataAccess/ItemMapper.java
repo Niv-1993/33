@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 
-public class ItemMapper {
+public class ItemMapper extends Mapper{
 
     static  private ItemMapper mapper=null;
     private HashMap<Long,Item> items;
