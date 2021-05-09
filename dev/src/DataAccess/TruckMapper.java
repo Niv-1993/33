@@ -55,7 +55,6 @@ public class TruckMapper extends Mapper{
             } catch (SQLException e) {
                 throw new IOException("failed to get all branches from database");
             }
-            //TODO:return transportation object.
             return null;
     }
 

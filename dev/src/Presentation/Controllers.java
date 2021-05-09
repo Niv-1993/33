@@ -44,6 +44,12 @@ public class Controllers {
     public void init() {
         initializeEmpsModule();
         //TODO: add init od transportation
+        initializeTransportationModule();
+    }
+
+    private void initializeTransportationModule() {
+
+
     }
 
 
