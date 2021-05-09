@@ -8,14 +8,14 @@ public class Order {
     private final double totalAmount;
     private final LocalDate deliverTime;
     private final int branchId;
-    private final Hashtable<Integer, Integer> amounts;
+    private final Hashtable<Integer, Integer> items;
 
     public Order(BusinessLayer.SupplierBusiness.Order order) {
         orderId = order.getOrderId();
         totalAmount = order.getTotalAmount();
         deliverTime = order.getDeliverTime();
         branchId = order.getBranchID();
-        amounts = order.getAmounts();
+        items = order.getAmounts();
     }
 
     public String toString() {
@@ -40,6 +40,6 @@ public class Order {
     }
 
     public String toStringAmount(String itemId) {
-        return "" + amounts.get(Integer.parseInt(itemId));
+        return "" + items.get(Integer.parseInt(itemId));
     }
 }

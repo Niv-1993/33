@@ -15,12 +15,11 @@ public class QuantityDocument {
     DalQuantityDocument dalQuantityDocument;
     final static Logger log=Logger.getLogger(QuantityDocument.class);
 
-    public QuantityDocument(int itemId, int minimalAmount , int discount, int branchId){
+    public QuantityDocument(int itemId, int minimalAmount , int discount){
         List<Tuple<Object,Class>> list=new ArrayList<>();
         list.add(new Tuple<>(itemId,Integer.class));
         list.add(new Tuple<>(minimalAmount,Integer.class));
         list.add(new Tuple<>(discount,Integer.class));
-        list.add(new Tuple<>(branchId,Integer.class));
         Mapper map=Mapper.getMap();
         map.setItem(DalQuantityDocument.class,list);
         List<Integer> keyList=new ArrayList<>();

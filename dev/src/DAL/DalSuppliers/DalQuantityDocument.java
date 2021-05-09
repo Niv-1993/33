@@ -12,19 +12,17 @@ public class DalQuantityDocument extends DALObject {
     private int minimalAmount;
     private int discount;
     private int itemId;
-    private int branchId;
     final static Logger log=Logger.getLogger(DalQuantityDocument.class);
 
     public DalQuantityDocument() {
         super(null);
     }
 
-    public DalQuantityDocument(Integer itemId , Integer minimalAmount , Integer discount , Integer branchId , DalController dalController){
+    public DalQuantityDocument(Integer itemId , Integer minimalAmount , Integer discount , DalController dalController){
         super(dalController);
         this.itemId = itemId;
         this.minimalAmount = minimalAmount;
         this.discount = discount;
-        this.branchId = branchId;
     }
 
     @Override
@@ -33,7 +31,6 @@ public class DalQuantityDocument extends DALObject {
                 "\"itemId\" INTEGER NOT NULL,\n" +
                 "\t\"minimalAmount\" INTEGER NOT NULL,\n" +
                 "\t\"discount\" INTEGER NOT NULL,\n" +
-                "\t\"branchId\" INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY(\"itemId\"),\n" +
                 "\tFOREIGN KEY(\"itemId\") REFERENCES \"Items\"(\"itemId\") ON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";
