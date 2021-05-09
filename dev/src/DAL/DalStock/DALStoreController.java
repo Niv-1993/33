@@ -76,15 +76,15 @@ public class DALStoreController extends DALObject {
         return _categoryCounter;
     }
     public void setCategoryCounter(int i){
-        update(prepareList("categoryCounter",i,_storeID));
+        updateCategoryCounter(prepareList(i,_storeID));
         _categoryCounter=i;
     }
-    private void update(List<Tuple<Object,Class>> list){
+    private void updateTypeCounter(List<Tuple<Object,Class>> list){
         String updateName= """
                 UPDATE StoreController\s
-                SET ?=?
+                SET typeCounter = ?\s
                 WHERE\s
-                storeID=?;""";
+                storeID = ?;""";
         try {
             DC.noSelect(updateName, list);
         }
@@ -92,18 +92,57 @@ public class DALStoreController extends DALObject {
             throw new IllegalArgumentException("fail");
         }
     }
+    private void updateDiscountCounter(List<Tuple<Object,Class>> list){
+        String updateName= """
+                UPDATE StoreController\s
+                SET discountCounter = ?\s
+                WHERE\s
+                storeID = ?;""";
+        try {
+            DC.noSelect(updateName, list);
+        }
+        catch (Exception e){
+            throw new IllegalArgumentException("fail");
+        }
+    }
+    private void updateCategoryCounter(List<Tuple<Object,Class>> list){
+        String updateName= """
+                UPDATE StoreController\s
+                SET categoryCounter = ?\s
+                WHERE\s
+                storeID = ?;""";
+        try {
+            DC.noSelect(updateName, list);
+        }
+        catch (Exception e){
+            throw new IllegalArgumentException("fail");
+        }
+    }
+//    private void update(List<Tuple<Object,Class>> list){
+//        String updateName= """
+//                UPDATE StoreController\s
+//                SET ?=?
+//                WHERE\s
+//                storeID=?;""";
+//        try {
+//            DC.noSelect(updateName, list);
+//        }
+//        catch (Exception e){
+//            throw new IllegalArgumentException("fail");
+//        }
+//    }
     public int getTypeCounter(){
         return _typeCounter;
     }
     public void setTypeCounter(int i){
-        update(prepareList("typeCounter",i,_storeID));
+        updateTypeCounter(prepareList(i,_storeID));
         _typeCounter=i;
     }
     public int get_discountCounter(){
         return _discountCounter;
     }
     public void set_discountCounter(int i){
-        update(prepareList("discountCounter",i,_storeID));
+        updateDiscountCounter(prepareList(i,_storeID));
         _discountCounter=i;
     }
 

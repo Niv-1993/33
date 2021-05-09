@@ -33570,3 +33570,10 @@ SET ?=?
 WHERE 
 storeID=? params: [Tuple{item1=categoryCounter, item2=class java.lang.String}, Tuple{item1=101, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}]
 failed due to [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 09-05-2021 22:17:11 [class: DAL.DalController,Line:70] - noSelect quary: INSERT INTO ?  
+(?,?,?,?)
+ params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=101, item2=class java.lang.Integer}, Tuple{item1=yaki, item2=class java.lang.String}]
+failed due to [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 09-05-2021 22:17:11 [class: DAL.Mapper,Line:160] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 09-05-2021 22:17:11 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALCategory
+[WARN ] 09-05-2021 22:17:11 [class: Utility.Util,Line:28] - the instance that return from Mapper is null for: class DAL.DalStock.DALCategory
