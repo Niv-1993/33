@@ -222,4 +222,83 @@ public class Mapper {
                 "\tFOREIGN KEY(\"BID\") REFERENCES \"Branches\"(\"BID\") ON DELETE CASCADE\n" +
                 ");";
     }
+    private String getCreateBranchesItemsOnTran() {
+        return "CREATE TABLE IF NOT EXISTS \"BranchesItemsOnTran\" (\n" +
+                "\t\"BranID\"\"\tNUMERIC,\n" +
+                "\t\"TranID\"\tNUMERIC,\n" +
+                "\t\"ItemID\"\tNUMERIC,\n" +
+                "\tPRIMARY KEY(\"BranID\",\"TranID\",\"ItemID\"),\n" +
+                "\tFOREIGN KEY(\"TranID\") REFERENCES \"Transportations\"(\"ID\") ,\n" +
+                "\tFOREIGN KEY(\"BranID\") REFERENCES \"Branches\"(\"BID\") ,\n" +
+                "\tFOREIGN KEY(\"ItemID\") REFERENCES \"Items\"(\"ID\") \n"+
+                ");";
+    }
+    private String getCreateItem() {
+        return "CREATE TABLE IF NOT EXISTS \"Items\" (\n" +
+                "\t\"ID\"\tNUMERIC,\n" +
+                "\t\"Name\"\tTEXT,\n" +
+                "\tPRIMARY KEY(\"ID\"),\n" +
+                ");";
+    }
+    private String getCreateSupplierItems() {
+        return "CREATE TABLE IF NOT EXISTS \"SupplierItems\" (\n" +
+                "\t\"ItemID\"\tNUMERIC,\n" +
+                "\t\"SupID\"\tNUMERIC,\n" +
+                "\tPRIMARY KEY(\"ItemID\",\"SupID\"),\n" +
+                "\tFOREIGN KEY(\"ItemID\") REFERENCES \"Items\"(\"ID\") \n"+
+                ");";
+    }
+    private String getCreateSuppliersItemsOnTran() {
+        return "CREATE TABLE IF NOT EXISTS \"SupplierItemsOnTran\" (\n" +
+                "\t\"SupID\"\"\tNUMERIC,\n" +
+                "\t\"TranID\"\tNUMERIC,\n" +
+                "\t\"ItemID\"\tNUMERIC,\n" +
+                "\tPRIMARY KEY(\"SupID\",\"TranID\",\"ItemID\"),\n" +
+                "\tFOREIGN KEY(\"SupID\") REFERENCES \"Suppliers\"(\"SID\") ,\n" +
+                "\tFOREIGN KEY(\"TranID\") REFERENCES \"Transportations\"(\"BID\") ,\n" +
+                "\tFOREIGN KEY(\"ItemID\") REFERENCES \"Items\"(\"ID\") \n"+
+                ");";
+    }
+    private String getCreateSuppliers() {
+        return "CREATE TABLE IF NOT EXISTS \"Suppliers\" (\n" +
+                "\t\"SID\"\"\tNUMERIC,\n" +
+                "\t\"Street\"\tTEXT NOT NULL,\n" +
+                "\t\"City\"\tTEXT NOT NULL,\n" +
+                "\t\"Number\"\"\tINTEGER NOT NULL,\n" +
+                "\t\"Enter\"\tINTEGER NOT NULL,\n" +
+                "\t\"Area\"\tTEXT NOT NULL,\n" +
+                "\t\"Enter\"\tNUMERIC,\n" +
+                "\t\"Area\"\tNUMERIC,\n" +
+                "\t\"ContactName\"\tTEXT NOT NULL,\n" +
+                "\t\"Phone\"\tINTEGER NOT NULL,\n" +
+                "\tPRIMARY KEY(\"SID\")\n" + ");";
+    }
+    private String getCreateTransportations() {
+        return "CREATE TABLE IF NOT EXISTS \"Transportations\" (\n" +
+                "\t\"ID\"\"\tINTEGER,\n" +
+                "\t\"Area\"\tTEXT,\n" +
+                "\t\"Date\"\"\tTEXT,\n" +
+                "\t\"LeavingTime\"\tTEXT,\n" +
+                "\t\"Wieght\"\tINTEGER,\n" +
+                "\t\"driverID\"\tNUMERIC,\n" +
+                "\t\"trackID\"\tNUMERIC,\n" +
+                "\tPRIMARY KEY(\"ID\")\n" +
+                "\tFOREIGN KEY(\"trackID\") REFERENCES \"Trucks\"(\"ID\") ,\n" +
+                "\tFOREIGN KEY(\"driverID\") REFERENCES \"Drivers\"(\"EID\") \n"+
+                ");";
+    }
+    private String getCreateTrucks() {
+        return "CREATE TABLE IF NOT EXISTS \"Trucks\" (\n" +
+                "\t\"ID\"\"\tNUMERIC,\n" +
+                "\t\"MaxWeight\"\tINTEGER,\n" +
+                "\t\"Model\"\"\tTEXT,\n" +
+                "\t\"NetWeight\"\tINTEGER,\n" +
+                "\t\"Liecense\"\tINTEGER,\n" +
+                "\tPRIMARY KEY(\"ID\")\n" +
+                ");";
+    }
+
+
+
+
 }
