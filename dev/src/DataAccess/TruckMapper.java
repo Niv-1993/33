@@ -50,28 +50,13 @@ public class TruckMapper extends Mapper{
                  ResultSet rs    = stmt.executeQuery(sql)){
                 // loop through the result set
                 while (rs.next()) {
-                    return new Truck(rs.getInt("ID"),rs.getInt("License"),rs.getInt("MaxWeight"),rs.getInt("NetWeight"),rs.getString("Model"));
+                    return new Truck(rs.getLong("ID"),rs.getInt("License"),rs.getInt("MaxWeight"),rs.getInt("NetWeight"),rs.getString("Model"));
                 }
             } catch (SQLException e) {
                 throw new IOException("failed to get all branches from database");
             }
             //TODO:return transportation object.
             return null;
-    }
-
-
-    public static Connection connect() throws Exception {
-
-        //DriverManager.registerDriver(new com.sqlite.jdbc.Driver());
-        Class.forName("org.sqlite.JDBC");
-        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\" + dbName;
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url);
-        } catch (SQLException e) {
-            throw new Exception("failed to connect database.");
-        }
-        return conn;
     }
 
     public List<Truck> getTrucks() throws Exception {

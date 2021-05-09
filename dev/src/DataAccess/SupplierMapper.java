@@ -45,19 +45,6 @@ public class SupplierMapper extends Mapper {
         }
         return new ArrayList<>(suppliers.values());
     }
-    public static Connection connect() throws Exception {
-
-        //DriverManager.registerDriver(new com.sqlite.jdbc.Driver());
-        Class.forName("org.sqlite.JDBC");
-        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\" + dbName;
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url);
-        } catch (SQLException e) {
-            throw new Exception("failed to connect database.");
-        }
-        return conn;
-    }
 
     private Supplier select(int id) throws Exception {
 

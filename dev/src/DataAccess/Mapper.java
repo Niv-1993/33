@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class Mapper {
     private final static Logger log = Logger.getLogger(Mapper.class);
-    private final String dbname = "database.db";
+    private static String dbname = "database.db";
     private int currBranchID;
 
     public Mapper() {
