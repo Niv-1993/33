@@ -31,7 +31,8 @@ public class ServiceFaced {
     public ResponseT<DriverServiceDTO> getDriver(long id){
         try {
             return new ResponseT<>(toDriverServiceDTO(driverService.getDriver(id)));
-        }catch (Exception e){
+        }
+        catch (Exception e){
             return new ResponseT<>(e.getMessage());
         }
     }
