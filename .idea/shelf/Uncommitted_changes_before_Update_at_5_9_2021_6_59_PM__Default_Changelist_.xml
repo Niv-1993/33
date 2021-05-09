@@ -1,0 +1,44 @@
+<changelist name="Uncommitted_changes_before_Update_at_5_9_2021_6_59_PM_[Default_Changelist]" date="1620576006683" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_9_2021_6_59_PM_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 5/9/2021 6:59 PM [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/ADSS_Group_B/ServiceLayer/Objects/TruckServiceDTO.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/ADSS_Group_B/ServiceLayer/Objects/DriverServiceDTO.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/ADSS_Group_B/BussinessLayer/ServiceFaced.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/ADSS_Group_B/BussinessLayer/Transportation.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/ADSS_Group_B/BussinessLayer/TransportationService.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/ADSS_Group_B/BussinessLayer/SiteService.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/ADSS_Group_B/BussinessLayer/TruckService.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/ADSS_Group_B/BussinessLayer/DriverService.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>
