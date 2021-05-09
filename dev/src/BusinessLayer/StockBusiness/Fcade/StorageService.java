@@ -149,7 +149,7 @@ public class StorageService implements iStorageService {
     }
 
     @Override
-    public Response addProductType(String name, int minAmount, float basePrice, float salePrice,String producer, int supID, int category) {
+    public Response addProductType(String name, int minAmount, double basePrice, double salePrice,String producer, int supID, int category) {
         try {
             curr.addProductType(name,minAmount,basePrice,salePrice,producer,supID,category);
             return new Response();
@@ -182,7 +182,7 @@ public class StorageService implements iStorageService {
     }
 
     @Override
-    public Response editProductType(int ID,String name, int minAmount, float basePrice,float salePrice, String producer, int supID, int category) {
+    public Response editProductType(int ID,String name, int minAmount, double basePrice,double salePrice, String producer, int supID, int category) {
         try {
             curr.editProductType(ID,name,minAmount,basePrice,salePrice,producer,supID,category);
             return new Response();
@@ -409,5 +409,18 @@ public class StorageService implements iStorageService {
             }
         }
         ss.addSaleCategoryDiscount(1, 12, new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2000"), new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2050"));
+    }
+
+    public void loadAllStores() {
+        int i=1;
+        while(true){
+            try{
+                stores.add(new StoreController(i));
+                i++;
+            }catch (Exception e){
+                log.warn(e);
+                break;
+            }
+        }
     }
 }

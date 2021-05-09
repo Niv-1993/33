@@ -84,7 +84,7 @@ public class Shelf {
 
     public int get_typeID() {
         log.debug("get_typeID()");
-        checkTypeID();
+        //checkTypeID();
         return dal.get_typeID();
     }
 

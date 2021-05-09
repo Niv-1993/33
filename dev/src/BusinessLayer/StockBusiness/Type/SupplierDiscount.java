@@ -29,7 +29,7 @@ public class SupplierDiscount extends Discount{
     }
 
     @Override
-    protected void init(int storeID, int id, float percent, Date start, Date end) {
+    protected void init(int storeID, int id, double percent, Date start, Date end) {
         dal= Util.initDal(DALSupplierDiscount.class,storeID,id,percent,start,end);
     }
 

@@ -55,6 +55,7 @@ public class StockCLI {
     }
 
     public void start() {
+        SS.loadAllStores();
         String in;
         String[] menu = {"exit", "return", "add new store", "use a store"};
         while (true) {
@@ -262,8 +263,8 @@ public class StockCLI {
             if (in.equals("1")) System.exit(0);
             if (in.equals("2")) return;
             else if (in.equals("3")) System.out.print(SS.getProductTypes());
-            else if (in.equals("4")) editType();
-            else if (in.equals("5")) addType();
+            else if (in.equals("4")) addType();
+            else if (in.equals("5")) editType();
             else if (in.equals("6")) typeInfo(1);
             else if (in.equals("7")) typeInfo(2);
             else if (in.equals("8")) typeInfo(3);
@@ -349,11 +350,11 @@ public class StockCLI {
         in = read();
         try {
             if (i == 1) System.out.print(SS.getProductsByType(Integer.parseInt(in)));
-            if (i == 2) {
+            else if (i == 2) {
                 SS.removeProduct(Integer.parseInt(in));
                 System.out.print("product removed.\n");
             }
-            if (i == 3) {
+            else if (i == 3) {
                 SS.reportDamage(Integer.parseInt(in));
                 System.out.print("damage reported.\n");
             } else System.out.print("bad input, try again.\n");

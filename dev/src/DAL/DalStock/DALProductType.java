@@ -17,14 +17,15 @@ public class DALProductType extends DALObject {
     private int _minAmount;
     private int _shelfCurr=0;
     private int _storageCurr=0;
-    private float _basePrice;
+    private double _basePrice;
+    private double _salePrice;
     private String _producer;
     private int storeId;
     private List<Integer> _suppliers=new ArrayList<>();
     private List<Integer> _saleDiscounts=new ArrayList<>();
     private List<Integer> _supplierDiscounts=new ArrayList<>();
-    private String tableName="ProductType";
-    private String supTable="Supplier";
+//    private String tableName="ProductType";
+//    private String supTable="Supplier";
 
 
     public DALProductType(){
@@ -34,6 +35,16 @@ public class DALProductType extends DALObject {
     public DALProductType(Integer storeID, Integer typeID, String name, Integer category, Integer min, Integer shelfCurr,
                           Integer storageCurr, Double basePrice, Double salePrice, String producer, DalController dc){
         super(dc);
+        this.storeId=storeID;
+        this._typeID=typeID;
+        this._name=name;
+        this._categoryID=category;
+        this._minAmount=min;
+        this._shelfCurr=shelfCurr;
+        this._storageCurr=storageCurr;
+        this._basePrice=basePrice;
+        this._salePrice=salePrice;
+        this._producer=producer;
     }
     // get products, suppliers and discounts from controller
 
@@ -51,9 +62,10 @@ public class DALProductType extends DALObject {
                 "\tsalePrice DOUBLE NOT NULL,\n" +
                 "\tproducer VARCHAR NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, typeID),\n" +
+                "\tUNIQUE (storeID, typeID),\n" +
                 "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
-                "\tFOREIGN KEY (categoryID) REFERENCES Category(categoryID)\n" +
+                "\tFOREIGN KEY (storeID,categoryID) REFERENCES Category(storeID,categoryID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");\n"+
                 "CREATE TABLE IF NOT EXISTS Supplier (\n" +
@@ -61,9 +73,10 @@ public class DALProductType extends DALObject {
                 "\ttypeID INTEGER NOT NULL UNIQUE,\n" +
                 "\tsupplierID INTEGER NOT NULL UNIQUE,\n" +
                 "\tPRIMARY KEY (storeID, typeID, supplierID),\n" +
+                "\tUNIQUE (storeID, supplierID),\n" +
                 "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                "\tFOREIGN KEY (typeID) REFERENCES ProductType(typeID)\n" +
+                "\tFOREIGN KEY (storeID,typeID) REFERENCES ProductType(storeID,typeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";
     }
@@ -95,17 +108,15 @@ public class DALProductType extends DALObject {
     public String getInsert() {
         return """
                 INSERT OR REPLACE INTO ProductType \s
-                VALUES(?,?,?,?,?,?,?,?,?,?);
-                """;
+                VALUES(?,?,?,?,?,?,?,?,?,?);""";
     }
     public void setCategory(int i){
         String query= """
-                UPDATE ? \s
+                UPDATE ProductType \s
                 Set categoryID=? \s
                 WHERE \s
-                storeID=? AND typeID=?;;
-                """;
-        List<Tuple<Object,Class>> list=prepareList(tableName,i,storeId,_typeID);
+                storeID=? AND typeID=?;""";
+        List<Tuple<Object,Class>> list=prepareList(i,storeId,_typeID);
         try{
             DC.noSelect(query, list);
         }
@@ -118,17 +129,17 @@ public class DALProductType extends DALObject {
     }
     public void setSuppliers(List<Integer> sup){
         StringBuilder query=new StringBuilder("""
-                DELETE ? \s
+                DELETE FROM Supplier \s
                 WHERE storeID=? AND typeID=?;
                 """);
-        List<Tuple<Object,Class>> list=prepareList(supTable,storeId,_typeID);
+        List<Tuple<Object,Class>> list=prepareList(storeId,_typeID);
         for (Integer i:sup){
             query.append("""
-                    INSERT INTO ? \s
+                    INSERT INTO Supplier \s
                     (storeID,typeID,SupplierID)\s
                     VALUES (?,?,?);
                     """);
-            list.addAll(prepareList(supTable,storeId,_typeID,i));
+            list.addAll(prepareList(storeId,_typeID,i));
         }
         try{
             DC.noSelect(query.toString(), list);
@@ -154,15 +165,24 @@ public class DALProductType extends DALObject {
         }
 
     }
+    public void insertSupplier(int storeID, int typeID, int supplierID){
+        String query= "INSERT OR REPLACE INTO Supplier VALUES(?,?,?);";
+        List<Tuple<Object,Class>> list=prepareList(storeID,typeID,supplierID);
+        try{
+            DC.noSelect(query, list);
+        }
+        catch (Exception e){
+            throw new IllegalArgumentException("fail");
+        }
+    }
     public String get_name(){return _name;}
     public void set_name(String s){
         String query= """
-                UPDATE ? \s
+                UPDATE ProductType \s
                 Set name=? \s
                 WHERE \s
-                storeID=? AND typeID=?;;
-                """;
-        List<Tuple<Object,Class>> list=prepareList(tableName,s,storeId,_typeID);
+                storeID=? AND typeID=?;""";
+        List<Tuple<Object,Class>> list=prepareList(s,storeId,_typeID);
         try{
             DC.noSelect(query, list);
         }
@@ -174,12 +194,11 @@ public class DALProductType extends DALObject {
     public int get_minAmount(){return _minAmount;}
     public void set_minAmount(int i){
         String query= """
-                UPDATE ? \s
+                UPDATE ProductType \s
                 Set minimum=? \s
                 WHERE \s
-                storeID=? AND typeID=?;;
-                """;
-        List<Tuple<Object,Class>> list=prepareList(tableName,i,storeId,_typeID);
+                storeID=? AND typeID=?;""";
+        List<Tuple<Object,Class>> list=prepareList(i,storeId,_typeID);
         try{
             DC.noSelect(query, list);
         }
@@ -190,15 +209,14 @@ public class DALProductType extends DALObject {
     }
     public int get_shelfCurr(){return _shelfCurr;}
     public int get_storageCurr(){return _storageCurr;}
-    public float get_basePrice(){return _basePrice;}
-    public void set_basePrice(float i){
+    public double get_basePrice(){return _basePrice;}
+    public void set_basePrice(double i){
         String query= """
-                UPDATE ? \s
+                UPDATE ProductType \s
                 Set basePrice=? \s
                 WHERE \s
-                storeID=? AND typeID=?;;
-                """;
-        List<Tuple<Object,Class>> list=prepareList(tableName,i,storeId,_typeID);
+                storeID=? AND typeID=?;""";
+        List<Tuple<Object,Class>> list=prepareList(i,storeId,_typeID);
         try{
             DC.noSelect(query, list);
         }
@@ -210,12 +228,11 @@ public class DALProductType extends DALObject {
     public String get_producer(){return _producer;}
     public void set_producer(String s){
         String query= """
-                UPDATE ? \s
+                UPDATE ProductType \s
                 Set producer=? \s
                 WHERE \s
-                storeID=? AND typeID=?;;
-                """;
-        List<Tuple<Object,Class>> list=prepareList(tableName,s,storeId,_typeID);
+                storeID=? AND typeID=?;""";
+        List<Tuple<Object,Class>> list=prepareList(s,storeId,_typeID);
         try{
             DC.noSelect(query, list);
         }
@@ -246,11 +263,10 @@ public class DALProductType extends DALObject {
     }
     public void addSupplier(int i){
         StringBuilder query=new StringBuilder("""
-                INSERT INTO ? \s
+                INSERT INTO Supplier \s
                 (storeID,typeID,SupplierID)\s
-                VALUES (?,?,?);
-                """);
-        List<Tuple<Object,Class>> list=prepareList(supTable,storeId,_typeID);
+                VALUES (?,?,?);""");
+        List<Tuple<Object,Class>> list=prepareList(storeId,_typeID);
         try{
             DC.noSelect(query.toString(), list);
         }
@@ -272,12 +288,12 @@ public class DALProductType extends DALObject {
     }
     public void set_shelfCurr(int i){
         String query= """
-                UPDATE ? \s
+                UPDATE Supplier \s
                 Set shelfCurr=? \s
                 WHERE \s
                 storeID=? AND typeID=?;;
                 """;
-        List<Tuple<Object,Class>> list=prepareList(tableName,i,storeId,_typeID);
+        List<Tuple<Object,Class>> list=prepareList(i,storeId,_typeID);
         try{
             DC.noSelect(query, list);
         }
@@ -288,12 +304,12 @@ public class DALProductType extends DALObject {
     }
     public void set_storageCurr(int i){
         String query= """
-                UPDATE ? \s
+                UPDATE Supplier \s
                 Set storageCurr=? \s
                 WHERE \s
                 storeID=? AND typeID=?;;
                 """;
-        List<Tuple<Object,Class>> list=prepareList(tableName,i,storeId,_typeID);
+        List<Tuple<Object,Class>> list=prepareList(i,storeId,_typeID);
         try{
             DC.noSelect(query, list);
         }
@@ -321,17 +337,17 @@ public class DALProductType extends DALObject {
         String query= """
                 SELECT discountID \s
                 FROM Discount \s
-                WHERE storeID=? AND typeID=? AND supplierID=0;\s 
-                """;
+                WHERE storeID=? AND typeID=? AND supplierID=?;""";
         List<Integer> list=new ArrayList<>();
         list.add(storeId);
         list.add(_typeID);
+        list.add(-1);
         try{
             List<Tuple<List<Class>,List<Object>>> lst=DC.SelectMany(query,list);
             return DC.SelectMany(query,list).stream().map(x->(Integer)(x.item2.get(0))).collect(Collectors.toList());
         }
         catch (Exception e){
-            throw new IllegalArgumentException("fail");
+            throw new IllegalArgumentException(e);
         }
     }
     public int getStoreId(){

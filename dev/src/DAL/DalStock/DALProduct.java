@@ -46,20 +46,11 @@ public class DALProduct extends DALObject {
                 "\tproductID INTEGER NOT NULL UNIQUE,\n" +
                 "\texpiration VARCHAR NOT NULL,\n" +
                 "\tisDamaged INTEGER NOT NULL,\n" +
+                "\tshelfNum INTEGER NOT NULL,\n" +
+                "\tlocation INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, productID),\n" +
                 "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
-                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
-                ");\n"+
-                "CREATE TABLE IF NOT EXISTS ShelfProduct (\n" +
-                "\tshelfID INTEGER NOT NULL UNIQUE,\n" +
-                "\tlocation INTEGER NOT NULL UNIQUE,\n" +
-                "\tproductID INTEGER NOT NULL UNIQUE,\n" +
-                "\ttypeID INTEGER NOT NULL,\n" +
-                "\tcurr INTEGER NOT NULL,\n" +
-                "\tPRIMARY KEY (shelfID, location, productID),\n" +
-                "\tFOREIGN KEY (productID) REFERENCES Product(productID)\n" +
-                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
-                "\tFOREIGN KEY (typeID) REFERENCES ProductType(typeID)\n" +
+                "\tFOREIGN KEY (storeID,shelfNum, location) REFERENCES Shelf(storeID,shelfID, location)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";
 //        return "CREATE TABLE IF NOT EXISTS Product (\n" +
@@ -94,7 +85,7 @@ public class DALProduct extends DALObject {
     public String getSelect() {
         return """
                 SELECT * \s
-                FROM ? \s
+                FROM Product \s
                 WHERE storeID=? AND productID=?; \s
                 """;
     }
@@ -102,7 +93,7 @@ public class DALProduct extends DALObject {
     @Override
     public String getDelete() {
         return """
-                DELETE FROM ? \s
+                DELETE FROM Product \s
                 WHERE storeID=? AND productID=?; \s
                 """;
     }
@@ -115,16 +106,16 @@ public class DALProduct extends DALObject {
     @Override
     public String getInsert() {
         return """
-                INSERT INTO ? \s
-                VALUE(?,?,?,?)
+                INSERT INTO Product \s
+                VALUES(?,?,?,?,?,?,?)
                 """;
     }
     public void removeProduct(){
         String query= """
-                DELETE ?\s
+                DELETE Product\s
                 WHERE storeID=? AND productID=?;
                 """;
-        List<Tuple<Object,Class>> params=prepareList(tableName,storeID,_id);
+        List<Tuple<Object,Class>> params=prepareList(storeID,_id);
         try {
             DC.noSelect(query,params);
         }
@@ -134,12 +125,12 @@ public class DALProduct extends DALObject {
     }
     public void addProduct(int i){
         String query= """
-                UPDATE ?\s
+                UPDATE Product\s
                 SET typeID=?
                 WHERE\s
                 storeID=?
                 AND productID=?;""";
-        List<Tuple<Object,Class>> params=prepareList(tableName,i,storeID,_id);
+        List<Tuple<Object,Class>> params=prepareList(i,storeID,_id);
         try {
             DC.noSelect(query,params);
         }
@@ -160,12 +151,12 @@ public class DALProduct extends DALObject {
     public boolean is_isDamage(){return (_isDamage==1);}
     public void set_isDamage(boolean b){
         String query= """
-                UPDATE ?\s
+                UPDATE Product\s
                 SET isDamaged=?
                 WHERE\s
                 storeID=?
                 AND productID=?;""";
-        List<Tuple<Object,Class>> params=prepareList(tableName,(b)? 1:0,storeID,_id);
+        List<Tuple<Object,Class>> params=prepareList((b)? 1:0,storeID,_id);
         try {
             DC.noSelect(query,params);
         }
@@ -180,21 +171,21 @@ public class DALProduct extends DALObject {
     public int getShelfNum(){return  _location.item1;}
     public void setLocation(int num,String s){
         String query= """
-                UPDATE ?\s
+                UPDATE Product\s
                 SET shelfNum=?
                 WHERE\s
                 storeID=?
                 AND productID=?\s;""";
-        List<Tuple<Object,Class>> params=prepareList(tableName,num,storeID,_id);
+        List<Tuple<Object,Class>> params=prepareList(num,storeID,_id);
         if (!_location.item2.equals(s))
         {
             query+="""
-                UPDATE ?\s
+                UPDATE Product\s
                 SET location=?
                 WHERE\s
                 storeID=?
                 AND productID=?\s;""";
-            params.addAll(prepareList(tableName,s,storeID,_id));
+            params.addAll(prepareList(s,storeID,_id));
         }
         try {
             DC.noSelect(query,params);

@@ -1,8 +1,10 @@
 package BusinessLayer.StockBusiness.Type;
 
 import BusinessLayer.StockBusiness.StoreController;
+import DAL.DALObject;
 import DAL.DalStock.DALCategory;
 import DAL.Mapper;
+import Utility.Tuple;
 import Utility.Util;
 import org.apache.log4j.Logger;
 
@@ -31,7 +33,7 @@ public class Category {
 
     public Category(int storeID,int _categoryID, String _name, Category tmp) {
         checkValues(_categoryID,_name);
-        dal=Util.initDal(DALCategory.class,storeID,_categoryID, _name, tmp);
+        dal=Util.initDal(DALCategory.class,storeID,_categoryID, tmp.get_categoryID(), _name);
         _superCategory=tmp;
         List<Integer> discount=new ArrayList<>();
         tmp.addAllDiscountCategory(discount);
@@ -68,7 +70,29 @@ public class Category {
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
-        dal=Util.initDal(DALCategory.class,storeId,catId,name);
+        //dal=Util.initDal(DALCategory.class,storeId,catId,null,name);
+        Class c=DALCategory.class;
+        List<Tuple<Object,Class>> list=new ArrayList<>();
+        list.add(new Tuple<>(storeId,Integer.class));
+        list.add(new Tuple<>(catId,Integer.class));
+        list.add(new Tuple<>(null,Integer.class));
+        list.add(new Tuple<>(name,String.class));
+        Mapper map=Mapper.getMap();
+        map.setItem(c,list);
+        List<Integer> keyList=new ArrayList<>();
+        keyList.add(storeId);
+        keyList.add(catId);
+        DALObject check =map.getItem(c ,keyList);
+        if (c==null || check==null ||(check.getClass()!=c)){
+            String s="the instance that return from Mapper is null for: "+c;
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+
+        }
+        else{
+            log.info("create new Object");
+        }
+        dal=(DALCategory) check;
     }
 
     public List<Category> get_categories() {

@@ -10,8 +10,8 @@ public class ProductType {
     List<Integer> supplierIDs;
     int currShelves;
     int currStorage;
-    float basePrice;
-    float salePrice;
+    double basePrice;
+    double salePrice;
 
     public int getTypeID() {//for testing
         return typeID;
@@ -24,7 +24,7 @@ public class ProductType {
         return currShelves+currStorage;
     }
 
-    public ProductType(int typeID, int minAmount, int categoryID, String producer, List<Integer> supplierIDs, int currShelves, int currStorage, float basePrice, float salePrice) {
+    public ProductType(int typeID, int minAmount, int categoryID, String producer, List<Integer> supplierIDs, int currShelves, int currStorage, double basePrice, double salePrice) {
         this.typeID = typeID;
         this.minAmount = minAmount;
         this.categoryID = categoryID;

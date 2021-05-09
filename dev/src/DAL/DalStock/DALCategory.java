@@ -19,29 +19,30 @@ public class DALCategory extends DALObject {
     private int _storeID;
     private int _superCategory=0;
     private List<Integer> _categories=new ArrayList<>();
-    private String tableName="Category";
-    private String tableName2="SubCategory";
+
 
 
     public DALCategory(){
         super(null);
     }
 
-    public DALCategory(Integer storeID, Integer id, String name, DalController dc){
+    public DALCategory(Integer storeID, Integer id, Integer parentID, String name, DalController dc){
         super(dc);
         _storeID=storeID;
         _categoryID=id;
+        _superCategory=(parentID==null)?0:parentID;
         _name=name;
     } // get child categories types and discounts from controller
 
     @Override
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS Category (\n" +
-                "\tstoreID INTEGER NOT NULL UNIQUE,\n" +
-                "\tcategoryID INTEGER NOT NULL UNIQUE,\n" +
+                "\tstoreID INTEGER NOT NULL,\n" +
+                "\tcategoryID INTEGER NOT NULL,\n" +
                 "\tparentID INTEGER,"+
                 "\tname VARCHAR NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, categoryID),\n" +
+                "\tUNIQUE (storeID, categoryID),\n" +
                 "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\t\n" +
                 ");\n" +
@@ -51,11 +52,12 @@ public class DALCategory extends DALObject {
                 "\tparentID INTEGER NOT NULL UNIQUE,\n" +
                 "\tchildID INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, childID),\n" +
+                "\tUNIQUE (storeID, childID),\n" +
                 "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                "\tFOREIGN KEY (parentID) REFERENCES Category (categoryID)\n" +
+                "\tFOREIGN KEY (storeID,parentID) REFERENCES Category (storeID,categoryID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                "\tFOREIGN KEY (childID) REFERENCES Category (categoryID)\n" +
+                "\tFOREIGN KEY (storeID,childID) REFERENCES Category (storeID,categoryID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";
     }
@@ -98,7 +100,7 @@ public class DALCategory extends DALObject {
     public String getSelect() {
         return """
                 SELECT * \s
-                FROM ? \s
+                FROM Category \s
                 WHERE storeId=? AND categoryID=?; \s
                 """;
     }
@@ -106,9 +108,9 @@ public class DALCategory extends DALObject {
     @Override
     public String getDelete() {
         return """
-                DELETE FROM ? \s
+                DELETE FROM Category \s
                 WHERE storeID=? AND categoryID=?; \s
-                DELETE FROM ? \s
+                DELETE FROM Category \s
                 WHERE storeID=? AND categoryID=?; \s
                 """;
     }
@@ -121,8 +123,8 @@ public class DALCategory extends DALObject {
     @Override
     public String getInsert() {
         return """
-                INSERT INTO ? \s
-                (?,?,?,?)
+                INSERT INTO Category \s
+                VALUES (?,?,?,?)
                 """;
     }
 
@@ -134,12 +136,12 @@ public class DALCategory extends DALObject {
         return _name;
     }
     public void setName(String name){
-        String updateName="UPDATE ? \n" +
+        String updateName="UPDATE Category \n" +
                 "SET name=?\n" +
                 "WHERE \n" +
                 "storeID=?\n" +
                 "AND categoryID=?;";
-        List<Tuple<Object,Class>> list=prepareList(tableName,name,_storeID,_categoryID);
+        List<Tuple<Object,Class>> list=prepareList(name,_storeID,_categoryID);
         try {
             DC.noSelect(updateName, list);
         }
@@ -151,12 +153,12 @@ public class DALCategory extends DALObject {
     public List<Integer> getProductTypes(){return _productTypes;}
     public List<Integer> getDiscounts(){return _productDiscounts;}
     public void setSuperCategory(int i){
-        String updateParent="UPDATE ? \n" +
+        String updateParent="UPDATE Category \n" +
                 "SET parentID=?\n" +
                 "WHERE \n" +
                 "storeID=?\n" +
                 "AND categoryID=?;";
-        List<Tuple<Object,Class>> list=prepareList(tableName,i,_storeID,_categoryID);
+        List<Tuple<Object,Class>> list=prepareList(i,_storeID,_categoryID);
         try {
             DC.noSelect(updateParent, list);
         }
@@ -168,10 +170,10 @@ public class DALCategory extends DALObject {
 
 
     public void addCategory(int i){
-        String query="INSERT INTO ? \n" +
+        String query="INSERT INTO SubCategory \n" +
                 "(storeID,parentID,childID) \n" +
-                "VALUES(?,?,?) ;";
-        List<Tuple<Object,Class>> params=prepareList(tableName2,_storeID,_categoryID,i);
+                "VALUES (?,?,?) ;";
+        List<Tuple<Object,Class>> params=prepareList(_storeID,_categoryID,i);
         try {
             DC.noSelect(query,params);
         }
@@ -223,9 +225,9 @@ public class DALCategory extends DALObject {
         _productDiscounts.remove(i);
     }
     public void removeCategory(int i){
-        String query="DELETE ? \n" +
+        String query="DELETE SubCategory \n" +
                 "WHERE storeID=? AND parentID=? AND childID=? ;\n";
-        List<Tuple<Object,Class>> params=prepareList(tableName2,_storeID,_categoryID,i);
+        List<Tuple<Object,Class>> params=prepareList(_storeID,_categoryID,i);
         try {
             DC.noSelect(query,params);
         }

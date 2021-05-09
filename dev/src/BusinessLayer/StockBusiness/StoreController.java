@@ -43,7 +43,7 @@ public class StoreController implements iStoreController {
         list.add(new Tuple<>(shelves,Integer.class));
         list.add(new Tuple<>(0,Integer.class));
         list.add(new Tuple<>(0,Integer.class));
-        list.add(new Tuple<>(maxProductsInShelf,Integer.class));
+        list.add(new Tuple<>(counterCategory(),Integer.class));
         Mapper map=Mapper.getMap();
         map.setItem(DALStoreController.class,list);
         List<Integer> keyList=new ArrayList<>();
@@ -88,10 +88,17 @@ public class StoreController implements iStoreController {
             log.warn("storeID is not in DB");
             throw new IllegalArgumentException("storeID is not in DB");
         }
+        log.warn("loading discounts");
         loadSaleCategoryDiscount();
+        log.warn("loading categories");
         loadCategories();
+        log.warn("loading products");
         loadTypeProducts();
+        log.warn("loading shelves");
         loadShelves();
+
+
+
     }
     public void loadCategories(){
         List<Integer> list=dal.getCategories();
@@ -112,6 +119,7 @@ public class StoreController implements iStoreController {
     }
     public void loadTypeProducts(){
         List<Integer> list=dal.getTypes();
+        log.warn(list);
         for (Integer i: list){
             _products.put(new ProductType(getID(),i),new InstanceController(getID(),i));
         }
@@ -278,7 +286,7 @@ public class StoreController implements iStoreController {
     }
 
     @Override
-    public void addProductType(String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category) {
+    public void addProductType(String name, int minAmount, double basePrice, double salePrice, String producer, int supID, int category) {
         log.debug(String.format("addProductType(String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category)" +
                         " Method  with: %s, %d, %f, %f, %s, %d, %d",
                 name,minAmount,basePrice,salePrice,producer,supID,category));
@@ -289,7 +297,7 @@ public class StoreController implements iStoreController {
         cat.addAllDiscountCategory(discounts);
         dal.setTypeCounter(dal.getTypeCounter()+1);
         int typeID=dal.getTypeCounter();
-        ProductType newProductType=new ProductType(getID(),typeID,name,minAmount,basePrice,producer,supID,category);
+        ProductType newProductType=new ProductType(getID(),typeID,name,minAmount,basePrice,salePrice,producer,supID,category);
         try {
             _category.get(category).addProductType(typeID);
             for (Integer i: discounts){
@@ -376,7 +384,7 @@ public class StoreController implements iStoreController {
     }
 
     @Override
-    public void addSaleProductDiscount(int productTypeID, float percent, Date start, Date end) {
+    public void addSaleProductDiscount(int productTypeID, double percent, Date start, Date end) {
         log.debug(String.format("got inside addSaleProductDiscount(int productTypeID, float percent, Date start, Date end)" +
                 " Method with: %d, %f, "+start+" , "+end,productTypeID,percent));
         ProductType p=checkIDProductTypeExist(productTypeID);
@@ -397,7 +405,7 @@ public class StoreController implements iStoreController {
     }
 
     @Override
-    public void addSaleCategoryDiscount(int catID, float percent, Date start, Date end) {
+    public void addSaleCategoryDiscount(int catID, double percent, Date start, Date end) {
         log.debug(String.format("got inside addSaleCategoryDiscount(int CatID, float percent, Date start, Date end)" +
                 " Method with: %d, %f, "+start+ ","+end,catID,percent));
         checkValidCategory(catID);
@@ -430,7 +438,7 @@ public class StoreController implements iStoreController {
 
 
     @Override
-    public void addSupplierDiscount(int typeID, float percent, Date start, Date end, int supId) {
+    public void addSupplierDiscount(int typeID, double percent, Date start, Date end, int supId) {
         log.debug(String.format("got inside addSupplierDiscount(int categoryID, float percent, Date start, Date end, int supId)" +
                 " Method with: %d, %f,  "+start+" , "+end+" , %d",typeID,percent,supId));
         ProductType p=checkIDProductTypeExist(typeID);
@@ -470,7 +478,7 @@ public class StoreController implements iStoreController {
     }
 
     @Override
-    public void editProductType(int id, String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category) {
+    public void editProductType(int id, String name, int minAmount, double basePrice, double salePrice, String producer, int supID, int category) {
         log.debug(String.format("editProductType(int id, String name, int minAmount, float basePrice, float salePrice" +
                 ", String producer, int supID, int category) Method with: "+id+" "+name+" "+minAmount+" "+basePrice+" "+producer+" "+supID+" "+category));
         checkValidCategory(category);

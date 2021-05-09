@@ -49,13 +49,14 @@ public abstract class DALDiscount extends DALObject {
                 "\tstartDate VARCHAR NOT NULL,\n" +
                 "\tendDate VARCHAR NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, discountID),\n" +
+                "\tUNIQUE (storeID, discountID),\n" +
                 "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                "\tFOREIGN KEY (typeID) REFERENCES ProductType(typeID)\n" +
+                "\tFOREIGN KEY (storeID,typeID) REFERENCES ProductType(storeID,typeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                "\tFOREIGN KEY (categoryID) REFERENCES Category(categoryID)\n" +
+                "\tFOREIGN KEY (storeID,categoryID) REFERENCES Category(storeID,categoryID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
-                "\tFOREIGN KEY (supplierID) REFERENCES Supplier(supplierID)\n" +
+                "\tFOREIGN KEY (storeID,supplierID) REFERENCES Supplier(storeID,supplierID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";
     }

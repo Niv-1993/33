@@ -17,12 +17,16 @@ public  class Util {
         for (Object o1: o) {
             list.add(new Tuple<>(o1,o1.getClass()));
         }
-        Mapper map=Mapper.getMap();
-        map.setItem(c,list);
         List<Integer> keyList=new ArrayList<>();
         keyList.add(storeID);
         keyList.add(key);
-        DALObject check =map.getItem(c ,keyList);
+        Mapper map=Mapper.getMap();
+        DALObject check =map.getItem(c,keyList);
+        if (check!=null)
+            return (T)check;
+        map.setItem(c,list);
+
+        check =map.getItem(c ,keyList);
         if (c==null || check==null ||(check.getClass()!=c)){
             String s="the instance that return from Mapper is null for: "+c;
             log.warn(s);

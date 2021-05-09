@@ -31,7 +31,7 @@ public interface iStoreController {
     public Category addCategory(String name, int superCategory);
     public List<Integer> getCategories();
     //added sale price
-    public void addProductType(String name, int minAmount, float basePrice,float salePrice, String producer, int supID, int category);
+    public void addProductType(String name, int minAmount, double basePrice,double salePrice, String producer, int supID, int category);
 
     public List<Integer> getProductTypes();
     public ProductType getProductTypeInfo(int id);
@@ -43,10 +43,10 @@ public interface iStoreController {
     //res: Category
     public Category addCategory(String name);
     //res:PT+SC
-    public void addSaleProductDiscount(int productTypeID, float percent, Date start, Date end);
+    public void addSaleProductDiscount(int productTypeID, double percent, Date start, Date end);
     public int counterDiscount();
-    public void addSaleCategoryDiscount(int productTypeID, float percent, Date start,Date end);
-    public void addSupplierDiscount(int categoryID, float percent, Date start,Date end,int supId);
+    public void addSaleCategoryDiscount(int productTypeID, double percent, Date start,Date end);
+    public void addSupplierDiscount(int categoryID, double percent, Date start,Date end,int supId);
     public List<SupplierDiscount> getSupplierDiscounts(int typeID);
     public List<SaleDiscount> getSaleDiscounts(int typeID);
 
@@ -56,7 +56,7 @@ public interface iStoreController {
     //res:PT
 
     //added sale price
-    public void editProductType(int id,String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category);
+    public void editProductType(int id,String name, int minAmount, double basePrice, double salePrice, String producer, int supID, int category);
 
     //res: InstanceController+PT
     public void addProduct(int typeID, Date expiration ) throws Exception;

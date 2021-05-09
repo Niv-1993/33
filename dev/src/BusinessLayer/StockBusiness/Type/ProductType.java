@@ -2,6 +2,7 @@ package BusinessLayer.StockBusiness.Type;
 
 import BusinessLayer.StockBusiness.instance.Location;
 import BusinessLayer.StockBusiness.instance.Product;
+import DAL.DALObject;
 import DAL.DalStock.DALProductType;
 import DAL.Mapper;
 import Utility.Tuple;
@@ -24,9 +25,9 @@ public class ProductType {
 
 
 
-    public ProductType(int storeID,int _typeID, int _categoryID, String _name, int _minAmount, float _basePrice, float _salePrice, String _producer, List<Integer> _suppliers) {
+    public ProductType(int storeID,int _typeID, int _categoryID, String _name, int _minAmount, double _basePrice, double _salePrice, String _producer, List<Integer> _suppliers) {
         checkValues(_typeID,  _categoryID,  _name, _minAmount, _basePrice, _salePrice, _producer, _suppliers);
-        dal=Util.initDal(DALProductType.class,storeID,_typeID, _categoryID,  _name, _minAmount, _basePrice, _salePrice, _producer);
+        dal=Util.initDal(DALProductType.class,storeID,_typeID, _name, _categoryID, _minAmount,0,0, _basePrice, _salePrice, _producer);
         dal.setSuppliers(_suppliers);
     }
 
@@ -35,11 +36,15 @@ public class ProductType {
         list.add(id);
         list.add(i);
         dal= (DALProductType) Mapper.getMap().getItem(DALProductType.class,list);
+        log.warn("loaded product types");
         loadSaleDiscount();
+        log.warn("loaded sale discounts");
         loadSupplierDiscount();
+        log.warn("loaded supplier discounts");
     }
     public void loadSaleDiscount(){
         List<Integer> list=dal.getSaleDiscounts();
+        log.warn("got sale discount");
         for (Integer i:list)
             _saleDiscounts.add(new SaleDiscount(dal.getStoreId(),i));
     }
@@ -73,9 +78,9 @@ public class ProductType {
                     throw new IllegalArgumentException(s);
                 }
             }
-            else if (o[i] instanceof Float)
+            else if (o[i] instanceof Double)
             {
-                if ((Float)o[i]<0)
+                if ((Double)o[i]<0)
                 {
                     s="the value is illegal(String)";
                     log.warn(s);
@@ -90,9 +95,10 @@ public class ProductType {
     }
 
 
-    public ProductType(int storeID,int i, String name, int minAmount, float basePrice, String producer, int supID, int category) {
-        checkValues(i,name, minAmount, basePrice, producer,supID,category);
-        dal=Util.initDal(DALProductType.class,storeID,i,name, minAmount, basePrice, producer,supID,category);
+    public ProductType(int storeID,int i, String name, int minAmount, double basePrice,double salePrice, String producer, int supID, int category) {
+        checkValues(i,name, minAmount, basePrice,salePrice, producer,supID,category);
+        dal=Util.initDal(DALProductType.class,storeID,i,name,category, minAmount,0,0, basePrice, salePrice, producer);
+        dal.insertSupplier(storeID,i,supID);
     }
 
     public int get_typeID() {
@@ -141,16 +147,16 @@ public class ProductType {
         return dal.get_storageCurr();
     }
 
-    public float get_basePrice() {
+    public double get_basePrice() {
         return dal.get_basePrice();
     }
 
-    public void set_basePrice(float _basePrice) {
+    public void set_basePrice(double _basePrice) {
         dal.set_basePrice(_basePrice);
     }
 
-    public float get_salePrice() {
-        float min=dal.get_basePrice();
+    public double get_salePrice() {
+        double min=dal.get_basePrice();
         for (SaleDiscount s: _saleDiscounts){
             if (s.relevant() && min>get_basePrice()*(1-s.get_percent())){
                min= get_basePrice()*(1-s.get_percent());
@@ -173,7 +179,7 @@ public class ProductType {
     public void set_suppliers(List<Integer> _suppliers) {dal.setSuppliers(_suppliers); }
 
 
-    public void addSaleProductDiscount(int discountID,float percent, Date start, Date end) {
+    public void addSaleProductDiscount(int discountID,double percent, Date start, Date end) {
         log.debug(String.format("addSaleProductDiscount(float percent, Date start, Date end) Values:?,?,?",percent,start,end));
         SaleDiscount s=new SaleDiscount(dal.getStoreId(),discountID,percent,start,end);
         try{
@@ -233,7 +239,7 @@ public class ProductType {
         return _saleDiscounts;
     }
 
-    public void edit(String name, int minAmount, float basePrice, String producer, int supID, int category
+    public void edit(String name, int minAmount, double basePrice, String producer, int supID, int category
             , List<SaleDiscount> saleDiscountsToDelete, List<SaleDiscount> saleDiscountsToAdd) {
         log.debug(String.format("edit(String name, int minAmount, float basePrice, String producer, int supID," +
                 " int category) Value:?,?,?,?,?,?" ,name,minAmount,basePrice,producer,supID,category));

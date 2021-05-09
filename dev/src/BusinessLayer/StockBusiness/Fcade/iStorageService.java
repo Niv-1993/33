@@ -19,11 +19,11 @@ public interface iStorageService {
     public Response editCategory(int Id, String name, int superCategory);
     public Response editCategory(int Id, String name);
     //added sale price
-    public Response addProductType(String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category);
+    public Response addProductType(String name, int minAmount, double basePrice, double salePrice, String producer, int supID, int category);
     public ResponseData<AllType> getProductTypes();
     public ResponseData<ProductType> getProductTypeInfo(int id);
     //added sale price + ID
-    public Response editProductType(int ID,String name, int minAmount, float basePrice, float salePrice, String producer, int supID, int category);
+    public Response editProductType(int ID,String name, int minAmount, double basePrice, double salePrice, String producer, int supID, int category);
 
     public Response addSaleProductDiscount(int productTypeID, float percent, Date start,Date end);
     public Response addSaleCategoryDiscount(int catID, float percent, Date start,Date end);

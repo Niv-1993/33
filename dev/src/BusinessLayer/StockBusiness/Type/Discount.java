@@ -9,7 +9,7 @@ public abstract class Discount {
     final static Logger log=Logger.getLogger(Discount.class);
 
 
-    public Discount(int storeID,int id,float percent,Date start,Date end){
+    public Discount(int storeID,int id,double percent,Date start,Date end){
         checkValue(id,percent);
         if (end.before(start) || end.before(new Date(System.currentTimeMillis()))){
             String s="the Date is illegal";
@@ -20,7 +20,7 @@ public abstract class Discount {
     }
     public Discount(){
     }
-    protected abstract void init(int storeID,int id,float percent,Date start,Date end);
+    protected abstract void init(int storeID,int id,double percent,Date start,Date end);
 
     private void checkValue(Object... o){
         String s="the value of arg is illegal";;

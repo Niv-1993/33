@@ -66,17 +66,15 @@ public class DALInstanceController extends DALObject {
     public String getSelect() {
         return """
                 SELECT * \s
-                FROM ?
-                WHERE StoreID=? AND typeID=?;\s
-                """;
+                FROM InstanceController
+                WHERE StoreID=? AND typeID=?;""";
     }
 
     @Override
     public String getDelete() {
         return """
-                DELETE FROM ? \s
-                WHERE storeID=? AND typeID=? ;\s
-                """;
+                DELETE FROM InstanceController \s
+                WHERE storeID=? AND typeID=? ;""";
     }
 
     @Override
@@ -87,9 +85,8 @@ public class DALInstanceController extends DALObject {
     @Override
     public String getInsert() {
         return """
-                INSERT INTO ? \s
-                VALUE(?,?,?); \s
-                """;
+                INSERT INTO InstanceController \s
+                VALUES(?,?,?);""";
     }
     public void removeProduct(int i){
         List<Integer> key=new ArrayList<>();
@@ -110,13 +107,13 @@ public class DALInstanceController extends DALObject {
     public int get_typeID(){return _typeID;}
     public int get_counter(){return _counter;}
     public void set_counter(int i){
-        String query="UPDATE ? \n" +
+        String query="UPDATE InstanceController \n" +
                 "SET counter=?\n" +
                 "WHERE \n" +
                 "storeID=?\n" +
                 "AND typeID=?;";
         List<Tuple<Object,Class>> list=new ArrayList<>();
-        list.add(new Tuple<>(tableName,String.class));
+        list.add(new Tuple<>(i,Integer.class));
         list.add(new Tuple<>(_storeID,Integer.class));
         list.add(new Tuple<>(_typeID,Integer.class));
         try {
@@ -131,8 +128,7 @@ public class DALInstanceController extends DALObject {
         String query= """
                 SELECT productID \s
                 FROM Product \s
-                WHERE storeID=? AND typeID=?;\s
-                """;
+                WHERE storeID=? AND typeID=?;""";
         List<Integer> list=new ArrayList<>();
         list.add(_storeID);
         list.add(_typeID);
