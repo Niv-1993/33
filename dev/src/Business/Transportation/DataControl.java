@@ -41,7 +41,7 @@ public class DataControl {
     public List<Truck> getTrucks() throws Exception {
         return truckMapper.getTrucks();
     }
-    public HashMap<Long, Driver> getDrivers() throws Exception{
+    public HashMap<Integer, Driver> getDrivers() throws Exception{
         return driverMapper.selectAll();
     }
     public List< Transportation> getTransportations() throws Exception {
@@ -118,5 +118,16 @@ public class DataControl {
 
     public long getCurrID() throws Exception {
         return transportationMapper.getCurrId();
+    }
+
+    public void addTruck(long id, int maxweight,String model, int netWeight, int license){truckMapper.addTruck(id,maxweight,model,netWeight,license);}
+    public void addItem(long id , String name){itemMapper.addItem(id,name);}
+    public void addSupplierItems(long id, long supp){supplierMapper.addSupplierItems(id,supp);}
+    public void addSupplier(long sid,String street, String city,int number,int enter,String area,String contact,String phone){supplierMapper.addSupplier(sid,street,city,number,enter,area,contact,phone);}
+    public void addBranch(long sid,String street, String city,int number,int enter,String area,String contact,String phone){branchMapper.addBranch(sid,street,city,number,enter,area,contact,phone);}
+    public void addSuppliersItemsTrans(long supid,long tranid, long itemid,int quantity){transportationMapper.saveSupplierItemOnTrans(supid,tranid,itemid,quantity);}
+    public void addBranchesItemsTrans(long branid,long tranid, long itemid,int quantity){transportationMapper.saveBranchItemOnTrans(branid,tranid,itemid,quantity);}
+    public void addTransportation(int i, String center, String s, String s1, int i1, int i2, int i3) {
+        transportationMapper.addTransportation( i,  center,  s,  s1,  i1,  i2,  i3);
     }
 }

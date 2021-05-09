@@ -4,7 +4,7 @@ import java.util.*;
 
 public class DriverService {
 
-    private Map<Long,Driver> drivers;
+    private Map<Integer,Driver> drivers;
     private DataControl dataControl;
 
     public DriverService(){

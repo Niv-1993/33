@@ -68,22 +68,9 @@ public class ItemMapper extends Mapper{
         }
         return null;
     }
-    public static Connection connect() throws Exception {
-
-        //DriverManager.registerDriver(new com.sqlite.jdbc.Driver());
-        Class.forName("org.sqlite.JDBC");
-        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\" + dbName;
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url);
-        } catch (SQLException e) {
-            throw new Exception("failed to connect database.");
-        }
-        return conn;
-    }
 
 
-    public void addItem(long id , String name) throws Exception {
+    public void addItem(long id , String name) {
 
         String query = "INSERT INTO Items (ID,Name) VALUES(?,?)";
         try (Connection conn = this.connect();
@@ -92,6 +79,8 @@ public class ItemMapper extends Mapper{
             pstmt.setString(2,name );
             pstmt.executeUpdate();
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

@@ -153,15 +153,7 @@ public class TransportationMapper extends Mapper{
             System.out.println(e.getMessage());
         }
     }
-    private void insertlists(String command) throws Exception {
 
-        try (Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(command)) {
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
     public void addTransportation(long idCounter, Transportation tra) {
 
         transportations.put(idCounter,tra);
@@ -171,18 +163,44 @@ public class TransportationMapper extends Mapper{
         insert(id,tra.getShippingArea().getArea().toString(),tra.getDate().toString(),tra.getLeavingTime().toString(),tra.getWeight(),tra.getDriver().getId(),tra.getTruck().getId());
         for(Map.Entry<Supplier, List<Pair<Item, Integer>>> set : tra.getSuppliers().entrySet()) {
             for (Pair<Item, Integer> pai : set.getValue()) {
-                String com = "INSERT INTO SupplierItemsOnTran VALUES(" + set.getKey().toString() + "," + id+","+pai.getFir()+","+pai.getSec()+")";
-                insertlists(com);
+               saveSupplierItemOnTrans(set.getKey().getId(),id,pai.getFir().getId(), pai.getSec());
             }
         }
         for(Map.Entry<Branch, List<Pair<Item, Integer>>> set : tra.getDeliveryItems().entrySet()) {
             for (Pair<Item, Integer> pai : set.getValue()) {
-                String com = "INSERT INTO BranchesItemsOnTran VALUES(" + set.getKey().toString() + "," + id+","+pai.getFir()+","+pai.getSec()+")";
-                insertlists(com);
+                saveBranchItemOnTrans(set.getKey().getId(),id,pai.getFir().getId(), pai.getSec());
             }
         }
     }
 
+    public void saveSupplierItemOnTrans(long supid,long tranid, long itemid,int quantity){
+        String query = "INSERT INTO SupplierItemsOnTran (SupID,TranID,ItemID,Quantity) VALUES(?,?,?,?)";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setLong(1,supid );
+            pstmt.setLong(2,tranid );
+            pstmt.setLong(3,itemid );
+            pstmt.setLong(4,quantity );
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }}
+    public void saveBranchItemOnTrans(long branid,long tranid, long itemid,int quantity){
+        String query = "INSERT INTO BranchesItemsOnTran (BranID,TranID,ItemID,Quantity) VALUES(?,?,?,?)";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setLong(1,branid );
+            pstmt.setLong(2,tranid );
+            pstmt.setLong(3,itemid );
+            pstmt.setLong(4,quantity );
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }}
 
     public Transportation getTransportation(long id, TruckMapper truckMapper, ItemMapper itemMapper, SupplierMapper supplierMapper, BranchMapper branchMapper) throws Exception {
 
@@ -245,5 +263,27 @@ public class TransportationMapper extends Mapper{
             throw new IOException("failed to get all branches from database");
         }
         return -1;
+    }
+
+    public void addTransportation(int id, String area, String date, String time, int weight, int driverID, int truckID) {
+
+        String sql = "INSERT INTO Transportations (ID,Area,Date,LeavingTime,Weight,driverID,truckID) VALUES(?,?,?,?,?,?,?)";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setLong(1,id );
+            pstmt.setString(2,area );
+            pstmt.setString(3,date );
+            pstmt.setString(4,time );
+            pstmt.setInt(5, weight);
+            pstmt.setLong(6, driverID);
+            pstmt.setLong(7, truckID);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 }

@@ -5,14 +5,14 @@ import java.util.Objects;
 
 public class Driver {
 
-    private final long id;
+    private final int id;
     private int License;
 
-    public Driver(long id, int license){
+    public Driver(int id, int license){
         this.id=id;
         this.License =license;
     }
-    public long getId() { return id; }
+    public int getId() { return id; }
 
     public int getLicense() { return License; }
 

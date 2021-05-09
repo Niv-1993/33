@@ -23,57 +23,57 @@ public class TransportationController {
     public void setDriverOnTransportation(TransportationServiceDTO t){
         ResponseData<TransportationServiceDTO> tra = serviceControl.setTransportationDriver(t);
         if (tra.isError()){
-            throw new IllegalArgumentException(tra.getError());
+            System.out.println(tra.getError());
         }
     }
 
     public void setTruckOnTransportation(TransportationServiceDTO t){
         ResponseData<TransportationServiceDTO> tra = serviceControl.setTransportationTruck(t);
         if (tra.isError()){
-            throw new IllegalArgumentException(tra.getError());
+            System.out.println(tra.getError());
         }
     }
     public void setTransportationWeight(TransportationServiceDTO t){
         ResponseData<TransportationServiceDTO> tra = serviceControl.setTransportationWeight(t);
         if (tra.isError()){
-            throw new IllegalArgumentException(tra.getError());
+            System.out.println(tra.getError());
         }
     }
     public void setTransportation(TransportationServiceDTO t){
         ResponseData<TransportationServiceDTO> tra = serviceControl.setTransportation(t);
         if (tra.isError()){
-            throw new IllegalArgumentException(tra.getError());
+            System.out.println(tra.getError());
         }
     }
     public void setTransportationDate(TransportationServiceDTO t){
         ResponseData<TransportationServiceDTO> tra = serviceControl.setTransportationDate(t);
         if (tra.isError()){
-            throw new IllegalArgumentException(tra.getError());
+            System.out.println(tra.getError());
         }
     }
     public void setTransportationLeavingTime(TransportationServiceDTO t){
         ResponseData<TransportationServiceDTO> tra = serviceControl.setTransportationTime(t);
         if (tra.isError()){
-            throw new IllegalArgumentException(tra.getError());
+            System.out.println(tra.getError());
         }
     }
     public void setSuppliersToTransportation(TransportationServiceDTO tr){
         ResponseData<TransportationServiceDTO> res = serviceControl.setTransportationSuppliersItems(tr);
         if(res.isError()){
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
     }
     public void setDeliveryItemsToTransportation(TransportationServiceDTO tr){
         ResponseData<TransportationServiceDTO> res = serviceControl.setTransportationDeliveryItems(tr);
         if(res.isError()){
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
     }
     public void setTransportationArea(TransportationServiceDTO t){
         ResponseData<TransportationServiceDTO> res=serviceControl.setArea(t);
         if(res.isError())
         {
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
     }
 
@@ -84,14 +84,14 @@ public class TransportationController {
     public List<DriverServiceDTO> getAllDrivers(LocalDate date, LocalTime leavingTime){
         ResponseData<List<DriverServiceDTO>> res = serviceControl.getDTODrivers(date, leavingTime);
         if(res.isError()){
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
         return res.getData();
     }
     public List<ItemServiceDTO> getAllItems(){
         ResponseData<List<ItemServiceDTO>> res = serviceControl.getAllDTOItems();
         if(res.isError()) {
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
         return res.getData();
     }
@@ -99,7 +99,7 @@ public class TransportationController {
     public List<SupplierServiceDTO> getAllSuppliers(){
         ResponseData<List<SupplierServiceDTO>> res = serviceControl.getDTOSuppliers();
         if(res.isError()){
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
         return res.getData();
     }
@@ -107,7 +107,7 @@ public class TransportationController {
 
         ResponseData<List<ItemServiceDTO>> res=serviceControl.getDTOItemsBySupplier(id);
         if(res.isError()){
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
         return res.getData();
     }
@@ -115,21 +115,21 @@ public class TransportationController {
 
         ResponseData<List<TransportationServiceDTO>> res = serviceControl.getDTOTransportations();
         if(res.isError()){
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
         return res.getData();
     }
     public List<TruckServiceDTO> getAllTrucks(){
         ResponseData<List<TruckServiceDTO>> res = serviceControl.getDTOTrucks();
         if(res.isError()) {
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
         return res.getData();
     }
     public List<BranchServiceDTO> getAllBranches(){
         ResponseData<List<BranchServiceDTO>> res = serviceControl.getDTOBranches();
         if(res.isError()){
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
         return res.getData();
     }
@@ -142,42 +142,42 @@ public class TransportationController {
     public TransportationServiceDTO getTransportation(long id){
         ResponseData<TransportationServiceDTO> res = serviceControl.getTransportation(id);
         if(res.isError()){
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
         return res.getData();
      }
     public DriverServiceDTO getDriver(long id){
         ResponseData<DriverServiceDTO> driver =  serviceControl.getDriver(id);
         if(driver.isError()){
-            throw new IllegalArgumentException(driver.getError());
+            System.out.println(driver.getError());
         }
         return driver.getData();
     }
     public ItemServiceDTO getItem(long id){
         ResponseData<ItemServiceDTO> item =  serviceControl.getItem(id);
         if(item.isError()){
-            throw new IllegalArgumentException(item.getError());
+            System.out.println(item.getError());
         }
         return item.getData();
     }
     public BranchServiceDTO getBranch(int id){
         ResponseData<BranchServiceDTO> res = serviceControl.getBranch(id);
         if(res.isError()){
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
         return res.getData();
     }
     public SupplierServiceDTO getSupplier(int id) {
         ResponseData<SupplierServiceDTO> res = serviceControl.getSuppliers(id);
         if (res.isError()) {
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
         return res.getData();
     }
     public TruckServiceDTO getTruck(long id){
         ResponseData<TruckServiceDTO> res = serviceControl.getTruck(id);
         if(res.isError()) {
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
         return res.getData();
     }
@@ -189,7 +189,7 @@ public class TransportationController {
     public TransportationServiceDTO createNewTransportation() {
         ResponseData<TransportationServiceDTO> res = serviceControl.createNewTransportation();
         if(res.isError()){
-            throw new IllegalArgumentException(res.getError());
+            System.out.println(res.getError());
         }
         return res.getData();
     }
@@ -199,10 +199,64 @@ public class TransportationController {
             serviceControl.deleteTrans();
         }
         catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+    public void addTruck(long id, int maxweight,String model, int netWeight, int license) {
+        try {
+            serviceControl.addTruck(id, maxweight, model, netWeight, license);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public void addItem(long id , String name){
+        try {
+        serviceControl.addItem(id,name);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public void addSupplier(long sid,String street, String city,int number,int enter,String area,String contact,String phone){
+        try {
+        serviceControl.addSupplier(sid,street,city,number,enter,area,contact,phone);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public void addBranch(long sid,String street, String city,int number,int enter,String area,String contact,String phone) {
+        try {
+            serviceControl.addBranch(sid, street, city, number, enter, area, contact, phone);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void addSupplierItems(long id,long supplier) {
+        try {
+            serviceControl.addSupplierItems(id, supplier);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
+    public void addSuppliersItemsTrans(long supid,long tranid, long itemid,int quantity) {
+        try {
+            serviceControl.addSuppliersItemsTrans(supid, tranid, itemid, quantity);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public void addBranchesItemsTrans(long branid,long tranid, long itemid,int quantity) {
+        try {
+            serviceControl.addBranchesItemsTrans(branid, tranid, itemid, quantity);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
-
+    public void addTransportation(int i, String center, String s, String s1, int i1, int i2, int i3) {
+        serviceControl.addTransportation(i,center,s,s1,i1,i2,i3);
+    }
 }

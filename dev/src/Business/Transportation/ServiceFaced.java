@@ -375,7 +375,17 @@ public class ServiceFaced {
     public void deleteTrans() {
         transportationService.deleteTransport();
     }
+    public void addTruck(long id, int maxweight,String model, int netWeight, int license){dataControl.addTruck(id,maxweight,model,netWeight,license);}
+    public void addItem(long id , String name){dataControl.addItem(id,name);}
+    public void addSupplier(long sid,String street, String city,int number,int enter,String area,String contact,String phone){dataControl.addSupplier(sid,street,city,number,enter,area,contact,phone);}
+    public void addBranch(long sid,String street, String city,int number,int enter,String area,String contact,String phone){dataControl.addBranch(sid,street,city,number,enter,area,contact,phone);}
+    public void addSuppliersItemsTrans(long supid,long tranid, long itemid,int quantity){dataControl.addSuppliersItemsTrans(supid,tranid,itemid,quantity);}
+    public void addBranchesItemsTrans(long branid,long tranid, long itemid,int quantity){dataControl.addBranchesItemsTrans(branid,tranid,itemid,quantity);}
+    public void addSupplierItems(long id, long supp){dataControl.addSupplierItems(id,supp);}
 
 
+    public void addTransportation(int i, String center, String s, String s1, int i1, int i2, int i3) {
 
+        dataControl.addTransportation(i,center,s,s1,i1,i2,i3);
+    }
 }

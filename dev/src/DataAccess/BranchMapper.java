@@ -67,9 +67,9 @@ public class BranchMapper extends Mapper{
         return null;
     }
 
-    public void addBranch(long sid,String street, String city,int number,int enter,String area,String contact,int phone) throws Exception {
+    public void addBranch(long sid,String street, String city,int number,int enter,String area,String contact,String phone)  {
 
-        String sql = "INSERT INTO Branches (ID,Street,City,Number,Enter,Area,ContactName,Phone) VALUES(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Branches (BID,Street,City,Number,Enter,Area,ContactName,Phone) VALUES(?,?,?,?,?,?,?,?)";
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -80,9 +80,11 @@ public class BranchMapper extends Mapper{
             pstmt.setInt(5, enter);
             pstmt.setString(6, area);
             pstmt.setString(7, contact);
-            pstmt.setInt(8, phone);
+            pstmt.setString(8, phone);
             pstmt.executeUpdate();
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

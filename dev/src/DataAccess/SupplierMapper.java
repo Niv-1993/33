@@ -64,7 +64,7 @@ public class SupplierMapper extends Mapper {
         return null;
     }
 
-    public void addSupplier(long sid,String street, String city,int number,int enter,String area,String contact,int phone) throws Exception {
+    public void addSupplier(long sid,String street, String city,int number,int enter,String area,String contact,String phone) {
 
         String sql = "INSERT INTO Suppliers (ID,Street,City,Number,Enter,Area,ContactName,Phone) VALUES(?,?,?,?,?,?,?,?)";
 
@@ -77,13 +77,30 @@ public class SupplierMapper extends Mapper {
             pstmt.setInt(5, enter);
             pstmt.setString(6, area);
             pstmt.setString(7, contact);
-            pstmt.setInt(8, phone);
+            pstmt.setString(8, phone);
             pstmt.executeUpdate();
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
+    public void addSupplierItems(long item,long supplier) {
+
+        String sql = "INSERT INTO SupplierItems (ItemID,SupID) VALUES(?,?)";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setLong(1,item );
+            pstmt.setLong(2,supplier );
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
     public Supplier getSupplier(int id) throws Exception {
 
         if(suppliers.containsKey(id)){

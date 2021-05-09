@@ -63,7 +63,7 @@ public class TruckMapper extends Mapper{
         return selectAll();
     }
 
-    public void addTruck(long id, int maxweight,String model, int netWeight, int license) throws Exception {
+    public void addTruck(long id, int maxweight,String model, int netWeight, int license){
 
         String sql = "INSERT INTO Trucks (ID,MaxWeight,Model,NetWeight,Liecense) VALUES(?,?,?,?,?)";
 
@@ -76,6 +76,8 @@ public class TruckMapper extends Mapper{
             pstmt.setInt(5, license);
             pstmt.executeUpdate();
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
