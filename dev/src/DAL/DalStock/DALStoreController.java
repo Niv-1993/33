@@ -26,21 +26,26 @@ public class DALStoreController extends DALObject {
     }
 
     public DALStoreController(Integer storeID, Integer storeShelves, Integer shelves, Integer discountCounter,
-                              Integer typeCounter, Integer categoryCounter, Integer maxProductsOnType, DalController dc){
+                              Integer typeCounter, Integer categoryCounter, DalController dc){
         super(dc);
+        this._storeID=storeID;
+        this._storeShelves=storeShelves;
+        this._numberOfShelves=shelves;
+        this._discountCounter=discountCounter;
+        this._typeCounter=typeCounter;
+        this._categoryCounter=categoryCounter;
     }
     //get categories controllers discounts and product types from controller
 
     @Override
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS StoreController (\n" +
-                "\tstoreID INTEGER PRIMARY KEY NOT NULL,\n" +
+                "\tstoreID INTEGER PRIMARY KEY NOT NULL UNIQUE,\n" +
                 "\tstoreShelves INTEGER NOT NULL,\n" +
                 "\tnumberOfShelves INTEGER NOT NULL,\n" +
                 "\tdiscountCounter INTEGER NOT NULL,\n" +
                 "\ttypeCounter INTEGER NOT NULL,\n" +
-                "\tcategoryCounter INTEGER NOT NULL,\n" +
-                "\tmaxProductsOnType INTEGER NOT NULL\n" +
+                "\tcategoryCounter INTEGER NOT NULL\n" +
                 ");";
     }
 
@@ -61,7 +66,7 @@ public class DALStoreController extends DALObject {
 
     @Override
     public String getInsert() {
-        return "INSERT OR REPLACE INTO StoreController VALUES (?,?,?,?,?,?,?);";
+        return "INSERT OR REPLACE INTO StoreController VALUES (?,?,?,?,?,?);";
     }
 
     public int getStoreID(){
@@ -71,12 +76,12 @@ public class DALStoreController extends DALObject {
         return _categoryCounter;
     }
     public void setCategoryCounter(int i){
-        update(prepareList(tableName,"categoryCounter",i,_storeID));
+        update(prepareList("categoryCounter",i,_storeID));
         _categoryCounter=i;
     }
     private void update(List<Tuple<Object,Class>> list){
         String updateName= """
-                UPDATE ?\s
+                UPDATE StoreController\s
                 SET ?=?
                 WHERE\s
                 storeID=?;""";
@@ -91,16 +96,18 @@ public class DALStoreController extends DALObject {
         return _typeCounter;
     }
     public void setTypeCounter(int i){
-        update(prepareList(tableName,"typeCounter",i,_storeID));
+        update(prepareList("typeCounter",i,_storeID));
         _typeCounter=i;
     }
     public int get_discountCounter(){
         return _discountCounter;
     }
     public void set_discountCounter(int i){
-        update(prepareList(tableName,"discountCounter",i,_storeID));
+        update(prepareList("discountCounter",i,_storeID));
         _discountCounter=i;
     }
+
+
     public int get_storeShelves(){
         return _storeShelves;
     }

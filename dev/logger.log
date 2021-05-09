@@ -33420,3 +33420,153 @@ failed due to [SQLITE_ERROR] SQL error or missing database (foreign key mismatch
 failed due to [SQLITE_ERROR] SQL error or missing database (foreign key mismatch - "Discount" referencing "Supplier")
 [WARN ] 09-05-2021 20:23:46 [class: DAL.Mapper,Line:157] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (foreign key mismatch - "Discount" referencing "Supplier")
 [WARN ] 09-05-2021 20:23:46 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 09-05-2021 20:49:26 [class: DAL.DalController,Line:67] - noSelect quary: CREATE TABLE IF NOT EXISTS Product (
+	storeID INTEGER NOT NULL UNIQUE,
+	typeID INTEGER NOT NULL,
+	productID INTEGER NOT NULL UNIQUE,
+	expiration VARCHAR NOT NULL,
+	isDamaged INTEGER NOT NULL,
+	PRIMARY KEY (storeID, productID),
+	FOREIGN KEY (storeID) REFERENCES StoreController(storeID)
+	ON DELETE CASCADE ON UPDATE CASCADE,
+	ON DELETE CASCADE ON UPDATE CASCADE
+) params: null
+failed due to [SQLITE_ERROR] SQL error or missing database (near "ON": syntax error)
+[WARN ] 09-05-2021 20:49:26 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProduct not created in DB due to org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near "ON": syntax error)
+[WARN ] 09-05-2021 20:49:26 [class: DAL.DalController,Line:67] - noSelect quary: INSERT OR REPLACE INTO StoreController VALUES (?,?,?,?,?,?,?) params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}]
+failed due to [SQLITE_ERROR] SQL error or missing database (foreign key mismatch - "Discount" referencing "Supplier")
+[WARN ] 09-05-2021 20:49:26 [class: DAL.Mapper,Line:157] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (foreign key mismatch - "Discount" referencing "Supplier")
+[WARN ] 09-05-2021 20:49:26 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 09-05-2021 20:50:52 [class: DAL.DalController,Line:67] - noSelect quary: CREATE TABLE IF NOT EXISTS Product (
+	storeID INTEGER NOT NULL UNIQUE,
+	typeID INTEGER NOT NULL,
+	productID INTEGER NOT NULL UNIQUE,
+	expiration VARCHAR NOT NULL,
+	isDamaged INTEGER NOT NULL,
+	PRIMARY KEY (storeID, productID),
+	FOREIGN KEY (storeID) REFERENCES StoreController(storeID)
+	ON DELETE CASCADE ON UPDATE CASCADE,
+) params: null
+failed due to [SQLITE_ERROR] SQL error or missing database (near ")": syntax error)
+[WARN ] 09-05-2021 20:50:52 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProduct not created in DB due to org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near ")": syntax error)
+[WARN ] 09-05-2021 20:51:41 [class: DAL.DalController,Line:67] - noSelect quary: INSERT OR REPLACE INTO StoreController VALUES (?,?,?,?,?,?,?) params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=500, item2=class java.lang.Integer}, Tuple{item1=1000, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=100, item2=class java.lang.Integer}]
+failed due to [SQLITE_ERROR] SQL error or missing database (foreign key mismatch - "Discount" referencing "Supplier")
+[WARN ] 09-05-2021 20:51:41 [class: DAL.Mapper,Line:157] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (foreign key mismatch - "Discount" referencing "Supplier")
+[WARN ] 09-05-2021 20:51:41 [class: Utility.Util,Line:28] - the instance that return from Mapper is null
+[WARN ] 09-05-2021 20:52:50 [class: DAL.DalController,Line:67] - noSelect quary: INSERT OR REPLACE INTO StoreController VALUES (?,?,?,?,?,?,?) params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=500, item2=class java.lang.Integer}, Tuple{item1=1000, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=100, item2=class java.lang.Integer}]
+failed due to [SQLITE_ERROR] SQL error or missing database (foreign key mismatch - "Discount" referencing "Supplier")
+[WARN ] 09-05-2021 20:52:50 [class: DAL.Mapper,Line:157] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (foreign key mismatch - "Discount" referencing "Supplier")
+[WARN ] 09-05-2021 20:52:50 [class: Utility.Util,Line:28] - the instance that return from Mapper is null
+[WARN ] 09-05-2021 20:53:13 [class: Utility.Util,Line:28] - the instance that return from Mapper is null
+[WARN ] 09-05-2021 20:58:24 [class: DAL.Mapper,Line:157] - java.lang.Exception: non create multi-query
+[WARN ] 09-05-2021 20:58:24 [class: Utility.Util,Line:28] - the instance that return from Mapper is null
+[WARN ] 09-05-2021 21:00:28 [class: DAL.Mapper,Line:157] - java.lang.Exception: non create multi-query
+[WARN ] 09-05-2021 21:00:28 [class: Utility.Util,Line:28] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:02:16 [class: DAL.Mapper,Line:157] - java.lang.Exception: non create multi-query
+[WARN ] 09-05-2021 21:02:16 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 09-05-2021 21:02:16 [class: Utility.Util,Line:28] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:04:39 [class: DAL.Mapper,Line:159] - java.lang.Exception: non create multi-query
+[WARN ] 09-05-2021 21:04:39 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 09-05-2021 21:04:39 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:04:39 [class: Utility.Util,Line:28] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:06:38 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO Shelf  
+VALUES (?,?,?,?,?,?) params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=Shelves, item2=class java.lang.String}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=100, item2=class java.lang.Integer}]
+failed due to [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 09-05-2021 21:06:38 [class: DAL.Mapper,Line:159] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 09-05-2021 21:06:38 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 09-05-2021 21:06:38 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:06:38 [class: Utility.Util,Line:28] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:07:31 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO Shelf  
+VALUES (?,?,?,?,?,?) params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=Shelves, item2=class java.lang.String}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=100, item2=class java.lang.Integer}]
+failed due to [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 09-05-2021 21:07:31 [class: DAL.Mapper,Line:159] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 09-05-2021 21:07:31 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 09-05-2021 21:07:31 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:07:31 [class: Utility.Util,Line:28] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:08:25 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO Shelf  
+VALUES (?,?,?,?,?,?) params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=Shelves, item2=class java.lang.String}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=100, item2=class java.lang.Integer}]
+failed due to [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 09-05-2021 21:08:25 [class: DAL.Mapper,Line:159] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 09-05-2021 21:08:25 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 09-05-2021 21:08:25 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:08:25 [class: Utility.Util,Line:28] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:10:41 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO Shelf  
+VALUES (?,?,?,?,?,?) params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=100, item2=class java.lang.Integer}]
+failed due to [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 09-05-2021 21:10:41 [class: DAL.Mapper,Line:159] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 09-05-2021 21:10:41 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 09-05-2021 21:10:41 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:10:41 [class: Utility.Util,Line:28] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:17:55 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:354] - java.lang.NullPointerException: Cannot invoke "Object.getClass()" because "o1" is null
+[WARN ] 09-05-2021 21:20:36 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO Shelf  
+VALUES (?,?,?,?,?,?) params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=null, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=100, item2=class java.lang.Integer}]
+failed due to Cannot invoke "java.lang.Integer.intValue()" because "tuple.item1" is null
+[WARN ] 09-05-2021 21:20:36 [class: DAL.Mapper,Line:159] - java.lang.NullPointerException: Cannot invoke "java.lang.Integer.intValue()" because "tuple.item1" is null
+[WARN ] 09-05-2021 21:20:36 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 09-05-2021 21:20:36 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:20:36 [class: BusinessLayer.StockBusiness.instance.Shelf,Line:37] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:20:36 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:354] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:25:42 [class: DAL.Mapper,Line:116] - mapper returned null on:class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:25:42 [class: BusinessLayer.StockBusiness.instance.Shelf,Line:37] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:25:42 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:354] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:28:01 [class: DAL.Mapper,Line:116] - mapper returned null on:class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:28:01 [class: BusinessLayer.StockBusiness.instance.Shelf,Line:37] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelfusing: [1, 1]
+[WARN ] 09-05-2021 21:28:01 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:354] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALShelfusing: [1, 1]
+[WARN ] 09-05-2021 21:31:15 [class: DAL.DalController,Line:86] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@5700d6b1]}
+[WARN ] 09-05-2021 21:31:19 [class: DAL.DalController,Line:86] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 500, 1000, 0, 0, 0, 100, DAL.DalController@5700d6b1]}
+[WARN ] 09-05-2021 21:31:19 [class: DAL.DalController,Line:86] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@5700d6b1]}
+[WARN ] 09-05-2021 21:31:19 [class: DAL.Mapper,Line:116] - mapper returned null on:class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:31:19 [class: BusinessLayer.StockBusiness.instance.Shelf,Line:37] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelf using: [1, 1]
+[WARN ] 09-05-2021 21:31:19 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:354] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALShelf using: [1, 1]
+[WARN ] 09-05-2021 21:34:34 [class: DAL.Mapper,Line:146] - java.lang.NoSuchMethodException: DAL.DalStock.DALShelf.<init>(java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,java.lang.Integer,DAL.DalController)
+[WARN ] 09-05-2021 21:34:34 [class: DAL.Mapper,Line:116] - mapper returned null on:class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:34:34 [class: BusinessLayer.StockBusiness.instance.Shelf,Line:37] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelf using: [1, 1]
+[WARN ] 09-05-2021 21:34:34 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:354] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALShelf using: [1, 1]
+[WARN ] 09-05-2021 21:35:32 [class: DAL.DalController,Line:70] - noSelect quary: INSERT INTO Shelf  
+VALUES (?,?,?,?,?,?) params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=2, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=null, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=100, item2=class java.lang.Integer}]
+failed due to [SQLITE_CONSTRAINT_UNIQUE]  A UNIQUE constraint failed (UNIQUE constraint failed: Shelf.location)
+[WARN ] 09-05-2021 21:35:32 [class: DAL.Mapper,Line:160] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_UNIQUE]  A UNIQUE constraint failed (UNIQUE constraint failed: Shelf.location)
+[WARN ] 09-05-2021 21:35:32 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 09-05-2021 21:35:32 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:35:32 [class: BusinessLayer.StockBusiness.instance.Shelf,Line:37] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelf using: [1, 2]
+[WARN ] 09-05-2021 21:35:32 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:354] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALShelf using: [1, 2]
+[WARN ] 09-05-2021 21:36:22 [class: DAL.DalController,Line:70] - noSelect quary: INSERT INTO Shelf  
+VALUES (?,?,?,?,?,?) params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=2, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=null, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=100, item2=class java.lang.Integer}]
+failed due to [SQLITE_CONSTRAINT_UNIQUE]  A UNIQUE constraint failed (UNIQUE constraint failed: Shelf.storeID)
+[WARN ] 09-05-2021 21:36:22 [class: DAL.Mapper,Line:160] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_UNIQUE]  A UNIQUE constraint failed (UNIQUE constraint failed: Shelf.storeID)
+[WARN ] 09-05-2021 21:36:22 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 09-05-2021 21:36:22 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:36:22 [class: BusinessLayer.StockBusiness.instance.Shelf,Line:37] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelf using: [1, 2]
+[WARN ] 09-05-2021 21:36:22 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:354] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALShelf using: [1, 2]
+[WARN ] 09-05-2021 21:38:24 [class: DAL.DalController,Line:70] - noSelect quary: INSERT INTO Shelf  
+VALUES (?,?,?,?,?,?) params: [Tuple{item1=2, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=null, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=100, item2=class java.lang.Integer}]
+failed due to [SQLITE_CONSTRAINT_UNIQUE]  A UNIQUE constraint failed (UNIQUE constraint failed: Shelf.shelfID)
+[WARN ] 09-05-2021 21:38:24 [class: DAL.Mapper,Line:160] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_UNIQUE]  A UNIQUE constraint failed (UNIQUE constraint failed: Shelf.shelfID)
+[WARN ] 09-05-2021 21:38:24 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 09-05-2021 21:38:24 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALShelf
+[WARN ] 09-05-2021 21:38:24 [class: BusinessLayer.StockBusiness.instance.Shelf,Line:37] - the instance that return from Mapper is null for: class DAL.DalStock.DALShelf using: [2, 1]
+[WARN ] 09-05-2021 21:38:24 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:354] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALShelf using: [2, 1]
+[WARN ] 09-05-2021 21:46:36 [class: BusinessLayer.StockBusiness.StoreController,Line:63] - 0 10
+[WARN ] 09-05-2021 21:53:26 [class: DAL.DalController,Line:70] - noSelect quary: CREATE TABLE IF NOT EXISTS StoreController (
+	storeID INTEGER PRIMARY KEY NOT NULL UNIQUE,
+	storeShelves INTEGER NOT NULL,
+	numberOfShelves INTEGER NOT NULL,
+	discountCounter INTEGER NOT NULL,
+	typeCounter INTEGER NOT NULL,
+	categoryCounter INTEGER NOT NULL,
+) params: null
+failed due to [SQLITE_ERROR] SQL error or missing database (near ")": syntax error)
+[WARN ] 09-05-2021 21:53:26 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALStoreController not created in DB due to org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (near ")": syntax error)
+[WARN ] 09-05-2021 21:53:54 [class: BusinessLayer.StockBusiness.StoreController,Line:62] - 1 1000
+[WARN ] 09-05-2021 21:54:04 [class: BusinessLayer.StockBusiness.StoreController,Line:62] - 2 1000
+[WARN ] 09-05-2021 21:56:46 [class: BusinessLayer.StockBusiness.StoreController,Line:62] - 1 1000
+[WARN ] 09-05-2021 21:57:48 [class: DAL.DalController,Line:70] - noSelect quary: UPDATE ? 
+SET ?=?
+WHERE 
+storeID=? params: [Tuple{item1=StoreController, item2=class java.lang.String}, Tuple{item1=categoryCounter, item2=class java.lang.String}, Tuple{item1=101, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}]
+failed due to [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)
+[WARN ] 09-05-2021 22:01:55 [class: DAL.DalController,Line:70] - noSelect quary: UPDATE StoreController 
+SET ?=?
+WHERE 
+storeID=? params: [Tuple{item1=categoryCounter, item2=class java.lang.String}, Tuple{item1=101, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}]
+failed due to [SQLITE_ERROR] SQL error or missing database (near "?": syntax error)

@@ -113,11 +113,13 @@ public class Mapper {
                     Tuple<List<Class>,List<Object>> tup=DC.Select(select, pk);
                     DALObject out = fromRS(tup, cls);
                 if(out==null) {
+                    log.warn("mapper returned null on:"+cls);
                     return null;
                 }
                 map.get(cls).put(k, out);
                 return out;
                 }catch (Exception e){
+                    log.warn("mapper returned null on:"+cls);
                     return null;
                 }
             }
@@ -141,6 +143,7 @@ public class Mapper {
             return out;
         }
         catch (Exception e) {
+            log.warn(e);
             return null;
         }
     }

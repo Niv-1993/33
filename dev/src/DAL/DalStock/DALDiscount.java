@@ -40,8 +40,8 @@ public abstract class DALDiscount extends DALObject {
     @Override
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS Discount (\n" +
-                "\tstoreID INTEGER NOT NULL,\n" +
-                "\tdiscountID INTEGER NOT NULL,\n" +
+                "\tstoreID INTEGER NOT NULL UNIQUE,\n" +
+                "\tdiscountID INTEGER NOT NULL UNIQUE,\n" +
                 "\ttypeID INTEGER,\n" +
                 "\tcategoryID INTEGER,\n" +
                 "\tsupplierID INTEGER,\n" +

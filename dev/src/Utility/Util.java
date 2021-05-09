@@ -24,7 +24,7 @@ public  class Util {
         keyList.add(key);
         DALObject check =map.getItem(c ,keyList);
         if (c==null || check==null ||(check.getClass()!=c)){
-            String s="the instance that return from Mapper is null";
+            String s="the instance that return from Mapper is null for: "+c;
             log.warn(s);
             throw new IllegalArgumentException(s);
 

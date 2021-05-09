@@ -168,9 +168,9 @@ public class StockCLI {
             if (in.equals("1")) System.exit(0);
             if (in.equals("2")) return;
             else if (in.equals("3")) System.out.print(SS.getCategories());
-            else if (in.equals("4")) editCat();
+            else if (in.equals("4")) catInfo();
             else if (in.equals("5")) addCat();
-            else if (in.equals("6")) catInfo();
+            else if (in.equals("6")) editCat();
             else {
                 try {
                     String[] tmp = in.split(",");

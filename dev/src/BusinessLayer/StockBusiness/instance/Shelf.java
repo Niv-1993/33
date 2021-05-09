@@ -1,7 +1,9 @@
 package BusinessLayer.StockBusiness.instance;
 
+import DAL.DALObject;
 import DAL.DalStock.DALShelf;
 import DAL.Mapper;
+import Utility.Tuple;
 import Utility.Util;
 import org.apache.log4j.Logger;
 
@@ -14,8 +16,32 @@ public class Shelf {
 
     final static Logger log=Logger.getLogger(Shelf.class);
 
-    public Shelf(int storeID,int _shelfID, Location _location, int _maxAmount) {
-        dal=Util.initDal(DALShelf.class,storeID,_shelfID,_location.toString(),0,0,_maxAmount);
+    public Shelf(int storeID,int _shelfID, int _location, int _maxAmount) {
+        //dal=Util.initDal(DALShelf.class,storeID,_shelfID,_location,null,0,_maxAmount);
+        Class c=DALShelf.class;
+        List<Tuple<Object,Class>> list=new ArrayList<>();
+        list.add(new Tuple<>(storeID,Integer.class));
+        list.add(new Tuple<>(_shelfID,Integer.class));
+        list.add(new Tuple<>(_location,Integer.class));
+        list.add(new Tuple<>(null,Integer.class));
+        list.add(new Tuple<>(0,Integer.class));
+        list.add(new Tuple<>(_maxAmount,Integer.class));
+        Mapper map=Mapper.getMap();
+        map.setItem(c,list);
+        List<Integer> keyList=new ArrayList<>();
+        keyList.add(storeID);
+        keyList.add(_shelfID);
+        DALObject check =map.getItem(c ,keyList);
+        if (check==null ||(check.getClass()!=c)){
+            String s="the instance that return from Mapper is null for: "+c+" using: "+keyList;
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+
+        }
+        else{
+            log.info("create new Object");
+        }
+        dal=(DALShelf)check;
     }
 
     public Shelf(int id, Integer i) {

@@ -351,6 +351,7 @@ public class StorageService implements iStorageService {
             return new ResponseData<>(counter-1);
         }
         catch (Exception e) {
+            log.warn(e);
             return new ResponseData<>(e.toString());
         }
 
@@ -360,7 +361,7 @@ public class StorageService implements iStorageService {
     public ResponseData<List<Integer>> getStores() {
         try {
             List<Integer> ret=new LinkedList<>();
-            for (iStoreController s:stores) {
+            for (StoreController s:stores) {
                 ret.add(s.getID());
             }
 

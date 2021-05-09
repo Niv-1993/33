@@ -50,7 +50,10 @@ public class DalController {
                 if (params != null) {
                     for (int i = 1; i <= params.size() && !isDefault; i++) {
                         Tuple<Object, Class> tuple = params.get(i-1);
-                        if (Integer.class.equals(tuple.item2)) {
+                        if (null==(tuple.item1)) {
+                            preparedStatement.setNull(i, java.sql.Types.INTEGER);
+                        }
+                        else if (Integer.class.equals(tuple.item2)) {
                             preparedStatement.setInt(i, (Integer)(tuple.item1));
                         } else if (String.class.equals(tuple.item2)) {
                             preparedStatement.setString(i, (String) tuple.item1);

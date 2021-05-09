@@ -40,8 +40,8 @@ public class DALProductType extends DALObject {
     @Override
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS ProductType (\n" +
-                "\tstoreID INTEGER NOT NULL,\n" +
-                "\ttypeID INTEGER NOT NULL,\n" +
+                "\tstoreID INTEGER NOT NULL UNIQUE,\n" +
+                "\ttypeID INTEGER NOT NULL UNIQUE,\n" +
                 "\tname VARCHAR NOT NULL,\n" +
                 "\tcategoryID INTEGER NOT NULL,\n" +
                 "\tminimum INTEGER NOT NULL,\n" +
@@ -57,9 +57,9 @@ public class DALProductType extends DALObject {
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");\n"+
                 "CREATE TABLE IF NOT EXISTS Supplier (\n" +
-                "\tstoreID INTEGER NOT NULL,\n" +
-                "\ttypeID INTEGER NOT NULL,\n" +
-                "\tsupplierID INTEGER NOT NULL,\n" +
+                "\tstoreID INTEGER NOT NULL UNIQUE,\n" +
+                "\ttypeID INTEGER NOT NULL UNIQUE,\n" +
+                "\tsupplierID INTEGER NOT NULL UNIQUE,\n" +
                 "\tPRIMARY KEY (storeID, typeID, supplierID),\n" +
                 "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +

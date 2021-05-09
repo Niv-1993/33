@@ -8,6 +8,7 @@ import BusinessLayer.StockBusiness.instance.InstanceController;
 import BusinessLayer.StockBusiness.instance.Location;
 import BusinessLayer.StockBusiness.instance.Product;
 import BusinessLayer.StockBusiness.instance.Shelf;
+import DAL.DALObject;
 import DAL.DalStock.DALStoreController;
 import DAL.Mapper;
 import Utility.Tuple;
@@ -35,16 +36,39 @@ public class StoreController implements iStoreController {
 
     public StoreController(int storeID,int shelves,int storeSelves,int maxProductsInShelf){
         String error;
-        dal=Util.initDal(DALStoreController.class,storeID,storeSelves,shelves,0,0,0,maxProductsInShelf);
+        //dal=Util.initDal(DALStoreController.class,storeID,storeSelves,shelves,0,0,0,maxProductsInShelf);
+        List<Tuple<Object,Class>> list=new ArrayList<>();
+        list.add(new Tuple<>(storeID,Integer.class));
+        list.add(new Tuple<>(storeSelves,Integer.class));
+        list.add(new Tuple<>(shelves,Integer.class));
+        list.add(new Tuple<>(0,Integer.class));
+        list.add(new Tuple<>(0,Integer.class));
+        list.add(new Tuple<>(maxProductsInShelf,Integer.class));
+        Mapper map=Mapper.getMap();
+        map.setItem(DALStoreController.class,list);
+        List<Integer> keyList=new ArrayList<>();
+        keyList.add(storeID);
+        DALObject check =map.getItem(DALStoreController.class ,keyList);
+        if (check==null ||(check.getClass()!=DALStoreController.class)){
+            String s="the instance that return from Mapper is null";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+
+        }
+        else{
+            log.info("create new Object");
+        }
+        dal=(DALStoreController) check;
+        ////////////////////////////////
         if (storeSelves>shelves) {
             error="the number of store shelves greater then the number of all shelves.";
             log.warn(error);
             throw new IllegalArgumentException(error);
         }
         for (int i=1;i<=storeSelves; i++)
-            _shelves.add(new Shelf(storeID,i,Location.Shelves,maxProductsInShelf));
+            _shelves.add(new Shelf(storeID,i,0,maxProductsInShelf));
         for (int i=storeSelves+1;i<=shelves; i++)
-            _shelves.add(new Shelf(storeID,i,Location.Storage,maxProductsInShelf));
+            _shelves.add(new Shelf(storeID,i,1,maxProductsInShelf));
     }
     public StoreController(){//for testing
 //        _storeID=1;

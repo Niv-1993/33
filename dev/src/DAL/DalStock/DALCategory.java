@@ -37,8 +37,8 @@ public class DALCategory extends DALObject {
     @Override
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS Category (\n" +
-                "\tstoreID INTEGER NOT NULL,\n" +
-                "\tcategoryID INTEGER NOT NULL,\n" +
+                "\tstoreID INTEGER NOT NULL UNIQUE,\n" +
+                "\tcategoryID INTEGER NOT NULL UNIQUE,\n" +
                 "\tparentID INTEGER,"+
                 "\tname VARCHAR NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, categoryID),\n" +
@@ -47,8 +47,8 @@ public class DALCategory extends DALObject {
                 ");\n" +
                 "\n" +
                 "CREATE TABLE IF NOT EXISTS SubCategory (\n" +
-                "\tstoreID INTEGER NOT NULL,\n" +
-                "\tparentID INTEGER NOT NULL,\n" +
+                "\tstoreID INTEGER NOT NULL UNIQUE,\n" +
+                "\tparentID INTEGER NOT NULL UNIQUE,\n" +
                 "\tchildID INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, childID),\n" +
                 "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +

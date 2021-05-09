@@ -21,7 +21,7 @@ public class DALShelf extends DALObject {
         super(null);
     }
 
-    public DALShelf(Integer storeID,int id, Integer typeID, Integer isStorage, Integer curr, Integer max, DalController dc){
+    public DALShelf(Integer storeID,Integer id, Integer typeID, Integer isStorage, Integer curr, Integer max, DalController dc){
         super(dc);
         this.storeId=storeID;
         _typeID=typeID;
@@ -36,13 +36,13 @@ public class DALShelf extends DALObject {
                 "\tstoreID INTEGER NOT NULL,\n" +
                 "\tshelfID INTEGER NOT NULL,\n" +
                 "\tlocation INTEGER NOT NULL,\n" +
-                "\ttypeID INTEGER NOT NULL,\n" +
+                "\ttypeID INTEGER,\n" +
                 "\tcurr INTEGER NOT NULL,\n" +
                 "\tmaximum INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID,shelfID, location),\n" +
-                "\tFOREIGN KEY (typeID) REFERENCES Product(typeID)\n" +
+                "\tFOREIGN KEY (typeID) REFERENCES ProductType(typeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                "\tFOREIGN KEY (storeID) REFERENCES Product(storeID)\n" +
+                "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";
     }
@@ -50,14 +50,13 @@ public class DALShelf extends DALObject {
     public String getSelect() {
         return """
                 SELECT * \s
-                FROM ? \s
-                WHERE storeID=? AND shelfID=?;\s
-                """;
+                FROM Shelf \s
+                WHERE storeID=? AND shelfID=?;""";
     }
 
     public String getDelete() {
         return """
-                DELETE FROM ? \s
+                DELETE FROM Shelf \s
                 WHERE storeID=? AND shelfID=?;\s
                 """;
     }
@@ -68,9 +67,8 @@ public class DALShelf extends DALObject {
 
     public String getInsert() {
         return """
-                INSERT INTO ? \s
-                VALUE (?,?,?,?,?,?);
-                """;
+                INSERT INTO Shelf \s
+                VALUES (?,?,?,?,?,?);""";
     }
     public int getID(){return _shelfID;}
     public int getCur(){return _cur;}
@@ -79,7 +77,7 @@ public class DALShelf extends DALObject {
     }
     public void setCur(int cur){
         String query= """
-                UPDATE ? \s
+                UPDATE Shelf \s
                 SET curr=?
                 WHERE storeID=? AND shelfID=?;
                 """;
