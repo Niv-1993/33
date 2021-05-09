@@ -25,8 +25,6 @@ public class ServiceFaced {
         itemService = new ItemService();
         dataControl=new DataControl();
         drivers = new DriverRoleController(dataControl);
-
-
     }
 
     /**
@@ -171,7 +169,6 @@ public class ServiceFaced {
      * @return: Response object with the Business.Transportation obj inside or throws an Exception if failed.
      */
     public ResponseData<TransportationServiceDTO> setTransportationDriver(TransportationServiceDTO t){
-
         try {
             Driver d = drivers.getDriver(t.getDriver().getId());
             transportationService.setDriver(t.getId(), d);
@@ -182,15 +179,14 @@ public class ServiceFaced {
         }
     }
     public ResponseData<TransportationServiceDTO> setTransportationDeliveryItems(TransportationServiceDTO t ){
-
-        List<BranchServiceDTO> branches = t.getBranches();
-        for (BranchServiceDTO b: branches){
-            if(drivers.checkAvailableStoreKeeperAndShifts(b.getId(),t.getDate(),t.getLeavingTime())){
-                return new ResponseData<>("branch: " + b.getId()+ "does not have available store keeper.");
-            }
-        }
              HashMap<Branch,List<Pair<Item,Integer>>> deliveryItemsB = new HashMap<>();
         try {
+            List<BranchServiceDTO> branches = t.getBranches();
+            for (BranchServiceDTO b: branches){
+                if(!drivers.checkAvailableStoreKeeperAndShifts(b.getId(),t.getDate(),t.getLeavingTime())){
+                    return new ResponseData<>("branch: " + b.getId()+ "does not have available store-keeper.");
+                }
+            }
             HashMap<BranchServiceDTO,List<Pair<ItemServiceDTO,Integer>>> deliveryItems = t.getDeliveryItems();
             for (Map.Entry<BranchServiceDTO,List<Pair<ItemServiceDTO,Integer>>> entry: deliveryItems.entrySet()){
                 List<Pair<Item,Integer>> delivery = new LinkedList<>();
