@@ -10,4 +10,8 @@ public class ResponseData<T> extends Response {
     public ResponseData(T data) {
         this.data = data;
     }
+    public ResponseData(T data, String error) {
+        super(error);
+        this.data = data;
+    }
 }

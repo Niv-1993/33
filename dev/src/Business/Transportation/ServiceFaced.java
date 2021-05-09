@@ -1,5 +1,5 @@
 package Business.Transportation;
-import Business.ApplicationFacade.Responses.ResponseT;
+import Business.ApplicationFacade.*;
 import Business.ApplicationFacade.Objects.*;
 import Business.Type.Area;
 import Business.Type.Pair;
@@ -28,39 +28,39 @@ public class ServiceFaced {
      * @param id: the identifier of the object.
      * @return : the object.
      */
-    public ResponseT<DriverServiceDTO> getDriver(long id){
+    public ResponseData<DriverServiceDTO> getDriver(long id){
         try {
-            return new ResponseT<>(toDriverServiceDTO(driverService.getDriver(id)));
+            return new ResponseData<>(toDriverServiceDTO(driverService.getDriver(id)));
         }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
-    public ResponseT<BranchServiceDTO> getBranch(int id){
+    public ResponseData<BranchServiceDTO> getBranch(int id){
         try{
-            return new ResponseT<>(toBranchServiceDTO(siteService.getBranch(id)));
+            return new ResponseData<>(toBranchServiceDTO(siteService.getBranch(id)));
         }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
-    public ResponseT<SupplierServiceDTO> getSuppliers(int id){
+    public ResponseData<SupplierServiceDTO> getSuppliers(int id){
         try {
-            return new ResponseT<>(toSupplierServiceDTO(siteService.getSupplier(id)));
+            return new ResponseData<>(toSupplierServiceDTO(siteService.getSupplier(id)));
         }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
-    public ResponseT<TruckServiceDTO> getTruck(long id){
+    public ResponseData<TruckServiceDTO> getTruck(long id){
         try{
-            return new ResponseT<>(toTruckServiceDTO(truckService.getTruck(id)));
+            return new ResponseData<>(toTruckServiceDTO(truckService.getTruck(id)));
         }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
-    public ResponseT<ItemServiceDTO> getItem(long id){
+    public ResponseData<ItemServiceDTO> getItem(long id){
         try {
-            return new ResponseT<>(toItemServiceDTO(itemService.getItem(id)));
+            return new ResponseData<>(toItemServiceDTO(itemService.getItem(id)));
         }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
 
@@ -70,91 +70,91 @@ public class ServiceFaced {
      * Converts from business objects to presentation objects
      * @return : Response with the objects list inside or an Exception if failed.
      */
-    public ResponseT<List<DriverServiceDTO>> getDTODrivers(){
+    public ResponseData<List<DriverServiceDTO>> getDTODrivers(){
         List<DriverServiceDTO> returnD = new LinkedList<>();
         try {
             List<Driver> drivers = driverService.getDriversList();
             for (Driver d: drivers) {
                 returnD.add(toDriverServiceDTO(d));
             }
-            return new ResponseT<>(returnD);
+            return new ResponseData<>(returnD);
         }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
-    public ResponseT<List<BranchServiceDTO>> getDTOBranches(){
+    public ResponseData<List<BranchServiceDTO>> getDTOBranches(){
         List<BranchServiceDTO> returnB = new LinkedList<>();
         try {
             List<Branch> branches = siteService.getBranchesList();
             for (Branch b: branches) {
                 returnB.add(toBranchServiceDTO(b));
             }
-            return new ResponseT<>(returnB);
+            return new ResponseData<>(returnB);
         }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
-    public ResponseT<List<SupplierServiceDTO>> getDTOSuppliers(){
+    public ResponseData<List<SupplierServiceDTO>> getDTOSuppliers(){
         List<SupplierServiceDTO> returnS = new LinkedList<>();
         try {
             List<Supplier> suppliers = siteService.getSuppliersList();
             for (Supplier s:suppliers) {
                 returnS.add(toSupplierServiceDTO(s));
             }
-            return new ResponseT<>(returnS);
+            return new ResponseData<>(returnS);
         }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
 
-    public ResponseT<List<ItemServiceDTO>> getDTOItemsBySupplier(int id) {
+    public ResponseData<List<ItemServiceDTO>> getDTOItemsBySupplier(int id) {
         List<ItemServiceDTO> returnS = new LinkedList<>();
         try {
             List<Item> supplierItems = itemService.getItemsBySupplier(id);
             for (Item s:supplierItems) {
                 returnS.add(toItemServiceDTO(s));
             }
-            return new ResponseT<>(returnS);
+            return new ResponseData<>(returnS);
         }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
-    public ResponseT<List<TruckServiceDTO>> getDTOTrucks(){
+    public ResponseData<List<TruckServiceDTO>> getDTOTrucks(){
         List<TruckServiceDTO> returnT = new LinkedList<>();
         try {
             List<Truck> trucks = truckService.getTrucksList();
             for (Truck t:trucks) {
                 returnT.add(toTruckServiceDTO(t));
             }
-            return new ResponseT<>(returnT);
+            return new ResponseData<>(returnT);
         }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
 
-    public ResponseT<List<TransportationServiceDTO>> getDTOTransportations() {
+    public ResponseData<List<TransportationServiceDTO>> getDTOTransportations() {
         List<TransportationServiceDTO> returnT = new LinkedList<>();
         try {
             List<Transportation> transportations = transportationService.getTransportationsList();
             for (Transportation t: transportations){
                 returnT.add(toTransportationServiceDTO(t));
             }
-            return new ResponseT<>(returnT);
+            return new ResponseData<>(returnT);
         }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
 
-    public ResponseT<List<ItemServiceDTO>> getAllDTOItems(){
+    public ResponseData<List<ItemServiceDTO>> getAllDTOItems(){
         List<ItemServiceDTO> returnI = new LinkedList<>();
         try {
             List<Item> allItems = itemService.getItemsList();
             for (Item i: allItems){
                 returnI.add(toItemServiceDTO(i));
             }
-            return new ResponseT<>(returnI);
+            return new ResponseData<>(returnI);
         }catch (Exception e){
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
 
@@ -163,18 +163,18 @@ public class ServiceFaced {
      * @param t : the presentation's transportation object to show the user and to contact the business layer
      * @return: Response object with the Business.Transportation obj inside or throws an Exception if failed.
      */
-    public ResponseT<TransportationServiceDTO> setTransportationDriver(TransportationServiceDTO t){
+    public ResponseData<TransportationServiceDTO> setTransportationDriver(TransportationServiceDTO t){
 
         try {
             Driver d = driverService.getDriver(t.getDriver().getId());
             transportationService.setDriver(t.getId(), d);
             //if we success just return the same
-            return new ResponseT<>(t);
+            return new ResponseData<>(t);
         }catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
     }
-    public ResponseT<TransportationServiceDTO> setTransportationDeliveryItems(TransportationServiceDTO t ){
+    public ResponseData<TransportationServiceDTO> setTransportationDeliveryItems(TransportationServiceDTO t ){
              HashMap<Branch,List<Pair<Item,Integer>>> deliveryItemsB = new HashMap<>();
         try {
             HashMap<BranchServiceDTO,List<Pair<ItemServiceDTO,Integer>>> deliveryItems = t.getDeliveryItems();
@@ -187,12 +187,12 @@ public class ServiceFaced {
                 deliveryItemsB.put(b,delivery);
             }
             transportationService.setDeliveryItems(t.getId(),deliveryItemsB);
-            return new ResponseT<>(t);
+            return new ResponseData<>(t);
         }catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
     }
-    public ResponseT<TransportationServiceDTO> setTransportationSuppliersItems(TransportationServiceDTO t ){
+    public ResponseData<TransportationServiceDTO> setTransportationSuppliersItems(TransportationServiceDTO t ){
         HashMap<Supplier,List<Pair<Item,Integer>>> deliveryItemsB = new HashMap<>();
         try {
             HashMap<SupplierServiceDTO,List<Pair<ItemServiceDTO,Integer>>> deliveryItems = t.getSuppliers();
@@ -205,59 +205,59 @@ public class ServiceFaced {
                 deliveryItemsB.put(b,delivery);
             }
             transportationService.setSuppliersItem(t.getId(),deliveryItemsB);
-            return new ResponseT<>(t);
+            return new ResponseData<>(t);
         }catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
     }
 
-    public ResponseT<TransportationServiceDTO> setTransportationTruck(TransportationServiceDTO t){
+    public ResponseData<TransportationServiceDTO> setTransportationTruck(TransportationServiceDTO t){
         try {
             Truck truck = truckService.getTruck(t.getTruck().getId());
             transportationService.setTruck(t.getId(),truck);
-            return new ResponseT<>(t);
+            return new ResponseData<>(t);
         }catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
     }
-    public ResponseT<TransportationServiceDTO> setTransportationTime(TransportationServiceDTO t){
+    public ResponseData<TransportationServiceDTO> setTransportationTime(TransportationServiceDTO t){
         try {
             transportationService.setTransportationTime(t.getId(),t.getLeavingTime());
-            return new ResponseT<>(t);
+            return new ResponseData<>(t);
         }catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
     }
-    public ResponseT<TransportationServiceDTO> setTransportationDate(TransportationServiceDTO t){
+    public ResponseData<TransportationServiceDTO> setTransportationDate(TransportationServiceDTO t){
         try {
             transportationService.setDate(t.getId(),t.getDate());
-            return new ResponseT<>(t);
+            return new ResponseData<>(t);
         }catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
     }
-    public ResponseT<TransportationServiceDTO> setTransportation(TransportationServiceDTO t){
+    public ResponseData<TransportationServiceDTO> setTransportation(TransportationServiceDTO t){
         try {
 
-            return new ResponseT<>(toTransportationServiceDTO( transportationService.saveTransportation(t.getId())));
+            return new ResponseData<>(toTransportationServiceDTO( transportationService.saveTransportation(t.getId())));
         }
         catch (Exception e){
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
-    public ResponseT<TransportationServiceDTO> setArea(TransportationServiceDTO t){
+    public ResponseData<TransportationServiceDTO> setArea(TransportationServiceDTO t){
         try {
             transportationService.setArea(t.getId(),t.getArea());
-            return new ResponseT<>(t);
+            return new ResponseData<>(t);
         }catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
     }
 
-    public ResponseT<TransportationServiceDTO> setTransportationWeight(TransportationServiceDTO t) {
+    public ResponseData<TransportationServiceDTO> setTransportationWeight(TransportationServiceDTO t) {
         try {
             transportationService.setTransportationWeight(t.getId(),t.getWeight());
-            return new ResponseT<>(t);
+            return new ResponseData<>(t);
         }catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
@@ -341,21 +341,21 @@ public class ServiceFaced {
      * Method for initializing new transportation to create.
      * @return : returns the new transportation object
      */
-    public ResponseT<TransportationServiceDTO> createNewTransportation() {
+    public ResponseData<TransportationServiceDTO> createNewTransportation() {
 
         try {
-            return new ResponseT<>(toTransportationServiceDTO(transportationService.newTransportation()));
+            return new ResponseData<>(toTransportationServiceDTO(transportationService.newTransportation()));
         }
         catch (Exception e){
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
 
     }
-    public ResponseT<TransportationServiceDTO> getTransportation(long id) {
+    public ResponseData<TransportationServiceDTO> getTransportation(long id) {
         try {
-            return new ResponseT<>(toTransportationServiceDTO(transportationService.getTransportationById(id)));
+            return new ResponseData<>(toTransportationServiceDTO(transportationService.getTransportationById(id)));
         }catch (Exception e) {
-            return new ResponseT<>(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
 

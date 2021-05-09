@@ -24,7 +24,7 @@ public class CLIPresentation {
         System.out.println("*** Welcome to Super Li Employee management ***");
         System.out.println("***********************************************\n");
         System.out.println("Will you like to initialize an existing program? Y/N: ");
-        if (read().equalsIgnoreCase("y")) init();
+        if (read().equalsIgnoreCase("y")) r.init();
         System.out.println("\n***** If you want to return to previous menu while being in a menu, press any key that is not an option and after press 1 *****\n");
         while (true) {
             System.out.println("Current available branches are: "
@@ -402,43 +402,6 @@ public class CLIPresentation {
     }
 
 
-    private void init() {
-        int[] bankDetails = {123, 456, 789};
-        int[] terms = {1000, 5, 10};
-        r.getRc().createBranch("00000", 1, "PersonnelManager", bankDetails, 150000, terms);
-        r.getRc().EnterBranch(1);
-        r.getRc().Login(1);
-        r.getMc().addEmployee(2, "StoreKeeperA", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
-        r.getMc().addEmployee(3, "CashierA", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
-        r.getMc().addEmployee(4, "CashierB", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
-        r.getMc().addEmployee(5, "StoreKeeperB", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
-        r.getMc().addEmployee(6, "CashierC", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
-        r.getMc().addEmployee(7, "ShiftManagerA", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
-        r.getMc().addEmployee(8, "ShiftManagerB", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
-        Map<String, Integer> morning = new HashMap<>();
-        morning.put("Driver", 0);
-        morning.put("Cashier", 1);
-        morning.put("Sorter", 0);
-        morning.put("ShiftManager", 1);
-        morning.put("StoreKeeper", 1);
-        Map<String, Integer> night = new HashMap<>();
-        night.put("Cashier", 1);
-        night.put("ShiftManager", 1);
-        night.put("Driver", 0);
-        night.put("Sorter", 0);
-        night.put("StoreKeeper", 1);
-        SortedMap<String, Map<String, Integer>> defaultRolesAmount = new TreeMap<>();
-        defaultRolesAmount.put("Night", night);
-        defaultRolesAmount.put("Morning", morning);
-        r.getMc().defaultShifts(defaultRolesAmount);
-        r.getRc().Logout();
-        r.getRc().Login(2);
-        r.getRc().addConstConstraint(DayOfWeek.SUNDAY, "Night", "tired");
-        r.getRc().Logout();
-        r.getRc().Login(1);
-        r.getRc().EnterBranch(1);
-        r.getMc().createWeekShifts();
-        r.getRc().Logout();
-    }
+
 
 }

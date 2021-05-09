@@ -1,5 +1,6 @@
 package Presentation.Menu;
 
+import Presentation.Controllers;
 import Presentation.TransportationController;
 import Business.ApplicationFacade.Objects.*;
 import Business.Type.Area;
@@ -11,25 +12,25 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class TransportationMenu {
-    private Scanner sc;
+public class TransportationMenu extends Menu{
     private int option;
     private int subOption;
     private final int numOfOptions = 7;
     private final Area[] areas={Area.South,Area.North,Area.Center };
     private final TransportationController transportationController;
     private boolean finish;
-    public TransportationMenu(Scanner sc){
+
+
+    public TransportationMenu(Controllers r , Scanner input){
+        super(r,input);
         transportationController =new TransportationController();
-        this.sc = sc;
         this.option=0;
         subOption=0;
         finish=false;
     }
 
-
+    @Override
     public void show(){
-
         while(endOfProgram()){
             chooseOption();
             nextStep();
@@ -73,7 +74,7 @@ public class TransportationMenu {
         while (!success) {
             try {
                 System.out.print("Please chose time for transportation.\nUse the format hh:mm.\nTime:");
-                String tim = sc.next();
+                String tim = input.next();
                 System.out.println("");
                 LocalTime time = LocalTime.parse(tim);
                 tran.setLeavingTime(time);
@@ -95,7 +96,7 @@ public class TransportationMenu {
         while (!success) {
             try {
                 System.out.print("Please chose a date for transportation.\nUse the format yyyy-mm-dd.\nDate:");
-                String tim = sc.next();
+                String tim = input.next();
                 System.out.println("");
                 LocalDate date=LocalDate.parse(tim);
                 tran.setDate(date);
@@ -133,13 +134,13 @@ public class TransportationMenu {
             System.out.print("Option:");
             subOption = chooseOp(numOfOptions);
             switch (subOption) {
-                case 1 -> chooseTruck(newTrans);
-                case 2 -> chooseDriver(newTrans);
-                case 3 -> chooseSupplier(newTrans);
-                case 4 -> chooseBranch(newTrans);
-                case 5 -> chooseWeight(newTrans);
-                case 6 -> submit(newTrans);
-                case 0-> {Delete(); return;}
+//                case 1 -> chooseTruck(newTrans);
+//                case 2 -> chooseDriver(newTrans);
+//                case 3 -> chooseSupplier(newTrans);
+//                case 4 -> chooseBranch(newTrans);
+//                case 5 -> chooseWeight(newTrans);
+//                case 6 -> submit(newTrans);
+//                case 0-> {Delete(); return;}
             }
             System.out.println(newTrans);
         }
@@ -169,7 +170,7 @@ public class TransportationMenu {
             System.out.println("*************************************************\n");
             System.out.println("please enter transportation total weight:");
             System.out.print("\nWeight: ");
-            int chose = sc.nextInt();
+            int chose = input.nextInt();
             System.out.println("");
             t.setWeight(chose);
             transportationController.setTransportationWeight(t);
@@ -214,7 +215,7 @@ public class TransportationMenu {
             HashMap<SupplierServiceDTO, List<Pair<ItemServiceDTO,Integer>>> suppliers=new HashMap<>();
             do {
                 System.out.print("\nselect supplier, to end press -1:\nSupplier Id: ");
-                chose = sc.nextInt();
+                chose = input.nextInt();
                 System.out.println("");
                 if(chose==-1)
                     break;
@@ -225,11 +226,11 @@ public class TransportationMenu {
                     printItemsBySupplier(chose);
                     System.out.println("Enter item and quantity,to end press -2:");
                     System.out.print("Item Id: ");
-                    id= sc.nextLong();
+                    id= input.nextLong();
                     if(id==-2)
                         break;
                     System.out.print("Quantity: ");
-                    num= sc.nextInt();
+                    num= input.nextInt();
                     System.out.println("");
 
                     lis.add(new Pair<>(transportationController.getItem(id),num));
@@ -265,7 +266,7 @@ public class TransportationMenu {
             HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO,Integer>>> branches=new HashMap<>();
             do {
                 System.out.print("\nselect branch, to end press -1:\nBranch Id:");
-                chose = sc.nextInt();
+                chose = input.nextInt();
                 System.out.println("");
                 if(chose==-1)
                     break;
@@ -275,11 +276,11 @@ public class TransportationMenu {
                 do{
                     System.out.println("Enter item and quantity,to end press -2:");
                     System.out.print("Item Id: ");
-                    id= sc.nextLong();
+                    id= input.nextLong();
                     if(id==-2)
                         break;
                     System.out.print("Quantity: ");
-                    num= sc.nextInt();
+                    num= input.nextInt();
 
                     lis.add(new Pair<>(transportationController.getItem(id),num));
                 }
@@ -309,7 +310,7 @@ public class TransportationMenu {
             System.out.println("please select driver id from the trucks list below:\n");
             printAllDrivers();
             System.out.print("\nId: ");
-            long chose = sc.nextLong();
+            long chose = input.nextLong();
             System.out.println("");
             t.setDriver(transportationController.getDriver(chose));
             transportationController.setDriverOnTransportation(t);
@@ -333,7 +334,7 @@ public class TransportationMenu {
             System.out.println("Type a truck id from the list below:\n");
             printAllTucks();
             System.out.print("\nId: ");
-            long chose = sc.nextLong();
+            long chose = input.nextLong();
             System.out.println("");
             t.setTruck(transportationController.getTruck(chose));
             transportationController.setTruckOnTransportation(t);
@@ -427,7 +428,7 @@ public class TransportationMenu {
         boolean validInput = false;
         int userOption = -1;
         while (!validInput) {
-            userOption = sc.nextInt();
+            userOption = input.nextInt();
             if((userOption <= con) && (userOption >= 0)) {
                 validInput = true;
             }else {
