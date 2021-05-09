@@ -53,7 +53,6 @@ public class Utils {
      */
     protected void generate_optionals() {
         if (needToUpdateOps) {
-            //Map<RoleType, List<Business.EmployeePKG.Employee>> optionals = new HashMap<>();
             EnumSet<RoleType> allRoles = EnumSet.allOf(RoleType.class);
             ops.clear();
             for (RoleType role : allRoles) {
@@ -65,7 +64,6 @@ public class Utils {
                     ops.get(roleType).add(employee);
                 });
             });
-           // ops = optionals;
             setNeedToUpdateOps(false);
             if(shiftController!=null)
                 shiftController.setAllOptionals(ops);

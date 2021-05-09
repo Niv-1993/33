@@ -398,4 +398,8 @@ public class ShiftController {
         return ShiftMapper.getInstance().hasDefaultShifts();
     }
 
+    public boolean driverOrSorter(int sid, Employee eid) {
+        Shift s = get(sid,AllOptionals);
+        return !s.getEmployees().get(eid).equals(RoleType.Driver) && !s.getEmployees().get(eid).equals(RoleType.Sorter);
+    }
 }

@@ -1,5 +1,6 @@
 package DataAccess;
 
+import Business.EmployeePKG.Driver;
 import Business.EmployeePKG.Employee;
 
 
@@ -117,6 +118,7 @@ public class EmployeeMapper extends Mapper {
         return res;
     }
 
+
     public List<Integer> getAllBranches() {
         List<Integer> branches = new ArrayList<>();
         String query = "SELECT BID FROM Branches";
@@ -196,7 +198,7 @@ public class EmployeeMapper extends Mapper {
 
     public List<Employee> loadEmployeesInBranch() {
         if (needToUpdateEmps) {
-            String query = String.format("SELECT * FROM %s as E JOIN RolesAndEmployees as R ON E.EID=R.EID WHERE BID=? AND Active = 1", tableName);
+            String query = String.format("SELECT * FROM %s as E JOIN RolesAndEmployees as R ON E.EID=R.EID WHERE (BID=? OR BID=-1) AND Active = 1", tableName);
             try (Connection con = connect();
                  PreparedStatement pre = con.prepareStatement(query)) {
                 pre.setInt(1, getCurrBranchID());
@@ -237,4 +239,40 @@ public class EmployeeMapper extends Mapper {
         employees.clear();
         needToUpdateEmps = true;
     }
+
+    //Driver is in BID -1;
+    public boolean insertDriver(int EID, Driver emp) {
+        boolean res = false;
+        String query1 = String.format("INSERT INTO %s VALUES(?,?,?,?,?,?,?,?,?,?,?,-1);", tableName);
+        String query2 = "INSERT INTO RolesAndEmployees VALUES(?,?)";
+        String query3 = String.format("INSERT INTO Drivers VALUES(%d,%s)",EID,emp.getLicense());
+        try (Connection con = connect();
+             PreparedStatement pre = con.prepareStatement(query1);
+             PreparedStatement pre2 = con.prepareStatement(query2);
+             PreparedStatement pre3 = con.prepareStatement(query3)) {
+            pre.setInt(1, emp.getEID());
+            pre.setString(2, emp.getName());
+            pre.setString(3, emp.getStartWorkingDate().toString());
+            pre.setInt(4, emp.getSalary());
+            pre.setInt(5, emp.getBankAccount().getBankID());
+            pre.setInt(6, emp.getBankAccount().getBankBranch());
+            pre.setInt(7, emp.getBankAccount().getAccountNum());
+            pre.setInt(8, emp.getTermsOfEmployment().getEducationFun());
+            pre.setInt(9, emp.getTermsOfEmployment().getDaysOff());
+            pre.setInt(10, emp.getTermsOfEmployment().getSickDays());
+            pre.setInt(11, 1);
+            pre2.setInt(1, emp.getEID());
+            pre2.setString(2, emp.getRole().get(0).name());
+            res = pre.executeUpdate() > 0;
+            res = res && pre2.executeUpdate() > 0;
+            res = res && pre3.executeUpdate() > 0;
+        } catch (Exception e) {
+            System.out.println("[insertDriver-emp] ->" + e.getMessage());
+        } finally {
+            if (res)
+                employees.put(EID, emp);
+        }
+        return res;
+    }
+
 }

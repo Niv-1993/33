@@ -97,6 +97,7 @@ public class Mapper {
             s.addBatch(getCreateShiftsAndEmps());
             s.addBatch(getCreateShiftsAndRolesAmount());
             s.addBatch(getCreateDefaults());
+            //TODO : Add all tables of other module
             s.executeBatch();
         } catch (Exception e) {
             System.out.println("[createTables] ->"+e.getMessage());

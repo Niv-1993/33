@@ -47,7 +47,7 @@ public class ShiftMapper extends Mapper {
             pre.setString(2, s.getDate().toString());
             pre.setString(3, s.getShiftType().name());
             pre.setBoolean(4, s.WasSelfMake());
-            pre.setInt(5, getCurrBranchID());
+            pre.setInt(5, getCurrBranchID()==0?1:getCurrBranchID());
             res = pre.executeUpdate() > 0;
             for (String q : qrs) {
                 sts.addBatch(q);

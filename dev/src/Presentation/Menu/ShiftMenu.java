@@ -71,7 +71,7 @@ public class ShiftMenu extends Menu {
     private void updateAmountRole() {
         if (!printAllShifts("roles", LocalDate.now().plusWeeks(2))) return;
         int SID = getSID();
-        String role = chooseRole();
+        String role = chooseRole2();
         System.out.print("New amount: ");
         int amount = getAmount(role);
         r.getMc().updateAmountRole(SID, role, amount);
@@ -82,6 +82,10 @@ public class ShiftMenu extends Menu {
         int SID = getSID();
         if (r.getMc().shiftIsEmpty(SID)) return;
         int EID = getEIDToRemove(SID);
+        if(EID == -1) {
+            System.out.println("Didn't remove illegal id, going to pres menu.");
+            return;
+        }
         r.getMc().removeEmpFromShift(SID, EID);
     }
 
@@ -93,7 +97,7 @@ public class ShiftMenu extends Menu {
             return;
         }
         int EID = getEIDToAdd(SID);
-        String role = chooseRole();
+        String role = chooseRole2();
         if (!r.getMc().canWork(SID, EID, role)) {
             System.out.println("EID: " + EID + " can't be " + role + "in SID: " + SID);
             return;
@@ -144,6 +148,10 @@ public class ShiftMenu extends Menu {
             if (!r.getMc().EIDWorkInSID(SID, EID)) {
                 System.out.println("Invalid EID: is not work in this shift");
                 continue;
+            }
+            if (!r.getMc().driverOrSorter(SID, EID)) {
+                System.out.println("Error: cannot remove driver or sorter");
+                return -1;
             }
             return EID;
         }
@@ -228,7 +236,7 @@ public class ShiftMenu extends Menu {
         Map<String, Integer> rolesAmount = new HashMap<>();
         List<String> roleTypes = r.getRc().getRoleTypes().getData();
         for (String role : roleTypes) {
-            if (role.equals("PersonnelManager") || role.equals("BranchManager")) continue;
+            if (role.equals("PersonnelManager") || role.equals("BranchManager") || role.equals("Driver") || role.equals("Sorter")) continue;
             System.out.print(role + ": ");
             int amount = getAmount(role);
             rolesAmount.put(role, amount);

@@ -4,6 +4,7 @@ import Business.ApplicationFacade.outObjects.*;
 import Business.ShiftPKG.ShiftController;
 import Business.Type.*;
 import DataAccess.EmployeeMapper;
+import DataAccess.ShiftMapper;
 import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
@@ -390,12 +391,36 @@ public class ManagerRoleController implements iManagerRoleController {
         return sc.hasShiftManager(date,ShiftType.valueOf(shiftType));
     }
 
+    public boolean driverOrSorter(int sid, int eid) {
+        utils.generate_optionals();
+        return sc.driverOrSorter(sid,employeeMapper.get(eid));
+    }
+
     public boolean checkIfSIDExist(int sid){
         utils.generate_optionals();
         return sc.checkIfSIDExist(sid);
     }
+    public void EnterBranch(int BID) {
+        log.debug("loading data of branch id: "+BID);
+        if(BID!=employeeMapper.getCurrBranchID()) {
+            employeeMapper.resetEmps();
+            employeeMapper.setCurrBranchID(BID);
+            ShiftMapper.getInstance().setCurrBranchID(BID);
+        }
+    }
+    public boolean ShiftExist(LocalDate date,String shiftType){
+        return false;
+    }
+    public boolean StoreKeeperAvailable(LocalDate date, String shiftType){
+        return false;
+    }
 
 
+    public List<Integer> getAllAvailableDrivers(LocalDate date, String shiftType) {
+        return null;
+    }
 
+    public void addDriverAndStoreKeeperToShift(int driverID, LocalDate date, String shiftType){
 
+    }
 }

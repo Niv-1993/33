@@ -190,6 +190,8 @@ public class Shift {
     //check if there is employee that optionals and his role not full
     public boolean optionalIsEmpty() {
         for (Map.Entry<RoleType, List<Employee>> role : optionals.entrySet()) {
+            if (role.getKey().equals(RoleType.Driver) || role.getKey().equals(RoleType.Sorter))
+                    continue;
             if (!role.getValue().isEmpty() && !roleIsFull(role.getKey()))
                 return false;
         }
@@ -285,9 +287,9 @@ public class Shift {
 
     public void insertMissingRolesAmount() {
         EnumSet<RoleType> allRoles = EnumSet.allOf(RoleType.class);
-        for(RoleType role : allRoles){
-            if(!rolesAmount.containsKey(role))
-                rolesAmount.put(role,0);
+        for (RoleType role : allRoles) {
+            if (!rolesAmount.containsKey(role))
+                rolesAmount.put(role, 0);
         }
     }
 }

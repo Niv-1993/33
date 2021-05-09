@@ -244,6 +244,14 @@ public interface iManagerRoleController {
      boolean shiftIsEmpty(int sid);
      boolean EIDWorkInSID(int sid,int eid);
      boolean hasShiftManager(LocalDate date, String shiftType);
+    boolean driverOrSorter(int sid, int eid);
 
+    public void EnterBranch(int BID);
+    boolean ShiftExist(LocalDate date,String shiftType);
 
+    boolean StoreKeeperAvailable(LocalDate date, String shiftType);
+
+    List<Integer> getAllAvailableDrivers(LocalDate date, String shiftType);
+
+    void addDriverAndStoreKeeperToShift(int driverID, LocalDate date, String shiftType);
 }
