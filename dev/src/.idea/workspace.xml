@@ -2,20 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78ff1c32-b3a2-4583-b331-f69764ea4317" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Utility/Util.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../logger.log" beforeDir="false" afterPath="$PROJECT_DIR$/../logger.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/dev/DAL/DalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/dev/DAL/DalController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/dev/DAL/DalStock/DALCategory.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/dev/DAL/DalStock/DALCategory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/dev/DAL/DalStock/DALStoreController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/dev/DAL/DalStock/DALStoreController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/dev/DAL/Mapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/dev/DAL/Mapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/dev/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/dev/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/dev/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/dev/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../out/production/dev/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/dev/main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/dev/test.db" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/dev/test.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BusinessLayer/StockBusiness/Type/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/BusinessLayer/StockBusiness/Type/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BusinessLayer/StockBusiness/Type/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/BusinessLayer/StockBusiness/Type/Discount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BusinessLayer/StockBusiness/Type/ProductType.java" beforeDir="false" afterPath="$PROJECT_DIR$/BusinessLayer/StockBusiness/Type/ProductType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BusinessLayer/StockBusiness/Type/SaleDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/BusinessLayer/StockBusiness/Type/SaleDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BusinessLayer/StockBusiness/Type/SupplierDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/BusinessLayer/StockBusiness/Type/SupplierDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BusinessLayer/StockBusiness/instance/InstanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BusinessLayer/StockBusiness/instance/InstanceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BusinessLayer/StockBusiness/instance/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/BusinessLayer/StockBusiness/instance/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BusinessLayer/StockBusiness/instance/Shelf.java" beforeDir="false" afterPath="$PROJECT_DIR$/BusinessLayer/StockBusiness/instance/Shelf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DAL/DalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/DalController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DAL/DalStock/DALCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/DalStock/DALCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAL/DalStock/DALStoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/DalStock/DALStoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/DalStock/DALDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/DalStock/DALDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/DalStock/DALInstanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/DalStock/DALInstanceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/DalStock/DALProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/DalStock/DALProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/DalStock/DALProductType.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/DalStock/DALProductType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/DalStock/DALSaleDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/DalStock/DALSaleDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/DalStock/DALShelf.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/DalStock/DALShelf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAL/DalStock/DALSupplierDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/DalStock/DALSupplierDiscount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DAL/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAL/Mapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.db" beforeDir="false" afterPath="$PROJECT_DIR$/test.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test.db" beforeDir="false" afterPath="$PROJECT_DIR$/../test.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +66,10 @@
       <workItem from="1619539327396" duration="15000" />
       <workItem from="1619539357076" duration="12000" />
       <workItem from="1619909538858" duration="122000" />
+      <workItem from="1619910290298" duration="60000" />
+      <workItem from="1619910385708" duration="18000" />
+      <workItem from="1619975572440" duration="1840000" />
+      <workItem from="1620490933770" duration="397000" />
     </task>
     <servers />
   </component>

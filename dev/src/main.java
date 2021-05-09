@@ -1,18 +1,9 @@
-import BusinessLayer.StockBusiness.Fcade.StorageService;
-import BusinessLayer.StockBusiness.Fcade.outObjects.ProductType;
-import BusinessLayer.StockBusiness.StoreController;
-import DAL.DalController;
 import DAL.DalStock.DALStoreController;
 import DAL.Mapper;
-import Presentation.StockCLI;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 public class main {
@@ -24,13 +15,13 @@ public class main {
 
         Mapper map = Mapper.getMap("test.db");
         List<Tuple<Object,Class>> b =new ArrayList<>();
+        b.add(new Tuple<>(2,Integer.class));
         b.add(new Tuple<>(1,Integer.class));
         b.add(new Tuple<>(1,Integer.class));
         b.add(new Tuple<>(1,Integer.class));
         b.add(new Tuple<>(1,Integer.class));
         b.add(new Tuple<>(1,Integer.class));
-        b.add(new Tuple<>(1,Integer.class));
-        b.add(new Tuple<>(1,Integer.class));
+        b.add(new Tuple<>(2,Integer.class));
 
         map.setItem(DALStoreController.class,b);
         List<Integer> a=new ArrayList<>();

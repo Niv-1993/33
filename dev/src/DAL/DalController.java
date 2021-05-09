@@ -2,11 +2,9 @@ package DAL;
 
 import Utility.Tuple;
 import org.apache.log4j.Logger;
+import org.sqlite.SQLiteConfig;
 
-
-import java.io.File;
 import java.sql.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +23,9 @@ public class DalController {
         String url = "jdbc:sqlite:"+System.getProperty("user.dir")+"\\" + dbname;
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection(url);
+            SQLiteConfig config=new SQLiteConfig();
+            config.enforceForeignKeys(true);
+            conn=DriverManager.getConnection(url,config.toProperties());
         } catch (SQLException e) {
             log.warn("failed to make SQL connection");
            throw new Exception("cant connect");
@@ -34,7 +34,7 @@ public class DalController {
     }
 
     // String String === Val Type
-    int noSelect(String query, List<Tuple<Object,Class>> params) throws Exception {
+    public int noSelect(String query, List<Tuple<Object,Class>> params) throws Exception {
         List<String> doQuary= Arrays.asList(query.split(";"));
         if(doQuary.size()>1 && params!=null) throw new Exception("non create multi-query");
         boolean isDefault = false;
@@ -67,7 +67,7 @@ public class DalController {
         return ret;
     }
 
-    Tuple<List<Class>,List<Object>> Select(String query, List<Integer> params) throws Exception {
+    public Tuple<List<Class>,List<Object>> Select(String query, List<Integer> params) throws Exception {
         Connection conn = this.connect();
         try {
             PreparedStatement preparedStatement  = conn.prepareStatement(query);
@@ -116,6 +116,55 @@ public class DalController {
         vals.add(this);
 
         return new Tuple<>(types,vals);
+    }
+    private List<Tuple<List<Class>,List<Object>>> fromRSMany(ResultSet rs){
+        List<Class> types=new ArrayList<>();
+        List<Object> vals=new ArrayList<>();
+        List<Tuple<List<Class>,List<Object>>> out=new ArrayList<>();
+        if (rs != null ) {
+            try {
+                while(rs.next()) {
+                    ResultSetMetaData rsmd = rs.getMetaData();
+                    for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+                        int type = rsmd.getColumnType(i);
+                        if (type == Types.VARCHAR || type == Types.CHAR) {
+                            types.add(String.class);
+                            vals.add(rs.getString(i));
+                        } else if (type == Types.FLOAT || type == Types.DOUBLE || type == Types.REAL) {
+                            types.add(Double.class);
+                            vals.add(rs.getDouble(i));
+                        } else {
+                            types.add(Integer.class);
+                            vals.add(rs.getInt(i));
+                        }
+                    }
+                    types.add(DalController.class);
+                    vals.add(this);
+                    out.add(new Tuple<>(types,vals));
+                }
+                return out;
+            }
+            catch (Exception e){
+                log.warn(e.getMessage());
+                return null;
+            }
+        } else return null;
+    }
+    public List<Tuple<List<Class>,List<Object>>> SelectMany(String query, List<Integer> params) throws Exception {
+        Connection conn = this.connect();
+        try {
+            PreparedStatement preparedStatement  = conn.prepareStatement(query);
+            for(int i = 0 ; i < params.size() ; i++){
+                preparedStatement.setInt(i+1 , params.get(i));
+            }
+            ResultSet rs = preparedStatement.executeQuery();
+            return fromRSMany(rs);
+        } catch (SQLException e) {
+            throw new Exception("select field");
+        }
+        finally{
+            conn.close();
+        }
     }
 
 }

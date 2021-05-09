@@ -1,6 +1,9 @@
 package BusinessLayer.StockBusiness.Type;
 
 import BusinessLayer.StockBusiness.StoreController;
+import DAL.DalStock.DALCategory;
+import DAL.Mapper;
+import Utility.Util;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -8,26 +11,38 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Category {
+    final static Logger log=Logger.getLogger(StoreController.class);
     private List<Category> _categories=new ArrayList<>();
-    private int _categoryID;
+    private Category _superCategory=null;
+    private DALCategory dal;
+
+    public Category(int id, Integer i) {
+        List<Integer> list=new ArrayList<>();
+        list.add(id);
+        list.add(i);
+        dal=(DALCategory) Mapper.getMap().getItem(DALCategory.class,list);
+    }
 
     public Category get_superCategory() {
         return _superCategory;
     }
+    public Category(DALCategory d){dal=d;}//for loading
 
-    private String _name;
-    private Category _superCategory=null;
 
-    private List<Integer> _productTypes= new ArrayList<>();
-    private List<Integer> _productDiscounts=new ArrayList<>();
-    final static Logger log=Logger.getLogger(StoreController.class);
-
-    public Category(int _categoryID, String _name, Category tmp) {
+    public Category(int storeID,int _categoryID, String _name, Category tmp) {
         checkValues(_categoryID,_name);
-        this._categoryID = _categoryID;
-        this._name = _name;
+        dal=Util.initDal(DALCategory.class,storeID,_categoryID, _name, tmp);
         _superCategory=tmp;
-        tmp.addAllDiscountCategory(_productTypes);
+        List<Integer> discount=new ArrayList<>();
+        tmp.addAllDiscountCategory(discount);
+        try{
+            dal.setDiscounts(discount);
+        }
+        catch (Exception e){
+            String info="can not save discounts";
+            log.warn(info);
+            throw new IllegalArgumentException(info);
+        }
     }
     private void checkValues(Object... o){
         for(Object o1: o){
@@ -45,7 +60,7 @@ public class Category {
         }
     }
 
-    public Category(int catId, String name) {
+    public Category(int storeId,int catId, String name) {
         checkValues(catId,name);
         if (catId<1 | name==null || name.equals(""))
         {
@@ -53,8 +68,7 @@ public class Category {
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
-        _categoryID=catId;
-        _name=name;
+        dal=Util.initDal(DALCategory.class,storeId,catId,name);
     }
 
     public List<Category> get_categories() {
@@ -64,13 +78,13 @@ public class Category {
 
     public int get_categoryID() {
         log.debug("get_categoryID()");
-        return _categoryID;
+        return dal.getCategoryID();
     }
 
 
     public String get_name() {
         log.debug("get_name()");
-        return _name;
+        return dal.getName();
     }
 
     public void set_name(String name) {
@@ -80,20 +94,28 @@ public class Category {
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
-        this._name = name;
+        try{
+            dal.setName(name);
+        }
+        catch (Exception e){
+            String info="can not save new Name in DataBase";
+            log.warn(info);
+            throw new IllegalArgumentException(info);
+        }
     }
 
     public List<Integer> get_productTypes() {
         log.debug("get_productTypes()");
-        return _productTypes;
+        return dal.getProductTypes();
     }
 
 
     public List<Integer> get_productDiscounts() {
         log.debug("get_productDiscounts()");
-        return _productDiscounts;
+        return dal.getDiscounts();
     }
     public void addAllDiscountCategory(List<Integer> list){
+        List<Integer> _productDiscounts=dal.getDiscounts();
         for (Integer i: _productDiscounts)
             if (!list.contains(i))
                 list.add(i);
@@ -108,6 +130,14 @@ public class Category {
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
+        try{
+            dal.addCategory(output.get_categoryID());
+        }
+        catch (Exception e){
+            String s="can not add the category to DB";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
         _categories.add(output);
     }
 
@@ -119,27 +149,49 @@ public class Category {
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
-        _productTypes.add(typeID);
+        try{
+            dal.addProductType(typeID);
+        }
+        catch (Exception e){
+            String s="can not add the type to DB";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
     }
 
     public List<Integer> getAllProductType() {
         log.debug("getAllProductType()");
-        List<Integer> list=_productTypes;
-        _categories.stream().map(x->list.addAll(x.getAllProductType()));
+        List<Integer> list=dal.getProductTypes();
+        for (Category c:_categories) {
+            list.addAll(c.getAllProductType());
+        }
         return list;
     }
 
     public void addDiscount(int count) {
         log.debug(String.format("addDiscount(int count)",count));
         checkValues(count);
-        _productDiscounts.add(count);
+        try{
+            dal.addDiscount(count);
+        }
+        catch (Exception e){
+            String s="can not add Discount to DB";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
     }
-
 
     public void removeDiscount(int count) {
         log.debug(String.format("removeDiscount(int count)",count));
         checkValues(count);
-        _productDiscounts.remove(count);
+        try{
+            dal.removeDiscount(count);
+        }
+        catch (Exception e){
+            String s="can not remove Discount to DB";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
     }
 
     public void edit(String name, Category superCategory) {
@@ -153,14 +205,43 @@ public class Category {
         }
         if (checkRec(superCategory))
         {
-            String s=String.format("the Category #%d can not be a child of itself",_categoryID);
+            String s=String.format("the Category #%d can not be a child of itself",dal.getCategoryID());
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
-        _name=name;
+        String lastName=dal.getName();
+        try{
+            dal.setName(name);
+        }
+        catch (Exception e){
+            String s="can not edit the name of this Category in DB";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        List<Integer> lastDiscount=dal.getDiscounts();
+        try{
+            List<Integer> list=dal.getDiscounts();
+            _superCategory.addAllDiscountCategory(list);
+            dal.setDiscounts(list);
+        }
+        catch (Exception e){
+            dal.setName(lastName);
+            String s="can not edit discount of this Category in DB";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        try{
+            dal.setSuperCategory(superCategory.get_categoryID());
+        }
+        catch (Exception e){
+            dal.setName(lastName);
+            dal.setDiscounts(lastDiscount);
+            String s="can not edit discount of this Category in DB";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
         _superCategory=superCategory;
-        _superCategory.addAllDiscountCategory(_productDiscounts);
-        log.info(String.format("the values of Category #? changed.",_categoryID));
+        log.info(String.format("the values of Category #? changed.",dal.getCategoryID()));
     }
 
     private boolean checkRec(Category superCategory) {
@@ -176,36 +257,70 @@ public class Category {
     public void edit(String name) {
         log.debug(String.format("edit(String name) Value:",name));
         checkValues(name);
-        _name=name;
+        try{
+            dal.setName(name);
+        }
+        catch (Exception e){
+            String s="can not edit the name of this Category in DB";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
         _superCategory=null;
-        log.info(String.format("the values of Category #? changed.",_categoryID));
+        log.info(String.format("the values of Category #? changed.",dal.getCategoryID()));
     }
 
     @Override
     public String toString() {
         return "Category{" +
                 "_categories=" + _categories.stream().map(Category::get_categoryID).collect(Collectors.toList()) +
-                ", _categoryID=" + _categoryID +
-                ", _name='" + _name + '\'' +
+                ", _categoryID=" + dal.getCategoryID() +
+                ", _name='" + dal.getName() + '\'' +
                 ", _superCategory=" + _superCategory.get_categoryID() +
-                ", _productTypes=" + _productTypes +
-                ", _productDiscounts=" + _productDiscounts +
+                ", _productTypes=" + dal.getProductTypes() +
+                ", _productDiscounts=" + dal.getDiscounts() +
                 '}';
     }
 
     public void removeCategory(Category c) {
+        try{
+            dal.removeCategory(c.get_categoryID());
+        }
+        catch (Exception e){
+            String s="can not remove the Category in DB";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
         _categories.remove(c);
     }
 
     public void fixDiscount() {
-        if (_superCategory!=null)
-            _superCategory.fixDiscount(_productDiscounts);
+        if (_superCategory!=null) {
+            List<Integer> discounts=dal.getDiscounts();
+            _superCategory.fixDiscount(discounts);
+            try{
+                dal.setDiscounts(discounts);
+            }
+            catch (Exception e){
+                String s="can not fix the Category in DB";
+                log.warn(s);
+                throw new IllegalArgumentException(s);
+            }
+        }
     }
     private void fixDiscount(List<Integer> list){
-        for (Integer i: _productDiscounts)
+        for (Integer i: dal.getDiscounts())
             if (list.contains(i))
                 list.remove(i);
         if (_superCategory!=null)
             _superCategory.fixDiscount(list);
+    }
+
+    public void initCategory(List<Category> categories) {
+        for (Category c: categories){
+            if (dal.getParent()==c.get_categoryID())
+                _superCategory=c;
+            if (c.dal.getParent()==get_categoryID())
+                _categories.add(c);
+        }
     }
 }

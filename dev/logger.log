@@ -31997,3 +31997,9 @@ failed due to Index -1 out of bounds for length 7
 [WARN ] 02-05-2021 01:25:06 [class: DAL.DalController,Line:67] - noSelect quary: INSERT INTO StoreController VALUES (?,?,?,?,?,?,?)
 failed due to [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: StoreController.storeID)
 [WARN ] 02-05-2021 01:25:06 [class: DAL.Mapper,Line:154] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_PRIMARYKEY]  A PRIMARY KEY constraint failed (UNIQUE constraint failed: StoreController.storeID)
+[WARN ] 02-05-2021 02:07:23 [class: BusinessLayer.StockBusiness.StoreController,Line:564] - the number #1, is not ID of any ProductType in Store #1
+[WARN ] 02-05-2021 02:07:23 [class: BusinessLayer.StockBusiness.StoreController,Line:514] - the value: 6 is not exist in the system.
+[WARN ] 02-05-2021 02:07:23 [class: BusinessLayer.StockBusiness.StoreController,Line:514] - the value: 7 is not exist in the system.
+[WARN ] 02-05-2021 02:07:23 [class: BusinessLayer.StockBusiness.StoreController,Line:545] - the name t1 is exist in other ProductType.
+[WARN ] 02-05-2021 02:07:23 [class: BusinessLayer.StockBusiness.StoreController,Line:529] - the name test is exist in other category.
+[WARN ] 02-05-2021 02:07:24 [class: BusinessLayer.StockBusiness.StoreController,Line:555] - the value of ProductType is illegal <0
