@@ -1,0 +1,176 @@
+[WARN ] 02-05-2021 00:20:18 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 02-05-2021 00:20:18 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 02-05-2021 00:20:18 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 02-05-2021 00:20:18 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 02-05-2021 00:20:18 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 02-05-2021 00:20:18 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 02-05-2021 00:20:18 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 02-05-2021 00:20:18 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 02-05-2021 00:20:18 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 02-05-2021 00:20:18 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 02-05-2021 00:20:18 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 02-05-2021 00:20:18 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 02-05-2021 00:20:18 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 02-05-2021 00:20:18 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 02-05-2021 00:20:59 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 02-05-2021 00:20:59 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 02-05-2021 00:20:59 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 02-05-2021 00:20:59 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 02-05-2021 00:20:59 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 02-05-2021 00:20:59 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 02-05-2021 00:20:59 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 02-05-2021 00:20:59 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 02-05-2021 00:20:59 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 02-05-2021 00:20:59 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 02-05-2021 00:20:59 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 02-05-2021 00:20:59 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 02-05-2021 00:20:59 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 02-05-2021 00:20:59 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 02-05-2021 00:22:14 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 02-05-2021 00:22:14 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 02-05-2021 00:22:14 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 02-05-2021 00:22:14 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 02-05-2021 00:22:14 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 02-05-2021 00:22:14 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 02-05-2021 00:22:14 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 02-05-2021 00:22:14 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 02-05-2021 00:22:14 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 02-05-2021 00:22:14 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 02-05-2021 00:22:14 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 02-05-2021 00:22:14 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 02-05-2021 00:22:14 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 02-05-2021 00:22:14 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 02-05-2021 00:23:43 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 02-05-2021 00:23:43 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 02-05-2021 00:23:43 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 02-05-2021 00:23:43 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 02-05-2021 00:23:43 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 02-05-2021 00:23:43 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 02-05-2021 00:23:43 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 02-05-2021 00:23:43 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 02-05-2021 00:23:43 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 02-05-2021 00:23:43 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 02-05-2021 00:23:43 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 02-05-2021 00:23:43 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 02-05-2021 00:23:43 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 02-05-2021 00:23:43 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 02-05-2021 00:25:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 02-05-2021 00:25:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 02-05-2021 00:25:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 02-05-2021 00:25:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 02-05-2021 00:25:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 02-05-2021 00:25:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 02-05-2021 00:25:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 02-05-2021 00:25:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 02-05-2021 00:25:20 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 02-05-2021 00:25:20 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 02-05-2021 00:25:20 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 02-05-2021 00:25:20 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 02-05-2021 00:25:20 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 02-05-2021 00:25:20 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 02-05-2021 00:26:06 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 02-05-2021 00:26:06 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 02-05-2021 00:26:06 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 02-05-2021 00:26:06 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 02-05-2021 00:26:06 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 02-05-2021 00:26:06 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 02-05-2021 00:26:06 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 02-05-2021 00:26:06 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 02-05-2021 00:26:06 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 02-05-2021 00:26:06 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 02-05-2021 00:26:06 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 02-05-2021 00:26:06 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 02-05-2021 00:26:06 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 02-05-2021 00:26:06 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 02-05-2021 00:26:29 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 02-05-2021 00:26:29 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 02-05-2021 00:26:29 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 02-05-2021 00:26:29 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 02-05-2021 00:26:29 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 02-05-2021 00:26:29 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 02-05-2021 00:26:29 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 02-05-2021 00:26:29 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 02-05-2021 00:26:29 [class: DAL.Mapper,Line:91] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 02-05-2021 00:26:29 [class: DAL.Mapper,Line:91] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 02-05-2021 00:26:29 [class: DAL.Mapper,Line:91] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 02-05-2021 00:26:29 [class: DAL.Mapper,Line:91] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 02-05-2021 00:26:29 [class: DAL.Mapper,Line:91] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 02-05-2021 00:26:29 [class: DAL.Mapper,Line:91] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 02-05-2021 00:26:56 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 02-05-2021 00:26:56 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 02-05-2021 00:26:56 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 02-05-2021 00:26:56 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 02-05-2021 00:26:56 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 02-05-2021 00:26:56 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 02-05-2021 00:26:56 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 02-05-2021 00:26:56 [class: DAL.Mapper,Line:91] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 02-05-2021 00:26:56 [class: DAL.Mapper,Line:91] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 02-05-2021 00:26:56 [class: DAL.Mapper,Line:91] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 02-05-2021 00:26:56 [class: DAL.Mapper,Line:91] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 02-05-2021 00:26:56 [class: DAL.Mapper,Line:91] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 02-05-2021 00:26:56 [class: DAL.Mapper,Line:91] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 02-05-2021 00:26:56 [class: DAL.Mapper,Line:91] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 02-05-2021 00:28:53 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 02-05-2021 00:28:53 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 02-05-2021 00:28:53 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 02-05-2021 00:28:53 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 02-05-2021 00:28:53 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 02-05-2021 00:28:53 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 02-05-2021 00:28:53 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 02-05-2021 00:28:53 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 02-05-2021 00:28:53 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 02-05-2021 00:28:53 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 02-05-2021 00:28:53 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 02-05-2021 00:28:53 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 02-05-2021 00:28:53 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 02-05-2021 00:28:53 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 02-05-2021 00:30:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 02-05-2021 00:30:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 02-05-2021 00:30:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 02-05-2021 00:30:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 02-05-2021 00:30:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 02-05-2021 00:30:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 02-05-2021 00:30:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 02-05-2021 00:30:20 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 02-05-2021 00:30:20 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 02-05-2021 00:30:20 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 02-05-2021 00:30:20 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 02-05-2021 00:30:20 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 02-05-2021 00:30:20 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 02-05-2021 00:30:20 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:30:45 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALCategory not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:30:45 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALShelf not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:30:45 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSaleDiscount not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:30:45 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALSupplierDiscount not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:30:45 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProduct not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:30:45 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALStoreController not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:30:45 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALInstanceController not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:30:45 [class: DAL.Mapper,Line:90] - Class DAL.DalStock.DALProductType not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:30:45 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalItem not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:30:45 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalOrder not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:30:45 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalQuantityDocument not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:30:45 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierAgreement not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:30:45 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierCard not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:30:45 [class: DAL.Mapper,Line:90] - Class DAL.DalSuppliers.DalSupplierController not created in DB
+[WARN ] 02-05-2021 00:30:45 [class: DAL.DalController,Line:34] - failed to make SQL connection
+[WARN ] 02-05-2021 00:32:00 [class: DAL.DalController,Line:115] - ResultSet closed
+[WARN ] 02-05-2021 00:35:06 [class: DAL.DalController,Line:113] - ResultSet closed
+[WARN ] 02-05-2021 00:35:30 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 02-05-2021 00:36:18 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 02-05-2021 00:36:36 [class: DAL.DalController,Line:115] - ResultSet closed
+[WARN ] 02-05-2021 00:36:53 [class: DAL.DalController,Line:116] - ResultSet closed
+[WARN ] 02-05-2021 00:39:23 [class: DAL.DalController,Line:115] - ResultSet closed

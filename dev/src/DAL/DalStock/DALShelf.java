@@ -1,20 +1,38 @@
 package DAL.DalStock;
 
+import BusinessLayer.StockBusiness.instance.Location;
 import DAL.DALObject;
 import DAL.DalController;
+import Utility.Tuple;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DALShelf extends DALObject {
+    private int _shelfID;
+    private int _cur;
+    private int _typeID=0;
+    private int _maxAmount;
+    private int isStorage;
+    int storeId;
+    String tableName="Shelf";
 
     public DALShelf(){
         super(null);
     }
 
-    public DALShelf(Integer storeID, Integer typeID, Integer isStorage, Integer type, Integer curr, Integer max, DalController dc){
+    public DALShelf(Integer storeID,int id, Integer typeID, Integer isStorage, Integer curr, Integer max, DalController dc){
         super(dc);
+        this.storeId=storeID;
+        _typeID=typeID;
+        this.isStorage=isStorage;
+        _cur=curr;
+        _maxAmount=max;
+        _shelfID=id;
     }
 
     public String getCreate() {
-        return "CREATE TABLE IF NOT EXISTS Shelf (\n" +
+        return "CREATE TABLE IF NOT EXISTS ? (\n" +
                 "\tstoreID INTEGER NOT NULL,\n" +
                 "\tshelfID INTEGER NOT NULL,\n" +
                 "\tlocation INTEGER NOT NULL,\n" +
@@ -30,11 +48,18 @@ public class DALShelf extends DALObject {
     }
 
     public String getSelect() {
-        return null;
+        return """
+                SELECT * \s
+                FROM ? \s
+                WHERE storeID=? AND shelfID=?;\s
+                """;
     }
 
     public String getDelete() {
-        return null;
+        return """
+                DELETE FROM ? \s
+                WHERE storeID=? AND shelfID=?;\s
+                """;
     }
 
     public String getUpdate() {
@@ -42,6 +67,49 @@ public class DALShelf extends DALObject {
     }
 
     public String getInsert() {
-        return null;
+        return """
+                INSERT INTO ? \s
+                VALUE (?,?,?,?,?,?);
+                """;
     }
+    public int getID(){return _shelfID;}
+    public int getCur(){return _cur;}
+    public int getMax(){
+        return _maxAmount;
+    }
+    public void setCur(int cur){
+        String query= """
+                UPDATE ? \s
+                SET curr=?
+                WHERE storeID=? AND shelfID=?;
+                """;
+        List<Tuple<Object,Class>> params=prepareList(tableName,cur,storeId,_shelfID);
+        try {
+            DC.noSelect(query,params);
+        }
+        catch (Exception e){
+            throw new IllegalArgumentException("fail");
+        }
+        _cur=cur;
+    }
+    public int get_typeID(){return _typeID;}
+    public void setTypeID(int t){}
+
+    protected List<Tuple<Object,Class>> prepareList(Object... o){
+        List<Tuple<Object,Class>> params=new ArrayList<>();
+        for (Object o1:o){
+            params.add(new Tuple<>(o1,o1.getClass()));
+        }
+        return params;
+    }
+    public boolean isStorage(){
+        return isStorage==1;
+    }
+    public Location getLocation(){
+        if (isStorage())
+            return Location.Storage;
+        else
+            return Location.Shelves;
+    }
+
 }

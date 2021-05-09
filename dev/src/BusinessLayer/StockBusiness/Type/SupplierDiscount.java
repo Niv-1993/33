@@ -1,20 +1,56 @@
 package BusinessLayer.StockBusiness.Type;
 
+import DAL.DalStock.DALSupplierDiscount;
+import DAL.Mapper;
+import Utility.Util;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class SupplierDiscount extends Discount{
-    private int _supplierID;
+    DALSupplierDiscount dal;
+
+    public SupplierDiscount(int storeId, Integer i) {
+        super();
+        List<Integer> list=new ArrayList<>();
+        list.add(storeId);
+        list.add(i);
+        dal=(DALSupplierDiscount) Mapper.getMap().getItem(DALSupplierDiscount.class,list);
+    }
 
     public int get_supplierID() {
-        return _supplierID;
+        return dal.getSupplier();
     }
 
-    public SupplierDiscount(int _discountID, float _percent, Date _start, Date _end, int sup) {
-        super(_discountID, _percent, _start, _end);
-        _discountID=sup;
+    public SupplierDiscount(int storeID,int _discountID, float _percent, Date _start, Date _end, int sup) {
+        super(storeID,_discountID, _percent, _start, _end);
+        dal.setSupplier(sup);
     }
-    public int getSupplier(){
-        return _supplierID;
+
+    @Override
+    protected void init(int storeID, int id, float percent, Date start, Date end) {
+        dal= Util.initDal(DALSupplierDiscount.class,storeID,id,percent,start,end);
+    }
+
+    @Override
+    public int get_discountID() {
+        return dal.getID();
+    }
+
+    @Override
+    public float get_percent() {
+        return dal.getPercent();
+    }
+
+    @Override
+    public Date get_start() {
+        return dal.getStartDate();
+    }
+
+    @Override
+    public Date get_end() {
+        return dal.getEndDate();
     }
 
     @Override
@@ -27,4 +63,5 @@ public class SupplierDiscount extends Discount{
     public void removeFrom(ProductType productType) {
         productType.removeDiscountFromList(this);
     }
+
 }

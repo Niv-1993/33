@@ -1,56 +1,65 @@
 package BusinessLayer.StockBusiness.instance;
 
+import DAL.DalStock.DALShelf;
+import DAL.Mapper;
+import Utility.Util;
 import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Shelf {
-    private int _shelfID;
-    private Location _location;
-    private int _cur;
-    private int _typeID=0;
-    private int _maxAmount;
+    DALShelf dal;
+
+
     final static Logger log=Logger.getLogger(Shelf.class);
 
-    public Shelf(int _shelfID, Location _location, int _maxAmount) {
-        this._shelfID = _shelfID;
-        this._location = _location;
-        this._maxAmount = _maxAmount;
+    public Shelf(int storeID,int _shelfID, Location _location, int _maxAmount) {
+        dal=Util.initDal(DALShelf.class,storeID,_shelfID,_location.toString(),0,0,_maxAmount);
+    }
+
+    public Shelf(int id, Integer i) {
+        List<Integer> list=new ArrayList<>();
+        list.add(id);
+        list.add(i);
+        dal= (DALShelf) Mapper.getMap().getItem(DALShelf.class,list);
     }
 
 
     public int get_shelfID() {
         log.debug("get_shelfID()");
         checkTypeID();
-        return _shelfID;
+        return dal.getID();
     }
 
     public Location get_location() {
         log.debug("get_location()");
         checkTypeID();
-        return _location;
+        return dal.getLocation();
     }
 
     public int get_cur() {
         log.debug("get_cur()");
         checkTypeID();
-        return _cur;
+        return dal.getCur();
     }
 
     public void set_cur(int cur) {
         log.debug(String.format("set_cur(int cur)",cur));
         checkTypeID();
-        if (cur>_maxAmount)
+        if (cur>dal.getMax())
         {
-            String s=String.format("the ? greater than the maximum(?) of product in this shelf ",cur,_maxAmount);
+            String s=String.format("the ? greater than the maximum(?) of product in this shelf ",cur,get_maxAmount());
             log.debug(s);
             throw new IllegalArgumentException(s);
         }
-        this._cur = cur;
+        dal.setCur(cur);
     }
 
     public int get_typeID() {
         log.debug("get_typeID()");
         checkTypeID();
-        return _typeID;
+        return dal.get_typeID();
     }
 
     public void set_typeID(int typeID) {
@@ -61,19 +70,19 @@ public class Shelf {
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
-        this._typeID = typeID;
+        dal.setTypeID(typeID);
     }
 
     public int get_maxAmount() {
         log.debug("get_maxAmount()");
         checkTypeID();
-        return _maxAmount;
+        return dal.getMax();
     }
 
     public boolean isFull() {
         log.debug("isFull()");
         checkTypeID();
-        return _cur==_maxAmount;
+        return get_cur()==get_maxAmount();
     }
 
     public void addProduct() {
@@ -81,28 +90,29 @@ public class Shelf {
         checkTypeID();
         if (isFull())
         {
-            String s=String.format("the shelf #? is full",_shelfID);
+            String s=String.format("the shelf #? is full",get_shelfID());
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
-        _cur++;
+        dal.setCur(dal.getCur()+1);
     }
 
     public void removeProduct() {
         log.debug("removeProduct()");
         checkTypeID();
-        if (_cur==0)
+        if (get_cur()==0)
         {
-            String s=String.format("the shelf #? is empty",_shelfID);
+            String s=String.format("the shelf #? is empty",get_shelfID());
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
-        _cur--;
-        if (_cur==0)
-            _typeID=0;
+        set_cur(get_cur()-1);
+
+        if (get_cur()==0)
+            set_typeID(0);
     }
     private void checkTypeID(){
-        if (_typeID<0)
+        if (get_typeID()<0)
         {
             String s=String.format("the shelf #? without product type.");
             log.warn(s);
