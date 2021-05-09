@@ -1,0 +1,59 @@
+Index: .idea/libraries/log4j_apache_log4j_extras_1_2_17.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/log4j_apache_log4j_extras_1_2_17.xml b/.idea/libraries/log4j_apache_log4j_extras_1_2_17.xml
+new file mode 100644
+--- /dev/null	(date 1620575172145)
++++ b/.idea/libraries/log4j_apache_log4j_extras_1_2_17.xml	(date 1620575172145)
+@@ -0,0 +1,11 @@
++<component name="libraryTable">
++  <library name="log4j:apache-log4j-extras:1.2.17" type="repository">
++    <properties maven-id="log4j:apache-log4j-extras:1.2.17" />
++    <CLASSES>
++      <root url="jar://$MAVEN_REPOSITORY$/log4j/apache-log4j-extras/1.2.17/apache-log4j-extras-1.2.17.jar!/" />
++      <root url="jar://$MAVEN_REPOSITORY$/log4j/log4j/1.2.17/log4j-1.2.17.jar!/" />
++    </CLASSES>
++    <JAVADOC />
++    <SOURCES />
++  </library>
++</component>
+\ No newline at end of file
+Index: ADSS_Group_B.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"JAVA_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\" inherit-compiler-output=\"true\">\r\n    <exclude-output />\r\n    <content url=\"file://$MODULE_DIR$\">\r\n      <sourceFolder url=\"file://$MODULE_DIR$/dev/src\" isTestSource=\"false\" />\r\n      <sourceFolder url=\"file://$MODULE_DIR$/dev/src/Tests\" isTestSource=\"true\" />\r\n    </content>\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n    <orderEntry type=\"module-library\" scope=\"TEST\">\r\n      <library name=\"JUnit5.4\">\r\n        <CLASSES>\r\n          <root url=\"jar://$MODULE_DIR$/lib/junit-jupiter-5.4.2.jar!/\" />\r\n          <root url=\"jar://$MODULE_DIR$/lib/junit-jupiter-api-5.4.2.jar!/\" />\r\n          <root url=\"jar://$MODULE_DIR$/lib/apiguardian-api-1.0.0.jar!/\" />\r\n          <root url=\"jar://$MODULE_DIR$/lib/opentest4j-1.1.1.jar!/\" />\r\n          <root url=\"jar://$MODULE_DIR$/lib/junit-platform-commons-1.4.2.jar!/\" />\r\n          <root url=\"jar://$MODULE_DIR$/lib/junit-jupiter-params-5.4.2.jar!/\" />\r\n          <root url=\"jar://$MODULE_DIR$/lib/junit-jupiter-engine-5.4.2.jar!/\" />\r\n          <root url=\"jar://$MODULE_DIR$/lib/junit-platform-engine-1.4.2.jar!/\" />\r\n        </CLASSES>\r\n        <JAVADOC />\r\n        <SOURCES />\r\n      </library>\r\n    </orderEntry>\r\n    <orderEntry type=\"library\" name=\"org.junit.jupiter:junit-jupiter:5.4.2\" level=\"project\" />\r\n    <orderEntry type=\"library\" name=\"sqlite-jdbc-3.20.1\" level=\"project\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ADSS_Group_B.iml b/ADSS_Group_B.iml
+--- a/ADSS_Group_B.iml	(revision 8b529b35ed20b531502d47f53578fd2b4ecac417)
++++ b/ADSS_Group_B.iml	(date 1620575172117)
+@@ -26,5 +26,6 @@
+     </orderEntry>
+     <orderEntry type="library" name="org.junit.jupiter:junit-jupiter:5.4.2" level="project" />
+     <orderEntry type="library" name="sqlite-jdbc-3.20.1" level="project" />
++    <orderEntry type="library" name="log4j:apache-log4j-extras:1.2.17" level="project" />
+   </component>
+ </module>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_14\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 8b529b35ed20b531502d47f53578fd2b4ecac417)
++++ b/.idea/misc.xml	(date 1620574702397)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_14" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_12" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file

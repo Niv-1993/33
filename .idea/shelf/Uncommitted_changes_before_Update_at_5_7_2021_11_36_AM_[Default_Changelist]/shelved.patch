@@ -1,0 +1,451 @@
+Index: dev/src/Business/ShiftPKG/ShiftController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Business.ShiftPKG;\r\n\r\nimport Business.EmployeePKG.Employee;\r\nimport Business.Type.RoleType;\r\nimport Business.Type.ShiftType;\r\nimport java.time.DayOfWeek;\r\nimport java.time.LocalDate;\r\nimport java.time.temporal.TemporalAdjusters;\r\nimport java.util.*;\r\nimport org.apache.log4j.Logger;\r\n\r\npublic class ShiftController {\r\n    private final static Logger log = Logger.getLogger(ShiftController.class);\r\n    //-------------------------------------fields------------------------------------\r\n\r\n    private final Map<Integer, Shift> shifts;\r\n    private final Map<Integer, Constraint> constraints;\r\n    private final Map<Integer, TempConstraint> buildShiftConstraints;\r\n    private Map<ShiftType, Map<RoleType, Integer>> defaultShifts;\r\n    private int shiftCounter;\r\n    private int constraintCounter;\r\n\r\n    //------------------------------------constructor---------------------------------\r\n\r\n    public ShiftController() {\r\n        shifts = new HashMap<>();\r\n        constraints = new HashMap<>();\r\n        defaultShifts = new HashMap<>();\r\n        shiftCounter = 0;\r\n        constraintCounter = 0;\r\n        buildShiftConstraints = new HashMap<>();\r\n        log.debug(\"finished constructor shiftController\");\r\n        //when will use DB shifts not empty so we need to create build constraints\r\n        /*for (Map.Entry<Integer, Shift> m : shifts.entrySet()) {\r\n            Shift s = m.getValue();\r\n            createBuildConstraints(new ArrayList<>(s.getEmployees().keySet()), s.getShiftType(), s.getDate());\r\n        }*/\r\n    }\r\n\r\n    //--------------------------------------methods----------------------------------\r\n\r\n    public void addConstConstraint(int EID, DayOfWeek day, ShiftType shiftType, String reason) {\r\n        //create constraint and add to constraints field\r\n        Constraint newCon = new ConstConstraint(constraintCounter, EID, day, shiftType, reason);\r\n        constraints.put(newCon.getCID(), newCon);\r\n        constraintCounter++;\r\n        log.debug(\"added new const constraint for EID: \" + EID + \", Day: \" + day.name() + \" , ShiftType: \" + shiftType);\r\n    }\r\n\r\n    public void addTempConstraint(Employee emp, LocalDate c_date, ShiftType shiftType, String reason) {\r\n        Shift s = getShiftByDate(c_date, shiftType);\r\n        Constraint newCon = new TempConstraint(constraintCounter, emp.getEID(), c_date, shiftType, reason);\r\n        constraints.put(newCon.getCID(), newCon);\r\n        constraintCounter++;\r\n        s.removeEmpFromOptionals(emp);\r\n        log.debug(\"added new const constraint for EID: \" + emp.getEID() + \", Date: \" + c_date + \" , ShiftType: \" + shiftType);\r\n    }\r\n\r\n    public void removeConstraint(int CID, int EID)  {\r\n        constraints.remove(CID);\r\n    }\r\n\r\n    public String defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaultShifts) {\r\n        for (Map.Entry<ShiftType, Map<RoleType, Integer>> e : defaultShifts.entrySet()) {\r\n            String response = checkIfAmountNegative(e.getValue());\r\n            if(response!=null) return response;\r\n        }\r\n        this.defaultShifts = defaultShifts;\r\n        log.debug(\"default shifts defined\");\r\n        return \"\";\r\n    }\r\n\r\n    //assume that sunday-thursday will be default shifts and on friday only morning shift.\r\n    public List<Shift> createWeekShifts(Map<RoleType, List<Employee>> optionals) {\r\n        LocalDate date = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY));\r\n        List<Shift> shiftsWithoutShiftManager = new ArrayList<>();\r\n        for (int i = 0; i < 5; i++) {\r\n            for (Map.Entry<ShiftType, Map<RoleType, Integer>> m : defaultShifts.entrySet()) {\r\n                ShiftType shiftType = m.getKey();\r\n                if (shiftAlreadyCreated(date.plusDays(i), shiftType)) continue;\r\n                Shift s = createShiftPrivate(defaultShifts.get(shiftType), date.plusDays(i), shiftType, optionals);  // default shift\r\n                if (!s.HasShiftManager())\r\n                    shiftsWithoutShiftManager.add(s);\r\n            }\r\n        }\r\n        Shift friday = createShiftPrivate(defaultShifts.get(ShiftType.Morning), date.plusDays(5), ShiftType.Morning, optionals);  // default shift\r\n        if (!friday.HasShiftManager())\r\n            shiftsWithoutShiftManager.add(friday);\r\n        return shiftsWithoutShiftManager;\r\n    }\r\n\r\n    private Shift createShiftPrivate(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<Employee>> optionals) {\r\n        //delete from optionals by constraints\r\n        optionals = deepCopy(optionals);\r\n        createOptionals(optionals, date, shiftType);\r\n        Shift s = new Shift(shiftCounter++, rolesAmount, optionals, date, shiftType);\r\n        if (s.HasShiftManager()) {\r\n            List<Employee> shiftManager = s.insertShiftManager();\r\n            createBuildConstraintsAndRemoveFromOpt(shiftManager, shiftType, date);  //create build constraint for shift manager\r\n        }\r\n        shifts.put(s.getSID(), s);\r\n        return s;\r\n    }\r\n\r\n\r\n    public void createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<Employee>> optionals) {\r\n        //delete from optionals by constraints\r\n        optionals = deepCopy(optionals);\r\n            createOptionals(optionals, date, shiftType);\r\n            Shift s = new Shift(shiftCounter++, rolesAmount, optionals, date, shiftType);\r\n            if (s.HasShiftManager()) {\r\n                List<Employee> shiftManager = s.insertShiftManager();\r\n                createBuildConstraintsAndRemoveFromOpt(shiftManager, shiftType, date);  //create build constraint for shift manager\r\n            }\r\n            shifts.put(s.getSID(), s);\r\n    }\r\n\r\n    private void createOptionals(Map<RoleType, List<Employee>> optionals,LocalDate date ,ShiftType shiftType){\r\n        for (Map.Entry<Integer, Constraint> c : constraints.entrySet()) {\r\n            if (c.getValue().relevant(date, shiftType))\r\n                RemoveEmpFromOptionals(c.getValue().getEID(), optionals);\r\n        }\r\n        for (Map.Entry<Integer, TempConstraint> c : buildShiftConstraints.entrySet()) {\r\n            if (c.getValue().relevant(date, shiftType)) {\r\n                RemoveEmpFromOptionals(c.getValue().getEID(), optionals);\r\n            }\r\n        }\r\n    }\r\n\r\n    //self make for all shifts that next week and not was self make\r\n    public void selfMakeWeekShifts()  {\r\n        for (Map.Entry<Integer, Shift> m : shifts.entrySet()) {\r\n            if (shiftIsNextWeek(m.getValue().getDate())) {\r\n                Shift s = m.getValue();\r\n                List<Employee> listOfEmployees = s.self_make();// algorithm that choose employees for the shift\r\n                createBuildConstraintsAndRemoveFromOpt(listOfEmployees, s.getShiftType(), s.getDate());  //add constraint for all the employees in this shift cause employee can work in 1 shift per day\r\n            }\r\n        }\r\n    }\r\n    //TODO: add build constraint and remove from negative shift optionals\r\n    //add to specific role in this Shift\r\n    public void addEmpToShift(int SID, RoleType role, Employee emp){\r\n         (shifts.get(SID)).addEmpToShift(role, emp);\r\n    }\r\n\r\n\r\n    public void removeEmpFromShift(int SID, Employee emp) {\r\n        Shift s = shifts.get(SID);\r\n        s.removeEmpFromShift(emp);\r\n        emp.getRole().forEach(roleType -> s.addToOptionals(emp,roleType));\r\n        removeBuildConstraint(emp,s);\r\n    }\r\n\r\n    private void removeBuildConstraint(Employee emp, Shift s){\r\n        List<Integer> l = new ArrayList<>();\r\n        for (Map.Entry<Integer, TempConstraint> e : buildShiftConstraints.entrySet()) {   //remove buildConstraint\r\n            TempConstraint c = e.getValue();\r\n            if (c.getEID() == emp.getEID() && c.getDate().equals(s.getDate())) {\r\n                l.add(c.getCID());\r\n            }\r\n        }\r\n        l.forEach(integer -> {\r\n            buildShiftConstraints.remove(integer);\r\n            log.debug(\"Build constraint - CID: \" + integer + \" removed\");\r\n            if(s.getShiftType().equals(ShiftType.Morning)){\r\n                Shift opShift = getShiftByDate(s.getDate(),ShiftType.Night);\r\n                if(opShift!=null) emp.getRole().forEach(roleType -> opShift.addToOptionals(emp,roleType));\r\n            } else{\r\n                Shift opShift = getShiftByDate(s.getDate(),ShiftType.Morning);\r\n                if(opShift!=null) emp.getRole().forEach(roleType -> opShift.addToOptionals(emp,roleType));\r\n            }\r\n        });\r\n    }\r\n\r\n    //when fire employee from the branch\r\n    public void removeFireEmp(Employee emp) {\r\n        for (Map.Entry<Integer, Shift> s : shifts.entrySet()) {\r\n            s.getValue().removeFireEmp(emp);\r\n        }\r\n    }\r\n\r\n    //when add new employee to the branch\r\n    public void addToOptionals(Employee emp, RoleType role) {\r\n        for (Map.Entry<Integer, Shift> s : shifts.entrySet()) {\r\n            s.getValue().addToOptionals(emp, role);\r\n        }\r\n    }\r\n\r\n    public List<Shift> getShifts(LocalDate until) {\r\n        ArrayList<Shift> filterShifts = new ArrayList<>();\r\n        for (Map.Entry<Integer, Shift> m : shifts.entrySet()) {\r\n            if (m.getValue().getDate().isAfter(LocalDate.now()) && m.getValue().getDate().isBefore(until)) {\r\n                filterShifts.add(m.getValue());\r\n            }\r\n        }\r\n        return filterShifts;\r\n    }\r\n\r\n    public List<Shift> getMyShifts(Employee emp) {\r\n        List<Shift> list = new ArrayList<>();\r\n        for (Map.Entry<Integer, Shift> s : shifts.entrySet()) {\r\n            if (s.getValue().getEmployees().get(emp) != null)  //if EID is in this Shift\r\n                list.add(s.getValue());\r\n        }\r\n        return list;\r\n    }\r\n\r\n    public List<Constraint> getMyConstraints(int EID) {\r\n        ArrayList<Constraint> l = new ArrayList<>();\r\n        for (Map.Entry<Integer, Constraint> c : constraints.entrySet()) {\r\n            if (c.getValue().getEID() == EID)\r\n                l.add(c.getValue());\r\n        }\r\n        return l;\r\n    }\r\n\r\n    public void updateAmountRole(int SID, RoleType role, int newAmount) {\r\n        Shift s = shifts.get(SID);\r\n        List<Employee> toRemove = s.updateRolesAmount(role, newAmount);\r\n        toRemove.forEach(employee -> {removeBuildConstraint(employee,s);});\r\n    }\r\n\r\n    public void updateReasonConstraint(int CID, String newReason, int EID) {\r\n        Constraint c = constraints.get(CID);\r\n        c.updateReason(newReason);\r\n        log.debug(\"CID: \" + CID + \" update his reason\");\r\n    }\r\n\r\n    public void updateShiftTypeConstraint(int CID, ShiftType newType, int EID) {\r\n        Constraint c = constraints.get(CID);\r\n        c.updateShiftType(newType);\r\n        log.debug(\"CID: \" + CID + \" update his shift type\");\r\n    }\r\n\r\n\r\n    //remove emp from every shift's optionals\r\n    private void RemoveEmpFromOptionals(int EID, Map<RoleType, List<Employee>> optionals) {\r\n        for (Map.Entry<RoleType, List<Employee>> e : optionals.entrySet()) {\r\n            List<Employee> l = e.getValue();\r\n            if (!l.isEmpty()) {\r\n                l.removeIf(emp -> emp.getEID() == EID);\r\n            }\r\n        }\r\n        log.debug(\"EID: \" + EID + \" remove from optionals\");\r\n    }\r\n\r\n\r\n    private void createBuildConstraintsAndRemoveFromOpt(List<Employee> listOfEmployees, ShiftType shiftType, LocalDate date)  {\r\n        for (Employee emp : listOfEmployees) {\r\n            TempConstraint bConstraint;\r\n            if (shiftType.equals(ShiftType.Morning)) {\r\n                Shift s  = getShiftByDate(date,ShiftType.Night);\r\n                if (s != null)\r\n                    s.removeEmpFromOptionals(emp);\r\n                bConstraint = new TempConstraint(constraintCounter++, emp.getEID(), date, ShiftType.Night, \"Work in morning shift this day\");\r\n            } else {\r\n                Shift s  = getShiftByDate(date,ShiftType.Morning);\r\n                if (s != null)\r\n                    s.removeEmpFromOptionals(emp);\r\n                bConstraint = new TempConstraint(constraintCounter++, emp.getEID(), date, ShiftType.Morning, \"Work in Night shift this day\");\r\n            }\r\n            buildShiftConstraints.put(bConstraint.getCID(), bConstraint);\r\n        }\r\n    }\r\n\r\n    private boolean shiftIsNextWeek(LocalDate shiftDate) {   //shift date is between next sunday to next saturday\r\n        LocalDate nextSunday = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY));\r\n        LocalDate nextSaturday = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SATURDAY)).plusWeeks(1);\r\n        return !(shiftDate.isBefore(nextSunday) || shiftDate.isAfter(nextSaturday));\r\n    }\r\n\r\n    //return null if not exists\r\n    private Shift getShiftByDate(LocalDate date, ShiftType shiftType) {\r\n        for (Map.Entry<Integer, Shift> m : shifts.entrySet()) {\r\n            Shift s = m.getValue();\r\n            if (s.getDate().compareTo(date) == 0 & s.getShiftType() == shiftType)\r\n                return s;\r\n        }\r\n        return null;\r\n    }\r\n\r\n\r\n\r\n    public boolean shiftAlreadyCreated(LocalDate date, ShiftType shiftType) {\r\n        for (Map.Entry<Integer, Shift> shift : shifts.entrySet()) {\r\n            if (shift.getValue().getDate().equals(date) && shift.getValue().getShiftType().equals(shiftType))\r\n                return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public boolean constraintIsExist(int CID) {\r\n        Constraint c = constraints.get(CID);\r\n        return c != null;\r\n    }\r\n\r\n\r\n    private String checkIfAmountNegative(Map<RoleType, Integer> defaultShifts){\r\n        for (Map.Entry<RoleType, Integer> e : defaultShifts.entrySet()) {\r\n            if (e.getValue() < 0) {\r\n                log.error(\"Role amount for role: \" + e.getKey() + \" is negative: \" + e.getValue());\r\n                return (\"Role amount for role: \" + e.getKey() + \" is negative\");\r\n            }\r\n            if (e.getKey().equals(RoleType.ShiftManager) && e.getValue() != 1) {\r\n                log.error(\"Shift Manager amount is not legal: \" + e.getValue());\r\n                return (\"Shift Manager amount is not legal: \" + e.getValue());\r\n            }\r\n        }\r\n        return null;\r\n    }\r\n\r\n    private Map<RoleType, List<Employee>> deepCopy (Map<RoleType, List<Employee>> optionals) {\r\n        Map<RoleType, List<Employee>> copy = new HashMap<>();\r\n        optionals.forEach((roleType, employees) -> {\r\n            List<Employee> cloneL = new ArrayList<>(employees);\r\n            copy.put(roleType, cloneL);\r\n        });\r\n        return copy;\r\n    }\r\n\r\n\r\n    public boolean optionalIsEmpty(int SID){\r\n        return shifts.get(SID).optionalIsEmpty();\r\n    }\r\n\r\n    public boolean checkIfSIDExist(int SID){\r\n        return shifts.containsKey(SID);\r\n    }\r\n\r\n    public boolean EIDIsOptionForSID(int SID, Employee emp){\r\n        return shifts.get(SID).EIDIsOptionForSID(emp);\r\n    }\r\n    //can work in this shift - is optional and role is not full\r\n    public boolean canWork(int SID, Employee emp, RoleType role){\r\n        return shifts.get(SID).canWork(emp,role);\r\n    }\r\n\r\n    public boolean wasSelfMake(LocalDate date ,ShiftType shiftType){\r\n        return Objects.requireNonNull(getShiftByDate(date, shiftType)).WasSelfMake();\r\n    }\r\n\r\n    public boolean shiftIsEmpty(int SID){\r\n        return shifts.get(SID).getEmployees().isEmpty();\r\n    }\r\n\r\n    public boolean EIDWorkInSID(int SID, Employee emp){\r\n        return shifts.get(SID).getEmployees().containsKey(emp);\r\n    }\r\n\r\n    public boolean hasShiftManager(LocalDate date, ShiftType shiftType){\r\n        return Objects.requireNonNull(getShiftByDate(date, shiftType)).HasShiftManager();\r\n    }\r\n    //---------------------------------------------getters------------------------------------------------------\r\n\r\n    public Map<Integer, Shift> getShifts() {\r\n        return shifts;\r\n    }\r\n\r\n    public Map<Integer, Constraint> getConstraints() {\r\n        return constraints;\r\n    }\r\n\r\n    public Map<Integer, TempConstraint> getBuildShiftConstraints() {\r\n        return buildShiftConstraints;\r\n    }\r\n\r\n    public Map<ShiftType, Map<RoleType, Integer>> getDefaultShifts() {\r\n        return defaultShifts;\r\n    }\r\n\r\n    public boolean hasDefaultShifts() {\r\n        return !defaultShifts.isEmpty();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/dev/src/Business/ShiftPKG/ShiftController.java b/dev/src/Business/ShiftPKG/ShiftController.java
+--- a/dev/src/Business/ShiftPKG/ShiftController.java	(revision 1d4b78cbd192f4a7ae303d477edeceb2ebdaf369)
++++ b/dev/src/Business/ShiftPKG/ShiftController.java	(date 1620376543604)
+@@ -7,27 +7,22 @@
+ import java.time.LocalDate;
+ import java.time.temporal.TemporalAdjusters;
+ import java.util.*;
++import DataAccess.ConstraintMapper;
++import DataAccess.ShiftMapper;
++import DataAccess.Tuple;
+ import org.apache.log4j.Logger;
+ 
+ public class ShiftController {
+     private final static Logger log = Logger.getLogger(ShiftController.class);
+     //-------------------------------------fields------------------------------------
+ 
+-    private final Map<Integer, Shift> shifts;
+-    private final Map<Integer, Constraint> constraints;
+     private final Map<Integer, TempConstraint> buildShiftConstraints;
+     private Map<ShiftType, Map<RoleType, Integer>> defaultShifts;
+-    private int shiftCounter;
+-    private int constraintCounter;
+ 
+     //------------------------------------constructor---------------------------------
+ 
+     public ShiftController() {
+-        shifts = new HashMap<>();
+-        constraints = new HashMap<>();
+         defaultShifts = new HashMap<>();
+-        shiftCounter = 0;
+-        constraintCounter = 0;
+         buildShiftConstraints = new HashMap<>();
+         log.debug("finished constructor shiftController");
+         //when will use DB shifts not empty so we need to create build constraints
+@@ -41,33 +36,28 @@
+ 
+     public void addConstConstraint(int EID, DayOfWeek day, ShiftType shiftType, String reason) {
+         //create constraint and add to constraints field
+-        Constraint newCon = new ConstConstraint(constraintCounter, EID, day, shiftType, reason);
+-        constraints.put(newCon.getCID(), newCon);
+-        constraintCounter++;
++        int CID = ConstraintMapper.getInstance().getNextCID();// TODO ---
++        Constraint newCon = new ConstConstraint(CID, EID, day, shiftType, reason);
++        ConstraintMapper.getInstance().insertConstConstraint(newCon);  //TODO constraint
+         log.debug("added new const constraint for EID: " + EID + ", Day: " + day.name() + " , ShiftType: " + shiftType);
+     }
+ 
+     public void addTempConstraint(Employee emp, LocalDate c_date, ShiftType shiftType, String reason) {
+         Shift s = getShiftByDate(c_date, shiftType);
+-        Constraint newCon = new TempConstraint(constraintCounter, emp.getEID(), c_date, shiftType, reason);
+-        constraints.put(newCon.getCID(), newCon);
+-        constraintCounter++;
++        int CID = ConstraintMapper.getInstance().getNextCID();
++        Constraint newCon = new TempConstraint(CID, emp.getEID(), c_date, shiftType, reason);
++        ConstraintMapper.getInstance().insertTempConstraint(newCon);  //TODO Tempconstraint
+         s.removeEmpFromOptionals(emp);
+         log.debug("added new const constraint for EID: " + emp.getEID() + ", Date: " + c_date + " , ShiftType: " + shiftType);
+     }
+ 
+-    public void removeConstraint(int CID, int EID)  {
+-        constraints.remove(CID);
++    public void removeConstraint(int CID) {
++        ConstraintMapper.getInstance().deleteConstraint(CID);  //TODO int
+     }
+ 
+-    public String defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaultShifts) {
+-        for (Map.Entry<ShiftType, Map<RoleType, Integer>> e : defaultShifts.entrySet()) {
+-            String response = checkIfAmountNegative(e.getValue());
+-            if(response!=null) return response;
+-        }
++    public void defaultShifts(Map<ShiftType, Map<RoleType, Integer>> defaultShifts) {
+         this.defaultShifts = defaultShifts;
+         log.debug("default shifts defined");
+-        return "";
+     }
+ 
+     //assume that sunday-thursday will be default shifts and on friday only morning shift.
+@@ -93,12 +83,13 @@
+         //delete from optionals by constraints
+         optionals = deepCopy(optionals);
+         createOptionals(optionals, date, shiftType);
+-        Shift s = new Shift(shiftCounter++, rolesAmount, optionals, date, shiftType);
++        int SID = ShiftMapper.getInstance().getNextSID(); //TODO ---
++        Shift s = new Shift(SID, rolesAmount, optionals, date, shiftType);
+         if (s.HasShiftManager()) {
+             List<Employee> shiftManager = s.insertShiftManager();
+             createBuildConstraintsAndRemoveFromOpt(shiftManager, shiftType, date);  //create build constraint for shift manager
+         }
+-        shifts.put(s.getSID(), s);
++        ShiftMapper.getInstance().insertNewShift(s);  //TODO shift
+         return s;
+     }
+ 
+@@ -106,129 +97,105 @@
+     public void createShift(Map<RoleType, Integer> rolesAmount, LocalDate date, ShiftType shiftType, Map<RoleType, List<Employee>> optionals) {
+         //delete from optionals by constraints
+         optionals = deepCopy(optionals);
+-            createOptionals(optionals, date, shiftType);
+-            Shift s = new Shift(shiftCounter++, rolesAmount, optionals, date, shiftType);
+-            if (s.HasShiftManager()) {
+-                List<Employee> shiftManager = s.insertShiftManager();
+-                createBuildConstraintsAndRemoveFromOpt(shiftManager, shiftType, date);  //create build constraint for shift manager
+-            }
+-            shifts.put(s.getSID(), s);
++        createOptionals(optionals, date, shiftType);
++        int SID = ShiftMapper.getInstance().getNextSID(); //TODO ---
++        Shift s = new Shift(SID, rolesAmount, optionals, date, shiftType);
++        if (s.HasShiftManager()) {
++            List<Employee> shiftManager = s.insertShiftManager();
++            createBuildConstraintsAndRemoveFromOpt(shiftManager, shiftType, date);  //create build constraint for shift manager
++        }
++        ShiftMapper.getInstance().insertNewShift(s);  //TODO shift
+     }
+ 
+-    private void createOptionals(Map<RoleType, List<Employee>> optionals,LocalDate date ,ShiftType shiftType){
++    private void createOptionals(Map<RoleType, List<Employee>> optionals, LocalDate date, ShiftType shiftType) {
++        Map<Integer, Constraint> constraints = ConstraintMapper.getInstance().selectAllConstraints(); // TODO ---
+         for (Map.Entry<Integer, Constraint> c : constraints.entrySet()) {
+             if (c.getValue().relevant(date, shiftType))
+                 RemoveEmpFromOptionals(c.getValue().getEID(), optionals);
+-        }
+-        for (Map.Entry<Integer, TempConstraint> c : buildShiftConstraints.entrySet()) {
+-            if (c.getValue().relevant(date, shiftType)) {
+-                RemoveEmpFromOptionals(c.getValue().getEID(), optionals);
+-            }
+         }
+     }
+ 
+     //self make for all shifts that next week and not was self make
+-    public void selfMakeWeekShifts()  {
+-        for (Map.Entry<Integer, Shift> m : shifts.entrySet()) {
+-            if (shiftIsNextWeek(m.getValue().getDate())) {
+-                Shift s = m.getValue();
+-                List<Employee> listOfEmployees = s.self_make();// algorithm that choose employees for the shift
+-                createBuildConstraintsAndRemoveFromOpt(listOfEmployees, s.getShiftType(), s.getDate());  //add constraint for all the employees in this shift cause employee can work in 1 shift per day
+-            }
++    public void selfMakeWeekShifts() {
++        List<Shift> shifts = ShiftMapper.getInstance().selectShiftsNextWeek(LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY)), LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SATURDAY)).plusWeeks(1)); // TODO from until // TODO ---
++        for (Shift s : shifts) {
++            List<Employee> listOfEmployees = s.self_make();// algorithm that choose employees for the shift
++            createBuildConstraintsAndRemoveFromOpt(listOfEmployees, s.getShiftType(), s.getDate());  //add constraint for all the employees in this shift cause employee can work in 1 shift per day
+         }
+     }
++
+     //TODO: add build constraint and remove from negative shift optionals
+     //add to specific role in this Shift
+-    public void addEmpToShift(int SID, RoleType role, Employee emp){
+-         (shifts.get(SID)).addEmpToShift(role, emp);
++    public void addEmpToShift(int SID, RoleType role, Employee emp) {
++        Shift s = ShiftMapper.getInstance().getShift(SID); // TODO int
++        s.addEmpToShift(role, emp);
+     }
+ 
+ 
+     public void removeEmpFromShift(int SID, Employee emp) {
+-        Shift s = shifts.get(SID);
++        Shift s = ShiftMapper.getInstance().getShift(SID); // TODO int
+         s.removeEmpFromShift(emp);
+-        emp.getRole().forEach(roleType -> s.addToOptionals(emp,roleType));
+-        removeBuildConstraint(emp,s);
++        emp.getRole().forEach(roleType -> s.addToOptionals(emp, roleType));
++        removeBuildConstraint(emp, s);
+     }
+ 
+-    private void removeBuildConstraint(Employee emp, Shift s){
+-        List<Integer> l = new ArrayList<>();
+-        for (Map.Entry<Integer, TempConstraint> e : buildShiftConstraints.entrySet()) {   //remove buildConstraint
+-            TempConstraint c = e.getValue();
+-            if (c.getEID() == emp.getEID() && c.getDate().equals(s.getDate())) {
+-                l.add(c.getCID());
+-            }
+-        }
+-        l.forEach(integer -> {
+-            buildShiftConstraints.remove(integer);
++    private void removeBuildConstraint(Employee emp, Shift s) {
++        List<TempConstraint> constraintsOfEmpInDateS = ConstraintMapper.getInstance().getConstraints(emp.getEID(),s.getDate()); // TODO EID,Date (return the tempconstraint in this date for emp)
++        constraintsOfEmpInDateS.forEach(integer -> {
+             log.debug("Build constraint - CID: " + integer + " removed");
+-            if(s.getShiftType().equals(ShiftType.Morning)){
+-                Shift opShift = getShiftByDate(s.getDate(),ShiftType.Night);
+-                if(opShift!=null) emp.getRole().forEach(roleType -> opShift.addToOptionals(emp,roleType));
+-            } else{
+-                Shift opShift = getShiftByDate(s.getDate(),ShiftType.Morning);
+-                if(opShift!=null) emp.getRole().forEach(roleType -> opShift.addToOptionals(emp,roleType));
++            ConstraintMapper.getInstance().deleteConstraint(CID);
++            if (s.getShiftType().equals(ShiftType.Morning)) {
++                Shift opShift = getShiftByDate(s.getDate(), ShiftType.Night);
++                if (opShift != null) emp.getRole().forEach(roleType -> opShift.addToOptionals(emp, roleType));
++            } else {
++                Shift opShift = getShiftByDate(s.getDate(), ShiftType.Morning);
++                if (opShift != null) emp.getRole().forEach(roleType -> opShift.addToOptionals(emp, roleType));
+             }
+         });
+     }
+ 
+     //when fire employee from the branch
+     public void removeFireEmp(Employee emp) {
+-        for (Map.Entry<Integer, Shift> s : shifts.entrySet()) {
+-            s.getValue().removeFireEmp(emp);
+-        }
++        List<Shift> shifts = ShiftMapper.getInstance().getAllShifts(); //TODO ---
++        for (Shift s : shifts)
++            s.removeFireEmp(emp);
+     }
+ 
+     //when add new employee to the branch
+     public void addToOptionals(Employee emp, RoleType role) {
+-        for (Map.Entry<Integer, Shift> s : shifts.entrySet()) {
+-            s.getValue().addToOptionals(emp, role);
++        List<Shift> shifts = ShiftMapper.getInstance().getAllShifts(); //TODO ---
++        for (Shift s : shifts) {
++            s.addToOptionals(emp, role);
+         }
+     }
+ 
+     public List<Shift> getShifts(LocalDate until) {
+-        ArrayList<Shift> filterShifts = new ArrayList<>();
+-        for (Map.Entry<Integer, Shift> m : shifts.entrySet()) {
+-            if (m.getValue().getDate().isAfter(LocalDate.now()) && m.getValue().getDate().isBefore(until)) {
+-                filterShifts.add(m.getValue());
+-            }
+-        }
+-        return filterShifts;
++        return ShiftMapper.getInstance().getAllShifts(LocalDate.now(),until); //TODO from until
+     }
+ 
+     public List<Shift> getMyShifts(Employee emp) {
+-        List<Shift> list = new ArrayList<>();
+-        for (Map.Entry<Integer, Shift> s : shifts.entrySet()) {
+-            if (s.getValue().getEmployees().get(emp) != null)  //if EID is in this Shift
+-                list.add(s.getValue());
+-        }
+-        return list;
++        return ShiftMapper.getInstance().getShiftsOfEID(emp.getEID()); //TODO int
+     }
+ 
+     public List<Constraint> getMyConstraints(int EID) {
+-        ArrayList<Constraint> l = new ArrayList<>();
+-        for (Map.Entry<Integer, Constraint> c : constraints.entrySet()) {
+-            if (c.getValue().getEID() == EID)
+-                l.add(c.getValue());
+-        }
+-        return l;
++        return ConstraintMapper.getInstance().getConstraintsOfEID(EID); //TODO int
+     }
+ 
+     public void updateAmountRole(int SID, RoleType role, int newAmount) {
+-        Shift s = shifts.get(SID);
++        Shift s = ShiftMapper.getInstance().getShift(SID); // TODO ---
+         List<Employee> toRemove = s.updateRolesAmount(role, newAmount);
+-        toRemove.forEach(employee -> {removeBuildConstraint(employee,s);});
++        toRemove.forEach(employee -> {
++            removeBuildConstraint(employee, s);
++        });
+     }
+-
++    //Not need EID
+     public void updateReasonConstraint(int CID, String newReason, int EID) {
+-        Constraint c = constraints.get(CID);
+-        c.updateReason(newReason);
++        ConstraintMapper.getInstance().updateReason(CID,newReason); //TODO int string
+         log.debug("CID: " + CID + " update his reason");
+     }
+-
++    //Not need EID
+     public void updateShiftTypeConstraint(int CID, ShiftType newType, int EID) {
+-        Constraint c = constraints.get(CID);
+-        c.updateShiftType(newType);
++        ConstraintMapper.getInstance().updateShiftType(CID,newType); //TODO int ShiftType
+         log.debug("CID: " + CID + " update his shift type");
+     }
+ 
+@@ -245,57 +212,47 @@
+     }
+ 
+ 
+-    private void createBuildConstraintsAndRemoveFromOpt(List<Employee> listOfEmployees, ShiftType shiftType, LocalDate date)  {
++    private void createBuildConstraintsAndRemoveFromOpt(List<Employee> listOfEmployees, ShiftType shiftType, LocalDate date) {
+         for (Employee emp : listOfEmployees) {
+             TempConstraint bConstraint;
++            int CID = ConstraintMapper.getInstance().getNextCID();
+             if (shiftType.equals(ShiftType.Morning)) {
+-                Shift s  = getShiftByDate(date,ShiftType.Night);
++                Shift s = getShiftByDate(date, ShiftType.Night);
+                 if (s != null)
+                     s.removeEmpFromOptionals(emp);
+-                bConstraint = new TempConstraint(constraintCounter++, emp.getEID(), date, ShiftType.Night, "Work in morning shift this day");
++                bConstraint = new TempConstraint(CID, emp.getEID(), date, ShiftType.Night, "Work in morning shift this day");
+             } else {
+-                Shift s  = getShiftByDate(date,ShiftType.Morning);
++                Shift s = getShiftByDate(date, ShiftType.Morning);
+                 if (s != null)
+                     s.removeEmpFromOptionals(emp);
+-                bConstraint = new TempConstraint(constraintCounter++, emp.getEID(), date, ShiftType.Morning, "Work in Night shift this day");
++                bConstraint = new TempConstraint(CID, emp.getEID(), date, ShiftType.Morning, "Work in Night shift this day");
+             }
+-            buildShiftConstraints.put(bConstraint.getCID(), bConstraint);
++            ConstraintMapper.getInstance().insertTempConstraint(bConstraint);  //TODO Tempconstraint
+         }
+     }
+ 
+-    private boolean shiftIsNextWeek(LocalDate shiftDate) {   //shift date is between next sunday to next saturday
++/*    private boolean shiftIsNextWeek(LocalDate shiftDate) {   //shift date is between next sunday to next saturday
+         LocalDate nextSunday = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
+         LocalDate nextSaturday = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SATURDAY)).plusWeeks(1);
+         return !(shiftDate.isBefore(nextSunday) || shiftDate.isAfter(nextSaturday));
+-    }
++    }*/
+ 
+     //return null if not exists
+     private Shift getShiftByDate(LocalDate date, ShiftType shiftType) {
+-        for (Map.Entry<Integer, Shift> m : shifts.entrySet()) {
+-            Shift s = m.getValue();
+-            if (s.getDate().compareTo(date) == 0 & s.getShiftType() == shiftType)
+-                return s;
+-        }
+-        return null;
++        return ShiftMapper.getInstance().getShiftByDate(date,shiftType);
+     }
+-
+ 
+ 
+     public boolean shiftAlreadyCreated(LocalDate date, ShiftType shiftType) {
+-        for (Map.Entry<Integer, Shift> shift : shifts.entrySet()) {
+-            if (shift.getValue().getDate().equals(date) && shift.getValue().getShiftType().equals(shiftType))
+-                return true;
+-        }
+-        return false;
++        return (ShiftMapper.getInstance().getShiftByDate(date,shiftType))!=null;
+     }
+ 
+     public boolean constraintIsExist(int CID) {
+-        Constraint c = constraints.get(CID);
+-        return c != null;
++        return (ConstraintMapper.getInstance().getConstraint(CID))!=null;
+     }
+ 
+ 
+-    private String checkIfAmountNegative(Map<RoleType, Integer> defaultShifts){
++/*    private String checkIfAmountNegative(Map<RoleType, Integer> defaultShifts) {
+         for (Map.Entry<RoleType, Integer> e : defaultShifts.entrySet()) {
+             if (e.getValue() < 0) {
+                 log.error("Role amount for role: " + e.getKey() + " is negative: " + e.getValue());
+@@ -307,9 +264,9 @@
+             }
+         }
+         return null;
+-    }
++    }*/
+ 
+-    private Map<RoleType, List<Employee>> deepCopy (Map<RoleType, List<Employee>> optionals) {
++    private Map<RoleType, List<Employee>> deepCopy(Map<RoleType, List<Employee>> optionals) {
+         Map<RoleType, List<Employee>> copy = new HashMap<>();
+         optionals.forEach((roleType, employees) -> {
+             List<Employee> cloneL = new ArrayList<>(employees);
+@@ -319,35 +276,36 @@
+     }
+ 
+ 
+-    public boolean optionalIsEmpty(int SID){
+-        return shifts.get(SID).optionalIsEmpty();
++    public boolean optionalIsEmpty(int SID) {
++        return ShiftMapper.getInstance().getShift(SID).optionalIsEmpty();
+     }
+ 
+-    public boolean checkIfSIDExist(int SID){
+-        return shifts.containsKey(SID);
++    public boolean checkIfSIDExist(int SID) {
++        return ShiftMapper.getInstance().getShift(SID)!=null;
+     }
+ 
+-    public boolean EIDIsOptionForSID(int SID, Employee emp){
+-        return shifts.get(SID).EIDIsOptionForSID(emp);
++    public boolean EIDIsOptionForSID(int SID, Employee emp) {
++        return ShiftMapper.getInstance().getShift(SID).EIDIsOptionForSID(emp);
+     }
++
+     //can work in this shift - is optional and role is not full
+-    public boolean canWork(int SID, Employee emp, RoleType role){
+-        return shifts.get(SID).canWork(emp,role);
++    public boolean canWork(int SID, Employee emp, RoleType role) {
++        return ShiftMapper.getInstance().getShift(SID).canWork(emp, role);
+     }
+ 
+-    public boolean wasSelfMake(LocalDate date ,ShiftType shiftType){
++    public boolean wasSelfMake(LocalDate date, ShiftType shiftType) {
+         return Objects.requireNonNull(getShiftByDate(date, shiftType)).WasSelfMake();
+     }
+ 
+-    public boolean shiftIsEmpty(int SID){
+-        return shifts.get(SID).getEmployees().isEmpty();
++    public boolean shiftIsEmpty(int SID) {
++        return ShiftMapper.getInstance().getShift(SID).getEmployees().isEmpty();
+     }
+ 
+-    public boolean EIDWorkInSID(int SID, Employee emp){
++    public boolean EIDWorkInSID(int SID, Employee emp) {
+         return shifts.get(SID).getEmployees().containsKey(emp);
+     }
+ 
+-    public boolean hasShiftManager(LocalDate date, ShiftType shiftType){
++    public boolean hasShiftManager(LocalDate date, ShiftType shiftType) {
+         return Objects.requireNonNull(getShiftByDate(date, shiftType)).HasShiftManager();
+     }
+     //---------------------------------------------getters------------------------------------------------------
+Index: dev/src/Business/ShiftPKG/Shift.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Business.ShiftPKG;\r\n\r\nimport Business.EmployeePKG.Employee;\r\nimport Business.Type.RoleType;\r\nimport Business.Type.ShiftType;\r\nimport org.apache.log4j.Logger;\r\n\r\nimport java.time.LocalDate;\r\nimport java.util.*;\r\n\r\npublic class Shift {\r\n    private final static Logger log = Logger.getLogger(Shift.class);\r\n    //-------------------------------------fields------------------------------------\r\n\r\n    private final int SID;\r\n    private final Map<Employee, RoleType> employees;\r\n    private final Map<RoleType, Integer> rolesAmount;\r\n    private final Map<RoleType, List<Employee>> optionals;\r\n    private boolean complete;  //employees == roles amount\r\n    private final LocalDate date;\r\n    private final ShiftType shiftType;\r\n    private boolean wasSelfMake;\r\n    private boolean hasShiftManager;\r\n\r\n    //------------------------------------constructor--------------------------------\r\n\r\n    public Shift(int SID, Map<RoleType, Integer> rolesAmount, Map<RoleType, List<Employee>> optionals, LocalDate date, ShiftType shiftType) {\r\n        this.SID = SID;\r\n        employees = new HashMap<>();\r\n        this.rolesAmount = rolesAmount;\r\n        this.optionals = optionals;\r\n        this.complete = false;\r\n        this.date = date;\r\n        this.shiftType = shiftType;\r\n        this.wasSelfMake = false;\r\n        if (optionals.containsKey(RoleType.ShiftManager))\r\n            hasShiftManager = !optionals.get(RoleType.ShiftManager).isEmpty();\r\n        log.debug(\"shift: \" + SID + \" created\");\r\n    }\r\n\r\n\r\n    //-------------------------------------methods----------------------------------\r\n\r\n    //shift controller call this function after create shift to insert shift manager to this shift\r\n    public List<Employee> insertShiftManager() {\r\n        Employee sm = optionals.get(RoleType.ShiftManager).remove(0);\r\n        employees.put(sm, RoleType.ShiftManager);\r\n        List<Employee> listOfSM = new LinkedList<>();\r\n        listOfSM.add(sm);\r\n        return listOfSM;\r\n    }\r\n\r\n    public List<Employee> self_make() {\r\n        if (!wasSelfMake) {\r\n            for (Map.Entry<RoleType, Integer> e : rolesAmount.entrySet()) {\r\n                if (e.getKey().equals(RoleType.ShiftManager)) continue;\r\n                RoleType role = e.getKey();\r\n                int amount = e.getValue();\r\n                while (amount > 0) {\r\n                    if (optionals.get(role) == null || optionals.get(role).isEmpty()) {\r\n                        break;\r\n                    } else {\r\n                        Employee emp = optionals.get(role).remove(0);  // delete from optionals\r\n                        employees.put(emp, role);  //add to employees\r\n                        removeEmpFromOptionals(emp);\r\n                        amount--;\r\n                    }\r\n                }\r\n            }\r\n            ArrayList<Employee> emps = new ArrayList<>();\r\n            employees.forEach((emp, roleType) -> emps.add(emp));\r\n            complete = isComplete();\r\n            wasSelfMake = true;\r\n            return emps;\r\n        }\r\n        return new ArrayList<>();\r\n    }\r\n\r\n    public void addEmpToShift(RoleType role, Employee emp) {\r\n        employees.put(emp, role);\r\n        removeEmpFromOptionals(emp);\r\n        complete = isComplete();\r\n        if (role.equals(RoleType.ShiftManager))\r\n            hasShiftManager = true;\r\n        log.debug(\"EID: \" + emp.getEID() + \"added to SID: \" + SID);\r\n    }\r\n\r\n    public void removeEmpFromShift(Employee emp) {\r\n        RoleType roleOfRemoved = employees.remove(emp);  //return null if EID isn't in this shift\r\n        complete = false;\r\n        if (roleOfRemoved.equals(RoleType.ShiftManager)) {\r\n            hasShiftManager = false;\r\n        }\r\n        (emp.getRole()).forEach(roleType -> {\r\n            optionals.get(roleType).add(emp);\r\n        });\r\n        log.debug(\"EID: \" + emp.getEID() + \"removed from SID: \" + SID);\r\n    }\r\n\r\n    public void removeFireEmp(Employee emp) {\r\n        RoleType roleOfRemoved = employees.remove(emp);  //remove employee if he is in this shift\r\n        if (roleOfRemoved != null) {\r\n            complete = false;\r\n            if (roleOfRemoved.equals(RoleType.ShiftManager)) {\r\n                hasShiftManager = false;\r\n            }\r\n        }\r\n        for (Map.Entry<RoleType, List<Employee>> o : optionals.entrySet()) {\r\n            List<Employee> listOfEmp = o.getValue();\r\n            if (listOfEmp != null) listOfEmp.remove(emp);\r\n        }\r\n        log.debug(\"EID: \" + emp.getEID() + \" removed(fire) from SID: \" + SID);\r\n    }\r\n\r\n    public void addToOptionals(Employee emp, RoleType role) {\r\n        if(!optionals.get(role).contains(emp))\r\n            optionals.get(role).add(emp);\r\n    }\r\n\r\n    public void removeEmpFromOptionals(Employee emp) {\r\n        for (Map.Entry<RoleType, List<Employee>> e : optionals.entrySet()) {\r\n            List<Employee> l = e.getValue();\r\n            if (!l.isEmpty())\r\n                l.remove(emp);\r\n        }\r\n        log.debug(\"EID: \" + emp.getEID() + \" remove from optionals\");\r\n    }\r\n\r\n\r\n    public List<Employee> updateRolesAmount(RoleType role, int newAmount) {\r\n        int oldAmount = rolesAmount.get(role);\r\n        rolesAmount.replace(role, newAmount);\r\n        List<Employee> toRemove = new ArrayList<>();\r\n        for (int i = 0; i < oldAmount - newAmount; i++) {\r\n            for (Map.Entry<Employee, RoleType> m : employees.entrySet()) {\r\n                if (m.getValue().equals(role)) {\r\n                    employees.remove(m.getKey());\r\n                    addToOptionals(m.getKey(), m.getValue());\r\n                    toRemove.add(m.getKey());\r\n                    break;\r\n                }\r\n            }\r\n        }\r\n        complete = isComplete();\r\n        return toRemove;\r\n    }\r\n\r\n    private boolean roleIsFull(RoleType role) {\r\n        int amount = rolesAmount.get(role);\r\n        long count = employees.entrySet().stream().filter(x -> x.getValue().name().equals((role.name()))).count();\r\n        return count >= amount;\r\n    }\r\n\r\n\r\n    private boolean isComplete() {\r\n        int amount = 0;\r\n        for (Map.Entry<RoleType, Integer> role : rolesAmount.entrySet())\r\n            amount += role.getValue();\r\n        return amount == employees.size();\r\n    }\r\n\r\n    //check if there is employee that optionals and his role not full\r\n    public boolean optionalIsEmpty(){\r\n        for (Map.Entry<RoleType, List<Employee>> role : optionals.entrySet()){\r\n            if(!role.getValue().isEmpty() && !roleIsFull(role.getKey()))\r\n                return false;\r\n        }\r\n        return true;\r\n    }\r\n\r\n    public boolean EIDIsOptionForSID(Employee emp) {\r\n        for (Map.Entry<RoleType, List<Employee>> role : optionals.entrySet()){\r\n            if(role.getValue().contains(emp) && !roleIsFull(role.getKey()))\r\n                return true;\r\n        }\r\n        return false;\r\n    }\r\n\r\n    public boolean canWork(Employee emp, RoleType role) {\r\n        //check if EID can work in this shift (in optionals)\r\n        //check if there is empty role for this roleType in rolesAmount\r\n        List<Employee> list = optionals.get(role);\r\n        boolean canWork = list.contains(emp);\r\n        return canWork && !roleIsFull((role));\r\n    }\r\n    //-------------------getters&setters----------------------------------------\r\n\r\n    public LocalDate getDate() {\r\n        return date;\r\n    }\r\n\r\n    public ShiftType getShiftType() {\r\n        return shiftType;\r\n    }\r\n\r\n    public Map<Employee, RoleType> getEmployees() {\r\n        return employees;\r\n    }\r\n\r\n    public int getSID() {\r\n        return SID;\r\n    }\r\n\r\n    public Map<RoleType, Integer> getRolesAmount() {\r\n        return rolesAmount;\r\n    }\r\n\r\n    public Map<RoleType, List<Employee>> getOptionals() {\r\n        return optionals;\r\n    }\r\n\r\n    public boolean getComplete() {\r\n        return complete;\r\n    }\r\n\r\n    public boolean WasSelfMake() {\r\n        return wasSelfMake;\r\n    }\r\n\r\n    public boolean HasShiftManager() {\r\n        return hasShiftManager;\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/dev/src/Business/ShiftPKG/Shift.java b/dev/src/Business/ShiftPKG/Shift.java
+--- a/dev/src/Business/ShiftPKG/Shift.java	(revision 1d4b78cbd192f4a7ae303d477edeceb2ebdaf369)
++++ b/dev/src/Business/ShiftPKG/Shift.java	(date 1620305004056)
+@@ -1,10 +1,8 @@
+ package Business.ShiftPKG;
+-
+ import Business.EmployeePKG.Employee;
+ import Business.Type.RoleType;
+ import Business.Type.ShiftType;
+ import org.apache.log4j.Logger;
+-
+ import java.time.LocalDate;
+ import java.util.*;
+ 
+Index: dev/src/Presentation/CLIPresentation.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Presentation;\r\n\r\nimport Business.ApplicationFacade.*;\r\nimport Presentation.Menu.ManagerMenu;\r\nimport Presentation.Menu.Menu;\r\nimport Presentation.Menu.RegularMenu;\r\n\r\nimport java.time.DayOfWeek;\r\nimport java.time.LocalDate;\r\nimport java.util.*;\r\n\r\npublic class CLIPresentation {\r\n    private final Scanner input;\r\n    private final Controllers r;\r\n    private boolean isManager = false;\r\n\r\n    public CLIPresentation() {\r\n        r = new Controllers();\r\n        input = new Scanner(System.in);\r\n    }\r\n\r\n    public void start() {\r\n        System.out.println(\"\\n***********************************************\");\r\n        System.out.println(\"*** Welcome to Super Li Employee management ***\");\r\n        System.out.println(\"***********************************************\\n\");\r\n        System.out.println(\"Will you like to initialize an existing program? Y/N: \");\r\n        if (read().equalsIgnoreCase(\"y\")) init();\r\n        System.out.println(\"\\n***** If you want to return to previous menu while being in a menu, press any key that is not an option and after press 1 *****\\n\");\r\n        while (true) {\r\n            System.out.println(\"Current available branches are: \"\r\n                    + ((r.getRc().getBranches().isError()) ? \"None.\\n\" : r.getRc().getBranches().getData().toString()) +\r\n                    \"\\nChoose an option:\\n\" +\r\n                    \"1) Enter a branch\\n2) Create a new branch\\n3) exit program\");\r\n            boolean success = false;\r\n            while (!success) {\r\n                String chosenOp = read();\r\n                switch (chosenOp) {\r\n                    case \"3\":\r\n                        System.exit(0);\r\n                    case \"1\":\r\n                        enterBranch();\r\n                        success = true;\r\n                        break;\r\n                    case \"2\":\r\n                        createBranch();\r\n                        success = true;\r\n                        break;\r\n                    default:\r\n                        System.out.println(\"wrong input, please choose again. \\n\");\r\n                        break;\r\n                }\r\n            }\r\n        }\r\n    }\r\n\r\n    private void createBranch() {\r\n        String code, name;\r\n        int ID, AC, BB, BID, salary, fund, DO, SD;\r\n        System.out.println(\"In order to create a new branch, enter management code and the personnel manager's details for this branch\\n\");\r\n        while (true) {\r\n            System.out.println(\"Please enter code: \");\r\n            code = read();\r\n            if (!checkCode(code)) {\r\n                System.out.println(\"Invalid Code permission.\");\r\n                if (goBack()) return;\r\n                else\r\n                    continue;\r\n            }\r\n            ID = getValidPMID();\r\n            if (ID == -1) return;\r\n            name = getNameOfPM();\r\n            if (name.equals(\"1\")) return;\r\n            AC = getBankAccountNumber();\r\n            if (AC == -1) return;\r\n            BB = getBankBranchNumber();\r\n            if (BB == -1) return;\r\n            BID = getBankBID();\r\n            if (BID == -1) return;\r\n            salary = getSalary();\r\n            if (salary == -1) return;\r\n            fund = getEducationFund();\r\n            if (fund == -1) return;\r\n            DO = getDaysOff();\r\n            if (DO == -1) return;\r\n            SD = getSickDays();\r\n            if (SD == -1) return;\r\n            System.out.println();\r\n            r.getRc().createBranch(code, ID, name, new int[]{AC, BB, BID}, salary, new int[]{fund, DO, SD});\r\n        }\r\n    }\r\n\r\n    private int getSickDays() {\r\n        while (true) {\r\n            System.out.print(\"sick-days: \");\r\n            int num = enterInt(read());\r\n            if (num < 0) {\r\n                System.out.println(\"invalid sick days input.\");\r\n                if (goBack()) return -1;\r\n                else\r\n                    continue;\r\n            }\r\n            return num;\r\n        }\r\n    }\r\n\r\n    private int getDaysOff() {\r\n        while (true) {\r\n            System.out.print(\"days-off: \");\r\n            int num = enterInt(read());\r\n            if (num < 0) {\r\n                System.out.println(\"invalid days off input.\");\r\n                if (goBack()) return -1;\r\n                else\r\n                    continue;\r\n            }\r\n            return num;\r\n        }\r\n    }\r\n\r\n    private int getEducationFund() {\r\n        while (true) {\r\n            System.out.print(\"education fund: \");\r\n            int num = enterInt(read());\r\n            if (num < 0) {\r\n                System.out.println(\"invalid education fund number\");\r\n                if (goBack()) return -1;\r\n                else\r\n                    continue;\r\n            }\r\n            return num;\r\n        }\r\n    }\r\n\r\n    private int getSalary() {\r\n        while (true) {\r\n            System.out.print(\"salary: \");\r\n            int num = enterInt(read());\r\n            if (num < 0) {\r\n                System.out.println(\"invalid salary number\");\r\n                if (goBack()) return -1;\r\n                else\r\n                    continue;\r\n            }\r\n            return num;\r\n        }\r\n    }\r\n\r\n    private int getBankBID() {\r\n        while (true) {\r\n            System.out.print(\"bank ID: \");\r\n            int num = enterInt(read());\r\n            if (num <= 0) {\r\n                System.out.println(\"invalid bank id number.\");\r\n                if (goBack()) return -1;\r\n                else\r\n                    continue;\r\n            }\r\n            return num;\r\n        }\r\n    }\r\n\r\n    private int getBankBranchNumber() {\r\n        while (true) {\r\n            System.out.print(\"bank branch number: \");\r\n            int num = enterInt(read());\r\n            if (num <= 0) {\r\n                System.out.println(\"invalid branch number.\");\r\n                if (goBack()) return -1;\r\n                else\r\n                    continue;\r\n            }\r\n            return num;\r\n        }\r\n    }\r\n\r\n    private int getBankAccountNumber() {\r\n        while (true) {\r\n            System.out.print(\"bank account number: \");\r\n            int num = enterInt(read());\r\n            if (num <= 0) {\r\n                System.out.println(\"invalid account number.\");\r\n                if (goBack()) return -1;\r\n                else\r\n                    continue;\r\n            }\r\n            return num;\r\n        }\r\n    }\r\n\r\n    private int getValidPMID() {\r\n        while (true) {\r\n            System.out.print(\"ID: \");\r\n            int num = enterInt(read());\r\n            if (num <= 0) {\r\n                System.out.println(\"invalid id - negative number.\");\r\n                if (goBack()) return -1;\r\n                else\r\n                    continue;\r\n            }\r\n            return num;\r\n        }\r\n    }\r\n\r\n    private String getNameOfPM() {\r\n        while (true) {\r\n            System.out.print(\"name: \");\r\n            String name = read();\r\n            if (!checkName(name)) {\r\n                System.out.println(\"name \" + name + \" is not alphabetical\");\r\n                if (goBack()) return \"1\";\r\n                else\r\n                    continue;\r\n            }\r\n            return name;\r\n        }\r\n    }\r\n\r\n    private boolean checkName(String name) {\r\n        name = name.replaceAll(\"\\\\s+\", \"\");\r\n        return !name.equals(\"\") && name.matches(\"^[a-zA-Z]*$\");\r\n    }\r\n\r\n    private boolean checkCode(String code) {\r\n        return code.equals(\"00000\");\r\n    }\r\n\r\n    private boolean showError(Response response) {\r\n        if (response.isError()) {\r\n            System.out.println(\"ERROR: \" + response.getError());\r\n            return true;\r\n        } else System.out.println(\"Success.\\n\");\r\n        return false;\r\n    }\r\n\r\n    private int enterInt(String s) {\r\n        while (true) {\r\n            try {\r\n                return Integer.parseInt(s);\r\n            } catch (Exception e) {\r\n                System.out.println(\"input is not a number, please insert a number\");\r\n                s = read();\r\n            }\r\n        }\r\n    }\r\n\r\n    private int getExistingBranch() {\r\n        while (true) {\r\n            System.out.print(\"ID: \");\r\n            int num = enterInt(read());\r\n            if (num <= 0) {\r\n                System.out.println(\"invalid id - negative number.\");\r\n                if (goBack()) return -1;\r\n                else\r\n                    continue;\r\n            }\r\n            if (!r.getRc().getBranches().getData().contains(String.valueOf(num))) {\r\n                System.out.println(\"Id of this branch does not exist.\");\r\n                if (goBack()) return -1;\r\n                else\r\n                    continue;\r\n            }\r\n            return num;\r\n        }\r\n    }\r\n\r\n    private void enterBranch() {\r\n        while (true) {\r\n            System.out.print(\"Branch Number to enter: \");\r\n            int branchNum = getExistingBranch();\r\n            if (branchNum == -1) return;\r\n            r.getRc().EnterBranch(branchNum);\r\n            if (!r.getRc().hasDefaultShifts().getData()) {\r\n                AddDefaultWeekShifts();\r\n            }\r\n            break;\r\n        }\r\n        login();\r\n    }\r\n\r\n    private void AddDefaultWeekShifts() {\r\n        Map<String, Map<String, Integer>> defaults = new HashMap<>();\r\n        List<String> shiftTypes = r.getRc().getShiftTypes().getData();\r\n        System.out.println(\"\\nNo default shifts were set, please set default shifts for this branch.\");\r\n        for (String shiftType : shiftTypes) {\r\n            System.out.println(\"For shift type: \" + shiftType + \" enter default amounts for each role.\");\r\n            Map<String, Integer> roleAmount = chooseRolesAmount();\r\n            defaults.put(shiftType, roleAmount);\r\n        }\r\n        r.getMc().defaultShifts(defaults);\r\n    }\r\n\r\n    private void login() {\r\n        int EID;\r\n        String role;\r\n        while (true) {\r\n            System.out.println(\"\\n\\n************* Login **************\");\r\n            System.out.println(\"Please enter your ID and role\");\r\n            EID = getEmpID();\r\n            role = chooseRole();\r\n            if (!r.getRc().isQualified(EID, role)) {\r\n                if (goBack()) return;\r\n                else continue;\r\n            }\r\n            r.getRc().Login(EID, role);\r\n            break;\r\n        }\r\n        isManager = role.equals(\"PersonnelManager\");\r\n        allFunctionsMenu();\r\n    }\r\n\r\n    private int getEmpID() {\r\n        while (true) {\r\n            System.out.print(\"ID: \");\r\n            int num = enterInt(read());\r\n            if (num <= 0) {\r\n                System.out.println(\"invalid id - negative number.\");\r\n                if (goBack()) return -1;\r\n                else\r\n                    continue;\r\n            }\r\n            if (!r.getRc().checkEIDExists(num)) {\r\n                System.out.println(\"invalid id -user with \" + num + \" does not exist .\");\r\n                if (goBack()) return -1;\r\n                else\r\n                    continue;\r\n            }\r\n            return num;\r\n        }\r\n    }\r\n\r\n\r\n    private boolean goBack() {\r\n        System.out.println(\"\\n***[If you wish you go back to previous menu enter 1, else 0]***\");\r\n        return read().equals(\"1\");\r\n    }\r\n\r\n    private void allFunctionsMenu() {\r\n        if (!isManager) {\r\n            Menu reg = new RegularMenu(r, input);\r\n            reg.show();\r\n        } else {\r\n            Menu man = new ManagerMenu(r, input);\r\n            man.show();\r\n        }\r\n    }\r\n\r\n\r\n    private String chooseRole() {\r\n        System.out.println(\"\\nChoose a role\");\r\n        List<String> roles = r.getRc().getRoleTypes().getData();\r\n        int counter = 1;\r\n        for (String r : roles) {\r\n            System.out.println(counter++ + \") \" + r);\r\n        }\r\n        int s;\r\n        while (true) {\r\n            s = enterInt(read());\r\n            if (s < 1 || s > roles.size()) {\r\n                System.out.println(\"Selected option is not in menu, please try again\");\r\n            } else break;\r\n        }\r\n        return roles.get(s - 1);\r\n    }\r\n\r\n    private Map<String, Integer> chooseRolesAmount() {\r\n        System.out.println(\"Insert the amount of each role\");\r\n        Map<String, Integer> rolesAmount = new HashMap<>();\r\n        List<String> roleTypes = r.getRc().getRoleTypes().getData();\r\n        for (String role : roleTypes) {\r\n            if (role.equals(\"PersonnelManager\") || role.equals(\"BranchManager\")) continue;\r\n            System.out.print(role + \": \");\r\n            int amount = getAmount(role);\r\n            rolesAmount.put(role, amount);\r\n        }\r\n        return rolesAmount;\r\n    }\r\n\r\n    private int getAmount(String role) {\r\n        int amount;\r\n        while (true) {\r\n            amount = enterInt(read());\r\n            if (amount < 0) {\r\n                System.out.println(\"Invalid amount - negative\");\r\n                continue;\r\n            }\r\n            if (role.equals(\"ShiftManager\") && amount != 1) {\r\n                System.out.println(\"Invalid amount - shift manager amount need to be 1\");\r\n                continue;\r\n            }\r\n            break;\r\n        }\r\n        return amount;\r\n    }\r\n\r\n    private String read() {\r\n        return input.nextLine();\r\n    }\r\n\r\n\r\n    private void init() {\r\n        int[] bankDetails = {123, 456, 789};\r\n        int[] terms = {1000, 5, 10};\r\n        r.getRc().createBranch(\"00000\", 1, \"PersonnelManager\", bankDetails, 150000, terms);\r\n        r.getRc().Login(1, \"PersonnelManager\");\r\n        r.getMc().addEmployee(2, \"DriverA\", bankDetails, 10000, \"Driver\", LocalDate.now(), terms);\r\n        r.getMc().addEmployee(3, \"CashierA\", bankDetails, 10000, \"Cashier\", LocalDate.now(), terms);\r\n        r.getMc().addEmployee(4, \"CashierB\", bankDetails, 10000, \"Cashier\", LocalDate.now(), terms);\r\n        r.getMc().addEmployee(5, \"SorterA\", bankDetails, 10000, \"Sorter\", LocalDate.now(), terms);\r\n        r.getMc().addEmployee(6, \"SorterB\", bankDetails, 10000, \"Sorter\", LocalDate.now(), terms);\r\n        r.getMc().addEmployee(7, \"ShiftManagerA\", bankDetails, 40000, \"ShiftManager\", LocalDate.now(), terms);\r\n        r.getMc().addEmployee(8, \"ShiftManagerB\", bankDetails, 40000, \"ShiftManager\", LocalDate.now(), terms);\r\n        Map<String, Integer> morning = new HashMap<>();\r\n        morning.put(\"Driver\", 1);\r\n        morning.put(\"Cashier\", 1);\r\n        morning.put(\"Sorter\", 2);\r\n        morning.put(\"ShiftManager\", 1);\r\n        morning.put(\"StoreKeeper\", 0);\r\n        Map<String, Integer> night = new HashMap<>();\r\n        night.put(\"Cashier\", 1);\r\n        night.put(\"ShiftManager\", 1);\r\n        night.put(\"Driver\", 0);\r\n        night.put(\"Sorter\", 0);\r\n        night.put(\"StoreKeeper\", 0);\r\n        SortedMap<String, Map<String, Integer>> defaultRolesAmount = new TreeMap<>();\r\n        defaultRolesAmount.put(\"Night\", night);\r\n        defaultRolesAmount.put(\"Morning\", morning);\r\n        r.getMc().defaultShifts(defaultRolesAmount);\r\n        r.getRc().Logout();\r\n        r.getRc().Login(2, \"Driver\");\r\n        r.getRc().addConstConstraint(DayOfWeek.SUNDAY, \"Night\", \"tired\");\r\n        r.getRc().Logout();\r\n        r.getRc().Login(1, \"PersonnelManager\");\r\n        r.getMc().createWeekShifts();\r\n        r.getRc().Logout();\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/dev/src/Presentation/CLIPresentation.java b/dev/src/Presentation/CLIPresentation.java
+--- a/dev/src/Presentation/CLIPresentation.java	(revision 1d4b78cbd192f4a7ae303d477edeceb2ebdaf369)
++++ b/dev/src/Presentation/CLIPresentation.java	(date 1620314025144)
+@@ -344,7 +344,6 @@
+         }
+     }
+ 
+-
+     private String chooseRole() {
+         System.out.println("\nChoose a role");
+         List<String> roles = r.getRc().getRoleTypes().getData();
