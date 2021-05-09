@@ -19,7 +19,8 @@ public class ManagerMenu extends Menu {
             System.out.println("4) Logout");
             System.out.println("5) Employee operations menu");
             System.out.println("6) Shift operations menu");
-            System.out.println("7) previous menu");
+            System.out.println("7) Transportation menu");
+            System.out.println("8) previous menu");
             System.out.println("Choose an option:");
             String option = read();
             switch (option) {
@@ -48,6 +49,9 @@ public class ManagerMenu extends Menu {
                     shftM.show();
                     break;
                 case "7":
+                    Menu tranM = new TransportationMenu(r,input);
+                    tranM.show();
+                case "8":
                     return;
                 default:
                     System.out.println("Invalid input,please choose a number again");
