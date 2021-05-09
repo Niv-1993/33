@@ -24,8 +24,10 @@ public class RegularRoleController implements iRegularRoleController {
 
     public RegularRoleController(){
         this.currConnectedEmp = null;
-        sc = new ShiftController();
-        utils = new Utils(sc);
+        utils = new Utils();
+        sc = new ShiftController(utils.getOps());
+        utils.setNeedToUpdateOps(true);
+        utils.setShiftController(sc);
     }
 
     /**
@@ -48,8 +50,6 @@ public class RegularRoleController implements iRegularRoleController {
     public void Logout() {
         log.debug("enter logout function when current connected id is: " + currConnectedEmp.getEID());
         currConnectedEmp= null;
-        ShiftMapper.getInstance().resetDefaults();
-        employeeMapper.resetEmps();
         log.debug("successfully logged out - user fields are updated to -1 and null role");
     }
 
@@ -103,7 +103,7 @@ public class RegularRoleController implements iRegularRoleController {
      */
     public void updateReasonConstraint(int CID, String newReason){
         log.debug("enter update reason constraint function");
-        sc.updateReasonConstraint(CID, newReason,currConnectedEmp.getEID());
+        sc.updateReasonConstraint(CID, newReason);
         log.debug("updated reason constraint");
     }
 
@@ -116,7 +116,7 @@ public class RegularRoleController implements iRegularRoleController {
      */
     public void updateShiftTypeConstraint(int CID, String newType) {
         log.debug("enter update shift type in constraint function");
-        sc.updateShiftTypeConstraint(CID, ShiftType.valueOf(newType),currConnectedEmp.getEID());
+        sc.updateShiftTypeConstraint(CID, ShiftType.valueOf(newType));
     }
 
     /**
@@ -127,7 +127,8 @@ public class RegularRoleController implements iRegularRoleController {
      */
     public ResponseData<List<Shift>> getMyShifts() {
         log.debug("entered getting shifts of employee: "+currConnectedEmp.getEID());
-        List<Business.ShiftPKG.Shift> myShifts = sc.getMyShifts(currConnectedEmp,utils.generate_optionals());
+        utils.generate_optionals();
+        List<Business.ShiftPKG.Shift> myShifts = sc.getMyShifts(currConnectedEmp);
         return new ResponseData<>(utils.convertShifts(myShifts));
     }
 
@@ -159,8 +160,11 @@ public class RegularRoleController implements iRegularRoleController {
      */
     public void EnterBranch(int BID) {
         log.debug("loading data of branch id: "+BID);
-        employeeMapper.setCurrBranchID(BID);
-        ShiftMapper.getInstance().setCurrBranchID(BID);
+        if(BID!=employeeMapper.getCurrBranchID()) {
+            employeeMapper.resetEmps();
+            employeeMapper.setCurrBranchID(BID);
+            ShiftMapper.getInstance().setCurrBranchID(BID);
+        }
     }
     public boolean checkEIDExists(int id){
         return employeeMapper.containsKey(id);

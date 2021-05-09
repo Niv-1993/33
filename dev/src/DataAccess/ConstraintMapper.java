@@ -86,14 +86,16 @@ public class ConstraintMapper extends Mapper{
 
 
     public void deleteConstraint(int cid) {
-        String query = "DELETE FROM ConstConstraints WHERE CID= ?;\n" +"DELETE FROM TempConstraints WHERE CID= ?";
+        String query = String.format("DELETE FROM ConstConstraints WHERE CID= %d",cid);
+        String query2 = String.format("DELETE FROM TempConstraints WHERE CID= %d",cid);
         try (Connection con = connect();
-             PreparedStatement pre = con.prepareStatement(query)) {
-            pre.setInt(1,cid);
+             PreparedStatement pre = con.prepareStatement(query);PreparedStatement pre2 = con.prepareStatement(query2)) {
             pre.executeUpdate();
+            pre2.executeUpdate();
         } catch (Exception e) {
             System.out.println("[deleteConstraint] ->" +e.getMessage());
         }
+        constraints.remove(cid);
     }
 
     public Map<Integer, Constraint> selectAllConstraints() {

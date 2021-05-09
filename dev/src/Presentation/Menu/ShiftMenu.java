@@ -88,7 +88,10 @@ public class ShiftMenu extends Menu {
     private void addEmployeeToShift() {
         if (!printAllShifts("all", LocalDate.now().plusWeeks(2))) return;
         int SID = getSID();
-        if (r.getMc().optionalIsEmpty(SID)) return;
+        if (r.getMc().optionalIsEmpty(SID)) {
+            System.out.println("all position are full or no optionals");
+            return;
+        }
         int EID = getEIDToAdd(SID);
         String role = chooseRole();
         if (!r.getMc().canWork(SID, EID, role)) {

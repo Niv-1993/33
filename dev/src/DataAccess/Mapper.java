@@ -105,7 +105,7 @@ public class Mapper {
 
     private String getCreateEmployee() {
         return "CREATE TABLE IF NOT EXISTS \"Employees\" (\n" +
-                "\t\"EID\"\tINTEGER,\n" +
+                "\t\"EID\"\tINTEGER UNIQUE,\n" +
                 "\t\"Name\"\tTEXT NOT NULL,\n" +
                 "\t\"StartWorkingDate\"\tTEXT NOT NULL,\n" +
                 "\t\"Salary\"\tINTEGER NOT NULL,\n" +

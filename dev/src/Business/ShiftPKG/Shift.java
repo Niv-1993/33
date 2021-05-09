@@ -29,6 +29,7 @@ public class Shift {
         this.SID = SID;
         employees = new HashMap<>();
         this.rolesAmount = rolesAmount;
+        insertMissingRolesAmount();
         this.optionals = optionals;
         this.complete = false;
         this.date = date;
@@ -171,7 +172,7 @@ public class Shift {
         return toRemove;
     }
 
-    //TODO: null pointer when adding emp to shift
+
     private boolean roleIsFull(RoleType role) {
         int amount = rolesAmount.get(role);
         long count = employees.entrySet().stream().filter(x -> x.getValue().name().equals((role.name()))).count();
@@ -280,5 +281,13 @@ public class Shift {
             res.put(roleType.name(), amount);
         });
         return res;
+    }
+
+    public void insertMissingRolesAmount() {
+        EnumSet<RoleType> allRoles = EnumSet.allOf(RoleType.class);
+        for(RoleType role : allRoles){
+            if(!rolesAmount.containsKey(role))
+                rolesAmount.put(role,0);
+        }
     }
 }

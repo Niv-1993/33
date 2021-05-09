@@ -86,7 +86,7 @@ public class ShiftMapper extends Mapper {
             }
             while (res2.next()) {
                 int SID = res2.getInt("SID");
-                if (shifts.get(SID).getEmployees() == null) {
+                if (shifts.get(SID).getEmployees() != null) {
                     if (!SER.containsKey(SID)) {
                         SER.put(SID, new HashMap<>());
                     }
@@ -117,7 +117,7 @@ public class ShiftMapper extends Mapper {
                 " ON s.SID = sar.SID AND BID = ? " +
                 " WHERE Date >= '%s' AND Date <= '%s'", from.toString(), until.toString());
         String query2 = String.format("SELECT sae.* FROM ShiftsAndEmployees as sae JOIN Shifts as s " +
-                "ON sae.SID = s.SID WHERE BID = %d", getCurrBranchID());
+                "ON sae.SID = s.SID WHERE BID = %d AND Date >= '%s' AND Date <= '%s'", getCurrBranchID(),from.toString(),until.toString());
         return loadShifts(query1, query2);
     }
 
@@ -130,7 +130,8 @@ public class ShiftMapper extends Mapper {
                 " WHERE s.SID = %d", sid);
         String query2 = String.format("SELECT sae.* FROM ShiftsAndEmployees as sae JOIN Shifts as s " +
                 "ON sae.SID = s.SID WHERE BID = %d AND s.SID = %d", getCurrBranchID(), sid);
-        return loadShifts(query1, query2).get(0);
+        List<Shift> ls = loadShifts(query1, query2);
+        return ls.isEmpty()? null : ls.get(0);
     }
 
     public List<Shift> getShiftsOfEID(int eid) {
@@ -182,12 +183,11 @@ public class ShiftMapper extends Mapper {
     }
 
     public void deleteEmpFromShift(int sid, int eid, String roleOfRemoved) {
-        String query = "DELETE FROM ShiftsAndEmployees WHERE SID= ? And EID=? AND Role= ?";
+        String query = String.format("DELETE FROM ShiftsAndEmployees WHERE SID= ? And EID=? AND Role= '%s'",roleOfRemoved);
         try (Connection con = connect();
              PreparedStatement pre = con.prepareStatement(query)) {
             pre.setInt(1, sid);
             pre.setInt(2, eid);
-            pre.setString(3, roleOfRemoved);
             pre.executeUpdate();
         } catch (Exception e) {
             System.out.println("[deleteEmpFromShift]" + e.getMessage());

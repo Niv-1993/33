@@ -16,10 +16,9 @@ public class Utils {
     private boolean needToUpdateOps;
     private Map<RoleType, List<Business.EmployeePKG.Employee>> ops;
 
-    public Utils(ShiftController s) {
-        shiftController = s;
+    public Utils() {
         needToUpdateOps = true;
-        ops = null;
+        ops = new HashMap<>();
     }
 
     public ShiftController getShiftController() {
@@ -52,23 +51,25 @@ public class Utils {
     /**
      * Convert Help Functions of lists
      */
-    protected Map<RoleType, List<Business.EmployeePKG.Employee>> generate_optionals() {
+    protected void generate_optionals() {
         if (needToUpdateOps) {
-            Map<RoleType, List<Business.EmployeePKG.Employee>> optionals = new HashMap<>();
+            //Map<RoleType, List<Business.EmployeePKG.Employee>> optionals = new HashMap<>();
             EnumSet<RoleType> allRoles = EnumSet.allOf(RoleType.class);
+            ops.clear();
             for (RoleType role : allRoles) {
-                optionals.put(role, new ArrayList<>());
+                ops.put(role, new ArrayList<>());
             }
             List<Business.EmployeePKG.Employee> empsInBranch = EmployeeMapper.getInstance().loadEmployeesInBranch();
             empsInBranch.forEach(employee -> {
                 employee.getRole().forEach(roleType -> {
-                    optionals.get(roleType).add(employee);
+                    ops.get(roleType).add(employee);
                 });
             });
-            ops = optionals;
+           // ops = optionals;
             setNeedToUpdateOps(false);
-            return optionals;
-        } else return ops;
+            if(shiftController!=null)
+                shiftController.setAllOptionals(ops);
+        }
     }
 
     protected List<Business.ApplicationFacade.outObjects.Employee> convertEmployee(List<Business.EmployeePKG.Employee> allEmployees) {
@@ -116,4 +117,11 @@ public class Utils {
     public void setNeedToUpdateOps(boolean needToUpdateOps) {
         this.needToUpdateOps = needToUpdateOps;
     }
+
+    public Map<RoleType, List<Employee>> getOps() {
+        generate_optionals();
+        return ops;
+    }
+
+
 }

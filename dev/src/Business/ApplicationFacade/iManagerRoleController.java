@@ -1,9 +1,11 @@
 package Business.ApplicationFacade;
 
 import Business.ApplicationFacade.outObjects.*;
+import org.mockito.cglib.core.Local;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -230,7 +232,10 @@ public interface iManagerRoleController {
      * @return  A response List. The response should contain a error message in case of an error
      */
     ResponseData<List<Employee>> getAllEmployees();
+/*
+    List<Integer> getAllOptionalDrivers(LocalDate date , LocalTime leavingTime);
 
+    void addDriverToShift(int driverID,LocalDate date,LocalTime leavingTime);*/
 
      boolean checkIfSIDExist(int sid);
      boolean optionalIsEmpty(int SID);
