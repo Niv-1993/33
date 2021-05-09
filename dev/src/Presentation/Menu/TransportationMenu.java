@@ -134,13 +134,13 @@ public class TransportationMenu extends Menu{
             System.out.print("Option:");
             subOption = chooseOp(numOfOptions);
             switch (subOption) {
-//                case 1 -> chooseTruck(newTrans);
-//                case 2 -> chooseDriver(newTrans);
-//                case 3 -> chooseSupplier(newTrans);
-//                case 4 -> chooseBranch(newTrans);
-//                case 5 -> chooseWeight(newTrans);
-//                case 6 -> submit(newTrans);
-//                case 0-> {Delete(); return;}
+                case 1:  chooseTruck(newTrans); break;
+                case 2 : chooseDriver(newTrans); break;
+                case 3 : chooseSupplier(newTrans); break;
+                case 4 : chooseBranch(newTrans); break;
+                case 5 : chooseWeight(newTrans); break;
+                case 6 : submit(newTrans); break;
+                case 0: {Delete(); return;}
             }
             System.out.println(newTrans);
         }
@@ -308,7 +308,7 @@ public class TransportationMenu extends Menu{
             System.out.println("  ****************** Adding Driver ****************");
             System.out.println("*************************************************\n");
             System.out.println("please select driver id from the trucks list below:\n");
-            printAllDrivers();
+            printAllDrivers(t.getDate(),t.getLeavingTime());
             System.out.print("\nId: ");
             long chose = input.nextLong();
             System.out.println("");
@@ -347,8 +347,8 @@ public class TransportationMenu extends Menu{
     /**
      *Prints to the user all the available drivers in the database
      */
-    public void printAllDrivers(){
-       List<DriverServiceDTO> lis= transportationController.getAllDrivers();
+    public void printAllDrivers(LocalDate date, LocalTime leavingTime){
+       List<DriverServiceDTO> lis= transportationController.getAllDrivers(date,leavingTime);
         for (DriverServiceDTO dri:lis) { System.out.println(dri); }
     }
 
