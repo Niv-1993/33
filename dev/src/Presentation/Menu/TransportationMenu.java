@@ -310,7 +310,7 @@ public class TransportationMenu extends Menu{
             System.out.println("please select driver id from the trucks list below:\n");
             printAllDrivers(t.getDate(),t.getLeavingTime());
             System.out.print("\nId: ");
-            long chose = input.nextLong();
+            int chose = input.nextInt();
             System.out.println("");
             t.setDriver(transportationController.getDriver(chose));
             transportationController.setDriverOnTransportation(t);

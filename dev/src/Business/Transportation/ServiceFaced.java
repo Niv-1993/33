@@ -382,7 +382,7 @@ public class ServiceFaced {
     public void addSuppliersItemsTrans(long supid,long tranid, long itemid,int quantity){dataControl.addSuppliersItemsTrans(supid,tranid,itemid,quantity);}
     public void addBranchesItemsTrans(long branid,long tranid, long itemid,int quantity){dataControl.addBranchesItemsTrans(branid,tranid,itemid,quantity);}
     public void addSupplierItems(long id, long supp){dataControl.addSupplierItems(id,supp);}
-
+    public void addDriver(int id , int license){dataControl.addDriver(id,license);}
 
     public void addTransportation(int i, String center, String s, String s1, int i1, int i2, int i3) {
 

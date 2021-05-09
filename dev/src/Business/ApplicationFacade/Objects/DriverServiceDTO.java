@@ -4,10 +4,10 @@ import java.util.Objects;
 
 public class DriverServiceDTO {
 
-    private long id;
+    private int id;
     private int license;
 
-    public DriverServiceDTO(long id,  int license){
+    public DriverServiceDTO(int id,  int license){
         this.id=id;
         this.license=license;
     }
@@ -21,7 +21,7 @@ public class DriverServiceDTO {
     public void setId(int id) { this.id = id; }
     public void setLicense(int license) { this.license = license; }
 
-    public long getId() { return id; }
+    public int getId() { return id; }
     public int getLicense() { return license; }
 
     @Override

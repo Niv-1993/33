@@ -122,6 +122,7 @@ public class DataControl {
 
     public void addTruck(long id, int maxweight,String model, int netWeight, int license){truckMapper.addTruck(id,maxweight,model,netWeight,license);}
     public void addItem(long id , String name){itemMapper.addItem(id,name);}
+    public void addDriver(int id , int license){driverMapper.insert(id,license);}
     public void addSupplierItems(long id, long supp){supplierMapper.addSupplierItems(id,supp);}
     public void addSupplier(long sid,String street, String city,int number,int enter,String area,String contact,String phone){supplierMapper.addSupplier(sid,street,city,number,enter,area,contact,phone);}
     public void addBranch(long sid,String street, String city,int number,int enter,String area,String contact,String phone){branchMapper.addBranch(sid,street,city,number,enter,area,contact,phone);}

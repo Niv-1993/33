@@ -241,6 +241,13 @@ public class TransportationController {
         }
     }
 
+    public void addDriver(int id,int license) {
+        try {
+            serviceControl.addDriver(id, license);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
     public void addSuppliersItemsTrans(long supid,long tranid, long itemid,int quantity) {
         try {
             serviceControl.addSuppliersItemsTrans(supid, tranid, itemid, quantity);

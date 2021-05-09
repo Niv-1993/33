@@ -115,7 +115,10 @@ public class Controllers {
         tc.addTruck(3,11000,"Mercedese",7000,12000);
         tc.addTruck(4,13500,"Dodge",10000,15000);
 
-        tc.addTransportation(1,"Center","2021-12-01","02:20",4250,4,1);
+        tc.addDriver(3,4000);
+        tc.addDriver(6,4000);
+
+        tc.addTransportation(1,"Center","2021-12-01","02:20",4250,3,1);
 
         tc.addSuppliersItemsTrans(5,1,7,10);
         tc.addSuppliersItemsTrans(5,1,8,5);
@@ -125,6 +128,7 @@ public class Controllers {
 
         tc.addBranchesItemsTrans(2,1,9,2);
         tc.addBranchesItemsTrans(2,1,11,10);
+
 
     }
 
