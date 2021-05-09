@@ -115,18 +115,8 @@ public interface iRegularRoleController {
      */
     ResponseData<List<String>> getBranches();
 
-    /**
-     * In order to create a new branch in the system, one must enter the unique code and all the details of the PersonnelEmployee of that branch
-     *
-     * @param code        for now code to create a branch = 00000;
-     * @param newEID      identifier of the new PersonnelManager
-     * @param name        his name
-     * @param bankDetails bank details of the PersonnelEmployee
-     * @param salary      his salary
-     * @param terms
-     * @return A response object. The response should contain a error message in case of an error
-     */
-    void createBranch(String code, int newEID, String name, int[] bankDetails, int salary, int[] terms);
+
+    void createBranch(String code, int id, String name, int[] ints, int salary, int[] ints1, String street, String city, int number, int enter, String area, String cn, int phone);
 
     /**
      * gets all role types
@@ -160,4 +150,5 @@ public interface iRegularRoleController {
     boolean checkIfMyConst(int cid);
      boolean checkIfShiftExist(LocalDate date, String shiftType);
      boolean checkIfShiftIsClose(LocalDate date, String shiftType);
+
 }

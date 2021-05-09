@@ -1,7 +1,8 @@
 package Business.ApplicationFacade.iControllers;
 
 import Business.ApplicationFacade.ResponseData;
-import Business.ApplicationFacade.outObjects.*;
+import Business.ApplicationFacade.outObjects.Employee;
+import Business.ApplicationFacade.outObjects.Shift;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -39,7 +40,7 @@ public interface iManagerRoleController {
      *                      terms[2] -> sick days
      * @return A response object. The response should contain a error message in case of an error
      */
-    ResponseData<Employee> addEmployee(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms);
+     void addEmployee(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms);
 
     /**
      * fire an employee with fireID
@@ -252,4 +253,6 @@ public interface iManagerRoleController {
     List<Integer> getAllAvailableDrivers(LocalDate date, String shiftType);
 
     void addDriverAndStoreKeeperToShift(int driverID, LocalDate date, String shiftType);
+
+    void setLicense(int newEID, int license);
 }

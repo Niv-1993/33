@@ -2,6 +2,7 @@ package Business.ApplicationFacade;
 
 import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.outObjects.*;
+import Business.Employees.EmployeePKG.Driver;
 import Business.Employees.ShiftPKG.ShiftController;
 import Business.Type.*;
 import DataAccess.EmployeeMapper;
@@ -46,16 +47,23 @@ public class ManagerRoleController implements iManagerRoleController {
      *                      terms[2] -> sick days
      * @return A response object. The response should contain a error message in case of an error
      */
-    public ResponseData<Employee> addEmployee(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms) {
+    public void addEmployee(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms) {
         log.debug("enter add employee function");
-        Business.Employees.EmployeePKG.Employee emp = new Business.Employees.EmployeePKG.Employee(newEID, name, bankDetails, salary, RoleType.valueOf(role), startWorkDate, terms);
-        Employee employee = new Employee(emp);
-        employeeMapper.insert(emp.getEID(), emp);
+        Business.Employees.EmployeePKG.Employee emp;
+        if (!role.equals("Driver")) {
+            emp = new Business.Employees.EmployeePKG.Employee(newEID, name, bankDetails, salary, RoleType.valueOf(role), startWorkDate, terms);
+            //Employee employee = new Employee(emp); //TODO why we need it?
+            employeeMapper.insert(emp.getEID(), emp);
+        }else{
+            emp = new Driver(newEID,name,bankDetails,salary,RoleType.Driver,startWorkDate,terms,-23);
+            //TODO maybe like line 54
+            employeeMapper.insertDriver(newEID,emp);
+        }
         utils.generate_optionals();
-        sc.addToOptionals(emp,RoleType.valueOf(role));
+        sc.addToOptionals(emp, RoleType.valueOf(role));
         utils.setNeedToUpdateOps(true);
         log.debug("successfully added new employee EID: " + newEID + " to system");
-        return new ResponseData<>(employee);
+     //   return new ResponseData<>(employee);
     }
 
     /**
@@ -85,7 +93,7 @@ public class ManagerRoleController implements iManagerRoleController {
     public void updateEmployeeName(int updateEID, String newName) {
         log.debug("entered update employee function of: " + updateEID + " to: " + newName);
         employeeMapper.get(updateEID).setName(newName);
-        employeeMapper.updateName(updateEID,newName);
+        employeeMapper.updateName(updateEID, newName);
         log.debug("successfully updated name to: " + newName);
     }
 
@@ -100,7 +108,7 @@ public class ManagerRoleController implements iManagerRoleController {
     public void updateEmployeeSalary(int updateEID, int newSalary) {
         log.debug("entered update employee salary function of: " + updateEID + " to: " + newSalary);
         employeeMapper.get(updateEID).setSalary(newSalary);
-        employeeMapper.updateSalary(updateEID,newSalary);
+        employeeMapper.updateSalary(updateEID, newSalary);
         log.debug("successfully updated salary to: " + newSalary);
     }
 
@@ -115,7 +123,7 @@ public class ManagerRoleController implements iManagerRoleController {
     public void updateEmployeeBANum(int updateEID, int newAccountNumber) {
         log.debug("entered update employee bank account number function of: " + updateEID + " to: " + newAccountNumber);
         employeeMapper.get(updateEID).getBankAccount().setAccountNum(newAccountNumber);
-        employeeMapper.updateBankAccountNum(updateEID,newAccountNumber);
+        employeeMapper.updateBankAccountNum(updateEID, newAccountNumber);
         log.debug("successfully updated bank account number to: " + newAccountNumber);
     }
 
@@ -130,7 +138,7 @@ public class ManagerRoleController implements iManagerRoleController {
     public void updateEmployeeBABranch(int updateEID, int newBranch) {
         log.debug("entered update employee bank branch number function of: " + updateEID + " to: " + newBranch);
         employeeMapper.get(updateEID).getBankAccount().setBankBranch(newBranch);
-        employeeMapper.updateBankBranch(updateEID,newBranch);
+        employeeMapper.updateBankBranch(updateEID, newBranch);
         log.debug("successfully updated bank branch number to: " + newBranch);
     }
 
@@ -145,7 +153,7 @@ public class ManagerRoleController implements iManagerRoleController {
     public void updateEmployeeBAID(int updateEID, int newBankID) {
         log.debug("entered update employee bank ID number function of: " + updateEID + " to: " + newBankID);
         employeeMapper.get(updateEID).getBankAccount().setBankID(newBankID);
-        employeeMapper.updateBankID(updateEID,newBankID);
+        employeeMapper.updateBankID(updateEID, newBankID);
         log.debug("successfully updated bank ID number to: " + newBankID);
     }
 
@@ -160,7 +168,7 @@ public class ManagerRoleController implements iManagerRoleController {
     public void updateEmployeeEducationFund(int updateEID, int newEducationFund) {
         log.debug("entered update employee education fund function of: " + updateEID + " to: " + newEducationFund);
         employeeMapper.get(updateEID).getTermsOfEmployment().setEducationFun(newEducationFund);
-        employeeMapper.updateEducationFund(updateEID,newEducationFund);
+        employeeMapper.updateEducationFund(updateEID, newEducationFund);
         log.debug("successfully updated education fund to: " + newEducationFund);
     }
 
@@ -175,7 +183,7 @@ public class ManagerRoleController implements iManagerRoleController {
     public void updateEmployeeDaysOff(int updateEID, int newAmount) {
         log.debug("entered update employee days-off function of: " + updateEID + " to: " + newAmount);
         employeeMapper.get(updateEID).getTermsOfEmployment().setDaysOff(newAmount);
-        employeeMapper.updateDaysOff(updateEID,newAmount);
+        employeeMapper.updateDaysOff(updateEID, newAmount);
         log.debug("successfully updated days-off to: " + newAmount);
     }
 
@@ -190,7 +198,7 @@ public class ManagerRoleController implements iManagerRoleController {
     public void updateEmployeeSickDays(int updateEID, int newAmount) {
         log.debug("entered update employee sick-days function of: " + updateEID + " to: " + newAmount);
         employeeMapper.get(updateEID).getTermsOfEmployment().setSickDays(newAmount);
-        employeeMapper.updateSickDays(updateEID,newAmount);
+        employeeMapper.updateSickDays(updateEID, newAmount);
         log.debug("successfully updated sick-days to: " + newAmount);
     }
 
@@ -208,11 +216,12 @@ public class ManagerRoleController implements iManagerRoleController {
         utils.generate_optionals();
         Map<RoleType, Integer> rolesAndAmount = new HashMap<>();
         utils.getOps().forEach((roleType, employees) -> {
-            rolesAndAmount.put(roleType,0);
+            rolesAndAmount.put(roleType, 0);
         });
         rolesAmount.forEach((key, value) -> rolesAndAmount.replace(RoleType.valueOf(key), value));
         sc.createShift(rolesAndAmount, date, ShiftType.valueOf(shiftType));
     }
+
     /**
      * set the default Shifts with roles and amount of each role
      * Note: Only the personnel manager is allowed to use this functionality
@@ -286,7 +295,7 @@ public class ManagerRoleController implements iManagerRoleController {
     public void removeEmpFromShift(int SID, int removeEID) {
         log.debug("entered remove employee from shift functions");
         utils.generate_optionals();
-        sc.removeEmpFromShift(SID,employeeMapper.get(removeEID));
+        sc.removeEmpFromShift(SID, employeeMapper.get(removeEID));
     }
 
     /**
@@ -302,7 +311,7 @@ public class ManagerRoleController implements iManagerRoleController {
     public void addEmpToShift(int SID, int addEID, String role) {
         log.debug("entered add employee to shift function");
         utils.generate_optionals();
-        sc.addEmpToShift(SID,RoleType.valueOf(role), employeeMapper.get(addEID));
+        sc.addEmpToShift(SID, RoleType.valueOf(role), employeeMapper.get(addEID));
     }
 
     /**
@@ -317,7 +326,7 @@ public class ManagerRoleController implements iManagerRoleController {
     public void updateAmountRole(int SID, String role, int newAmount) {
         log.debug("entered update amount in role function");
         utils.generate_optionals();
-       sc.updateAmountRole(SID, RoleType.valueOf(role), newAmount);
+        sc.updateAmountRole(SID, RoleType.valueOf(role), newAmount);
         log.debug("updated amount of role");
     }
 
@@ -333,14 +342,14 @@ public class ManagerRoleController implements iManagerRoleController {
     public void addRoleToEmployee(int EID, String role) {
         log.debug("entered add role to employee function");
         //UPDATE DATABASE
-        if(!employeeMapper.get(EID).getRole().contains(RoleType.valueOf(role))) {
+        if (!employeeMapper.get(EID).getRole().contains(RoleType.valueOf(role))) {
             employeeMapper.get(EID).getRole().add(RoleType.valueOf(role));
-            employeeMapper.addRole(EID,role);
+            employeeMapper.addRole(EID, role);
         }
         utils.generate_optionals();
-        sc.addToOptionals(employeeMapper.get(EID),RoleType.valueOf(role));
+        sc.addToOptionals(employeeMapper.get(EID), RoleType.valueOf(role));
         utils.setNeedToUpdateOps(true);
-        log.debug("successfully added role to role list of employee: "+EID);
+        log.debug("successfully added role to role list of employee: " + EID);
     }
 
 
@@ -362,19 +371,19 @@ public class ManagerRoleController implements iManagerRoleController {
 
     }*/
 
-    public boolean optionalIsEmpty(int SID){
+    public boolean optionalIsEmpty(int SID) {
         utils.generate_optionals();
         return sc.optionalIsEmpty(SID);
     }
 
     public boolean EIDIsOptionForSID(int sid, int eid) {
         utils.generate_optionals();
-        return sc.EIDIsOptionForSID(sid,employeeMapper.get(eid));
+        return sc.EIDIsOptionForSID(sid, employeeMapper.get(eid));
     }
 
     public boolean canWork(int sid, int eid, String role) {
         utils.generate_optionals();
-        return sc.canWork(sid,employeeMapper.get(eid),RoleType.valueOf(role));
+        return sc.canWork(sid, employeeMapper.get(eid), RoleType.valueOf(role));
     }
 
     public boolean shiftIsEmpty(int sid) {
@@ -384,43 +393,49 @@ public class ManagerRoleController implements iManagerRoleController {
 
     public boolean EIDWorkInSID(int sid, int eid) {
         utils.generate_optionals();
-        return sc.EIDWorkInSID(sid,employeeMapper.get(eid));
+        return sc.EIDWorkInSID(sid, employeeMapper.get(eid));
     }
 
     public boolean hasShiftManager(LocalDate date, String shiftType) {
-        return sc.hasShiftManager(date,ShiftType.valueOf(shiftType));
+        return sc.hasShiftManager(date, ShiftType.valueOf(shiftType));
     }
 
     public boolean driverOrSorter(int sid, int eid) {
         utils.generate_optionals();
-        return sc.driverOrSorter(sid,employeeMapper.get(eid));
+        return sc.driverOrSorter(sid, employeeMapper.get(eid));
     }
 
-    public boolean checkIfSIDExist(int sid){
+    public boolean checkIfSIDExist(int sid) {
         utils.generate_optionals();
         return sc.checkIfSIDExist(sid);
     }
+
     public void EnterBranch(int BID) {
-        log.debug("loading data of branch id: "+BID);
-        if(BID!=employeeMapper.getCurrBranchID()) {
+        log.debug("loading data of branch id: " + BID);
+        if (BID != employeeMapper.getCurrBranchID()) {
             employeeMapper.resetEmps();
             employeeMapper.setCurrBranchID(BID);
             ShiftMapper.getInstance().setCurrBranchID(BID);
         }
     }
-    public boolean ShiftExist(LocalDate date,String shiftType){
-        return false;
+
+    public boolean ShiftExist(LocalDate date, String shiftType) {
+        return sc.shiftAlreadyCreated(date, ShiftType.valueOf(shiftType));
     }
-    public boolean StoreKeeperAvailable(LocalDate date, String shiftType){
-        return false;
+
+    public boolean StoreKeeperAvailable(LocalDate date, String shiftType) {
+        return sc.StoreKeeperAvailable(date, ShiftType.valueOf(shiftType));
     }
 
 
     public List<Integer> getAllAvailableDrivers(LocalDate date, String shiftType) {
-        return null;
+        return sc.getAllAvailableDrivers(date, ShiftType.valueOf(shiftType));
     }
 
-    public void addDriverAndStoreKeeperToShift(int driverID, LocalDate date, String shiftType){
+    public void addDriverAndStoreKeeperToShift(int driverID, LocalDate date, String shiftType) {
+        sc.addDriverAndStoreKeeperToShift(employeeMapper.get(driverID), date, ShiftType.valueOf(shiftType));
+    }
 
+    public void setLicense(int newEID, int license) {
     }
 }

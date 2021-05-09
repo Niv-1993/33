@@ -1,7 +1,9 @@
 package Business.ApplicationFacade;
 
 import Business.ApplicationFacade.iControllers.iRegularRoleController;
-import Business.ApplicationFacade.outObjects.*;
+import Business.ApplicationFacade.outObjects.Constraint;
+import Business.ApplicationFacade.outObjects.Employee;
+import Business.ApplicationFacade.outObjects.Shift;
 import Business.Employees.ShiftPKG.ShiftController;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
@@ -191,11 +193,13 @@ public class RegularRoleController implements iRegularRoleController {
      * @param terms
      * @return A response object. The response should contain a error message in case of an error
      */
-    public void createBranch(String code, int newEID, String name, int[] bankDetails, int salary, int[] terms) {
+
+    //TODO
+    public void createBranch(String code, int newEID, String name, int[] bankDetails, int salary, int[] terms, String street, String city, int number, int enter, String area, String cn, int phone) {
         log.debug("enter create branch function");
         log.debug("creating instance of the personnel manager in this new branch");
         Business.Employees.EmployeePKG.Employee m = new Business.Employees.EmployeePKG.Employee(newEID, name, bankDetails, salary, RoleType.PersonnelManager, LocalDate.now(), terms);
-        employeeMapper.insertNewBranch(newEID,m);
+        employeeMapper.insertNewBranch(newEID,m,street,city,number,enter,area,cn,phone); //TODO call the branch mapper not emplyoee mapper
         log.debug("successfully created branch");
     }
 

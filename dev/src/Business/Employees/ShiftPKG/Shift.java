@@ -292,4 +292,19 @@ public class Shift {
                 rolesAmount.put(role, 0);
         }
     }
+
+    public boolean StoreKeeperAvailable() {
+        return !optionals.get(RoleType.StoreKeeper).isEmpty();
+    }
+
+    public List<Integer> getAllAvailableDrivers() {
+        List<Integer> ld = new ArrayList<>();
+        optionals.get(RoleType.Driver).forEach(employee -> ld.add(employee.getEID()));
+        return ld;
+    }
+
+    public void addStoreKeeper() {
+        Employee emp = optionals.get(RoleType.StoreKeeper).get(0);
+        addEmpToShift(RoleType.StoreKeeper,emp);
+    }
 }

@@ -1,7 +1,7 @@
 package DataAccess;
 
-import Business.Employees.EmployeePKG.Driver;
 import Business.Employees.EmployeePKG.Employee;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -131,9 +131,9 @@ public class EmployeeMapper extends Mapper {
     }
 
     //TODO: ask what to do with all the branches properties in database
-    public void insertNewBranch(int newEID, Employee m) {
+    public void insertNewBranch(int newEID, Employee m,String street,String city,int number,int enter, String area,String cn,int phone) {
         String getNextBID = "SELECT max(BID)+1 AS mx FROM Branches";
-        String addBranch = "INSERT INTO Branches VALUES(?,'','',0,0,'',0,0)";
+        String addBranch = "INSERT INTO Branches VALUES(?,?,?,?,?,?,?,?)";
         int bid = 0;
         try (Connection con = connect();
              PreparedStatement nextID = con.prepareStatement(getNextBID);
@@ -142,6 +142,13 @@ public class EmployeeMapper extends Mapper {
             bid = res.getInt("mx");
             if (bid == 0) bid++;
             pre.setInt(1, bid);
+            pre.setString(2,street);
+            pre.setString(3,city);
+            pre.setInt(4,number);
+            pre.setInt(5,enter);
+            pre.setString(6,area);
+            pre.setString(7,cn);
+            pre.setInt(8,phone);
             pre.executeUpdate();
         } catch (Exception e) {
             System.out.println("[insertNewBranch-emp] ->" + e.getMessage());
@@ -237,15 +244,16 @@ public class EmployeeMapper extends Mapper {
     }
 
     //Driver is in BID -1;
-    public boolean insertDriver(int EID, Driver emp) {
+    public boolean insertDriver(int EID, Employee emp) {
         boolean res = false;
         String query1 = String.format("INSERT INTO %s VALUES(?,?,?,?,?,?,?,?,?,?,?,-1);", tableName);
         String query2 = "INSERT INTO RolesAndEmployees VALUES(?,?)";
-        String query3 = String.format("INSERT INTO Drivers VALUES(%d,%s)",EID,emp.getLicense());
+        //String query3 = String.format("INSERT INTO Drivers VALUES(%d,%s)",EID,emp.getLicense());
         try (Connection con = connect();
              PreparedStatement pre = con.prepareStatement(query1);
              PreparedStatement pre2 = con.prepareStatement(query2);
-             PreparedStatement pre3 = con.prepareStatement(query3)) {
+             //PreparedStatement pre3 = con.prepareStatement(query3)
+             ) {
             pre.setInt(1, emp.getEID());
             pre.setString(2, emp.getName());
             pre.setString(3, emp.getStartWorkingDate().toString());
@@ -261,7 +269,7 @@ public class EmployeeMapper extends Mapper {
             pre2.setString(2, emp.getRole().get(0).name());
             res = pre.executeUpdate() > 0;
             res = res && pre2.executeUpdate() > 0;
-            res = res && pre3.executeUpdate() > 0;
+            //res = res && pre3.executeUpdate() > 0;
         } catch (Exception e) {
             System.out.println("[insertDriver-emp] ->" + e.getMessage());
         } finally {

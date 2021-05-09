@@ -3,13 +3,14 @@ package Business.Employees.ShiftPKG;
 import Business.Employees.EmployeePKG.Employee;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
+import DataAccess.ConstraintMapper;
+import DataAccess.ShiftMapper;
+import org.apache.log4j.Logger;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.*;
-import DataAccess.ConstraintMapper;
-import DataAccess.ShiftMapper;
-import org.apache.log4j.Logger;
 
 public class ShiftController {
     private final static Logger log = Logger.getLogger(ShiftController.class);
@@ -401,5 +402,19 @@ public class ShiftController {
     public boolean driverOrSorter(int sid, Employee eid) {
         Shift s = get(sid,AllOptionals);
         return !s.getEmployees().get(eid).equals(RoleType.Driver) && !s.getEmployees().get(eid).equals(RoleType.Sorter);
+    }
+
+    public boolean StoreKeeperAvailable(LocalDate date, ShiftType shiftType) {
+        return getShiftByDate(date,shiftType).StoreKeeperAvailable();
+    }
+
+    public List<Integer> getAllAvailableDrivers(LocalDate date, ShiftType shiftType) {
+        return getShiftByDate(date,shiftType).getAllAvailableDrivers();
+    }
+
+    public void addDriverAndStoreKeeperToShift(Employee driverID, LocalDate date, ShiftType shiftType) {
+        Shift s = getShiftByDate(date,shiftType);
+        s.addEmpToShift(RoleType.Driver,driverID);
+        s.addStoreKeeper();
     }
 }

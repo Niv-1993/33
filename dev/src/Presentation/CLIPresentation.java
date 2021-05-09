@@ -1,13 +1,14 @@
 package Presentation;
 
-import Business.ApplicationFacade.*;
+import Business.ApplicationFacade.Response;
 import Presentation.Menu.ManagerMenu;
 import Presentation.Menu.Menu;
 import Presentation.Menu.RegularMenu;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class CLIPresentation {
     private final Scanner input;
@@ -54,8 +55,8 @@ public class CLIPresentation {
     }
     //TODO : get also all info of branch
     private void createBranch() {
-        String code, name;
-        int ID, AC, BB, BID, salary, fund, DO, SD;
+        String code, name,street,city,area,CN;
+        int ID, AC, BB, BID, salary, fund, DO, SD,number,enter,phone;
         System.out.println("In order to create a new branch, enter management code and the personnel manager's details for this branch\n");
         while (true) {
             System.out.println("Please enter code: ");
@@ -84,9 +85,44 @@ public class CLIPresentation {
             if (DO == -1) return;
             SD = getSickDays();
             if (SD == -1) return;
+            System.out.print("street: ");
+            street = read();
+            if(street.equals("1")) return;
+            System.out.print("city: ");
+            city = read();
+            if(city.equals("1")) return;
+            System.out.print("number: ");
+            number = enterInt(read());
+            if (number == -1 ) return;
+            System.out.print("enter: ");
+            enter = enterInt(read());
+            if (enter == -1) return;
+            System.out.print("area: ");
+            area = getArea();
+            if(area.equals("1")) return;
+            System.out.print("contact name: ");
+            CN = read();
+            if(CN.equals("1")) return;
+            System.out.print("phone: ");
+            phone = enterInt(read());
+            if(phone == -1 )return;
             System.out.println();
-            r.getRc().createBranch(code, ID, name, new int[]{AC, BB, BID}, salary, new int[]{fund, DO, SD});
+            r.getRc().createBranch(code,ID, name, new int[]{AC, BB, BID}, salary, new int[]{fund, DO, SD},street,city,number,enter,area,CN,phone);
             break;
+        }
+    }
+
+    private String getArea() {
+        while (true) {
+            System.out.print("Area: ");
+            String area = read();
+            if (!area.equals("Center") && !area.equals("South") && !area.equals("North")) {
+                System.out.println("invalid area.");
+                if (goBack()) return "1";
+                else
+                    continue;
+            }
+            return area;
         }
     }
 

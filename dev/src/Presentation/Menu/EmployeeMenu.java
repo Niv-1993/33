@@ -140,7 +140,7 @@ public class EmployeeMenu extends Menu {
 
     private void addEmployee() {
         String name, role;
-        int ID, AC, BB, BID, salary, fund, DO, SD;
+        int ID, AC, BB, BID, salary, fund, DO, SD, licence;
         System.out.println("In order to create a new employee, enter details for this employee\n");
             ID = getValidNewEmpID();
             if (ID == -1) return;
@@ -160,8 +160,12 @@ public class EmployeeMenu extends Menu {
             if (DO == -1) return;
             SD = getSickDays();
             if (SD == -1) return;
-             role = chooseRole();
-            r.getMc().addEmployee(ID, name, new int[]{AC, BB, BID}, salary, role, LocalDate.now(), new int[]{fund, DO, SD});
+            role = chooseRole();
+            if(role.equals("Driver")) {
+                licence = enterInt(read());  //TODO check which int legal? only positive?
+                r.getDc().addNewDriver(ID,name,new int[]{AC, BB, BID}, salary, role, LocalDate.now(), new int[]{fund, DO, SD},licence);
+            }else
+                r.getMc().addEmployee(ID, name, new int[]{AC, BB, BID}, salary, role, LocalDate.now(), new int[]{fund, DO, SD});
     }
 
     private void printBankDetailsOperation(int EID) {

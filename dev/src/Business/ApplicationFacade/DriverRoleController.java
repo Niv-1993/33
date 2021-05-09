@@ -23,15 +23,15 @@ public class DriverRoleController implements iDriverRoleController {
     }
 
     public void addNewDriver(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms, int license) {
-
+        mc.addEmployee(newEID,name,bankDetails,salary,role,startWorkDate,terms);
+        mc.setLicense(newEID,license);
+        dm.insert(newEID,license);
     }
 
     public boolean checkAvailableStoreKeeperAndShifts(int BID, LocalDate date, LocalTime leavingTime) {
         mc.EnterBranch(BID);
         String shiftType = leavingTime.getHour() < 14 ? "Morning" : "Night";
-        boolean s_exists = mc.ShiftExist(date, shiftType);
-        boolean store_keeper_available  = mc.StoreKeeperAvailable(date,shiftType);
-        return s_exists && store_keeper_available;
+        return mc.ShiftExist(date, shiftType) && mc.StoreKeeperAvailable(date, shiftType);
     }
 
     public List<Driver> chooseDriver(LocalDate date, LocalTime leavingTime) throws Exception {
