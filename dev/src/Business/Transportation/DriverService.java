@@ -26,12 +26,7 @@ public class DriverService {
      * @param id: the wanted driver's id.
      * @return: the driver obj.
      */
-    public Driver getDriver(long id){
-        if(drivers.containsKey(id)){
-            return drivers.get(id);
-        }
-        throw new NoSuchElementException("driver with id: " + id + " is not exists");
-    }
+
 
     @Override
     public boolean equals(Object o) {

@@ -1,8 +1,12 @@
 package Presentation;
-import Business.Transportation.*;
-import Business.ApplicationFacade.*;
+
 import Business.ApplicationFacade.Objects.*;
-import java.util.*;
+import Business.ApplicationFacade.ResponseData;
+import Business.Transportation.ServiceFaced;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
 
 public class TransportationController {
     private final ServiceFaced serviceControl;
@@ -77,8 +81,8 @@ public class TransportationController {
      * Getters for every object's list.
      * @return : the objects list
      */
-    public List<DriverServiceDTO> getAllDrivers(){
-        ResponseData<List<DriverServiceDTO>> res = serviceControl.getDTODrivers();
+    public List<DriverServiceDTO> getAllDrivers(LocalDate date, LocalTime leavingTime){
+        ResponseData<List<DriverServiceDTO>> res = serviceControl.getDTODrivers(date, leavingTime);
         if(res.isError()){
             throw new IllegalArgumentException(res.getError());
         }

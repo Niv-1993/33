@@ -3,24 +3,28 @@ import Business.ApplicationFacade.*;
 import Business.ApplicationFacade.Objects.*;
 import Business.Type.Area;
 import Business.Type.Pair;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 public class ServiceFaced {
-    private final DriverService driverService;
     private final TruckService truckService;
     private final SiteService siteService;
     private final TransportationService transportationService;
     private final ItemService itemService;
     private final DataControl dataControl;
+    private final DriverRoleController drivers;
+
 
 
     public ServiceFaced()  {
-        driverService = new DriverService();
         truckService = new TruckService();
         siteService = new SiteService();
         transportationService = new TransportationService();
         itemService = new ItemService();
         dataControl=new DataControl();
+        drivers = new DriverRoleController(dataControl);
     }
 
     /**
@@ -30,7 +34,8 @@ public class ServiceFaced {
      */
     public ResponseData<DriverServiceDTO> getDriver(long id){
         try {
-            return new ResponseData<>(toDriverServiceDTO(driverService.getDriver(id)));
+            Driver driver = drivers.getDriver(id);
+            return (driver == null)? new ResponseData<>("No driver is available..."):new ResponseData<>(toDriverServiceDTO(drivers.getDriver(id)));
         }catch (Exception e){
             return new ResponseData<>(e.getMessage());
         }
@@ -70,11 +75,11 @@ public class ServiceFaced {
      * Converts from business objects to presentation objects
      * @return : Response with the objects list inside or an Exception if failed.
      */
-    public ResponseData<List<DriverServiceDTO>> getDTODrivers(){
+    public ResponseData<List<DriverServiceDTO>> getDTODrivers(LocalDate date, LocalTime leavingTIme){
         List<DriverServiceDTO> returnD = new LinkedList<>();
         try {
-            List<Driver> drivers = driverService.getDriversList();
-            for (Driver d: drivers) {
+            List<Driver> drivers1 = drivers.chooseDriver(date,leavingTIme);
+            for (Driver d: drivers1) {
                 returnD.add(toDriverServiceDTO(d));
             }
             return new ResponseData<>(returnD);
@@ -164,19 +169,24 @@ public class ServiceFaced {
      * @return: Response object with the Business.Transportation obj inside or throws an Exception if failed.
      */
     public ResponseData<TransportationServiceDTO> setTransportationDriver(TransportationServiceDTO t){
-
         try {
-            Driver d = driverService.getDriver(t.getDriver().getId());
+            Driver d = drivers.getDriver(t.getDriver().getId());
             transportationService.setDriver(t.getId(), d);
             //if we success just return the same
             return new ResponseData<>(t);
         }catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
     public ResponseData<TransportationServiceDTO> setTransportationDeliveryItems(TransportationServiceDTO t ){
              HashMap<Branch,List<Pair<Item,Integer>>> deliveryItemsB = new HashMap<>();
         try {
+            List<BranchServiceDTO> branches = t.getBranches();
+            for (BranchServiceDTO b: branches){
+                if(!drivers.checkAvailableStoreKeeperAndShifts(b.getId(),t.getDate(),t.getLeavingTime())){
+                    return new ResponseData<>("branch: " + b.getId()+ "does not have available store-keeper.");
+                }
+            }
             HashMap<BranchServiceDTO,List<Pair<ItemServiceDTO,Integer>>> deliveryItems = t.getDeliveryItems();
             for (Map.Entry<BranchServiceDTO,List<Pair<ItemServiceDTO,Integer>>> entry: deliveryItems.entrySet()){
                 List<Pair<Item,Integer>> delivery = new LinkedList<>();
@@ -189,7 +199,7 @@ public class ServiceFaced {
             transportationService.setDeliveryItems(t.getId(),deliveryItemsB);
             return new ResponseData<>(t);
         }catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
     public ResponseData<TransportationServiceDTO> setTransportationSuppliersItems(TransportationServiceDTO t ){
@@ -207,7 +217,7 @@ public class ServiceFaced {
             transportationService.setSuppliersItem(t.getId(),deliveryItemsB);
             return new ResponseData<>(t);
         }catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
 
@@ -217,7 +227,7 @@ public class ServiceFaced {
             transportationService.setTruck(t.getId(),truck);
             return new ResponseData<>(t);
         }catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
     public ResponseData<TransportationServiceDTO> setTransportationTime(TransportationServiceDTO t){
@@ -233,12 +243,15 @@ public class ServiceFaced {
             transportationService.setDate(t.getId(),t.getDate());
             return new ResponseData<>(t);
         }catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
     public ResponseData<TransportationServiceDTO> setTransportation(TransportationServiceDTO t){
         try {
-
+            List<BranchServiceDTO> Branches = t.getBranches();
+            for (BranchServiceDTO b: Branches){
+                drivers.addDriverToShiftAndStoreKeeper(b.getId(),t.getDriver().getId(),t.getDate(),t.getLeavingTime());
+            }
             return new ResponseData<>(toTransportationServiceDTO( transportationService.saveTransportation(t.getId())));
         }
         catch (Exception e){
@@ -250,7 +263,7 @@ public class ServiceFaced {
             transportationService.setArea(t.getId(),t.getArea());
             return new ResponseData<>(t);
         }catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
 
@@ -259,7 +272,7 @@ public class ServiceFaced {
             transportationService.setTransportationWeight(t.getId(),t.getWeight());
             return new ResponseData<>(t);
         }catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
+            return new ResponseData<>(e.getMessage());
         }
     }
 

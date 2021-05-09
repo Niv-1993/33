@@ -3,6 +3,7 @@ import Business.Type.Area;
 import Business.Type.Pair;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -113,5 +114,9 @@ public class TransportationServiceDTO {
     public Area getArea() { return area; }
 
     public void setArea(Area area) { this.area = area; }
+
+    public List<BranchServiceDTO> getBranches(){
+        return new ArrayList<>(deliveryItems.keySet());
+    }
 
 }
