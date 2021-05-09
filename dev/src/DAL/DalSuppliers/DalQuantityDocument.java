@@ -58,7 +58,7 @@ public class DalQuantityDocument extends DALObject {
     @Override
     public String getInsert() {
         return "INSERT OR REPLACE INTO QuantityDocuments\n"+
-                "VALUES (?,?,?,?);";
+                "VALUES (?,?,?);";
     }
 
     public int getMinimalAmount(){

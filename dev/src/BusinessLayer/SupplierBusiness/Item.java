@@ -81,7 +81,7 @@ public class Item{
     }
 
     public QuantityDocument showQuantityDocument() throws Exception {
-        if(quantityDocument == null) throw new Exception("quantity document all ready removed");
+        if(quantityDocument == null) throw new Exception("quantity document does not exist");
         return quantityDocument;
     }
 

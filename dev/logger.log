@@ -33187,3 +33187,16 @@ failed due to [SQLITE_ERROR] SQL error or missing database (table "ItemsInOrders
 [WARN ] 08-05-2021 18:35:43 [class: DAL.DalController,Line:114] - ResultSet closed
 [WARN ] 08-05-2021 18:36:50 [class: DAL.DalController,Line:114] - ResultSet closed
 [WARN ] 08-05-2021 18:38:18 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 09-05-2021 16:58:01 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 09-05-2021 17:00:49 [class: DAL.DalController,Line:67] - noSelect quary: INSERT OR REPLACE INTO QuantityDocuments
+VALUES (?,?,?,?)
+failed due to [SQLITE_CONSTRAINT_NOTNULL]  A NOT NULL constraint failed (NOT NULL constraint failed: QuantityDocuments.branchId)
+[WARN ] 09-05-2021 17:00:49 [class: DAL.Mapper,Line:157] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_NOTNULL]  A NOT NULL constraint failed (NOT NULL constraint failed: QuantityDocuments.branchId)
+[WARN ] 09-05-2021 17:00:49 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 09-05-2021 17:00:49 [class: BusinessLayer.SupplierBusiness.QuantityDocument,Line:30] - the instance that return from Mapper is null
+[WARN ] 09-05-2021 17:02:55 [class: DAL.DalController,Line:67] - noSelect quary: INSERT OR REPLACE INTO QuantityDocuments
+VALUES (?,?,?,?)
+failed due to [SQLITE_ERROR] SQL error or missing database (table QuantityDocuments has 3 columns but 4 values were supplied)
+[WARN ] 09-05-2021 17:02:55 [class: DAL.Mapper,Line:157] - org.sqlite.SQLiteException: [SQLITE_ERROR] SQL error or missing database (table QuantityDocuments has 3 columns but 4 values were supplied)
+[WARN ] 09-05-2021 17:02:55 [class: DAL.DalController,Line:114] - ResultSet closed
+[WARN ] 09-05-2021 17:02:55 [class: BusinessLayer.SupplierBusiness.QuantityDocument,Line:30] - the instance that return from Mapper is null
