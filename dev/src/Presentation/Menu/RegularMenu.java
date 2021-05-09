@@ -1,6 +1,5 @@
 package Presentation.Menu;
 
-import Business.ApplicationFacade.iRegularRoleController;
 import Presentation.Controllers;
 
 import java.util.Scanner;

@@ -1,14 +1,14 @@
 package Business.ApplicationFacade;
 
+import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.outObjects.*;
-import Business.ShiftPKG.ShiftController;
+import Business.Employees.ShiftPKG.ShiftController;
 import Business.Type.*;
 import DataAccess.EmployeeMapper;
 import DataAccess.ShiftMapper;
 import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.*;
 
 
@@ -48,7 +48,7 @@ public class ManagerRoleController implements iManagerRoleController {
      */
     public ResponseData<Employee> addEmployee(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms) {
         log.debug("enter add employee function");
-        Business.EmployeePKG.Employee emp = new Business.EmployeePKG.Employee(newEID, name, bankDetails, salary, RoleType.valueOf(role), startWorkDate, terms);
+        Business.Employees.EmployeePKG.Employee emp = new Business.Employees.EmployeePKG.Employee(newEID, name, bankDetails, salary, RoleType.valueOf(role), startWorkDate, terms);
         Employee employee = new Employee(emp);
         employeeMapper.insert(emp.getEID(), emp);
         utils.generate_optionals();
@@ -244,7 +244,7 @@ public class ManagerRoleController implements iManagerRoleController {
     public ResponseData<List<Shift>> createWeekShifts() {
         log.debug("entered create week shift function");
         utils.generate_optionals();
-        List<Business.ShiftPKG.Shift> shifts = sc.createWeekShifts();
+        List<Business.Employees.ShiftPKG.Shift> shifts = sc.createWeekShifts();
         return new ResponseData<>(utils.convertShifts(shifts));
     }
 

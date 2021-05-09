@@ -52,7 +52,7 @@ public class CLIPresentation {
             }
         }
     }
-
+    //TODO : get also all info of branch
     private void createBranch() {
         String code, name;
         int ID, AC, BB, BID, salary, fund, DO, SD;

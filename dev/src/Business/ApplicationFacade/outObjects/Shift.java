@@ -17,7 +17,7 @@ public class Shift {
     public String status;
     public boolean hasShiftManager;
 
-    public Shift(Business.ShiftPKG.Shift shift,Map<Employee, String> employees, Map<String, List<Employee>> optionals) {
+    public Shift(Business.Employees.ShiftPKG.Shift shift, Map<Employee, String> employees, Map<String, List<Employee>> optionals) {
         this.SID = shift.getSID();
         this.date = shift.getDate();
         this.employees = Collections.unmodifiableMap(employees);

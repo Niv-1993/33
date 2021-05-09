@@ -1,7 +1,9 @@
 package Presentation;
 
 import Business.ApplicationFacade.*;
-import Business.ShiftPKG.ShiftController;
+import Business.ApplicationFacade.iControllers.iDriverRoleController;
+import Business.ApplicationFacade.iControllers.iManagerRoleController;
+import Business.ApplicationFacade.iControllers.iRegularRoleController;
 
 public class Controllers {
     private final iRegularRoleController rc;
@@ -20,5 +22,9 @@ public class Controllers {
 
     public iRegularRoleController getRc() {
         return rc;
+    }
+
+    public iDriverRoleController getDc() {
+        return dc;
     }
 }

@@ -1,7 +1,8 @@
 package Business.ApplicationFacade;
 
+import Business.ApplicationFacade.iControllers.iRegularRoleController;
 import Business.ApplicationFacade.outObjects.*;
-import Business.ShiftPKG.ShiftController;
+import Business.Employees.ShiftPKG.ShiftController;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
 import DataAccess.EmployeeMapper;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 
 public class RegularRoleController implements iRegularRoleController {
     final static Logger log = Logger.getLogger(RegularRoleController.class);
-    private Business.EmployeePKG.Employee currConnectedEmp;
+    private Business.Employees.EmployeePKG.Employee currConnectedEmp;
     private final EmployeeMapper employeeMapper = EmployeeMapper.getInstance();
     private final Utils utils;
     private final ShiftController sc;
@@ -128,7 +129,7 @@ public class RegularRoleController implements iRegularRoleController {
     public ResponseData<List<Shift>> getMyShifts() {
         log.debug("entered getting shifts of employee: "+currConnectedEmp.getEID());
         utils.generate_optionals();
-        List<Business.ShiftPKG.Shift> myShifts = sc.getMyShifts(currConnectedEmp);
+        List<Business.Employees.ShiftPKG.Shift> myShifts = sc.getMyShifts(currConnectedEmp);
         return new ResponseData<>(utils.convertShifts(myShifts));
     }
 
@@ -193,7 +194,7 @@ public class RegularRoleController implements iRegularRoleController {
     public void createBranch(String code, int newEID, String name, int[] bankDetails, int salary, int[] terms) {
         log.debug("enter create branch function");
         log.debug("creating instance of the personnel manager in this new branch");
-        Business.EmployeePKG.Employee m = new Business.EmployeePKG.Employee(newEID, name, bankDetails, salary, RoleType.PersonnelManager, LocalDate.now(), terms);
+        Business.Employees.EmployeePKG.Employee m = new Business.Employees.EmployeePKG.Employee(newEID, name, bankDetails, salary, RoleType.PersonnelManager, LocalDate.now(), terms);
         employeeMapper.insertNewBranch(newEID,m);
         log.debug("successfully created branch");
     }

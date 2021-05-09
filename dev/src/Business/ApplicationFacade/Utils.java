@@ -2,8 +2,8 @@ package Business.ApplicationFacade;
 
 import Business.ApplicationFacade.outObjects.Constraint;
 import Business.ApplicationFacade.outObjects.Shift;
-import Business.EmployeePKG.Employee;
-import Business.ShiftPKG.ShiftController;
+import Business.Employees.EmployeePKG.Employee;
+import Business.Employees.ShiftPKG.ShiftController;
 import Business.Type.RoleType;
 import DataAccess.EmployeeMapper;
 import org.apache.log4j.Logger;
@@ -14,7 +14,7 @@ public class Utils {
     final static Logger log = Logger.getLogger(Utils.class);
     private ShiftController shiftController;
     private boolean needToUpdateOps;
-    private Map<RoleType, List<Business.EmployeePKG.Employee>> ops;
+    private Map<RoleType, List<Business.Employees.EmployeePKG.Employee>> ops;
 
     public Utils() {
         needToUpdateOps = true;
@@ -58,7 +58,7 @@ public class Utils {
             for (RoleType role : allRoles) {
                 ops.put(role, new ArrayList<>());
             }
-            List<Business.EmployeePKG.Employee> empsInBranch = EmployeeMapper.getInstance().loadEmployeesInBranch();
+            List<Business.Employees.EmployeePKG.Employee> empsInBranch = EmployeeMapper.getInstance().loadEmployeesInBranch();
             empsInBranch.forEach(employee -> {
                 employee.getRole().forEach(roleType -> {
                     ops.get(roleType).add(employee);
@@ -70,7 +70,7 @@ public class Utils {
         }
     }
 
-    protected List<Business.ApplicationFacade.outObjects.Employee> convertEmployee(List<Business.EmployeePKG.Employee> allEmployees) {
+    protected List<Business.ApplicationFacade.outObjects.Employee> convertEmployee(List<Business.Employees.EmployeePKG.Employee> allEmployees) {
         log.debug("converting employees of business layer to out objects list");
         List<Business.ApplicationFacade.outObjects.Employee> employees = new ArrayList<>();
         allEmployees.forEach(e -> {
@@ -80,7 +80,7 @@ public class Utils {
         return employees;
     }
 
-    protected List<Shift> convertShifts(List<Business.ShiftPKG.Shift> allShifts) {
+    protected List<Shift> convertShifts(List<Business.Employees.ShiftPKG.Shift> allShifts) {
         log.debug("converting shift of business layer to out objects list");
         List<Shift> shifts = new ArrayList<>();
         allShifts.forEach(s -> {
@@ -102,7 +102,7 @@ public class Utils {
         return shifts;
     }
 
-    protected List<Constraint> convertConstrains(List<Business.ShiftPKG.Constraint> allConstraints) {
+    protected List<Constraint> convertConstrains(List<Business.Employees.ShiftPKG.Constraint> allConstraints) {
         log.debug("converting constraints of business layer to out objects list");
         List<Constraint> constraints = new ArrayList<>();
         allConstraints.forEach(c -> {
