@@ -83,6 +83,18 @@ public class ItemMapper extends Mapper{
     }
 
 
+    public void addItem(long id , String name) throws Exception {
+
+        String query = "INSERT INTO Items (ID,Name) VALUES(?,?)";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setLong(1,id );
+            pstmt.setString(2,name );
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     public Item getItem(long id) throws Exception {
 
         if(items.containsKey(id))

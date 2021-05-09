@@ -261,21 +261,19 @@ public class Mapper {
                 "\t\"TranID\"\tNUMERIC,\n" +
                 "\t\"ItemID\"\tNUMERIC,\n" +
                 "\tPRIMARY KEY(\"SupID\",\"TranID\",\"ItemID\"),\n" +
-                "\tFOREIGN KEY(\"SupID\") REFERENCES \"Suppliers\"(\"SID\") ,\n" +
-                "\tFOREIGN KEY(\"TranID\") REFERENCES \"Transportations\"(\"BID\") ,\n" +
+                "\tFOREIGN KEY(\"SupID\") REFERENCES \"Suppliers\"(\"ID\") ,\n" +
+                "\tFOREIGN KEY(\"TranID\") REFERENCES \"Transportations\"(\"ID\") ,\n" +
                 "\tFOREIGN KEY(\"ItemID\") REFERENCES \"Items\"(\"ID\") \n"+
                 ");";
     }
     private String getCreateSuppliers() {
         return "CREATE TABLE IF NOT EXISTS \"Suppliers\" (\n" +
-                "\t\"SID\"\"\tNUMERIC,\n" +
+                "\t\"ID\"\"\tNUMERIC,\n" +
                 "\t\"Street\"\tTEXT NOT NULL,\n" +
                 "\t\"City\"\tTEXT NOT NULL,\n" +
                 "\t\"Number\"\"\tINTEGER NOT NULL,\n" +
                 "\t\"Enter\"\tINTEGER NOT NULL,\n" +
                 "\t\"Area\"\tTEXT NOT NULL,\n" +
-                "\t\"Enter\"\tNUMERIC,\n" +
-                "\t\"Area\"\tNUMERIC,\n" +
                 "\t\"ContactName\"\tTEXT NOT NULL,\n" +
                 "\t\"Phone\"\tINTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY(\"SID\")\n" + ");";

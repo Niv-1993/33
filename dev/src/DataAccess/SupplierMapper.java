@@ -64,6 +64,26 @@ public class SupplierMapper extends Mapper {
         return null;
     }
 
+    public void addSupplier(long sid,String street, String city,int number,int enter,String area,String contact,int phone) throws Exception {
+
+        String sql = "INSERT INTO Suppliers (ID,Street,City,Number,Enter,Area,ContactName,Phone) VALUES(?,?,?,?,?,?,?,?)";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setLong(1,sid );
+            pstmt.setString(2,street );
+            pstmt.setString(3,city );
+            pstmt.setInt(4,number );
+            pstmt.setInt(5, enter);
+            pstmt.setString(6, area);
+            pstmt.setString(7, contact);
+            pstmt.setInt(8, phone);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public Supplier getSupplier(int id) throws Exception {
 
         if(suppliers.containsKey(id)){

@@ -63,6 +63,23 @@ public class TruckMapper extends Mapper{
         return selectAll();
     }
 
+    public void addTruck(long id, int maxweight,String model, int netWeight, int license) throws Exception {
+
+        String sql = "INSERT INTO Trucks (ID,MaxWeight,Model,NetWeight,Liecense) VALUES(?,?,?,?,?)";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setLong(1,id );
+            pstmt.setInt(2,maxweight );
+            pstmt.setString(3,model );
+            pstmt.setInt(4,netWeight );
+            pstmt.setInt(5, license);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public Truck getTruck(long id) throws Exception {
 
         if(trucks.containsKey(id))
