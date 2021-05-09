@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class BranchMapper {
+public class BranchMapper extends Mapper{
 
     static private BranchMapper mapper = null;
     static private String dbName;
@@ -27,22 +27,6 @@ public class BranchMapper {
     private BranchMapper(String name) {
         branches = new HashMap<>();
         dbName=name;
-    }
-
-    /**
-     * Connect to a sample database
-     */
-    public static Connection connect() throws Exception {
-
-        Class.forName("org.sqlite.JDBC");
-        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\" + dbName;
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url);
-        } catch (SQLException e) {
-            throw new Exception("failed to connect database.");
-        }
-        return conn;
     }
 
     /**

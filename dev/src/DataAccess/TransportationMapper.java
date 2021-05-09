@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
-public class TransportationMapper {
+public class TransportationMapper extends Mapper{
 
     static  private TransportationMapper mapper=null;
     static  private String dbName;
@@ -74,19 +74,6 @@ public class TransportationMapper {
         return null;
     }
 
-    public static Connection connect() throws Exception {
-
-        //DriverManager.registerDriver(new com.sqlite.jdbc.Driver());
-        Class.forName("org.sqlite.JDBC");
-        String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\" + dbName;
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url);
-        } catch (SQLException e) {
-            throw new Exception("failed to connect database.");
-        }
-        return conn;
-    }
     public Driver selectDriver(long id) throws  Exception {
 
         String sql = "SELECT * FROM Drivers WHERE EID="+ id ;
