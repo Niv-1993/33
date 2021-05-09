@@ -64,7 +64,7 @@ public class DalController {
                 }
                 ret += preparedStatement.executeUpdate();
             } catch (Exception e) {
-                log.warn("noSelect quary: " + query + "\nfailed due to " + e.getMessage());
+                log.warn("noSelect quary: " + query +" params: " + params+ "\nfailed due to " + e.getMessage());
                 throw e;
             }
         }

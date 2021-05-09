@@ -32,7 +32,7 @@ public class DALShelf extends DALObject {
     }
 
     public String getCreate() {
-        return "CREATE TABLE IF NOT EXISTS ? (\n" +
+        return "CREATE TABLE IF NOT EXISTS Shelf (\n" +
                 "\tstoreID INTEGER NOT NULL,\n" +
                 "\tshelfID INTEGER NOT NULL,\n" +
                 "\tlocation INTEGER NOT NULL,\n" +

@@ -31,7 +31,7 @@ public class DALInstanceController extends DALObject {
 
     @Override
     public String getCreate() {
-        return "CREATE TABLE IF NOT EXISTS ? (\n" +
+        return "CREATE TABLE IF NOT EXISTS InstanceController  (\n" +
                 "\tstoreID INTEGER NOT NULL,\n" +
                 "\ttypeID INTEGER NOT NULL,\n" +
                 "\tcounter INTEGER NOT NULL,\n" +

@@ -36,7 +36,7 @@ public class DALCategory extends DALObject {
 
     @Override
     public String getCreate() {
-        return "CREATE TABLE IF NOT EXISTS ?(\n" +
+        return "CREATE TABLE IF NOT EXISTS Category (\n" +
                 "\tstoreID INTEGER NOT NULL,\n" +
                 "\tcategoryID INTEGER NOT NULL,\n" +
                 "\tparentID INTEGER,"+
@@ -46,7 +46,7 @@ public class DALCategory extends DALObject {
                 "\tON DELETE CASCADE ON UPDATE CASCADE\t\n" +
                 ");\n" +
                 "\n" +
-                "CREATE TABLE IF NOT EXISTS ? (\n" +
+                "CREATE TABLE IF NOT EXISTS SubCategory (\n" +
                 "\tstoreID INTEGER NOT NULL,\n" +
                 "\tparentID INTEGER NOT NULL,\n" +
                 "\tchildID INTEGER NOT NULL,\n" +

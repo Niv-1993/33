@@ -87,7 +87,7 @@ public class Mapper {
                 Method cre = c.getMethod("getCreate");
                 DC.noSelect((String) cre.invoke(con.newInstance()),null);
                 log.info("creating "+c.getName());
-            } catch (Exception e){ log.warn("Class "+c.getName()+" not created in DB");}
+            } catch (Exception e){ log.warn("Class "+c.getName()+" not created in DB due to "+e);}
         }
     }
 

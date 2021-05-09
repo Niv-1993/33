@@ -9,9 +9,9 @@ import java.util.List;
 public class DALSaleDiscount extends DALDiscount{
     int categoryID;
 
-    //public DALSaleDiscount(){
-//        super(null);
-//    }
+    public DALSaleDiscount(){
+        super(null);
+    }
 
     public DALSaleDiscount(Integer storeID, Integer id, Integer typeID, Integer categoryID,
                            float percent, Date startDate, Date endDate, DalController dc){
@@ -19,7 +19,10 @@ public class DALSaleDiscount extends DALDiscount{
         this.categoryID=categoryID;
     }// get supplier id from controller
 
-
+    @Override
+    public String getCreate() {
+        return super.getCreate();
+    }
 
     public void removeCategory(int i) {
         String query= """

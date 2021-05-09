@@ -20,8 +20,12 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public response LoadData() {
-       supplierController = new SupplierController(true);
-       return new response();
+        try {
+            supplierController = new SupplierController(true);
+        }catch(Exception e){
+            supplierController = new SupplierController();
+        }
+        return new response();
     }
 
     @Override

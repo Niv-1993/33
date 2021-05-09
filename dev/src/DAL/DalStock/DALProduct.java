@@ -46,14 +46,38 @@ public class DALProduct extends DALObject {
                 "\tproductID INTEGER NOT NULL,\n" +
                 "\texpiration VARCHAR NOT NULL,\n" +
                 "\tisDamaged INTEGER NOT NULL,\n" +
-                "\tshelfNum INTEGER NOT NULL,\n" +
-                "\tlocation VARCHAR NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, productID),\n" +
                 "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
                 "\tFOREIGN KEY (typeID) REFERENCES InstanceController(typeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
-                ");\n";
+                ");\n"+
+                "CREATE TABLE IF NOT EXISTS ShelfProduct (\n" +
+                "\tshelfID INTEGER NOT NULL,\n" +
+                "\tlocation INTEGER NOT NULL,\n" +
+                "\tproductID INTEGER NOT NULL,\n" +
+                "\ttypeID INTEGER NOT NULL,\n" +
+                "\tcurr INTEGER NOT NULL,\n" +
+                "\tPRIMARY KEY (shelfID, location, productID),\n" +
+                "\tFOREIGN KEY (productID) REFERENCES Product(productID)\n" +
+                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
+                "\tFOREIGN KEY (typeID) REFERENCES Product(typeID)\n" +
+                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
+                ");";
+//        return "CREATE TABLE IF NOT EXISTS Product (\n" +
+//                "\tstoreID INTEGER NOT NULL,\n" +
+//                "\ttypeID INTEGER NOT NULL,\n" +
+//                "\tproductID INTEGER NOT NULL,\n" +
+//                "\texpiration VARCHAR NOT NULL,\n" +
+//                "\tisDamaged INTEGER NOT NULL,\n" +
+//                "\tshelfNum INTEGER NOT NULL,\n" +
+//                "\tlocation VARCHAR NOT NULL,\n" +
+//                "\tPRIMARY KEY (storeID, productID),\n" +
+//                "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
+//                "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
+//                "\tFOREIGN KEY (typeID) REFERENCES InstanceController(typeID)\n" +
+//                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
+//                ");";
 //                "CREATE TABLE IF NOT EXISTS ShelfProduct (\n" +
 //                "\tshelfID INTEGER NOT NULL,\n" +
 //                "\tlocation INTEGER NOT NULL,\n" +

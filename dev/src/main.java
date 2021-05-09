@@ -18,11 +18,11 @@ import java.util.List;
 public class main {
     final static Logger log=Logger.getLogger(main.class);
     public static void main(String[] args) {
-        Mapper.getMap("test.db");
-         mainCLI CLI = new mainCLI();
-         CLI.start(true);
+//        Mapper.getMap("test.db");
+//         mainCLI CLI = new mainCLI();
+//         CLI.start(true);
 
-       /* Mapper map = Mapper.getMap("test.db");
+       Mapper map = Mapper.getMap("test.db");
         List<Tuple<Object,Class>> b =new ArrayList<>();
         b.add(new Tuple<>(1,Integer.class));
         b.add(new Tuple<>(1,Integer.class));
@@ -36,6 +36,6 @@ public class main {
         List<Integer> a=new ArrayList<>();
         a.add(1);
         DALStoreController sc=(DALStoreController) map.getItem(DALStoreController.class,a );
-        map.deleteItem(DALStoreController.class,a);*/
+        map.deleteItem(DALStoreController.class,a);
     }
 }

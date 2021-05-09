@@ -32,9 +32,14 @@ public abstract class DALDiscount extends DALObject {
         this.storeID=storeID;
         this.typeId=typeId;
     }
+
+    public DALDiscount(DalController dc) {
+        super(dc);
+    }
+
     @Override
     public String getCreate() {
-        return "CREATE TABLE IF NOT EXISTS ? (\n" +
+        return "CREATE TABLE IF NOT EXISTS Discount (\n" +
                 "\tstoreID INTEGER NOT NULL,\n" +
                 "\tdiscountID INTEGER NOT NULL,\n" +
                 "\ttypeID INTEGER,\n" +
@@ -58,8 +63,8 @@ public abstract class DALDiscount extends DALObject {
     @Override
     public String getSelect() {
         return """
-                SELECT * \s
-                FROM ? \s
+                SELECT *\s
+                FROM Discount\s
                 WHERE storeID=? AND discountID=?;\s
                 """;
     }
@@ -67,7 +72,7 @@ public abstract class DALDiscount extends DALObject {
     @Override
     public String getDelete() {
         return """
-                DELETE FROM ? \s
+                DELETE FROM Discount\s
                 WHERE storeID=? AND discountID=?; \s
                 """;
     }
@@ -80,7 +85,7 @@ public abstract class DALDiscount extends DALObject {
     @Override
     public String getInsert() {
         return """
-                INSERT INTO ?
+                INSERT OR REPLACE INTO Discount VALUES (?,?,?,?,?,?,?,?);
                 """;
     }
 

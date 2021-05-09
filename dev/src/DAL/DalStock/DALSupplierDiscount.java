@@ -9,9 +9,9 @@ import java.util.List;
 public class DALSupplierDiscount extends DALDiscount{
     private int _supplierID;
 
-//    public DALSupplierDiscount(){
-//        super(null);
-//    }
+    public DALSupplierDiscount(){
+        super(null);
+    }
 
 
     public DALSupplierDiscount(Integer storeID, Integer id, Integer typeID, Integer supplierID,
@@ -20,27 +20,11 @@ public class DALSupplierDiscount extends DALDiscount{
         _supplierID=supplierID;
     } // get supplier id from controller
 
-
-
     @Override
-    public String getSelect() {
-        return null;
+    public String getCreate() {
+    return super.getCreate();
     }
 
-    @Override
-    public String getDelete() {
-        return null;
-    }
-
-    @Override
-    public String getUpdate() {
-        return null;
-    }
-
-    @Override
-    public String getInsert() {
-        return null;
-    }
 
     public int getSupplier(){
         return _supplierID;
