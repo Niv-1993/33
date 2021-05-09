@@ -20,12 +20,12 @@ public class DataControl {
 
     public DataControl(){
         dbName="databaseDemo.db";
-        branchMapper=BranchMapper.getMapper(dbName);
-        itemMapper=ItemMapper.getMapper(dbName);
-        supplierMapper=SupplierMapper.getMapper(dbName);
-        truckMapper=TruckMapper.getMapper(dbName);
-        transportationMapper=TransportationMapper.getMapper(dbName);
-        driverMapper=DriverMapper.getMapper(dbName);
+        branchMapper=BranchMapper.getMapper();
+        itemMapper=ItemMapper.getMapper();
+        supplierMapper=SupplierMapper.getMapper();
+        truckMapper=TruckMapper.getMapper();
+        transportationMapper=TransportationMapper.getMapper();
+        driverMapper=DriverMapper.getMapper();
 
     }
 
@@ -48,7 +48,7 @@ public class DataControl {
         return transportationMapper.getTransportations(truckMapper,itemMapper,supplierMapper,branchMapper);
     }
 
-    public Driver getDriver(long id) throws Exception{
+    public Driver getDriver(int id) throws Exception{
         return driverMapper.select(id);
     }
     public Branch getBranch(int id) throws Exception {

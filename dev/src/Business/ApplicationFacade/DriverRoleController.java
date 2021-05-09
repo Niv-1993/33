@@ -2,8 +2,8 @@ package Business.ApplicationFacade;
 
 import Business.ApplicationFacade.iControllers.iDriverRoleController;
 import Business.ApplicationFacade.iControllers.iManagerRoleController;
-import Business.Transportation.DataControl;
 import Business.Transportation.Driver;
+import DataAccess.DriverMapper;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -12,14 +12,16 @@ import java.util.List;
 
 public class DriverRoleController implements iDriverRoleController {
     private iManagerRoleController mc;
-    private DataControl dc;
+    private DriverMapper dm;
 
     public DriverRoleController(iManagerRoleController m) {
         mc = m;
+        dm=DriverMapper.getMapper();
     }
-    public DriverRoleController(DataControl dc){
-        this.dc = dc;
+    public DriverRoleController(){
+        dm=DriverMapper.getMapper();
     }
+
     public void addNewDriver(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms, int license) {
 
     }
@@ -41,10 +43,10 @@ public class DriverRoleController implements iDriverRoleController {
         }
         return (drivers.isEmpty())?(null):drivers;
     }
-    public Driver getDriver(long id) throws Exception {
-       return dc.getDriver(id);
+    public Driver getDriver(int id) throws Exception {
+       return dm.select(id);
     }
-    public void addDriverToShiftAndStoreKeeper(int BID,long driverID, LocalDate date, LocalTime leavingTime) {
+    public void addDriverToShiftAndStoreKeeper(int BID,int driverID, LocalDate date, LocalTime leavingTime) {
         mc.EnterBranch(BID);
         String shiftType = leavingTime.getHour() < 14 ? "Morning" : "Night";
         mc.addDriverAndStoreKeeperToShift(driverID,date,shiftType);

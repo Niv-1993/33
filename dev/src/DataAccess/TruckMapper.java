@@ -12,18 +12,17 @@ import java.util.Map;
 public class TruckMapper extends Mapper{
 
     static  private TruckMapper mapper=null;
-    static  private String dbName;
     private Map<Long,Truck> trucks;
 
-    public static TruckMapper getMapper(String name){
+    public static TruckMapper getMapper( ){
         if(mapper==null){
-            mapper=new TruckMapper(name);
+            mapper=new TruckMapper();
         }
         return mapper;
     }
 
-    private TruckMapper(String name){
-        dbName=name;
+    private TruckMapper( ){
+        super();
         trucks=new HashMap<>();
     }
 

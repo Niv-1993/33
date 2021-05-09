@@ -11,18 +11,17 @@ public class DriverMapper extends Mapper{
 
     static  private DriverMapper mapper=null;
     private Map <Integer, Driver> drivers;
-    static  private String dbName;
 
-    public static DriverMapper getMapper(String name){
+    public static DriverMapper getMapper(){
         if(mapper==null){
-            mapper=new DriverMapper(name);
+            mapper=new DriverMapper();
         }
         return mapper;
     }
 
-    private DriverMapper(String name){
+    private DriverMapper(){
+        super();
         drivers=new HashMap<>();
-        dbName=name;
     }
 
     public HashMap<Integer, Driver>  selectAll() throws Exception {
@@ -56,7 +55,7 @@ public class DriverMapper extends Mapper{
 
     }
 
-    public Driver select(long id) throws  Exception {
+    public Driver select(int id) throws  Exception {
 
         String sql = "SELECT * FROM Drivers WHERE EID="+ id ;
         try (Connection conn = connect();

@@ -24,7 +24,7 @@ public class ServiceFaced {
         transportationService = new TransportationService();
         itemService = new ItemService();
         dataControl=new DataControl();
-        drivers = new DriverRoleController(dataControl);
+        drivers = new DriverRoleController();
     }
 
     /**
@@ -32,7 +32,7 @@ public class ServiceFaced {
      * @param id: the identifier of the object.
      * @return : the object.
      */
-    public ResponseData<DriverServiceDTO> getDriver(long id){
+    public ResponseData<DriverServiceDTO> getDriver(int id){
         try {
             Driver driver = drivers.getDriver(id);
             return (driver == null)? new ResponseData<>("No driver is available..."):new ResponseData<>(toDriverServiceDTO(drivers.getDriver(id)));

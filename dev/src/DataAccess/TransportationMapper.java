@@ -12,18 +12,16 @@ import java.util.*;
 public class TransportationMapper extends Mapper{
 
     static  private TransportationMapper mapper=null;
-    static  private String dbName;
     private HashMap<Long,Transportation> transportations;
 
-    public static TransportationMapper getMapper(String name){
+    public static TransportationMapper getMapper( ){
         if(mapper==null){
-            mapper=new TransportationMapper(name);
+            mapper=new TransportationMapper();
         }
         return mapper;
     }
 
-    private TransportationMapper(String name){
-        dbName=name;
+    private TransportationMapper( ){
         transportations=new HashMap<>();
     }
 

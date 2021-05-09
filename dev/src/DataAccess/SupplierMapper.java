@@ -14,18 +14,16 @@ import java.util.List;
 public class SupplierMapper extends Mapper {
 
     static  private SupplierMapper mapper=null;
-    static  private String dbName;
     private HashMap<Integer, Supplier> suppliers;
 
-    public static SupplierMapper getMapper(String name){
+    public static SupplierMapper getMapper( ){
         if(mapper==null){
-            mapper=new SupplierMapper(name);
+            mapper=new SupplierMapper();
         }
         return mapper;
     }
 
-    private SupplierMapper(String name){
-        dbName=name;
+    private SupplierMapper( ){
         suppliers=new HashMap<>();
     }
 

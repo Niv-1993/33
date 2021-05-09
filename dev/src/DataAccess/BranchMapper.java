@@ -17,7 +17,7 @@ public class BranchMapper extends Mapper{
     private HashMap<Integer, Branch> branches;
 
 
-    public static BranchMapper getMapper(String dbName) {
+    public static BranchMapper getMapper() {
         if (mapper == null) {
             mapper = new BranchMapper(dbName);
         }
@@ -25,8 +25,8 @@ public class BranchMapper extends Mapper{
     }
 
     private BranchMapper(String name) {
+        super();
         branches = new HashMap<>();
-        dbName=name;
     }
 
     /**

@@ -11,14 +11,13 @@ public class ItemMapper extends Mapper{
     private HashMap<Long,Item> items;
     static  private String dbName;
 
-    public static ItemMapper getMapper(String dbName){
+    public static ItemMapper getMapper(){
         if(mapper==null){
-            mapper=new ItemMapper(dbName);
+            mapper=new ItemMapper();
         }
         return mapper;
     }
-    private ItemMapper(String Name){
-        dbName=Name;
+    private ItemMapper(){
         items=new HashMap<>();
     }
 
