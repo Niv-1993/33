@@ -1,14 +1,17 @@
 package DAL.DalStock;
 
 import BusinessLayer.StockBusiness.instance.Location;
+import BusinessLayer.StockBusiness.instance.Shelf;
 import DAL.DALObject;
 import DAL.DalController;
 import Utility.Tuple;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DALShelf extends DALObject {
+    final static Logger log=Logger.getLogger(DALShelf.class);
     private int _shelfID;
     private int _cur;
     private int _typeID=0;
@@ -79,7 +82,12 @@ public class DALShelf extends DALObject {
         String query= """
                 UPDATE Shelf \s
                 SET typeID=? WHERE storeID=? AND shelfID=?;""";
-        List<Tuple<Object,Class>> params=prepareList(typeID,storeId,_shelfID);
+        //List<Tuple<Object,Class>> params=prepareList(typeID==0?null:typeID,storeId,_shelfID);
+        List<Tuple<Object,Class>> params=new ArrayList<>();
+        params.add(new Tuple<>(typeID==0?null:typeID,Integer.class));
+        params.add(new Tuple<>(storeId,Integer.class));
+        params.add(new Tuple<>(_shelfID,Integer.class));
+        log.warn("query: "+query+" params: "+params);
         try {
             DC.noSelect(query,params);
         }

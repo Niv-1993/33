@@ -549,7 +549,8 @@ public class StoreController implements iStoreController {
             log.warn(e);
             _products.get(tmp).addProduct(p);
         }
-        _shelves.get(p.getShelf()).removeProduct();
+        log.warn("p is: "+p.getType()+" shelf is: "+p.getShelf()+" shelves: "+_shelves);
+        _shelves.get(p.getShelf()-1).removeProduct();
     }
 
     @Override
@@ -571,7 +572,13 @@ public class StoreController implements iStoreController {
     public void relocateProduct(int ID, boolean toStorage, int targetShelf) {
         log.debug(String.format("got inside relocateProduct(int ID, boolean toStorage, int targetShelf) Method with: %d,%s,%d",ID,toStorage,targetShelf));
         String s;
-        Shelf shelf=_shelves.get(targetShelf);
+        Shelf shelf=null;
+        try {
+            shelf = _shelves.get(targetShelf - 1);
+        }
+        catch (Exception e){
+            log.warn("shelf doesnt exist");
+        }
         if (shelf==null)
         {
             s=String.format("the targetShelf is illegal");
@@ -579,6 +586,7 @@ public class StoreController implements iStoreController {
             throw  new IllegalArgumentException(s);
         }
         Product p=getProductInfo(ID);
+        log.warn(p.toString());
         if ((toStorage & targetShelf<=dal.get_storeShelves()) ||(!toStorage & targetShelf>dal.get_storeShelves())){
             s=String.format("the target does not in storage/store");
             log.warn(s);
@@ -587,9 +595,12 @@ public class StoreController implements iStoreController {
         if (shelf.get_typeID()==0){
             shelf.set_typeID(ID/MAX_PRODUCTS_ON_PROTUCTTYPE);
         }
+        log.warn("adding product "+p.get_id()+" to shelf "+shelf.get_shelfID());
         shelf.addProduct();
-        _shelves.get(p.getShelf()-1).removeProduct();
-        checkIDProductTypeExist(ID/MAX_PRODUCTS_ON_PROTUCTTYPE).relocateProduct(toStorage);
+        log.warn("removing product "+p.get_id()+" from shelf "+_shelves.get(p.getShelf()-1).get_shelfID());
+        Shelf sh=_shelves.get(p.getShelf()-1);
+        sh.removeProduct();
+        checkIDProductTypeExist(ID/MAX_PRODUCTS_ON_PROTUCTTYPE).relocateProduct(toStorage,sh.get_location());
         p.set_location(new Tuple<>(targetShelf,toStorage?Location.Storage:Location.Shelves));
     }
 

@@ -91,11 +91,7 @@ public class Shelf {
     public void set_typeID(int typeID) {
         log.debug(String.format("set_typeID(int typeID)",typeID));
         checkTypeID();
-        if (typeID<1){
-            String s=String.format("the value of ProductType "+typeID+" is illegal (<1)");
-            log.warn(s);
-            throw new IllegalArgumentException(s);
-        }
+        log.warn("set type of "+get_shelfID()+" to "+typeID);
         dal.setType(typeID);
     }
 
@@ -125,6 +121,7 @@ public class Shelf {
 
     public void removeProduct() {
         log.debug("removeProduct()");
+        log.warn("removing "+get_typeID()+" from shelf "+get_shelfID()+" with curr "+get_cur());
         checkTypeID();
         if (get_cur()==0)
         {
@@ -133,9 +130,10 @@ public class Shelf {
             throw new IllegalArgumentException(s);
         }
         set_cur(get_cur()-1);
-
+        log.warn(get_cur());
         if (get_cur()==0)
             set_typeID(0);
+        log.warn(get_typeID());
     }
     private void checkTypeID(){
         if (get_typeID()<0)

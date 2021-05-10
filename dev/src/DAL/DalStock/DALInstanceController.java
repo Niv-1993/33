@@ -1,15 +1,18 @@
 package DAL.DalStock;
 
+import BusinessLayer.StockBusiness.instance.InstanceController;
 import DAL.DALObject;
 import DAL.DalController;
 import DAL.Mapper;
 import Utility.Tuple;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DALInstanceController extends DALObject {
+    final static Logger log=Logger.getLogger(DALInstanceController.class);
     private int _storeID;
     private int _typeID;
     private int _counter=0;
@@ -95,7 +98,9 @@ public class DALInstanceController extends DALObject {
         key.add(i);
         DALProduct pt=(DALProduct) Mapper.getMap().getItem(DALProduct.class,key);
         pt.removeProduct();
-        _products.remove(i);
+        log.warn("done remove from DB, list is: "+_products+" i is:"+i);
+        _products.remove(_products.indexOf(i));
+        log.warn(_products);
     }
     public void addProduct(int i){
         List<Integer> key=new ArrayList<>();
