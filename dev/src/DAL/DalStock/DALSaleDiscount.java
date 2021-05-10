@@ -7,14 +7,14 @@ import java.util.Date;
 import java.util.List;
 
 public class DALSaleDiscount extends DALDiscount{
-    int categoryID;
+    private int categoryID;
 
     public DALSaleDiscount(){
         super(null);
     }
 
-    public DALSaleDiscount(Integer storeID, Integer id, Integer typeID, Integer categoryID,
-                           float percent, Date startDate, Date endDate, DalController dc){
+    public DALSaleDiscount(Integer storeID, Integer id, Integer typeID, Integer categoryID,Integer supplier,
+                           Double percent, String startDate, String endDate, DalController dc){
         super(dc,storeID,id,typeID,percent,startDate,endDate);
         this.categoryID=categoryID;
     }// get supplier id from controller
@@ -26,11 +26,11 @@ public class DALSaleDiscount extends DALDiscount{
 
     public void removeCategory(int i) {
         String query= """
-                UPDATE ? \s
+                UPDATE Discount \s
                 SET categoryID=0
                 WHERE storeID=? AND discountID=? AND categoryID=?;
                 """;
-        List<Tuple<Object,Class>> params=prepareList(tableName,storeID,_discountID,categoryID);
+        List<Tuple<Object,Class>> params=prepareList(storeID,_discountID,categoryID);
         try {
             DC.noSelect(query,params);
         }
@@ -42,11 +42,11 @@ public class DALSaleDiscount extends DALDiscount{
 
     public void addCategory(int i) {
         String query= """
-                UPDATE ? \s
+                UPDATE Discount \s
                 SET categoryID=?
                 WHERE storeID=? AND discountID=?;
                 """;
-        List<Tuple<Object,Class>> params=prepareList(tableName,i,storeID,_discountID);
+        List<Tuple<Object,Class>> params=prepareList(i,storeID,_discountID);
         try {
             DC.noSelect(query,params);
         }

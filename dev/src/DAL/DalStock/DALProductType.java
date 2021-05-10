@@ -283,7 +283,7 @@ public class DALProductType extends DALObject {
         key.add(i);
         DALProduct p=(DALProduct) Mapper.getMap().getItem(DALProduct.class,key);
         p.removeProduct();
-        _products.remove(i);
+        _products.remove(_products.indexOf(i));
     }
     public void set_shelfCurr(int i){
         String query= """

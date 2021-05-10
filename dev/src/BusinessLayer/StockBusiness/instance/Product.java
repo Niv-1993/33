@@ -8,6 +8,8 @@ import Utility.Tuple;
 import Utility.Util;
 import org.apache.log4j.Logger;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,13 +24,16 @@ public class Product {
         //dal= Util.initDal(DALProduct.class,storeId,id,typeID,expiration.toString(),0,shelf.item1,(shelf.item2==Location.Shelves)?0:1);
         //_location=shelf.item2;
         try {
-            log.warn("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
+            String pattern="dd-MM-yyyy";
+            DateFormat df=new SimpleDateFormat(pattern);
+            String tosend=df.format(expiration);
             Class c = DALProduct.class;
             List<Tuple<Object, Class>> list = new ArrayList<>();
             list.add(new Tuple<>(storeId, Integer.class));
             list.add(new Tuple<>(typeID, Integer.class));
             list.add(new Tuple<>(id, Integer.class));
-            list.add(new Tuple<>(expiration.toString(), String.class));
+            list.add(new Tuple<>(tosend, String.class));
             list.add(new Tuple<>(0, Integer.class));
             list.add(new Tuple<>(shelf.item1, Integer.class));
             list.add(new Tuple<>((shelf.item2 == Location.Shelves) ? 0 : 1, Integer.class));
@@ -58,6 +63,10 @@ public class Product {
             }
             dal = (DALProduct) check;
         }catch (Exception e){log.warn(e);}
+    }
+
+    public int getType(){
+        return dal.getTypeID();
     }
 
     public Product(int storeID, Integer i) {
@@ -113,7 +122,7 @@ public class Product {
             dal.setLocation(location.item1,location.item2.toString());
         }
         catch (Exception e){
-            String s="can not change the value of damage";
+            String s="can not change the value of location";
             log.warn(s);
             throw new IllegalArgumentException(s);
         }

@@ -357,19 +357,20 @@ public class ProductType {
 
     }
 
-    public void relocateProduct(boolean toStorage) {
+    public void relocateProduct(boolean toStorage,Location loc) {
         log.debug("relocateProduct()");
-        if ((toStorage && dal.get_shelfCurr()<=0) ||(!toStorage && dal.get_storageCurr()<=0))
+        log.warn("relocate in type with: toStorage="+toStorage+" shelf_curr="+dal.get_shelfCurr()+" storage_curr="+dal.get_storageCurr());
+        if ((loc==Location.Shelves && dal.get_shelfCurr()<=0) ||(loc==Location.Storage && dal.get_storageCurr()<=0))
         {
             String s="no have product in this place.";
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
         try {
-            if (toStorage) {
+            if (toStorage && loc==Location.Shelves) {
                 dal.set_storageCurr(dal.get_storageCurr() + 1);
                 dal.set_shelfCurr(dal.get_shelfCurr() - 1);
-            } else {
+            } else if(!toStorage && loc==Location.Storage) {
                 dal.set_storageCurr(dal.get_storageCurr() - 1);
                 dal.set_shelfCurr(dal.get_shelfCurr() + 1);
             }

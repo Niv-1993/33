@@ -181,8 +181,7 @@ public class DALStoreController extends DALObject {
         String query= """
                 SELECT discountID \s
                 FROM Discount \s
-                WHERE storeID=? AND categoryID>0 ;\s
-                """;
+                WHERE storeID=? AND categoryID>0 ;""";
         List<Integer> list= new ArrayList<>();
         list.add(_storeID);
         try {

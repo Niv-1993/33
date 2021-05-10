@@ -3,6 +3,7 @@ package DAL.DalStock;
 import DAL.DALObject;
 import DAL.DalController;
 import Utility.Tuple;
+import org.apache.log4j.Logger;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 public class DALProduct extends DALObject {
+    final static Logger log=Logger.getLogger(DALProduct.class);
     private int _id;
     private String _expiration;
     private int _isDamage;
@@ -116,9 +118,8 @@ public class DALProduct extends DALObject {
     }
     public void removeProduct(){
         String query= """
-                DELETE Product\s
-                WHERE storeID=? AND productID=?;
-                """;
+                DELETE FROM Product\s
+                WHERE storeID=? AND productID=?;""";
         List<Tuple<Object,Class>> params=prepareList(storeID,_id);
         try {
             DC.noSelect(query,params);
@@ -173,21 +174,22 @@ public class DALProduct extends DALObject {
     public void setLocation(int num,String s){
         String query= """
                 UPDATE Product\s
-                SET shelfNum=?
+                SET shelfNum=?, location=?
                 WHERE\s
                 storeID=?
                 AND productID=?;""";
-        List<Tuple<Object,Class>> params=prepareList(num,storeID,_id);
-        if (!_location.item2.equals(s))
-        {
-            query+="""
-                UPDATE Product\s
-                SET location=?
-                WHERE\s
-                storeID=?
-                AND productID=?\s;""";
-            params.addAll(prepareList(s,storeID,_id));
-        }
+        List<Tuple<Object,Class>> params=prepareList(num,s.equals("Storage")?1:0,storeID,_id);
+        log.warn("done change product shelf num");
+//        if (!_location.item2.equals(s))
+//        {
+//            query+="""
+//                UPDATE Product\s
+//                SET location=?
+//                WHERE\s
+//                storeID=?
+//                AND productID=?;""";
+//            params.addAll(prepareList(s,storeID,_id));
+//        }
         try {
             DC.noSelect(query,params);
         }

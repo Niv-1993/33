@@ -14,8 +14,8 @@ public class DALSupplierDiscount extends DALDiscount{
     }
 
 
-    public DALSupplierDiscount(Integer storeID, Integer id, Integer typeID, Integer supplierID,
-                               float percent, Date startDate, Date endDate, DalController dc){
+    public DALSupplierDiscount(Integer storeID, Integer id, Integer typeID, Integer category, Integer supplierID,
+                               Double percent, String startDate, String endDate, DalController dc){
         super(dc,storeID,id,typeID,percent,startDate,endDate);
         _supplierID=supplierID;
     } // get supplier id from controller
@@ -31,11 +31,10 @@ public class DALSupplierDiscount extends DALDiscount{
     }
     public void setSupplier(int sup){
         String query= """
-                UPDATE ? \s
+                UPDATE Discount \s
                 SET supplierID=?
-                WHERE storeID=? AND discountID=? ;
-                """;
-        List<Tuple<Object,Class>> params=prepareList(tableName,sup,storeID,_discountID);
+                WHERE storeID=? AND discountID=?;""";
+        List<Tuple<Object,Class>> params=prepareList(sup,storeID,_discountID);
         try {
             DC.noSelect(query,params);
         }

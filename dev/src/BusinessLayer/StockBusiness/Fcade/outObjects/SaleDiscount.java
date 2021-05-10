@@ -13,16 +13,16 @@ public class SaleDiscount {
         return end;
     }
 
-    public float getPrecent() {
+    public double getPrecent() {
         return precent;
     }
 
     Date start;
     Date end;
-    float precent;
+    double precent;
 
 
-    public SaleDiscount(int dicountID, Date start, Date end, float precent) {
+    public SaleDiscount(int dicountID, Date start, Date end, double precent) {
         this.dicountID = dicountID;
         this.start = start;
         this.end = end;
