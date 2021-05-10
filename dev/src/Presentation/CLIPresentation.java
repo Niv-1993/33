@@ -53,7 +53,7 @@ public class CLIPresentation {
             }
         }
     }
-    //TODO : get also all info of branch
+
     private void createBranch() {
         String code, name,street,city,area,CN;
         int ID, AC, BB, BID, salary, fund, DO, SD,number,enter,phone;
@@ -85,6 +85,7 @@ public class CLIPresentation {
             if (DO == -1) return;
             SD = getSickDays();
             if (SD == -1) return;
+            System.out.println("Please enter Branch info:\n");
             System.out.print("street: ");
             street = read();
             if(street.equals("1")) return;
@@ -107,7 +108,7 @@ public class CLIPresentation {
             phone = enterInt(read());
             if(phone == -1 )return;
             System.out.println();
-            r.getRc().createBranch(code,ID, name, new int[]{AC, BB, BID}, salary, new int[]{fund, DO, SD},street,city,number,enter,area,CN,phone);
+            r.getRc().createBranch(ID, name, new int[]{AC, BB, BID}, salary, new int[]{fund, DO, SD},street,city,number,enter,area,CN,phone);
             break;
         }
     }

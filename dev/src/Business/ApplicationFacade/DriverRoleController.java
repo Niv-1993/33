@@ -22,10 +22,9 @@ public class DriverRoleController implements iDriverRoleController {
         dm=DriverMapper.getMapper();
     }
 
-    public void addNewDriver(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms, int license) {
-        mc.addEmployee(newEID,name,bankDetails,salary,role,startWorkDate,terms);
-        mc.setLicense(newEID,license);
-        dm.insert(newEID,license);
+    public void addNewDriver(int newEID, String name, int[] bankDetails, int salary, LocalDate startWorkDate, int[] terms, int license) {
+        Business.Employees.EmployeePKG.Driver driver = mc.addDriver(newEID,name,bankDetails,salary,startWorkDate,terms,license);
+        dm.insert(driver);
     }
 
     public boolean checkAvailableStoreKeeperAndShifts(int BID, LocalDate date, LocalTime leavingTime) {

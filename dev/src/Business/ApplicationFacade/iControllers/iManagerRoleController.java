@@ -40,8 +40,8 @@ public interface iManagerRoleController {
      *                      terms[2] -> sick days
      * @return A response object. The response should contain a error message in case of an error
      */
-     void addEmployee(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms);
-
+     Business.Employees.EmployeePKG.Employee addEmployee(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms);
+    Business.Employees.EmployeePKG.Driver addDriver(int newEID, String name, int[] bankDetails, int salary, LocalDate startWorkDate, int[] terms, int license);
     /**
      * fire an employee with fireID
      * Note : Only the personnel manager is allowed to use this functionality

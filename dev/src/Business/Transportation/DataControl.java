@@ -48,9 +48,9 @@ public class DataControl {
         return transportationMapper.getTransportations(truckMapper,itemMapper,supplierMapper,branchMapper);
     }
 
-    public Driver getDriver(int id) throws Exception{
-        return driverMapper.select(id);
-    }
+//    public Driver getDriver(int id) throws Exception{
+//       // return driverMapper.select(id);
+//    }
     public Branch getBranch(int id) throws Exception {
         return branchMapper.getBranch(id);
     }

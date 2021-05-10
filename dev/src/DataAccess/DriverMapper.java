@@ -1,16 +1,19 @@
 package DataAccess;
 
+import Business.Employees.EmployeePKG.Employee;
 import Business.Transportation.Driver;
+import Business.Type.RoleType;
 
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DriverMapper extends Mapper{
 
     static  private DriverMapper mapper=null;
-    private Map <Integer, Driver> drivers;
+    private Map <Integer, Business.Employees.EmployeePKG.Driver> drivers;
 
     public static DriverMapper getMapper(){
         if(mapper==null){
@@ -38,37 +41,40 @@ public class DriverMapper extends Mapper{
         }
         return ret;
     }
-
-    public void insert(int eid, int license){
-
+    public void insert(Business.Employees.EmployeePKG.Driver driver){
         String query = "INSERT INTO Drivers (EID,License) VALUES(?,?)";
-        try (Connection conn = this.connect();
+        int res = 0;
+        try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1,eid );
-            pstmt.setInt(2,license );
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            pstmt.setInt(1,driver.getEID());
+            pstmt.setInt(2,driver.getLicense());
+            res = pstmt.executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
+        if(res >0)
+            drivers.put(driver.getEID(),driver);
     }
-
-    public Driver select(int id) throws  Exception {
-
-        String sql = "SELECT * FROM Drivers WHERE EID="+ id ;
+    public Business.Employees.EmployeePKG.Driver select(int id) throws  Exception {
+        if(drivers.containsKey(id))
+            return drivers.get(id);
+        String sql = String.format("SELECT * FROM Employees as E JOIN Drivers as D ON E.EID = D.EID  WHERE E.EID= %d",id);
+        Business.Employees.EmployeePKG.Driver driver = null;
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
-            while (rs.next()) {
-                return new Driver(rs.getInt("EID"),rs.getInt("License"));
-
+            if (rs.next()) {
+                int[] bankDetails = {rs.getInt("AccountNumber"), rs.getInt("BankID"), rs.getInt("BranchNumber")};
+                int[] terms = {rs.getInt("EducationFund"), rs.getInt("DaysOff"), rs.getInt("SickDays")};
+                driver = new Business.Employees.EmployeePKG.Driver(rs.getInt(0), rs.getString("Name"), bankDetails, rs.getInt("Salary"),
+                        RoleType.Driver, LocalDate.parse(rs.getString("StartWorkingDate")), terms,rs.getInt("License"));
+                drivers.put(driver.getEID(),driver);
+                EmployeeMapper.getInstance().getEmployees().put(driver.getEID(),driver);
             }
         } catch (SQLException e) {
             throw new IOException("failed to get all branches from database");
         }
-        return null;
+        return driver;
     }
 
 }

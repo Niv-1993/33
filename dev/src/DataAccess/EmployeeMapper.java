@@ -82,7 +82,7 @@ public class EmployeeMapper extends Mapper {
     }
 
 
-    public boolean insert(int EID, Employee emp) {
+    public boolean insert(Employee emp,boolean driver) {
         boolean res = false;
         String query1 = String.format("INSERT INTO %s VALUES(?,?,?,?,?,?,?,?,?,?,?,?);", tableName);
         String query2 = "INSERT INTO RolesAndEmployees VALUES(?,?)";
@@ -100,7 +100,7 @@ public class EmployeeMapper extends Mapper {
             pre.setInt(9, emp.getTermsOfEmployment().getDaysOff());
             pre.setInt(10, emp.getTermsOfEmployment().getSickDays());
             pre.setInt(11, 1);
-            pre.setInt(12, getCurrBranchID());
+            pre.setInt(12, driver? -1 :getCurrBranchID());
             pre2.setInt(1, emp.getEID());
             pre2.setString(2, emp.getRole().get(0).name());
             res = pre.executeUpdate() > 0;
@@ -109,7 +109,7 @@ public class EmployeeMapper extends Mapper {
             System.out.println("[insert-emp] ->" + e.getMessage());
         } finally {
             if (res)
-                employees.put(EID, emp);
+                employees.put(emp.getEID(), emp);
         }
         return res;
     }
@@ -130,33 +130,6 @@ public class EmployeeMapper extends Mapper {
         return branches;
     }
 
-    //TODO: ask what to do with all the branches properties in database
-    public void insertNewBranch(int newEID, Employee m,String street,String city,int number,int enter, String area,String cn,int phone) {
-        String getNextBID = "SELECT max(BID)+1 AS mx FROM Branches";
-        String addBranch = "INSERT INTO Branches VALUES(?,?,?,?,?,?,?,?)";
-        int bid = 0;
-        try (Connection con = connect();
-             PreparedStatement nextID = con.prepareStatement(getNextBID);
-             PreparedStatement pre = con.prepareStatement(addBranch)) {
-            ResultSet res = nextID.executeQuery();
-            bid = res.getInt("mx");
-            if (bid == 0) bid++;
-            pre.setInt(1, bid);
-            pre.setString(2,street);
-            pre.setString(3,city);
-            pre.setInt(4,number);
-            pre.setInt(5,enter);
-            pre.setString(6,area);
-            pre.setString(7,cn);
-            pre.setInt(8,phone);
-            pre.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("[insertNewBranch-emp] ->" + e.getMessage());
-        } finally {
-            setCurrBranchID(bid);
-            insert(newEID, m);
-        }
-    }
 
 
     public Employee delete(int fireEID) {
@@ -243,40 +216,40 @@ public class EmployeeMapper extends Mapper {
         needToUpdateEmps = true;
     }
 
-    //Driver is in BID -1;
-    public boolean insertDriver(int EID, Employee emp) {
-        boolean res = false;
-        String query1 = String.format("INSERT INTO %s VALUES(?,?,?,?,?,?,?,?,?,?,?,-1);", tableName);
-        String query2 = "INSERT INTO RolesAndEmployees VALUES(?,?)";
-        //String query3 = String.format("INSERT INTO Drivers VALUES(%d,%s)",EID,emp.getLicense());
-        try (Connection con = connect();
-             PreparedStatement pre = con.prepareStatement(query1);
-             PreparedStatement pre2 = con.prepareStatement(query2);
-             //PreparedStatement pre3 = con.prepareStatement(query3)
-             ) {
-            pre.setInt(1, emp.getEID());
-            pre.setString(2, emp.getName());
-            pre.setString(3, emp.getStartWorkingDate().toString());
-            pre.setInt(4, emp.getSalary());
-            pre.setInt(5, emp.getBankAccount().getBankID());
-            pre.setInt(6, emp.getBankAccount().getBankBranch());
-            pre.setInt(7, emp.getBankAccount().getAccountNum());
-            pre.setInt(8, emp.getTermsOfEmployment().getEducationFun());
-            pre.setInt(9, emp.getTermsOfEmployment().getDaysOff());
-            pre.setInt(10, emp.getTermsOfEmployment().getSickDays());
-            pre.setInt(11, 1);
-            pre2.setInt(1, emp.getEID());
-            pre2.setString(2, emp.getRole().get(0).name());
-            res = pre.executeUpdate() > 0;
-            res = res && pre2.executeUpdate() > 0;
-            //res = res && pre3.executeUpdate() > 0;
-        } catch (Exception e) {
-            System.out.println("[insertDriver-emp] ->" + e.getMessage());
-        } finally {
-            if (res)
-                employees.put(EID, emp);
-        }
-        return res;
-    }
+//    //Driver is in BID -1;
+//    public boolean insertDriver(int EID, Employee emp) {
+//        boolean res = false;
+//        String query1 = String.format("INSERT INTO %s VALUES(?,?,?,?,?,?,?,?,?,?,?,-1);", tableName);
+//        String query2 = "INSERT INTO RolesAndEmployees VALUES(?,?)";
+//        //String query3 = String.format("INSERT INTO Drivers VALUES(%d,%s)",EID,emp.getLicense());
+//        try (Connection con = connect();
+//             PreparedStatement pre = con.prepareStatement(query1);
+//             PreparedStatement pre2 = con.prepareStatement(query2);
+//             //PreparedStatement pre3 = con.prepareStatement(query3)
+//             ) {
+//            pre.setInt(1, emp.getEID());
+//            pre.setString(2, emp.getName());
+//            pre.setString(3, emp.getStartWorkingDate().toString());
+//            pre.setInt(4, emp.getSalary());
+//            pre.setInt(5, emp.getBankAccount().getBankID());
+//            pre.setInt(6, emp.getBankAccount().getBankBranch());
+//            pre.setInt(7, emp.getBankAccount().getAccountNum());
+//            pre.setInt(8, emp.getTermsOfEmployment().getEducationFun());
+//            pre.setInt(9, emp.getTermsOfEmployment().getDaysOff());
+//            pre.setInt(10, emp.getTermsOfEmployment().getSickDays());
+//            pre.setInt(11, 1);
+//            pre2.setInt(1, emp.getEID());
+//            pre2.setString(2, emp.getRole().get(0).name());
+//            res = pre.executeUpdate() > 0;
+//            res = res && pre2.executeUpdate() > 0;
+//            //res = res && pre3.executeUpdate() > 0;
+//        } catch (Exception e) {
+//            System.out.println("[insertDriver-emp] ->" + e.getMessage());
+//        } finally {
+//            if (res)
+//                employees.put(EID, emp);
+//        }
+//        return res;
+//    }
 
 }

@@ -1,5 +1,6 @@
 package DataAccess;
 
+import Business.Employees.EmployeePKG.Employee;
 import Business.Transportation.Address;
 import Business.Transportation.Branch;
 import Business.Transportation.ShippingArea;
@@ -103,5 +104,29 @@ public class BranchMapper extends Mapper{
             }
             throw new IllegalArgumentException("branch with id: " + id +"does not exist");
         }
+    }
+    public int insertNewBranch(String street, String city, int number, int enter, String area, String cn, int phone) {
+        String getNextBID = "SELECT max(BID)+1 AS mx FROM Branches";
+        String addBranch = "INSERT INTO Branches VALUES(?,?,?,?,?,?,?,?)";
+        int bid = 0;
+        try (Connection con = connect();
+             PreparedStatement nextID = con.prepareStatement(getNextBID);
+             PreparedStatement pre = con.prepareStatement(addBranch)) {
+            ResultSet res = nextID.executeQuery();
+            bid = res.getInt("mx");
+            if (bid == 0) bid++;
+            pre.setInt(1, bid);
+            pre.setString(2,street);
+            pre.setString(3,city);
+            pre.setInt(4,number);
+            pre.setInt(5,enter);
+            pre.setString(6,area);
+            pre.setString(7,cn);
+            pre.setInt(8,phone);
+            pre.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("[insertNewBranch-branchMapper] ->" + e.getMessage());
+        }
+        return bid;
     }
 }

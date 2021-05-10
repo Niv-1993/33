@@ -47,24 +47,28 @@ public class ManagerRoleController implements iManagerRoleController {
      *                      terms[2] -> sick days
      * @return A response object. The response should contain a error message in case of an error
      */
-    public void addEmployee(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms) {
+    public Business.Employees.EmployeePKG.Employee addEmployee(int newEID, String name, int[] bankDetails, int salary, String role, LocalDate startWorkDate, int[] terms) {
         log.debug("enter add employee function");
-        Business.Employees.EmployeePKG.Employee emp;
-        if (!role.equals("Driver")) {
-            emp = new Business.Employees.EmployeePKG.Employee(newEID, name, bankDetails, salary, RoleType.valueOf(role), startWorkDate, terms);
-            //Employee employee = new Employee(emp); //TODO why we need it?
-            employeeMapper.insert(emp.getEID(), emp);
-        }else{
-            emp = new Driver(newEID,name,bankDetails,salary,RoleType.Driver,startWorkDate,terms,-23);
-            //TODO maybe like line 54
-            employeeMapper.insertDriver(newEID,emp);
-        }
+        Business.Employees.EmployeePKG.Employee emp = new Business.Employees.EmployeePKG.Employee(newEID, name, bankDetails, salary, RoleType.valueOf(role), startWorkDate, terms);
+        if(role.equals("Driver"))
+            return emp;
+        employeeMapper.insert(emp, false);
         utils.generate_optionals();
-        sc.addToOptionals(emp, RoleType.valueOf(role));
+        sc.addToOptionals(emp,RoleType.valueOf(role));
         utils.setNeedToUpdateOps(true);
         log.debug("successfully added new employee EID: " + newEID + " to system");
-     //   return new ResponseData<>(employee);
+        return emp;
     }
+
+    public Driver addDriver(int newEID, String name, int[] bankDetails, int salary, LocalDate startWorkDate, int[] terms, int license) {
+        Driver driver = new Driver(addEmployee(newEID,name,bankDetails,salary,"Driver",startWorkDate,terms),license);
+        employeeMapper.insert(driver,true);
+        utils.generate_optionals();
+        sc.addToOptionals(driver,RoleType.Driver);
+        utils.setNeedToUpdateOps(true);
+        return driver;
+    }
+
 
     /**
      * fire an employee with fireID

@@ -11,6 +11,11 @@ public class Driver extends Employee{
         this.license = license;
     }
 
+    public Driver(Employee emp, int license) {
+        super(emp);
+        this.license = license;
+    }
+
     public int getLicense() {
         return license;
     }

@@ -116,7 +116,7 @@ public interface iRegularRoleController {
     ResponseData<List<String>> getBranches();
 
 
-    void createBranch(String code, int id, String name, int[] ints, int salary, int[] ints1, String street, String city, int number, int enter, String area, String cn, int phone);
+    void createBranch(int id, String name, int[] ints, int salary, int[] ints1, String street, String city, int number, int enter, String area, String cn, int phone);
 
     /**
      * gets all role types

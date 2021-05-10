@@ -42,7 +42,7 @@ public class Employee {
 
 
     //copy constructor
-    public Employee(Employee other) throws Exception {
+    public Employee(Employee other){
         this.EID = other.getEID();
         this.name = other.getName();
         this.bankAccount = new BankAccount(other.bankAccount);

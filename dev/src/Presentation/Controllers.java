@@ -136,7 +136,7 @@ public class Controllers {
     private void initializeEmpsModule(){
         int[] bankDetails = {123, 456, 789};
         int[] terms = {1000, 5, 10};
-        rc.createBranch("00000", 1, "PersonnelManager", bankDetails, 150000, terms,"sivan","Tel Aviv",12,2,"Center","rom",507350111);
+        rc.createBranch(1, "PersonnelManager", bankDetails, 150000, terms,"sivan","Tel Aviv",12,2,"Center","rom",507350111);
         rc.EnterBranch(1);
         rc.Login(1);
         mc.addEmployee(2, "StoreKeeperA", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);

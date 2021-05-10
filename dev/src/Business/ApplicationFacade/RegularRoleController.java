@@ -7,6 +7,7 @@ import Business.ApplicationFacade.outObjects.Shift;
 import Business.Employees.ShiftPKG.ShiftController;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
+import DataAccess.BranchMapper;
 import DataAccess.EmployeeMapper;
 import DataAccess.ShiftMapper;
 import org.apache.log4j.Logger;
@@ -185,7 +186,6 @@ public class RegularRoleController implements iRegularRoleController {
     /**
      * In order to create a new branch in the system, one must enter the unique code and all the details of the PersonnelEmployee of that branch
      *
-     * @param code        for now code to create a branch = 00000;
      * @param newEID      identifier of the new PersonnelManager
      * @param name        his name
      * @param bankDetails bank details of the PersonnelEmployee
@@ -194,12 +194,13 @@ public class RegularRoleController implements iRegularRoleController {
      * @return A response object. The response should contain a error message in case of an error
      */
 
-    //TODO
-    public void createBranch(String code, int newEID, String name, int[] bankDetails, int salary, int[] terms, String street, String city, int number, int enter, String area, String cn, int phone) {
+    public void createBranch(int newEID, String name, int[] bankDetails, int salary, int[] terms, String street, String city, int number, int enter, String area, String cn, int phone) {
         log.debug("enter create branch function");
         log.debug("creating instance of the personnel manager in this new branch");
         Business.Employees.EmployeePKG.Employee m = new Business.Employees.EmployeePKG.Employee(newEID, name, bankDetails, salary, RoleType.PersonnelManager, LocalDate.now(), terms);
-        employeeMapper.insertNewBranch(newEID,m,street,city,number,enter,area,cn,phone); //TODO call the branch mapper not emplyoee mapper
+        int bid = BranchMapper.getMapper().insertNewBranch(street,city,number,enter,area,cn,phone);
+        employeeMapper.setCurrBranchID(bid);
+        employeeMapper.insert(m,false);
         log.debug("successfully created branch");
     }
 
