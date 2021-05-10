@@ -36040,3 +36040,64 @@ failed due to [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (F
 [WARN ] 10-05-2021 16:14:24 [class: BusinessLayer.StockBusiness.instance.Product,Line:60] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
 [WARN ] 10-05-2021 16:14:24 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
 [WARN ] 10-05-2021 16:14:24 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:87] - can not add the product
+[WARN ] 10-05-2021 18:07:06 [class: DAL.DalController,Line:118] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 18:07:06 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 18:07:06 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 18:07:06 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 18:08:46 [class: DAL.DalController,Line:118] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 18:08:46 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALCategory
+[WARN ] 10-05-2021 18:09:55 [class: DAL.DalController,Line:118] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 18:09:55 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProductType
+[WARN ] 10-05-2021 18:09:55 [class: DAL.DalController,Line:118] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 18:09:55 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALInstanceController
+[WARN ] 10-05-2021 18:10:14 [class: DAL.DalController,Line:118] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 18:10:14 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProductType
+[WARN ] 10-05-2021 18:10:14 [class: DAL.DalController,Line:118] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 18:10:14 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALInstanceController
+[WARN ] 10-05-2021 18:11:04 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 18:11:04 [class: BusinessLayer.StockBusiness.instance.Product,Line:25] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 18:11:04 [class: BusinessLayer.StockBusiness.instance.Product,Line:40] - starting 1st check DALProduct
+[WARN ] 10-05-2021 18:11:04 [class: BusinessLayer.StockBusiness.instance.Product,Line:42] - did 1st check DALProduct
+[WARN ] 10-05-2021 18:11:04 [class: BusinessLayer.StockBusiness.instance.Product,Line:44] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 18:11:04 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 18:11:04 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:110] - done adding product to biz in instanceController.
+[WARN ] 10-05-2021 18:11:04 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:112] - done adding product to hash in instanceController.
+[WARN ] 10-05-2021 18:11:04 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:341] - adding product to product type.
+[WARN ] 10-05-2021 18:11:04 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:344] - adding shelves to product type.
+[WARN ] 10-05-2021 18:11:04 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:350] - done adding shelves/storage to product type.
+[WARN ] 10-05-2021 18:11:04 [class: BusinessLayer.StockBusiness.StoreController,Line:523] - adding product in store controller.
+[WARN ] 10-05-2021 18:11:04 [class: BusinessLayer.StockBusiness.StoreController,Line:525] - done adding product in store controller.
+[WARN ] 10-05-2021 18:11:43 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 18:11:43 [class: BusinessLayer.StockBusiness.instance.Product,Line:25] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 18:11:43 [class: BusinessLayer.StockBusiness.instance.Product,Line:40] - starting 1st check DALProduct
+[WARN ] 10-05-2021 18:11:43 [class: BusinessLayer.StockBusiness.instance.Product,Line:42] - did 1st check DALProduct
+[WARN ] 10-05-2021 18:11:43 [class: BusinessLayer.StockBusiness.instance.Product,Line:44] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 18:11:43 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 18:11:43 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:110] - done adding product to biz in instanceController.
+[WARN ] 10-05-2021 18:11:43 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:112] - done adding product to hash in instanceController.
+[WARN ] 10-05-2021 18:11:43 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:341] - adding product to product type.
+[WARN ] 10-05-2021 18:11:43 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:344] - adding shelves to product type.
+[WARN ] 10-05-2021 18:11:43 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:350] - done adding shelves/storage to product type.
+[WARN ] 10-05-2021 18:11:43 [class: BusinessLayer.StockBusiness.StoreController,Line:523] - adding product in store controller.
+[WARN ] 10-05-2021 18:11:43 [class: BusinessLayer.StockBusiness.StoreController,Line:525] - done adding product in store controller.
+[WARN ] 10-05-2021 18:13:11 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 18:13:11 [class: BusinessLayer.StockBusiness.instance.Product,Line:25] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 18:13:11 [class: DAL.DalController,Line:70] - noSelect query: INSERT OR REPLACE INTO Product
+VALUES (?,?,?,?,?,?,?) params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=2, item2=class java.lang.Integer}, Tuple{item1=2000, item2=class java.lang.Integer}, Tuple{item1=Sat Jan 01 00:00:00 IST 2022, item2=class java.lang.String}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}]
+failed due to [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 10-05-2021 18:13:11 [class: DAL.Mapper,Line:160] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 10-05-2021 18:13:11 [class: BusinessLayer.StockBusiness.instance.Product,Line:40] - starting 1st check DALProduct
+[WARN ] 10-05-2021 18:13:11 [class: DAL.DalController,Line:118] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 18:13:11 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 18:13:11 [class: BusinessLayer.StockBusiness.instance.Product,Line:42] - did 1st check DALProduct
+[WARN ] 10-05-2021 18:13:11 [class: DAL.DalController,Line:70] - noSelect query: INSERT OR REPLACE INTO Product
+VALUES (?,?,?,?,?,?,?) params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=2, item2=class java.lang.Integer}, Tuple{item1=2000, item2=class java.lang.Integer}, Tuple{item1=Sat Jan 01 00:00:00 IST 2022, item2=class java.lang.String}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}]
+failed due to [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 10-05-2021 18:13:11 [class: DAL.Mapper,Line:160] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 10-05-2021 18:13:11 [class: BusinessLayer.StockBusiness.instance.Product,Line:49] - did insert DALProduct
+[WARN ] 10-05-2021 18:13:11 [class: DAL.DalController,Line:118] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 18:13:11 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 18:13:11 [class: BusinessLayer.StockBusiness.instance.Product,Line:53] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 18:13:11 [class: BusinessLayer.StockBusiness.instance.Product,Line:60] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 18:13:11 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 18:13:11 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:87] - can not add the product
