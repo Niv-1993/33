@@ -41,10 +41,10 @@ public class DALShelf extends DALObject {
                 "\tmaximum INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID,shelfID, location),\n" +
                 "\tUNIQUE (storeID,shelfID, location),\n" +
-                "\tFOREIGN KEY (typeID) REFERENCES ProductType(typeID)\n" +
-                "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
+                "\tFOREIGN KEY (storeID, typeID) REFERENCES ProductType(storeID, typeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
+//                "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
+//                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";
     }
 

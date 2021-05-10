@@ -32,13 +32,14 @@ public class DALInstanceController extends DALObject {
     @Override
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS InstanceController  (\n" +
-                "\tstoreID INTEGER NOT NULL UNIQUE,\n" +
-                "\ttypeID INTEGER NOT NULL UNIQUE,\n" +
+                "\tstoreID INTEGER NOT NULL,\n" +
+                "\ttypeID INTEGER NOT NULL,\n" +
                 "\tcounter INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, typeID),\n" +
-                "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
-                "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                "\tFOREIGN KEY (typeID) REFERENCES ProductType(typeID)\n" +
+                "\tUNIQUE (storeID, typeID),\n" +
+//                "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
+//                "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
+                "\tFOREIGN KEY (storeID, typeID) REFERENCES ProductType(storeID, typeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";
     }

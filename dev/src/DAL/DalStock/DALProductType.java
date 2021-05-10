@@ -54,8 +54,8 @@ public class DALProductType extends DALObject {
     @Override
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS ProductType (\n" +
-                "\tstoreID INTEGER NOT NULL UNIQUE,\n" +
-                "\ttypeID INTEGER NOT NULL UNIQUE,\n" +
+                "\tstoreID INTEGER NOT NULL ,\n" +
+                "\ttypeID INTEGER NOT NULL ,\n" +
                 "\tname VARCHAR NOT NULL,\n" +
                 "\tcategoryID INTEGER NOT NULL,\n" +
                 "\tminimum INTEGER NOT NULL,\n" +
