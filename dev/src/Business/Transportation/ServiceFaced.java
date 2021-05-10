@@ -3,7 +3,7 @@ import Business.ApplicationFacade.*;
 import Business.ApplicationFacade.Objects.*;
 import Business.Type.Area;
 import Business.Type.Pair;
-
+import Business.Employees.EmployeePKG.Driver;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -166,7 +166,7 @@ public class ServiceFaced {
     /**
      * Setter methods, for each field of the transportation object try to update in the business layer
      * @param t : the presentation's transportation object to show the user and to contact the business layer
-     * @return: Response object with the Business.Transportation obj inside or throws an Exception if failed.
+     * @return : Response object with the Business.Transportation obj inside or throws an Exception if failed.
      */
     public ResponseData<TransportationServiceDTO> setTransportationDriver(TransportationServiceDTO t){
         try {
@@ -285,7 +285,7 @@ public class ServiceFaced {
         if(d==null){
             return null;
         }
-        return new DriverServiceDTO(d.getId(),(d.getLicense()));
+        return new DriverServiceDTO(d.getEID(),(d.getLicense()));
     }
     private BranchServiceDTO toBranchServiceDTO(Branch b){
         if(b==null)
@@ -375,15 +375,13 @@ public class ServiceFaced {
     public void deleteTrans() {
         transportationService.deleteTransport();
     }
-    public void addTruck(long id, int maxweight,String model, int netWeight, int license){dataControl.addTruck(id,maxweight,model,netWeight,license);}
+    public void addTruck(long id, int maxWeight, String model, int netWeight, int license){dataControl.addTruck(id, maxWeight,model,netWeight,license);}
     public void addItem(long id , String name){dataControl.addItem(id,name);}
     public void addSupplier(long sid,String street, String city,int number,int enter,String area,String contact,String phone){dataControl.addSupplier(sid,street,city,number,enter,area,contact,phone);}
     public void addBranch(long sid,String street, String city,int number,int enter,String area,String contact,String phone){dataControl.addBranch(sid,street,city,number,enter,area,contact,phone);}
-    public void addSuppliersItemsTrans(long supid,long tranid, long itemid,int quantity){dataControl.addSuppliersItemsTrans(supid,tranid,itemid,quantity);}
-    public void addBranchesItemsTrans(long branid,long tranid, long itemid,int quantity){dataControl.addBranchesItemsTrans(branid,tranid,itemid,quantity);}
+    public void addSuppliersItemsTrans(long supId, long tranId, long itemId, int quantity){dataControl.addSuppliersItemsTrans(supId,tranId,itemId,quantity);}
+    public void addBranchesItemsTrans(long branId, long tranId, long itemId, int quantity){dataControl.addBranchesItemsTrans(branId,tranId,itemId,quantity);}
     public void addSupplierItems(long id, long supp){dataControl.addSupplierItems(id,supp);}
-    public void addDriver(int id , int license){dataControl.addDriver(id,license);}
-
     public void addTransportation(int i, String center, String s, String s1, int i1, int i2, int i3) {
 
         dataControl.addTransportation(i,center,s,s1,i1,i2,i3);

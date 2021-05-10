@@ -102,7 +102,7 @@ public class Controllers {
         tc.addSupplierItems(11,6);
         tc.addSupplierItems (14,6);
         tc.addSupplierItems (16,6);
-
+        //TODO: delete driver service and object. use niv add new driver
         tc.addBranch(1,"Yona Fisher","Haifa",14,1,"North","Mordi","052477755");
         tc.addBranch(2,"Menhimer","Karkur",3,1,"North","Yakov","052476655");
         tc.addBranch(3,"Yam","Natanya",2,1,"Center","Shaul","050377755");
@@ -115,10 +115,8 @@ public class Controllers {
         tc.addTruck(3,11000,"Mercedese",7000,12000);
         tc.addTruck(4,13500,"Dodge",10000,15000);
 
-        tc.addDriver(3,4000);
-        tc.addDriver(6,4000);
 
-        tc.addTransportation(1,"Center","2021-12-01","02:20",4250,3,1);
+        tc.addTransportation(1,"Center","2021-12-01","02:20",4250,9,1);
 
         tc.addSuppliersItemsTrans(5,1,7,10);
         tc.addSuppliersItemsTrans(5,1,8,5);
@@ -146,6 +144,8 @@ public class Controllers {
         mc.addEmployee(6, "CashierC", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
         mc.addEmployee(7, "ShiftManagerA", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
         mc.addEmployee(8, "ShiftManagerB", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
+        mc.addEmployee(9, "Driver2", bankDetails, 40000, "Driver", LocalDate.now(), terms);
+        mc.addEmployee(10, "Driver1", bankDetails, 40000, "Driver", LocalDate.now(), terms);
         Map<String, Integer> morning = new HashMap<>();
         morning.put("Driver", 0);
         morning.put("Cashier", 1);

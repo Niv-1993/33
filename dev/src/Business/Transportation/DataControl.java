@@ -2,7 +2,7 @@ package Business.Transportation;
 
 import DataAccess.*;
 import Business.Type.Pair;
-
+import Business.Employees.EmployeePKG.Driver;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -41,11 +41,9 @@ public class DataControl {
     public List<Truck> getTrucks() throws Exception {
         return truckMapper.getTrucks();
     }
-    public HashMap<Integer, Driver> getDrivers() throws Exception{
-        return driverMapper.selectAll();
-    }
+
     public List< Transportation> getTransportations() throws Exception {
-        return transportationMapper.getTransportations(truckMapper,itemMapper,supplierMapper,branchMapper);
+        return transportationMapper.getTransportations(truckMapper,itemMapper,supplierMapper,branchMapper,driverMapper);
     }
 
 //    public Driver getDriver(int id) throws Exception{
@@ -64,7 +62,7 @@ public class DataControl {
         return truckMapper.getTruck(id);
     }
     public Transportation getTransportation(long id) throws Exception {
-        return transportationMapper.getTransportation(id,truckMapper,itemMapper,supplierMapper,branchMapper);
+        return transportationMapper.getTransportation(id,truckMapper,itemMapper,supplierMapper,branchMapper,driverMapper);
     }
     public List<Item> getItemsBySupplier(int id) throws Exception {
         return itemMapper.selectBySupplier(id);
@@ -75,7 +73,7 @@ public class DataControl {
     }
 
     public List<Transportation> getTransportationsList() throws Exception {
-        return transportationMapper.getTransportations(truckMapper,itemMapper,supplierMapper,branchMapper);
+        return transportationMapper.getTransportations(truckMapper,itemMapper,supplierMapper,branchMapper,driverMapper);
     }
 
     public void remove(long idCounter) {
@@ -122,7 +120,6 @@ public class DataControl {
 
     public void addTruck(long id, int maxweight,String model, int netWeight, int license){truckMapper.addTruck(id,maxweight,model,netWeight,license);}
     public void addItem(long id , String name){itemMapper.addItem(id,name);}
-    public void addDriver(int id , int license){driverMapper.insert(id,license);}
     public void addSupplierItems(long id, long supp){supplierMapper.addSupplierItems(id,supp);}
     public void addSupplier(long sid,String street, String city,int number,int enter,String area,String contact,String phone){supplierMapper.addSupplier(sid,street,city,number,enter,area,contact,phone);}
     public void addBranch(long sid,String street, String city,int number,int enter,String area,String contact,String phone){branchMapper.addBranch(sid,street,city,number,enter,area,contact,phone);}

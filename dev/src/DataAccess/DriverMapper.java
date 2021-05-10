@@ -1,9 +1,6 @@
 package DataAccess;
 
-import Business.Employees.EmployeePKG.Employee;
-import Business.Transportation.Driver;
 import Business.Type.RoleType;
-
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
@@ -27,20 +24,6 @@ public class DriverMapper extends Mapper{
         drivers=new HashMap<>();
     }
 
-    public HashMap<Integer, Driver>  selectAll() throws Exception {
-        String sql = "SELECT * FROM Drivers";
-        HashMap<Integer, Driver>  ret=new HashMap<>();
-        try (Connection conn = connect();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs    = stmt.executeQuery(sql)){
-            while (rs.next()) {
-               ret.put(rs.getInt("EID"),new Driver(rs.getInt("EID"),rs.getInt("License")));
-            }
-        } catch (SQLException e) {
-            throw new IOException("failed to get all branches from database");
-        }
-        return ret;
-    }
     public void insert(Business.Employees.EmployeePKG.Driver driver){
         String query = "INSERT INTO Drivers (EID,License) VALUES(?,?)";
         int res = 0;

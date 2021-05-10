@@ -1,8 +1,9 @@
 package DataAccess;
 
+import Business.Employees.EmployeePKG.Driver;
 import Business.Transportation.*;
-import Business.Transportation.Driver;
 import Business.Type.Pair;
+
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
@@ -25,14 +26,14 @@ public class TransportationMapper extends Mapper{
         transportations=new HashMap<>();
     }
 
-    private List< Transportation> selectAll(TruckMapper tru,ItemMapper item,SupplierMapper supplierMapper,BranchMapper branchMapper) throws Exception {
+    private List< Transportation> selectAll(TruckMapper tru,ItemMapper item,SupplierMapper supplierMapper,BranchMapper branchMapper,DriverMapper driverMapper) throws Exception {
         String sql = "SELECT * FROM Transportations ";
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
             // loop through the result set
             while (rs.next()) {
-                Driver tempD= selectDriver(rs.getLong("driverID"));
+                Driver tempD= driverMapper.select(rs.getInt("driverID"));
                 Truck tempT= tru.getTruck(rs.getLong("truckID"));
                 Long tID=rs.getLong("ID");
                 HashMap<Supplier,List<Pair<Item,Integer>>> supplierListMap= getSuppliersItems(tID,item,supplierMapper);
@@ -50,7 +51,7 @@ public class TransportationMapper extends Mapper{
         return new ArrayList<>(transportations.values());
     }
 
-    private Transportation select(long id,TruckMapper tru,ItemMapper item,SupplierMapper supplierMapper,BranchMapper branchMapper) throws Exception{
+    private Transportation select(long id,TruckMapper tru,ItemMapper item,SupplierMapper supplierMapper,BranchMapper branchMapper,DriverMapper driverMapper) throws Exception{
 
         String sql = "SELECT * FROM Transactions WHERE ID="+ id ;
         try (Connection conn = connect();
@@ -58,7 +59,7 @@ public class TransportationMapper extends Mapper{
              ResultSet rs    = stmt.executeQuery(sql)){
             // loop through the result set
             while (rs.next()) {
-                Driver tempD= selectDriver(rs.getInt("driverID"));
+                Driver tempD= driverMapper.select(rs.getInt("driverID"));
                 Truck tempT= tru.getTruck(rs.getInt("truckID"));
                 Long tID=rs.getLong("ID");
                 HashMap<Supplier,List<Pair<Item,Integer>>> supplierListMap= getSuppliersItems(tID,item,supplierMapper);
@@ -72,21 +73,6 @@ public class TransportationMapper extends Mapper{
         return null;
     }
 
-    public Driver selectDriver(long id) throws  Exception {
-
-        String sql = "SELECT * FROM Drivers WHERE EID="+ id ;
-        try (Connection conn = connect();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs    = stmt.executeQuery(sql)){
-            while (rs.next()) {
-                return new Driver(rs.getInt("EID"),rs.getInt("License"));
-
-            }
-        } catch (SQLException e) {
-            throw new IOException("failed to get all branches from database");
-        }
-        return null;
-    }
     public HashMap<Supplier,List<Pair<Item,Integer>>> getSuppliersItems(long id,ItemMapper itemMapper,SupplierMapper supplierMapper) throws  Exception{
 
         String sql = "SELECT SupID,ItemID,Quantity FROM SupplierItemsOnTran WHERE TranID="+ id ;
@@ -158,7 +144,7 @@ public class TransportationMapper extends Mapper{
     }
     public void saveTransportation(long id) throws Exception {
         Transportation tra=transportations.get(id);
-        insert(id,tra.getShippingArea().getArea().toString(),tra.getDate().toString(),tra.getLeavingTime().toString(),tra.getWeight(),tra.getDriver().getId(),tra.getTruck().getId());
+        insert(id,tra.getShippingArea().getArea().toString(),tra.getDate().toString(),tra.getLeavingTime().toString(),tra.getWeight(),tra.getDriver().getEID(),tra.getTruck().getId());
         for(Map.Entry<Supplier, List<Pair<Item, Integer>>> set : tra.getSuppliers().entrySet()) {
             for (Pair<Item, Integer> pai : set.getValue()) {
                saveSupplierItemOnTrans(set.getKey().getId(),id,pai.getFir().getId(), pai.getSec());
@@ -200,21 +186,21 @@ public class TransportationMapper extends Mapper{
             System.out.println(e.getMessage());
         }}
 
-    public Transportation getTransportation(long id, TruckMapper truckMapper, ItemMapper itemMapper, SupplierMapper supplierMapper, BranchMapper branchMapper) throws Exception {
+    public Transportation getTransportation(long id, TruckMapper truckMapper, ItemMapper itemMapper, SupplierMapper supplierMapper, BranchMapper branchMapper,DriverMapper driverMapper) throws Exception {
 
         if(transportations.containsKey(id)){
             return transportations.get(id);
         }
         else {
-            Transportation tra=select(id,truckMapper,itemMapper,supplierMapper,branchMapper);
+            Transportation tra=select(id,truckMapper,itemMapper,supplierMapper,branchMapper, driverMapper);
             if(tra!=null)
                 return tra;
             throw new IllegalArgumentException("No transportation match to id:" + id);
         }
     }
 
-    public List<Transportation> getTransportations(TruckMapper truckMapper, ItemMapper itemMapper, SupplierMapper supplierMapper, BranchMapper branchMapper) throws Exception {
-        return selectAll(truckMapper,itemMapper,supplierMapper,branchMapper);
+    public List<Transportation> getTransportations(TruckMapper truckMapper, ItemMapper itemMapper, SupplierMapper supplierMapper, BranchMapper branchMapper,DriverMapper driverMapper) throws Exception {
+        return selectAll(truckMapper,itemMapper,supplierMapper,branchMapper, driverMapper);
     }
 
     public void remove(long idCounter) {
