@@ -118,6 +118,11 @@ public class EmployeeMenu extends Menu {
                 if(goBack()) return;
                 else continue;
             }
+            if(r.getRc().checkIfDriver(EID)){
+                System.out.println("Invalid id - cannot fire driver.");
+                if(goBack()) return;
+                else continue;
+            }
             r.getMc().fireEmployee(EID);
             break;
         }
@@ -162,6 +167,7 @@ public class EmployeeMenu extends Menu {
             if (SD == -1) return;
             role = chooseRole();
             if(role.equals("Driver")) {
+                System.out.print("License number: ");
                 licence = enterInt(read());  //TODO check which int legal? only positive?
                 r.getDc().addNewDriver(ID,name,new int[]{AC, BB, BID}, salary,LocalDate.now(), new int[]{fund, DO, SD},licence);
             }else
@@ -277,7 +283,7 @@ public class EmployeeMenu extends Menu {
                 if(goBack()) return;
                 else continue;
             }
-            r.getMc().addRoleToEmployee(EID, chooseRole());
+            r.getMc().addRoleToEmployee(EID, chooseRole3());
             break;
         }
     }

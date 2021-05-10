@@ -33890,3 +33890,858 @@ Shift Date: 2021-04-16    Type: Morning
 [DEBUG] 10-05-2021 16:18:31 [class: Business.ApplicationFacade.RegularRoleController,Line:166] - loading data of branch id: 1
 [DEBUG] 10-05-2021 16:18:33 [class: Business.ApplicationFacade.RegularRoleController,Line:44] - entered login function with user id: 1
 [DEBUG] 10-05-2021 16:18:33 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - successfully logged in - user fields are updated to +1
+[DEBUG] 10-05-2021 16:23:14 [class: Business.Employees.ShiftPKG.ShiftController,Line:25] - finished constructor shiftController
+[DEBUG] 10-05-2021 16:23:32 [class: Business.Employees.ShiftPKG.ShiftController,Line:25] - finished constructor shiftController
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:198] - enter create branch function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:199] - creating instance of the personnel manager in this new branch
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:204] - successfully created branch
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:198] - enter create branch function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:199] - creating instance of the personnel manager in this new branch
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:204] - successfully created branch
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:198] - enter create branch function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:199] - creating instance of the personnel manager in this new branch
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:204] - successfully created branch
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:166] - loading data of branch id: 1
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:44] - entered login function with user id: 1
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - successfully logged in - user fields are updated to +1
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 6 to system
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 7 to system
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 8 to system
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 9 to system
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 10 to system
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 11 to system
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 12 to system
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:237] - entered default shifts function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:239] - parsing strings to enum types of map
+[DEBUG] 10-05-2021 16:23:34 [class: Business.Employees.ShiftPKG.ShiftController,Line:58] - default shifts defined
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:55] - enter logout function when current connected id is: 1
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:166] - loading data of branch id: 2
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:44] - entered login function with user id: 2
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - successfully logged in - user fields are updated to +2
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 13 to system
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 14 to system
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 15 to system
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 16 to system
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 17 to system
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 18 to system
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 19 to system
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:237] - entered default shifts function
+[DEBUG] 10-05-2021 16:23:34 [class: Business.ApplicationFacade.ManagerRoleController,Line:239] - parsing strings to enum types of map
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.ShiftController,Line:58] - default shifts defined
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:55] - enter logout function when current connected id is: 2
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:166] - loading data of branch id: 3
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:44] - entered login function with user id: 3
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - successfully logged in - user fields are updated to +3
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 20 to system
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 21 to system
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 22 to system
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 23 to system
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 24 to system
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 25 to system
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 26 to system
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:237] - entered default shifts function
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:239] - parsing strings to enum types of map
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.ShiftController,Line:58] - default shifts defined
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:55] - enter logout function when current connected id is: 3
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:166] - loading data of branch id: 1
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:44] - entered login function with user id: 6
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - successfully logged in - user fields are updated to +6
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:69] - enter add const constraint function
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.ConstConstraint,Line:20] - Const constraint 1 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.ShiftController,Line:40] - added new const constraint for EID: 6, Day: SUNDAY , ShiftType: Night
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:71] - successfully added const constraint
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:55] - enter logout function when current connected id is: 6
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:44] - entered login function with user id: 1
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - successfully logged in - user fields are updated to +1
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.RegularRoleController,Line:166] - loading data of branch id: 1
+[DEBUG] 10-05-2021 16:23:35 [class: Business.ApplicationFacade.ManagerRoleController,Line:258] - entered create week shift function
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 1 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 2 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 2 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 3 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 3 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 4 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 4 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 5 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 5 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 6 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 6 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 7 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 7 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 8 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 8 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 9 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 9 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 10 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 10 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 11 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 11 created
+[DEBUG] 10-05-2021 16:23:35 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 12 created
+[DEBUG] 10-05-2021 16:23:36 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:23:36 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 16:23:36 [class: Business.ApplicationFacade.RegularRoleController,Line:55] - enter logout function when current connected id is: 1
+[DEBUG] 10-05-2021 16:23:36 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:23:36 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:36 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:23:46 [class: Business.ApplicationFacade.RegularRoleController,Line:166] - loading data of branch id: 1
+[DEBUG] 10-05-2021 16:23:50 [class: Business.ApplicationFacade.RegularRoleController,Line:44] - entered login function with user id: 1
+[DEBUG] 10-05-2021 16:23:50 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - successfully logged in - user fields are updated to +1
+[DEBUG] 10-05-2021 16:24:12 [class: Business.ApplicationFacade.RegularRoleController,Line:69] - enter add const constraint function
+[DEBUG] 10-05-2021 16:24:12 [class: Business.Employees.ShiftPKG.ConstConstraint,Line:20] - Const constraint 13 created
+[DEBUG] 10-05-2021 16:24:12 [class: Business.Employees.ShiftPKG.ShiftController,Line:40] - added new const constraint for EID: 1, Day: THURSDAY , ShiftType: Night
+[DEBUG] 10-05-2021 16:24:12 [class: Business.ApplicationFacade.RegularRoleController,Line:71] - successfully added const constraint
+[DEBUG] 10-05-2021 16:24:27 [class: Business.ApplicationFacade.RegularRoleController,Line:83] - enter add constraint function
+[DEBUG] 10-05-2021 16:24:27 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 14 created
+[DEBUG] 10-05-2021 16:24:27 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 1 remove from optionals
+[DEBUG] 10-05-2021 16:24:27 [class: Business.Employees.ShiftPKG.ShiftController,Line:49] - added new const constraint for EID: 1, Date: 2021-05-20 , ShiftType: Morning
+[DEBUG] 10-05-2021 16:24:27 [class: Business.ApplicationFacade.RegularRoleController,Line:85] - added temp constraint
+[DEBUG] 10-05-2021 16:24:31 [class: Business.ApplicationFacade.Utils,Line:106] - converting constraints of business layer to out objects list
+[DEBUG] 10-05-2021 16:24:31 [class: Business.ApplicationFacade.Utils,Line:111] - Done.
+[DEBUG] 10-05-2021 16:25:03 [class: Business.ApplicationFacade.RegularRoleController,Line:95] - enter remove constraint function
+[DEBUG] 10-05-2021 16:25:03 [class: Business.ApplicationFacade.RegularRoleController,Line:97] - removed add constraint
+[DEBUG] 10-05-2021 16:25:06 [class: Business.ApplicationFacade.Utils,Line:106] - converting constraints of business layer to out objects list
+[DEBUG] 10-05-2021 16:25:06 [class: Business.ApplicationFacade.Utils,Line:111] - Done.
+[DEBUG] 10-05-2021 16:25:49 [class: Business.ApplicationFacade.RegularRoleController,Line:109] - enter update reason constraint function
+[DEBUG] 10-05-2021 16:25:49 [class: Business.Employees.ShiftPKG.ShiftController,Line:268] - CID: 13 update his reason
+[DEBUG] 10-05-2021 16:25:49 [class: Business.ApplicationFacade.RegularRoleController,Line:111] - updated reason constraint
+[DEBUG] 10-05-2021 16:26:00 [class: Business.ApplicationFacade.Utils,Line:106] - converting constraints of business layer to out objects list
+[DEBUG] 10-05-2021 16:26:00 [class: Business.ApplicationFacade.Utils,Line:111] - Done.
+[DEBUG] 10-05-2021 16:26:07 [class: Business.ApplicationFacade.RegularRoleController,Line:122] - enter update shift type in constraint function
+[DEBUG] 10-05-2021 16:26:07 [class: Business.Employees.ShiftPKG.ShiftController,Line:276] - CID: 13 update his shift type
+[DEBUG] 10-05-2021 16:26:26 [class: Business.ApplicationFacade.RegularRoleController,Line:133] - entered getting shifts of employee: 1
+[DEBUG] 10-05-2021 16:26:26 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:26:26 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 16:26:26 [class: Business.ApplicationFacade.Utils,Line:106] - converting constraints of business layer to out objects list
+[DEBUG] 10-05-2021 16:26:26 [class: Business.ApplicationFacade.Utils,Line:111] - Done.
+[DEBUG] 10-05-2021 16:27:00 [class: Business.ApplicationFacade.Utils,Line:74] - converting employees of business layer to out objects list
+[DEBUG] 10-05-2021 16:27:00 [class: Business.ApplicationFacade.Utils,Line:79] - Done.
+[DEBUG] 10-05-2021 16:28:17 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:28:17 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 13 to system
+[DEBUG] 10-05-2021 16:30:24 [class: Business.ApplicationFacade.Utils,Line:74] - converting employees of business layer to out objects list
+[DEBUG] 10-05-2021 16:30:24 [class: Business.ApplicationFacade.Utils,Line:79] - Done.
+[DEBUG] 10-05-2021 16:32:33 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:32:53 [class: Business.ApplicationFacade.Utils,Line:74] - converting employees of business layer to out objects list
+[DEBUG] 10-05-2021 16:32:53 [class: Business.ApplicationFacade.Utils,Line:79] - Done.
+[DEBUG] 10-05-2021 16:33:21 [class: Business.ApplicationFacade.Utils,Line:74] - converting employees of business layer to out objects list
+[DEBUG] 10-05-2021 16:33:21 [class: Business.ApplicationFacade.Utils,Line:79] - Done.
+[DEBUG] 10-05-2021 16:33:41 [class: Business.ApplicationFacade.ManagerRoleController,Line:347] - entered add role to employee function
+[DEBUG] 10-05-2021 16:33:41 [class: Business.ApplicationFacade.ManagerRoleController,Line:356] - successfully added role to role list of employee: 10
+[DEBUG] 10-05-2021 16:33:43 [class: Business.ApplicationFacade.Utils,Line:74] - converting employees of business layer to out objects list
+[DEBUG] 10-05-2021 16:33:43 [class: Business.ApplicationFacade.Utils,Line:79] - Done.
+[DEBUG] 10-05-2021 16:35:18 [class: Business.ApplicationFacade.Utils,Line:74] - converting employees of business layer to out objects list
+[DEBUG] 10-05-2021 16:35:18 [class: Business.ApplicationFacade.Utils,Line:79] - Done.
+[DEBUG] 10-05-2021 16:35:27 [class: Business.ApplicationFacade.ManagerRoleController,Line:82] - enter fire employee function
+[DEBUG] 10-05-2021 16:35:27 [class: Business.Employees.ShiftPKG.Shift,Line:140] - EID: 10 removed(fire) from SID: 1
+[DEBUG] 10-05-2021 16:35:27 [class: Business.Employees.ShiftPKG.Shift,Line:140] - EID: 10 removed(fire) from SID: 2
+[DEBUG] 10-05-2021 16:35:27 [class: Business.Employees.ShiftPKG.Shift,Line:140] - EID: 10 removed(fire) from SID: 3
+[DEBUG] 10-05-2021 16:35:27 [class: Business.Employees.ShiftPKG.Shift,Line:140] - EID: 10 removed(fire) from SID: 4
+[DEBUG] 10-05-2021 16:35:27 [class: Business.Employees.ShiftPKG.Shift,Line:140] - EID: 10 removed(fire) from SID: 5
+[DEBUG] 10-05-2021 16:35:27 [class: Business.Employees.ShiftPKG.Shift,Line:140] - EID: 10 removed(fire) from SID: 6
+[DEBUG] 10-05-2021 16:35:27 [class: Business.Employees.ShiftPKG.Shift,Line:140] - EID: 10 removed(fire) from SID: 7
+[DEBUG] 10-05-2021 16:35:27 [class: Business.Employees.ShiftPKG.Shift,Line:140] - EID: 10 removed(fire) from SID: 8
+[DEBUG] 10-05-2021 16:35:27 [class: Business.Employees.ShiftPKG.Shift,Line:140] - EID: 10 removed(fire) from SID: 9
+[DEBUG] 10-05-2021 16:35:27 [class: Business.Employees.ShiftPKG.Shift,Line:140] - EID: 10 removed(fire) from SID: 10
+[DEBUG] 10-05-2021 16:35:27 [class: Business.Employees.ShiftPKG.Shift,Line:140] - EID: 10 removed(fire) from SID: 11
+[DEBUG] 10-05-2021 16:35:27 [class: Business.ApplicationFacade.ManagerRoleController,Line:86] - successfully fired employee
+[DEBUG] 10-05-2021 16:35:31 [class: Business.ApplicationFacade.Utils,Line:74] - converting employees of business layer to out objects list
+[DEBUG] 10-05-2021 16:35:31 [class: Business.ApplicationFacade.Utils,Line:79] - Done.
+[DEBUG] 10-05-2021 16:48:51 [class: Business.Employees.ShiftPKG.ShiftController,Line:25] - finished constructor shiftController
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:200] - enter create branch function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:201] - creating instance of the personnel manager in this new branch
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:206] - successfully created branch
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:200] - enter create branch function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:201] - creating instance of the personnel manager in this new branch
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:206] - successfully created branch
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:200] - enter create branch function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:201] - creating instance of the personnel manager in this new branch
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:206] - successfully created branch
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 1
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 1
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +1
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 6 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 7 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 8 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 9 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 10 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 11 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 12 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:237] - entered default shifts function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:239] - parsing strings to enum types of map
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.ShiftController,Line:58] - default shifts defined
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 1
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 2
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 2
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +2
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 13 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 14 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 15 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 16 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 17 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 18 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 19 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:237] - entered default shifts function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:239] - parsing strings to enum types of map
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.ShiftController,Line:58] - default shifts defined
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 2
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 3
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 3
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +3
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 20 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 21 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 22 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 23 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 24 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 25 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 26 to system
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:237] - entered default shifts function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:239] - parsing strings to enum types of map
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.ShiftController,Line:58] - default shifts defined
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 3
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 1
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 6
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +6
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:71] - enter add const constraint function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.ConstConstraint,Line:20] - Const constraint 1 created
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.ShiftController,Line:40] - added new const constraint for EID: 6, Day: SUNDAY , ShiftType: Night
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:73] - successfully added const constraint
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 6
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 1
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +1
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 1
+[DEBUG] 10-05-2021 16:48:53 [class: Business.ApplicationFacade.ManagerRoleController,Line:258] - entered create week shift function
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 1 created
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 2 created
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 2 created
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 3 created
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 3 created
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 4 created
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 4 created
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:48:53 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 5 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 5 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 6 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 6 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 7 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 7 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 8 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 8 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 9 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 9 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 10 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 10 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 11 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 11 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 12 created
+[DEBUG] 10-05-2021 16:48:54 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:48:54 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 16:48:54 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 1
+[DEBUG] 10-05-2021 16:48:54 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:48:54 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:54 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:48:57 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 1
+[DEBUG] 10-05-2021 16:48:59 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 1
+[DEBUG] 10-05-2021 16:48:59 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +1
+[DEBUG] 10-05-2021 16:49:09 [class: Business.ApplicationFacade.Utils,Line:74] - converting employees of business layer to out objects list
+[DEBUG] 10-05-2021 16:49:09 [class: Business.ApplicationFacade.Utils,Line:79] - Done.
+[DEBUG] 10-05-2021 16:49:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:347] - entered add role to employee function
+[DEBUG] 10-05-2021 16:49:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:356] - successfully added role to role list of employee: 10
+[DEBUG] 10-05-2021 16:49:27 [class: Business.ApplicationFacade.Utils,Line:74] - converting employees of business layer to out objects list
+[DEBUG] 10-05-2021 16:49:27 [class: Business.ApplicationFacade.Utils,Line:79] - Done.
+[DEBUG] 10-05-2021 16:49:42 [class: Business.ApplicationFacade.Utils,Line:74] - converting employees of business layer to out objects list
+[DEBUG] 10-05-2021 16:49:42 [class: Business.ApplicationFacade.Utils,Line:79] - Done.
+[DEBUG] 10-05-2021 16:50:20 [class: Business.ApplicationFacade.ManagerRoleController,Line:286] - entered get shifts and employees function
+[DEBUG] 10-05-2021 16:50:20 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:50:20 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 16:50:33 [class: Business.ApplicationFacade.ManagerRoleController,Line:271] - entered self make week shift function
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 13 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 14 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 15 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 16 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 17 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 18 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 19 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 20 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 21 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 22 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 23 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 24 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 25 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 26 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 27 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 28 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 29 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 30 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 31 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 32 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 33 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 34 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 35 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 36 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 37 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 38 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 39 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 40 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 41 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 42 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 43 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 44 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 45 created
+[DEBUG] 10-05-2021 16:50:33 [class: Business.ApplicationFacade.ManagerRoleController,Line:274] - returned to EmployeePKG successfully
+[DEBUG] 10-05-2021 16:50:37 [class: Business.ApplicationFacade.ManagerRoleController,Line:286] - entered get shifts and employees function
+[DEBUG] 10-05-2021 16:50:37 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:50:37 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 16:51:12 [class: Business.Employees.ShiftPKG.ShiftController,Line:25] - finished constructor shiftController
+[DEBUG] 10-05-2021 16:51:14 [class: Business.ApplicationFacade.RegularRoleController,Line:200] - enter create branch function
+[DEBUG] 10-05-2021 16:51:14 [class: Business.ApplicationFacade.RegularRoleController,Line:201] - creating instance of the personnel manager in this new branch
+[DEBUG] 10-05-2021 16:51:14 [class: Business.ApplicationFacade.RegularRoleController,Line:206] - successfully created branch
+[DEBUG] 10-05-2021 16:51:14 [class: Business.ApplicationFacade.RegularRoleController,Line:200] - enter create branch function
+[DEBUG] 10-05-2021 16:51:14 [class: Business.ApplicationFacade.RegularRoleController,Line:201] - creating instance of the personnel manager in this new branch
+[DEBUG] 10-05-2021 16:51:14 [class: Business.ApplicationFacade.RegularRoleController,Line:206] - successfully created branch
+[DEBUG] 10-05-2021 16:51:14 [class: Business.ApplicationFacade.RegularRoleController,Line:200] - enter create branch function
+[DEBUG] 10-05-2021 16:51:14 [class: Business.ApplicationFacade.RegularRoleController,Line:201] - creating instance of the personnel manager in this new branch
+[DEBUG] 10-05-2021 16:51:14 [class: Business.ApplicationFacade.RegularRoleController,Line:206] - successfully created branch
+[DEBUG] 10-05-2021 16:51:14 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 1
+[DEBUG] 10-05-2021 16:51:14 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 1
+[DEBUG] 10-05-2021 16:51:14 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +1
+[DEBUG] 10-05-2021 16:51:14 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 6 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 7 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 8 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 9 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 10 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 11 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 12 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:237] - entered default shifts function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:239] - parsing strings to enum types of map
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:58] - default shifts defined
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 1
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 2
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 2
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +2
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 13 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 14 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 15 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 16 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 17 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 18 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 19 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:237] - entered default shifts function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:239] - parsing strings to enum types of map
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:58] - default shifts defined
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 2
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 3
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 3
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +3
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 20 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 21 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 22 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 23 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 24 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 25 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 26 to system
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:237] - entered default shifts function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:239] - parsing strings to enum types of map
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:58] - default shifts defined
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 3
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 1
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 6
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +6
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:71] - enter add const constraint function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.ConstConstraint,Line:20] - Const constraint 1 created
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:40] - added new const constraint for EID: 6, Day: SUNDAY , ShiftType: Night
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:73] - successfully added const constraint
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 6
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 1
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +1
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 1
+[DEBUG] 10-05-2021 16:51:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:258] - entered create week shift function
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 1 created
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 2 created
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 2 created
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 3 created
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 3 created
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 4 created
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 4 created
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 5 created
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 5 created
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 6 created
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:51:15 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 6 created
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 7 created
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 7 created
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 8 created
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 8 created
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 9 created
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 9 created
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 10 created
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 10 created
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 11 created
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 11 created
+[DEBUG] 10-05-2021 16:51:16 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 12 created
+[DEBUG] 10-05-2021 16:51:16 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:51:16 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 16:51:16 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 1
+[DEBUG] 10-05-2021 16:51:16 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 16:51:16 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:16 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 16:51:25 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 1
+[DEBUG] 10-05-2021 16:51:26 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 1
+[DEBUG] 10-05-2021 16:51:26 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +1
+[DEBUG] 10-05-2021 16:51:40 [class: Business.Employees.ShiftPKG.ShiftController,Line:25] - finished constructor shiftController
+[DEBUG] 10-05-2021 16:51:46 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 1
+[DEBUG] 10-05-2021 16:51:49 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 1
+[DEBUG] 10-05-2021 16:51:49 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +1
+[DEBUG] 10-05-2021 16:53:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:286] - entered get shifts and employees function
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.Shift,Line:56] - shift: 1 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.Shift,Line:56] - shift: 2 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.Shift,Line:56] - shift: 3 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.Shift,Line:56] - shift: 4 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.Shift,Line:56] - shift: 5 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.Shift,Line:56] - shift: 6 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.Shift,Line:56] - shift: 7 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.Shift,Line:56] - shift: 8 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.Shift,Line:56] - shift: 9 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.Shift,Line:56] - shift: 10 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.Shift,Line:56] - shift: 11 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ConstConstraint,Line:27] - Const constraint 1 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:24] - Temp constraint 2 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:24] - Temp constraint 3 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:24] - Temp constraint 4 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:24] - Temp constraint 5 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:24] - Temp constraint 6 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:24] - Temp constraint 7 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:24] - Temp constraint 8 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:24] - Temp constraint 9 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:24] - Temp constraint 10 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:24] - Temp constraint 11 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:24] - Temp constraint 12 created
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:53:15 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:53:15 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 16:53:23 [class: Business.ApplicationFacade.ManagerRoleController,Line:286] - entered get shifts and employees function
+[DEBUG] 10-05-2021 16:53:23 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:53:23 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 16:53:39 [class: Business.ApplicationFacade.ManagerRoleController,Line:316] - entered add employee to shift function
+[DEBUG] 10-05-2021 16:53:39 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:53:39 [class: Business.Employees.ShiftPKG.Shift,Line:107] - EID: 6added to SID: 11
+[DEBUG] 10-05-2021 16:53:43 [class: Business.ApplicationFacade.ManagerRoleController,Line:286] - entered get shifts and employees function
+[DEBUG] 10-05-2021 16:53:43 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:53:43 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 16:54:25 [class: Business.ApplicationFacade.ManagerRoleController,Line:286] - entered get shifts and employees function
+[DEBUG] 10-05-2021 16:54:25 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:54:25 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 16:54:30 [class: Business.ApplicationFacade.ManagerRoleController,Line:300] - entered remove employee from shift functions
+[DEBUG] 10-05-2021 16:54:30 [class: Business.Employees.ShiftPKG.Shift,Line:125] - EID: 6removed from SID: 11
+[DEBUG] 10-05-2021 16:54:33 [class: Business.ApplicationFacade.ManagerRoleController,Line:286] - entered get shifts and employees function
+[DEBUG] 10-05-2021 16:54:33 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:54:33 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 16:55:11 [class: Business.ApplicationFacade.ManagerRoleController,Line:219] - entered create shift function
+[DEBUG] 10-05-2021 16:55:11 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 12 created
+[DEBUG] 10-05-2021 16:55:11 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 13 created
+[DEBUG] 10-05-2021 16:55:24 [class: Business.ApplicationFacade.ManagerRoleController,Line:286] - entered get shifts and employees function
+[DEBUG] 10-05-2021 16:55:24 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:55:24 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 16:55:57 [class: Business.ApplicationFacade.ManagerRoleController,Line:271] - entered self make week shift function
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 14 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 15 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 16 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 17 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 18 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 19 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 20 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 21 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 22 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 23 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 24 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 25 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 26 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 27 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 28 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 29 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 30 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 31 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 32 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 33 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 34 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 35 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 36 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 37 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 38 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 39 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 40 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 41 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 8 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 42 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 43 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 9 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 7 remove from optionals
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 44 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 45 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 46 created
+[DEBUG] 10-05-2021 16:55:57 [class: Business.ApplicationFacade.ManagerRoleController,Line:274] - returned to EmployeePKG successfully
+[DEBUG] 10-05-2021 16:56:01 [class: Business.ApplicationFacade.ManagerRoleController,Line:286] - entered get shifts and employees function
+[DEBUG] 10-05-2021 16:56:01 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:56:01 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 16:56:51 [class: Business.ApplicationFacade.ManagerRoleController,Line:286] - entered get shifts and employees function
+[DEBUG] 10-05-2021 16:56:51 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:56:51 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 16:57:05 [class: Business.ApplicationFacade.ManagerRoleController,Line:331] - entered update amount in role function
+[DEBUG] 10-05-2021 16:57:05 [class: Business.ApplicationFacade.ManagerRoleController,Line:334] - updated amount of role
+[DEBUG] 10-05-2021 16:57:07 [class: Business.ApplicationFacade.ManagerRoleController,Line:286] - entered get shifts and employees function
+[DEBUG] 10-05-2021 16:57:07 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 16:57:07 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 17:14:26 [class: Business.Employees.ShiftPKG.ShiftController,Line:25] - finished constructor shiftController
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:200] - enter create branch function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:201] - creating instance of the personnel manager in this new branch
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:206] - successfully created branch
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:200] - enter create branch function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:201] - creating instance of the personnel manager in this new branch
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:206] - successfully created branch
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:200] - enter create branch function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:201] - creating instance of the personnel manager in this new branch
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:206] - successfully created branch
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 1
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 1
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +1
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 6 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 7 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 8 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 9 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 10 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 11 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 12 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:237] - entered default shifts function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:239] - parsing strings to enum types of map
+[DEBUG] 10-05-2021 17:14:31 [class: Business.Employees.ShiftPKG.ShiftController,Line:58] - default shifts defined
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 1
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 2
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 2
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +2
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 13 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 14 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 15 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 16 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 17 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 18 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 19 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:237] - entered default shifts function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:239] - parsing strings to enum types of map
+[DEBUG] 10-05-2021 17:14:31 [class: Business.Employees.ShiftPKG.ShiftController,Line:58] - default shifts defined
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 2
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 3
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 3
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +3
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 20 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 21 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 22 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 23 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 24 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 25 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:59] - successfully added new employee EID: 26 to system
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:237] - entered default shifts function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.ManagerRoleController,Line:239] - parsing strings to enum types of map
+[DEBUG] 10-05-2021 17:14:31 [class: Business.Employees.ShiftPKG.ShiftController,Line:58] - default shifts defined
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 3
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 1
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 6
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +6
+[DEBUG] 10-05-2021 17:14:31 [class: Business.ApplicationFacade.RegularRoleController,Line:71] - enter add const constraint function
+[DEBUG] 10-05-2021 17:14:31 [class: Business.Employees.ShiftPKG.ConstConstraint,Line:20] - Const constraint 1 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.ShiftController,Line:40] - added new const constraint for EID: 6, Day: SUNDAY , ShiftType: Night
+[DEBUG] 10-05-2021 17:14:32 [class: Business.ApplicationFacade.RegularRoleController,Line:73] - successfully added const constraint
+[DEBUG] 10-05-2021 17:14:32 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 6
+[DEBUG] 10-05-2021 17:14:32 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 17:14:32 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 1
+[DEBUG] 10-05-2021 17:14:32 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +1
+[DEBUG] 10-05-2021 17:14:32 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 1
+[DEBUG] 10-05-2021 17:14:32 [class: Business.ApplicationFacade.ManagerRoleController,Line:258] - entered create week shift function
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 1 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 2 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 6 remove from optionals
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 2 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 3 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 3 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 4 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 4 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 5 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 5 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 6 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 6 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 7 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 7 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 8 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 8 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 9 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 9 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 10 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.ShiftController,Line:288] - EID: 11 remove from optionals
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 10 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:154] - EID: 12 remove from optionals
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 11 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.Shift,Line:40] - shift: 11 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 12 created
+[DEBUG] 10-05-2021 17:14:32 [class: Business.ApplicationFacade.Utils,Line:84] - converting shift of business layer to out objects list
+[DEBUG] 10-05-2021 17:14:32 [class: Business.ApplicationFacade.Utils,Line:101] - Done.
+[DEBUG] 10-05-2021 17:14:32 [class: Business.ApplicationFacade.RegularRoleController,Line:57] - enter logout function when current connected id is: 1
+[DEBUG] 10-05-2021 17:14:32 [class: Business.ApplicationFacade.RegularRoleController,Line:59] - successfully logged out - user fields are updated to -1 and null role
+[DEBUG] 10-05-2021 17:14:33 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function
+[DEBUG] 10-05-2021 17:14:33 [class: Business.ApplicationFacade.ManagerRoleController,Line:51] - enter add employee function

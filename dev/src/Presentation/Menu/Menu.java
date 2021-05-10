@@ -133,6 +133,23 @@ public abstract class Menu {
         }
         return roles.get(s - 1);
     }
+    protected String chooseRole3() {
+        System.out.println("\nChoose a role");
+        List<String> roles = r.getRc().getRoleTypes().getData();
+        roles.remove("Driver");
+        int counter = 1;
+        for (String r : roles) {
+            System.out.println(counter++ + ") " + r);
+        }
+        int s;
+        while (true) {
+            s = enterInt(read());
+            if (s < 1 || s > roles.size()) {
+                System.out.println("Selected option is not in menu, please try again");
+            } else break;
+        }
+        return roles.get(s - 1);
+    }
 
     protected void printMyDetails() {
         ResponseData<Employee> res = r.getRc().getEmployeeDetails();

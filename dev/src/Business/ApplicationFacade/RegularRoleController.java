@@ -4,10 +4,12 @@ import Business.ApplicationFacade.iControllers.iRegularRoleController;
 import Business.ApplicationFacade.outObjects.Constraint;
 import Business.ApplicationFacade.outObjects.Employee;
 import Business.ApplicationFacade.outObjects.Shift;
+import Business.Employees.EmployeePKG.Driver;
 import Business.Employees.ShiftPKG.ShiftController;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
 import DataAccess.BranchMapper;
+import DataAccess.DriverMapper;
 import DataAccess.EmployeeMapper;
 import DataAccess.ShiftMapper;
 import org.apache.log4j.Logger;
@@ -257,5 +259,14 @@ public class RegularRoleController implements iRegularRoleController {
 
     public boolean checkIfShiftIsClose(LocalDate date, String shiftType) {
         return sc.wasSelfMake(date,ShiftType.valueOf(shiftType));
+    }
+
+    public boolean checkIfDriver(int eid) {
+        try{
+            Driver d = DriverMapper.getMapper().select(eid);
+            return d != null;
+        }catch (Exception e){
+            return false;
+        }
     }
 }
