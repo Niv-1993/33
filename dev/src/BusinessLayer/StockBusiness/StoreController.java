@@ -116,9 +116,11 @@ public class StoreController implements iStoreController {
     }
     public void loadTypeProducts(){
         List<Integer> list=dal.getTypes();
+        log.warn(list);
         for (Integer i: list){
             _products.put(new ProductType(getID(),i),new InstanceController(getID(),i));
         }
+        log.warn(_products);
         for (ProductType p: Collections.list(_products.keys()))
         {
             Category c=_category.get(p.get_categoryID());
@@ -510,16 +512,16 @@ public class StoreController implements iStoreController {
     public void addProduct(int typeID, Date expiration) throws Exception {
         log.debug(String.format("got inside addProduct(int typeID, Date expiration) Method with: %d, "+expiration,typeID));
         ProductType tmp=checkIDProductTypeExist(typeID);
-        if(tmp.get_shelfCurr()+tmp.get_storageCurr()>=MAX_PRODUCTS_ON_PROTUCTTYPE) throw new Exception("type "+typeID+" has "+MAX_PRODUCTS_ON_PROTUCTTYPE+" products and cant add more");
+        //if(tmp.get_shelfCurr()+tmp.get_storageCurr()>=MAX_PRODUCTS_ON_PROTUCTTYPE) throw new Exception("type "+typeID+" has "+MAX_PRODUCTS_ON_PROTUCTTYPE+" products and cant add more");
 
         Shelf s=findPlaceForNewProduct(typeID);
-
-        log.debug("products="+tmp.get_products());
+        log.warn("shelf: "+s.get_typeID()+", "+s.get_shelfID()+", "+s.get_location());
+        log.warn("products="+tmp.get_products());
         int productID=_products.get(tmp).addProduct(expiration,s.get_location(),s.get_shelfID());
         log.debug(String.format("the productID: %d:",productID));
         try {
             tmp.addProduct(productID,s.get_location());
-            s.set_typeID(typeID);
+            //s.set_typeID(typeID);
             log.warn("adding product in store controller.");
             s.addProduct();
             log.warn("done adding product in store controller.");
@@ -699,15 +701,17 @@ public class StoreController implements iStoreController {
         for (int i=0 ;i<dal.get_numberOfShelves(); i++)
         {
             Shelf s=_shelves.get(i);
+            log.warn(""+s.get_typeID()+", "+s.get_shelfID()+", "+s.get_location());
             if (s.get_typeID()==typeID && !s.isFull()) {
                 s.set_typeID(typeID);
                 return s;
             }
         }
-        log.info(String.format("the product with productType #%d need new shelf.",typeID));
+        log.warn(String.format("the product with productType #%d need new shelf.",typeID));
         for (int i=0 ;i<dal.get_numberOfShelves(); i++)
         {
             Shelf s=_shelves.get(i);
+            log.warn(s.get_typeID());
             if (s.get_typeID()==0 && !s.isFull()) {
                 s.set_typeID(typeID);
                 return s;

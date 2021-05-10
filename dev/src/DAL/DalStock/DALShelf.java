@@ -21,7 +21,7 @@ public class DALShelf extends DALObject {
         super(null);
     }
 
-    public DALShelf(Integer storeID,Integer id, Integer typeID, Integer isStorage, Integer curr, Integer max, DalController dc){
+    public DALShelf(Integer storeID,Integer id, Integer isStorage, Integer typeID, Integer curr, Integer max, DalController dc){
         super(dc);
         this.storeId=storeID;
         _typeID=typeID;

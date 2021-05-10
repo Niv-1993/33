@@ -422,5 +422,6 @@ public class StorageService implements iStorageService {
                 break;
             }
         }
+        counter=stores.size()+1;
     }
 }

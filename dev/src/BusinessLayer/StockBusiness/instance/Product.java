@@ -31,7 +31,7 @@ public class Product {
             list.add(new Tuple<>(expiration.toString(), String.class));
             list.add(new Tuple<>(0, Integer.class));
             list.add(new Tuple<>(shelf.item1, Integer.class));
-            list.add(new Tuple<>((shelf.item2 == Location.Shelves) ? 1 : 0, Integer.class));
+            list.add(new Tuple<>((shelf.item2 == Location.Shelves) ? 0 : 1, Integer.class));
             Mapper map=Mapper.getMap();
             map.setItem(c,list);
             List<Integer> keyList = new ArrayList<>();

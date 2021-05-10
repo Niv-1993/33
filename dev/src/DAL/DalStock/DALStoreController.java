@@ -159,11 +159,19 @@ public class DALStoreController extends DALObject {
     public List<Integer> selectMany(String column,String table){
         String query="SELECT "+column+" \n"+
                 "FROM "+table+"\n" +
-                "WHERE storeID=? ;\n";
+                "WHERE storeID=?;";
         List<Integer> list= new ArrayList<>();
         list.add(_storeID);
         try {
-            return DC.SelectMany(query,list).stream().map(x->(Integer)x.item2.get(0)).collect(Collectors.toList());
+            log.warn("query: "+query+" params: "+list);
+            List<Tuple<List<Class>, List<Object>>> get= DC.SelectMany(query,list);
+            List<Integer> ret=new ArrayList<>();
+            for(int i =0;i<get.get(0).item2.size();i=i+2){
+                ret.add((Integer) get.get(0).item2.get(i));
+            }
+             //ret=get.stream().map(x->(Integer)x.item2.get(0)).collect(Collectors.toList());
+            log.warn(ret);
+            return ret;
         }
         catch (Exception e){
             throw new IllegalArgumentException("fail");
