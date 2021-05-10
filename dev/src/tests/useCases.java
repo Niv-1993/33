@@ -1,11 +1,11 @@
 package tests;
 
-import BusinessLayer.Fcade.ResponseData;
-import BusinessLayer.Fcade.StorageService;
-import BusinessLayer.Fcade.iStorageService;
-import BusinessLayer.Fcade.outObjects.ProductType;
-import BusinessLayer.Fcade.outObjects.SaleDiscount;
-import BusinessLayer.StoreController;
+import BusinessLayer.StockBusiness.Fcade.ResponseData;
+import BusinessLayer.StockBusiness.Fcade.StorageService;
+import BusinessLayer.StockBusiness.Fcade.iStorageService;
+import BusinessLayer.StockBusiness.Fcade.outObjects.ProductType;
+import BusinessLayer.StockBusiness.Fcade.outObjects.SaleDiscount;
+import BusinessLayer.StockBusiness.StoreController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
