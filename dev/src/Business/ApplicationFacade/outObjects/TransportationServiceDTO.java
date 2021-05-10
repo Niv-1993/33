@@ -1,4 +1,4 @@
-package Business.ApplicationFacade.Objects;
+package Business.ApplicationFacade.outObjects;
 import Business.Type.Area;
 import Business.Type.Pair;
 import java.time.LocalDate;

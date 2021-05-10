@@ -1,8 +1,8 @@
 package Presentation.Menu;
 
+import Business.ApplicationFacade.outObjects.*;
 import Presentation.Controllers;
 import Presentation.TransportationController;
-import Business.ApplicationFacade.Objects.*;
 import Business.Type.Area;
 import Business.Type.Pair;
 import java.time.LocalDate;

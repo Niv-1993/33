@@ -1,30 +1,29 @@
-package Business.ApplicationFacade.Objects;
+package Business.ApplicationFacade.outObjects;
 
 import java.util.Objects;
 
-public class BranchServiceDTO {
+public class SupplierServiceDTO {
 
     private String phone;
     private String contactName;
     private int id;
     private  String Area;
 
-    public BranchServiceDTO(String phone, String contactName, int id, String area ){
+    @Override
+    public String toString() {
+        return " - Supplier:  " +
+                "\t\tId = " + id +
+                "\t\tArea = " + Area+
+                "\t\tContactName = " + contactName+
+                "\t\tPhone = " + phone+"\n";
+    }
+
+    public SupplierServiceDTO(String phone, String contactName, int id, String area ){
 
         this.phone=phone;
         this.contactName=contactName;
         this.id=id;
         this.Area=area;
-    }
-
-
-    @Override
-    public String toString() {
-        return "- Branch " +
-                "\tid=" + id +
-                "\tArea='" + Area +
-                "\tcontactName='" + contactName +
-                "\tphone='" + phone+"\n";
     }
 
     public void setId(int id) { this.id = id; }
@@ -47,7 +46,7 @@ public class BranchServiceDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BranchServiceDTO that = (BranchServiceDTO) o;
+        SupplierServiceDTO that = (SupplierServiceDTO) o;
         return id == that.id &&
                 Objects.equals(phone, that.phone) &&
                 Objects.equals(contactName, that.contactName) &&

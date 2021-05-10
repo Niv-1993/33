@@ -1,4 +1,4 @@
-package Business.ApplicationFacade.Objects;
+package Business.ApplicationFacade.outObjects;
 
 import java.util.Objects;
 

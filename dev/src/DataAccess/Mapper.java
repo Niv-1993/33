@@ -12,7 +12,7 @@ public class Mapper {
     }
 
 
-    protected static Connection connect() throws Exception {
+    protected Connection connect() throws Exception {
         Class.forName("org.sqlite.JDBC");
         String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "\\" + dbname;
         Connection conn;
