@@ -1,5 +1,6 @@
 package BusinessLayer.StockBusiness.instance;
 
+import DAL.DALObject;
 import DAL.DalStock.DALProduct;
 import DAL.Mapper;
 import Utility.Tuple;
@@ -12,13 +13,50 @@ import java.util.List;
 
 public class Product {
     DALProduct dal;
-    private Location _location;
+   // private Location _location;
     final static Logger log=Logger.getLogger(Product.class);
 
     public Product(int storeId,int typeID,int id, Date expiration, Tuple<Integer,Location> shelf) {
         checkLocation(shelf);
-        dal= Util.initDal(DALProduct.class,storeId,id,typeID,expiration,false,shelf.item1,shelf.item2.toString());
-        _location=shelf.item2;
+        //dal= Util.initDal(DALProduct.class,storeId,id,typeID,expiration.toString(),0,shelf.item1,(shelf.item2==Location.Shelves)?0:1);
+        //_location=shelf.item2;
+        try {
+            log.warn("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            Class c = DALProduct.class;
+            List<Tuple<Object, Class>> list = new ArrayList<>();
+            list.add(new Tuple<>(storeId, Integer.class));
+            list.add(new Tuple<>(typeID, Integer.class));
+            list.add(new Tuple<>(id, Integer.class));
+            list.add(new Tuple<>(expiration.toString(), String.class));
+            list.add(new Tuple<>(0, Integer.class));
+            list.add(new Tuple<>(shelf.item1, Integer.class));
+            list.add(new Tuple<>((shelf.item2 == Location.Shelves) ? 0 : 1, Integer.class));
+
+            List<Integer> keyList = new ArrayList<>();
+            keyList.add(storeId);
+            keyList.add(id);
+            Mapper map = Mapper.getMap();
+            log.warn("starting 1st check DALProduct");
+            DALObject check = map.getItem(c, keyList);
+            log.warn("did 1st check DALProduct");
+            if (check != null) {
+                log.warn("entry is already in DB, will not attempt insert.");
+                dal = (DALProduct) check;
+                return;
+            }
+            map.setItem(c, list);
+            log.warn("did insert DALProduct");
+            check = map.getItem(c, keyList);
+            if (c == null || check == null || (check.getClass() != c)) {
+                String s = "the instance that return from Mapper is null for: " + c;
+                log.warn(s);
+                throw new IllegalArgumentException(s);
+
+            } else {
+                log.info("create new Object");
+            }
+            dal = (DALProduct) check;
+        }catch (Exception e){log.warn(e);}
     }
 
     public Product(int storeID, Integer i) {
@@ -63,7 +101,7 @@ public class Product {
     }
 
     public Tuple<Integer, Location> get_location() {
-        return new Tuple<>(dal.getShelfNum(),_location);
+        return new Tuple<>(dal.getShelfNum(),(dal.get_location().item2=="Shelves")?Location.Shelves:Location.Storage);
     }
 
     public void set_location(Tuple<Integer, Location> location)
@@ -78,7 +116,7 @@ public class Product {
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
-        _location = location.item2;
+        //_location = location.item2;
     }
     private void checkLocation(Tuple<Integer, Location> location){
         if (location.item1<1){
@@ -96,9 +134,10 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "_id=" + dal.get_id() +
+                "_type="+ dal.getTypeID()+
                 ", _expiration=" + dal.get_expiration() +
                 ", _isDamage=" + dal.is_isDamage() +
-                ", _location=" + dal.getShelfNum() +","+_location+
+                ", _location=" + dal.get_location().item1 +","+dal.get_location().item2+
                 '}';
     }
 }

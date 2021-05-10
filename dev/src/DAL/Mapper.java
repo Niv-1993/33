@@ -111,6 +111,7 @@ public class Mapper {
                     Constructor con=cls.getConstructor();
                     String select=(String) met.invoke(con.newInstance(),null);
                     Tuple<List<Class>,List<Object>> tup=DC.Select(select, pk);
+                    log.warn(tup);
                     DALObject out = fromRS(tup, cls);
                 if(out==null) {
                     log.warn("mapper returned null on:"+cls);

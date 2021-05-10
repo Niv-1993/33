@@ -96,7 +96,7 @@ public class Shelf {
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
-        dal.setTypeID(typeID);
+        dal.setType(typeID);
     }
 
     public int get_maxAmount() {

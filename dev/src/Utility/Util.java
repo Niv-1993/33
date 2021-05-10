@@ -22,8 +22,10 @@ public  class Util {
         keyList.add(key);
         Mapper map=Mapper.getMap();
         DALObject check =map.getItem(c,keyList);
-        if (check!=null)
-            return (T)check;
+        if (check!=null) {
+            log.warn("entry is already in DB, will not attempt insert.");
+            return (T) check;
+        }
         map.setItem(c,list);
 
         check =map.getItem(c ,keyList);

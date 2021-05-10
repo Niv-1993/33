@@ -312,12 +312,16 @@ public class ProductType {
             throw new IllegalArgumentException(s);
         }
         try{
+            log.warn("adding product to product type.");
             dal.addProduct(productID);
             if ((l.equals(Location.Shelves))) {
+                log.warn("adding shelves to product type.");
                 dal.set_shelfCurr(dal.get_shelfCurr() + 1);
             } else {
+                log.warn("adding storage to product type.");
                 dal.set_storageCurr(dal.get_storageCurr() + 1);
             }
+            log.warn("done adding shelves/storage to product type.");
         }
         catch (Exception e){
             String info="can not add product";

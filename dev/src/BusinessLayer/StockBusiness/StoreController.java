@@ -523,13 +523,17 @@ public class StoreController implements iStoreController {
         log.debug(String.format("the productID: %d:",productID));
         try {
             tmp.addProduct(productID,s.get_location());
+            s.set_typeID(typeID);
+            log.warn("adding product in store controller.");
+            s.addProduct();
+            log.warn("done adding product in store controller.");
         }
         catch (Exception e){
             log.warn(e);
             _products.get(tmp).removeProduct(productID);
             throw e;
         }
-        s.addProduct();
+
     }
 
     @Override

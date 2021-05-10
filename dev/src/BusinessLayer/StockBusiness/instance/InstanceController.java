@@ -103,9 +103,13 @@ public class InstanceController {
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
+        log.warn("adding product to dal from instanceController.");
         Product p=new Product(dal.getStoreID(),dal.get_typeID(),id, expiration, new Tuple<>(shelf,l));
+        log.warn("done adding product to dal in instanceController.");
         addProduct(p);
+        log.warn("done adding product to biz in instanceController.");
         _products.put(id ,p);
+        log.warn("done adding product to hash in instanceController.");
         return id;
     }
     public List<Integer> getProduts(){

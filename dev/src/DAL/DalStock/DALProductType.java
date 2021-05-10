@@ -1,15 +1,18 @@
 package DAL.DalStock;
 
+import BusinessLayer.StockBusiness.StoreController;
 import DAL.DALObject;
 import DAL.DalController;
 import DAL.Mapper;
 import Utility.Tuple;
+import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DALProductType extends DALObject {
+    final static Logger log=Logger.getLogger(DALProductType.class);
     private int _typeID;
     private int _categoryID;
     private List<Integer> _products=new ArrayList<>();
@@ -263,10 +266,10 @@ public class DALProductType extends DALObject {
     }
     public void addSupplier(int i){
         StringBuilder query=new StringBuilder("""
-                INSERT INTO Supplier \s
+                INSERT OR REPLACE INTO Supplier \s
                 (storeID,typeID,SupplierID)\s
                 VALUES (?,?,?);""");
-        List<Tuple<Object,Class>> list=prepareList(storeId,_typeID);
+        List<Tuple<Object,Class>> list=prepareList(storeId,_typeID,i);
         try{
             DC.noSelect(query.toString(), list);
         }
@@ -288,27 +291,26 @@ public class DALProductType extends DALObject {
     }
     public void set_shelfCurr(int i){
         String query= """
-                UPDATE Supplier \s
+                UPDATE ProductType \s
                 Set shelfCurr=? \s
                 WHERE \s
-                storeID=? AND typeID=?;;
-                """;
+                storeID=? AND typeID=?;""";
         List<Tuple<Object,Class>> list=prepareList(i,storeId,_typeID);
         try{
             DC.noSelect(query, list);
         }
         catch (Exception e){
+            log.warn(e);
             throw new IllegalArgumentException("fail");
         }
         _shelfCurr=i;
     }
     public void set_storageCurr(int i){
         String query= """
-                UPDATE Supplier \s
+                UPDATE ProductType \s
                 Set storageCurr=? \s
                 WHERE \s
-                storeID=? AND typeID=?;;
-                """;
+                storeID=? AND typeID=?;""";
         List<Tuple<Object,Class>> list=prepareList(i,storeId,_typeID);
         try{
             DC.noSelect(query, list);

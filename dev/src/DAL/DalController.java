@@ -67,7 +67,7 @@ public class DalController {
                 }
                 ret += preparedStatement.executeUpdate();
             } catch (Exception e) {
-                log.warn("noSelect quary: " + query +" params: " + params+ "\nfailed due to " + e.getMessage());
+                log.warn("noSelect query: " + query +" params: " + params+ "\nfailed due to " + e.getMessage());
                 throw e;
             }
         }
@@ -77,6 +77,7 @@ public class DalController {
     public Tuple<List<Class>,List<Object>> Select(String query, List<Integer> params) throws Exception {
         Connection conn = this.connect();
         try {
+            log.warn("doing select with query: "+query+" and params: "+params);
             PreparedStatement preparedStatement  = conn.prepareStatement(query);
             for(int i = 0 ; i < params.size() ; i++){
                 preparedStatement.setInt(i+1 , params.get(i));
@@ -84,6 +85,7 @@ public class DalController {
             ResultSet rs = preparedStatement.executeQuery();
             return fromRS(rs);
         } catch (Exception e) {
+            log.warn("Select query: " + query +" params: " + params+ "\nfailed due to " + e.getMessage());
             throw new Exception("select field");
         }
         finally{
@@ -114,7 +116,7 @@ public class DalController {
                 if (rs.next()) return null;
             }
             catch (Exception e){
-                log.warn(e.getMessage());
+                log.warn("DalController from RS error due to: "+e);
                 return null;
             }
         } else return null;

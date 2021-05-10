@@ -335,7 +335,7 @@ public class StockCLI {
             if (in.equals("2")) return;
             else if (in.equals("3")) System.out.println(SS.getProductTypes());
             else if (in.equals("4")) productInfo(1);
-            else if (in.equals("5")) typeInfo(4);
+            else if (in.equals("5")) productInfo(4);
             else if (in.equals("6")) addProd();
             else if (in.equals("7")) relocateProd();
             else if (in.equals("8")) productInfo(2);
@@ -357,6 +357,9 @@ public class StockCLI {
             else if (i == 3) {
                 SS.reportDamage(Integer.parseInt(in));
                 System.out.print("damage reported.\n");
+            }
+            else if (i == 4) {
+                SS.getProductInfo(Integer.parseInt(in));
             } else System.out.print("bad input, try again.\n");
         } catch (Exception e) {
             System.out.print("bad input, try again.\n");

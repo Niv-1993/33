@@ -19,21 +19,27 @@ public class DALProduct extends DALObject {
     private String tableName="Product";
     private int typeID;
 
+    public int getTypeID() {
+        return typeID;
+    }
+
+
+    public Tuple<Integer, String> get_location() {
+        return _location;
+    }
 
     public DALProduct(){
         super(null);
     }
 
-    public DALProduct(Integer storeID, Integer typeID, Integer id, Date date, boolean isDamaged, DalController dc){
+    public DALProduct(Integer storeID, Integer typeID, Integer id, String date, Integer isDamaged,Integer shelf, Integer Location, DalController dc){
         super(dc);
         this.storeID=storeID;
         this.typeID=typeID;
         _id=id;
-        _isDamage=isDamaged? 1 : 0;
-        String format="dd-MM-yyyy";
-        DateFormat df= new SimpleDateFormat(format);
-        _expiration=df.format(date);
-
+        _isDamage=isDamaged;
+        _expiration=date;
+        _location=new Tuple<>(shelf,Location==0?"Shelves":"Storage");
     } //get location from controller
 
 
@@ -175,7 +181,7 @@ public class DALProduct extends DALObject {
                 SET shelfNum=?
                 WHERE\s
                 storeID=?
-                AND productID=?\s;""";
+                AND productID=?;""";
         List<Tuple<Object,Class>> params=prepareList(num,storeID,_id);
         if (!_location.item2.equals(s))
         {

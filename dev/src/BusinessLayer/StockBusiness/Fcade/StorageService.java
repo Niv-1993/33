@@ -15,8 +15,8 @@ import java.util.List;
 
 public class StorageService implements iStorageService {
     int counter=1;
-    int shelves=1000;
-    int storeShelves=500;
+    int shelves=20;
+    int storeShelves=10;
     int MAX_PER_SHELF=100;
     List<StoreController> stores;
     StoreController curr;

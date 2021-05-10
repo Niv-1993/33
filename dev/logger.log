@@ -33955,3 +33955,1317 @@ failed due to illegal type
 [WARN ] 10-05-2021 01:20:07 [class: DAL.DalController,Line:117] - ResultSet closed
 [WARN ] 10-05-2021 01:20:07 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
 [WARN ] 10-05-2021 01:20:07 [class: Utility.Util,Line:32] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:36:28 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:354] - java.lang.NullPointerException: Cannot invoke "DAL.Mapper.setItem(java.lang.Class, java.util.List)" because "map" is null
+[WARN ] 10-05-2021 11:38:45 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:38:45 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALCategory
+[WARN ] 10-05-2021 11:38:45 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:38:45 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProductType
+[WARN ] 10-05-2021 11:38:45 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:38:45 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALInstanceController
+[WARN ] 10-05-2021 11:38:45 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:38:45 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProductType
+[WARN ] 10-05-2021 11:38:45 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:38:45 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALInstanceController
+[WARN ] 10-05-2021 11:38:45 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:38:45 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:38:45 [class: DAL.DalController,Line:70] - noSelect quary: INSERT INTO Product  
+VALUES(?,?,?,?,?,?,?)
+ params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1000, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=Thu Jan 01 02:00:02 IST 1970, item2=class java.util.Date}, Tuple{item1=false, item2=class java.lang.Boolean}, Tuple{item1=501, item2=class java.lang.Integer}, Tuple{item1=Shelves, item2=class java.lang.String}]
+failed due to illegal type
+[WARN ] 10-05-2021 11:38:45 [class: DAL.Mapper,Line:160] - java.lang.Exception: illegal type
+[WARN ] 10-05-2021 11:38:45 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:38:45 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:38:45 [class: Utility.Util,Line:32] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:38:45 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:38:45 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:38:45 [class: DAL.DalController,Line:70] - noSelect quary: INSERT INTO Product  
+VALUES(?,?,?,?,?,?,?)
+ params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=2000, item2=class java.lang.Integer}, Tuple{item1=2, item2=class java.lang.Integer}, Tuple{item1=Thu Jan 01 02:00:02 IST 1970, item2=class java.util.Date}, Tuple{item1=false, item2=class java.lang.Boolean}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=Shelves, item2=class java.lang.String}]
+failed due to illegal type
+[WARN ] 10-05-2021 11:38:45 [class: DAL.Mapper,Line:160] - java.lang.Exception: illegal type
+[WARN ] 10-05-2021 11:38:45 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:38:45 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:38:45 [class: Utility.Util,Line:32] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:38:45 [class: BusinessLayer.StockBusiness.StoreController,Line:659] - the number #3, is not ID of any ProductType in Store #1
+[WARN ] 10-05-2021 11:38:45 [class: BusinessLayer.StockBusiness.Type.Discount,Line:16] - the Date is illegal
+[WARN ] 10-05-2021 11:38:45 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:38:45 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALSaleDiscount
+[WARN ] 10-05-2021 11:38:45 [class: BusinessLayer.StockBusiness.StoreController,Line:216] - can not remove Discount to DB
+[WARN ] 10-05-2021 11:38:45 [class: BusinessLayer.StockBusiness.Type.Discount,Line:16] - the Date is illegal
+[WARN ] 10-05-2021 11:38:45 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:38:45 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALSaleDiscount
+[WARN ] 10-05-2021 11:38:45 [class: BusinessLayer.StockBusiness.StoreController,Line:216] - can not remove Discount to DB
+[WARN ] 10-05-2021 11:38:46 [class: BusinessLayer.StockBusiness.Type.Discount,Line:16] - the Date is illegal
+[WARN ] 10-05-2021 11:38:46 [class: BusinessLayer.StockBusiness.Type.Discount,Line:16] - the Date is illegal
+[WARN ] 10-05-2021 11:38:46 [class: BusinessLayer.StockBusiness.Type.Discount,Line:16] - the Date is illegal
+[WARN ] 10-05-2021 11:38:46 [class: BusinessLayer.StockBusiness.Type.Discount,Line:16] - the Date is illegal
+[WARN ] 10-05-2021 11:39:24 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:39:24 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 11:39:24 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 11:39:24 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 11:40:38 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:40:38 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProductType
+[WARN ] 10-05-2021 11:40:38 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:40:38 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALInstanceController
+[WARN ] 10-05-2021 11:41:57 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:41:57 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:41:57 [class: DAL.DalController,Line:70] - noSelect quary: INSERT INTO Product  
+VALUES(?,?,?,?,?,?,?)
+ params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1000, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=Sat Nov 11 00:00:00 IST 1111, item2=class java.util.Date}, Tuple{item1=false, item2=class java.lang.Boolean}, Tuple{item1=501, item2=class java.lang.Integer}, Tuple{item1=Shelves, item2=class java.lang.String}]
+failed due to illegal type
+[WARN ] 10-05-2021 11:41:57 [class: DAL.Mapper,Line:160] - java.lang.Exception: illegal type
+[WARN ] 10-05-2021 11:41:57 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:41:57 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:41:57 [class: Utility.Util,Line:32] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:44:07 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 11:44:07 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 11:44:07 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 11:44:07 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 11:44:07 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 11:44:07 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 11:44:07 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 11:44:07 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 11:44:07 [class: Utility.Util,Line:26] - entry not in DB, will attempt to insert.
+[WARN ] 10-05-2021 11:44:07 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 11:44:07 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:44:07 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 11:44:07 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 11:44:07 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 11:45:00 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:45:00 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:45:00 [class: DAL.DalController,Line:70] - noSelect quary: INSERT INTO Product  
+VALUES(?,?,?,?,?,?,?)
+ params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1001, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=Sat Nov 11 00:00:00 IST 1111, item2=class java.lang.String}, Tuple{item1=false, item2=class java.lang.Boolean}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=Shelves, item2=class java.lang.String}]
+failed due to illegal type
+[WARN ] 10-05-2021 11:45:00 [class: DAL.Mapper,Line:160] - java.lang.Exception: illegal type
+[WARN ] 10-05-2021 11:45:00 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:45:00 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:45:00 [class: Utility.Util,Line:34] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:48:33 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 11:48:33 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 11:48:33 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 11:48:33 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 11:48:33 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 11:48:33 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 11:48:33 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 11:48:33 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 11:48:33 [class: Utility.Util,Line:26] - entry not in DB, will attempt to insert.
+[WARN ] 10-05-2021 11:48:33 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 11:48:33 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:48:33 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 11:48:33 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 11:48:33 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 11:49:20 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:49:20 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:49:20 [class: DAL.DalController,Line:70] - noSelect quary: INSERT INTO Product  
+VALUES(?,?,?,?,?,?,?)
+ params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1002, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=Sat Nov 11 00:00:00 IST 1111, item2=class java.lang.String}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=Shelves, item2=class java.lang.String}]
+failed due to [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 10-05-2021 11:49:20 [class: DAL.Mapper,Line:160] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 10-05-2021 11:49:20 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:49:20 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:49:20 [class: Utility.Util,Line:34] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:55:19 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 11:55:19 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 11:55:19 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 11:55:19 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 11:55:19 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 11:55:19 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 11:55:19 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 11:55:19 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 11:55:19 [class: Utility.Util,Line:26] - entry not in DB, will attempt to insert.
+[WARN ] 10-05-2021 11:55:19 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 11:55:19 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:55:19 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 11:55:19 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 11:55:19 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 11:55:43 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:55:43 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:55:43 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 11:55:43 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 11:55:43 [class: Utility.Util,Line:34] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:13:24 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:13:24 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:13:24 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:13:24 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:17:29 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:17:29 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProductType
+[WARN ] 10-05-2021 12:17:29 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:17:29 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALInstanceController
+[WARN ] 10-05-2021 12:17:48 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:17:48 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:17:48 [class: DAL.DalController,Line:70] - noSelect quary: INSERT INTO Product  
+VALUES(?,?,?,?,?,?,?)
+ params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1000, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=Sat Nov 11 00:00:00 IST 1111, item2=class java.lang.String}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=11, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}]
+failed due to [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 10-05-2021 12:17:48 [class: DAL.Mapper,Line:160] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 10-05-2021 12:17:48 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:17:48 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:17:48 [class: Utility.Util,Line:34] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:23:49 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 12:23:49 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 12:23:49 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 12:23:49 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 12:23:49 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 12:23:49 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 12:23:49 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 12:23:49 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 12:23:49 [class: Utility.Util,Line:26] - entry not in DB, will attempt to insert.
+[WARN ] 10-05-2021 12:23:49 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 12:23:49 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:23:49 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:23:49 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:23:49 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:24:09 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:24:09 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:24:09 [class: DAL.DalController,Line:70] - noSelect quary: INSERT INTO Product  
+VALUES(?,?,?,?,?,?,?)
+ params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1000, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=Sat Nov 11 00:00:00 IST 1111, item2=class java.lang.String}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}]
+failed due to [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 10-05-2021 12:24:09 [class: DAL.Mapper,Line:160] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_FOREIGNKEY]  A foreign key constraint failed (FOREIGN KEY constraint failed)
+[WARN ] 10-05-2021 12:24:09 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:24:09 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:24:09 [class: Utility.Util,Line:34] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:25:45 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 12:25:45 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 12:25:45 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 12:25:45 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 12:25:45 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 12:25:45 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 12:25:45 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 12:25:45 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 12:25:45 [class: Utility.Util,Line:26] - entry not in DB, will attempt to insert.
+[WARN ] 10-05-2021 12:25:45 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 12:25:45 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:25:45 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:25:45 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:25:45 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:25:55 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:25:55 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:25:55 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:25:55 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:25:55 [class: Utility.Util,Line:34] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:32:32 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 12:32:32 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 12:32:32 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 12:32:32 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 12:32:32 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 12:32:32 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 12:32:32 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 12:32:32 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 12:32:32 [class: Utility.Util,Line:26] - entry not in DB, will attempt to insert.
+[WARN ] 10-05-2021 12:32:32 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 12:32:32 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:32:32 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:32:32 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:32:32 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:32:42 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 12:32:42 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:32:42 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:32:42 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:32:42 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:32:42 [class: Utility.Util,Line:34] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:39:14 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 12:39:14 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 12:39:14 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 12:39:14 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 12:39:14 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 12:39:14 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 12:39:14 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 12:39:14 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 12:39:14 [class: Utility.Util,Line:26] - entry not in DB, will attempt to insert.
+[WARN ] 10-05-2021 12:39:14 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 12:39:14 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:39:14 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:39:14 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:39:14 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:39:34 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 12:39:34 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:39:34 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:39:34 [class: DAL.DalController,Line:70] - noSelect quary: INSERT INTO Product  
+VALUES(?,?,?,?,?,?,?)
+ params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1000, item2=class java.lang.Integer}, Tuple{item1=Sat Nov 11 00:00:00 IST 1111, item2=class java.lang.String}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}]
+failed due to [SQLITE_CONSTRAINT_NOTNULL]  A NOT NULL constraint failed (NOT NULL constraint failed: Product.location)
+[WARN ] 10-05-2021 12:39:34 [class: DAL.Mapper,Line:160] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_NOTNULL]  A NOT NULL constraint failed (NOT NULL constraint failed: Product.location)
+[WARN ] 10-05-2021 12:39:34 [class: BusinessLayer.StockBusiness.instance.Product,Line:44] - did insert DALProduct
+[WARN ] 10-05-2021 12:39:34 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:39:34 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:39:34 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:40:50 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 12:40:50 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 12:40:50 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 12:40:50 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 12:40:50 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 12:40:50 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 12:40:50 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 12:40:50 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 12:40:50 [class: Utility.Util,Line:26] - entry not in DB, will attempt to insert.
+[WARN ] 10-05-2021 12:40:50 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 12:40:50 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:40:50 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:40:50 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:40:50 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:40:59 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 12:40:59 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:40:59 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:40:59 [class: BusinessLayer.StockBusiness.instance.Product,Line:45] - did insert DALProduct
+[WARN ] 10-05-2021 12:40:59 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:40:59 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:40:59 [class: BusinessLayer.StockBusiness.instance.Product,Line:49] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:43:55 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 12:43:55 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 12:43:55 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 12:43:55 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 12:43:55 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 12:43:55 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 12:43:55 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 12:43:55 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 12:43:55 [class: Utility.Util,Line:26] - entry not in DB, will attempt to insert.
+[WARN ] 10-05-2021 12:43:55 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 12:43:55 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:43:55 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:43:55 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:43:55 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:44:07 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 12:44:07 [class: BusinessLayer.StockBusiness.instance.Product,Line:23] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 12:44:07 [class: BusinessLayer.StockBusiness.instance.Product,Line:38] - starting 1st check DALProduct
+[WARN ] 10-05-2021 12:44:07 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:44:07 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:44:07 [class: BusinessLayer.StockBusiness.instance.Product,Line:40] - did 1st check DALProduct
+[WARN ] 10-05-2021 12:44:07 [class: BusinessLayer.StockBusiness.instance.Product,Line:47] - did insert DALProduct
+[WARN ] 10-05-2021 12:44:07 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:44:07 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:44:07 [class: BusinessLayer.StockBusiness.instance.Product,Line:51] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:45:24 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 12:45:24 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 12:45:24 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 12:45:24 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 12:45:24 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 12:45:24 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 12:45:24 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 12:45:24 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 12:45:24 [class: Utility.Util,Line:26] - entry not in DB, will attempt to insert.
+[WARN ] 10-05-2021 12:45:24 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 12:45:24 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:45:24 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:45:24 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:45:24 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:46:15 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 12:46:15 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 12:46:15 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 12:46:15 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:46:15 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:46:15 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 12:46:15 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 12:46:15 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:46:15 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:46:15 [class: BusinessLayer.StockBusiness.instance.Product,Line:52] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:46:15 [class: BusinessLayer.StockBusiness.instance.Product,Line:59] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:46:15 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 12:46:15 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:87] - can not add the product
+[WARN ] 10-05-2021 12:50:42 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 12:50:42 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 12:50:42 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 12:50:42 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 12:50:42 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 12:50:42 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 12:50:42 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 12:50:42 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 12:50:42 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 12:50:42 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 12:50:42 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:50:42 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:50:42 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:50:42 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:50:53 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 12:50:53 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 12:50:53 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 12:50:53 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:50:53 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:50:53 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 12:50:53 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 12:50:53 [class: DAL.DalController,Line:117] - ResultSet closed
+[WARN ] 10-05-2021 12:50:53 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:50:53 [class: BusinessLayer.StockBusiness.instance.Product,Line:52] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:50:53 [class: BusinessLayer.StockBusiness.instance.Product,Line:59] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:50:53 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 12:50:53 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:87] - can not add the product
+[WARN ] 10-05-2021 12:53:02 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 12:53:02 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 12:53:02 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 12:53:02 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 12:53:02 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 12:53:02 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 12:53:02 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 12:53:02 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 12:53:02 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 12:53:02 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 12:53:02 [class: DAL.DalController,Line:118] - ResultSet closed
+[WARN ] 10-05-2021 12:53:02 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:53:02 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:53:02 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:53:10 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 12:53:10 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 12:53:10 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 12:53:10 [class: DAL.DalController,Line:118] - ResultSet closed
+[WARN ] 10-05-2021 12:53:10 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:53:10 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 12:53:10 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 12:53:10 [class: DAL.DalController,Line:118] - ResultSet closed
+[WARN ] 10-05-2021 12:53:10 [class: DAL.Mapper,Line:122] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:53:10 [class: BusinessLayer.StockBusiness.instance.Product,Line:52] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:53:10 [class: BusinessLayer.StockBusiness.instance.Product,Line:59] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:53:10 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 12:53:10 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:87] - can not add the product
+[WARN ] 10-05-2021 12:54:58 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@5700d6b1]}
+[WARN ] 10-05-2021 12:54:59 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@5700d6b1]}
+[WARN ] 10-05-2021 12:54:59 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 12:54:59 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 12:54:59 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@5700d6b1]}
+[WARN ] 10-05-2021 12:54:59 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 12:54:59 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 12:54:59 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, a, 1, 1, 0, 0, 1.0, 1.0, a, DAL.DalController@5700d6b1]}
+[WARN ] 10-05-2021 12:54:59 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 12:54:59 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 12:54:59 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 12:54:59 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 12:54:59 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, DAL.DalController@5700d6b1]}
+[WARN ] 10-05-2021 12:54:59 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 12:54:59 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 12:54:59 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@5700d6b1]}
+[WARN ] 10-05-2021 12:54:59 [class: DAL.DalController,Line:118] - ResultSet closed
+[WARN ] 10-05-2021 12:54:59 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 12:54:59 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:54:59 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:54:59 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:55:25 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 12:55:25 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 12:55:25 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 12:55:25 [class: DAL.DalController,Line:118] - ResultSet closed
+[WARN ] 10-05-2021 12:55:25 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 12:55:25 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:55:25 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 12:55:25 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 12:55:25 [class: DAL.DalController,Line:118] - ResultSet closed
+[WARN ] 10-05-2021 12:55:25 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 12:55:25 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:55:25 [class: BusinessLayer.StockBusiness.instance.Product,Line:52] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:55:25 [class: BusinessLayer.StockBusiness.instance.Product,Line:59] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:55:25 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 12:55:25 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:87] - can not add the product
+[WARN ] 10-05-2021 12:57:31 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@5700d6b1]}
+[WARN ] 10-05-2021 12:57:31 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@5700d6b1]}
+[WARN ] 10-05-2021 12:57:31 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 12:57:31 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 12:57:31 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@5700d6b1]}
+[WARN ] 10-05-2021 12:57:31 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 12:57:31 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 12:57:31 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, a, 1, 1, 0, 0, 1.0, 1.0, a, DAL.DalController@5700d6b1]}
+[WARN ] 10-05-2021 12:57:31 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 12:57:31 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 12:57:31 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 12:57:31 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 12:57:31 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, DAL.DalController@5700d6b1]}
+[WARN ] 10-05-2021 12:57:31 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 12:57:31 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 12:57:31 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@5700d6b1]}
+[WARN ] 10-05-2021 12:57:31 [class: DAL.DalController,Line:118] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 12:57:31 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 12:57:31 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:57:31 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:57:31 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:57:39 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 12:57:39 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 12:57:39 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 12:57:39 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 12:57:39 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 12:57:39 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 12:57:39 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 12:57:39 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 12:57:39 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 12:57:39 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 12:57:39 [class: DAL.DalController,Line:118] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 12:57:39 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 12:57:39 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:57:39 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:57:39 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:57:48 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 12:57:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 12:57:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 12:57:48 [class: DAL.DalController,Line:118] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 12:57:48 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 12:57:48 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:57:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 12:57:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 12:57:48 [class: DAL.DalController,Line:118] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 12:57:48 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 12:57:48 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:57:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:52] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:57:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:59] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:57:48 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 12:57:48 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:87] - can not add the product
+[WARN ] 10-05-2021 12:59:21 [class: DAL.DalController,Line:80] - doing select with query: Select * FROM SupplierController; and params: []
+[WARN ] 10-05-2021 12:59:21 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 12:59:21 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [1]
+[WARN ] 10-05-2021 12:59:21 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 12:59:21 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 12:59:21 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 12:59:21 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Category  
+WHERE storeId=? AND categoryID=?;  
+ and params: [1, 1]
+[WARN ] 10-05-2021 12:59:21 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 12:59:21 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 12:59:21 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 12:59:21 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM ProductType  
+WHERE storeID=? AND typeID=? ; 
+ and params: [1, 1]
+[WARN ] 10-05-2021 12:59:21 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, a, 1, 1, 0, 0, 1.0, 1.0, a, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 12:59:21 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 12:59:21 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 12:59:21 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 12:59:21 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 12:59:21 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM InstanceController
+WHERE StoreID=? AND typeID=?; and params: [1, 1]
+[WARN ] 10-05-2021 12:59:21 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 12:59:21 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 12:59:21 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 12:59:21 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Shelf  
+WHERE storeID=? AND shelfID=?; and params: [1, 1]
+[WARN ] 10-05-2021 12:59:21 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 12:59:21 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 12:59:21 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 12:59:21 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 12:59:21 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:59:21 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:59:21 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:59:22 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 12:59:22 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 12:59:22 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 12:59:22 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 12:59:22 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 12:59:22 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 12:59:22 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 12:59:22 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 12:59:22 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 12:59:22 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 12:59:22 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 12:59:22 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 12:59:22 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 12:59:22 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 12:59:22 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 12:59:22 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 12:59:29 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 12:59:29 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 12:59:29 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 12:59:29 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 12:59:29 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 12:59:29 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 12:59:29 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:59:29 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 12:59:29 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 12:59:29 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 12:59:29 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 12:59:29 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 12:59:29 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:59:29 [class: BusinessLayer.StockBusiness.instance.Product,Line:52] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:59:29 [class: BusinessLayer.StockBusiness.instance.Product,Line:59] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 12:59:29 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 12:59:29 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:87] - can not add the product
+[WARN ] 10-05-2021 13:00:33 [class: DAL.DalController,Line:80] - doing select with query: Select * FROM SupplierController; and params: []
+[WARN ] 10-05-2021 13:00:33 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:00:33 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [1]
+[WARN ] 10-05-2021 13:00:33 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:00:33 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 13:00:33 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 13:00:33 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Category  
+WHERE storeId=? AND categoryID=?;  
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:00:33 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:00:33 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 13:00:33 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 13:00:33 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM ProductType  
+WHERE storeID=? AND typeID=? ; 
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:00:33 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, a, 1, 1, 0, 0, 1.0, 1.0, a, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:00:33 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 13:00:33 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 13:00:33 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 13:00:33 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 13:00:33 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM InstanceController
+WHERE StoreID=? AND typeID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:00:33 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:00:33 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 13:00:33 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 13:00:33 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Shelf  
+WHERE storeID=? AND shelfID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:00:33 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:00:33 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 13:00:33 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:00:33 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:00:33 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 13:00:33 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 13:00:33 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 13:00:48 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 13:00:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 13:00:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 13:00:48 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:00:48 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:00:48 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:00:48 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:00:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 13:00:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 13:00:48 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:00:48 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1000, Sat Nov 11 00:00:00 IST 1111, 0, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:00:48 [class: DAL.Mapper,Line:147] - java.lang.reflect.InvocationTargetException
+[WARN ] 10-05-2021 13:00:48 [class: DAL.Mapper,Line:117] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:00:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:52] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:00:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:59] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:00:48 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 13:00:48 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:87] - can not add the product
+[WARN ] 10-05-2021 13:06:36 [class: DAL.DalController,Line:80] - doing select with query: Select * FROM SupplierController; and params: []
+[WARN ] 10-05-2021 13:06:36 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:06:38 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [1]
+[WARN ] 10-05-2021 13:06:38 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:06:38 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 13:06:38 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 13:06:38 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Category  
+WHERE storeId=? AND categoryID=?;  
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:06:38 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:06:38 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 13:06:38 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 13:06:38 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM ProductType  
+WHERE storeID=? AND typeID=? ; 
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:06:38 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, a, 1, 1, 0, 0, 1.0, 1.0, a, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:06:38 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 13:06:38 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 13:06:38 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 13:06:38 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 13:06:38 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM InstanceController
+WHERE StoreID=? AND typeID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:06:38 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:06:38 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 13:06:38 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 13:06:38 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Shelf  
+WHERE storeID=? AND shelfID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:06:38 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:06:38 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 13:06:38 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:06:38 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:06:38 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 13:06:38 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 13:06:38 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 13:08:12 [class: DAL.DalController,Line:70] - noSelect query: INSERT INTO Supplier  
+(storeID,typeID,SupplierID) 
+VALUES (?,?,?) params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}]
+failed due to [SQLITE_CONSTRAINT_NOTNULL]  A NOT NULL constraint failed (NOT NULL constraint failed: Supplier.supplierID)
+[WARN ] 10-05-2021 13:08:12 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:191] - java.lang.IllegalArgumentException: fail
+[WARN ] 10-05-2021 13:10:07 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 13:10:07 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 13:10:07 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 13:10:07 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:10:07 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:10:07 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:10:07 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:10:07 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 13:10:07 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 13:10:07 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:10:07 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1000, Sat Nov 11 00:00:00 IST 1111, 0, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:10:07 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 13:10:07 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:110] - done adding product to biz in instanceController.
+[WARN ] 10-05-2021 13:10:07 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:112] - done adding product to hash in instanceController.
+[WARN ] 10-05-2021 13:10:07 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:324] - can not add product
+[WARN ] 10-05-2021 13:10:07 [class: BusinessLayer.StockBusiness.StoreController,Line:528] - java.lang.IllegalArgumentException: can not add product
+[WARN ] 10-05-2021 13:10:07 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:41] - can not remove the product
+[WARN ] 10-05-2021 13:15:18 [class: DAL.DalController,Line:80] - doing select with query: Select * FROM SupplierController; and params: []
+[WARN ] 10-05-2021 13:15:18 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:15:20 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [1]
+[WARN ] 10-05-2021 13:15:20 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:15:20 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 13:15:20 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 13:15:20 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Category  
+WHERE storeId=? AND categoryID=?;  
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:15:20 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:15:20 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 13:15:20 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 13:15:20 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM ProductType  
+WHERE storeID=? AND typeID=? ; 
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:15:20 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, aaaaaaaaaaa, 1, 90, 0, 0, 1.0, 1.0, sada, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:15:20 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 13:15:20 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 13:15:20 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 13:15:20 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 13:15:20 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM InstanceController
+WHERE StoreID=? AND typeID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:15:20 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:15:20 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 13:15:20 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:15:20 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1000, Sat Nov 11 00:00:00 IST 1111, 0, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:15:20 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 13:15:20 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Shelf  
+WHERE storeID=? AND shelfID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:15:20 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:15:20 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 13:15:20 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:15:20 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:15:20 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 13:15:20 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 13:15:20 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 13:15:46 [class: DAL.DalController,Line:80] - doing select with query: Select * FROM SupplierController; and params: []
+[WARN ] 10-05-2021 13:15:46 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:15:46 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [1]
+[WARN ] 10-05-2021 13:15:46 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:15:46 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 13:15:46 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 13:15:46 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Category  
+WHERE storeId=? AND categoryID=?;  
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:15:46 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:15:46 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 13:15:46 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 13:15:46 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM ProductType  
+WHERE storeID=? AND typeID=? ; 
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:15:46 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, aaaaaaaaaaa, 1, 90, 0, 0, 1.0, 1.0, sada, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:15:46 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 13:15:46 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 13:15:46 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 13:15:46 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 13:15:46 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM InstanceController
+WHERE StoreID=? AND typeID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:15:46 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:15:46 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 13:15:46 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 13:15:46 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Shelf  
+WHERE storeID=? AND shelfID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:15:46 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:15:46 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 13:15:46 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:15:46 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:15:46 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 13:15:46 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 13:15:46 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 13:16:12 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 13:16:12 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 13:16:12 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 13:16:12 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:16:12 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:16:12 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:16:12 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:16:12 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 13:16:12 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 13:16:12 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:16:12 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1000, Sat Nov 11 00:00:00 IST 1111, 0, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:16:12 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 13:16:12 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:110] - done adding product to biz in instanceController.
+[WARN ] 10-05-2021 13:16:12 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:112] - done adding product to hash in instanceController.
+[WARN ] 10-05-2021 13:16:12 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:315] - adding product to product type.
+[WARN ] 10-05-2021 13:16:12 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:318] - adding shelves to product type.
+[WARN ] 10-05-2021 13:16:12 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:328] - can not add product
+[WARN ] 10-05-2021 13:16:12 [class: BusinessLayer.StockBusiness.StoreController,Line:528] - java.lang.IllegalArgumentException: can not add product
+[WARN ] 10-05-2021 13:16:12 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:41] - can not remove the product
+[WARN ] 10-05-2021 13:17:40 [class: DAL.DalController,Line:80] - doing select with query: Select * FROM SupplierController; and params: []
+[WARN ] 10-05-2021 13:17:40 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:17:40 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [1]
+[WARN ] 10-05-2021 13:17:40 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:17:40 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 13:17:40 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 13:17:40 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Category  
+WHERE storeId=? AND categoryID=?;  
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:17:40 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:17:40 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 13:17:40 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 13:17:40 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM ProductType  
+WHERE storeID=? AND typeID=? ; 
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:17:40 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, aaaaaaaaaaa, 1, 90, 0, 0, 1.0, 1.0, sada, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:17:40 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 13:17:40 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 13:17:40 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 13:17:40 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 13:17:40 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM InstanceController
+WHERE StoreID=? AND typeID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:17:40 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:17:40 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 13:17:40 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 13:17:40 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Shelf  
+WHERE storeID=? AND shelfID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:17:40 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:17:40 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 13:17:40 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:17:40 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:17:40 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 13:17:40 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 13:17:40 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 13:17:48 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 13:17:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 13:17:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 13:17:48 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:17:48 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:17:48 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:17:48 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:17:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 13:17:48 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 13:17:48 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:17:48 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1000, Sat Nov 11 00:00:00 IST 1111, 0, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:17:48 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 13:17:48 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:110] - done adding product to biz in instanceController.
+[WARN ] 10-05-2021 13:17:48 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:112] - done adding product to hash in instanceController.
+[WARN ] 10-05-2021 13:17:48 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:315] - adding product to product type.
+[WARN ] 10-05-2021 13:17:48 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:318] - adding shelves to product type.
+[WARN ] 10-05-2021 13:17:48 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:328] - can not add product
+[WARN ] 10-05-2021 13:17:48 [class: BusinessLayer.StockBusiness.StoreController,Line:528] - java.lang.IllegalArgumentException: can not add product
+[WARN ] 10-05-2021 13:17:48 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:41] - can not remove the product
+[WARN ] 10-05-2021 13:20:45 [class: DAL.DalController,Line:80] - doing select with query: Select * FROM SupplierController; and params: []
+[WARN ] 10-05-2021 13:20:45 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:20:45 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [1]
+[WARN ] 10-05-2021 13:20:45 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:20:45 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 13:20:45 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 13:20:45 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Category  
+WHERE storeId=? AND categoryID=?;  
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:20:45 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:20:45 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 13:20:45 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 13:20:45 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM ProductType  
+WHERE storeID=? AND typeID=? ; 
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:20:45 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, aaaaaaaaaaa, 1, 90, 0, 0, 1.0, 1.0, sada, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:20:45 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 13:20:45 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 13:20:45 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 13:20:45 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 13:20:45 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM InstanceController
+WHERE StoreID=? AND typeID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:20:45 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:20:45 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 13:20:45 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 13:20:45 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Shelf  
+WHERE storeID=? AND shelfID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:20:45 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:20:45 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 13:20:45 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:20:45 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:20:45 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 13:20:45 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 13:20:45 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 13:20:54 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 13:20:54 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 13:20:54 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 13:20:54 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:20:54 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:20:54 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:20:54 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:20:54 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 13:20:54 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 13:20:54 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:20:54 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1000, Sat Nov 11 00:00:00 IST 1111, 0, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:20:54 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 13:20:54 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:110] - done adding product to biz in instanceController.
+[WARN ] 10-05-2021 13:20:54 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:112] - done adding product to hash in instanceController.
+[WARN ] 10-05-2021 13:20:54 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:315] - adding product to product type.
+[WARN ] 10-05-2021 13:20:54 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:318] - adding shelves to product type.
+[WARN ] 10-05-2021 13:20:54 [class: DAL.DalStock.DALProductType,Line:304] - java.lang.Exception: non create multi-query
+[WARN ] 10-05-2021 13:20:54 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:328] - can not add product
+[WARN ] 10-05-2021 13:20:54 [class: BusinessLayer.StockBusiness.StoreController,Line:528] - java.lang.IllegalArgumentException: can not add product
+[WARN ] 10-05-2021 13:20:54 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:41] - can not remove the product
+[WARN ] 10-05-2021 13:23:03 [class: DAL.DalController,Line:80] - doing select with query: Select * FROM SupplierController; and params: []
+[WARN ] 10-05-2021 13:23:03 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:23:04 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [1]
+[WARN ] 10-05-2021 13:23:04 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:23:04 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 13:23:04 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 13:23:04 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Category  
+WHERE storeId=? AND categoryID=?;  
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:23:04 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:23:04 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 13:23:04 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 13:23:04 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM ProductType  
+WHERE storeID=? AND typeID=? ; 
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:23:04 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, aaaaaaaaaaa, 1, 90, 0, 0, 1.0, 1.0, sada, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:23:04 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 13:23:04 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 13:23:04 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 13:23:04 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 13:23:04 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM InstanceController
+WHERE StoreID=? AND typeID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:23:04 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:23:04 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 13:23:04 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 13:23:04 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Shelf  
+WHERE storeID=? AND shelfID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:23:04 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:23:04 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 13:23:04 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:23:04 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:23:04 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 13:23:04 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 13:23:04 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 13:23:57 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 13:23:57 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 13:23:57 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 13:23:57 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:23:57 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:23:57 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:23:57 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:23:57 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 13:23:57 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 13:23:57 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:23:57 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1000, Sat Nov 11 00:00:00 IST 1111, 0, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:23:57 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 13:23:57 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:110] - done adding product to biz in instanceController.
+[WARN ] 10-05-2021 13:23:57 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:112] - done adding product to hash in instanceController.
+[WARN ] 10-05-2021 13:23:57 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:315] - adding product to product type.
+[WARN ] 10-05-2021 13:23:57 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:318] - adding shelves to product type.
+[WARN ] 10-05-2021 13:23:57 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:324] - done adding shelves/storage to product type.
+[WARN ] 10-05-2021 13:29:42 [class: DAL.DalController,Line:80] - doing select with query: Select * FROM SupplierController; and params: []
+[WARN ] 10-05-2021 13:29:42 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:29:42 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [1]
+[WARN ] 10-05-2021 13:29:42 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:29:42 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 13:29:42 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 13:29:42 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Category  
+WHERE storeId=? AND categoryID=?;  
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:29:42 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:29:42 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 13:29:42 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 13:29:42 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM ProductType  
+WHERE storeID=? AND typeID=? ; 
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:29:42 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, aaaaaaaaaaa, 1, 90, 1, 0, 1.0, 1.0, sada, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:29:42 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 13:29:42 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 13:29:42 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 13:29:42 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 13:29:42 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM InstanceController
+WHERE StoreID=? AND typeID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:29:42 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:29:42 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 13:29:42 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 13:29:42 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Shelf  
+WHERE storeID=? AND shelfID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:29:42 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:29:42 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 13:29:42 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:29:42 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:29:42 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 13:29:42 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 13:29:42 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 13:30:22 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 13:30:22 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 13:30:22 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 13:30:22 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:30:22 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:30:22 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:30:22 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:30:22 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 13:30:22 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 13:30:22 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:30:22 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1000, Sat Nov 11 00:00:00 IST 1111, 0, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:30:22 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 13:30:22 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:110] - done adding product to biz in instanceController.
+[WARN ] 10-05-2021 13:30:22 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:112] - done adding product to hash in instanceController.
+[WARN ] 10-05-2021 13:30:22 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:315] - adding product to product type.
+[WARN ] 10-05-2021 13:30:22 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:318] - adding shelves to product type.
+[WARN ] 10-05-2021 13:30:22 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:324] - done adding shelves/storage to product type.
+[WARN ] 10-05-2021 13:30:22 [class: BusinessLayer.StockBusiness.StoreController,Line:532] - adding product in store controller.
+[WARN ] 10-05-2021 13:30:22 [class: BusinessLayer.StockBusiness.StoreController,Line:534] - done adding product in store controller.
+[WARN ] 10-05-2021 13:36:58 [class: DAL.DalController,Line:80] - doing select with query: Select * FROM SupplierController; and params: []
+[WARN ] 10-05-2021 13:36:58 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:37:04 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [1]
+[WARN ] 10-05-2021 13:37:04 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:37:04 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 13:37:04 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 13:37:04 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Category  
+WHERE storeId=? AND categoryID=?;  
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:37:04 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:37:04 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 13:37:04 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 13:37:04 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM ProductType  
+WHERE storeID=? AND typeID=? ; 
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:37:04 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, aaaaaaaaaaa, 1, 90, 2, 0, 1.0, 1.0, sada, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:37:04 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 13:37:04 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 13:37:04 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 13:37:04 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 13:37:04 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM InstanceController
+WHERE StoreID=? AND typeID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:37:04 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:37:04 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 13:37:04 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 13:37:04 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Shelf  
+WHERE storeID=? AND shelfID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:37:04 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:37:04 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 13:37:04 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:37:04 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:37:04 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 13:37:04 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 13:37:04 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 13:37:32 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 13:37:32 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 13:37:32 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 13:37:32 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:37:32 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:37:32 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:37:32 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:37:32 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 13:37:32 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 13:37:32 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:37:32 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1000, Sat Nov 11 00:00:00 IST 1111, 0, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:37:32 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 13:37:32 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:110] - done adding product to biz in instanceController.
+[WARN ] 10-05-2021 13:37:32 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:112] - done adding product to hash in instanceController.
+[WARN ] 10-05-2021 13:37:32 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:315] - adding product to product type.
+[WARN ] 10-05-2021 13:37:32 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:318] - adding shelves to product type.
+[WARN ] 10-05-2021 13:37:32 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:324] - done adding shelves/storage to product type.
+[WARN ] 10-05-2021 13:37:32 [class: BusinessLayer.StockBusiness.StoreController,Line:533] - adding product in store controller.
+[WARN ] 10-05-2021 13:37:32 [class: BusinessLayer.StockBusiness.StoreController,Line:535] - done adding product in store controller.
+[WARN ] 10-05-2021 13:39:20 [class: DAL.DalController,Line:80] - doing select with query: Select * FROM SupplierController; and params: []
+[WARN ] 10-05-2021 13:39:20 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:39:21 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [1]
+[WARN ] 10-05-2021 13:39:21 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:39:21 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 13:39:21 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 13:39:21 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Category  
+WHERE storeId=? AND categoryID=?;  
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:39:21 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:39:21 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 13:39:21 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 13:39:21 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM ProductType  
+WHERE storeID=? AND typeID=? ; 
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:39:21 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, aaaaaaaaaaa, 1, 90, 3, 0, 1.0, 1.0, sada, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:39:21 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 13:39:21 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 13:39:21 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 13:39:21 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 13:39:21 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM InstanceController
+WHERE StoreID=? AND typeID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:39:21 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:39:21 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 13:39:21 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 13:39:21 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Shelf  
+WHERE storeID=? AND shelfID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:39:21 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:39:21 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 13:39:21 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:39:21 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:39:21 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 13:39:21 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 13:39:21 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 13:39:35 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 13:39:35 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 13:39:35 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 13:39:35 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:39:35 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:39:35 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:39:35 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:39:35 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 13:39:35 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 13:39:35 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:39:35 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1000, Sat Nov 11 00:00:00 IST 1111, 0, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:39:35 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 13:39:35 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:110] - done adding product to biz in instanceController.
+[WARN ] 10-05-2021 13:39:35 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:112] - done adding product to hash in instanceController.
+[WARN ] 10-05-2021 13:39:35 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:315] - adding product to product type.
+[WARN ] 10-05-2021 13:39:35 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:318] - adding shelves to product type.
+[WARN ] 10-05-2021 13:39:35 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:324] - done adding shelves/storage to product type.
+[WARN ] 10-05-2021 13:39:35 [class: BusinessLayer.StockBusiness.StoreController,Line:533] - adding product in store controller.
+[WARN ] 10-05-2021 13:39:35 [class: BusinessLayer.StockBusiness.StoreController,Line:535] - done adding product in store controller.
+[WARN ] 10-05-2021 13:41:03 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 13:41:03 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 13:41:03 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 13:41:03 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1001]
+[WARN ] 10-05-2021 13:41:03 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:41:03 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:41:03 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:41:03 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 13:41:03 [class: DAL.DalController,Line:70] - noSelect query: INSERT INTO Product  
+VALUES(?,?,?,?,?,?,?)
+ params: [Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=1001, item2=class java.lang.Integer}, Tuple{item1=Fri May 30 00:00:00 IDT 1997, item2=class java.lang.String}, Tuple{item1=0, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}, Tuple{item1=0, item2=class java.lang.Integer}]
+failed due to [SQLITE_CONSTRAINT_UNIQUE]  A UNIQUE constraint failed (UNIQUE constraint failed: Product.storeID)
+[WARN ] 10-05-2021 13:41:03 [class: DAL.Mapper,Line:161] - org.sqlite.SQLiteException: [SQLITE_CONSTRAINT_UNIQUE]  A UNIQUE constraint failed (UNIQUE constraint failed: Product.storeID)
+[WARN ] 10-05-2021 13:41:03 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 13:41:03 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1001]
+[WARN ] 10-05-2021 13:41:03 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:41:03 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:41:03 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:41:03 [class: BusinessLayer.StockBusiness.instance.Product,Line:52] - the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:41:03 [class: BusinessLayer.StockBusiness.instance.Product,Line:59] - java.lang.IllegalArgumentException: the instance that return from Mapper is null for: class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:41:03 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 13:41:03 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:87] - can not add the product
+[WARN ] 10-05-2021 13:41:53 [class: DAL.DalController,Line:80] - doing select with query: Select * FROM SupplierController; and params: []
+[WARN ] 10-05-2021 13:41:53 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:41:53 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [1]
+[WARN ] 10-05-2021 13:41:53 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:41:53 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 13:41:53 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 13:41:53 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Category  
+WHERE storeId=? AND categoryID=?;  
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:41:53 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:41:53 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 13:41:53 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 13:41:53 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM ProductType  
+WHERE storeID=? AND typeID=? ; 
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:41:53 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, aaaaaaaaaaa, 1, 90, 4, 0, 1.0, 1.0, sada, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:41:53 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 13:41:53 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 13:41:53 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 13:41:53 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 13:41:53 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM InstanceController
+WHERE StoreID=? AND typeID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:41:53 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:41:53 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 13:41:53 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:41:53 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1000, Sat Nov 11 00:00:00 IST 1111, 0, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:41:53 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 13:41:53 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Shelf  
+WHERE storeID=? AND shelfID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:41:53 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 1, 1, 100, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:41:53 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 13:41:53 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:41:53 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:41:53 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 13:41:53 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 13:41:53 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 13:42:39 [class: BusinessLayer.StockBusiness.StoreController,Line:662] - the number #1000, is not ID of any ProductType in Store #1
+[WARN ] 10-05-2021 13:44:34 [class: DAL.DalController,Line:80] - doing select with query: Select * FROM SupplierController; and params: []
+[WARN ] 10-05-2021 13:44:34 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:45:11 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [1]
+[WARN ] 10-05-2021 13:45:11 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:45:11 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 13:45:11 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 13:45:11 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Category  
+WHERE storeId=? AND categoryID=?;  
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:45:11 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:45:11 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 13:45:11 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 13:45:11 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM ProductType  
+WHERE storeID=? AND typeID=? ; 
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:45:11 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, aaaaaaaaaaa, 1, 90, 4, 0, 1.0, 1.0, sada, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:45:11 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 13:45:11 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 13:45:11 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 13:45:11 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 13:45:11 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM InstanceController
+WHERE StoreID=? AND typeID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:45:11 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:45:11 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 13:45:11 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:45:11 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1000, Sat Nov 11 00:00:00 IST 1111, 0, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:45:11 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 13:45:11 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Shelf  
+WHERE storeID=? AND shelfID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:45:11 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 1, 1, 100, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:45:11 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 13:45:11 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:45:11 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:45:11 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 13:45:11 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 13:45:11 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 13:46:56 [class: DAL.DalController,Line:80] - doing select with query: Select * FROM SupplierController; and params: []
+[WARN ] 10-05-2021 13:46:56 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[0, 0, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:46:57 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [1]
+[WARN ] 10-05-2021 13:46:57 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 10, 20, 0, 1, 1, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:46:57 [class: BusinessLayer.StockBusiness.StoreController,Line:91] - loading discounts
+[WARN ] 10-05-2021 13:46:57 [class: BusinessLayer.StockBusiness.StoreController,Line:93] - loading categories
+[WARN ] 10-05-2021 13:46:57 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Category  
+WHERE storeId=? AND categoryID=?;  
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:46:57 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class DAL.DalController], item2=[1, 1, 0, aaa, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:46:57 [class: BusinessLayer.StockBusiness.StoreController,Line:95] - loading products
+[WARN ] 10-05-2021 13:46:57 [class: BusinessLayer.StockBusiness.StoreController,Line:122] - [1]
+[WARN ] 10-05-2021 13:46:57 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM ProductType  
+WHERE storeID=? AND typeID=? ; 
+ and params: [1, 1]
+[WARN ] 10-05-2021 13:46:57 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Double, class java.lang.Double, class java.lang.String, class DAL.DalController], item2=[1, 1, aaaaaaaaaaa, 1, 90, 4, 0, 1.0, 1.0, sada, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:46:57 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:39] - loaded product types
+[WARN ] 10-05-2021 13:46:57 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:47] - got sale discount
+[WARN ] 10-05-2021 13:46:57 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:41] - loaded sale discounts
+[WARN ] 10-05-2021 13:46:57 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:43] - loaded supplier discounts
+[WARN ] 10-05-2021 13:46:57 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM InstanceController
+WHERE StoreID=? AND typeID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:46:57 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:46:57 [class: Utility.Util,Line:26] - entry is already in DB, will not attempt insert.
+[WARN ] 10-05-2021 13:46:57 [class: BusinessLayer.StockBusiness.StoreController,Line:97] - loading shelves
+[WARN ] 10-05-2021 13:46:57 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Shelf  
+WHERE storeID=? AND shelfID=?; and params: [1, 1]
+[WARN ] 10-05-2021 13:46:57 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 0, 0, 0, 100, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:46:57 [class: DAL.DalController,Line:80] - doing select with query: SELECT * FROM StoreController WHERE storeID=? and params: [2]
+[WARN ] 10-05-2021 13:46:57 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:46:57 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:46:57 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALStoreController
+[WARN ] 10-05-2021 13:46:57 [class: BusinessLayer.StockBusiness.StoreController,Line:88] - storeID is not in DB
+[WARN ] 10-05-2021 13:46:57 [class: BusinessLayer.StockBusiness.Fcade.StorageService,Line:421] - java.lang.IllegalArgumentException: storeID is not in DB
+[WARN ] 10-05-2021 13:47:38 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:106] - adding product to dal from instanceController.
+[WARN ] 10-05-2021 13:47:38 [class: BusinessLayer.StockBusiness.instance.Product,Line:24] - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[WARN ] 10-05-2021 13:47:38 [class: BusinessLayer.StockBusiness.instance.Product,Line:39] - starting 1st check DALProduct
+[WARN ] 10-05-2021 13:47:38 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:47:38 [class: DAL.DalController,Line:119] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 10-05-2021 13:47:38 [class: DAL.Mapper,Line:114] - 
+[WARN ] 10-05-2021 13:47:38 [class: DAL.Mapper,Line:123] - mapper returned null on:class DAL.DalStock.DALProduct
+[WARN ] 10-05-2021 13:47:38 [class: BusinessLayer.StockBusiness.instance.Product,Line:41] - did 1st check DALProduct
+[WARN ] 10-05-2021 13:47:38 [class: BusinessLayer.StockBusiness.instance.Product,Line:48] - did insert DALProduct
+[WARN ] 10-05-2021 13:47:38 [class: DAL.DalController,Line:80] - doing select with query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ and params: [1, 1000]
+[WARN ] 10-05-2021 13:47:38 [class: DAL.Mapper,Line:114] - Tuple{item1=[class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class java.lang.String, class java.lang.Integer, class java.lang.Integer, class java.lang.Integer, class DAL.DalController], item2=[1, 1, 1000, Sat Nov 11 00:00:00 IST 1111, 0, 1, 0, DAL.DalController@cb644e]}
+[WARN ] 10-05-2021 13:47:38 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:108] - done adding product to dal in instanceController.
+[WARN ] 10-05-2021 13:47:38 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:110] - done adding product to biz in instanceController.
+[WARN ] 10-05-2021 13:47:38 [class: BusinessLayer.StockBusiness.instance.InstanceController,Line:112] - done adding product to hash in instanceController.
+[WARN ] 10-05-2021 13:47:38 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:315] - adding product to product type.
+[WARN ] 10-05-2021 13:47:38 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:318] - adding shelves to product type.
+[WARN ] 10-05-2021 13:47:38 [class: BusinessLayer.StockBusiness.Type.ProductType,Line:324] - done adding shelves/storage to product type.
+[WARN ] 10-05-2021 13:47:38 [class: BusinessLayer.StockBusiness.StoreController,Line:527] - adding product in store controller.
+[WARN ] 10-05-2021 13:47:38 [class: BusinessLayer.StockBusiness.StoreController,Line:529] - done adding product in store controller.

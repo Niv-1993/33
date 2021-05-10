@@ -76,23 +76,36 @@ public class DALShelf extends DALObject {
     public int getMax(){
         return _maxAmount;
     }
-    public void setCur(int cur){
+    public void setType(int typeID){
         String query= """
                 UPDATE Shelf \s
-                SET curr=?
-                WHERE storeID=? AND shelfID=?;
-                """;
-        List<Tuple<Object,Class>> params=prepareList(tableName,cur,storeId,_shelfID);
+                SET typeID=?
+                WHERE storeID=? AND shelfID=?;""";
+        List<Tuple<Object,Class>> params=prepareList(typeID,storeId,_shelfID);
         try {
             DC.noSelect(query,params);
         }
         catch (Exception e){
             throw new IllegalArgumentException("fail");
         }
-        _cur=cur;
+        this._typeID=typeID;
+    }
+    public void setCur(int cur){
+        String query= """
+                UPDATE Shelf \s
+                SET curr=?
+                WHERE storeID=? AND shelfID=?;""";
+        List<Tuple<Object,Class>> params=prepareList(cur,storeId,_shelfID);
+        try {
+            DC.noSelect(query,params);
+            _cur=cur;
+        }
+        catch (Exception e){
+            throw new IllegalArgumentException("fail");
+        }
+
     }
     public int get_typeID(){return _typeID;}
-    public void setTypeID(int t){}
 
     protected List<Tuple<Object,Class>> prepareList(Object... o){
         List<Tuple<Object,Class>> params=new ArrayList<>();
