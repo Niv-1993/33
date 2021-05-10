@@ -65,19 +65,19 @@ public class DALCategory extends DALObject {
         String query= """
                 SELECT typeID \s
                 FROM Product \s
-                WHERE StoreID=? AND categoryId?=?; 
+                WHERE StoreID=? AND categoryId=?; 
                 """;
         _productTypes=fill(query,_storeID,_categoryID);
          query= """
                 SELECT discountID \s
                 FROM Discount \s
-                WHERE StoreID=? AND categoryId?=?; 
+                WHERE StoreID=? AND categoryId=?; 
                 """;
         _productDiscounts=fill(query,_storeID,_categoryID);
         query= """
                 SELECT categoryId \s
                 FROM Category \s
-                WHERE StoreID=? AND categoryId?=?; 
+                WHERE StoreID=? AND categoryId=?; 
                 """;
         _categories=fill(query,_storeID,_categoryID);
     }
@@ -109,9 +109,9 @@ public class DALCategory extends DALObject {
     public String getDelete() {
         return """
                 DELETE FROM Category \s
-                WHERE storeID=? AND categoryID=?; \s
+                WHERE storeID=? AND categoryID=?;\s
                 DELETE FROM Category \s
-                WHERE storeID=? AND categoryID=?; \s
+                WHERE storeID=? AND categoryID=?;\s
                 """;
     }
 
@@ -153,10 +153,9 @@ public class DALCategory extends DALObject {
     public List<Integer> getProductTypes(){return _productTypes;}
     public List<Integer> getDiscounts(){return _productDiscounts;}
     public void setSuperCategory(int i){
-        String updateParent="UPDATE Category \n" +
+        String updateParent="UPDATE Category\n" +
                 "SET parentID=?\n" +
-                "WHERE \n" +
-                "storeID=?\n" +
+                "WHERE storeID=?\n" +
                 "AND categoryID=?;";
         List<Tuple<Object,Class>> list=prepareList(i,_storeID,_categoryID);
         try {

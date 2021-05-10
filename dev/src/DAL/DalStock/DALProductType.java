@@ -66,8 +66,8 @@ public class DALProductType extends DALObject {
                 "\tproducer VARCHAR NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, typeID),\n" +
                 "\tUNIQUE (storeID, typeID),\n" +
-                "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
-                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
+//                "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
+//                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 "\tFOREIGN KEY (storeID,categoryID) REFERENCES Category(storeID,categoryID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");\n"+
@@ -169,7 +169,7 @@ public class DALProductType extends DALObject {
 
     }
     public void insertSupplier(int storeID, int typeID, int supplierID){
-        String query= "INSERT OR REPLACE INTO Supplier VALUES(?,?,?);";
+        String query= "INSERT OR REPLACE INTO Supplier VALUES (?,?,?);";
         List<Tuple<Object,Class>> list=prepareList(storeID,typeID,supplierID);
         try{
             DC.noSelect(query, list);
@@ -183,8 +183,7 @@ public class DALProductType extends DALObject {
         String query= """
                 UPDATE ProductType \s
                 Set name=? \s
-                WHERE \s
-                storeID=? AND typeID=?;""";
+                WHERE storeID=? AND typeID=?;""";
         List<Tuple<Object,Class>> list=prepareList(s,storeId,_typeID);
         try{
             DC.noSelect(query, list);
@@ -199,8 +198,7 @@ public class DALProductType extends DALObject {
         String query= """
                 UPDATE ProductType \s
                 Set minimum=? \s
-                WHERE \s
-                storeID=? AND typeID=?;""";
+                WHERE storeID=? AND typeID=?;""";
         List<Tuple<Object,Class>> list=prepareList(i,storeId,_typeID);
         try{
             DC.noSelect(query, list);
@@ -217,8 +215,7 @@ public class DALProductType extends DALObject {
         String query= """
                 UPDATE ProductType \s
                 Set basePrice=? \s
-                WHERE \s
-                storeID=? AND typeID=?;""";
+                WHERE storeID=? AND typeID=?;""";
         List<Tuple<Object,Class>> list=prepareList(i,storeId,_typeID);
         try{
             DC.noSelect(query, list);
@@ -233,8 +230,7 @@ public class DALProductType extends DALObject {
         String query= """
                 UPDATE ProductType \s
                 Set producer=? \s
-                WHERE \s
-                storeID=? AND typeID=?;""";
+                WHERE storeID=? AND typeID=?;""";
         List<Tuple<Object,Class>> list=prepareList(s,storeId,_typeID);
         try{
             DC.noSelect(query, list);
@@ -293,8 +289,7 @@ public class DALProductType extends DALObject {
         String query= """
                 UPDATE ProductType \s
                 Set shelfCurr=? \s
-                WHERE \s
-                storeID=? AND typeID=?;""";
+                WHERE storeID=? AND typeID=?;""";
         List<Tuple<Object,Class>> list=prepareList(i,storeId,_typeID);
         try{
             DC.noSelect(query, list);
@@ -309,8 +304,7 @@ public class DALProductType extends DALObject {
         String query= """
                 UPDATE ProductType \s
                 Set storageCurr=? \s
-                WHERE \s
-                storeID=? AND typeID=?;""";
+                WHERE storeID=? AND typeID=?;""";
         List<Tuple<Object,Class>> list=prepareList(i,storeId,_typeID);
         try{
             DC.noSelect(query, list);

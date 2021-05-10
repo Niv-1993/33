@@ -77,7 +77,6 @@ public class DalController {
     public Tuple<List<Class>,List<Object>> Select(String query, List<Integer> params) throws Exception {
         Connection conn = this.connect();
         try {
-            log.warn("doing select with query: "+query+" and params: "+params);
             PreparedStatement preparedStatement  = conn.prepareStatement(query);
             for(int i = 0 ; i < params.size() ; i++){
                 preparedStatement.setInt(i+1 , params.get(i));

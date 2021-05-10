@@ -58,8 +58,7 @@ public class DALShelf extends DALObject {
     public String getDelete() {
         return """
                 DELETE FROM Shelf \s
-                WHERE storeID=? AND shelfID=?;\s
-                """;
+                WHERE storeID=? AND shelfID=?;""";
     }
 
     public String getUpdate() {
@@ -79,8 +78,7 @@ public class DALShelf extends DALObject {
     public void setType(int typeID){
         String query= """
                 UPDATE Shelf \s
-                SET typeID=?
-                WHERE storeID=? AND shelfID=?;""";
+                SET typeID=? WHERE storeID=? AND shelfID=?;""";
         List<Tuple<Object,Class>> params=prepareList(typeID,storeId,_shelfID);
         try {
             DC.noSelect(query,params);
@@ -93,8 +91,7 @@ public class DALShelf extends DALObject {
     public void setCur(int cur){
         String query= """
                 UPDATE Shelf \s
-                SET curr=?
-                WHERE storeID=? AND shelfID=?;""";
+                SET curr=? WHERE storeID=? AND shelfID=?;""";
         List<Tuple<Object,Class>> params=prepareList(cur,storeId,_shelfID);
         try {
             DC.noSelect(query,params);

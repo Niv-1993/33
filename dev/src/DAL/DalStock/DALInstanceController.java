@@ -74,7 +74,7 @@ public class DALInstanceController extends DALObject {
     public String getDelete() {
         return """
                 DELETE FROM InstanceController \s
-                WHERE storeID=? AND typeID=? ;""";
+                WHERE storeID=? AND typeID=?;""";
     }
 
     @Override

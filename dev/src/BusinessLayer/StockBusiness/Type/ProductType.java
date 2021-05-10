@@ -27,7 +27,33 @@ public class ProductType {
 
     public ProductType(int storeID,int _typeID, int _categoryID, String _name, int _minAmount, double _basePrice, double _salePrice, String _producer, List<Integer> _suppliers) {
         checkValues(_typeID,  _categoryID,  _name, _minAmount, _basePrice, _salePrice, _producer, _suppliers);
-        dal=Util.initDal(DALProductType.class,storeID,_typeID, _name, _categoryID, _minAmount,0,0, _basePrice, _salePrice, _producer);
+        //dal=Util.initDal(DALProductType.class,storeID,_typeID, _name, _categoryID, _minAmount,0,0, _basePrice, _salePrice, _producer);
+        List<Tuple<Object,Class>> list=new ArrayList<>();
+        list.add(new Tuple<>(storeID,Integer.class));
+        list.add(new Tuple<>(_typeID,Integer.class));
+        list.add(new Tuple<>(_name,String.class));
+        list.add(new Tuple<>(_categoryID,Integer.class));
+        list.add(new Tuple<>(_minAmount,Integer.class));
+        list.add(new Tuple<>(0,Integer.class));
+        list.add(new Tuple<>(0,Integer.class));
+        list.add(new Tuple<>(_basePrice,Integer.class));
+        list.add(new Tuple<>(_salePrice,Integer.class));
+        list.add(new Tuple<>(_producer,Integer.class));
+        Mapper map=Mapper.getMap();
+        map.setItem(DALProductType.class,list);
+        List<Integer> keyList=new ArrayList<>();
+        keyList.add(storeID);
+        keyList.add(_typeID);
+        DALObject check =map.getItem(DALProductType.class,keyList);
+        if (check==null ||(check.getClass()!=DALProductType.class)){
+            String s="the instance that return from Mapper is null for: "+DALProductType.class;
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        else{
+            log.info("create new Object");
+            dal = (DALProductType) check;
+        }
         dal.setSuppliers(_suppliers);
     }
 

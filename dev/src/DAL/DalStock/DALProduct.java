@@ -55,9 +55,9 @@ public class DALProduct extends DALObject {
                 "\tshelfNum INTEGER NOT NULL,\n" +
                 "\tlocation INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, productID),\n" +
-                "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
-                "\tFOREIGN KEY (storeID,shelfNum, location) REFERENCES Shelf(storeID,shelfID, location)\n" +
-                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
+                "\tUNIQUE (storeID,productID),\n" +
+                //"\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
+                "\tFOREIGN KEY (storeID,shelfNum, location) REFERENCES Shelf(storeID,shelfID, location) ON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";
 //        return "CREATE TABLE IF NOT EXISTS Product (\n" +
 //                "\tstoreID INTEGER NOT NULL,\n" +
@@ -111,10 +111,8 @@ public class DALProduct extends DALObject {
 
     @Override
     public String getInsert() {
-        return """
-                INSERT INTO Product \s
-                VALUES(?,?,?,?,?,?,?)
-                """;
+        return "INSERT OR REPLACE INTO Product\n"+
+                "VALUES (?,?,?,?,?,?,?);";
     }
     public void removeProduct(){
         String query= """
@@ -132,10 +130,7 @@ public class DALProduct extends DALObject {
     public void addProduct(int i){
         String query= """
                 UPDATE Product\s
-                SET typeID=?
-                WHERE\s
-                storeID=?
-                AND productID=?;""";
+                SET typeID=? WHERE storeID=? AND productID=?;""";
         List<Tuple<Object,Class>> params=prepareList(i,storeID,_id);
         try {
             DC.noSelect(query,params);

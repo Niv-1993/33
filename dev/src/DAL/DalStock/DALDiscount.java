@@ -118,11 +118,11 @@ public abstract class DALDiscount extends DALObject {
 
     public void setTypeID(int i){
         String query= """
-                UPDATE ? \s
+                UPDATE Discount \s
                 SET typeID=?
                 WHERE storeID=? AND discountID=?;
                 """;
-        List<Tuple<Object,Class>> params=prepareList(tableName,i,storeID,_discountID);
+        List<Tuple<Object,Class>> params=prepareList(i,storeID,_discountID);
         try {
             DC.noSelect(query,params);
         }
@@ -133,11 +133,11 @@ public abstract class DALDiscount extends DALObject {
     }
     public void removeTypeID(int i) {
         String query= """
-                UPDATE ? \s
-                SET typeID=0
+                UPDATE Discount \s
+                SET typeID=?
                 WHERE storeID=? AND discountID=? AND typeId=?;
                 """;
-        List<Tuple<Object,Class>> params=prepareList(tableName,storeID,_discountID,i);
+        List<Tuple<Object,Class>> params=prepareList(0,storeID,_discountID,i);
         try {
             DC.noSelect(query,params);
         }

@@ -88,13 +88,10 @@ public class StoreController implements iStoreController {
             log.warn("storeID is not in DB");
             throw new IllegalArgumentException("storeID is not in DB");
         }
-        log.warn("loading discounts");
+
         loadSaleCategoryDiscount();
-        log.warn("loading categories");
         loadCategories();
-        log.warn("loading products");
         loadTypeProducts();
-        log.warn("loading shelves");
         loadShelves();
 
 
@@ -119,7 +116,6 @@ public class StoreController implements iStoreController {
     }
     public void loadTypeProducts(){
         List<Integer> list=dal.getTypes();
-        log.warn(list);
         for (Integer i: list){
             _products.put(new ProductType(getID(),i),new InstanceController(getID(),i));
         }

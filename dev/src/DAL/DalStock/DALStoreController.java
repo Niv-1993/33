@@ -83,8 +83,7 @@ public class DALStoreController extends DALObject {
         String updateName= """
                 UPDATE StoreController\s
                 SET typeCounter = ?\s
-                WHERE\s
-                storeID = ?;""";
+                WHERE storeID = ?;""";
         try {
             DC.noSelect(updateName, list);
         }
@@ -96,8 +95,7 @@ public class DALStoreController extends DALObject {
         String updateName= """
                 UPDATE StoreController\s
                 SET discountCounter = ?\s
-                WHERE\s
-                storeID = ?;""";
+                WHERE storeID = ?;""";
         try {
             DC.noSelect(updateName, list);
         }
@@ -109,8 +107,7 @@ public class DALStoreController extends DALObject {
         String updateName= """
                 UPDATE StoreController\s
                 SET categoryCounter = ?\s
-                WHERE\s
-                storeID = ?;""";
+                WHERE storeID = ?;""";
         try {
             DC.noSelect(updateName, list);
         }
