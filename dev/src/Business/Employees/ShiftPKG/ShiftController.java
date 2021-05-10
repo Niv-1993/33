@@ -23,11 +23,6 @@ public class ShiftController {
     public ShiftController(Map<RoleType, List<Employee>> optionals) {
         this.AllOptionals = optionals;
         log.debug("finished constructor shiftController");
-        //when will use DB shifts not empty so we need to create build constraints
-        /*for (Map.Entry<Integer, Shift> m : shifts.entrySet()) {
-            Shift s = m.getValue();
-            createBuildConstraints(new ArrayList<>(s.getEmployees().keySet()), s.getShiftType(), s.getDate());
-        }*/
     }
 
     //--------------------------------------methods----------------------------------
@@ -147,7 +142,6 @@ public class ShiftController {
 
 
     //self make for all shifts that next week and not was self make
-
     public void selfMakeWeekShifts() {
         List<Shift> shifts = ShiftMapper.getInstance().selectShiftsFromUntil(LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY)), LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SATURDAY)).plusWeeks(1));
         loadShift(shifts,AllOptionals);
@@ -260,7 +254,6 @@ public class ShiftController {
         });
     }
 
-    //Not need EID
 
     public void updateReasonConstraint(int CID, String newReason) {
         ConstraintMapper.getInstance().updateReason(CID, newReason);
@@ -308,36 +301,19 @@ public class ShiftController {
         }
     }
 
-/*    private boolean shiftIsNextWeek(LocalDate shiftDate) {   //shift date is between next sunday to next saturday
-        LocalDate nextSunday = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
-        LocalDate nextSaturday = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.SATURDAY)).plusWeeks(1);
-        return !(shiftDate.isBefore(nextSunday) || shiftDate.isAfter(nextSaturday));
-    }*/
-
     //return null if not exists
     private Shift getShiftByDate(LocalDate date, ShiftType shiftType) {
         return getByDate(date,shiftType,AllOptionals);
     }
 
-
     public boolean shiftAlreadyCreated(LocalDate date, ShiftType shiftType) {
         return getByDate(date,shiftType,AllOptionals) != null;
     }
-
 
     public boolean constraintIsExist(int CID) {
         return (ConstraintMapper.getInstance().getConstraint(CID)) != null;
     }
 
-
-/*    private Map<RoleType, List<Employee>> deepCopy(Map<RoleType, List<Employee>> optionals) {
-        Map<RoleType, List<Employee>> copy = new HashMap<>();
-        optionals.forEach((roleType, employees) -> {
-            List<Employee> cloneL = new ArrayList<>(employees);
-            copy.put(roleType, cloneL);
-        });
-        return copy;
-    }*/
 
     private Map<RoleType, List<Employee>> deepCopy(Map<RoleType, List<Employee>> optionals) {
         Map<RoleType, List<Employee>> copy = new HashMap<>();
@@ -349,7 +325,6 @@ public class ShiftController {
         });
         return copy;
     }
-
 
     public boolean optionalIsEmpty(int SID) {
         return get(SID,AllOptionals).optionalIsEmpty();
@@ -383,21 +358,6 @@ public class ShiftController {
     public boolean hasShiftManager(LocalDate date, ShiftType shiftType) {
         return Objects.requireNonNull(getShiftByDate(date, shiftType)).HasShiftManager();
     }
-    //---------------------------------------------getters------------------------------------------------------
-
-
-    public void setAllOptionals(Map<RoleType, List<Employee>> allOptionals) {
-        AllOptionals = allOptionals;
-    }
-
-    public Map<Integer, Constraint> getConstraints() {
-        return ConstraintMapper.getInstance().selectAllConstraints();
-    }
-
-
-    public boolean hasDefaultShifts() {
-        return ShiftMapper.getInstance().hasDefaultShifts();
-    }
 
     public boolean driverOrSorter(int sid, Employee eid) {
         Shift s = get(sid,AllOptionals);
@@ -417,4 +377,18 @@ public class ShiftController {
         s.addEmpToShift(RoleType.Driver,driverID);
         s.addStoreKeeper();
     }
+
+    public void setAllOptionals(Map<RoleType, List<Employee>> allOptionals) {
+        AllOptionals = allOptionals;
+    }
+
+    public Map<Integer, Constraint> getConstraints() {
+        return ConstraintMapper.getInstance().selectAllConstraints();
+    }
+
+    public boolean hasDefaultShifts() {
+        return ShiftMapper.getInstance().hasDefaultShifts();
+    }
+
+
 }

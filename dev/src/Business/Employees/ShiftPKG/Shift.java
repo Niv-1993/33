@@ -51,8 +51,6 @@ public class Shift {
         this.shiftType = ShiftType.valueOf(shiftType);
         this.wasSelfMake = wasSelfMake;
         this.hasShiftManager = false;
-        /*if (optionals.containsKey(RoleType.ShiftManager))
-            hasShiftManager = !optionals.get(RoleType.ShiftManager).isEmpty();*/
         log.debug("shift: " + SID + " created");
     }
 
@@ -213,43 +211,6 @@ public class Shift {
         boolean canWork = list.contains(emp);
         return canWork && !roleIsFull((role));
     }
-    //-------------------getters&setters----------------------------------------
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public ShiftType getShiftType() {
-        return shiftType;
-    }
-
-    public Map<Employee, RoleType> getEmployees() {
-        return employees;
-    }
-
-    public int getSID() {
-        return SID;
-    }
-
-    public Map<RoleType, Integer> getRolesAmount() {
-        return rolesAmount;
-    }
-
-    public Map<RoleType, List<Employee>> getOptionals() {
-        return optionals;
-    }
-
-    public boolean getComplete() {
-        return complete;
-    }
-
-    public boolean WasSelfMake() {
-        return wasSelfMake;
-    }
-
-    public boolean HasShiftManager() {
-        return hasShiftManager;
-    }
 
 
     public void addRoleAmount(String role, int amount) {
@@ -307,4 +268,43 @@ public class Shift {
         Employee emp = optionals.get(RoleType.StoreKeeper).get(0);
         addEmpToShift(RoleType.StoreKeeper,emp);
     }
+    //-------------------getters&setters----------------------------------------
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public ShiftType getShiftType() {
+        return shiftType;
+    }
+
+    public Map<Employee, RoleType> getEmployees() {
+        return employees;
+    }
+
+    public int getSID() {
+        return SID;
+    }
+
+    public Map<RoleType, Integer> getRolesAmount() {
+        return rolesAmount;
+    }
+
+    public Map<RoleType, List<Employee>> getOptionals() {
+        return optionals;
+    }
+
+    public boolean getComplete() {
+        return complete;
+    }
+
+    public boolean WasSelfMake() {
+        return wasSelfMake;
+    }
+
+    public boolean HasShiftManager() {
+        return hasShiftManager;
+    }
+
+
 }

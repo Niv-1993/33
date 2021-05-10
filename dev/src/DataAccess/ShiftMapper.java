@@ -2,7 +2,6 @@ package DataAccess;
 
 import Business.Employees.EmployeePKG.Employee;
 import Business.Employees.ShiftPKG.Shift;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -57,6 +56,19 @@ public class ShiftMapper extends Mapper {
         } finally {
             if (res)
                 shifts.put(s.getSID(), s);
+        }
+    }
+
+    public void insertEmpToShift(int sid, int eid, String role) {
+        String query = "INSERT INTO ShiftsAndEmployees (SID,EID,Role) VALUES (?,?,?)";
+        try (Connection con = connect();
+             PreparedStatement pre = con.prepareStatement(query)) {
+            pre.setInt(1, sid);
+            pre.setInt(2, eid);
+            pre.setString(3, role);
+            pre.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("[insertEmpToShift]" + e.getMessage());
         }
     }
 
@@ -164,18 +176,7 @@ public class ShiftMapper extends Mapper {
         return getShift(sid);
     }
 
-    public void insertEmpToShift(int sid, int eid, String role) {
-        String query = "INSERT INTO ShiftsAndEmployees (SID,EID,Role) VALUES (?,?,?)";
-        try (Connection con = connect();
-             PreparedStatement pre = con.prepareStatement(query)) {
-            pre.setInt(1, sid);
-            pre.setInt(2, eid);
-            pre.setString(3, role);
-            pre.executeUpdate();
-        } catch (Exception e) {
-            System.out.println("[insertEmpToShift]" + e.getMessage());
-        }
-    }
+
 
     public void updateWasSelfMake(int sid, boolean wasSelfMake) {
         updateIntboolean(sid, wasSelfMake, "WasSelfMake", "SID", "Shifts");
@@ -268,7 +269,4 @@ public class ShiftMapper extends Mapper {
         getDefaults();
     }
 
-    public void resetDefaults() {
-        this.defaults.clear();
-    }
 }
