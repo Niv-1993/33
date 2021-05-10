@@ -39,7 +39,7 @@ public class ConstraintMapper extends Mapper{
             if (res.next())
                 nextCID = res.getInt("maxCID")==0?1:res.getInt("maxCID");
         } catch (Exception e) {
-            System.out.println("[getNextCID] ->" +e.getMessage());
+          //  System.out.println("[getNextCID] ->" +e.getMessage());
         }
         return nextCID;
 
@@ -57,7 +57,7 @@ public class ConstraintMapper extends Mapper{
             pre.setString(5, c.getReason());
             res = pre.executeUpdate()>0;
         } catch (Exception e) {
-            System.out.println("[insertConstConstraint] ->" +e.getMessage());
+         //   System.out.println("[insertConstConstraint] ->" +e.getMessage());
         }finally {
             if (res)
                 constraints.put(c.getCID(), c);
@@ -77,7 +77,7 @@ public class ConstraintMapper extends Mapper{
             pre.setString(5, c.getReason());
             res = pre.executeUpdate()>0;
         } catch (Exception e) {
-            System.out.println("[insertTempConstrain] ->" +e.getMessage());
+         //   System.out.println("[insertTempConstrain] ->" +e.getMessage());
         }finally {
             if (res)
                 constraints.put(c.getCID(), c);
@@ -93,7 +93,7 @@ public class ConstraintMapper extends Mapper{
             pre.executeUpdate();
             pre2.executeUpdate();
         } catch (Exception e) {
-            System.out.println("[deleteConstraint] ->" +e.getMessage());
+        //    System.out.println("[deleteConstraint] ->" +e.getMessage());
         }
         constraints.remove(cid);
     }
@@ -112,7 +112,7 @@ public class ConstraintMapper extends Mapper{
                 addTempConstraintToMap(res2);
             }
         } catch (Exception e) {
-            System.out.println("[selectAllConstraints] ->" +e.getMessage());
+        //    System.out.println("[selectAllConstraints] ->" +e.getMessage());
         }
         return constraints;
     }
@@ -157,7 +157,7 @@ public class ConstraintMapper extends Mapper{
                 listCon.add(constraints.get(res.getInt("CID")));
             }
         } catch (Exception e) {
-            System.out.println("[getConstraint1] ->" +e.getMessage());
+         //   System.out.println("[getConstraint1] ->" +e.getMessage());
         }
         return listCon;
     }
@@ -182,7 +182,7 @@ public class ConstraintMapper extends Mapper{
                     }
                 }
             } catch (Exception e) {
-                System.out.println("[getConstraint2] ->" +e.getMessage());
+            //    System.out.println("[getConstraint2] ->" +e.getMessage());
             }
             return null;
         }
@@ -207,7 +207,7 @@ public class ConstraintMapper extends Mapper{
                 consList.add(c);
             }
         } catch (Exception e) {
-            System.out.println("[getConstraintsOfEID] ->" +e.getMessage());
+        //    System.out.println("[getConstraintsOfEID] ->" +e.getMessage());
         }
         return consList;
     }

@@ -192,7 +192,7 @@ public class ServiceFaced {
             List<BranchServiceDTO> branches = t.getBranches();
             for (BranchServiceDTO b: branches){
                 if(!drivers.checkAvailableStoreKeeperAndShifts(b.getId(),t.getDate(),t.getLeavingTime())){
-                    return new ResponseData<>("branch: " + b.getId()+ "does not have available store-keeper.");
+                    return new ResponseData<>("branch: " + b.getId()+ " shift doesnt exist or does not have available store-keeper.");
                 }
             }
             HashMap<BranchServiceDTO,List<Pair<ItemServiceDTO,Integer>>> deliveryItems = t.getDeliveryItems();

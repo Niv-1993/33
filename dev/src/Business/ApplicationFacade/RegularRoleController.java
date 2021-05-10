@@ -170,6 +170,8 @@ public class RegularRoleController implements iRegularRoleController {
             employeeMapper.resetEmps();
             employeeMapper.setCurrBranchID(BID);
             ShiftMapper.getInstance().setCurrBranchID(BID);
+            utils.setNeedToUpdateOps(true);
+            utils.generate_optionals();
         }
     }
     public boolean checkEIDExists(int id){

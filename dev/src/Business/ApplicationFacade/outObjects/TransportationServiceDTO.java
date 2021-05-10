@@ -122,4 +122,8 @@ public class TransportationServiceDTO {
     public boolean isComplete() {
         return !(date == null | leavingTime == null|driver == null| truck == null|deliveryItems == null|area == null|weight == -1|suppliers == null);
     }
+
+    public void resetDeliveryItems() {
+        deliveryItems=null;
+    }
 }

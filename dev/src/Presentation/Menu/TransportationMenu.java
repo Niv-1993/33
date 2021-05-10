@@ -40,9 +40,9 @@ public class TransportationMenu extends Menu{
      *The starting choice of the user if to keep run the system or shut it off.
      */
     public void chooseOption(){
-        System.out.println("\n*************************************************");
-        System.out.println("******************* Transportation Menu *******************");
-        System.out.println("*************************************************\n");
+//        System.out.println("\n*************************************************");
+//        System.out.println("******************* Transportation Menu *******************");
+//        System.out.println("*************************************************\n");
         System.out.print("1) See all Transportations.\n2) Create a new Business.Transportation.\nOption: ");
         option = chooseOp(numOfOptions);
         System.out.println();
@@ -296,7 +296,8 @@ public class TransportationMenu extends Menu{
             }
             while(true);
             t.setDeliveryItems(branches);
-            transportationController.setDeliveryItemsToTransportation(t);
+            if(!transportationController.setDeliveryItemsToTransportation(t))
+                t.resetDeliveryItems();
         }
         catch (Exception e){
             t.setDeliveryItems(null);
@@ -323,8 +324,12 @@ public class TransportationMenu extends Menu{
                 System.out.print("\nId: ");
                 int chose = input.nextInt();
                 System.out.println();
-                t.setDriver(transportationController.getDriver(chose));
-                transportationController.setDriverOnTransportation(t);
+                if(t.getTruck() != null){
+                    t.setDriver(transportationController.getDriver(chose));
+                    transportationController.setDriverOnTransportation(t);
+                }else {
+                    System.out.println("You must enter truck before driver.");
+                }
             }
             else{
                 System.out.println("There are no available drivers for those specific date and time.\nPlease select an option: \n ");
@@ -441,9 +446,7 @@ public class TransportationMenu extends Menu{
      * @return : if to keep run the program or terminate it
      */
     public boolean endOfProgram(){
-        System.out.println("\n*************************************************");
-        System.out.println("****************** Start menu *******************");
-        System.out.println("*************************************************\n");
+        System.out.println("\n****************** Transportation menu *******************");
         System.out.println("Hello.\nPlease choose an option:");
         System.out.print("1)Continue\n2)Exit\nOption: ");
         int numOfEndProgramOp = 2;

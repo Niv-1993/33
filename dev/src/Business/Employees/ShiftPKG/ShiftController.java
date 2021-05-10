@@ -63,15 +63,21 @@ public class ShiftController {
             for (Map.Entry<ShiftType, Map<RoleType, Integer>> m : defaultShifts.entrySet()) {
                 ShiftType shiftType = m.getKey();
                 if (shiftAlreadyCreated(date.plusDays(i), shiftType)) continue;
-                Shift s = createShiftPrivate(defaultShifts.get(shiftType), date.plusDays(i), shiftType);  // default shift
+                Shift s = createShiftPrivate(deepCopyRolesA(defaultShifts.get(shiftType)), date.plusDays(i), shiftType);  // default shift
                 if (!s.HasShiftManager())
                     shiftsWithoutShiftManager.add(s);
             }
         }
-        Shift friday = createShiftPrivate(defaultShifts.get(ShiftType.Morning), date.plusDays(5), ShiftType.Morning);  // default shift
+        Shift friday = createShiftPrivate(deepCopyRolesA(defaultShifts.get(ShiftType.Morning)), date.plusDays(5), ShiftType.Morning);  // default shift
         if (!friday.HasShiftManager())
             shiftsWithoutShiftManager.add(friday);
         return shiftsWithoutShiftManager;
+    }
+
+    private Map<RoleType, Integer> deepCopyRolesA(Map<RoleType, Integer> roleTypeIntegerMap) {
+        Map<RoleType,Integer> copy = new HashMap<>();
+        roleTypeIntegerMap.forEach(copy::put);
+        return copy;
     }
 
     private Map<ShiftType, Map<RoleType, Integer>> getDefaults() {
@@ -374,6 +380,7 @@ public class ShiftController {
 
     public void addDriverAndStoreKeeperToShift(Employee driver, LocalDate date, ShiftType shiftType) {
         Shift s = getShiftByDate(date,shiftType);
+        s.incrementDriverStoreKeeper();
         s.addEmpToShift(RoleType.Driver,driver);
         s.addStoreKeeper();
     }

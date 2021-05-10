@@ -3,6 +3,7 @@ package Business.Employees.ShiftPKG;
 import Business.Employees.EmployeePKG.Employee;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
+import DataAccess.DriverMapper;
 import DataAccess.ShiftMapper;
 import org.apache.log4j.Logger;
 
@@ -307,4 +308,9 @@ public class Shift {
     }
 
 
+    public void incrementDriverStoreKeeper() {
+        int before = rolesAmount.get(RoleType.Driver);
+        updateRolesAmount(RoleType.Driver,before+1);
+        updateRolesAmount(RoleType.StoreKeeper,before+1);
+    }
 }

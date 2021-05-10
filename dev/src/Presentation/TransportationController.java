@@ -67,11 +67,13 @@ public class TransportationController {
             System.out.println(res.getError());
         }
     }
-    public void setDeliveryItemsToTransportation(TransportationServiceDTO tr){
+    public boolean setDeliveryItemsToTransportation(TransportationServiceDTO tr){
         ResponseData<TransportationServiceDTO> res = serviceControl.setTransportationDeliveryItems(tr);
         if(res.isError()){
             System.out.println(res.getError());
+           return false;
         }
+        return true;
     }
     public void setTransportationArea(TransportationServiceDTO t){
         ResponseData<TransportationServiceDTO> res=serviceControl.setArea(t);

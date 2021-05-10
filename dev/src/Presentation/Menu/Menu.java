@@ -119,7 +119,7 @@ public abstract class Menu {
         System.out.println("\nChoose a role");
         List<String> roles = r.getRc().getRoleTypes().getData();
         roles.remove("Driver");
-        roles.remove("Sorter");
+        roles.remove("StoreKeeper");
         int counter = 1;
         for (String r : roles) {
             System.out.println(counter++ + ") " + r);

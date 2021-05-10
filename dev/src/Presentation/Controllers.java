@@ -115,7 +115,7 @@ public class Controllers {
         dc.addNewDriver(100, "Driver1", bankDetails, 40000,LocalDate.now(),terms,13000);
         dc.addNewDriver(101, "Driver2", bankDetails, 40000,LocalDate.now(),terms,13000);
 
-        tc.addTransportation(1,"Center","2021-12-01","02:20",4250,100,1);
+        //tc.addTransportation(1,"Center","2021-12-01","02:20",4250,100,1);
 
         tc.addSuppliersItemsTrans(5,1,7,10);
         tc.addSuppliersItemsTrans(5,1,8,5);
@@ -150,15 +150,15 @@ public class Controllers {
         Map<String, Integer> morning = new HashMap<>();
         morning.put("Driver", 0);
         morning.put("Cashier", 1);
-        morning.put("Sorter", 0);
+        morning.put("Sorter", 1);
         morning.put("ShiftManager", 1);
-        morning.put("StoreKeeper", 1);
+        morning.put("StoreKeeper", 0);
         Map<String, Integer> night = new HashMap<>();
         night.put("Cashier", 1);
         night.put("ShiftManager", 1);
         night.put("Driver", 0);
-        night.put("Sorter", 0);
-        night.put("StoreKeeper", 1);
+        night.put("Sorter", 1);
+        night.put("StoreKeeper", 0);
         SortedMap<String, Map<String, Integer>> defaultRolesAmount = new TreeMap<>();
         defaultRolesAmount.put("Night", night);
         defaultRolesAmount.put("Morning", morning);

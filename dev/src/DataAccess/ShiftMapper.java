@@ -52,7 +52,7 @@ public class ShiftMapper extends Mapper {
             }
             sts.executeBatch();
         } catch (Exception e) {
-            System.out.println("[insertNewShift]" + e.getMessage());
+          //  System.out.println("[insertNewShift]" + e.getMessage());
         } finally {
             if (res)
                 shifts.put(s.getSID(), s);
@@ -68,7 +68,7 @@ public class ShiftMapper extends Mapper {
             pre.setString(3, role);
             pre.executeUpdate();
         } catch (Exception e) {
-            System.out.println("[insertEmpToShift]" + e.getMessage());
+          //  System.out.println("[insertEmpToShift]" + e.getMessage());
         }
     }
 
@@ -84,13 +84,17 @@ public class ShiftMapper extends Mapper {
                 int SID = res.getInt("SID");
                 if (!shifts.containsKey(SID)) {
                     Map<String, Integer> rolesAmount = new HashMap<>();
-                    rolesAmount.put(res.getString("Role"), res.getInt("Amount"));
+                    int amount = res.getInt("Amount");
+                    String role = (res.getString("Role"));
+                    rolesAmount.put(role, amount);
                     Shift s = new Shift(SID, rolesAmount, LocalDate.parse(res.getString("Date")), res.getString("ShiftType"), res.getBoolean("WasSelfMake"));
                     shiftsFU.put(SID, s);
                     shifts.put(SID, s);
                 } else {
                     Shift s = shifts.get(SID);
-                    s.addRoleAmount(res.getString("Role"), res.getInt("Amount"));
+                    int amount = res.getInt("Amount");
+                    String role = (res.getString("Role"));
+                    s.addRoleAmount(role,amount);
                     if (!shiftsFU.containsKey(s.getSID()))
                         shiftsFU.put(s.getSID(), s);
                 }
@@ -169,7 +173,7 @@ public class ShiftMapper extends Mapper {
             if (res.next())
                 sid = res.getInt("SID");
         } catch (Exception e) {
-            System.out.println("[getShiftByDate]" + e.getMessage());
+          //  System.out.println("[getShiftByDate]" + e.getMessage());
         }
         if (sid == -1)
             return null;
@@ -190,7 +194,7 @@ public class ShiftMapper extends Mapper {
             pre.setInt(2, eid);
             pre.executeUpdate();
         } catch (Exception e) {
-            System.out.println("[deleteEmpFromShift]" + e.getMessage());
+         //   System.out.println("[deleteEmpFromShift]" + e.getMessage());
         }
     }
 
@@ -203,7 +207,7 @@ public class ShiftMapper extends Mapper {
             pre.setString(3, role);
             pre.executeUpdate();
         } catch (Exception e) {
-            System.out.println("[updateAmountRole]" + e.getMessage());
+         //   System.out.println("[updateAmountRole]" + e.getMessage());
         }
     }
 
@@ -216,7 +220,7 @@ public class ShiftMapper extends Mapper {
                 if (res.next())
                     nextID = res.getInt("nextID") == 0? 1: res.getInt("nextID");
             } catch (Exception e) {
-                System.out.println("[getNextID] ->" +e.getMessage());
+             //   System.out.println("[getNextID] ->" +e.getMessage());
             }
             return nextID;
     }
@@ -246,7 +250,7 @@ public class ShiftMapper extends Mapper {
                 }
             }
         } catch (Exception e) {
-            System.out.println("[getDefaults] -> " + e.getMessage());
+         //   System.out.println("[getDefaults] -> " + e.getMessage());
         }
         return defaults;
     }
@@ -268,7 +272,7 @@ public class ShiftMapper extends Mapper {
                 queries.addBatch(q);
             queries.executeBatch();
         } catch (Exception e) {
-            System.out.println("[insertDefaults]-> " + e.getMessage());
+         //   System.out.println("[insertDefaults]-> " + e.getMessage());
         }
         this.defaults = defaults;
     }
@@ -276,6 +280,8 @@ public class ShiftMapper extends Mapper {
     @Override
     public void setCurrBranchID(int currBranchID) {
         super.setCurrBranchID(currBranchID);
+        shifts.clear();
+        defaults.clear();
         getDefaults();
     }
 

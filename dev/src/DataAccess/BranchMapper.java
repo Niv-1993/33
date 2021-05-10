@@ -104,7 +104,7 @@ public class BranchMapper extends Mapper{
             pre.setString(8,phone);
             pre.executeUpdate();
         } catch (Exception e) {
-            System.out.println("[insertNewBranch-branchMapper] ->" + e.getMessage());
+           // System.out.println("[insertNewBranch-branchMapper] ->" + e.getMessage());
         }
         Branch branch = new Branch(phone,cn,bid,new Address(number,street,city),new ShippingArea(Area.valueOf(area)));
         branches.put(bid,branch);

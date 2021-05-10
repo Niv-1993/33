@@ -35,7 +35,7 @@ public class DriverMapper extends Mapper{
             pstmt.setInt(2,driver.getLicense());
             res = pstmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+          //  System.out.println(e.getMessage());
         }
         if(res >0)
             drivers.put(driver.getEID(),driver);

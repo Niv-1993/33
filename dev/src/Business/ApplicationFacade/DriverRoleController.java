@@ -27,7 +27,10 @@ public class DriverRoleController implements iDriverRoleController {
     public boolean checkAvailableStoreKeeperAndShifts(int BID, LocalDate date, LocalTime leavingTime) {
         mc.EnterBranch(BID);
         String shiftType = leavingTime.getHour() < 14 ? "Morning" : "Night";
-        return mc.ShiftExist(date, shiftType) && mc.StoreKeeperAvailable(date, shiftType);
+        boolean res = mc.ShiftExist(date, shiftType);
+        if(res)
+            res = mc.StoreKeeperAvailable(date, shiftType);
+        return  res;
     }
 
     public List<Driver> chooseDriver(LocalDate date, LocalTime leavingTime) throws Exception {

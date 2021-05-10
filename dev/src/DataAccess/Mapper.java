@@ -33,7 +33,7 @@ public class Mapper {
             pre.setInt(2, id);
             pre.executeUpdate();
         } catch (Exception e) {
-            System.out.println("[updateIntInt] ->" +e.getMessage());
+         //   System.out.println("[updateIntInt] ->" +e.getMessage());
         }
     }
 
@@ -45,7 +45,7 @@ public class Mapper {
             pre.setInt(2, id);
             pre.executeUpdate();
         } catch (Exception e) {
-            System.out.println("[updateIntboolean] ->" +e.getMessage());
+         //   System.out.println("[updateIntboolean] ->" +e.getMessage());
         }
     }
 
@@ -58,7 +58,7 @@ public class Mapper {
             pre.setInt(2, id);
             pre.executeUpdate();
         } catch (Exception e) {
-            System.out.println("[updateIntString] ->" +e.getMessage());
+         //   System.out.println("[updateIntString] ->" +e.getMessage());
         }
     }
 
@@ -93,7 +93,7 @@ public class Mapper {
             s.addBatch(getCreateBranchesItemsOnTran());
             s.executeBatch();
         } catch (Exception e) {
-            System.out.println("[createTables] ->"+e.getMessage());
+        //    System.out.println("[createTables] ->"+e.getMessage());
         }
     }
 

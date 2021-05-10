@@ -420,6 +420,8 @@ public class ManagerRoleController implements iManagerRoleController {
             employeeMapper.resetEmps();
             employeeMapper.setCurrBranchID(BID);
             ShiftMapper.getInstance().setCurrBranchID(BID);
+            utils.setNeedToUpdateOps(true);
+            utils.generate_optionals();
         }
     }
 
