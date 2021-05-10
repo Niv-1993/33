@@ -23,7 +23,7 @@ public class SupplierDiscount extends Discount{
         return dal.getSupplier();
     }
 
-    public SupplierDiscount(int storeID,int _discountID, float _percent, Date _start, Date _end, int sup) {
+    public SupplierDiscount(int storeID,int _discountID, double _percent, Date _start, Date _end, int sup) {
         super(storeID,_discountID, _percent, _start, _end);
         dal.setSupplier(sup);
     }
@@ -39,7 +39,7 @@ public class SupplierDiscount extends Discount{
     }
 
     @Override
-    public float get_percent() {
+    public double get_percent() {
         return dal.getPercent();
     }
 

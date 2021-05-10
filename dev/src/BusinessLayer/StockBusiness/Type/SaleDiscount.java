@@ -34,7 +34,7 @@ public class SaleDiscount extends Discount{
     }
 
     @Override
-    public float get_percent() {
+    public double get_percent() {
         return dal.getPercent();
     }
 

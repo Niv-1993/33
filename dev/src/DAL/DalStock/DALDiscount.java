@@ -13,22 +13,20 @@ import java.util.List;
 public abstract class DALDiscount extends DALObject {
 
     protected int _discountID;
-    protected float _percent;
+    protected double _percent;
     protected String _start;
     protected String _end;
     protected int storeID;
-    private int typeId;
+    protected int typeId;
     protected String tableName="Discount";
 
 
-    public DALDiscount(DalController dc,int storeID,int discountID,int typeId,float percent,Date start,Date end) {
+    public DALDiscount(DalController dc,Integer storeID,Integer discountID,Integer typeId,Double percent,String start,String end) {
         super(dc);
         _discountID=discountID;
         _percent=percent;
-        String pattern="dd-MM-yyyy";
-        DateFormat df=new SimpleDateFormat(pattern);
-        _start=df.format(start);
-        _end=df.format(end);
+        _start=start;
+        _end=end;
         this.storeID=storeID;
         this.typeId=typeId;
     }
@@ -66,16 +64,14 @@ public abstract class DALDiscount extends DALObject {
         return """
                 SELECT *\s
                 FROM Discount\s
-                WHERE storeID=? AND discountID=?;\s
-                """;
+                WHERE storeID=? AND discountID=?;""";
     }
 
     @Override
     public String getDelete() {
         return """
                 DELETE FROM Discount\s
-                WHERE storeID=? AND discountID=?; \s
-                """;
+                WHERE storeID=? AND discountID=?;""";
     }
 
     @Override
@@ -86,15 +82,14 @@ public abstract class DALDiscount extends DALObject {
     @Override
     public String getInsert() {
         return """
-                INSERT OR REPLACE INTO Discount VALUES (?,?,?,?,?,?,?,?);
-                """;
+                INSERT OR REPLACE INTO Discount VALUES (?,?,?,?,?,?,?,?);""";
     }
 
     public int getID() {
         return _discountID;
     }
 
-    public float getPercent() {
+    public double getPercent() {
         return _percent;
     }
 
@@ -120,8 +115,7 @@ public abstract class DALDiscount extends DALObject {
         String query= """
                 UPDATE Discount \s
                 SET typeID=?
-                WHERE storeID=? AND discountID=?;
-                """;
+                WHERE storeID=? AND discountID=?;""";
         List<Tuple<Object,Class>> params=prepareList(i,storeID,_discountID);
         try {
             DC.noSelect(query,params);
@@ -135,8 +129,7 @@ public abstract class DALDiscount extends DALObject {
         String query= """
                 UPDATE Discount \s
                 SET typeID=?
-                WHERE storeID=? AND discountID=? AND typeId=?;
-                """;
+                WHERE storeID=? AND discountID=? AND typeId=?;""";
         List<Tuple<Object,Class>> params=prepareList(0,storeID,_discountID,i);
         try {
             DC.noSelect(query,params);

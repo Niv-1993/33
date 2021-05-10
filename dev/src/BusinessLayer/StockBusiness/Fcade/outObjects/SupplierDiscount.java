@@ -6,10 +6,10 @@ public class SupplierDiscount {
     int dicountID;
     Date start;
     Date end;
-    float precent;
+    double precent;
     int supplier;
 
-    public SupplierDiscount(int dicountID, Date start, Date end, float precent, int supplier) {
+    public SupplierDiscount(int dicountID, Date start, Date end, double precent, int supplier) {
         this.dicountID = dicountID;
         this.start = start;
         this.end = end;

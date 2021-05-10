@@ -41,7 +41,7 @@ public abstract class Discount {
 
     public abstract int get_discountID();
 
-    public abstract float get_percent();
+    public abstract double get_percent();
 
     public abstract Date get_start();
 
