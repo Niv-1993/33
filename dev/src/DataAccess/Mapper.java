@@ -301,7 +301,7 @@ public class Mapper {
                 "\t\"MaxWeight\"\tINTEGER,\n" +
                 "\t\"Model\"\tTEXT,\n" +
                 "\t\"NetWeight\"\tINTEGER,\n" +
-                "\t\"Liecense\"\tINTEGER,\n" +
+                "\t\"License\"\tINTEGER,\n" +
                 "\tPRIMARY KEY(\"ID\")\n" +
                 ");";
     }

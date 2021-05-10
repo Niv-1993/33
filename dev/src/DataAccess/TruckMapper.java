@@ -27,12 +27,12 @@ public class TruckMapper extends Mapper{
     }
 
     private List< Truck> selectAll() throws Exception {
-        String sql = "select * from Trucks";
+        String sql = "SELECT * FROM Trucks";
         try (Connection conn = connect();
-             Statement stmt  = conn.createStatement()){
-            ResultSet rs    = stmt.executeQuery(sql);
+             Statement stmt = conn.createStatement()){
+            ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                Truck tr=new Truck(rs.getInt("ID"),rs.getInt("License"),rs.getInt("MaxWeight"),rs.getInt("NetWeight"),rs.getString("Model"));
+                Truck tr=new Truck(rs.getLong("ID"),rs.getInt("License"),rs.getInt("MaxWeight"),rs.getInt("NetWeight"),rs.getString("Model"));
                trucks.put(rs.getLong("ID"),tr);
             }
         } catch (SQLException e) {
@@ -64,7 +64,7 @@ public class TruckMapper extends Mapper{
 
     public void addTruck(long id, int maxweight,String model, int netWeight, int license){
 
-        String sql = "INSERT INTO Trucks (ID,MaxWeight,Model,NetWeight,Liecense) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO Trucks (ID,MaxWeight,Model,NetWeight,License) VALUES(?,?,?,?,?)";
 
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
