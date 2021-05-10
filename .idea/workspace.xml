@@ -22,38 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bccfd2f2-7c4c-4f48-b723-f62a6117cacb" name="Default Changelist" comment="add DriverRoleController on emplyoees sid">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2021_11_36_AM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_7_2021_11_36_AM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_9_2021_6_59_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_9_2021_6_59_PM__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="bccfd2f2-7c4c-4f48-b723-f62a6117cacb" name="Default Changelist" comment="delete unInportant methods">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/DriverRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/DriverRoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/iControllers/iDriverRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/iControllers/iDriverRoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Employees/EmployeePKG/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Employees/EmployeePKG/Driver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/DataControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/DataControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/Driver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/DriverService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/ServiceFaced.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/ServiceFaced.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/Transportation.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/Transportation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/DriverMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/DriverMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/Presentation/Controllers.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/Controllers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Presentation/TransportationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/TransportationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/DriverRoleController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/ManagerRoleController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/RegularRoleController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/iControllers/iDriverRoleController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/iControllers/iManagerRoleController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/iControllers/iRegularRoleController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/EmployeePKG/Driver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/EmployeePKG/Employee.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/ShiftPKG/Shift.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/ShiftPKG/ShiftController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/DriverService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/ServiceFaced.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/Transportation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/TransportationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/EmployeeMapper.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -256,7 +227,13 @@
       <option name="presentableId" value="LOCAL‎00008" />
       <updated>1620583772445</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL‎00009" summary="delete unInportant methods">
+      <created>1620650334453</created>
+      <option name="number" value="LOCAL‎00009" />
+      <option name="presentableId" value="LOCAL‎00009" />
+      <updated>1620650334454</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +260,8 @@
     <MESSAGE value="add Transportation menu" />
     <MESSAGE value="menue, drivers,storekeepers" />
     <MESSAGE value="add DriverRoleController on emplyoees sid" />
-    <option name="LAST_COMMIT_MESSAGE" value="add DriverRoleController on emplyoees sid" />
+    <MESSAGE value="delete unInportant methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete unInportant methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

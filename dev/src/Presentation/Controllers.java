@@ -103,12 +103,6 @@ public class Controllers {
         tc.addSupplierItems (14,6);
         tc.addSupplierItems (16,6);
         //TODO: delete driver service and object. use niv add new driver
-        tc.addBranch(1,"Yona Fisher","Haifa",14,1,"North","Mordi","052477755");
-        tc.addBranch(2,"Menhimer","Karkur",3,1,"North","Yakov","052476655");
-        tc.addBranch(3,"Yam","Natanya",2,1,"Center","Shaul","050377755");
-        tc.addBranch(4,"Nahshon","Moran",1,1,"Center","Mimi","050477755");
-        tc.addBranch(5,"Kineret","Omer",7,3,"South","Rash","052477745");
-        tc.addBranch(6,"Kineret","Netivot",12,1,"South","Mordi","05255875");
 
         tc.addTruck(1,3500,"Subaro",3000,3500);
         tc.addTruck(2,4500,"Volvo",4000,5000);
@@ -124,8 +118,8 @@ public class Controllers {
         tc.addSuppliersItemsTrans(5,1,10,7);
         tc.addSuppliersItemsTrans(5,1,11,14);
 
-        tc.addBranchesItemsTrans(2,1,9,2);
-        tc.addBranchesItemsTrans(2,1,11,10);
+        tc.addBranchesItemsTrans(1,1,9,2);
+        tc.addBranchesItemsTrans(1,1,11,10);
 
 
     }
