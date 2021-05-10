@@ -22,7 +22,7 @@ public class DriverRoleController implements iDriverRoleController {
     }
 
     public void addNewDriver(int newEID, String name, int[] bankDetails, int salary, LocalDate startWorkDate, int[] terms, int license) {
-        Business.Employees.EmployeePKG.Driver driver = mc.addDriver(newEID,name,bankDetails,salary,startWorkDate,terms,license);
+        Driver driver = mc.addDriver(newEID,name,bankDetails,salary,startWorkDate,terms,license);
         dm.insert(driver);
     }
 

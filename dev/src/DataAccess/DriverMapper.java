@@ -3,6 +3,9 @@ package DataAccess;
 import Business.Type.RoleType;
 import java.io.IOException;
 import java.sql.*;
+
+import Business.Employees.EmployeePKG.Driver;
+
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +13,7 @@ import java.util.Map;
 public class DriverMapper extends Mapper{
 
     static  private DriverMapper mapper=null;
-    private Map <Integer, Business.Employees.EmployeePKG.Driver> drivers;
+    private Map <Integer, Driver> drivers;
 
     public static DriverMapper getMapper(){
         if(mapper==null){
@@ -24,7 +27,7 @@ public class DriverMapper extends Mapper{
         drivers=new HashMap<>();
     }
 
-    public void insert(Business.Employees.EmployeePKG.Driver driver){
+    public void insert(Driver driver){
         String query = "INSERT INTO Drivers (EID,License) VALUES(?,?)";
         int res = 0;
         try (Connection conn = connect();
@@ -38,18 +41,18 @@ public class DriverMapper extends Mapper{
         if(res >0)
             drivers.put(driver.getEID(),driver);
     }
-    public Business.Employees.EmployeePKG.Driver select(int id) throws  Exception {
+    public Driver select(int id) throws  Exception {
         if(drivers.containsKey(id))
             return drivers.get(id);
         String sql = String.format("SELECT * FROM Employees as E JOIN Drivers as D ON E.EID = D.EID  WHERE E.EID= %d",id);
-        Business.Employees.EmployeePKG.Driver driver = null;
+        Driver driver = null;
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
             if (rs.next()) {
                 int[] bankDetails = {rs.getInt("AccountNumber"), rs.getInt("BankID"), rs.getInt("BranchNumber")};
                 int[] terms = {rs.getInt("EducationFund"), rs.getInt("DaysOff"), rs.getInt("SickDays")};
-                driver = new Business.Employees.EmployeePKG.Driver(rs.getInt(0), rs.getString("Name"), bankDetails, rs.getInt("Salary"),
+                driver = new Driver(rs.getInt(0), rs.getString("Name"), bankDetails, rs.getInt("Salary"),
                         RoleType.Driver, LocalDate.parse(rs.getString("StartWorkingDate")), terms,rs.getInt("License"));
                 drivers.put(driver.getEID(),driver);
                 EmployeeMapper.getInstance().getEmployees().put(driver.getEID(),driver);

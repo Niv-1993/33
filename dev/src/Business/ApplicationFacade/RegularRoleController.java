@@ -194,7 +194,7 @@ public class RegularRoleController implements iRegularRoleController {
      * @return A response object. The response should contain a error message in case of an error
      */
 
-    public void createBranch(int newEID, String name, int[] bankDetails, int salary, int[] terms, String street, String city, int number, int enter, String area, String cn, int phone) {
+    public void createBranch(int newEID, String name, int[] bankDetails, int salary, int[] terms, String street, String city, int number, int enter, String area, String cn, String phone) {
         log.debug("enter create branch function");
         log.debug("creating instance of the personnel manager in this new branch");
         Business.Employees.EmployeePKG.Employee m = new Business.Employees.EmployeePKG.Employee(newEID, name, bankDetails, salary, RoleType.PersonnelManager, LocalDate.now(), terms);

@@ -226,13 +226,6 @@ public class TransportationController {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
-    public void addBranch(long sid,String street, String city,int number,int enter,String area,String contact,String phone) {
-        try {
-            serviceControl.addBranch(sid, street, city, number, enter, area, contact, phone);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(e.getMessage());
-        }
-    }
     public void addSupplierItems(long id,long supplier) {
         try {
             serviceControl.addSupplierItems(id, supplier);

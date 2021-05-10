@@ -41,7 +41,7 @@ public class TransportationMenu extends Menu{
      */
     public void chooseOption(){
         System.out.println("\n*************************************************");
-        System.out.println("******************* Main Menu *******************");
+        System.out.println("******************* Transportation Menu *******************");
         System.out.println("*************************************************\n");
         System.out.print("1) See all Transportations.\n2) Create a new Business.Transportation.\nOption: ");
         option = chooseOp(numOfOptions);

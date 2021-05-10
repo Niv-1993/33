@@ -110,7 +110,12 @@ public class Controllers {
         tc.addTruck(4,13500,"Dodge",10000,15000);
 
 
-        tc.addTransportation(1,"Center","2021-12-01","02:20",4250,9,1);
+        int[] bankDetails = {123, 456, 789};
+        int[] terms = {1000, 5, 10};
+        dc.addNewDriver(100, "Driver1", bankDetails, 40000,LocalDate.now(),terms,13000);
+        dc.addNewDriver(101, "Driver2", bankDetails, 40000,LocalDate.now(),terms,13000);
+
+       // tc.addTransportation(1,"Center","2021-12-01","02:20",4250,100,1);
 
         tc.addSuppliersItemsTrans(5,1,7,10);
         tc.addSuppliersItemsTrans(5,1,8,5);
@@ -122,24 +127,26 @@ public class Controllers {
         tc.addBranchesItemsTrans(1,1,11,10);
 
 
+
+
     }
 
 
     private void initializeEmpsModule(){
         int[] bankDetails = {123, 456, 789};
         int[] terms = {1000, 5, 10};
-        rc.createBranch(1, "PersonnelManager", bankDetails, 150000, terms,"sivan","Tel Aviv",12,2,"Center","rom",507350111);
+        rc.createBranch(1, "PersonnelManager", bankDetails, 150000, terms,"sivan","Tel Aviv",12,2,"South","rom","507350111");
+        rc.createBranch(2, "PersonnelManager", bankDetails, 120000, terms,"Zalman","Haifa",12,2,"Center","dor","512156465");
+        rc.createBranch(3, "PersonnelManager", bankDetails, 100000, terms,"Alenbi","Beer-Sheva",12,2,"North","bar","507350111");
         rc.EnterBranch(1);
         rc.Login(1);
-        mc.addEmployee(2, "StoreKeeperA", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
-        mc.addEmployee(3, "CashierA", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
-        mc.addEmployee(4, "CashierB", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
-        mc.addEmployee(5, "StoreKeeperB", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
-        mc.addEmployee(6, "CashierC", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
-        mc.addEmployee(7, "ShiftManagerA", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
-        mc.addEmployee(8, "ShiftManagerB", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
-        mc.addEmployee(9, "Driver2", bankDetails, 40000, "Driver", LocalDate.now(), terms);
-        mc.addEmployee(10, "Driver1", bankDetails, 40000, "Driver", LocalDate.now(), terms);
+        mc.addEmployee(6, "StoreKeeperA", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
+        mc.addEmployee(7, "CashierA", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
+        mc.addEmployee(8, "CashierB", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
+        mc.addEmployee(9, "StoreKeeperB", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
+        mc.addEmployee(10, "CashierC", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
+        mc.addEmployee(11, "ShiftManagerA", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
+        mc.addEmployee(12, "ShiftManagerB", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
         Map<String, Integer> morning = new HashMap<>();
         morning.put("Driver", 0);
         morning.put("Cashier", 1);
@@ -157,7 +164,34 @@ public class Controllers {
         defaultRolesAmount.put("Morning", morning);
         mc.defaultShifts(defaultRolesAmount);
         rc.Logout();
+
+        rc.EnterBranch(2);
         rc.Login(2);
+        mc.addEmployee(13, "StoreKeeperA", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
+        mc.addEmployee(14, "CashierA", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
+        mc.addEmployee(15, "CashierB", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
+        mc.addEmployee(16, "StoreKeeperB", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
+        mc.addEmployee(17, "CashierC", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
+        mc.addEmployee(18, "ShiftManagerA", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
+        mc.addEmployee(19, "ShiftManagerB", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
+        mc.defaultShifts(defaultRolesAmount);
+        rc.Logout();
+
+        rc.EnterBranch(3);
+        rc.Login(3);
+        mc.addEmployee(20, "StoreKeeperA", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
+        mc.addEmployee(21, "CashierA", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
+        mc.addEmployee(22, "CashierB", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
+        mc.addEmployee(23, "StoreKeeperB", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
+        mc.addEmployee(24, "CashierC", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
+        mc.addEmployee(25, "ShiftManagerA", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
+        mc.addEmployee(26, "ShiftManagerB", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
+        mc.defaultShifts(defaultRolesAmount);
+        rc.Logout();
+
+
+        rc.EnterBranch(1);
+        rc.Login(6);
         rc.addConstConstraint(DayOfWeek.SUNDAY, "Night", "tired");
         rc.Logout();
         rc.Login(1);

@@ -378,7 +378,6 @@ public class ServiceFaced {
     public void addTruck(long id, int maxWeight, String model, int netWeight, int license){dataControl.addTruck(id, maxWeight,model,netWeight,license);}
     public void addItem(long id , String name){dataControl.addItem(id,name);}
     public void addSupplier(long sid,String street, String city,int number,int enter,String area,String contact,String phone){dataControl.addSupplier(sid,street,city,number,enter,area,contact,phone);}
-    public void addBranch(long sid,String street, String city,int number,int enter,String area,String contact,String phone){dataControl.addBranch(sid,street,city,number,enter,area,contact,phone);}
     public void addSuppliersItemsTrans(long supId, long tranId, long itemId, int quantity){dataControl.addSuppliersItemsTrans(supId,tranId,itemId,quantity);}
     public void addBranchesItemsTrans(long branId, long tranId, long itemId, int quantity){dataControl.addBranchesItemsTrans(branId,tranId,itemId,quantity);}
     public void addSupplierItems(long id, long supp){dataControl.addSupplierItems(id,supp);}

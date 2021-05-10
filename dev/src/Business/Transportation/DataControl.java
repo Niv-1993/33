@@ -122,7 +122,6 @@ public class DataControl {
     public void addItem(long id , String name){itemMapper.addItem(id,name);}
     public void addSupplierItems(long id, long supp){supplierMapper.addSupplierItems(id,supp);}
     public void addSupplier(long sid,String street, String city,int number,int enter,String area,String contact,String phone){supplierMapper.addSupplier(sid,street,city,number,enter,area,contact,phone);}
-    public void addBranch(long sid,String street, String city,int number,int enter,String area,String contact,String phone){branchMapper.addBranch(sid,street,city,number,enter,area,contact,phone);}
     public void addSuppliersItemsTrans(long supid,long tranid, long itemid,int quantity){transportationMapper.saveSupplierItemOnTrans(supid,tranid,itemid,quantity);}
     public void addBranchesItemsTrans(long branid,long tranid, long itemid,int quantity){transportationMapper.saveBranchItemOnTrans(branid,tranid,itemid,quantity);}
     public void addTransportation(int i, String center, String s, String s1, int i1, int i2, int i3) {

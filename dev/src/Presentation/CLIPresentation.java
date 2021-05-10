@@ -55,8 +55,8 @@ public class CLIPresentation {
     }
 
     private void createBranch() {
-        String code, name,street,city,area,CN;
-        int ID, AC, BB, BID, salary, fund, DO, SD,number,enter,phone;
+        String code, name,street,city,area,CN,phone;
+        int ID, AC, BB, BID, salary, fund, DO, SD,number,enter;
         System.out.println("In order to create a new branch, enter management code and the personnel manager's details for this branch\n");
         while (true) {
             System.out.println("Please enter code: ");
@@ -105,8 +105,8 @@ public class CLIPresentation {
             CN = read();
             if(CN.equals("1")) return;
             System.out.print("phone: ");
-            phone = enterInt(read());
-            if(phone == -1 )return;
+            phone = read();
+            if(phone.equals("1"))return;
             System.out.println();
             r.getRc().createBranch(ID, name, new int[]{AC, BB, BID}, salary, new int[]{fund, DO, SD},street,city,number,enter,area,CN,phone);
             break;

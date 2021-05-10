@@ -51,44 +51,23 @@ public class BranchMapper extends Mapper{
     }
 
     private Branch select(int id) throws  Exception{
-
+        Branch branch= null;
         String sql = "SELECT * FROM Branchs WHERE BID="+ id ;
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
-            // loop through the result set
-            while (rs.next()) {
+            if (rs.next()) {
                 Address add=new Address(rs.getInt("Number"),rs.getString("Street"),rs.getString("City"));
                 ShippingArea are=new ShippingArea(Area.valueOf(rs.getString("Area")));
-               return new Branch(rs.getString("Phone"),rs.getString("ContactName"),rs.getInt("BID"),add,are);
+               branch = new Branch(rs.getString("Phone"),rs.getString("ContactName"),rs.getInt("BID"),add,are);
+               branches.put(id,branch);
             }
         } catch (SQLException e) {
             throw new IOException("failed to get all branches from database");
         }
-        return null;
+        return branch;
     }
 
-    public void addBranch(long sid,String street, String city,int number,int enter,String area,String contact,String phone)  {
-
-        String sql = "INSERT INTO Branches (BID,Street,City,Number,Enter,Area,ContactName,Phone) VALUES(?,?,?,?,?,?,?,?)";
-
-        try (Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setLong(1,sid );
-            pstmt.setString(2,street );
-            pstmt.setString(3,city );
-            pstmt.setInt(4,number );
-            pstmt.setInt(5, enter);
-            pstmt.setString(6, area);
-            pstmt.setString(7, contact);
-            pstmt.setString(8, phone);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
     public List<Branch> getBranches() throws Exception {
         return selectAll();
     }
@@ -105,7 +84,7 @@ public class BranchMapper extends Mapper{
             throw new IllegalArgumentException("branch with id: " + id +"does not exist");
         }
     }
-    public int insertNewBranch(String street, String city, int number, int enter, String area, String cn, int phone) {
+    public int insertNewBranch(String street, String city, int number, int enter, String area, String cn, String phone) {
         String getNextBID = "SELECT max(BID)+1 AS mx FROM Branches";
         String addBranch = "INSERT INTO Branches VALUES(?,?,?,?,?,?,?,?)";
         int bid = 0;
@@ -122,11 +101,13 @@ public class BranchMapper extends Mapper{
             pre.setInt(5,enter);
             pre.setString(6,area);
             pre.setString(7,cn);
-            pre.setInt(8,phone);
+            pre.setString(8,phone);
             pre.executeUpdate();
         } catch (Exception e) {
             System.out.println("[insertNewBranch-branchMapper] ->" + e.getMessage());
         }
+        Branch branch = new Branch(phone,cn,bid,new Address(number,street,city),new ShippingArea(Area.valueOf(area)));
+        branches.put(bid,branch);
         return bid;
     }
 }
