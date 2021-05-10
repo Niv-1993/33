@@ -359,9 +359,9 @@ public class ShiftController {
         return Objects.requireNonNull(getShiftByDate(date, shiftType)).HasShiftManager();
     }
 
-    public boolean driverOrSorter(int sid, Employee eid) {
+    public boolean driverOrStoreKeeper(int sid, Employee eid) {
         Shift s = get(sid,AllOptionals);
-        return !s.getEmployees().get(eid).equals(RoleType.Driver) && !s.getEmployees().get(eid).equals(RoleType.Sorter);
+        return !s.getEmployees().get(eid).equals(RoleType.Driver) && !s.getEmployees().get(eid).equals(RoleType.StoreKeeper);
     }
 
     public boolean StoreKeeperAvailable(LocalDate date, ShiftType shiftType) {
@@ -372,9 +372,9 @@ public class ShiftController {
         return getShiftByDate(date,shiftType).getAllAvailableDrivers();
     }
 
-    public void addDriverAndStoreKeeperToShift(Employee driverID, LocalDate date, ShiftType shiftType) {
+    public void addDriverAndStoreKeeperToShift(Employee driver, LocalDate date, ShiftType shiftType) {
         Shift s = getShiftByDate(date,shiftType);
-        s.addEmpToShift(RoleType.Driver,driverID);
+        s.addEmpToShift(RoleType.Driver,driver);
         s.addStoreKeeper();
     }
 

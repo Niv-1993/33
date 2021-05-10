@@ -24,9 +24,20 @@
   <component name="ChangeListManager">
     <list default="true" id="bccfd2f2-7c4c-4f48-b723-f62a6117cacb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Employees/ShiftPKG/Shift.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Employees/ShiftPKG/Shift.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/ManagerRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/ManagerRoleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/iControllers/iManagerRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/iControllers/iManagerRoleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/iControllers/iRegularRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/iControllers/iRegularRoleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/Business/Employees/ShiftPKG/ShiftController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Employees/ShiftPKG/ShiftController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/EmployeeMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/EmployeeMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/Mapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/ShiftMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/ShiftMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Presentation/Menu/ShiftMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/Menu/ShiftMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/RegularRoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/RegularRoleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/iControllers/iRegularRoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/iControllers/iRegularRoleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/ShiftPKG/Shift.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/ShiftPKG/Shift.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/ShiftPKG/ShiftController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/ShiftPKG/ShiftController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/ServiceFaced.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/ServiceFaced.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/ShiftMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/ShiftMapper.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +248,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620658116822</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="organized code in shift and constraints">
+      <created>1620661220811</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1620661220811</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,7 +281,8 @@
     <MESSAGE value="fix libs" />
     <MESSAGE value="add Transportation menu" />
     <MESSAGE value="menue, drivers,storekeepers" />
-    <option name="LAST_COMMIT_MESSAGE" value="menue, drivers,storekeepers" />
+    <MESSAGE value="organized code in shift and constraints" />
+    <option name="LAST_COMMIT_MESSAGE" value="organized code in shift and constraints" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

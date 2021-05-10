@@ -62,20 +62,6 @@ public class Mapper {
         }
     }
 
-    public int getNextID(String tableName,String column) {
-        int nextID = 1;
-        ResultSet res;
-        String query = String.format("SELECT Max(%s)+1 as nextID FROM %s", column, tableName);
-        try (Connection con = connect(); PreparedStatement pre = con.prepareStatement(query)) {
-            res = pre.executeQuery();
-            if (res.next())
-                nextID = res.getInt("nextID") == 0? 1: res.getInt("nextID");
-        } catch (Exception e) {
-            System.out.println("[getNextID] ->" +e.getMessage());
-        }
-        return nextID;
-    }
-
     public void setCurrBranchID(int currBranchID) {
         this.currBranchID = currBranchID;
     }

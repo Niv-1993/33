@@ -231,10 +231,6 @@ public interface iManagerRoleController {
      * @return  A response List. The response should contain a error message in case of an error
      */
     ResponseData<List<Employee>> getAllEmployees();
-/*
-    List<Integer> getAllOptionalDrivers(LocalDate date , LocalTime leavingTime);
-
-    void addDriverToShift(int driverID,LocalDate date,LocalTime leavingTime);*/
 
      boolean checkIfSIDExist(int sid);
      boolean optionalIsEmpty(int SID);
@@ -243,16 +239,15 @@ public interface iManagerRoleController {
      boolean shiftIsEmpty(int sid);
      boolean EIDWorkInSID(int sid,int eid);
      boolean hasShiftManager(LocalDate date, String shiftType);
-    boolean driverOrSorter(int sid, int eid);
+     boolean driverOrStoreKeeper(int sid, int eid);
 
-    public void EnterBranch(int BID);
-    boolean ShiftExist(LocalDate date,String shiftType);
+     void EnterBranch(int BID);
+     boolean ShiftExist(LocalDate date,String shiftType);
 
-    boolean StoreKeeperAvailable(LocalDate date, String shiftType);
+     boolean StoreKeeperAvailable(LocalDate date, String shiftType);
 
-    List<Integer> getAllAvailableDrivers(LocalDate date, String shiftType);
+     List<Integer> getAllAvailableDrivers(LocalDate date, String shiftType);
 
-    void addDriverAndStoreKeeperToShift(int driverID, LocalDate date, String shiftType);
+     void addDriverAndStoreKeeperToShift(int driverID, LocalDate date, String shiftType);
 
-    void setLicense(int newEID, int license);
 }

@@ -208,7 +208,17 @@ public class ShiftMapper extends Mapper {
     }
 
     public int getNextSID() {
-        return getNextID("Shifts", "SID");
+            int nextID = 1;
+            ResultSet res;
+            String query = "SELECT Max(SID)+1 as nextID FROM Shifts";
+            try (Connection con = connect(); PreparedStatement pre = con.prepareStatement(query)) {
+                res = pre.executeQuery();
+                if (res.next())
+                    nextID = res.getInt("nextID") == 0? 1: res.getInt("nextID");
+            } catch (Exception e) {
+                System.out.println("[getNextID] ->" +e.getMessage());
+            }
+            return nextID;
     }
 
     public Map<String, Map<String, Integer>> getDefaults() {

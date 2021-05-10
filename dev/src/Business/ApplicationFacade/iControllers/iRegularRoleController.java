@@ -146,7 +146,6 @@ public interface iRegularRoleController {
     boolean isQualified(int eid, String role);
 
      boolean checkConstExist(int CID);
-    boolean empConnected();
     boolean checkIfMyConst(int cid);
      boolean checkIfShiftExist(LocalDate date, String shiftType);
      boolean checkIfShiftIsClose(LocalDate date, String shiftType);

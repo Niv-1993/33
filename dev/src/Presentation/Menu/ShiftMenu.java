@@ -148,7 +148,7 @@ public class ShiftMenu extends Menu {
                 System.out.println("Invalid EID: is not work in this shift");
                 continue;
             }
-            if (!r.getMc().driverOrSorter(SID, EID)) {
+            if (!r.getMc().driverOrStoreKeeper(SID, EID)) {
                 System.out.println("Error: cannot remove driver or sorter");
                 return -1;
             }

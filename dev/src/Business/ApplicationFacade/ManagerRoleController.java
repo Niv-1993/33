@@ -404,9 +404,9 @@ public class ManagerRoleController implements iManagerRoleController {
         return sc.hasShiftManager(date, ShiftType.valueOf(shiftType));
     }
 
-    public boolean driverOrSorter(int sid, int eid) {
+    public boolean driverOrStoreKeeper(int sid, int eid) {
         utils.generate_optionals();
-        return sc.driverOrSorter(sid, employeeMapper.get(eid));
+        return sc.driverOrStoreKeeper(sid, employeeMapper.get(eid));
     }
 
     public boolean checkIfSIDExist(int sid) {
