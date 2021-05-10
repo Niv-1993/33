@@ -1,6 +1,5 @@
 package Presentation;
 
-import DAL.Mapper;
 import org.apache.log4j.Logger;
 
 import java.util.Scanner;
@@ -18,6 +17,8 @@ public class mainCLI {
     public mainCLI(){
         presentationCL = new PresentationCL();
         stockCLI = new StockCLI();
+        stockCLI.setStockService(presentationCL.getService());
+        presentationCL.setStockService(stockCLI.getService());
     }
 
     private int menuCheck(Scanner scanner) {

@@ -1,16 +1,17 @@
 package Presentation;
 
+import BusinessLayer.StockBusiness.Fcade.StorageService;
+import BusinessLayer.SupplierBusiness.facade.SupplierService;
+import BusinessLayer.SupplierBusiness.facade.Tresponse;
+import BusinessLayer.SupplierBusiness.facade.outObjects.*;
+import BusinessLayer.SupplierBusiness.facade.response;
+import org.apache.log4j.Logger;
+
 import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
-
-import  BusinessLayer.SupplierBusiness.facade.SupplierService;
-import BusinessLayer.SupplierBusiness.facade.Tresponse;
-import BusinessLayer.SupplierBusiness.facade.outObjects.*;
-import BusinessLayer.SupplierBusiness.facade.response;
-import org.apache.log4j.Logger;
 
 public class PresentationCL{
 
@@ -27,6 +28,13 @@ public class PresentationCL{
         }catch (Exception e){
             System.out.println("there is no data here");
         }
+    }
+
+    public SupplierService getService() {
+        return service;
+    }
+    public void setStockService(StorageService service){
+        this.service.setStockService(service);
     }
 
     public void newData() {

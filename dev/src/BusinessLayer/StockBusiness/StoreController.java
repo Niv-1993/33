@@ -12,7 +12,6 @@ import DAL.DALObject;
 import DAL.DalStock.DALStoreController;
 import DAL.Mapper;
 import Utility.Tuple;
-import Utility.Util;
 import org.apache.log4j.Logger;
 import reports.NeededReport;
 import reports.Report;
@@ -385,13 +384,16 @@ public class StoreController implements iStoreController {
     public void addSaleProductDiscount(int productTypeID, double percent, Date start, Date end) {
         log.debug(String.format("got inside addSaleProductDiscount(int productTypeID, float percent, Date start, Date end)" +
                 " Method with: %d, %f, "+start+" , "+end,productTypeID,percent));
+
         ProductType p=checkIDProductTypeExist(productTypeID);
         try {
             dal.set_discountCounter(dal.get_discountCounter()+1);
             p.addSaleProductDiscount(dal.get_discountCounter(), percent, start, end);
+            log.warn("h3");
         }
         catch (Exception e){
             dal.set_discountCounter(dal.get_discountCounter()-1);
+            log.warn("h4");
             throw e;
         }
     }
@@ -414,7 +416,7 @@ public class StoreController implements iStoreController {
         dal.set_discountCounter(dal.get_discountCounter()+1);
         int count=counterDiscount();
         try {
-            discount = new SaleDiscount(getID(),count, percent, start, end);
+            discount = new SaleDiscount(getID(),count,0,catID, percent, start, end);
             c.addDiscount(count);
             for (int i=0; i<list.size(); i++){
                 tmp=checkIDProductTypeExist(list.get(i));
@@ -439,10 +441,12 @@ public class StoreController implements iStoreController {
     public void addSupplierDiscount(int typeID, double percent, Date start, Date end, int supId) {
         log.debug(String.format("got inside addSupplierDiscount(int categoryID, float percent, Date start, Date end, int supId)" +
                 " Method with: %d, %f,  "+start+" , "+end+" , %d",typeID,percent,supId));
+
         ProductType p=checkIDProductTypeExist(typeID);
+
         try {
             dal.set_discountCounter(counterDiscount()+1);
-            p.addSaleProductDiscount(counterDiscount(), percent, start, end);
+            p.addSupplierDiscount(counterDiscount(),percent,start,end,supId);
         }
         catch (Exception e){
             dal.set_discountCounter(counterDiscount()-1);

@@ -1,6 +1,5 @@
 package DAL.DalStock;
 
-import BusinessLayer.StockBusiness.instance.InstanceController;
 import DAL.DALObject;
 import DAL.DalController;
 import DAL.Mapper;
@@ -29,7 +28,7 @@ public class DALInstanceController extends DALObject {
         _storeID=storeID;
         _typeID=typeID;
         _counter=counter;
-
+        loadProduct();
     } // get products from controller
 
     @Override
@@ -50,13 +49,13 @@ public class DALInstanceController extends DALObject {
         String query= """
                 SELECT productID \s
                 FROM Product \s
-                WHERE StoreID=? AND typeId=?; 
-                """;
+                WHERE StoreID=? AND typeID=?;""";
         List<Integer> list=new ArrayList<>();
         list.add(_storeID);
         list.add(_typeID);
         try {
             List<Tuple<List<Class>,List<Object>>> tmp= DC.SelectMany(query,list);
+
             for (Tuple<List<Class>,List<Object>> t: tmp){
                 _products= tmp.stream().map(x->(int)x.item2.get(0)).collect(Collectors.toList());
             }
@@ -99,6 +98,8 @@ public class DALInstanceController extends DALObject {
         DALProduct pt=(DALProduct) Mapper.getMap().getItem(DALProduct.class,key);
         pt.removeProduct();
         log.warn("done remove from DB, list is: "+_products+" i is:"+i);
+        log.warn(i);
+        log.warn(_products);
         _products.remove(_products.indexOf(i));
         log.warn(_products);
     }
@@ -139,8 +140,12 @@ public class DALInstanceController extends DALObject {
         list.add(_storeID);
         list.add(_typeID);
         try{
-            List<Tuple<List<Class>,List<Object>>> lst=DC.SelectMany(query,list);
-            return DC.SelectMany(query,list).stream().map(x->(Integer)(x.item2.get(0))).collect(Collectors.toList());
+            List<Tuple<List<Class>, List<Object>>> get= DC.SelectMany(query,list);
+            List<Integer> ret=new ArrayList<>();
+            for(int i =0;i<get.get(0).item2.size();i=i+2){
+                ret.add((Integer) get.get(0).item2.get(i));
+            }
+            return ret;
         }
         catch (Exception e){
             throw new IllegalArgumentException("fail");

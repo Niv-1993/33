@@ -11,21 +11,24 @@ import java.util.List;
 public class SaleDiscount extends Discount{
     DALSaleDiscount dal;
 
-    public SaleDiscount(int storeID,int _discountID, double _percent, Date _start, Date _end) {
-        super(storeID,_discountID, _percent, _start, _end);
+//    public SaleDiscount(int storeID,int _discountID, double _percent, Date _start, Date _end) {
+//        super(storeID,_discountID,0,0,0, _percent, _start, _end);
+//    }
+    public SaleDiscount(int storeID,int _discountID,Integer typeID,Integer category, double _percent, Date _start, Date _end) {
+        super(storeID,_discountID,typeID,category,0, _percent, _start, _end);
     }
 
     public SaleDiscount(int id, Integer i) {
         List<Integer> list=new ArrayList<>();
         list.add(id);
         list.add(i);
-        list.add(-1);
+       // list.add(-1);
         dal=(DALSaleDiscount) Mapper.getMap().getItem(DALSaleDiscount.class,list);
     }
 
     @Override
-    protected void init(int storeID, int id, double percent, Date start, Date end) {
-        dal=Util.initDal(DALSaleDiscount.class,storeID,id,percent,start,end);
+    protected void init(int storeID, int id,Integer typeID ,Integer categoryID,Integer sup, double percent, String start, String end) {
+        dal=Util.initDal(DALSaleDiscount.class,storeID,id,typeID,categoryID,sup,percent,start,end);
     }
 
     @Override

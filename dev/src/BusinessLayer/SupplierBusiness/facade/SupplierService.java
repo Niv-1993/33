@@ -1,5 +1,6 @@
 package BusinessLayer.SupplierBusiness.facade;
 
+import BusinessLayer.StockBusiness.Fcade.StorageService;
 import BusinessLayer.SupplierBusiness.SupplierController;
 import BusinessLayer.SupplierBusiness.ISupplierService;
 import BusinessLayer.SupplierBusiness.facade.outObjects.*;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class SupplierService implements ISupplierService {
     private SupplierController supplierController;
+    private StorageService stockService;
 
     public SupplierService() {
         supplierController = null;
@@ -27,6 +29,10 @@ public class SupplierService implements ISupplierService {
         }
         return new response();
     }
+    public void setStockService(StorageService service){
+        stockService=service;
+    }
+
 
     @Override
     public response deleteData() { return new response(); }

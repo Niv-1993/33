@@ -143,7 +143,9 @@ public class InstanceController {
         for(Product p: Collections.list(_products.elements())){
             if(p.is_isDamage()) {
                 list.add(p.get_id());
+                dal.removeProduct(p.get_id());
                 _products.remove(p.get_id());
+                //p.remove();
             }
         }
     }

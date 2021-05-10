@@ -25,9 +25,9 @@ public interface iStorageService {
     //added sale price + ID
     public Response editProductType(int ID,String name, int minAmount, double basePrice, double salePrice, String producer, int supID, int category);
 
-    public Response addSaleProductDiscount(int productTypeID, float percent, Date start,Date end);
-    public Response addSaleCategoryDiscount(int catID, float percent, Date start,Date end);
-    public Response addSupplierDiscount(int typeID, float percent, Date start,Date end,int supId);
+    public Response addSaleProductDiscount(int productTypeID, double percent, Date start,Date end);
+    public Response addSaleCategoryDiscount(int catID, double percent, Date start,Date end);
+    public Response addSupplierDiscount(int typeID, double percent, Date start,Date end,int supId);
     public ResponseData<List<Integer>> getProductsByType(int typeID);
     public Response addProduct(int typeID, Date expiration );
     public Response removeProduct(int ID);

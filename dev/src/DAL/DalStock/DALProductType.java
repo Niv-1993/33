@@ -1,6 +1,5 @@
 package DAL.DalStock;
 
-import BusinessLayer.StockBusiness.StoreController;
 import DAL.DALObject;
 import DAL.DalController;
 import DAL.Mapper;
@@ -65,16 +64,15 @@ public class DALProductType extends DALObject {
                 "\tsalePrice DOUBLE NOT NULL,\n" +
                 "\tproducer VARCHAR NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, typeID),\n" +
-                "\tUNIQUE (storeID, typeID),\n" +
 //                "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
 //                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 "\tFOREIGN KEY (storeID,categoryID) REFERENCES Category(storeID,categoryID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");\n"+
                 "CREATE TABLE IF NOT EXISTS Supplier (\n" +
-                "\tstoreID INTEGER NOT NULL UNIQUE,\n" +
-                "\ttypeID INTEGER NOT NULL UNIQUE,\n" +
-                "\tsupplierID INTEGER NOT NULL UNIQUE,\n" +
+                "\tstoreID INTEGER NOT NULL ,\n" +
+                "\ttypeID INTEGER NOT NULL ,\n" +
+                "\tsupplierID INTEGER NOT NULL ,\n" +
                 "\tPRIMARY KEY (storeID, typeID, supplierID),\n" +
                 "\tUNIQUE (storeID, supplierID),\n" +
                 "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
@@ -353,18 +351,29 @@ public class DALProductType extends DALObject {
         String query= """
                 SELECT discountID \s
                 FROM Discount \s
-                WHERE storeID=? AND typeID=?;\s 
+                WHERE storeID=? AND typeID=?; 
                 """;
         List<Integer> list=new ArrayList<>();
         list.add(storeId);
         list.add(_typeID);
         try{
-            List<Tuple<List<Class>,List<Object>>> lst=DC.SelectMany(query,list);
-            return DC.SelectMany(query,list).stream().map(x->(Integer)(x.item2.get(0))).collect(Collectors.toList());
+           // List<Tuple<List<Class>,List<Object>>> lst=DC.SelectMany(query,list);
+
+            List<Tuple<List<Class>, List<Object>>> get= DC.SelectMany(query,list);
+            log.warn("query: "+query+" params: "+get);
+            List<Integer> ret=new ArrayList<>();
+            if (get.size()>0)
+                for(int i =0;i<get.get(0).item2.size();i=i+9){
+                    ret.add((Integer) get.get(0).item2.get(i));
+                }
+          //  return DC.SelectMany(query,list).stream().map(x->(Integer)(x.item2.get(0))).collect(Collectors.toList());
+            return ret;
         }
         catch (Exception e){
-            throw new IllegalArgumentException("fail");
+            throw new IllegalArgumentException(e.getMessage());
         }
 
+    }
+    public  void addSupplerDiscount(int discountID){////////////////////////////////////
     }
 }

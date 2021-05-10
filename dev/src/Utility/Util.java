@@ -1,7 +1,6 @@
 package Utility;
 
 import DAL.DALObject;
-import DAL.DalStock.DALCategory;
 import DAL.Mapper;
 import org.apache.log4j.Logger;
 
@@ -15,7 +14,10 @@ public  class Util {
         list.add(new Tuple<>(storeID,Integer.class));
         list.add(new Tuple<>(key,Integer.class));
         for (Object o1: o) {
-            list.add(new Tuple<>(o1,o1.getClass()));
+            if (o1==null)
+                list.add(new Tuple<>(null,Integer.class));
+            else
+                list.add(new Tuple<>(o1,o1.getClass()));
         }
         List<Integer> keyList=new ArrayList<>();
         keyList.add(storeID);

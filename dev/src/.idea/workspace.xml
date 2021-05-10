@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78ff1c32-b3a2-4583-b331-f69764ea4317" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BusinessLayer/StockBusiness/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BusinessLayer/StockBusiness/StoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BusinessLayer/StockBusiness/Type/ProductType.java" beforeDir="false" afterPath="$PROJECT_DIR$/BusinessLayer/StockBusiness/Type/ProductType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +47,8 @@
       <workItem from="1619909538858" duration="122000" />
       <workItem from="1619909792007" duration="66000" />
       <workItem from="1619974034602" duration="83000" />
+      <workItem from="1620667274636" duration="32000" />
+      <workItem from="1620672244666" duration="151000" />
     </task>
     <servers />
   </component>

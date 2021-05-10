@@ -3,7 +3,6 @@ package DAL.DalStock;
 import DAL.DalController;
 import Utility.Tuple;
 
-import java.util.Date;
 import java.util.List;
 
 public class DALSaleDiscount extends DALDiscount{
@@ -28,8 +27,7 @@ public class DALSaleDiscount extends DALDiscount{
         String query= """
                 UPDATE Discount \s
                 SET categoryID=0
-                WHERE storeID=? AND discountID=? AND categoryID=?;
-                """;
+                WHERE storeID=? AND discountID=? AND categoryID=?;""";
         List<Tuple<Object,Class>> params=prepareList(storeID,_discountID,categoryID);
         try {
             DC.noSelect(query,params);
@@ -44,9 +42,9 @@ public class DALSaleDiscount extends DALDiscount{
         String query= """
                 UPDATE Discount \s
                 SET categoryID=?
-                WHERE storeID=? AND discountID=?;
-                """;
+                WHERE storeID=? AND discountID=?;""";
         List<Tuple<Object,Class>> params=prepareList(i,storeID,_discountID);
+        System.out.println("query: \n"+query+"\nparams:\n"+params);
         try {
             DC.noSelect(query,params);
         }
@@ -55,6 +53,4 @@ public class DALSaleDiscount extends DALDiscount{
         }
         categoryID=i;
     }
-
-
 }

@@ -2,10 +2,8 @@ package BusinessLayer.StockBusiness.instance;
 
 import DAL.DALObject;
 import DAL.DalStock.DALProduct;
-import DAL.DalStock.DALStoreController;
 import DAL.Mapper;
 import Utility.Tuple;
-import Utility.Util;
 import org.apache.log4j.Logger;
 
 import java.text.DateFormat;
@@ -149,5 +147,9 @@ public class Product {
                 ", _isDamage=" + dal.is_isDamage() +
                 ", _location=" + dal.get_location().item1 +","+dal.get_location().item2+
                 '}';
+    }
+
+    public void remove() {
+        dal.removeProduct();
     }
 }

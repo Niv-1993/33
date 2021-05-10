@@ -1,6 +1,5 @@
 package BusinessLayer.StockBusiness.Type;
 
-import BusinessLayer.StockBusiness.StoreController;
 import DAL.DALObject;
 import DAL.DalStock.DALCategory;
 import DAL.Mapper;
@@ -13,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Category {
-    final static Logger log=Logger.getLogger(StoreController.class);
+    final static Logger log=Logger.getLogger(Category.class);
     private List<Category> _categories=new ArrayList<>();
     private Category _superCategory=null;
     private DALCategory dal;

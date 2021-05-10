@@ -23,14 +23,14 @@ public class SupplierDiscount extends Discount{
         return dal.getSupplier();
     }
 
-    public SupplierDiscount(int storeID,int _discountID, double _percent, Date _start, Date _end, int sup) {
-        super(storeID,_discountID, _percent, _start, _end);
-        dal.setSupplier(sup);
+    public SupplierDiscount(int storeID,int _discountID,int typeID, double _percent, Date _start, Date _end, int sup) {
+        super(storeID,_discountID,typeID,0,sup, _percent, _start, _end);
+        log.warn("public SupplierDiscount");
     }
 
     @Override
-    protected void init(int storeID, int id, double percent, Date start, Date end) {
-        dal= Util.initDal(DALSupplierDiscount.class,storeID,id,percent,start,end);
+    protected void init(int storeID, int id,Integer typeID,Integer categoryID,Integer sup, double percent, String start, String end) {
+        dal= Util.initDal(DALSupplierDiscount.class,storeID,id,typeID,categoryID,sup,percent,start,end);
     }
 
     @Override

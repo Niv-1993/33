@@ -2,8 +2,8 @@ package BusinessLayer.StockBusiness.Fcade;
 
 import BusinessLayer.StockBusiness.Fcade.outObjects.*;
 import BusinessLayer.StockBusiness.StoreController;
-import BusinessLayer.StockBusiness.iStoreController;
 import BusinessLayer.StockBusiness.instance.Location;
+import BusinessLayer.SupplierBusiness.facade.SupplierService;
 import org.apache.log4j.Logger;
 
 import java.text.ParseException;
@@ -20,6 +20,7 @@ public class StorageService implements iStorageService {
     int MAX_PER_SHELF=100;
     List<StoreController> stores;
     StoreController curr;
+    SupplierService supplierService;
     final static Logger log= Logger.getLogger(StorageService.class);
 
     public StorageService() {
@@ -194,7 +195,7 @@ public class StorageService implements iStorageService {
     }
 
     @Override
-    public Response addSaleProductDiscount(int productTypeID, float percent, Date start, Date end) {
+    public Response addSaleProductDiscount(int productTypeID, double percent, Date start, Date end) {
         try {
             curr.addSaleProductDiscount(productTypeID,percent,start,end);
             return new Response();
@@ -205,7 +206,7 @@ public class StorageService implements iStorageService {
     }
 
     @Override
-    public Response addSaleCategoryDiscount(int catID, float percent, Date start, Date end) {
+    public Response addSaleCategoryDiscount(int catID, double percent, Date start, Date end) {
         try {
             curr.addSaleCategoryDiscount(catID,percent,start,end);
             return new Response();
@@ -216,7 +217,7 @@ public class StorageService implements iStorageService {
     }
 
     @Override
-    public Response addSupplierDiscount(int typeID, float percent, Date start, Date end, int supId) {
+    public Response addSupplierDiscount(int typeID, double percent, Date start, Date end, int supId) {
         try {
             curr.addSupplierDiscount(typeID,percent,start,end,supId);
             return new Response();
@@ -423,5 +424,9 @@ public class StorageService implements iStorageService {
             }
         }
         counter=stores.size()+1;
+    }
+
+    public void setStockService(SupplierService service) {
+        supplierService=service;
     }
 }

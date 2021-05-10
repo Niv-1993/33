@@ -4,7 +4,6 @@ import DAL.DALObject;
 import DAL.DalController;
 import Utility.Tuple;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,8 +37,8 @@ public abstract class DALDiscount extends DALObject {
     @Override
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS Discount (\n" +
-                "\tstoreID INTEGER NOT NULL UNIQUE,\n" +
-                "\tdiscountID INTEGER NOT NULL UNIQUE,\n" +
+                "\tstoreID INTEGER NOT NULL,\n" +
+                "\tdiscountID INTEGER NOT NULL,\n" +
                 "\ttypeID INTEGER,\n" +
                 "\tcategoryID INTEGER,\n" +
                 "\tsupplierID INTEGER,\n" +
@@ -47,7 +46,6 @@ public abstract class DALDiscount extends DALObject {
                 "\tstartDate VARCHAR NOT NULL,\n" +
                 "\tendDate VARCHAR NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, discountID),\n" +
-                "\tUNIQUE (storeID, discountID),\n" +
                 "\tFOREIGN KEY (storeID) REFERENCES StoreController(storeID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE,\n" +
                 "\tFOREIGN KEY (storeID,typeID) REFERENCES ProductType(storeID,typeID)\n" +
@@ -55,8 +53,7 @@ public abstract class DALDiscount extends DALObject {
                 "\tFOREIGN KEY (storeID,categoryID) REFERENCES Category(storeID,categoryID)\n" +
                 "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
                 "\tFOREIGN KEY (storeID,supplierID) REFERENCES Supplier(storeID,supplierID)\n" +
-                "\tON DELETE CASCADE ON UPDATE CASCADE\n" +
-                ");";
+                "\tON DELETE CASCADE ON UPDATE CASCADE);";
     }
 
     @Override

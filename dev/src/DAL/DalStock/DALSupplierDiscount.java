@@ -3,7 +3,6 @@ package DAL.DalStock;
 import DAL.DalController;
 import Utility.Tuple;
 
-import java.util.Date;
 import java.util.List;
 
 public class DALSupplierDiscount extends DALDiscount{
@@ -43,5 +42,6 @@ public class DALSupplierDiscount extends DALDiscount{
         }
         _supplierID=sup;
     }
+
 
 }

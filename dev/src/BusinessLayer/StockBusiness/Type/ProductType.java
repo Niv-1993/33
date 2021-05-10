@@ -77,8 +77,10 @@ public class ProductType {
     public void initSaleDiscount(List<SaleDiscount> list){
         _saleDiscounts.addAll(list);
     }
+
     public void loadSupplierDiscount(){
         List<Integer> list=dal.getSupplierDiscounts();
+        log.warn(list);
         for (Integer i:list)
             _supplierDiscounts.add(new SupplierDiscount(dal.getStoreId(),i));
     }
@@ -207,7 +209,7 @@ public class ProductType {
 
     public void addSaleProductDiscount(int discountID,double percent, Date start, Date end) {
         log.debug(String.format("addSaleProductDiscount(float percent, Date start, Date end) Values:?,?,?",percent,start,end));
-        SaleDiscount s=new SaleDiscount(dal.getStoreId(),discountID,percent,start,end);
+        SaleDiscount s=new SaleDiscount(dal.getStoreId(),discountID,get_typeID(),0,percent,start,end);
         try{
             dal.addSaleProductDiscount(s.get_discountID());
         }
@@ -258,6 +260,7 @@ public class ProductType {
     }
 
     public List<SupplierDiscount> getSupplierDiscounts() {
+        log.warn(_supplierDiscounts);
         return _supplierDiscounts;
     }
 
@@ -420,5 +423,20 @@ public class ProductType {
             output.add(s.get_discountID());
         }
         return output;
+    }
+
+    public void addSupplierDiscount(int discountID, double percent, Date start, Date end, int supId) {
+        log.debug(String.format("addSupplierDiscount(float percent, Date start, Date end,supID)"));
+        SupplierDiscount s=new SupplierDiscount(dal.getStoreId(),discountID,get_typeID(),percent,start,end,supId);
+        log.warn("here");
+        try{
+            dal.addSupplerDiscount(s.get_discountID());
+        }
+        catch (Exception e){
+            String info="can not add Supplier Discount";
+            log.warn(info);
+            throw new IllegalArgumentException(info);
+        }
+        _supplierDiscounts.add(s);
     }
 }
