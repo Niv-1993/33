@@ -119,4 +119,7 @@ public class TransportationServiceDTO {
         return new ArrayList<>(deliveryItems.keySet());
     }
 
+    public boolean isComplete() {
+        return !(date == null | leavingTime == null|driver == null| truck == null|deliveryItems == null|area == null|weight == -1|suppliers == null);
+    }
 }

@@ -1,11 +1,10 @@
 package DataAccess;
 
+import Business.Employees.EmployeePKG.Driver;
 import Business.Type.RoleType;
+
 import java.io.IOException;
 import java.sql.*;
-
-import Business.Employees.EmployeePKG.Driver;
-
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,13 +51,17 @@ public class DriverMapper extends Mapper{
             if (rs.next()) {
                 int[] bankDetails = {rs.getInt("AccountNumber"), rs.getInt("BankID"), rs.getInt("BranchNumber")};
                 int[] terms = {rs.getInt("EducationFund"), rs.getInt("DaysOff"), rs.getInt("SickDays")};
-                driver = new Driver(rs.getInt(0), rs.getString("Name"), bankDetails, rs.getInt("Salary"),
-                        RoleType.Driver, LocalDate.parse(rs.getString("StartWorkingDate")), terms,rs.getInt("License"));
+                int did=rs.getInt("EID");
+                String name=rs.getString("Name");
+                int salary= rs.getInt("Salary");
+                LocalDate date=  LocalDate.parse(rs.getString("StartWorkingDate"));
+                int license=rs.getInt("License");
+                driver = new Driver(did, name, bankDetails,salary, RoleType.Driver, date, terms,license);
                 drivers.put(driver.getEID(),driver);
                 EmployeeMapper.getInstance().getEmployees().put(driver.getEID(),driver);
             }
         } catch (SQLException e) {
-            throw new IOException("failed to get all branches from database");
+            throw new IOException("failed to get a driver"+id +"from database");
         }
         return driver;
     }

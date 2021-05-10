@@ -36,7 +36,7 @@ public class SupplierMapper extends Mapper {
             while (rs.next()) {
                 Address add=new Address(rs.getInt("Number"),rs.getString("Street"),rs.getString("City"));
                 ShippingArea are=new ShippingArea(Area.valueOf(rs.getString("Area")));
-                suppliers.put( rs.getInt("ID"),new Supplier(rs.getString("Phone"),rs.getString("Contact"),rs.getInt("ID"),add,are));
+                suppliers.put( rs.getInt("ID"),new Supplier(rs.getString("Phone"),rs.getString("ContactName"),rs.getInt("ID"),add,are));
             }
         } catch (SQLException e) {
             throw new IOException("failed to get all suppliers from database");
@@ -54,7 +54,7 @@ public class SupplierMapper extends Mapper {
             while (rs.next()) {
                 Address add=new Address(rs.getInt("Number"),rs.getString("Street"),rs.getString("City"));
                 ShippingArea are=new ShippingArea(Area.valueOf(rs.getString("Area")));
-                return new Supplier(rs.getString("Phone"),rs.getString("Contact"),rs.getInt("ID"),add,are);
+                return new Supplier(rs.getString("Phone"),rs.getString("ContactName"),rs.getInt("ID"),add,are);
             }
         } catch (SQLException e) {
             throw new IOException("failed to get all branches from database");

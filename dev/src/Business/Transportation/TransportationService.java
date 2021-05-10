@@ -147,8 +147,6 @@ public class TransportationService {
      */
     public Transportation saveTransportation(long id) throws Exception {
         Transportation tra=getTransportationById(id);
-        if(!tra.isComplete())
-            throw new IllegalArgumentException("Please fill all details");
         dataControl.saveTransportation(id);
         return tra;
     }

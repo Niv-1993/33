@@ -132,9 +132,9 @@ public class Transportation {
     public void setWeight(int weight){
 
         if(truck!=null && weight< truck.getNetWeight())
-            throw new IllegalArgumentException("Warning! The weight must include the truck net weight ");
+            throw new IllegalArgumentException("Warning!!! The weight must include the truck net weight. \n");
         if(truck!=null && weight > truck.getMaxWeight()){
-            throw new IllegalArgumentException("Warning! the curr weight is mismatch to max truck wight");
+            throw new IllegalArgumentException("Warning!!! the curr weight is mismatch to max truck wight.\n");
         }
         this.weight = weight;
     }

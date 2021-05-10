@@ -22,7 +22,7 @@ public class Controllers {
         rc = new RegularRoleController();
         mc = new ManagerRoleController(rc.getUtils());
         dc = new DriverRoleController(mc);
-        tc = new TransportationController();
+        tc = new TransportationController(mc);
     }
 
     public iManagerRoleController getMc() {
@@ -115,7 +115,7 @@ public class Controllers {
         dc.addNewDriver(100, "Driver1", bankDetails, 40000,LocalDate.now(),terms,13000);
         dc.addNewDriver(101, "Driver2", bankDetails, 40000,LocalDate.now(),terms,13000);
 
-       // tc.addTransportation(1,"Center","2021-12-01","02:20",4250,100,1);
+        tc.addTransportation(1,"Center","2021-12-01","02:20",4250,100,1);
 
         tc.addSuppliersItemsTrans(5,1,7,10);
         tc.addSuppliersItemsTrans(5,1,8,5);

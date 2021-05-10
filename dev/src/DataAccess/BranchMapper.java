@@ -1,10 +1,10 @@
 package DataAccess;
 
-import Business.Employees.EmployeePKG.Employee;
 import Business.Transportation.Address;
 import Business.Transportation.Branch;
 import Business.Transportation.ShippingArea;
 import Business.Type.Area;
+
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class BranchMapper extends Mapper{
      * select all rows in the Branch table
      */
     private List<Branch> selectAll() throws Exception {
-        String sql = "SELECT * FROM Branchs";
+        String sql = "SELECT * FROM Branches";
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
@@ -52,7 +52,7 @@ public class BranchMapper extends Mapper{
 
     private Branch select(int id) throws  Exception{
         Branch branch= null;
-        String sql = "SELECT * FROM Branchs WHERE BID="+ id ;
+        String sql = "SELECT * FROM Branches WHERE BID="+ id ;
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){

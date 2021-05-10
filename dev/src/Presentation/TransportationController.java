@@ -1,7 +1,9 @@
 package Presentation;
 
 import Business.ApplicationFacade.ResponseData;
+import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.outObjects.*;
+import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Business.Transportation.ServiceFaced;
 
 import java.time.LocalDate;
@@ -12,8 +14,8 @@ public class TransportationController {
     private final ServiceFaced serviceControl;
 
 
-    public TransportationController(){
-        serviceControl = new ServiceFaced();
+    public TransportationController(iManagerRoleController mc){
+        serviceControl = new ServiceFaced(mc);
     }
 
     /**
@@ -33,11 +35,13 @@ public class TransportationController {
             System.out.println(tra.getError());
         }
     }
-    public void setTransportationWeight(TransportationServiceDTO t){
+    public boolean setTransportationWeight(TransportationServiceDTO t){
         ResponseData<TransportationServiceDTO> tra = serviceControl.setTransportationWeight(t);
         if (tra.isError()){
             System.out.println(tra.getError());
+            return false;
         }
+        return true;
     }
     public void setTransportation(TransportationServiceDTO t){
         ResponseData<TransportationServiceDTO> tra = serviceControl.setTransportation(t);

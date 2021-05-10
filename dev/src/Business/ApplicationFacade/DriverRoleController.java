@@ -17,9 +17,7 @@ public class DriverRoleController implements iDriverRoleController {
         mc = m;
         dm=DriverMapper.getMapper();
     }
-    public DriverRoleController(){
-        dm=DriverMapper.getMapper();
-    }
+
 
     public void addNewDriver(int newEID, String name, int[] bankDetails, int salary, LocalDate startWorkDate, int[] terms, int license) {
         Driver driver = mc.addDriver(newEID,name,bankDetails,salary,startWorkDate,terms,license);

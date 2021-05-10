@@ -23,7 +23,7 @@ public class TransportationMenu extends Menu{
 
     public TransportationMenu(Controllers r , Scanner input){
         super(r,input);
-        transportationController =new TransportationController();
+        transportationController =new TransportationController(r.getMc());
         this.option=0;
         subOption=0;
         finish=false;
@@ -45,7 +45,7 @@ public class TransportationMenu extends Menu{
         System.out.println("*************************************************\n");
         System.out.print("1) See all Transportations.\n2) Create a new Business.Transportation.\nOption: ");
         option = chooseOp(numOfOptions);
-        System.out.println("");
+        System.out.println();
     }
 
     /**
@@ -59,7 +59,7 @@ public class TransportationMenu extends Menu{
         }
         System.out.print("Area number: ");
         int area=chooseOp(areas.length)-1;
-        System.out.println("");
+        System.out.println();
         Area chosen=areas[area];
         t.setArea(chosen);
         transportationController.setTransportationArea(t);
@@ -75,7 +75,7 @@ public class TransportationMenu extends Menu{
             try {
                 System.out.print("Please chose time for transportation.\nUse the format hh:mm.\nTime:");
                 String tim = input.next();
-                System.out.println("");
+                System.out.println();
                 LocalTime time = LocalTime.parse(tim);
                 tran.setLeavingTime(time);
                 transportationController.setTransportationLeavingTime(tran);
@@ -97,7 +97,7 @@ public class TransportationMenu extends Menu{
             try {
                 System.out.print("Please chose a date for transportation.\nUse the format yyyy-mm-dd.\nDate:");
                 String tim = input.next();
-                System.out.println("");
+                System.out.println();
                 LocalDate date=LocalDate.parse(tim);
                 tran.setDate(date);
                 transportationController.setTransportationDate(tran);
@@ -171,9 +171,10 @@ public class TransportationMenu extends Menu{
             System.out.println("please enter transportation total weight:");
             System.out.print("\nWeight: ");
             int chose = input.nextInt();
-            System.out.println("");
+            System.out.println();
             t.setWeight(chose);
-            transportationController.setTransportationWeight(t);
+            if(!transportationController.setTransportationWeight(t))
+                t.setWeight(-1);
         }
         catch (Exception e){
             t.setTruck(null);
@@ -188,10 +189,16 @@ public class TransportationMenu extends Menu{
      */
     private void submit(TransportationServiceDTO t){
         try {
-            System.out.println("\nTrying to submit transportation... \n\n");
-            transportationController.setTransportation(t);
-            finish=true;
-            System.out.println("Success to submit new transportation! ");
+            System.out.println("\nTrying to submit transportation... \n");
+            if(t.isComplete()) {
+                transportationController.setTransportation(t);
+                finish = true;
+                System.out.println("Success to submit new transportation! ");
+            }
+            else{
+                System.out.println("Please fill all the information before submit the transportation.\n");
+                finish=false;
+            }
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -216,7 +223,7 @@ public class TransportationMenu extends Menu{
             do {
                 System.out.print("\nselect supplier, to end press -1:\nSupplier Id: ");
                 chose = input.nextInt();
-                System.out.println("");
+                System.out.println();
                 if(chose==-1)
                     break;
                 List<Pair<ItemServiceDTO, Integer>> lis =new LinkedList<>();
@@ -231,7 +238,7 @@ public class TransportationMenu extends Menu{
                         break;
                     System.out.print("Quantity: ");
                     num= input.nextInt();
-                    System.out.println("");
+                    System.out.println();
 
                     lis.add(new Pair<>(transportationController.getItem(id),num));
                 }
@@ -261,19 +268,19 @@ public class TransportationMenu extends Menu{
             System.out.println("*************************************************\n");
             System.out.println("Select branches and items from the lists below:");
             printAllBranches();
-            PrintAllItems();
             int chose;
             HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO,Integer>>> branches=new HashMap<>();
             do {
                 System.out.print("\nselect branch, to end press -1:\nBranch Id:");
                 chose = input.nextInt();
-                System.out.println("");
+                System.out.println();
                 if(chose==-1)
                     break;
                 List<Pair<ItemServiceDTO, Integer>> lis =new LinkedList<>();
                 long id;
                 int num;
                 do{
+                    PrintAllItems();
                     System.out.println("Enter item and quantity,to end press -2:");
                     System.out.print("Item Id: ");
                     id= input.nextLong();
@@ -308,15 +315,40 @@ public class TransportationMenu extends Menu{
             System.out.println("  ****************** Adding Driver ****************");
             System.out.println("*************************************************\n");
             System.out.println("please select driver id from the trucks list below:\n");
-            printAllDrivers(t.getDate(),t.getLeavingTime());
-            System.out.print("\nId: ");
-            int chose = input.nextInt();
-            System.out.println("");
-            t.setDriver(transportationController.getDriver(chose));
-            transportationController.setDriverOnTransportation(t);
+            List<DriverServiceDTO> drivers=getAllDrivers(t.getDate(),t.getLeavingTime());
+            if(drivers==null||!drivers.isEmpty()) {
+                for (DriverServiceDTO driver:drivers) {
+                    System.out.println(driver);
+                }
+                System.out.print("\nId: ");
+                int chose = input.nextInt();
+                System.out.println();
+                t.setDriver(transportationController.getDriver(chose));
+                transportationController.setDriverOnTransportation(t);
+            }
+            else{
+                System.out.println("There are no available drivers for those specific date and time.\nPlease select an option: \n ");
+                System.out.println("1) Change Date \n2) Change time");
+                int option= chooseOp(2);
+                if(option==1){
+                    chooseDate(t);
+                }
+                else{
+                    chooseTime(t);
+                }
+            }
         }
         catch (Exception e){
             t.setDriver(null);
+            System.out.println("There are no available drivers for those specific date and time.\nPlease select an option: \n ");
+            System.out.println("1) Change Date \n2) Change time");
+            int option= chooseOp(2);
+            if(option==1){
+                chooseDate(t);
+            }
+            else{
+                chooseTime(t);
+            }
         }
     }
 
@@ -335,7 +367,7 @@ public class TransportationMenu extends Menu{
             printAllTucks();
             System.out.print("\nId: ");
             long chose = input.nextLong();
-            System.out.println("");
+            System.out.println();
             t.setTruck(transportationController.getTruck(chose));
             transportationController.setTruckOnTransportation(t);
         }
@@ -347,11 +379,10 @@ public class TransportationMenu extends Menu{
     /**
      *Prints to the user all the available drivers in the database
      */
-    public void printAllDrivers(LocalDate date, LocalTime leavingTime){
-       List<DriverServiceDTO> lis= transportationController.getAllDrivers(date,leavingTime);
-        for (DriverServiceDTO dri:lis) { System.out.println(dri); }
-    }
 
+    public List<DriverServiceDTO> getAllDrivers(LocalDate date, LocalTime leavingTime){
+       return  transportationController.getAllDrivers(date,leavingTime);
+    }
     /**
      *Prints to the user all the available trucks in the database
      */
