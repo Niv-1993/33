@@ -107,7 +107,7 @@ public class DALInstanceController extends DALObject {
         List<Integer> key=new ArrayList<>();
         key.add(_storeID);
         key.add(i);
-        DALProduct pt=(DALProduct) Mapper.getMap().getItem(DALProduct.class,key);
+        DALProduct pt= (DALProduct) Mapper.getMap().getItem(DALProduct.class,key);
         pt.addProduct(_typeID);
         _products.add(i);
     }

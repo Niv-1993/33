@@ -25,13 +25,6 @@ public class StockCLI {
             System.out.println(i + ") " + menu[i - 1]);
         }
     }
-    public StorageService getService() {
-        return SS;
-    }
-    public void setStockService(SupplierService service){
-        this.SS.setStockService(service);
-    }
-
 
     public StockCLI() {
         SS = new StorageService();
@@ -39,6 +32,13 @@ public class StockCLI {
 
     public StockCLI(StorageService ss) {
         SS = ss;
+    }
+
+    public StorageService getService() {
+        return SS;
+    }
+    public void setStockService(SupplierService service){
+        this.SS.setStockService(service);
     }
 
     public void setup() {
@@ -305,7 +305,7 @@ public class StockCLI {
         in = read();
         String[] tmp = in.split(",");
         if (tmp.length == 7) {
-            if ((SS.addProductType(tmp[0], Integer.parseInt(tmp[1]), Double.parseDouble(tmp[2]), Double.parseDouble(tmp[3]), tmp[4], Integer.parseInt(tmp[5]), Integer.parseInt(tmp[6])).isError())) {
+            if ((SS.addProductType(tmp[0], Integer.parseInt(tmp[1]), Float.parseFloat(tmp[2]), Float.parseFloat(tmp[3]), tmp[4], Integer.parseInt(tmp[5]), Integer.parseInt(tmp[6])).isError())) {
                 System.out.print("bad input, try again.\n");
             } else {
                 System.out.print("Type added\n");
@@ -321,7 +321,7 @@ public class StockCLI {
         in = read();
         String[] tmp = in.split(",");
         if (tmp.length == 8) {
-            if ((SS.editProductType(Integer.parseInt(tmp[0]), tmp[1], Integer.parseInt(tmp[2]), Double.parseDouble(tmp[3]), Double.parseDouble(tmp[4]), tmp[5], Integer.parseInt(tmp[6]), Integer.parseInt(tmp[7])).isError())) {
+            if ((SS.editProductType(Integer.parseInt(tmp[0]), tmp[1], Integer.parseInt(tmp[2]), Float.parseFloat(tmp[3]), Float.parseFloat(tmp[4]), tmp[5], Integer.parseInt(tmp[6]), Integer.parseInt(tmp[7])).isError())) {
                 System.out.print("bad input, try again.\n");
             } else {
                 System.out.print("Type changed\n");
@@ -367,7 +367,7 @@ public class StockCLI {
                 System.out.print("damage reported.\n");
             }
             else if (i == 4) {
-                System.out.print(SS.getProductInfo(Integer.parseInt(in)));
+                SS.getProductInfo(Integer.parseInt(in));
             } else System.out.print("bad input, try again.\n");
         } catch (Exception e) {
             System.out.print("bad input, try again.\n");
@@ -461,25 +461,25 @@ public class StockCLI {
         if (tmp.length == 5) {
             try {
                 if (tmp[0].equals("type")) {
-                    if ((SS.addSaleProductDiscount(Integer.parseInt(tmp[1]), Double.parseDouble(tmp[2]),
+                    if ((SS.addSaleProductDiscount(Integer.parseInt(tmp[1]), Float.parseFloat(tmp[2]),
                             new SimpleDateFormat("dd-MM-yyyy").parse(tmp[3]), new SimpleDateFormat("dd-MM-yyyy").parse(tmp[4])).isError())) {
                         System.out.print("bad input, try again.\n");
                     } else {
                         System.out.print("sale discount added.\n");
                     }
                 }
-                 else if (tmp[0].equals("category")) {
-                    if ((SS.addSaleCategoryDiscount(Integer.parseInt(tmp[1]), Double.parseDouble(tmp[2]),
+                if (tmp[0].equals("category")) {
+                    if ((SS.addSaleCategoryDiscount(Integer.parseInt(tmp[1]), Float.parseFloat(tmp[2]),
                             new SimpleDateFormat("dd-MM-yyyy").parse(tmp[3]), new SimpleDateFormat("dd-MM-yyyy").parse(tmp[4])).isError())) {
                         System.out.print("bad input, try again.\n");
                     } else {
                         System.out.print("sale discount added.\n");
                     }
-                } else System.out.print("bad input, try again.(category)\n");
+                } else System.out.print("bad input, try again.\n");
             } catch (Exception e) {
                 System.out.print("bad input, try again.\n");
             }
-        } else System.out.print("bad input, try again.(args<5)\n");
+        } else System.out.print("bad input, try again.\n");
     }
 
 
@@ -506,7 +506,7 @@ public class StockCLI {
         String[] tmp = in.split(",");
         if (tmp.length == 5) {
             try {
-                if ((SS.addSupplierDiscount(Integer.parseInt(tmp[0]), Double.parseDouble(tmp[1]),
+                if ((SS.addSupplierDiscount(Integer.parseInt(tmp[0]), Float.parseFloat(tmp[1]),
                         new SimpleDateFormat("dd-MM-yyyy").parse(tmp[2]), new SimpleDateFormat("dd-MM-yyyy").parse(tmp[3]), Integer.parseInt(tmp[4])).isError())) {
                     System.out.print("bad input, try again.\n");
                 } else {

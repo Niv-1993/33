@@ -28,6 +28,14 @@ public class StorageService implements iStorageService {
         curr=null;
     }
 
+    public ResponseData<Integer> getProductTypeId(String name){
+        return null;
+    }
+
+    public Response removeSupplier(int supplierId , int itemId){
+        return null;
+    }
+
     public int getCurrID(){
         return curr.getID();
     }

@@ -147,7 +147,7 @@ public class DALProduct extends DALObject {
             return new SimpleDateFormat("dd-MM-yyyy").parse(_expiration);
         }
         catch (Exception e){
-            throw new IllegalArgumentException("DateBug");
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
     public boolean is_isDamage(){return (_isDamage==1);}

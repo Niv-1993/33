@@ -10,17 +10,15 @@ import java.util.List;
 
 public class DalSupplierController extends DALObject {
     private int controller;
-    private int numOfItems;
     private int numOfOrders;
     final static Logger log=Logger.getLogger(DalSupplierController.class);
 
     public DalSupplierController() {
         super(null);
     }
-    public DalSupplierController(Integer controller , Integer numOfItems , Integer numOfOrders , DalController dalController) {
+    public DalSupplierController(Integer controller , Integer numOfOrders , DalController dalController) {
         super(dalController);
         this.controller = controller;
-        this.numOfItems = numOfItems;
         this.numOfOrders = numOfOrders;
     }
 
@@ -28,7 +26,6 @@ public class DalSupplierController extends DALObject {
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS \"SupplierController\"(\n" +
                 "\t\"controller\" INTEGER NOT NULL,\n" +
-                "\t\"numOfItems\" INTEGER NOT NULL,\n" +
                 "\t\"numOfOrders\" INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY(\"controller\")\n" +
                 ");";
@@ -55,10 +52,10 @@ public class DalSupplierController extends DALObject {
     @Override
     public String getInsert() {
         return "INSERT OR REPLACE INTO SupplierController\n"+
-                "VALUES (?,?,?);";
+                "VALUES (?,?);";
     }
 
-    public int getNumOfItems() {
+    /*public int getNumOfItems() {
         try {
             String query = "SELECT numOfItems FROM SupplierController\n" +
                     "WHERE controller = ?;";
@@ -71,7 +68,7 @@ public class DalSupplierController extends DALObject {
             log.warn(e);
         }
         return numOfItems;
-    }
+    }*/
 
     public int getNumOfOrders() {
         try {
@@ -90,7 +87,7 @@ public class DalSupplierController extends DALObject {
 
 
 
-    public void addNumOfItems() throws Exception {
+    /*public void addNumOfItems() throws Exception {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE SupplierController\n" +
                 "SET numOfItems = ?\n" +
@@ -99,7 +96,7 @@ public class DalSupplierController extends DALObject {
         list.add(new Tuple<>(controller, Integer.class));
         DC.noSelect(query, list);
         numOfItems++;
-    }
+    }*/
 
     public void addNumOfOrders() throws Exception {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();

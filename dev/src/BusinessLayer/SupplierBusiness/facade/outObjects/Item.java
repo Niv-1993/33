@@ -6,14 +6,12 @@ public class Item {
     private final int ItemId;
     private final String name;
     private final double price;
-    private final int typeId;
     private final LocalDate expirationDate;
 
     public Item(BusinessLayer.SupplierBusiness.Item item) {
         ItemId = item.getItemId();
         name = item.getName();
         price = item.getPrice();
-        typeId = item.getTypeID();
         expirationDate = item.getExpirationDate();
     }
 

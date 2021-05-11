@@ -1,13 +1,16 @@
 package BusinessLayer.SupplierBusiness.facade;
 
+import BusinessLayer.StockBusiness.Fcade.Response;
+import BusinessLayer.StockBusiness.Fcade.ResponseData;
 import BusinessLayer.StockBusiness.Fcade.StorageService;
 import BusinessLayer.SupplierBusiness.SupplierController;
 import BusinessLayer.SupplierBusiness.ISupplierService;
 import BusinessLayer.SupplierBusiness.facade.outObjects.*;
 
 
-
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,6 +32,7 @@ public class SupplierService implements ISupplierService {
         }
         return new response();
     }
+
     public void setStockService(StorageService service){
         stockService=service;
     }
@@ -241,10 +245,16 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public Tresponse<Item> addItem(int supplierBN, String name , double price, int typeID, LocalDate expirationDate) {
+    public Tresponse<Item> addItem(int supplierBN, String name , double basePrice , double salePrice , int min , String producer , int category, LocalDate expirationDate) {
         BusinessLayer.SupplierBusiness.Item item;
         try{
-            item = supplierController.addItem(supplierBN,name , price, typeID, expirationDate);
+            Response response = stockService.addProductType(name, min , basePrice , salePrice , producer , supplierBN ,category);
+            if(response.isError) return new Tresponse<>("ERROR: " + response.getError());
+            ResponseData<Integer> responseData = stockService.getProductTypeId(name);
+            if(responseData.isError) return new Tresponse<>("ERROR: " + responseData.getError());
+            item = supplierController.addItem(responseData.data , supplierBN,name , basePrice , expirationDate);
+            ZoneId zone = ZoneId.systemDefault();
+            stockService.addProduct(item.getItemId(), Date.from(item.getExpirationDate().atStartOfDay(zone).toInstant()));
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
@@ -255,6 +265,7 @@ public class SupplierService implements ISupplierService {
     public response removeItem(int supplierBN , int itemId) {
         try{
             supplierController.removeItem(supplierBN , itemId);
+            stockService.removeSupplier(supplierBN , itemId);
         }catch (Exception e){
             return new response("ERROR: " + e.getMessage());
         }
@@ -303,12 +314,17 @@ public class SupplierService implements ISupplierService {
         return new response();
     }
 
-    public Tresponse<Order> addNeededOrder(int typeID,int neededAmount, int branchID) {
+    public response addNeededOrder(int itemId ,int neededAmount, int branchID) {
         BusinessLayer.SupplierBusiness.Order order;
         try {
-            order = supplierController.addNeededOrder(typeID, neededAmount, branchID);
+            order = supplierController.addNeededOrder(itemId , neededAmount, branchID);
             if (order == null) {
                 return new Tresponse<>("ERROR: unsuccessful adding");
+            }else{
+                ZoneId zone = ZoneId.systemDefault();
+                for(int i = 0 ; i < neededAmount ; i++) {
+                    stockService.addProduct(order.showAllItemsOfOrder().get(0).getItemId(), Date.from(order.showAllItemsOfOrder().get(0).getExpirationDate().atStartOfDay(zone).toInstant()));
+                }
             }
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
@@ -318,8 +334,13 @@ public class SupplierService implements ISupplierService {
 
     @Override
     public response addItemToOrder(int supplierBN, int orderId, int itemId , int amount) {
+        BusinessLayer.SupplierBusiness.Item item;
         try{
-            supplierController.addItemToOrder(supplierBN, orderId, itemId , amount);
+            item = supplierController.addItemToOrder(supplierBN, orderId, itemId , amount);
+            ZoneId zone = ZoneId.systemDefault();
+            for(int i = 0 ; i < amount ; i++) {
+                stockService.addProduct(item.getItemId(), Date.from(item.getExpirationDate().atStartOfDay(zone).toInstant()));
+            }
         }catch (Exception e){
             return new response("ERROR: " + e.getMessage());
         }

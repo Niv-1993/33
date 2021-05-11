@@ -1,7 +1,5 @@
 package BusinessLayer.StockBusiness.Fcade.outObjects;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -22,12 +20,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product ID: "+ID+"\nIs of type: "+typeID+"\nExpires on: "+dateString(expiration)+"\n"+
+        return "Product ID: "+ID+"\nIs of type: "+typeID+"\nExpires on: "+expiration+"\n"+
                 (inStorage?"Item is in Storage ":"Item is in the store ")+"\nOn shelf number: "+shelfID+"\n";
-    }
-    private String dateString(Date date){
-        String pattern="dd-MM-yyyy";
-        DateFormat df=new SimpleDateFormat(pattern);
-        return df.format(date);
     }
 }

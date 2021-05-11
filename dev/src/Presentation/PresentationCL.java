@@ -13,19 +13,19 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Scanner;
 
-public class PresentationCL{
+public class PresentationCL {
 
     private final SupplierService service;
-    final static Logger log=Logger.getLogger(PresentationCL.class);
+    final static Logger log = Logger.getLogger(PresentationCL.class);
 
     public PresentationCL() {
         service = new SupplierService();
     }
 
-    public void loadData(){
+    public void loadData() {
         try {
             service.LoadData();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("there is no data here");
         }
     }
@@ -33,7 +33,8 @@ public class PresentationCL{
     public SupplierService getService() {
         return service;
     }
-    public void setStockService(StorageService service){
+
+    public void setStockService(StorageService service) {
         this.service.setStockService(service);
     }
 
@@ -41,14 +42,14 @@ public class PresentationCL{
         service.newData();
     }
 
-    public void mainRun(boolean firstTime){
+    public void mainRun(boolean firstTime) {
         Scanner scanner = new Scanner(System.in);
-        String[] mainMenuArray = {"showing methods" , "adding methods" , "removing methods" , "updating methods" ,"back to choice menu" , "END PROGRAM"};
+        String[] mainMenuArray = {"showing methods", "adding methods", "removing methods", "updating methods", "back to choice menu", "END PROGRAM"};
         int option = -1;
-        while(true){
+        while (true) {
             System.out.println("please select an option: ");
-            for(int i = 1 ; i <= mainMenuArray.length ; i++){
-                System.out.println(i + ") " + mainMenuArray[i-1]);
+            for (int i = 1; i <= mainMenuArray.length; i++) {
+                System.out.println(i + ") " + mainMenuArray[i - 1]);
             }
             option = menuCheck(scanner);
             switch (option) {
@@ -56,7 +57,7 @@ public class PresentationCL{
                     showingMethods();
                     break;
                 }
-                case 2 ->{
+                case 2 -> {
                     addingMethods();
                     break;
                 }
@@ -68,29 +69,33 @@ public class PresentationCL{
                     updatingMethods();
                     break;
                 }
-                case 5 -> { return; }
-                case 6 -> {System.exit(0); }
+                case 5 -> {
+                    return;
+                }
+                case 6 -> {
+                    System.exit(0);
+                }
                 default -> System.out.println("illegal option!!!");
             }
         }
     }
 
-    private void showingMethods(){
+    private void showingMethods() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int option = -1;
-        String[] showingMethodArray = {"show Supplier","show SupplierBN","show All Suppliers", "show Item Of Supplier","show All Items Of Supplier",
-                "show All Items", "show Order Of Supplier","show All Orders Of Supplier","show Total Amount",
-                "show Deliver Time", "show Quantity Document","show Supplier Agreement","back to the main menu" , "END PROGRAM"};
+        String[] showingMethodArray = {"show Supplier", "show SupplierBN", "show All Suppliers", "show Item Of Supplier", "show All Items Of Supplier",
+                "show All Items", "show Order Of Supplier", "show All Orders Of Supplier", "show Total Amount",
+                "show Deliver Time", "show Quantity Document", "show Supplier Agreement", "back to the main menu", "END PROGRAM"};
         System.out.println("please select the showing method: ");
         while (true) {
-            for (int i = 1; i <= showingMethodArray.length ; i++) {
+            for (int i = 1; i <= showingMethodArray.length; i++) {
                 System.out.println(i + ") " + showingMethodArray[i - 1]);
             }
             option = menuCheck(scanner);
             int BN;
             switch (option) {
                 case 1 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
                     Tresponse<SupplierCard> response = service.showSupplier(BN);
                     if (response.isError()) System.out.println(response.getError());
                     else {
@@ -101,7 +106,7 @@ public class PresentationCL{
                             List<Item> responsesItem = items.getOutObject();
                             System.out.println("\tItemsID:");
                             for (Item item : responsesItem) {
-                                System.out.println("\t\t" +item.toStringId());
+                                System.out.println("\t\t" + item.toStringId());
                             }
                             Tresponse<List<Order>> orders = service.showAllOrdersOfSupplier(BN);
                             if (orders.isError()) System.out.println(items.getError() + "\n");
@@ -117,7 +122,7 @@ public class PresentationCL{
                     toContinue(scanner);
                 }
                 case 2 -> {
-                    String name = stringScan(scanner , "please enter supplier name");
+                    String name = stringScan(scanner, "please enter supplier name");
                     Tresponse<SupplierCard> response = service.showSupplierBN(name);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("supplierBN is: " + response.getOutObject().toStringId());
@@ -135,15 +140,15 @@ public class PresentationCL{
                     toContinue(scanner);
                 }
                 case 4 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
-                    Tresponse<Item> response = service.showItemOfSupplier(BN , itemId);
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
+                    Tresponse<Item> response = service.showItemOfSupplier(BN, itemId);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println(response.getOutObject().toString(false));
                     toContinue(scanner);
                 }
                 case 5 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
                     Tresponse<List<Item>> responsesList = service.showAllItemsOfSupplier(BN);
                     if (responsesList.isError()) System.out.println(responsesList.getError() + "\n");
                     else {
@@ -154,7 +159,7 @@ public class PresentationCL{
                     }
                     toContinue(scanner);
                 }
-                case 6 ->{
+                case 6 -> {
                     Tresponse<List<Item>> responsesList = service.showAllItems();
                     if (responsesList.isError()) System.out.println(responsesList.getError() + "\n");
                     else {
@@ -166,16 +171,16 @@ public class PresentationCL{
                     toContinue(scanner);
                 }
                 case 7 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int orderId = intScan(scanner , "please enter orderId" , "orderId must be a number");
-                    service.showTotalAmount(BN , orderId);
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int orderId = intScan(scanner, "please enter orderId", "orderId must be a number");
+                    service.showTotalAmount(BN, orderId);
                     Tresponse<Order> response = service.showOrderOfSupplier(BN, orderId);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else {
                         System.out.println(response.getOutObject().toString());
                         Tresponse<SupplierAgreement> supplierAgreement = service.showSupplierAgreement(BN);
-                        if(supplierAgreement.isError()) System.out.println(supplierAgreement.getError() + "\n");
-                        else{
+                        if (supplierAgreement.isError()) System.out.println(supplierAgreement.getError() + "\n");
+                        else {
                             System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
                             //System.out.println("\tconstant time: " + supplierAgreement.getOutObject().toStringConstantTime());
                         }
@@ -191,7 +196,7 @@ public class PresentationCL{
                     toContinue(scanner);
                 }
                 case 8 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
                     Tresponse<List<Order>> responsesList = service.showAllOrdersOfSupplier(BN);
                     if (responsesList.isError()) System.out.println(responsesList.getError() + "\n");
                     else {
@@ -202,8 +207,9 @@ public class PresentationCL{
                             if (items.isError()) System.out.println(items.getError() + "\n");
                             else {
                                 Tresponse<SupplierAgreement> supplierAgreement = service.showSupplierAgreement(BN);
-                                if(supplierAgreement.isError()) System.out.println(supplierAgreement.getError() + "\n");
-                                else{
+                                if (supplierAgreement.isError())
+                                    System.out.println(supplierAgreement.getError() + "\n");
+                                else {
                                     System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
                                     //System.out.println("\tconstant time: " + supplierAgreement.getOutObject().toStringConstantTime());
                                 }
@@ -218,38 +224,42 @@ public class PresentationCL{
                     toContinue(scanner);
                 }
                 case 9 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int orderId = intScan(scanner , "please enter orderId" , "orderId must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int orderId = intScan(scanner, "please enter orderId", "orderId must be a number");
                     Tresponse<Order> response = service.showTotalAmount(BN, orderId);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("total amount is: " + response.getOutObject().toStringTotalAmount());
                     toContinue(scanner);
                 }
                 case 10 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int orderId = intScan(scanner , "please enter orderId" , "orderId must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int orderId = intScan(scanner, "please enter orderId", "orderId must be a number");
                     Tresponse<Order> response = service.showDeliverTime(BN, orderId);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("deliver time is : " + response.getOutObject().toStringDeliverTime());
                     toContinue(scanner);
                 }
                 case 11 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
                     Tresponse<QuantityDocument> response = service.showQuantityDocument(BN, itemId);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println(response.getOutObject().toString());
                     toContinue(scanner);
                 }
                 case 12 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
                     Tresponse<SupplierAgreement> response = service.showSupplierAgreement(BN);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println(response.getOutObject().toString());
                     toContinue(scanner);
                 }
-                case 13 -> {return; }
-                case 14 -> {System.exit(0);}
+                case 13 -> {
+                    return;
+                }
+                case 14 -> {
+                    System.exit(0);
+                }
                 default -> {
                     System.out.println("illegal option!!!");
                     toContinue(scanner);
@@ -258,12 +268,12 @@ public class PresentationCL{
         }
     }
 
-    private void addingMethods(){
+    private void addingMethods() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int option = -1;
-        String[] showingMethodArray = {"add supplier","add Contact Phone","add Contact Email","add Item", "add constant Order" ,
-                "add Regular Order", "add Needed Order","add Item To Order","add Quantity Document",
-                "add Supplier Agreement","back to the main menu" , "END PROGRAM"};
+        String[] showingMethodArray = {"add supplier", "add Contact Phone", "add Contact Email", "add Item", "add constant Order",
+                "add Regular Order", "add Item To Order", "add Quantity Document",
+                "add Supplier Agreement", "back to the main menu", "END PROGRAM"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= showingMethodArray.length; i++) {
@@ -273,99 +283,97 @@ public class PresentationCL{
             int BN;
             switch (option) {
                 case 1 -> {
-                    String name = stringScan(scanner , "please enter supplier name");
-                    int bankNumber = intScan(scanner , "please enter supplier bank number" , "bank number must be a number");
-                    int branchNumber = intScan(scanner , "please enter supplier branch number" , "branch number must be a number");
-                    int bankAccount = intScan(scanner , "please enter supplier bank account" , "bank account must be a number");
-                    String payWay = stringScan(scanner , "please enter supplier payWay");
-                    response response = service.addSupplier(name, bankNumber , branchNumber , bankAccount, payWay);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    String name = stringScan(scanner, "please enter supplier name");
+                    int bankNumber = intScan(scanner, "please enter supplier bank number", "bank number must be a number");
+                    int branchNumber = intScan(scanner, "please enter supplier branch number", "branch number must be a number");
+                    int bankAccount = intScan(scanner, "please enter supplier bank account", "bank account must be a number");
+                    String payWay = stringScan(scanner, "please enter supplier payWay");
+                    response response = service.addSupplier(name, bankNumber, branchNumber, bankAccount, payWay);
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 2 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    String phone = stringScan(scanner , "please enter supplier contact phone");
-                    String name = stringScan(scanner , "please enter supplier contact name");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    String phone = stringScan(scanner, "please enter supplier contact phone");
+                    String name = stringScan(scanner, "please enter supplier contact name");
                     response response = service.addContactPhone(BN, phone, name);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 3 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    String email = stringScan(scanner , "please enter supplier contact email");
-                    String name = stringScan(scanner , "please enter supplier contact name");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    String email = stringScan(scanner, "please enter supplier contact email");
+                    String name = stringScan(scanner, "please enter supplier contact name");
                     response response = service.addContactEmail(BN, email, name);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 4 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    String name = stringScan(scanner , "please enter item name");
-                    double price = doubleScan(scanner , "please enter item price" , "price must be a number");
-                    int typeID = intScan(scanner , "please enter item typeId" , "typeId must be a number");
-                    LocalDate expirationDate = dateScan(scanner , "expiration date of the item");
-                    Tresponse<Item> response = service.addItem(BN,name, price, typeID, expirationDate );
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    String name = stringScan(scanner, "please enter item name");
+                    double basePrice = doubleScan(scanner, "please enter item base price", "base price must be a number");
+                    double salePrice = doubleScan(scanner, "please enter item sale price", "sale price must be a number");
+                    int min = intScan(scanner, "please enter minimal amount of item before report of missing", "minimal amount must must be a number");
+                    String preducer = stringScan(scanner, "please enter the name of the item preducer");
+                    int category = intScan(scanner, "please enter item category", "category must must be a number");
+                    LocalDate expirationDate = dateScan(scanner, "expiration date of the item");
+                    Tresponse<Item> response = service.addItem(BN, name, basePrice, salePrice, min, preducer, category, expirationDate);
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("ItemId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner);
                 }
                 case 5 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int branchID = intScan(scanner , "please enter branchId for deliver" , "branchId must be a number");
-                    Hashtable<Integer , Integer> items = hashScan(scanner);
-                    response response = service.addConstantOrder(BN, branchID , items);
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int branchID = intScan(scanner, "please enter branchId for deliver", "branchId must be a number");
+                    Hashtable<Integer, Integer> items = hashScan(scanner);
+                    response response = service.addConstantOrder(BN, branchID, items);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("constant Order added successfully");
                     toContinue(scanner);
                 }
-                case 6 ->{
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int branchID = intScan(scanner , "please enter branchId for deliver" , "branchId must be a number");
+                case 6 -> {
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int branchID = intScan(scanner, "please enter branchId for deliver", "branchId must be a number");
                     Tresponse<Order> response = service.addRegularOrder(BN, branchID);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("orderId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner);
                 }
                 case 7 -> {
-                    int typeID = intScan(scanner , "please enter item typeId" , "typeId must be a number");
-                    int neededAmount = intScan(scanner , "please enter amount of the item" , "amount must be a number");
-                    int branchID = intScan(scanner , "please enter branchId for deliver" , "branchId must be a number");
-                    Tresponse<Order> response = service.addNeededOrder(typeID, neededAmount, branchID);
-                    if (response.isError()) System.out.println(response.getError() + "\n");
-                    else System.out.println("orderId is: " + response.getOutObject().toStringId() + "\n");
-                    toContinue(scanner);
-                }
-                case 8 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int orderId = intScan(scanner , "please enter orderId" , "orderId must be a number");
-                    int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
-                    int amount = intScan(scanner , "please enter amount of the item" , "amount must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int orderId = intScan(scanner, "please enter orderId", "orderId must be a number");
+                    int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
+                    int amount = intScan(scanner, "please enter amount of the item", "amount must be a number");
                     response response = service.addItemToOrder(BN, orderId, itemId, amount);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 9 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
-                    int minimalAmount = intScan(scanner , "please enter the minimal amount" , "minimal amount must be a number");
-                    int discount = intScan(scanner , "please enter the discount" , "discount must be a number");
+                case 8 -> {
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
+                    int minimalAmount = intScan(scanner, "please enter the minimal amount", "minimal amount must be a number");
+                    int discount = intScan(scanner, "please enter the discount", "discount must be a number");
                     response response = service.addQuantityDocument(BN, itemId, minimalAmount, discount);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 10 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int minimalAmount = intScan(scanner , "please enter the minimal amount" , "minimal amount must be a number");
-                    int discount = intScan(scanner , "please enter the discount" , "discount must be a number");
-                    boolean constantTime = booleanScan(scanner , "please enter true for constant time , and false otherwise" , "you must enter true/false");
-                    boolean shipToUs = booleanScan(scanner , "please enter true for ship to us , and false otherwise" , "you must enter true/false");
+                case 9 -> {
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int minimalAmount = intScan(scanner, "please enter the minimal amount", "minimal amount must be a number");
+                    int discount = intScan(scanner, "please enter the discount", "discount must be a number");
+                    boolean constantTime = booleanScan(scanner, "please enter true for constant time , and false otherwise", "you must enter true/false");
+                    boolean shipToUs = booleanScan(scanner, "please enter true for ship to us , and false otherwise", "you must enter true/false");
                     response response = service.addSupplierAgreement(BN, minimalAmount, discount, constantTime, shipToUs);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 11 -> { return; }
-                case 12 -> {System.exit(0);}
-                default ->{
+                case 10 -> {
+                    return;
+                }
+                case 11 -> {
+                    System.exit(0);
+                }
+                default -> {
                     System.out.println("illegal option!!!\n");
                     toContinue(scanner);
                 }
@@ -373,12 +381,12 @@ public class PresentationCL{
         }
     }
 
-    private void removingMethods(){
+    private void removingMethods() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int option = -1;
-        String[] removeMethodArray = {"remove Supplier","remove Contact Phone","remove Contact Email","remove Item", "remove Order" ,
-                "remove item from regular order" , "remove amount of items from regular order" ,
-                "remove Quantity Document","back to the main menu" , "END PROGRAM"};
+        String[] removeMethodArray = {"remove Supplier", "remove Contact Phone", "remove Contact Email", "remove Item", "remove Order",
+                "remove item from regular order", "remove amount of items from regular order",
+                "remove Quantity Document", "back to the main menu", "END PROGRAM"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= removeMethodArray.length; i++) {
@@ -388,66 +396,70 @@ public class PresentationCL{
             int BN;
             switch (option) {
                 case 1 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
                     response response = service.removeSupplier(BN);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 2 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    String phone = stringScan(scanner , "please enter supplier contact phone");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    String phone = stringScan(scanner, "please enter supplier contact phone");
                     response response = service.removeContactPhone(BN, phone);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 3 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    String email = stringScan(scanner , "please enter supplier contact email");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    String email = stringScan(scanner, "please enter supplier contact email");
                     response response = service.removeContactEmail(BN, email);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 4 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
-                    response response = service.removeItem(BN , itemId);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
+                    response response = service.removeItem(BN, itemId);
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 5 ->{
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int orderId = intScan(scanner , "please enter orderId" , "orderId must be a number");
-                    response response = service.removeOrder(BN , orderId);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                case 5 -> {
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int orderId = intScan(scanner, "please enter orderId", "orderId must be a number");
+                    response response = service.removeOrder(BN, orderId);
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 6->{
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int orderId = intScan(scanner , "please enter orderId" , "orderId must be a number");
-                    int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
-                    response response = service.removeItemFromRegularOrder(BN , orderId , itemId);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                case 6 -> {
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int orderId = intScan(scanner, "please enter orderId", "orderId must be a number");
+                    int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
+                    response response = service.removeItemFromRegularOrder(BN, orderId, itemId);
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 7->{
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int orderId = intScan(scanner , "please enter orderId" , "orderId must be a number");
-                    int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
-                    int amount = intScan(scanner , "please enter the amount of the item" , "amount must be a number");
-                    response response = service.removeAmountItemFromRegularOrder(BN , orderId , itemId , amount);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                case 7 -> {
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int orderId = intScan(scanner, "please enter orderId", "orderId must be a number");
+                    int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
+                    int amount = intScan(scanner, "please enter the amount of the item", "amount must be a number");
+                    response response = service.removeAmountItemFromRegularOrder(BN, orderId, itemId, amount);
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 8 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
                     response response = service.removeQuantityDocument(BN, itemId);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 9 -> { return;}
-                case 10 -> {System.exit(0);}
-                default ->{
+                case 9 -> {
+                    return;
+                }
+                case 10 -> {
+                    System.exit(0);
+                }
+                default -> {
                     System.out.println("illegal option!!!");
                     toContinue(scanner);
                 }
@@ -457,12 +469,12 @@ public class PresentationCL{
 
     private void updatingMethods() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        int option  = -1;
+        int option = -1;
         int BN;
         String[] updateMethodArray = {"update Supplier PayWay", "update Supplier BankAccount", "update Contact Phone", "update Contact Email",
                 "update Deliver Time", "update Minimal Amount Of Quantity Document", "update Discount Of Quantity Document",
                 "update Minimal Amount Of Supplier Agreement", "update Discount Of Supplier Agreement",
-                "update Constant Time", "update Ship To Us", "update Price", "back to the main menu" , "END PROGRAM"};
+                "update Constant Time", "update Ship To Us", "update Price", "back to the main menu", "END PROGRAM"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= updateMethodArray.length; i++) {
@@ -471,100 +483,104 @@ public class PresentationCL{
             option = menuCheck(scanner);
             switch (option) {
                 case 1 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    String payWay = stringScan(scanner , "please enter supplier payWay");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    String payWay = stringScan(scanner, "please enter supplier payWay");
                     response response = service.updateSupplierPayWay(BN, payWay);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 2 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int bankNumber = intScan(scanner , "please enter supplier bank number" , "bank number must be a number");
-                    int branchNumber = intScan(scanner , "please enter supplier branch number" , "branch number must be a number");
-                    int bankAccount = intScan(scanner , "please enter supplier bank account" , "bank account must be a number");
-                    response response = service.updateSupplierBankAccount(BN, bankNumber , branchNumber, bankAccount);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int bankNumber = intScan(scanner, "please enter supplier bank number", "bank number must be a number");
+                    int branchNumber = intScan(scanner, "please enter supplier branch number", "branch number must be a number");
+                    int bankAccount = intScan(scanner, "please enter supplier bank account", "bank account must be a number");
+                    response response = service.updateSupplierBankAccount(BN, bankNumber, branchNumber, bankAccount);
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 3 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    String phone = stringScan(scanner , "please enter supplier contact phone");
-                    String name = stringScan(scanner , "please enter supplier contact name");
-                    response response = service.updateContactPhone(BN, phone , name);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    String phone = stringScan(scanner, "please enter supplier contact phone");
+                    String name = stringScan(scanner, "please enter supplier contact name");
+                    response response = service.updateContactPhone(BN, phone, name);
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 4 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    String email = stringScan(scanner , "please enter supplier contact email");
-                    String name = stringScan(scanner , "please enter supplier contact name");
-                    response response = service.updateContactEmail(BN, email , name);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    String email = stringScan(scanner, "please enter supplier contact email");
+                    String name = stringScan(scanner, "please enter supplier contact name");
+                    response response = service.updateContactEmail(BN, email, name);
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 5 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int orderId = intScan(scanner , "please enter orderId" , "orderId must be a number");
-                    LocalDate date = dateScan(scanner , "deliver time of the order");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int orderId = intScan(scanner, "please enter orderId", "orderId must be a number");
+                    LocalDate date = dateScan(scanner, "deliver time of the order");
                     response response = service.updateDeliverTime(BN, orderId, date);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 6 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
-                    int minimalAmount = intScan(scanner , "please enter the minimal amount" , "minimal amount must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
+                    int minimalAmount = intScan(scanner, "please enter the minimal amount", "minimal amount must be a number");
                     response response = service.updateMinimalAmountOfQD(BN, itemId, minimalAmount);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 7 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
-                    int discount = intScan(scanner , "please enter the discount" , "discount must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
+                    int discount = intScan(scanner, "please enter the discount", "discount must be a number");
                     response response = service.updateDiscountOfQD(BN, itemId, discount);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 8 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int minimalAmount = intScan(scanner , "please enter the minimal amount" , "minimal amount must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int minimalAmount = intScan(scanner, "please enter the minimal amount", "minimal amount must be a number");
                     response response = service.updateMinimalAmountOfSA(BN, minimalAmount);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 9 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int discount = intScan(scanner , "please enter the discount" , "discount must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int discount = intScan(scanner, "please enter the discount", "discount must be a number");
                     response response = service.updateDiscountOfSA(BN, discount);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 10 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    boolean constantTime = booleanScan(scanner , "please enter true for constant time and false otherwise" , "you must enter true/false");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    boolean constantTime = booleanScan(scanner, "please enter true for constant time and false otherwise", "you must enter true/false");
                     response response = service.updateConstantTime(BN, constantTime);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 11 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    boolean shipToUs = booleanScan(scanner , "please enter true for ship to us , and false otherwise" , "you must enter true/false");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    boolean shipToUs = booleanScan(scanner, "please enter true for ship to us , and false otherwise", "you must enter true/false");
                     response response = service.updateShipToUs(BN, shipToUs);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 12 -> {
-                    BN = intScan(scanner , "please enter supplier BN" , "BN must be a number");
-                    int itemId = intScan(scanner , "please enter itemId", "itemId must be a number");
-                    double price = doubleScan(scanner , "please enter item price" , "price must be a number");
+                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
+                    int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
+                    double price = doubleScan(scanner, "please enter item price", "price must be a number");
                     response response = service.updatePrice(BN, itemId, price);
-                    if (response.isError()) System.out.println(response.getError()+ "\n");
+                    if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 13 -> {return; }
-                case 14 -> {System.exit(0);}
-                default ->{
+                case 13 -> {
+                    return;
+                }
+                case 14 -> {
+                    System.exit(0);
+                }
+                default -> {
                     System.out.println("illegal option!!!");
                     toContinue(scanner);
                 }
@@ -572,11 +588,11 @@ public class PresentationCL{
         }
     }
 
-    private String read(Scanner scanner){
+    private String read(Scanner scanner) {
         return scanner.nextLine().toLowerCase().replaceAll("\\s", "");
     }
 
-    private int intScan(Scanner scanner , String before , String after){
+    private int intScan(Scanner scanner, String before, String after) {
         int toReturn;
         String answer;
         while (true) {
@@ -593,20 +609,20 @@ public class PresentationCL{
         return toReturn;
     }
 
-    private String stringScan(Scanner scanner , String before) {
+    private String stringScan(Scanner scanner, String before) {
         System.out.println(before);
         return read(scanner);
     }
 
-    private boolean booleanScan(Scanner scanner , String before , String after) {
+    private boolean booleanScan(Scanner scanner, String before, String after) {
         boolean toReturn;
         String answer;
         while (true) {
             System.out.println(before);
             try {
                 answer = read(scanner);
-                if(answer.equals("true")) toReturn = true;
-                else if(answer.equals("false")) toReturn = false;
+                if (answer.equals("true")) toReturn = true;
+                else if (answer.equals("false")) toReturn = false;
                 else throw new IllegalAccessException("not boolean");
                 break;
             } catch (Exception e) {
@@ -618,7 +634,7 @@ public class PresentationCL{
     }
 
 
-    private double doubleScan(Scanner scanner , String before , String after) {
+    private double doubleScan(Scanner scanner, String before, String after) {
         double toReturn;
         String answer;
         while (true) {
@@ -635,39 +651,39 @@ public class PresentationCL{
         return toReturn;
     }
 
-    private LocalDate dateScan(Scanner scanner , String rest){
+    private LocalDate dateScan(Scanner scanner, String rest) {
         LocalDate toReturn;
-        while (true){
+        while (true) {
             try {
-                int year = intScan(scanner , "please enter the year of the " + rest , "year must be a number");
-                int month = intScan(scanner , "please enter the month of the " + rest , "month must be a number");
-                int day = intScan(scanner , "please enter the day of the " + rest , "day must be a number");
-                toReturn = LocalDate.of(year, month , day);
+                int year = intScan(scanner, "please enter the year of the " + rest, "year must be a number");
+                int month = intScan(scanner, "please enter the month of the " + rest, "month must be a number");
+                int day = intScan(scanner, "please enter the day of the " + rest, "day must be a number");
+                toReturn = LocalDate.of(year, month, day);
                 break;
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("illegal values of dates");
             }
         }
         return toReturn;
     }
 
-    private Hashtable<Integer , Integer> hashScan(Scanner scanner){
-        Hashtable<Integer , Integer> items = new Hashtable<>();
-        while(true){
-            int itemId = intScan(scanner , "please enter itemId" , "itemId must be a number");
-            int amount = intScan(scanner , "please enter the amount of the item" , "amount must be a number");
-            items.put(itemId , amount);
-            String toStop = stringScan(scanner , "to put more items please type more");
-            if(!toStop.equals("more")) break;
+    private Hashtable<Integer, Integer> hashScan(Scanner scanner) {
+        Hashtable<Integer, Integer> items = new Hashtable<>();
+        while (true) {
+            int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
+            int amount = intScan(scanner, "please enter the amount of the item", "amount must be a number");
+            items.put(itemId, amount);
+            String toStop = stringScan(scanner, "to put more items please type more");
+            if (!toStop.equals("more")) break;
         }
         return items;
     }
 
-    private void toContinue(Scanner scanner){
+    private void toContinue(Scanner scanner) {
         while (true) {
             System.out.println("\nto continue please use enter");
             String isEnter = read(scanner);
-            if(isEnter.equals("")) break;
+            if (isEnter.equals("")) break;
         }
     }
 
@@ -679,8 +695,7 @@ public class PresentationCL{
                 choice = read(scanner);
                 toReturn = Integer.parseInt(choice);
                 break;
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("illegal!\n please enter a number");
                 scanner.nextLine();
             }

@@ -17,13 +17,12 @@ public class Item{
     private DalItem dalItem;
     final static Logger log=Logger.getLogger(Item.class);
 
-    public Item(int supplierBN, int itemId , String name , double price, int typeId, LocalDate expirationDate){
+    public Item(int supplierBN, int itemId , String name , double price, LocalDate expirationDate){
         List<Tuple<Object,Class>> list=new ArrayList<>();
         list.add(new Tuple<>(itemId,Integer.class));
         list.add(new Tuple<>(supplierBN,Integer.class));
         list.add(new Tuple<>(name,String.class));
         list.add(new Tuple<>(price,Double.class));
-        list.add(new Tuple<>(typeId,Integer.class));
         list.add(new Tuple<>(expirationDate.toString(),String.class));
         Mapper map=Mapper.getMap();
         map.setItem(DalItem.class,list);
@@ -119,8 +118,6 @@ public class Item{
     }
 
     public String getName() { return dalItem.getName(); }
-
-    public int getTypeID() { return dalItem.getTypeID(); }
 
     public LocalDate getExpirationDate() { return LocalDate.parse(dalItem.getExpirationDate()); }
 

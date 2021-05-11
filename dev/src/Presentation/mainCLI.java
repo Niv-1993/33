@@ -53,6 +53,7 @@ public class mainCLI {
                     case 1 -> {
                         // Mapper.getMap("loadDB.db");
                         presentationCL.loadData(); // make a test that chek if it was load correctlly
+                        //stockCLI.SS.loadAllStores();
                     }
                     case 2 -> { /* Mapper.getMap("newDB.db"); */
                         presentationCL.newData();

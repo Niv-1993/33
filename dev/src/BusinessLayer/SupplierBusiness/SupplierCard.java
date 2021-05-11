@@ -254,10 +254,10 @@ public class SupplierCard {
         throw new Exception("itemId does net exist for this supplier");
     }
 
-    public Item addItem(int supplierBN, int ItemId , String name , double price, int typeID, LocalDate expirationDate) throws Exception {
+    public Item addItem(int supplierBN, int ItemId , String name , double price , LocalDate expirationDate) throws Exception {
         if(price < 0) throw new Exception("price must be a positive number!");
         if(expirationDate.isBefore(LocalDate.now())) throw new IllegalAccessException("expiration date must be in the future");
-        Item newItem = new BusinessLayer.SupplierBusiness.Item(supplierBN, ItemId , name , price, typeID, expirationDate);
+        Item newItem = new BusinessLayer.SupplierBusiness.Item(supplierBN, ItemId , name , price , expirationDate);
         items.add(newItem);
         return newItem;
     }
@@ -363,20 +363,18 @@ public class SupplierCard {
         return null;
     }
 
-    public void addItemToOrder(int orderId, int itemId , int amount) throws Exception {
+    public Item addItemToOrder(int orderId, int itemId , int amount) throws Exception {
         Item toAdd = isItemExist(itemId);
         if(toAdd == null) throw new Exception("the supplier does not have this item");
-        boolean hasFound = false;
         for (Order o : orders) {
             if(o.getOrderType() == 1) throw new Exception("you can add more items to an existing order only for regular order");
             if (o.getOrderId() == orderId) {
                 regularOrder temp = (regularOrder) o;
                 temp.addItemToOrder(toAdd , amount);
-                hasFound = true;
-                break;
+                return toAdd;
             }
         }
-        if(!hasFound) throw new Exception("orderId does not exist");
+        throw new Exception("orderId does not exist");
     }
 
     public void removeOrder(int orderId) throws Exception {

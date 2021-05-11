@@ -21,6 +21,7 @@ public class Product {
         checkLocation(shelf);
         //dal= Util.initDal(DALProduct.class,storeId,id,typeID,expiration.toString(),0,shelf.item1,(shelf.item2==Location.Shelves)?0:1);
         //_location=shelf.item2;
+
         try {
 
             String pattern="dd-MM-yyyy";

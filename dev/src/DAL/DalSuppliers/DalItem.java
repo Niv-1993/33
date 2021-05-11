@@ -15,7 +15,6 @@ public class DalItem extends DALObject {
     private int itemId;
     private String name;
     private double price;
-    private int typeId;
     private String expirationDate;
     final static Logger log=Logger.getLogger(DalItem.class);
 
@@ -23,13 +22,12 @@ public class DalItem extends DALObject {
         super(null);
     }
 
-    public DalItem(Integer itemId , Integer supplierBN , String itemName , Double price , Integer typeId , String expirationDate , DalController dalController){
+    public DalItem(Integer itemId , Integer supplierBN , String itemName , Double price , String expirationDate , DalController dalController){
         super(dalController);
         this.itemId = itemId;
         this.supplierBN = supplierBN;
         this.name = itemName;
         this.price = price;
-        this.typeId = typeId;
         this.expirationDate = expirationDate;
     }
 
@@ -40,7 +38,6 @@ public class DalItem extends DALObject {
                 "\t\"supplierBN\" INTEGER NOT NULL,\n" +
                 "\t\"itemName\" VARCHAR NOT NULL,\n" +
                 "\t\"price\" DOUBLE NOT NULL ,\n" +
-                "\t\"typeId\" INTEGER NOT NULL,\n" +
                 "\t\"expirationDate\" TEXT NOT NULL,\n" +
                 "\tPRIMARY KEY(\"itemID\"),\n" +
                 "\tFOREIGN KEY(\"supplierBN\") REFERENCES \"Suppliers\"(\"supplierBN\") ON DELETE CASCADE ON UPDATE CASCADE\n" +
@@ -69,7 +66,7 @@ public class DalItem extends DALObject {
     @Override
     public String getInsert() {
         return "INSERT OR REPLACE INTO Items\n"+
-                "VALUES (?,?,?,?,?,?);";
+                "VALUES (?,?,?,?,?);";
     }
 
     public int getItemId() {
@@ -108,7 +105,7 @@ public class DalItem extends DALObject {
         return name;
     }
 
-    public int getTypeID() {
+    /*public int getTypeID() {
         try {
             String query = "SELECT typeId FROM Items\n" +
                     "WHERE itemId = ?;";
@@ -121,7 +118,7 @@ public class DalItem extends DALObject {
             log.warn(e);
         }
         return typeId;
-    }
+    }*/
 
     public String getExpirationDate() {
         String temp = "";
@@ -162,7 +159,6 @@ public class DalItem extends DALObject {
             supplierBN =(Integer) tuple.item2.get(1);
             name = tuple.item2.get(2).toString();
             price = (Double) tuple.item2.get(3);
-            typeId = (Integer) tuple.item2.get(4);
             expirationDate = tuple.item2.get(5).toString();
         }
         catch (Exception e){

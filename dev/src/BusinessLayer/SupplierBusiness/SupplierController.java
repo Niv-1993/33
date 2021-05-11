@@ -20,9 +20,7 @@ public class SupplierController{
 
 
     public SupplierController(){
-        //dalSupplierController = Util.initDal(DalSupplierController.class, 0 , 0, 0, 0);
         List<Tuple<Object,Class>> list=new ArrayList<>();
-        list.add(new Tuple<>(0,Integer.class));
         list.add(new Tuple<>(0,Integer.class));
         list.add(new Tuple<>(1,Integer.class));
         Mapper map=Mapper.getMap();
@@ -53,7 +51,6 @@ public class SupplierController{
         else{
             log.info("create new Object");
             dalSupplierController = (DalSupplierController) check;
-            dalSupplierController.getNumOfItems();
             dalSupplierController.getNumOfOrders();
         }
         loadSuppliers();
@@ -254,13 +251,12 @@ public class SupplierController{
 
 
 
-    public Item addItem(int supplierBN,String name , double price, int typeID, LocalDate expirationDate) throws Exception {
+    public Item addItem(int itemId , int supplierBN,String name , double price,LocalDate expirationDate) throws Exception {
         Item item;
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            item = suppliers.get(supplierBN).addItem(supplierBN, dalSupplierController.getNumOfItems() , name, price, typeID, expirationDate);
-            dalSupplierController.addNumOfItems();
+            item = suppliers.get(supplierBN).addItem(supplierBN, itemId , name, price , expirationDate);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -268,7 +264,7 @@ public class SupplierController{
     }
 
     public void removeItem(int supplierBN , int itemId) throws Exception {
-        if(dalSupplierController.getNumOfItems() <= itemId || itemId < 0) throw new Exception("itemId does not exist.");
+        if(itemId < 0) throw new Exception("itemId does not exist.");
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
@@ -321,7 +317,7 @@ public class SupplierController{
         }
     }
 
-    public Order addNeededOrder(int typeID, int neededAmount, int branchID) throws Exception {
+    public Order addNeededOrder(int itemId, int neededAmount, int branchID) throws Exception {
         Order order;
         Item item = null;
         double bestPrice = Integer.MAX_VALUE;
@@ -332,7 +328,7 @@ public class SupplierController{
                 SupplierCard temp = enumeration.nextElement();
                 List<Item> items = temp.getSupplierItems();
                 for (Item i : items) {
-                    if (i.getTypeID() == typeID) {
+                    if (i.getItemId() == itemId) {
                         double currentPrice = i.getPrice()*neededAmount;
                         if (neededAmount >= i.getQuantityDocument().getMinimalAmount()) {
                             currentPrice = currentPrice * (100-i.getQuantityDocument().getDiscount()) /100;
@@ -352,13 +348,13 @@ public class SupplierController{
         return order;
     }
 
-    public void addItemToOrder(int supplierBN, int orderId, int itemId , int amount) throws Exception {
+    public Item addItemToOrder(int supplierBN, int orderId, int itemId , int amount) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try{
             Order order = supplierCard.showOrderOfSupplier(orderId);
             if(order.getOrderType() == 1) throw new Exception("you cannot add new items to needed order");
-            suppliers.get(supplierBN).addItemToOrder(orderId, itemId , amount);
+            return suppliers.get(supplierBN).addItemToOrder(orderId, itemId , amount);
         } catch (Exception e){
             throw new Exception(e.getMessage());
         }
