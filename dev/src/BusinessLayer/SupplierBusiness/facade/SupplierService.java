@@ -3,9 +3,11 @@ package BusinessLayer.SupplierBusiness.facade;
 import BusinessLayer.StockBusiness.Fcade.Response;
 import BusinessLayer.StockBusiness.Fcade.ResponseData;
 import BusinessLayer.StockBusiness.Fcade.StorageService;
+import BusinessLayer.StockBusiness.Fcade.outObjects.Report;
 import BusinessLayer.SupplierBusiness.SupplierController;
 import BusinessLayer.SupplierBusiness.ISupplierService;
 import BusinessLayer.SupplierBusiness.facade.outObjects.*;
+import Utility.Tuple;
 
 
 import java.sql.Date;
@@ -310,6 +312,20 @@ public class SupplierService implements ISupplierService {
             return new response("ERROR: " + e.getMessage());
         }
         return new response();
+    }
+
+    public Tresponse<Tuple<List<Integer> , Integer>> getNeededItems(){
+        List<Integer> items = new LinkedList<>();
+        int branchId = -1;
+        try{
+            ResponseData<Report> responseData = stockService.getNeededReport();
+            if(responseData.isError)  return new Tresponse<>("ERROR: " + responseData.getError());
+            Report report = responseData.data;
+            //add the itemsId + branchId.
+        }catch (Exception e){
+            return new Tresponse<>("ERROR: " + e.getMessage());
+        }
+        return new Tresponse<>(new Tuple<>(items , branchId));
     }
 
     public response addNeededOrder(int itemId ,int neededAmount, int branchID) {
