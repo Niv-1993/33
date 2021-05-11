@@ -439,4 +439,8 @@ public class ProductType {
         }
         _supplierDiscounts.add(s);
     }
+
+    public void removeSupplier(int supplierId) {
+        dal.removeSupplier(supplierId);
+    }
 }

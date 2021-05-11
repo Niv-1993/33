@@ -1,6 +1,7 @@
 package BusinessLayer.StockBusiness;
 
 
+import BusinessLayer.StockBusiness.Fcade.ResponseData;
 import BusinessLayer.StockBusiness.Type.Category;
 import BusinessLayer.StockBusiness.Type.ProductType;
 import BusinessLayer.StockBusiness.Type.SaleDiscount;
@@ -67,4 +68,7 @@ public interface iStoreController {
     public void setShelves(List<Shelf> list);
 
 
+    int getProductTypeByName(String name);
+
+    void removeSupplier(int itemId, int supplierId);
 }

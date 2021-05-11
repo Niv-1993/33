@@ -253,8 +253,6 @@ public class SupplierService implements ISupplierService {
             ResponseData<Integer> responseData = stockService.getProductTypeId(name);
             if(responseData.isError) return new Tresponse<>("ERROR: " + responseData.getError());
             item = supplierController.addItem(responseData.data , supplierBN,name , basePrice , expirationDate);
-            ZoneId zone = ZoneId.systemDefault();
-            stockService.addProduct(item.getItemId(), Date.from(item.getExpirationDate().atStartOfDay(zone).toInstant()));
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }

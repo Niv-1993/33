@@ -613,6 +613,28 @@ public class StoreController implements iStoreController {
         _shelves=list;
     }
 
+    @Override
+    public int getProductTypeByName(String name) {
+        for (ProductType p : Collections.list(_products.keys()))
+            if (p.get_name().equals(name))
+                return p.get_typeID();
+        String info="no find ProductType with name: "+name;
+        log.warn(info);
+        throw new IllegalArgumentException(info);
+    }
+
+    @Override
+    public void removeSupplier(int itemId, int supplierId) {
+        List<ProductType> list=Collections.list(_products.keys()).stream().filter(x-> x.get_typeID()==itemId).collect(Collectors.toList());
+        if (list.size()!=1){
+            String info="fid move then one element";
+            log.warn(info);
+            throw new IllegalArgumentException(info);
+        }
+        ProductType pt=list.get(0);
+        pt.removeSupplier(supplierId);
+    }
+
     private void checkValidCategory(int catID){
         log.debug("got inside checkValidCategory(int catID) Method with: "+catID);
         String s;

@@ -374,6 +374,18 @@ public class DALProductType extends DALObject {
         }
 
     }
-    public  void addSupplerDiscount(int discountID){////////////////////////////////////
+    public  void addSupplerDiscount(int discountID){
+        _supplierDiscounts.add(discountID);
+    }
+    public void removeSupplier(int supplierId){
+        String query= """
+                DELETE FROM Supplier \s
+                WHERE storeID=? AND supplierID=?;""";
+        try{
+            DC.noSelect(query,prepareList(storeId,supplierId));
+        }
+        catch (Exception e){
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 }

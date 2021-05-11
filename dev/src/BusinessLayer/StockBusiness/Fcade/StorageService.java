@@ -29,11 +29,22 @@ public class StorageService implements iStorageService {
     }
 
     public ResponseData<Integer> getProductTypeId(String name){
-        return null;
+        try {
+
+            return new ResponseData<>(curr.getProductTypeByName(name));
+        }
+        catch (Exception e) {
+            return new ResponseData<>(e.getMessage());
+        }
     }
 
     public Response removeSupplier(int supplierId , int itemId){
-        return null;
+        try {
+            curr.removeSupplier(itemId, supplierId);
+            return new Response();
+        }
+        catch (Exception e){
+            return new Response(e.getMessage());}
     }
 
     public int getCurrID(){
