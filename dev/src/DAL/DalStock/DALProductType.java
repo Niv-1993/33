@@ -329,14 +329,21 @@ public class DALProductType extends DALObject {
         String query= """
                 SELECT discountID \s
                 FROM Discount \s
-                WHERE storeID=? AND typeID=? AND supplierID=?;""";
+                WHERE storeID=? AND typeID=? AND supplierID IS NULL;""";
         List<Integer> list=new ArrayList<>();
         list.add(storeId);
         list.add(_typeID);
-        list.add(-1);
+        //list.add(-1);
         try{
             List<Tuple<List<Class>,List<Object>>> lst=DC.SelectMany(query,list);
-            return DC.SelectMany(query,list).stream().map(x->(Integer)(x.item2.get(0))).collect(Collectors.toList());
+            log.error(lst);
+            List<Integer> did=new ArrayList<>();
+            if(lst.size()==0) return did;
+            for(int i=0;i<lst.get(0).item2.size();i=i+9){
+                did.add((Integer) lst.get(0).item2.get(i));
+            }
+            return did;
+            //return DC.SelectMany(query,list).stream().map(x->(Integer)(x.item2.get(0))).collect(Collectors.toList());
         }
         catch (Exception e){
             throw new IllegalArgumentException(e);
@@ -345,6 +352,7 @@ public class DALProductType extends DALObject {
     public int getStoreId(){
         return storeId;
     }
+
     public  List<Integer> getSupplierDiscounts(){
         String query= """
                 SELECT discountID \s

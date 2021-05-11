@@ -288,6 +288,7 @@ public class PresentationCL {
                     int branchNumber = intScan(scanner, "please enter supplier branch number", "branch number must be a number");
                     int bankAccount = intScan(scanner, "please enter supplier bank account", "bank account must be a number");
                     String payWay = stringScan(scanner, "please enter supplier payWay");
+                    if(payWay.equals("banktransfer"))payWay="bank transfer";
                     response response = service.addSupplier(name, bankNumber, branchNumber, bankAccount, payWay);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
@@ -503,6 +504,7 @@ public class PresentationCL {
                 case 1 -> {
                     BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
                     String payWay = stringScan(scanner, "please enter supplier payWay");
+                    if(payWay.equals("banktransfer"))payWay="bank transfer";
                     response response = service.updateSupplierPayWay(BN, payWay);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");

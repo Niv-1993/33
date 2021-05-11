@@ -261,7 +261,7 @@ public class StockCLI {
 
     private void types() {
         String in;
-        String[] menu = {"exit", "return", "list all types", "add a new type", "edit an existing type",
+        String[] menu = {"exit", "return", "list all types",
                 "get more information about a specific type",
                 "get the amount in the store of a specific type", "get the amount in storage of a specific type"};
         while (true) {
@@ -271,11 +271,11 @@ public class StockCLI {
             if (in.equals("1")) System.exit(0);
             if (in.equals("2")) return;
             else if (in.equals("3")) System.out.print(SS.getProductTypes().getOutObject());
-            else if (in.equals("4")) addType();
-            else if (in.equals("5")) editType();
-            else if (in.equals("6")) typeInfo(1);
-            else if (in.equals("7")) typeInfo(2);
-            else if (in.equals("8")) typeInfo(3);
+            //else if (in.equals("4")) addType();
+            //else if (in.equals("5")) editType();
+            else if (in.equals("4")) typeInfo(1);
+            else if (in.equals("5")) typeInfo(2);
+            else if (in.equals("6")) typeInfo(3);
             else System.out.print("bad input, try again.\n");
 
         }

@@ -247,6 +247,8 @@ public class SupplierService implements ISupplierService {
     public Tresponse<Item> addItem(int storeId , int supplierBN, String name , double basePrice , double salePrice , int min , String producer , int category, LocalDate expirationDate) {
         BusinessLayer.SupplierBusiness.Item item;
         try{
+            List<BusinessLayer.SupplierBusiness.SupplierCard> sc=supplierController.showAllSuppliers();
+            if(sc.size()==0 || sc.get(supplierBN) == null) throw new Exception("supplier BN does not exist.");
             response response1 = stockService.useStore(storeId);
             if(response1.isError()) return new Tresponse<>("ERROR: " + response1.getError());
             response response2 = stockService.addProductType(name, min , basePrice , salePrice , producer , supplierBN ,category);

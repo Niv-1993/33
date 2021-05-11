@@ -21,9 +21,13 @@ public class InstanceController {
 
     public InstanceController(int storeID,int typeID) {
         dal=Util.initDal(DALInstanceController.class,storeID,typeID,0);
+        log.error("setGet instance controller done: "+dal.get_typeID());
         List<Integer> list=dal.getProducts();
-        for (Integer i:list)
-            _products.put(i,new Product(storeID,i));
+        log.error(list);
+        for (Integer i:list) {
+            log.error(_products);
+            _products.put(i, new Product(storeID, i));
+        }
     }
     public InstanceController(int storeID, int typeID,int max){
         _MAX_PRODUCTS_ON_PROTUCTTYPE=max;

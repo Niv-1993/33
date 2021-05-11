@@ -1,5 +1,6 @@
 package Presentation;
 
+import DAL.Mapper;
 import org.apache.log4j.Logger;
 
 import java.util.Scanner;
@@ -9,6 +10,7 @@ public class mainCLI {
     StockCLI stockCLI;
     Scanner scan=new Scanner(System.in);
     final static Logger log= Logger.getLogger(StockCLI.class);
+    String lastDB="test.db";
 
     String read(){
         return scan.nextLine().toLowerCase().replaceAll("\\s", "");
@@ -41,7 +43,7 @@ public class mainCLI {
     public void start(boolean firstTime){
         String in;
         if(firstTime) {
-            String[] load = {"load last data", "new data"};
+            String[] load = {"use pre-initialized database", "use empty database"};
             while (true) {
                 System.out.println("please select an option: ");
                 for (int i = 1; i <= load.length; i++) {
@@ -51,20 +53,23 @@ public class mainCLI {
                 n = menuCheck(scan);
                 switch (n) {
                     case 1 -> {
-                        // Mapper.getMap("loadDB.db");
+                        Mapper.getMap(lastDB);
                         presentationCL.loadData(); // make a test that chek if it was load correctlly
-                        //stockCLI.SS.loadAllStores();
+                        break;
                     }
                     case 2 -> { /* Mapper.getMap("newDB.db"); */
+                        lastDB="empty.db";
+                        Mapper.getMap(lastDB);
                         presentationCL.newData();
+                        break;
                     }
                     default -> System.out.println("illegal option!!!");
                 }
-                if(n == 1 || n == 2) break;
+                if(n==1 || n==2) break;
             }
         }
         while (true){
-            System.out.println("please enter 1 for Suppliers and 2 for Stock or 3 to exit");
+            System.out.println("please enter:\n1 for Suppliers\n2 for Stock\n3 to exit");
             in = read();
             try {
                 if(Integer.parseInt(in) == 1) presentationCL.mainRun(true);

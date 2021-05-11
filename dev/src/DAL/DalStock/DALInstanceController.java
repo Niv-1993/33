@@ -141,14 +141,16 @@ public class DALInstanceController extends DALObject {
         list.add(_typeID);
         try{
             List<Tuple<List<Class>, List<Object>>> get= DC.SelectMany(query,list);
+            log.error(get);
             List<Integer> ret=new ArrayList<>();
+            if(get.size()==0) return ret;
             for(int i =0;i<get.get(0).item2.size();i=i+2){
                 ret.add((Integer) get.get(0).item2.get(i));
             }
             return ret;
         }
         catch (Exception e){
-            throw new IllegalArgumentException("fail");
+            throw new IllegalArgumentException("failed to get products in instanceController");
         }
     }
     public int getStoreID(){

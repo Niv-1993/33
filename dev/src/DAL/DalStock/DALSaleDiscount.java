@@ -12,6 +12,10 @@ public class DALSaleDiscount extends DALDiscount{
         super(null);
     }
 
+    public int getCategoryID(){
+        return categoryID;
+    }
+
     public DALSaleDiscount(Integer storeID, Integer id, Integer typeID, Integer categoryID,Integer supplier,
                            Double percent, String startDate, String endDate, DalController dc){
         super(dc,storeID,id,typeID,percent,startDate,endDate);

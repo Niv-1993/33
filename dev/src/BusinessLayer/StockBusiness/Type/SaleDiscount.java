@@ -17,6 +17,9 @@ public class SaleDiscount extends Discount{
     public SaleDiscount(int storeID,int _discountID,Integer typeID,Integer category, double _percent, Date _start, Date _end) {
         super(storeID,_discountID,typeID,category,0, _percent, _start, _end);
     }
+    public int getCategoryID(){
+        return dal.getCategoryID();
+    }
 
     public SaleDiscount(int id, Integer i) {
         List<Integer> list=new ArrayList<>();

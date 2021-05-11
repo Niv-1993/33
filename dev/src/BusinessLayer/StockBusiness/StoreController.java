@@ -31,7 +31,13 @@ public class StoreController implements iStoreController {
     private Dictionary<Integer,SaleDiscount> saleCategoryDiscount=new Hashtable<>();
     final static Logger log=Logger.getLogger(StoreController.class);
 
-
+    public List<SaleDiscount> getSaleCategoryDiscounts(int cat){
+        List<SaleDiscount> ret = new ArrayList<>();
+        for(SaleDiscount sd: Collections.list(saleCategoryDiscount.elements())){
+            if(sd.getCategoryID()==cat) ret.add(sd);
+        }
+        return ret;
+    }
 
     public StoreController(int storeID,int shelves,int storeSelves,int maxProductsInShelf){
         String error;
@@ -476,7 +482,11 @@ public class StoreController implements iStoreController {
     @Override
     public List<SaleDiscount> getSaleDiscounts(int typeID) {
         log.debug(String.format("got inside getSaleDiscounts(int typeID) Method with: %d",typeID));
-        return checkIDProductTypeExist(typeID).getSalePrice();
+        ProductType pt=checkIDProductTypeExist(typeID);
+        log.error(pt);
+        List<SaleDiscount> lsd=pt.getSalePrice();
+        log.error(lsd);
+        return lsd;
     }
 
     @Override
