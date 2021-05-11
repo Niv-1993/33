@@ -190,11 +190,11 @@ public class DALCategory extends DALObject {
     }
 
     public void addProductType(int i){
-        List<Integer> key=new ArrayList<>();
-        key.add(_storeID);
-        key.add(i);
-        DALProductType pt=(DALProductType) Mapper.getMap().getItem(DALProductType.class,key);
-        pt.setCategory(_categoryID);
+//        List<Integer> key=new ArrayList<>();
+//        key.add(_storeID);
+//        key.add(i);
+//        DALProductType pt=(DALProductType) Mapper.getMap().getItem(DALProductType.class,key);
+//        pt.setCategory(_categoryID);
         _productTypes.add(i);
     }
     public void setDiscounts(List<Integer> list){

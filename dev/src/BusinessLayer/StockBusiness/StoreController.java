@@ -291,14 +291,22 @@ public class StoreController implements iStoreController {
         System.out.println("got here 1");
         checkValidCategory(category);
         System.out.println("got here 2");
+        log.error(_category);
         Category cat=_category.get(category);
+        log.error("category:" +cat);
         List<Integer> discounts= new ArrayList<>();
         cat.addAllDiscountCategory(discounts);
+        log.error("discount:" +discounts);
         dal.setTypeCounter(dal.getTypeCounter()+1);
+        log.error("after setTypeCounter");
         int typeID=dal.getTypeCounter();
+        log.error(typeID);
         ProductType newProductType=new ProductType(getID(),typeID,name,minAmount,basePrice,salePrice,producer,supID,category);
+        log.error("after constractor of ProductType");
+        log.error(newProductType);
         try {
-            _category.get(category).addProductType(typeID);
+            cat.addProductType(typeID);
+            log.error("aleks1");
             for (Integer i: discounts){
                 System.out.println("got here types!");
                 newProductType.addDiscount(saleCategoryDiscount.get(i));
@@ -307,7 +315,9 @@ public class StoreController implements iStoreController {
         catch (Exception e){
             dal.setTypeCounter(dal.getTypeCounter()-1);
         }
+        log.error("aleks2");
         _products.put(newProductType,new InstanceController(getID(),typeID));
+        log.error("aleks3");
         log.info(String.format("new ProductType %s added the Store #%d",name,getID()));
     }
 

@@ -138,12 +138,17 @@ public class Category {
         return dal.getDiscounts();
     }
     public void addAllDiscountCategory(List<Integer> list){
+        log.error("cat1");
         List<Integer> _productDiscounts=dal.getDiscounts();
-        for (Integer i: _productDiscounts)
+        log.error("cat2 "+_productDiscounts.size());
+        for (Integer i: _productDiscounts) {
             if (!list.contains(i))
                 list.add(i);
+        }
+        log.error("cat3");
         if (_superCategory!=null)
             _superCategory.addAllDiscountCategory(list);
+        log.error("cat4");
     }
 
 
@@ -298,7 +303,7 @@ public class Category {
                 "_categories=" + _categories.stream().map(Category::get_categoryID).collect(Collectors.toList()) +
                 ", _categoryID=" + dal.getCategoryID() +
                 ", _name='" + dal.getName() + '\'' +
-                ", _superCategory=" + _superCategory.get_categoryID() +
+                ", _superCategory=" + ((_superCategory==null)? "null":_superCategory.get_categoryID()) +
                 ", _productTypes=" + dal.getProductTypes() +
                 ", _productDiscounts=" + dal.getDiscounts() +
                 '}';
