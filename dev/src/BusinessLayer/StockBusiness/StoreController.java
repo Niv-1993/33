@@ -36,6 +36,8 @@ public class StoreController implements iStoreController {
         for(SaleDiscount sd: Collections.list(saleCategoryDiscount.elements())){
             if(sd.getCategoryID()==cat) ret.add(sd);
         }
+        Category c=getCategory(cat);
+        if(c.get_superCategory()!=null && c.get_superCategory().get_categoryID()>0) ret.addAll(getSaleCategoryDiscounts(c.get_superCategory().get_categoryID()));
         return ret;
     }
 
@@ -472,9 +474,7 @@ public class StoreController implements iStoreController {
     public List<SaleDiscount> getSaleDiscounts(int typeID) {
         log.debug(String.format("got inside getSaleDiscounts(int typeID) Method with: %d",typeID));
         ProductType pt=checkIDProductTypeExist(typeID);
-        log.error(pt);
         List<SaleDiscount> lsd=pt.getSalePrice();
-        log.error(lsd);
         return lsd;
     }
 

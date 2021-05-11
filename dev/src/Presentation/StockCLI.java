@@ -468,7 +468,7 @@ public class StockCLI {
                         System.out.print("sale discount added.\n");
                     }
                 }
-                if (tmp[0].equals("category")) {
+                else if (tmp[0].equals("category")) {
                     if ((SS.addSaleCategoryDiscount(Integer.parseInt(tmp[1]), Float.parseFloat(tmp[2]),
                             new SimpleDateFormat("dd-MM-yyyy").parse(tmp[3]), new SimpleDateFormat("dd-MM-yyyy").parse(tmp[4])).isError())) {
                         System.out.print("bad input, try again.\n");

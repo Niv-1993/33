@@ -354,10 +354,8 @@ public class StorageService implements iStorageService {
     public Tresponse<SaleDiscounts> getSaleDiscounts(int typeID) {
         try {
             List<BusinessLayer.StockBusiness.Type.SaleDiscount> get=curr.getSaleDiscounts(typeID);
-            log.error(get);
             int cat=curr.getProductTypeInfo(typeID).get_categoryID();
             get.addAll(curr.getSaleCategoryDiscounts(cat));
-            log.error(get);
             List<SaleDiscount> ret=new ArrayList<>();
             for (BusinessLayer.StockBusiness.Type.SaleDiscount d:get){
                 ret.add(new SaleDiscount(d.get_discountID(),d.get_start(),d.get_end(),d.get_percent()));
