@@ -173,6 +173,21 @@ public class DalOrder extends DALObject {
         this.totalAmount = totalAmount;
     }
 
+    public void updateBranchId(int branchId){
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE Orders\n" +
+                "SET branchId = ?\n"+
+                "WHERE orderId = ?;";
+        list.add(new Tuple<>(branchId, Integer.class));
+        list.add(new Tuple<>(orderId, Integer.class));
+        try {
+            DC.noSelect(query, list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.branchId = branchId;
+    }
+
     public void removeOrder() {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "DELETE FROM Orders\n" +
@@ -198,7 +213,7 @@ public class DalOrder extends DALObject {
         }
     }
 
-    public void addItemToOrder(int itemId, int amount) {
+    public void addItemToOrder(int itemId, int amount) throws Exception {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "INSERT INTO ItemsInOrders\n" +
                 "VALUES (?,?,?);";
@@ -208,7 +223,7 @@ public class DalOrder extends DALObject {
         try {
             DC.noSelect(query, list);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new Exception(e.getMessage());
         }
     }
 

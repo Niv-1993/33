@@ -298,8 +298,16 @@ public class SupplierService implements ISupplierService {
     @Override
     public Tresponse<Order> addRegularOrder(int supplierBN,int branchID) {
         BusinessLayer.SupplierBusiness.Order order;
+        Tuple<BusinessLayer.SupplierBusiness.Order , Boolean> tuple;
         try {
-            order = supplierController.addRegularOrder(supplierBN, branchID);
+            tuple = supplierController.addRegularOrder(supplierBN, branchID);
+            order = tuple.item1;
+            if(tuple.item2){
+                ZoneId zone = ZoneId.systemDefault();
+                for(int i = 0 ; i < order.showAllItemsOfOrder().size() ; i++) {
+                    stockService.addProduct(order.showAllItemsOfOrder().get(i).getItemId(), Date.from(order.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
+                }
+            }
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
@@ -338,7 +346,7 @@ public class SupplierService implements ISupplierService {
             }else{
                 ZoneId zone = ZoneId.systemDefault();
                 for(int i = 0 ; i < neededAmount ; i++) {
-                    stockService.addProduct(order.showAllItemsOfOrder().get(0).getItemId(), Date.from(order.showAllItemsOfOrder().get(0).getExpirationDate().atStartOfDay(zone).toInstant()));
+                    stockService.addProduct(order.showAllItemsOfOrder().get(i).getItemId(), Date.from(order.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
                 }
             }
         }catch (Exception e){

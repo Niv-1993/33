@@ -313,10 +313,17 @@ public class SupplierCard {
         }
     }
 
-    public Order addRegularOrder(int orderId , int branchId){
-        Order order = new regularOrder(dalSupplierCard.getSupplierBN(), orderId , branchId);
+    public Tuple<Order , Boolean> addRegularOrder(int orderId , int branchId){
+        regularOrder order;
+        boolean isCons = false;
+        if(constantOrder == null) order = new regularOrder(dalSupplierCard.getSupplierBN(), orderId , branchId);
+        else order = constantOrder;
+        if(branchId != order.getBranchID()){
+            order.updateBranchId(branchId);
+            isCons = true;
+        }
         orders.add(order);
-        return order;
+        return new Tuple<>(order , isCons);
     }
 
     public void addConstantOrder(int orderID, int branchID , Hashtable<Integer , Integer> items) throws Exception {
@@ -333,10 +340,15 @@ public class SupplierCard {
         }
     }
 
-    public Order addNeededOrder(int orderID, int branchID, Item item, int amount) {
+    public Order addNeededOrder(int orderID, int branchID, Item item, int amount) throws Exception {
         if (item == null || isItemExist(item.getItemId()) == null) return null;
+        neededOrder order;
         double totalAmount = calculateTotalAmount(item , amount);
-        neededOrder order = new neededOrder(dalSupplierCard.getSupplierBN(), orderID ,LocalDate.now().plusDays(1), branchID, item, amount , totalAmount);
+        try {
+             order = new neededOrder(dalSupplierCard.getSupplierBN(), orderID ,LocalDate.now().plusDays(1), branchID, item, amount , totalAmount);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
         orders.add(order);
         return order;
     }

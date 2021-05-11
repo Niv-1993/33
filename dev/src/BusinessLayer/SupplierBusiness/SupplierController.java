@@ -294,17 +294,17 @@ public class SupplierController{
         }
     }
 
-    public Order addRegularOrder(int supplierBN , int branchId) throws Exception {
+    public Tuple<Order , Boolean> addRegularOrder(int supplierBN , int branchId) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
-        Order order;
+        Tuple<Order , Boolean> tuple;
         try {
-            order = suppliers.get(supplierBN).addRegularOrder(dalSupplierController.getNumOfOrders(), branchId);
+            tuple = suppliers.get(supplierBN).addRegularOrder(dalSupplierController.getNumOfOrders(), branchId);
             dalSupplierController.addNumOfOrders();
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
-        return order;
+        return tuple;
     }
 
     public void addConstantOrder(int supplierBN, int branchID , Hashtable<Integer , Integer> items) throws Exception {

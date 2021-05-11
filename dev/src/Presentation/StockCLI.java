@@ -367,7 +367,7 @@ public class StockCLI {
                 System.out.print("damage reported.\n");
             }
             else if (i == 4) {
-                SS.getProductInfo(Integer.parseInt(in));
+                System.out.println(SS.getProductInfo(Integer.parseInt(in)));
             } else System.out.print("bad input, try again.\n");
         } catch (Exception e) {
             System.out.print("bad input, try again.\n");

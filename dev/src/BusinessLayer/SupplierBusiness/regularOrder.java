@@ -39,6 +39,10 @@ public class regularOrder extends Order {
         dalOrder.updateTotalAmount(totalAmount);
     }
 
+    public void updateBranchId(int branchID) {
+        dalOrder.updateBranchId(branchID);
+    }
+
     private void updateTotalAmount(Item item, int amount) throws Exception {
         QuantityDocument qd = item.getQuantityDocument();
         updateTotalAmount(dalOrder.getTotalAmount() + item.getPrice() * amount);
