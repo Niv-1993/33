@@ -1,6 +1,7 @@
 package Presentation;
 
 import BusinessLayer.StockBusiness.Fcade.StorageService;
+import BusinessLayer.StockBusiness.Fcade.outObjects.NeededReport;
 import BusinessLayer.SupplierBusiness.facade.SupplierService;
 import BusinessLayer.SupplierBusiness.facade.Tresponse;
 import BusinessLayer.SupplierBusiness.facade.outObjects.*;
@@ -10,9 +11,7 @@ import org.apache.log4j.Logger;
 
 import java.io.InputStreamReader;
 import java.time.LocalDate;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class PresentationCL {
 
@@ -341,14 +340,16 @@ public class PresentationCL {
                     toContinue(scanner);
                 }
                 case 50 -> {
-                    Tresponse<Tuple<List<Integer>, Integer>> tresponse = service.getNeededItems();
+                    Tresponse<NeededReport> tresponse = service.getNeededItems();
                     if (tresponse.isError()) System.out.println(tresponse.getError() + "\n");
                     else {
-                        for (Integer i : tresponse.getOutObject().item1) {
-                            String ans = stringScan(scanner, "pres yes to order the item: " + i);
+                        Dictionary<Integer , Integer> dictionary = tresponse.getOutObject().get_list();
+                        for (Integer i : Collections.list(dictionary.keys())) {
+                            String ans = stringScan(scanner, "pres yes to if you want to order the item: " + i);
                             if (ans.equals("yes")) {
-                                int amount = intScan(scanner, "please enter amount of the item", "amount must be a number");
-                                response response = service.addNeededOrder(i, amount, tresponse.getOutObject().item2);
+                                response response = service.addNeededOrder(i, dictionary.get(i), tresponse.getOutObject().getStoreID());
+                                if(response.isError()) System.out.println(response.getError() + "\n");
+                                else System.out.println("The operation was completed successfully\n");
                             }
                         }
                     }

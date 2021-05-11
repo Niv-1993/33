@@ -311,18 +311,16 @@ public class SupplierService implements ISupplierService {
         return new response();
     }
 
-    public Tresponse<Tuple<List<Integer> , Integer>> getNeededItems(){
-        List<Integer> items = new LinkedList<>();
-        int branchId = -1;
+    public Tresponse<NeededReport> getNeededItems(){
+        NeededReport report;
         try{
             Tresponse<NeededReport> responseData = stockService.getNeededReportToOrder();
             if(responseData.isError())  return new Tresponse<>("ERROR: " + responseData.getError());
-            NeededReport report = responseData.getOutObject();
-            //add the itemsId + branchId.
+            report = responseData.getOutObject();
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
-        return new Tresponse<>(new Tuple<>(items , branchId));
+        return new Tresponse<>(report);
     }
 
     public response addNeededOrder(int itemId ,int neededAmount, int branchID) {
