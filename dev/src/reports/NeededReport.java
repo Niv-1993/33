@@ -9,6 +9,11 @@ import java.util.Dictionary;
 public class NeededReport implements Report{
     private Dictionary<Integer, Integer> _list;
     private int _storeID;
+
+    public Dictionary<Integer, Integer> get_list() {
+        return _list;
+    }
+
     private Date _date=new Date(System.currentTimeMillis());
     private final String TYPE="NeededReport";
     final static Logger log=Logger.getLogger(NeededReport.class);

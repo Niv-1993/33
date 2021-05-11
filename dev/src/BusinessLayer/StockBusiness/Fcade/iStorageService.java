@@ -13,6 +13,7 @@ public interface iStorageService {
     public Tresponse<Report> getWeeklyReport(List<Integer> c);
 
     public Tresponse<Report> getNeededReport();
+    public Tresponse<NeededReport> getNeededReportToOrder();
     public Tresponse<Report> getWasteReport();
     public response addCategory(String name);
     public response addCategory(String name, int superCategory);

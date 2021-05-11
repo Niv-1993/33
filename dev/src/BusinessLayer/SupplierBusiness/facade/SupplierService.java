@@ -1,14 +1,11 @@
 package BusinessLayer.SupplierBusiness.facade;
 
-import BusinessLayer.StockBusiness.Fcade.Response;
-import BusinessLayer.StockBusiness.Fcade.ResponseData;
 import BusinessLayer.StockBusiness.Fcade.StorageService;
-import BusinessLayer.StockBusiness.Fcade.outObjects.Report;
-import BusinessLayer.SupplierBusiness.SupplierController;
+import BusinessLayer.StockBusiness.Fcade.outObjects.NeededReport;
 import BusinessLayer.SupplierBusiness.ISupplierService;
+import BusinessLayer.SupplierBusiness.SupplierController;
 import BusinessLayer.SupplierBusiness.facade.outObjects.*;
 import Utility.Tuple;
-
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -318,9 +315,9 @@ public class SupplierService implements ISupplierService {
         List<Integer> items = new LinkedList<>();
         int branchId = -1;
         try{
-            Tresponse<Report> responseData = stockService.getNeededReport();
+            Tresponse<NeededReport> responseData = stockService.getNeededReportToOrder();
             if(responseData.isError())  return new Tresponse<>("ERROR: " + responseData.getError());
-            Report report = responseData.getOutObject();
+            NeededReport report = responseData.getOutObject();
             //add the itemsId + branchId.
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());

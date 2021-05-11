@@ -88,6 +88,17 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(e.toString());
         }
     }
+    @Override
+    public Tresponse<NeededReport> getNeededReportToOrder() {
+        try {
+            reports.NeededReport rep=(reports.NeededReport) curr.getNeededReport();
+            NeededReport ret=new NeededReport(rep.getStore(),rep.getDate(),rep.get_list());
+            return new Tresponse<>(ret);
+        }
+        catch (Exception e) {
+            return new Tresponse<>(e.toString());
+        }
+    }
 
     @Override
     public Tresponse<Report> getWasteReport() {
