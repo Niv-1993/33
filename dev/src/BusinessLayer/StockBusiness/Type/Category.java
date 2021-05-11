@@ -138,17 +138,13 @@ public class Category {
         return dal.getDiscounts();
     }
     public void addAllDiscountCategory(List<Integer> list){
-        log.error("cat1");
         List<Integer> _productDiscounts=dal.getDiscounts();
-        log.error("cat2 "+_productDiscounts.size());
         for (Integer i: _productDiscounts) {
             if (!list.contains(i))
                 list.add(i);
         }
-        log.error("cat3");
         if (_superCategory!=null)
             _superCategory.addAllDiscountCategory(list);
-        log.error("cat4");
     }
 
 

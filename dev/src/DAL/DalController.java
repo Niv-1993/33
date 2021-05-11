@@ -129,13 +129,11 @@ public class DalController {
 
     public List<Tuple<List<Class>,List<Object>>> SelectMany(String query, List<Integer> params) throws Exception {
         Connection conn = this.connect();
-        log.error("query: "+query+" params: "+params);
         try {
             PreparedStatement preparedStatement  = conn.prepareStatement(query);
             for(int i = 0 ; i < params.size() ; i++){
                 if(params.get(i)==null) preparedStatement.setNull(i+1,Types.INTEGER);
                 else preparedStatement.setInt(i+1 , params.get(i));
-                log.error("selectMany added "+params.get(i));
             }
             ResultSet rs = preparedStatement.executeQuery();
             return fromRSMany(rs);
