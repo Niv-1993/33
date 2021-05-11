@@ -48,8 +48,8 @@ public class DALCategory extends DALObject {
                 ");\n" +
                 "\n" +
                 "CREATE TABLE IF NOT EXISTS SubCategory (\n" +
-                "\tstoreID INTEGER NOT NULL UNIQUE,\n" +
-                "\tparentID INTEGER NOT NULL UNIQUE,\n" +
+                "\tstoreID INTEGER NOT NULL ,\n" +
+                "\tparentID INTEGER NOT NULL ,\n" +
                 "\tchildID INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY (storeID, childID),\n" +
                 "\tUNIQUE (storeID, childID),\n" +

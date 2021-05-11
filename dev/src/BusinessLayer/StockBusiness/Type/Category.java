@@ -45,6 +45,7 @@ public class Category {
             throw new IllegalArgumentException(info);
         }
     }
+
     private void checkValues(Object... o){
         for(Object o1: o){
             if (o1 instanceof String && o1.equals(""))

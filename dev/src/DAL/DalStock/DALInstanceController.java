@@ -141,7 +141,6 @@ public class DALInstanceController extends DALObject {
         list.add(_typeID);
         try{
             List<Tuple<List<Class>, List<Object>>> get= DC.SelectMany(query,list);
-            log.error(get);
             List<Integer> ret=new ArrayList<>();
             if(get.size()==0) return ret;
             for(int i =0;i<get.get(0).item2.size();i=i+2){

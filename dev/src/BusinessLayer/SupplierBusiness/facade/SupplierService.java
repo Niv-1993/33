@@ -26,8 +26,10 @@ public class SupplierService implements ISupplierService {
     public response LoadData() {
         try {
             supplierController = new SupplierController(true);
+            stockService.loadAllStores();
         }catch(Exception e){
             supplierController = new SupplierController();
+            stockService.loadAllStores();
         }
         return new response();
     }

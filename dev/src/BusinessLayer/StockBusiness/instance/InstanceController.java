@@ -21,11 +21,8 @@ public class InstanceController {
 
     public InstanceController(int storeID,int typeID) {
         dal=Util.initDal(DALInstanceController.class,storeID,typeID,0);
-        log.error("setGet instance controller done: "+dal.get_typeID());
         List<Integer> list=dal.getProducts();
-        log.error(list);
         for (Integer i:list) {
-            log.error(_products);
             _products.put(i, new Product(storeID, i));
         }
     }

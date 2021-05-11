@@ -333,10 +333,8 @@ public class DALProductType extends DALObject {
         List<Integer> list=new ArrayList<>();
         list.add(storeId);
         list.add(_typeID);
-        //list.add(-1);
         try{
             List<Tuple<List<Class>,List<Object>>> lst=DC.SelectMany(query,list);
-            log.error(lst);
             List<Integer> did=new ArrayList<>();
             if(lst.size()==0) return did;
             for(int i=0;i<lst.get(0).item2.size();i=i+9){

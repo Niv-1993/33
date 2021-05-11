@@ -188,7 +188,7 @@ public class StorageService implements iStorageService {
             return new response();
         }
         catch (Exception e) {
-            return new response(e.toString());
+            return new response(e.getMessage());
         }
     }
 

@@ -70,7 +70,6 @@ public class ProductType {
     }
     public void loadSaleDiscount(){
         List<Integer> list=dal.getSaleDiscounts();
-        log.error("sale discounts: "+list);
         log.warn("got sale discount");
         for (Integer i:list)
             _saleDiscounts.add(new SaleDiscount(dal.getStoreId(),i));

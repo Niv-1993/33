@@ -316,7 +316,7 @@ public class PresentationCL {
                     double basePrice = doubleScan(scanner, "please enter item base price", "base price must be a number");
                     double salePrice = doubleScan(scanner, "please enter item sale price", "sale price must be a number");
                     int min = intScan(scanner, "please enter minimal amount of item before report of missing", "minimal amount must must be a number");
-                    String preducer = stringScan(scanner, "please enter the name of the item preducer");
+                    String preducer = stringScan(scanner, "please enter the name of the item producer");
                     int category = intScan(scanner, "please enter item category", "category must must be a number");
                     LocalDate expirationDate = dateScan(scanner, "expiration date of the item");
                     Tresponse<Item> response = service.addItem(sotreId , BN, name, basePrice, salePrice, min, preducer, category, expirationDate);
