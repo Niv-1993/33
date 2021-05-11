@@ -250,11 +250,11 @@ public class SupplierService implements ISupplierService {
     public Tresponse<Item> addItem(int supplierBN, String name , double basePrice , double salePrice , int min , String producer , int category, LocalDate expirationDate) {
         BusinessLayer.SupplierBusiness.Item item;
         try{
-            Response response = stockService.addProductType(name, min , basePrice , salePrice , producer , supplierBN ,category);
-            if(response.isError) return new Tresponse<>("ERROR: " + response.getError());
-            ResponseData<Integer> responseData = stockService.getProductTypeId(name);
-            if(responseData.isError) return new Tresponse<>("ERROR: " + responseData.getError());
-            item = supplierController.addItem(responseData.data , supplierBN,name , basePrice , expirationDate);
+            response response = stockService.addProductType(name, min , basePrice , salePrice , producer , supplierBN ,category);
+            if(response.isError()) return new Tresponse<>("ERROR: " + response.getError());
+            Tresponse<Integer> responseData = stockService.getProductTypeId(name);
+            if(responseData.isError()) return new Tresponse<>("ERROR: " + responseData.getError());
+            item = supplierController.addItem(responseData.getOutObject() , supplierBN,name , basePrice , expirationDate);
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
@@ -318,9 +318,9 @@ public class SupplierService implements ISupplierService {
         List<Integer> items = new LinkedList<>();
         int branchId = -1;
         try{
-            ResponseData<Report> responseData = stockService.getNeededReport();
-            if(responseData.isError)  return new Tresponse<>("ERROR: " + responseData.getError());
-            Report report = responseData.data;
+            Tresponse<Report> responseData = stockService.getNeededReport();
+            if(responseData.isError())  return new Tresponse<>("ERROR: " + responseData.getError());
+            Report report = responseData.getOutObject();
             //add the itemsId + branchId.
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
