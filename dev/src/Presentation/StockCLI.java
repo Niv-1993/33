@@ -68,7 +68,7 @@ public class StockCLI {
         String[] menu = {"exit", "return", "add new store", "use a store"};
         while (true) {
             System.out.print("\nWelcome to SuperLi storage management.\n" +
-                    "The current stores are: " + (SS.getStores().isError ? "None" : SS.getStores()) + "\n"
+                    "The current stores are: " + (SS.getStores().isError() ? "None" : SS.getStores().getOutObject()) + "\n"
             );
             printM(menu);
             in = read();
@@ -125,8 +125,8 @@ public class StockCLI {
             if (in.equals("1")) System.exit(0);
             if (in.equals("2")) return;
             if (in.equals("3")) weekly();
-            else if (in.equals("4")) System.out.print(SS.getWasteReport());
-            else if (in.equals("5")) System.out.print(SS.getNeededReport());
+            else if (in.equals("4")) System.out.print(SS.getWasteReport().getOutObject());
+            else if (in.equals("5")) System.out.print(SS.getNeededReport().getOutObject());
             else System.out.print("bad input, try again.\n");
         }
 
@@ -142,9 +142,9 @@ public class StockCLI {
             in = read();
             if (in.equals("1")) System.exit(0);
             if (in.equals("2")) return;
-            if (in.equals("3")) System.out.print(SS.getWeeklyReport());
+            if (in.equals("3")) System.out.print(SS.getWeeklyReport().getOutObject());
             else if (in.equals("4")) weeklyByCat();
-            else if (in.equals("5")) System.out.print(SS.getCategories());
+            else if (in.equals("5")) System.out.print(SS.getCategories().getOutObject());
             else System.out.print("bad input, try again.\n");
         }
     }
@@ -176,7 +176,7 @@ public class StockCLI {
             in = read();
             if (in.equals("1")) System.exit(0);
             if (in.equals("2")) return;
-            else if (in.equals("3")) System.out.print(SS.getCategories());
+            else if (in.equals("3")) System.out.print(SS.getCategories().getOutObject());
             else if (in.equals("4")) catInfo();
             else if (in.equals("5")) addCat();
             else if (in.equals("6")) editCat();
@@ -184,7 +184,7 @@ public class StockCLI {
                 try {
                     String[] tmp = in.split(",");
                     if (tmp.length == 2) {
-                        if (tmp[0].equals("info")) System.out.print(SS.getCategoryInfo(Integer.parseInt(tmp[1])));
+                        if (tmp[0].equals("info")) System.out.print(SS.getCategoryInfo(Integer.parseInt(tmp[1])).getOutObject());
                         else System.out.print("bad input, try again.\n");
                     } else System.out.print("bad input, try again.\n");
                 } catch (Exception e) {
@@ -199,7 +199,7 @@ public class StockCLI {
         System.out.print("\nPlease enter the requested category ID.\n");
         in = read();
         try {
-            System.out.print(SS.getCategoryInfo(Integer.parseInt(in)));
+            System.out.print(SS.getCategoryInfo(Integer.parseInt(in)).getOutObject());
         } catch (Exception e) {
             System.out.print("bad input, try again.\n");
         }
@@ -270,7 +270,7 @@ public class StockCLI {
             in = read();
             if (in.equals("1")) System.exit(0);
             if (in.equals("2")) return;
-            else if (in.equals("3")) System.out.print(SS.getProductTypes());
+            else if (in.equals("3")) System.out.print(SS.getProductTypes().getOutObject());
             else if (in.equals("4")) addType();
             else if (in.equals("5")) editType();
             else if (in.equals("6")) typeInfo(1);
@@ -286,12 +286,12 @@ public class StockCLI {
         System.out.print("enter the type ID\n");
         in = read();
         try {
-            if (i == 1) System.out.print(SS.getProductTypeInfo(Integer.parseInt(in)));
-            else if (i == 2) System.out.print(SS.getShelvesAmount(Integer.parseInt(in)));
-            else if (i == 3) System.out.print(SS.getStorageAmount(Integer.parseInt(in)));
-            else if (i == 4) System.out.print(SS.getProductsByType(Integer.parseInt(in)));
-            else if (i == 5) System.out.print(SS.getSaleDiscounts(Integer.parseInt(in)));
-            else if (i == 6) System.out.print(SS.getSupplierDiscounts(Integer.parseInt(in)));
+            if (i == 1) System.out.print(SS.getProductTypeInfo(Integer.parseInt(in)).getOutObject());
+            else if (i == 2) System.out.print(SS.getShelvesAmount(Integer.parseInt(in)).getOutObject());
+            else if (i == 3) System.out.print(SS.getStorageAmount(Integer.parseInt(in)).getOutObject());
+            else if (i == 4) System.out.print(SS.getProductsByType(Integer.parseInt(in)).getOutObject());
+            else if (i == 5) System.out.print(SS.getSaleDiscounts(Integer.parseInt(in)).getOutObject());
+            else if (i == 6) System.out.print(SS.getSupplierDiscounts(Integer.parseInt(in)).getOutObject());
             else System.out.print("bad input, try again.\n");
         } catch (Exception e) {
             System.out.print("bad input, try again.\n");
@@ -341,7 +341,7 @@ public class StockCLI {
             in = read();
             if (in.equals("1")) System.exit(0);
             if (in.equals("2")) return;
-            else if (in.equals("3")) System.out.println(SS.getProductTypes());
+            else if (in.equals("3")) System.out.println(SS.getProductTypes().getOutObject());
             else if (in.equals("4")) productInfo(1);
             else if (in.equals("5")) productInfo(4);
             else if (in.equals("6")) addProd();
@@ -357,7 +357,7 @@ public class StockCLI {
         System.out.print("enter the product ID\n");
         in = read();
         try {
-            if (i == 1) System.out.print(SS.getProductsByType(Integer.parseInt(in)));
+            if (i == 1) System.out.print(SS.getProductsByType(Integer.parseInt(in)).getOutObject());
             else if (i == 2) {
                 SS.removeProduct(Integer.parseInt(in));
                 System.out.print("product removed.\n");

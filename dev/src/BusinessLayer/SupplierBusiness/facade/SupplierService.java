@@ -244,11 +244,13 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public Tresponse<Item> addItem(int supplierBN, String name , double basePrice , double salePrice , int min , String producer , int category, LocalDate expirationDate) {
+    public Tresponse<Item> addItem(int storeId , int supplierBN, String name , double basePrice , double salePrice , int min , String producer , int category, LocalDate expirationDate) {
         BusinessLayer.SupplierBusiness.Item item;
         try{
-            response response = stockService.addProductType(name, min , basePrice , salePrice , producer , supplierBN ,category);
-            if(response.isError()) return new Tresponse<>("ERROR: " + response.getError());
+            response response1 = stockService.useStore(storeId);
+            if(response1.isError()) return new Tresponse<>("ERROR: " + response1.getError());
+            response response2 = stockService.addProductType(name, min , basePrice , salePrice , producer , supplierBN ,category);
+            if(response2.isError()) return new Tresponse<>("ERROR: " + response2.getError());
             Tresponse<Integer> responseData = stockService.getProductTypeId(name);
             if(responseData.isError()) return new Tresponse<>("ERROR: " + responseData.getError());
             item = supplierController.addItem(responseData.getOutObject() , supplierBN,name , basePrice , expirationDate);

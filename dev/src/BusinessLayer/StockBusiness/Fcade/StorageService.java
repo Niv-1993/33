@@ -408,15 +408,18 @@ public class StorageService implements iStorageService {
 
     @Override
     public response useStore(int ID) {
+        boolean found = false;
         try {
             StoreController old=curr;
             for(StoreController s:stores){
+                System.out.println(s.getID());
                 if(s.getID()==ID) {
                     curr = s;
+                    found = true;
                     break;
                 }
             }
-            if(curr==old) throw new Exception("Store not found.");
+            if(!found) throw new Exception("Store not found.");
             return new response();
         }
         catch (Exception e) {

@@ -309,6 +309,7 @@ public class PresentationCL {
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 4 -> {
+                    int sotreId = intScan(scanner, "please enter the store id", "store id must be a number");
                     BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
                     String name = stringScan(scanner, "please enter item name");
                     double basePrice = doubleScan(scanner, "please enter item base price", "base price must be a number");
@@ -317,7 +318,7 @@ public class PresentationCL {
                     String preducer = stringScan(scanner, "please enter the name of the item preducer");
                     int category = intScan(scanner, "please enter item category", "category must must be a number");
                     LocalDate expirationDate = dateScan(scanner, "expiration date of the item");
-                    Tresponse<Item> response = service.addItem(BN, name, basePrice, salePrice, min, preducer, category, expirationDate);
+                    Tresponse<Item> response = service.addItem(sotreId , BN, name, basePrice, salePrice, min, preducer, category, expirationDate);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("ItemId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner);
@@ -339,7 +340,7 @@ public class PresentationCL {
                     else System.out.println("orderId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner);
                 }
-                case 50 -> {
+                case 7 -> {
                     Tresponse<NeededReport> tresponse = service.getNeededItems();
                     if (tresponse.isError()) System.out.println(tresponse.getError() + "\n");
                     else {
@@ -354,7 +355,7 @@ public class PresentationCL {
                         }
                     }
                 }
-                case 7 -> {
+                case 8 -> {
                     BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
                     int orderId = intScan(scanner, "please enter orderId", "orderId must be a number");
                     int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
@@ -363,7 +364,7 @@ public class PresentationCL {
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 8 -> {
+                case 9 -> {
                     BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
                     int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
                     int minimalAmount = intScan(scanner, "please enter the minimal amount", "minimal amount must be a number");
@@ -372,7 +373,7 @@ public class PresentationCL {
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 9 -> {
+                case 10 -> {
                     BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
                     int minimalAmount = intScan(scanner, "please enter the minimal amount", "minimal amount must be a number");
                     int discount = intScan(scanner, "please enter the discount", "discount must be a number");
@@ -382,10 +383,12 @@ public class PresentationCL {
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 10 -> {
+                case 11 -> {
                     return;
                 }
-                case 11 -> {
+                case 12 -> {
+                    System.out.println("illegal option!!!\n");
+                    toContinue(scanner);
                     System.exit(0);
                 }
                 default -> {

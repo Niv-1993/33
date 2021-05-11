@@ -288,7 +288,9 @@ public class StoreController implements iStoreController {
                         " Method  with: %s, %d, %f, %f, %s, %d, %d",
                 name,minAmount,basePrice,salePrice,producer,supID,category));
         checkValidNameProductType(name);
+        System.out.println("got here 1");
         checkValidCategory(category);
+        System.out.println("got here 2");
         Category cat=_category.get(category);
         List<Integer> discounts= new ArrayList<>();
         cat.addAllDiscountCategory(discounts);
@@ -298,6 +300,7 @@ public class StoreController implements iStoreController {
         try {
             _category.get(category).addProductType(typeID);
             for (Integer i: discounts){
+                System.out.println("got here types!");
                 newProductType.addDiscount(saleCategoryDiscount.get(i));
             }
         }

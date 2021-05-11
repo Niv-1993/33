@@ -125,8 +125,6 @@ public class DALProductType extends DALObject {
             throw new IllegalArgumentException("fail");
         }
         _categoryID=i;
-
-
     }
     public void setSuppliers(List<Integer> sup){
         StringBuilder query=new StringBuilder("""
