@@ -106,6 +106,7 @@ public class SupplierController{
         else supplierCard.removeSupplier();
         /*List<Item> toRemoveItems = supplierCard.showAllItemsOfSupplier();
         for(Item item : toRemoveItems){
+        for(Item item : toRemoveItems){
             removeItemFromSupplier(removeSupplier , item.getItemId());
         }
         List<Order> toRemoveOrders = supplierCard.showAllOrdersOfSupplier();
@@ -251,12 +252,12 @@ public class SupplierController{
 
 
 
-    public Item addItem(int itemId , int supplierBN,String name , double price,LocalDate expirationDate) throws Exception {
+    public Item addItem(int itemId , int supplierBN,String name , double price,LocalDate expirationDate, double weight) throws Exception {
         Item item;
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            item = suppliers.get(supplierBN).addItem(supplierBN, itemId , name, price , expirationDate);
+            item = suppliers.get(supplierBN).addItem(supplierBN, itemId , name, price , expirationDate, weight);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -294,12 +295,12 @@ public class SupplierController{
         }
     }
 
-    public Tuple<Order , Boolean> addRegularOrder(int supplierBN , int branchId) throws Exception {
+    public Tuple<Order , Boolean> addRegularOrder(int supplierBN , int branchId, Hashtable<Integer, Integer> items) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         Tuple<Order , Boolean> tuple;
         try {
-            tuple = suppliers.get(supplierBN).addRegularOrder(dalSupplierController.getNumOfOrders(), branchId);
+            tuple = suppliers.get(supplierBN).addRegularOrder(dalSupplierController.getNumOfOrders(), branchId, items);
             dalSupplierController.addNumOfOrders();
         }catch (Exception e){
             throw new Exception(e.getMessage());
@@ -307,15 +308,6 @@ public class SupplierController{
         return tuple;
     }
 
-    public void addConstantOrder(int supplierBN, int branchID , Hashtable<Integer , Integer> items) throws Exception {
-        SupplierCard supplierCard = suppliers.get(supplierBN);
-        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
-        try {
-            suppliers.get(supplierBN).addConstantOrder(dalSupplierController.getNumOfOrders(), branchID , items);
-        }catch (Exception e){
-            throw new Exception(e.getMessage());
-        }
-    }
 
     public Order addNeededOrder(int itemId, int neededAmount, int branchID) throws Exception {
         Order order;

@@ -21,7 +21,7 @@ public final class neededOrder extends Order {
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
-
+        dalOrder.updateTotalWeight(item.getWeight()*amount);
     }
 
     public neededOrder(DalOrder dalOrder) {

@@ -246,7 +246,7 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public Tresponse<Item> addItem(int storeId , int supplierBN, String name , double basePrice , double salePrice , int min , String producer , int category, LocalDate expirationDate) {
+    public Tresponse<Item> addItem(int storeId , int supplierBN, String name , double basePrice , double salePrice , int min , String producer , int category, LocalDate expirationDate, double weight) {
         BusinessLayer.SupplierBusiness.Item item;
         try{
             List<BusinessLayer.SupplierBusiness.SupplierCard> sc=supplierController.showAllSuppliers();
@@ -257,7 +257,7 @@ public class SupplierService implements ISupplierService {
             if(response2.isError()) return new Tresponse<>("ERROR: " + response2.getError());
             Tresponse<Integer> responseData = stockService.getProductTypeId(name);
             if(responseData.isError()) return new Tresponse<>("ERROR: " + responseData.getError());
-            item = supplierController.addItem(responseData.getOutObject() , supplierBN,name , basePrice , expirationDate);
+            item = supplierController.addItem(responseData.getOutObject() , supplierBN,name , basePrice , expirationDate, weight);
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
@@ -296,11 +296,11 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public Tresponse<Order> addRegularOrder(int supplierBN,int branchID) {
+    public Tresponse<Order> addRegularOrder(int supplierBN,int branchID, Hashtable<Integer, Integer> items) {
         BusinessLayer.SupplierBusiness.Order order;
         Tuple<BusinessLayer.SupplierBusiness.Order , Boolean> tuple;
         try {
-            tuple = supplierController.addRegularOrder(supplierBN, branchID);
+            tuple = supplierController.addRegularOrder(supplierBN, branchID, items);
             order = tuple.item1;
             if(tuple.item2){
                 ZoneId zone = ZoneId.systemDefault();
@@ -314,16 +314,6 @@ public class SupplierService implements ISupplierService {
         return new Tresponse<>(new Order(order));
     }
 
-
-    @Override
-    public response addConstantOrder(int supplierBN,int branchID , Hashtable<Integer, Integer> items) {
-        try {
-            supplierController.addConstantOrder(supplierBN, branchID , items);
-        }catch (Exception e){
-            return new response("ERROR: " + e.getMessage());
-        }
-        return new response();
-    }
 
     public Tresponse<NeededReport> getNeededItems(){
         NeededReport report;

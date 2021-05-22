@@ -33,6 +33,7 @@ public class regularOrder extends Order {
         }
         if (item.getQuantityDocument() == null) updateTotalAmount(dalOrder.getTotalAmount() + item.getPrice() * amount);
         else updateTotalAmount(item, amount);
+        updateTotalWeight(item, amount);
     }
 
     public void updateTotalAmount(double totalAmount) {
@@ -52,9 +53,15 @@ public class regularOrder extends Order {
         }
     }
 
+    private void updateTotalWeight(Item item, int amount) throws Exception {
+        dalOrder.updateTotalWeight(dalOrder.getTotalWeight() + item.getWeight() * amount);
+    }
+
     public void removeItemFromRegularOrder(int itemId) throws Exception {
         for (Item item : items.keySet()) {
             if (item.getItemId() == itemId) {
+                dalOrder.updateTotalAmount(dalOrder.getTotalAmount() - items.get(item) * item.getPrice());
+                dalOrder.updateTotalWeight(dalOrder.getTotalWeight() - items.get(item) * item.getWeight());
                 items.remove(item);
                 dalOrder.removeItemFromOrder(itemId);
                 break;

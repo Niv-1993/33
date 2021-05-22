@@ -16,19 +16,21 @@ public class DalItem extends DALObject {
     private String name;
     private double price;
     private String expirationDate;
+    private double weight;
     final static Logger log=Logger.getLogger(DalItem.class);
 
     public DalItem() {
         super(null);
     }
 
-    public DalItem(Integer itemId , Integer supplierBN , String itemName , Double price , String expirationDate , DalController dalController){
+    public DalItem(Integer itemId , Integer supplierBN , String itemName , Double price , String expirationDate , Double weight, DalController dalController){
         super(dalController);
         this.itemId = itemId;
         this.supplierBN = supplierBN;
         this.name = itemName;
         this.price = price;
         this.expirationDate = expirationDate;
+        this.weight = weight;
     }
 
     @Override
@@ -39,6 +41,7 @@ public class DalItem extends DALObject {
                 "\t\"itemName\" VARCHAR NOT NULL,\n" +
                 "\t\"price\" DOUBLE NOT NULL ,\n" +
                 "\t\"expirationDate\" TEXT NOT NULL,\n" +
+                "\t\"weight\" DOUBLE NOT NULL,\n" +
                 "\tPRIMARY KEY(\"itemID\"),\n" +
                 "\tFOREIGN KEY(\"supplierBN\") REFERENCES \"Suppliers\"(\"supplierBN\") ON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";
@@ -66,7 +69,7 @@ public class DalItem extends DALObject {
     @Override
     public String getInsert() {
         return "INSERT OR REPLACE INTO Items\n"+
-                "VALUES (?,?,?,?,?);";
+                "VALUES (?,?,?,?,?,?);";
     }
 
     public int getItemId() {
@@ -86,6 +89,21 @@ public class DalItem extends DALObject {
             log.warn(e);
         }
         return price;
+    }
+
+    public double getWeight() {
+        try {
+            String query = "SELECT weight FROM Items\n" +
+                    "WHERE itemId = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(itemId);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            weight = (Double) tuple.item2.get(0);
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+        return weight;
     }
 
     public String getName() {

@@ -28,6 +28,7 @@ public class Order {
         list.add(new Tuple<>(deliverTime.toString(),String.class));
         list.add(new Tuple<>(branchId,Integer.class));
         list.add(new Tuple<>(orderType,Integer.class));
+        list.add(new Tuple<>(0.0,Double.class));
         Mapper map=Mapper.getMap();
         map.setItem(DalOrder.class,list);
         List<Integer> keyList=new ArrayList<>();
@@ -54,8 +55,9 @@ public class Order {
         items = new Hashtable<>();
         List<Tuple<List<Class>,List<Object>>> list1 = dalOrder.loadItems();
         if (list1.size() > 0) {
-            for (int i = 0; i < list1.get(0).item2.size(); i = i + 6) {
+            for (int i = 1; i < list1.get(0).item2.size(); i = i + 4) {
                 int key = (int) list1.get(0).item2.get(i);
+                int amount =(int) list1.get(0).item2.get(i+1);
                 Mapper map = Mapper.getMap();
                 List<Integer> keyList = new ArrayList<>();
                 keyList.add(key);
@@ -67,7 +69,7 @@ public class Order {
                 } else {
                     log.info("loaded new Object");
                     Item item = new Item((DalItem) check);
-                    items.put(item, 0);
+                    items.put(item, amount);
                 }
             }
         }

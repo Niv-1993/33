@@ -16,7 +16,6 @@ public class SupplierCard {
     private List<Order> orders;
     private List<Item> items;
     private SupplierAgreement supplierAgreement;
-    private regularOrder constantOrder;
     private DalSupplierCard dalSupplierCard;
     final static Logger log=Logger.getLogger(SupplierCard.class);
 
@@ -41,7 +40,6 @@ public class SupplierCard {
         }
         items = new LinkedList<>();
         orders = new LinkedList<>();
-        constantOrder = null;
         dalSupplierCard.updateSupplierBankAccount(bankNumber, branchNumber, accountNumber);
     }
 
@@ -78,7 +76,7 @@ public class SupplierCard {
         orders = new LinkedList<>();
         List<Tuple<List<Class>,List<Object>>> list1 = dalSupplierCard.loadOrders();
         if (list1.size() > 0) {
-            for (int i = 0; i < list1.get(0).item2.size(); i = i + 7) {
+            for (int i = 0; i < list1.get(0).item2.size(); i = i + 8) {
                 int key = (int) list1.get(0).item2.get(i);
                 Mapper map = Mapper.getMap();
                 List<Integer> keyList = new ArrayList<>();
@@ -254,10 +252,10 @@ public class SupplierCard {
         throw new Exception("itemId does net exist for this supplier");
     }
 
-    public Item addItem(int supplierBN, int ItemId , String name , double price , LocalDate expirationDate) throws Exception {
+    public Item addItem(int supplierBN, int ItemId , String name , double price , LocalDate expirationDate, double weight) throws Exception {
         if(price < 0) throw new Exception("price must be a positive number!");
         if(expirationDate.isBefore(LocalDate.now())) throw new IllegalAccessException("expiration date must be in the future");
-        Item newItem = new BusinessLayer.SupplierBusiness.Item(supplierBN, ItemId , name , price , expirationDate);
+        Item newItem = new BusinessLayer.SupplierBusiness.Item(supplierBN, ItemId , name , price , expirationDate, weight);
         items.add(newItem);
         return newItem;
     }
@@ -313,31 +311,19 @@ public class SupplierCard {
         }
     }
 
-    public Tuple<Order , Boolean> addRegularOrder(int orderId , int branchId){
+    public Tuple<Order , Boolean> addRegularOrder(int orderId , int branchId, Hashtable<Integer, Integer> items) throws Exception {
         regularOrder order;
         boolean isCons = false;
-        if(constantOrder == null) order = new regularOrder(dalSupplierCard.getSupplierBN(), orderId , branchId);
-        else order = constantOrder;
-        if(branchId != order.getBranchID()){
-            order.updateBranchId(branchId);
-            isCons = true;
-        }
+        order = new regularOrder(dalSupplierCard.getSupplierBN(), orderId , branchId);
         orders.add(order);
-        return new Tuple<>(order , isCons);
-    }
-
-    public void addConstantOrder(int orderID, int branchID , Hashtable<Integer , Integer> items) throws Exception {
-        // check if it's veiled branchId.
-        if(constantOrder == null) constantOrder = new regularOrder(dalSupplierCard.getSupplierBN(), orderID , branchID);
-        for(Item item : this.items){
-            if(items.keySet().contains(item.getItemId())) {
-                try {
-                    constantOrder.addItemToOrder(item , items.get(item.getItemId()));
-                }catch (Exception e) {
-                    throw new Exception(e);
-                }
+        try {
+            for (Integer itemID : items.keySet()) {
+                addItemToOrder(orderId, itemID, items.get(itemID));
             }
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
         }
+        return new Tuple<>(order , isCons);
     }
 
     public Order addNeededOrder(int orderID, int branchID, Item item, int amount) throws Exception {
@@ -404,14 +390,11 @@ public class SupplierCard {
     }
 
     public Order showOrderOfSupplier(int orderId) throws Exception {
-        if(constantOrder != null && constantOrder.getOrderId() == orderId) return constantOrder;
-        else {
-            for (Order o : orders) {
-                if (o.getOrderId() == orderId)
-                    return o;
-            }
-            throw new Exception("orderId does not exist.");
+        for (Order o : orders) {
+            if (o.getOrderId() == orderId)
+                return o;
         }
+        throw new Exception("orderId does not exist.");
     }
 
     public List<Order> showAllOrdersOfSupplier() {
