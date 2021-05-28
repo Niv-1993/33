@@ -2,9 +2,7 @@ package DataAccess;
 
 import Business.Transportation.Address;
 import Business.Transportation.Branch;
-import Business.Transportation.ShippingArea;
 import Business.Type.Area;
-
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -63,9 +61,28 @@ public class BranchMapper extends Mapper{
                branches.put(id,branch);
             }
         } catch (SQLException e) {
-            throw new IOException("failed to get all branches from database");
+            throw new IOException("failed to get branch from database");
         }
         return branch;
+    }
+    private String getBranchString(int id) throws  Exception{
+        Branch branch= null;
+        String sql = "SELECT * FROM Branches WHERE BID="+ id ;
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            if (rs.next()) {
+                Address add=new Address(rs.getInt("Number"),rs.getString("Street"),rs.getString("City"));
+                ShippingArea are=new ShippingArea(Area.valueOf(rs.getString("Area")));
+                branch = new Branch(rs.getString("Phone"),rs.getString("ContactName"),rs.getInt("BID"),add,are);
+                branches.put(id,branch);
+            }
+        } catch (SQLException e) {
+            throw new IOException("failed to get branch from database");
+        }
+        if(branch!=null)
+            return branch.toString();
+        return "";
     }
 
     public List<Branch> getBranches() throws Exception {
@@ -84,6 +101,7 @@ public class BranchMapper extends Mapper{
             throw new IllegalArgumentException("branch with id: " + id +"does not exist");
         }
     }
+
     public int insertNewBranch(String street, String city, int number, int enter, String area, String cn, String phone) {
         String getNextBID = "SELECT max(BID)+1 AS mx FROM Branches";
         String addBranch = "INSERT INTO Branches VALUES(?,?,?,?,?,?,?,?)";

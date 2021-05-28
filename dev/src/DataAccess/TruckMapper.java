@@ -36,11 +36,24 @@ public class TruckMapper extends Mapper{
                trucks.put(rs.getLong("ID"),tr);
             }
         } catch (SQLException e) {
-            throw new IOException("failed to get all branches from database");
+            throw new IOException("failed to get all trucks from database");
         }
         return new ArrayList<>(trucks.values());
     }
-
+    public List< Truck> getTrucksByWeight(int weight) throws Exception {
+        String sql = "SELECT * FROM Trucks WHERE MaxWeight>="+weight+ "ORDER BY License ASC";
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement()){
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                Truck tr=new Truck(rs.getLong("ID"),rs.getInt("License"),rs.getInt("MaxWeight"),rs.getInt("NetWeight"),rs.getString("Model"));
+                trucks.put(rs.getLong("ID"),tr);
+            }
+        } catch (SQLException e) {
+            throw new IOException("failed to get all trucks from database");
+        }
+        return new ArrayList<>(trucks.values());
+    }
     private Truck select(long id) throws  Exception {
 
             String sql = "SELECT * FROM Trucks WHERE ID=" + id;
@@ -52,7 +65,7 @@ public class TruckMapper extends Mapper{
                     return new Truck(rs.getLong("ID"),rs.getInt("License"),rs.getInt("MaxWeight"),rs.getInt("NetWeight"),rs.getString("Model"));
                 }
             } catch (SQLException e) {
-                throw new IOException("failed to get all branches from database");
+                throw new IOException("failed to get all trucks from database");
             }
             return null;
     }

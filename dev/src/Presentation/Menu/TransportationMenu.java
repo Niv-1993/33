@@ -40,9 +40,6 @@ public class TransportationMenu extends Menu{
      *The starting choice of the user if to keep run the system or shut it off.
      */
     public void chooseOption(){
-//        System.out.println("\n*************************************************");
-//        System.out.println("******************* Transportation Menu *******************");
-//        System.out.println("*************************************************\n");
         System.out.print("1) See all Transportations.\n2) Create a new Business.Transportation.\nOption: ");
         option = chooseOp(numOfOptions);
         System.out.println();
@@ -81,9 +78,7 @@ public class TransportationMenu extends Menu{
                 transportationController.setTransportationLeavingTime(tran);
                 success = true;
             }
-            catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            catch (Exception e) { }
         }
     }
 
@@ -103,9 +98,7 @@ public class TransportationMenu extends Menu{
                 transportationController.setTransportationDate(tran);
                 success = true;
             }
-            catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            catch (Exception e) { }
         }
     }
 

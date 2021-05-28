@@ -1,8 +1,10 @@
 package Business.Transportation;
 
-import DataAccess.*;
-import Business.Type.Pair;
 import Business.Employees.EmployeePKG.Driver;
+import Business.Type.Area;
+import Business.Type.Pair;
+import DataAccess.*;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -40,6 +42,9 @@ public class DataControl {
     }
     public List<Truck> getTrucks() throws Exception {
         return truckMapper.getTrucks();
+    }
+    public List<Truck> getTrucksByWeight(int weight) throws Exception {
+        return truckMapper.getTrucksByWeight(weight);
     }
 
     public List< Transportation> getTransportations() throws Exception {
@@ -126,5 +131,13 @@ public class DataControl {
     public void addBranchesItemsTrans(long branid,long tranid, long itemid,int quantity){transportationMapper.saveBranchItemOnTrans(branid,tranid,itemid,quantity);}
     public void addTransportation(int i, String center, String s, String s1, int i1, int i2, int i3) {
         transportationMapper.addTransportation( i,  center,  s,  s1,  i1,  i2,  i3);
+    }
+
+    public List<Transportation> getTransportationsByArea(Area area) {
+       return transportationMapper.getTransportationsByArea(driverMapper,truckMapper,area);
+    }
+
+    public void updateTransWeight(long id, int weight,Order order) {
+        transportationMapper.updateTransWeight(id,weight,order);
     }
 }

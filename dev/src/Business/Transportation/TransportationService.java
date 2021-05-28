@@ -1,4 +1,6 @@
 package Business.Transportation;
+import Business.ApplicationFacade.DriverRoleController;
+import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.Type.Area;
 import Business.Employees.EmployeePKG.Driver;
 import Business.Type.Pair;
@@ -7,17 +9,20 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 
 public class TransportationService {
 
     private final DataControl dataControl;
     private long idCounter = 0;
+    private final DriverRoleController drivers;
 
-    public TransportationService() {
+    public TransportationService(iManagerRoleController mc) {
 
         dataControl=new DataControl();
         idCounter=getId();
+        drivers = new DriverRoleController(mc);
     }
 
     private long getId() {
@@ -35,19 +40,6 @@ public class TransportationService {
         t.setDriver(driver);
     }
 
-    /**
-     * Adding the suppliers and their products for a specific transportation.
-     * Does a check with the delivery item field for same data
-     * @param transId: the transportation id to add to.
-     * @param s: the suppliers and their products to add.
-     */
-    public void setSuppliersItem(long transId, HashMap<Supplier, List<Pair<Item, Integer>>> s) throws Exception {
-        Transportation t = getTransportationById(transId);
-        List< List<Pair<Item, Integer>>> pairs= new ArrayList<>(s.values());
-        checkQuantity(pairs);
-        t.setSuppliers(s);
-        dataControl.setSuppliersItems(transId,s);
-    }
 
     /**
      * Adding truck to a specific transportation.
@@ -158,7 +150,7 @@ public class TransportationService {
      */
     public void setArea(long id, Area area) throws Exception {
 
-        getTransportationById(id).setShippingArea(new ShippingArea(area));
+        getTransportationById(id).setShippingArea(area);
     }
 
     /**
@@ -173,4 +165,38 @@ public class TransportationService {
         idCounter--;
         dataControl.remove(idCounter);
     }
+    private Branch getBranchById(int id) throws Exception {
+       return dataControl.getBranch(id);
+    }
+
+    public long addOrderToTransportation(Order order) throws Exception {
+
+        Branch bran=getBranchById(order.getBranchID());
+        List<Transportation> trans= dataControl.getTransportationsByArea(bran.getArea());
+        for (Transportation tran: trans) {
+            if(tran.canAdd(order)){
+                dataControl.updateTransWeight(tran.getId(), order.getWeight(),order);
+                return tran.getId();
+            }
+        }
+        LocalDate days=(order.getOrderType()==0)?LocalDate.now().plusDays(7): LocalDate.now().plusDays(2);
+        LocalTime noon=LocalTime.parse("15:00");
+        LocalTime morning=LocalTime.parse("09:00");
+        List<Truck> trucks= dataControl.getTrucksByWeight(order.getWeight());
+        Truck chooseTruck=null;
+        if(trucks.isEmpty()) throw new NoSuchElementException("No truck compatible for this order's weight. ");
+        chooseTruck=trucks.get(0);
+        for(LocalDate i=LocalDate.now() ;i.compareTo(days)<=0;i=LocalDate.now().plusDays(1)) {
+            if(!drivers.checkAvailableStoreKeeperAndShifts(bran.getId(), i,morning)|drivers.checkAvailableDriverAndShifts(bran.getId(), i,morning)) {
+                if (drivers.checkAvailableStoreKeeperAndShifts(bran.getId(), i, noon)|drivers.checkAvailableDriverAndShifts(bran.getId(), i,morning)) {
+                        //when there are driver and storeKeeper for noon
+                        drivers.chooseDriver(i,)
+                }
+            }
+            else{
+                //when there are driver and storeKeeper for morning
+            }
+        }
+    }
+
 }

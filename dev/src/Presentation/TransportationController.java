@@ -94,6 +94,7 @@ public class TransportationController {
         }
         return res.getData();
     }
+
     public List<ItemServiceDTO> getAllItems(){
         ResponseData<List<ItemServiceDTO>> res = serviceControl.getAllDTOItems();
         if(res.isError()) {
@@ -117,6 +118,7 @@ public class TransportationController {
         }
         return res.getData();
     }
+
     public List<TransportationServiceDTO> getAllTransportations(){
 
         ResponseData<List<TransportationServiceDTO>> res = serviceControl.getDTOTransportations();
@@ -125,6 +127,7 @@ public class TransportationController {
         }
         return res.getData();
     }
+
     public List<TruckServiceDTO> getAllTrucks(){
         ResponseData<List<TruckServiceDTO>> res = serviceControl.getDTOTrucks();
         if(res.isError()) {

@@ -1,12 +1,11 @@
 package Business.Transportation;
 import Business.Employees.EmployeePKG.Driver;
-import Business.Type.Pair;
+import Business.Type.Area;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 
@@ -16,10 +15,9 @@ public class Transportation {
     private LocalTime leavingTime;
     private Driver driver;
     private Truck truck;
-    private HashMap<Branch, List<Pair<Item, Integer>>> deliveryItems;
     private int weight;
-    private ShippingArea shippingArea;
-    private HashMap<Supplier, List<Pair<Item, Integer>>> suppliers;
+    private Area shippingArea;
+    private HashMap <Integer,Order> orders;
 
     public Transportation(long id) {
         this.id = id;
@@ -27,21 +25,19 @@ public class Transportation {
         leavingTime = null;
         driver = null;
         truck = null;
-        deliveryItems = null;
-        suppliers = null;
         weight = -1;
         shippingArea = null;
+        orders=new HashMap<>();
     }
 
-    public Transportation(long id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, int weight, HashMap<Branch, List<Pair<Item, Integer>>> deliveryItems, HashMap<Supplier, List<Pair<Item, Integer>>> suppliers) {
+    public Transportation(long id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, int weight, HashMap<Integer, Order> orderS) {
         this.date = date;
-        this.deliveryItems = deliveryItems;
         this.id = id;
         this.driver = driver;
         this.truck = truck;
         this.weight = weight;
         this.leavingTime = leavingTime;
-        this.suppliers = suppliers;
+        orders=orderS;
     }
 
 
@@ -56,36 +52,8 @@ public class Transportation {
         }
         this.date = date;
     }
+    public void setShippingArea(Area shippingArea) {
 
-    /**
-     * Set the delivery items with branches.
-     * Checks that all areas of branches are the same, otherwise throws an exception.
-     * @param deliveryItems: the items and branched hashmap.
-     */
-    public void setDeliveryItems(HashMap<Branch, List<Pair<Item, Integer>>> deliveryItems) {
-        List<Branch> b = new ArrayList<>(deliveryItems.keySet());
-        checkArea(b);
-        this.deliveryItems = deliveryItems;
-    }
-
-    public void setSuppliers(HashMap<Supplier, List<Pair<Item, Integer>>> suppliers) {
-        this.suppliers = suppliers;
-    }
-
-    private void checkArea(List<? extends Site> sites) {
-        List<Site> noSameArea = new ArrayList<>();
-        boolean exp = false;
-        for(Site site: sites){
-            if(!site.getShippingArea().equals(shippingArea)){
-                noSameArea.add(site);
-                exp = true;
-            }
-        }
-        if(exp){
-            throw new IllegalArgumentException("the site: " +noSameArea.toString() + "not in " + shippingArea .toString());
-        }
-    }
-    public void setShippingArea(ShippingArea shippingArea) {
         this.shippingArea = shippingArea;
     }
 
@@ -141,16 +109,12 @@ public class Transportation {
 
 
     public void setTruck(Truck truck) { this.truck = truck; }
-    public HashMap<Branch, List<Pair<Item,Integer>>> getDeliveryItems() { return deliveryItems; }
     public int getWeight() { return weight; }
     public Truck getTruck() { return truck; }
     public long getId() {
         return id;
     }
-    public HashMap<Supplier, List<Pair<Item, Integer>>> getSuppliers() {
-        return suppliers;
-    }
-    public ShippingArea getShippingArea() {
+    public Area getArea() {
         return shippingArea;
     }
     public LocalDate getDate() {
@@ -171,7 +135,7 @@ public class Transportation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Transportation that = (Transportation) o;
-        return id == that.id && weight == that.weight && Objects.equals(date, that.date) && Objects.equals(leavingTime, that.leavingTime) && Objects.equals(driver, that.driver) && Objects.equals(truck, that.truck) && Objects.equals(deliveryItems, that.deliveryItems) && Objects.equals(suppliers, that.suppliers);
+        return id == that.id && weight == that.weight && Objects.equals(date, that.date) && Objects.equals(leavingTime, that.leavingTime) && Objects.equals(driver, that.driver) && Objects.equals(truck, that.truck) ;
     }
 
     @Override
@@ -180,13 +144,9 @@ public class Transportation {
                 "id=" + id + '\n' +
                 ", date=" + date + '\n' +
                 ", leavingTime=" + leavingTime + '\n' +
-                ", driver=" + driver + '\n' +
-                ", deliveryItems=" + deliveryItems + '\n';
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, date, leavingTime, driver, deliveryItems);
+                ", driver=" + driver + '\n'
+                //TODO: keep implement of orders.
+                ;
     }
 
     /**
@@ -194,7 +154,18 @@ public class Transportation {
      * @return : if the trans is completed.
      */
     public boolean isComplete() {
+        //TODO: add orders to method.
+        return !(date == null | leavingTime == null|driver == null| truck == null|shippingArea == null|weight == -1);
+    }
+    public boolean canAdd(Order order){
+        if(weight+order.getWeight()<=truck.getMaxWeight()){
+            orders.put(order.getOrderId(), order);
+            weight+=order.getWeight();
+            return true;
+        }
+        return false;
+    }
 
-        return !(date == null | leavingTime == null|driver == null| truck == null|deliveryItems == null|shippingArea == null|weight == -1|suppliers == null);
+    public  Map<Integer,Order> getOrders() {return  orders;
     }
 }

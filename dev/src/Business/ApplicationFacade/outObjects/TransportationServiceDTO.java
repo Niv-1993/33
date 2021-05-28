@@ -56,7 +56,8 @@ public class TransportationServiceDTO {
             output+="\n\tDeliveryItems : ";
         else
             output+=   "\n\tDeliveryItems : " + deliveryItems  ;
-        output+=   "\n\tweight : " + weight + "\n\n";
+        output+=   "\n\tweight : " + weight +"\n\n";
+
 
         return output;
 

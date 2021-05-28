@@ -28,7 +28,7 @@ public class ServiceFaced {
     public ServiceFaced(iManagerRoleController mc)  {
         truckService = new TruckService();
         siteService = new SiteService();
-        transportationService = new TransportationService();
+        transportationService = new TransportationService(mc);
         itemService = new ItemService();
         dataControl=new DataControl();
         drivers = new DriverRoleController(mc);
@@ -298,7 +298,7 @@ public class ServiceFaced {
     private BranchServiceDTO toBranchServiceDTO(Branch b){
         if(b==null)
             return null;
-        return new BranchServiceDTO(b.getPhone(),b.getContactName(),b.getId(),b.getShippingArea().getArea().toString());
+        return new BranchServiceDTO(b.getPhone(),b.getContactName(),b.getId(),b.getArea().toString());
     }
     private Pair<ItemServiceDTO,Integer> toItemPairServiceDTO(Pair<Item,Integer> i){
         if(i==null)
@@ -313,7 +313,7 @@ public class ServiceFaced {
     private SupplierServiceDTO toSupplierServiceDTO(Supplier s){
         if(s==null)
             return null;
-        return new SupplierServiceDTO(s.getPhone(),s.getContactName(),s.getId(),s.getShippingArea().getArea().toString());
+        return new SupplierServiceDTO(s.getPhone(),s.getContactName(),s.getId(),s.getArea().toString());
     }
     private TruckServiceDTO toTruckServiceDTO(Truck t){
         if(t==null)
@@ -322,40 +322,15 @@ public class ServiceFaced {
     }
     private TransportationServiceDTO toTransportationServiceDTO(Transportation t){
         List<Pair<Item,Integer>> i;
-        HashMap<Supplier, List<Pair<Item, Integer>>> suppliers = t.getSuppliers();
-        HashMap<SupplierServiceDTO, List<Pair<ItemServiceDTO, Integer>>> newSup =null;
-        if(t.getSuppliers()!=null) {
-            newSup= new HashMap<>();
-            for (Map.Entry<Supplier, List<Pair<Item, Integer>>> entry : suppliers.entrySet()) {
-                i = entry.getValue();
-                List<Pair<ItemServiceDTO, Integer>> iDTO = new LinkedList<>();
-                for (Pair<Item, Integer> it : i) {
-                    iDTO.add(toItemPairServiceDTO(it));
-                }
-                newSup.put(toSupplierServiceDTO(entry.getKey()), iDTO);
-            }
-        }
-        HashMap<Branch, List<Pair<Item, Integer>>> items = t.getDeliveryItems();
-        HashMap<BranchServiceDTO, List<Pair<ItemServiceDTO, Integer>>> newItems=null;
-        if(t.getDeliveryItems()!=null) {
-            newItems=new HashMap<>();
-            for (Map.Entry<Branch, List<Pair<Item, Integer>>> entry : items.entrySet()) {
-                i = entry.getValue();
-                List<Pair<ItemServiceDTO, Integer>> iDTO = new LinkedList<>();
-                for (Pair<Item, Integer> it : i) {
-                    iDTO.add(toItemPairServiceDTO(it));
-                }
-                newItems.put(toBranchServiceDTO(entry.getKey()), iDTO);
-            }
-        }
+        //TODO:implement
         return new TransportationServiceDTO(t.getId(),t.getDate(),t.getLeavingTime(),toDriverServiceDTO(t.getDriver()),toTruckServiceDTO(t.getTruck()),t.getWeight(),newItems,newSup,toArea( t.getShippingArea()));
     }
 
 
-    private Area toArea(ShippingArea shippingArea) {
+    private Area toArea(Area shippingArea) {
         if(shippingArea==null)
             return null;
-        return shippingArea.getArea();
+        return shippingArea;
     }
 
     /**
@@ -372,13 +347,6 @@ public class ServiceFaced {
         }
 
     }
-    public ResponseData<TransportationServiceDTO> getTransportation(long id) {
-        try {
-            return new ResponseData<>(toTransportationServiceDTO(transportationService.getTransportationById(id)));
-        }catch (Exception e) {
-            return new ResponseData<>(e.getMessage());
-        }
-    }
 
     public void deleteTrans() {
         transportationService.deleteTransport();
@@ -389,8 +357,15 @@ public class ServiceFaced {
     public void addSuppliersItemsTrans(long supId, long tranId, long itemId, int quantity){dataControl.addSuppliersItemsTrans(supId,tranId,itemId,quantity);}
     public void addBranchesItemsTrans(long branId, long tranId, long itemId, int quantity){dataControl.addBranchesItemsTrans(branId,tranId,itemId,quantity);}
     public void addSupplierItems(long id, long supp){dataControl.addSupplierItems(id,supp);}
-    public void addTransportation(int i, String center, String s, String s1, int i1, int i2, int i3) {
+    public void addTransportation(int i, String center, String s, String s1, int i1, int i2, int i3) { dataControl.addTransportation(i,center,s,s1,i1,i2,i3); }
 
-        dataControl.addTransportation(i,center,s,s1,i1,i2,i3);
+    public ResponseData<TransportationServiceDTO> getTransportation(long id) {
+
+        try {
+            return new ResponseData<>(toTransportationServiceDTO(dataControl.getTransportation(id)));
+        }
+        catch (Exception e){
+            return new ResponseData<>(e.getMessage());
+        }
     }
 }

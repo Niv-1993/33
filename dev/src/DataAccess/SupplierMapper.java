@@ -2,7 +2,6 @@ package DataAccess;
 
 
 import Business.Transportation.Address;
-import Business.Transportation.ShippingArea;
 import Business.Transportation.Supplier;
 import Business.Type.Area;
 import java.io.IOException;

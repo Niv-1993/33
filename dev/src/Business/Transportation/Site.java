@@ -1,6 +1,8 @@
 package Business.Transportation;
 //yuval
 
+import Business.Type.Area;
+
 import java.util.Objects;
 
 public abstract class Site {
@@ -9,10 +11,10 @@ public abstract class Site {
     protected String contactName;
     protected int id;
     protected Address address;
-    protected ShippingArea shippingArea;
+    protected Area shippingArea;
 
 
-    public Site(String phone, String contactName, int id, Address address, ShippingArea shippingArea){
+    public Site(String phone, String contactName, int id, Address address, Area shippingArea){
         this.phone = phone;
         this.contactName = contactName;
         this.id = id;
@@ -20,13 +22,13 @@ public abstract class Site {
         this.shippingArea = shippingArea;
     }
     public void setId(int newId){id = newId; }
-    public void setShippingArea(ShippingArea newShippingArea){shippingArea = newShippingArea; }
+    public void setArea(Area newShippingArea){shippingArea = newShippingArea; }
 
     public String getPhone(){return phone;}
     public String getContactName(){return contactName;}
     public int getId(){return id;}
     public Address getAddress(){return address;}
-    public ShippingArea getShippingArea(){return shippingArea;}
+    public Area getArea(){return shippingArea;}
 
     @Override
     public String toString() {

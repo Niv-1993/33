@@ -1,14 +1,18 @@
 package DataAccess;
 
 import Business.Employees.EmployeePKG.Driver;
-import Business.Transportation.*;
-import Business.Type.Pair;
+import Business.Transportation.Order;
+import Business.Transportation.Transportation;
+import Business.Transportation.Truck;
+import Business.Type.Area;
 
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class TransportationMapper extends Mapper{
 
@@ -26,7 +30,8 @@ public class TransportationMapper extends Mapper{
         transportations=new HashMap<>();
     }
 
-    private List< Transportation> selectAll(TruckMapper tru,ItemMapper item,SupplierMapper supplierMapper,BranchMapper branchMapper,DriverMapper driverMapper) throws Exception {
+    private List< Transportation> selectAll(TruckMapper tru,ItemMapper item,DriverMapper driverMapper) throws Exception {
+        //TODO:implement with kfir orders
         String sql = "SELECT * FROM Transportations ";
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
@@ -36,13 +41,11 @@ public class TransportationMapper extends Mapper{
                 Driver tempD= driverMapper.select(rs.getInt("driverID"));
                 Truck tempT= tru.getTruck(rs.getLong("truckID"));
                 Long tID=rs.getLong("ID");
-                HashMap<Supplier,List<Pair<Item,Integer>>> supplierListMap= getSuppliersItems(tID,item,supplierMapper);
-                HashMap<Branch,List<Pair<Item,Integer>>> branchesListMap=getBranchesItems(tID,item,branchMapper);
                 LocalDate date=LocalDate.parse( rs.getString("Date"));
                 LocalTime time=LocalTime.parse(rs.getString("LeavingTime"));
                 int weight=rs.getInt("Weight");
-                transportations.put( tID,new Transportation(tID,date,time,
-                        tempD,tempT,weight,branchesListMap,supplierListMap));
+                //TODO:add the orders hashmap.
+                transportations.put( tID,new Transportation(tID,date,time, tempD,tempT,weight));
 
             }
         } catch (SQLException e) {
@@ -52,7 +55,7 @@ public class TransportationMapper extends Mapper{
     }
 
     private Transportation select(long id,TruckMapper tru,ItemMapper item,SupplierMapper supplierMapper,BranchMapper branchMapper,DriverMapper driverMapper) throws Exception{
-
+    //TODO:implement with kfir orders
         String sql = "SELECT * FROM Transactions WHERE ID="+ id ;
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
@@ -62,61 +65,13 @@ public class TransportationMapper extends Mapper{
                 Driver tempD= driverMapper.select(rs.getInt("driverID"));
                 Truck tempT= tru.getTruck(rs.getInt("truckID"));
                 Long tID=rs.getLong("ID");
-                HashMap<Supplier,List<Pair<Item,Integer>>> supplierListMap= getSuppliersItems(tID,item,supplierMapper);
-                HashMap<Branch,List<Pair<Item,Integer>>> branchesListMap=getBranchesItems(tID,item,branchMapper);
-                return new Transportation(tID,rs.getDate("Date").toLocalDate(),rs.getTime("LeavingTime").toLocalTime(),
-                        tempD,tempT,rs.getInt("Weight"),branchesListMap,supplierListMap);
+               return new Transportation(tID,rs.getDate("Date").toLocalDate(),rs.getTime("LeavingTime").toLocalTime(),
+                        tempD,tempT,rs.getInt("Weight"));
             }
         } catch (SQLException e) {
             throw new IOException("failed to get all branches from database");
         }
         return null;
-    }
-
-    public HashMap<Supplier,List<Pair<Item,Integer>>> getSuppliersItems(long id,ItemMapper itemMapper,SupplierMapper supplierMapper) throws  Exception{
-
-        String sql = "SELECT SupID,ItemID,Quantity FROM SupplierItemsOnTran WHERE TranID="+ id ;
-        try (Connection conn = connect();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs    = stmt.executeQuery(sql)){
-            HashMap<Supplier,List<Pair<Item,Integer>>> ret =new HashMap<>();
-            while (rs.next()) {
-                int suplier= rs.getInt("SupID");
-                long item =rs.getInt("ItemID");
-                int quantity= rs.getInt("Quantity");
-                Supplier sup= supplierMapper.getSupplier(suplier);
-                if (!ret.containsKey(sup)) {
-                    ret.put(sup, new LinkedList<>());
-                }
-                ret.get(sup).add(new Pair<>(itemMapper.getItem(item),quantity ));
-            }
-            return ret;
-        } catch (SQLException e) {
-            throw new IOException("failed to get all branches from database");
-        }
-    }
-    public HashMap<Branch,List<Pair<Item,Integer>>> getBranchesItems(long id,ItemMapper itemMapper,BranchMapper branchMapper) throws  Exception{
-
-        String sql = "SELECT BranID,ItemID,Quantity FROM BranchesItemsOnTran WHERE TranID="+ id ;
-        try (Connection conn = connect();
-             Statement stmt  = conn.createStatement();
-             ResultSet rs    = stmt.executeQuery(sql)){
-            HashMap<Branch,List<Pair<Item,Integer>>> ret =new HashMap<>();
-            while (rs.next()) {
-                int branch= rs.getInt("BranID");
-                long item =rs.getInt("ItemID");
-                int quantity= rs.getInt("Quantity");
-                Branch bra=branchMapper.getBranch(branch);
-                if (!ret.containsKey(bra)) {
-                    ret.put(bra, new LinkedList<>());
-                }
-                ret.get(bra).add(new Pair<>(itemMapper.getItem(item),quantity ));
-            }
-            return ret;
-        } catch (SQLException e) {
-            throw new IOException("failed to get all branches to transportations from database");
-        }
-
     }
 
 
@@ -143,48 +98,11 @@ public class TransportationMapper extends Mapper{
         transportations.put(idCounter,tra);
     }
     public void saveTransportation(long id) throws Exception {
+        //TODO:keep implement save orders.
         Transportation tra=transportations.get(id);
-        insert(id,tra.getShippingArea().getArea().toString(),tra.getDate().toString(),tra.getLeavingTime().toString(),tra.getWeight(),tra.getDriver().getEID(),tra.getTruck().getId());
-        for(Map.Entry<Supplier, List<Pair<Item, Integer>>> set : tra.getSuppliers().entrySet()) {
-            for (Pair<Item, Integer> pai : set.getValue()) {
-               saveSupplierItemOnTrans(set.getKey().getId(),id,pai.getFir().getId(), pai.getSec());
-            }
-        }
-        for(Map.Entry<Branch, List<Pair<Item, Integer>>> set : tra.getDeliveryItems().entrySet()) {
-            for (Pair<Item, Integer> pai : set.getValue()) {
-                saveBranchItemOnTrans(set.getKey().getId(),id,pai.getFir().getId(), pai.getSec());
-            }
-        }
-    }
+        insert(id,tra.getArea().toString(),tra.getDate().toString(),tra.getLeavingTime().toString(),tra.getWeight(),tra.getDriver().getEID(),tra.getTruck().getId());
 
-    public void saveSupplierItemOnTrans(long supid,long tranid, long itemid,int quantity){
-        String query = "INSERT INTO SupplierItemsOnTran (SupID,TranID,ItemID,Quantity) VALUES(?,?,?,?)";
-        try (Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setLong(1,supid );
-            pstmt.setLong(2,tranid );
-            pstmt.setLong(3,itemid );
-            pstmt.setLong(4,quantity );
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }}
-    public void saveBranchItemOnTrans(long branid,long tranid, long itemid,int quantity){
-        String query = "INSERT INTO BranchesItemsOnTran (BranID,TranID,ItemID,Quantity) VALUES(?,?,?,?)";
-        try (Connection conn = this.connect();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setLong(1,branid );
-            pstmt.setLong(2,tranid );
-            pstmt.setLong(3,itemid );
-            pstmt.setLong(4,quantity );
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }}
+    }
 
     public Transportation getTransportation(long id, TruckMapper truckMapper, ItemMapper itemMapper, SupplierMapper supplierMapper, BranchMapper branchMapper,DriverMapper driverMapper) throws Exception {
 
@@ -199,8 +117,10 @@ public class TransportationMapper extends Mapper{
         }
     }
 
-    public List<Transportation> getTransportations(TruckMapper truckMapper, ItemMapper itemMapper, SupplierMapper supplierMapper, BranchMapper branchMapper,DriverMapper driverMapper) throws Exception {
-        return selectAll(truckMapper,itemMapper,supplierMapper,branchMapper, driverMapper);
+    public List<Transportation> getTransportations(TruckMapper truckMapper, ItemMapper itemMapper,DriverMapper driverMapper) throws Exception {
+        return selectAll(truckMapper,itemMapper, driverMapper);
+    //TODO:implemet after get suppliers from kfir.
+
     }
 
     public void remove(long idCounter) {
@@ -212,13 +132,6 @@ public class TransportationMapper extends Mapper{
     }
     public void setTruckOnTrans(long transId, Truck truck) {
         transportations.get(transId).setTruck(truck);
-    }
-
-    public void setDeliveryItems(long transId, HashMap<Branch, List<Pair<Item, Integer>>> deliveryItems) {
-        transportations.get(transId).setDeliveryItems(deliveryItems);
-    }
-    public void setSuppliersItems(long transId, HashMap<Supplier, List<Pair<Item, Integer>>> deliveryItems) {
-        transportations.get(transId).setSuppliers(deliveryItems);
     }
 
     public void setTime(long id, LocalTime leavingTime) {
@@ -269,5 +182,45 @@ public class TransportationMapper extends Mapper{
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public  List<Transportation> getTransportationsByArea( DriverMapper driverMapper, TruckMapper truckMapper,Area area) {
+       return getTransportationsByArea(truckMapper,driverMapper, area);
+    }
+
+    private List<Transportation> getTransportationsByArea(TruckMapper truckMapper,  DriverMapper driverMapper, Area area) {
+        String sql = "SELECT * FROM Transactions WHERE Area="+ area  ;
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            // loop through the result set
+            while (rs.next()) {
+                Driver tempD= driverMapper.select(rs.getInt("driverID"));
+                Truck tempT= truckMapper.getTruck(rs.getInt("truckID"));
+                Long tID=rs.getLong("ID");
+                //TODO: implement creating new transportation.
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void updateTransWeight(long id, int weight,Order order) {
+        String sql = "UPDATE Transportations " +
+                "SET Weight="+weight
+                +"Where ID="+id;
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        Transportation tra=transportations.get(id);
+        tra.setWeight(weight);
+        tra.getOrders().put(order.getOrderId(),order);
+        transportations.replace(id,tra);
     }
 }
