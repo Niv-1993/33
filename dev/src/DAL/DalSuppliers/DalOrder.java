@@ -19,13 +19,15 @@ public class DalOrder extends DALObject {
     private int branchId;
     private int orderType;
     private double totalWeight;
+    private int transportationID;
     final static Logger log=Logger.getLogger(DalOrder.class);
 
     public DalOrder() {
         super(null);
     }
 
-    public DalOrder(Integer orderId , Integer supplierBN , Double totalAmount , String deliverTime , Integer branchId , Integer orderType , Double totalWeight, DalController dalController ){
+    public DalOrder(Integer orderId , Integer supplierBN , Double totalAmount , String deliverTime , Integer branchId ,
+                    Integer orderType , Double totalWeight, Integer transportationID, DalController dalController ){
         super(dalController);
         this.orderId = orderId;
         this.supplierBN = supplierBN;
@@ -34,6 +36,7 @@ public class DalOrder extends DALObject {
         this.branchId = branchId;
         this.orderType = orderType;
         this.totalAmount = totalAmount;
+        this.transportationID = transportationID;
     }
 
     @Override
@@ -46,6 +49,7 @@ public class DalOrder extends DALObject {
                 "\t\"branchId\" INTEGER NOT NULL,\n" +
                 "\t\"orderType\" INTEGER NOT NULL,\n" +
                 "\t\"totalWeight\" DOUBLE NOT NULL,\n" +
+                "\t\"transportationID\" INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY(\"orderId\"),\n" +
                 "\tFOREIGN KEY(\"supplierBN\") REFERENCES \"Suppliers\"(\"supplierBN\") ON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");" +
@@ -81,7 +85,7 @@ public class DalOrder extends DALObject {
     @Override
     public String getInsert() {
         return "INSERT OR REPLACE INTO Orders\n"+
-                "VALUES (?,?,?,?,?,?,?);";
+                "VALUES (?,?,?,?,?,?,?,?);";
     }
 
     public int getOrderID() {
@@ -101,6 +105,21 @@ public class DalOrder extends DALObject {
             log.warn(e);
         }
         return totalAmount;
+    }
+
+    public List<Tuple<List<Class>, List<Object>>> getOrderByTransportation() {
+        try {
+            String query = "SELECT * FROM Orders\n" +
+                    "WHERE transportationID = ?";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(transportationID);
+            List<Tuple<List<Class>,List<Object>>> tuple = DC.SelectMany(query, list);
+            return tuple;
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+        return null;
     }
 
     public double getTotalWeight() {
@@ -204,6 +223,21 @@ public class DalOrder extends DALObject {
             e.printStackTrace();
         }
         this.branchId = branchId;
+    }
+
+    public void updateTransportation(int transportationID){
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE Orders\n" +
+                "SET transportationID = ?\n"+
+                "WHERE orderId = ?;";
+        list.add(new Tuple<>(transportationID, Integer.class));
+        list.add(new Tuple<>(orderId, Integer.class));
+        try {
+            DC.noSelect(query, list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.transportationID = transportationID;
     }
 
     public void removeOrder() {

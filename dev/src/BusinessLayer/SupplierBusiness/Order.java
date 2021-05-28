@@ -29,12 +29,13 @@ public class Order {
         list.add(new Tuple<>(branchId,Integer.class));
         list.add(new Tuple<>(orderType,Integer.class));
         list.add(new Tuple<>(0.0,Double.class));
+        list.add(new Tuple<>(-1,Integer.class));
         Mapper map=Mapper.getMap();
         map.setItem(DalOrder.class,list);
         List<Integer> keyList=new ArrayList<>();
         keyList.add(orderId);
         DALObject check =map.getItem(DalOrder.class ,keyList);
-        if (DalOrder.class==null || check==null ||(check.getClass()!=DalOrder.class)){
+        if (check==null ||(check.getClass()!=DalOrder.class)){
             String s="the instance that return from Mapper is null";
             log.warn(s);
             throw new IllegalArgumentException(s);
@@ -46,9 +47,32 @@ public class Order {
         items = new Hashtable<>();
     }
 
+    public Order getOrder(int orderID) {
+        Order retOrder;
+        Mapper map=Mapper.getMap();
+        List<Integer> keyList=new ArrayList<>();
+        keyList.add(orderID);
+        DALObject check =map.getItem(DalOrder.class ,keyList);
+        if (check==null ||(check.getClass()!=DalOrder.class)){
+            String s="the instance that return from Mapper is null";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        else{
+            log.info("create new Object");
+            dalOrder = (DalOrder) check;
+            retOrder = new Order(dalOrder);
+        }
+        return retOrder;
+    }
+
     public Order(DalOrder dalOrder) {
         this.dalOrder = dalOrder;
         loadItemsOfOrders();
+    }
+
+    public void updateTransportation(int tranID) {
+        dalOrder.updateTransportation(tranID);
     }
 
     private void loadItemsOfOrders() {
@@ -73,6 +97,14 @@ public class Order {
                 }
             }
         }
+    }
+
+    public String toString() {
+        return "Order: \n" +
+                "\torderId: " + dalOrder.getOrderID() + "\n" +
+                "\ttotal amount: " + dalOrder.getTotalAmount() + "\n" +
+                "\tdeliver time: " + dalOrder.getDeliverTime() + "\n" +
+                "\tbranchId: " + dalOrder.getBranchID();
     }
 
     public List<Item> showAllItemsOfOrder(){

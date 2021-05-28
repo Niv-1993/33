@@ -18,8 +18,8 @@ public class PresentationCL {
     private final SupplierService service;
     final static Logger log = Logger.getLogger(PresentationCL.class);
 
-    public PresentationCL() {
-        service = new SupplierService();
+    public PresentationCL(int branchID) {
+        service = new SupplierService(branchID);
     }
 
     public void loadData() {
