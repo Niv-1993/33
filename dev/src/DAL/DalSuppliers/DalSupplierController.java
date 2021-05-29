@@ -27,9 +27,10 @@ public class DalSupplierController extends DALObject {
     @Override
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS \"SupplierController\"(\n" +
+                "\t\"controller\" INTEGER NOT NULL,\n" +
                 "\t\"branchID\" INTEGER NOT NULL,\n" +
                 "\t\"numOfOrders\" INTEGER NOT NULL,\n" +
-                "\tPRIMARY KEY(\"branchID\")\n" +
+                "\tPRIMARY KEY(\"controller\")\n" +
                 ");";
     }
 
@@ -41,14 +42,14 @@ public class DalSupplierController extends DALObject {
     @Override
     public String getDelete() {
         return "DELETE FROM SupplierController\n" +
-                "WHERE branchID= ?;";
+                "WHERE controller= ?;";
     }
 
     @Override
     public String getUpdate() {
         return "UPDATE SupplierController\n" +
                 "SET (?) = (?)\n"+
-                "WHERE branchID = ?;";
+                "WHERE controller = ?;";
     }
 
     @Override
@@ -75,7 +76,7 @@ public class DalSupplierController extends DALObject {
     public int getNumOfOrders() {
         try {
             String query = "SELECT numOfOrders FROM SupplierController\n" +
-                    "WHERE branchID = ?;";
+                    "WHERE controller = ?;";
             LinkedList<Integer> list = new LinkedList<>();
             list.add(controller);
             Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
@@ -90,7 +91,7 @@ public class DalSupplierController extends DALObject {
     public int getBranchID() {
         try {
             String query = "SELECT branchID FROM SupplierController\n" +
-                    "WHERE branchID = ?;";
+                    "WHERE controller = ?;";
             LinkedList<Integer> list = new LinkedList<>();
             list.add(controller);
             Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
@@ -120,7 +121,7 @@ public class DalSupplierController extends DALObject {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE SupplierController\n" +
                 "SET numOfOrders = ?\n" +
-                "WHERE branchID = ?;";
+                "WHERE controller = ?;";
         list.add(new Tuple<>(numOfOrders+1, Integer.class));
         list.add(new Tuple<>(controller, Integer.class));
         DC.noSelect(query, list);

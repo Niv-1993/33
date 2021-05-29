@@ -60,7 +60,6 @@ public class Order {
         }
         else{
             log.info("create new Object");
-            dalOrder = (DalOrder) check;
             retOrder = new Order(dalOrder);
         }
         return retOrder;
@@ -140,4 +139,8 @@ public class Order {
     }
 
     public int getOrderType() {return dalOrder.getOrderType();}
+
+    public double showTotalAmount() {
+        return dalOrder.getTotalAmount();
+    }
 }

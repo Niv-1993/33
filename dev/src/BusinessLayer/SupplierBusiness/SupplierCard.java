@@ -313,6 +313,7 @@ public class SupplierCard {
 
     public Tuple<Order , Boolean> addRegularOrder(int orderId , int branchId, Hashtable<Integer, Integer> items) throws Exception {
         regularOrder order;
+        ///MEYUTAR
         boolean isCons = false;
         order = new regularOrder(dalSupplierCard.getSupplierBN(), orderId , branchId);
         orders.add(order);

@@ -9,6 +9,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 public interface IOrderService {
+    response LoadData();
     Tresponse<Order> addRegularOrder(int supplierBn , int branchId, Hashtable<Integer, Integer> items);
     response addNeededOrder(int typeID, int neededAmount, int branchID);
     response addItemToOrder(int supplierBN , int orderId , int itemId , int amount);
