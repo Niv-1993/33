@@ -250,4 +250,7 @@ public interface iManagerRoleController {
 
      void addDriverAndStoreKeeperToShift(int driverID, LocalDate date, String shiftType);
 
+    boolean DriverAvailable(LocalDate date, String shiftType);
+
+    void removeDriverFromShiftAndStorekeeper(int driverID, LocalDate date, String shiftType);
 }

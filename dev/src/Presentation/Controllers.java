@@ -17,12 +17,14 @@ public class Controllers {
     private final iManagerRoleController mc;
     private final iDriverRoleController dc;
     private final TransportationController tc;
+    private int currBID;
 
     public Controllers() {
         rc = new RegularRoleController();
         mc = new ManagerRoleController(rc.getUtils());
         dc = new DriverRoleController(mc);
         tc = new TransportationController(mc);
+        currBID = -1;
     }
 
     public iManagerRoleController getMc() {
@@ -198,5 +200,13 @@ public class Controllers {
         rc.EnterBranch(1);
         mc.createWeekShifts();
         rc.Logout();
+    }
+
+    public int getCurrBID() {
+        return currBID;
+    }
+
+    public void setCurrBID(int currBID) {
+        this.currBID = currBID;
     }
 }

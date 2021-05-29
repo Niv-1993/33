@@ -189,7 +189,7 @@ public class Shift {
     //check if there is employee that optionals and his role not full
     public boolean optionalIsEmpty() {
         for (Map.Entry<RoleType, List<Employee>> role : optionals.entrySet()) {
-            if (role.getKey().equals(RoleType.Driver) || role.getKey().equals(RoleType.Sorter))
+            if (role.getKey().equals(RoleType.Driver) || role.getKey().equals(RoleType.StoreKeeper))
                     continue;
             if (!role.getValue().isEmpty() && !roleIsFull(role.getKey()))
                 return false;
@@ -259,6 +259,11 @@ public class Shift {
         return !optionals.get(RoleType.StoreKeeper).isEmpty();
     }
 
+
+    public boolean DriverAvailable() {
+        return !optionals.get(RoleType.Driver).isEmpty();
+    }
+
     public List<Integer> getAllAvailableDrivers() {
         List<Integer> ld = new ArrayList<>();
         optionals.get(RoleType.Driver).forEach(employee -> ld.add(employee.getEID()));
@@ -312,5 +317,9 @@ public class Shift {
         int before = rolesAmount.get(RoleType.Driver);
         updateRolesAmount(RoleType.Driver,before+1);
         updateRolesAmount(RoleType.StoreKeeper,before+1);
+    }
+
+    public void removeDriverAndStorekeeper(int driverID) {
+
     }
 }

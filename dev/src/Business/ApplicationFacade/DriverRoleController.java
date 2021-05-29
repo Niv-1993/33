@@ -33,6 +33,21 @@ public class DriverRoleController implements iDriverRoleController {
         return  res;
     }
 
+    public boolean checkAvailableDriver(int BID, LocalDate date, LocalTime leavingTime) {
+        mc.EnterBranch(BID);
+        String shiftType = leavingTime.getHour() < 14 ? "Morning" : "Night";
+        boolean res = mc.ShiftExist(date, shiftType);
+        if(res)
+            res = mc.DriverAvailable(date, shiftType);
+        return  res;
+    }
+
+    public void removeDriverFromShiftAndStorekeeper(int BID, int driverID, LocalDate date, LocalTime leavingTime) {
+        mc.EnterBranch(BID);
+        String shiftType = leavingTime.getHour() < 14 ? "Morning" : "Night";
+        mc.removeDriverFromShiftAndStorekeeper(driverID,date,shiftType);
+    }
+
     public List<Driver> chooseDriver(LocalDate date, LocalTime leavingTime) throws Exception {
         String shiftType = leavingTime.getHour() < 14 ? "Morning" : "Night";
         List<Integer> driversID =  mc.getAllAvailableDrivers(date,shiftType);

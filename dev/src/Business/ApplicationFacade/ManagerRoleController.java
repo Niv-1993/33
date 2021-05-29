@@ -442,6 +442,14 @@ public class ManagerRoleController implements iManagerRoleController {
         sc.addDriverAndStoreKeeperToShift(employeeMapper.get(driverID), date, ShiftType.valueOf(shiftType));
     }
 
+    public boolean DriverAvailable(LocalDate date, String shiftType) {
+        return sc.DriverAvailable(date, ShiftType.valueOf(shiftType));
+    }
+
+    public void removeDriverFromShiftAndStorekeeper(int driverID, LocalDate date, String shiftType) {
+        sc.removeDriverFromShiftAndStorekeeper(employeeMapper.get(driverID),date,ShiftType.valueOf(shiftType));
+    }
+
     public void setLicense(int newEID, int license) {
     }
 }

@@ -234,14 +234,23 @@ public class ShiftMenu extends Menu {
         System.out.println("Insert the amount of each role");
         Map<String, Integer> rolesAmount = new HashMap<>();
         List<String> roleTypes = r.getRc().getRoleTypes().getData();
+        removeRoles(roleTypes);
         for (String role : roleTypes) {
-            if (role.equals("PersonnelManager") || role.equals("BranchManager") || role.equals("Driver") || role.equals("Sorter")) continue;
             System.out.print(role + ": ");
             int amount = getAmount(role);
             rolesAmount.put(role, amount);
         }
         return rolesAmount;
     }
+
+    private void removeRoles(List<String> roleTypes) {
+        roleTypes.remove("PersonnelManager");
+        roleTypes.remove("BranchManager");
+        roleTypes.remove("Driver");
+        roleTypes.remove("StoreKeeper");
+        roleTypes.remove("LogisticManager");
+    }
+
 
     private int getAmount(String role) {
         int amount;

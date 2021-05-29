@@ -398,4 +398,13 @@ public class ShiftController {
     }
 
 
+    public boolean DriverAvailable(LocalDate date, ShiftType shiftType) {
+        return getShiftByDate(date,shiftType).DriverAvailable();
+    }
+
+    public void removeDriverFromShiftAndStorekeeper(Employee driver, LocalDate date, ShiftType shiftType) {
+        Shift s = getShiftByDate(date,shiftType);
+        s.removeEmpFromShift(driver);
+
+    }
 }

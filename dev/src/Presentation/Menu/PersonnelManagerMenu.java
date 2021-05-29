@@ -4,8 +4,8 @@ import Presentation.Controllers;
 
 import java.util.Scanner;
 
-public class ManagerMenu extends Menu {
-    public ManagerMenu(Controllers r,Scanner input) {
+public class PersonnelManagerMenu extends Menu {
+    public PersonnelManagerMenu(Controllers r, Scanner input) {
         super(r, input);
     }
 
@@ -19,7 +19,7 @@ public class ManagerMenu extends Menu {
             System.out.println("4) Logout");
             System.out.println("5) Employee operations menu");
             System.out.println("6) Shift operations menu");
-            System.out.println("7) Transportation menu");
+            System.out.println("7) Cancel delivery");
             System.out.println("8) previous menu");
             System.out.println("Choose an option:");
             String option = read();
@@ -49,8 +49,7 @@ public class ManagerMenu extends Menu {
                     shftM.show();
                     break;
                 case "7":
-                    Menu tranM = new TransportationMenu(r,input);
-                    tranM.show();
+                    //TODO: logic cancel functions KFIR AND ORI
                 case "8":
                     return;
                 default:

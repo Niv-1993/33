@@ -1,9 +1,7 @@
 package Presentation;
 
 import Business.ApplicationFacade.Response;
-import Presentation.Menu.ManagerMenu;
-import Presentation.Menu.Menu;
-import Presentation.Menu.RegularMenu;
+import Presentation.Menu.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -109,6 +107,7 @@ public class CLIPresentation {
             if(phone.equals("1"))return;
             System.out.println();
             r.getRc().createBranch(ID, name, new int[]{AC, BB, BID}, salary, new int[]{fund, DO, SD},street,city,number,enter,area,CN,phone);
+            //TODO: call addStore() alex function to create new shelfs and stock for this branch
             break;
         }
     }
@@ -315,6 +314,8 @@ public class CLIPresentation {
             if (!r.getRc().hasDefaultShifts().getData()) {
                 AddDefaultWeekShifts();
             }
+            r.setCurrBID(branchNum);
+            //TODO: call useStore() to enter/load the stock of this branch [alex]
             break;
         }
         login();
@@ -347,8 +348,7 @@ public class CLIPresentation {
             r.getRc().Login(EID);
             break;
         }
-        isManager = role.equals("PersonnelManager");
-        allFunctionsMenu();
+        MenuFactory(role).show();
     }
 
     private int getEmpID() {
@@ -377,13 +377,18 @@ public class CLIPresentation {
         return read().equals("1");
     }
 
-    private void allFunctionsMenu() {
-        if (!isManager) {
-            Menu reg = new RegularMenu(r, input);
-            reg.show();
-        } else {
-            Menu man = new ManagerMenu(r, input);
-            man.show();
+    private Menu MenuFactory(String role) {
+        switch (role) {
+            case "PersonnelManager":
+                return new PersonnelManagerMenu(r, input);
+            case "LogisticManager":
+                return new LogisticManagerMenu(r, input);
+            case "StoreKeeper":
+                return new StoreKeeperMenu(r, input);
+            case "BranchManager":
+                return new BranchManagerMenu(r, input);
+            default:
+                return new RegularMenu(r, input);
         }
     }
 
@@ -408,13 +413,22 @@ public class CLIPresentation {
         System.out.println("Insert the amount of each role");
         Map<String, Integer> rolesAmount = new HashMap<>();
         List<String> roleTypes = r.getRc().getRoleTypes().getData();
+        removeRoles(roleTypes);
         for (String role : roleTypes) {
-            if (role.equals("PersonnelManager") || role.equals("BranchManager") || role.equals("Driver")|| role.equals("Sorter")) continue;
             System.out.print(role + ": ");
             int amount = getAmount(role);
             rolesAmount.put(role, amount);
         }
         return rolesAmount;
+    }
+
+
+    private void removeRoles(List<String> roleTypes) {
+        roleTypes.remove("PersonnelManager");
+        roleTypes.remove("BranchManager");
+        roleTypes.remove("Driver");
+        roleTypes.remove("StoreKeeper");
+        roleTypes.remove("LogisticManager");
     }
 
     private int getAmount(String role) {

@@ -13,5 +13,9 @@ public interface iDriverRoleController {
 
     boolean checkAvailableStoreKeeperAndShifts(int BID,LocalDate date, LocalTime leavingTime);
 
+    boolean checkAvailableDriver(int BID,LocalDate date, LocalTime leavingTime);
+
+    void removeDriverFromShiftAndStorekeeper(int BID,int driverID, LocalDate date, LocalTime leavingTime);
+
     void addDriverToShiftAndStoreKeeper(int BID,int driverID, LocalDate date, LocalTime leavingTime);
 }
