@@ -512,4 +512,8 @@ public class SupplierController{
         }
     }
 
+    public Dictionary<Integer , SupplierCard> getSuppliers() {
+        return suppliers;
+    }
+
 }

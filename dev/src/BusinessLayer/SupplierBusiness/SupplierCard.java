@@ -340,7 +340,7 @@ public class SupplierCard {
         return order;
     }
 
-    private double calculateTotalAmount(Item item , int amount){
+    public double calculateTotalAmount(Item item , int amount){
         double totalAmount = 0.0;
         QuantityDocument qd = item.getQuantityDocument();
         if (qd != null) {

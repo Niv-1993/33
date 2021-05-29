@@ -14,9 +14,10 @@ import java.util.*;
 public class OrderController {
     private Dictionary<Integer , Order> orders;
     private DalOrderController dalOrderController;
+    private SupplierController supplierController;
     final static Logger log=Logger.getLogger(OrderController.class);
 
-    public OrderController(int branchID){
+    public OrderController(int branchID, SupplierController supplierController){
         List<Tuple<Object,Class>> list=new ArrayList<>();
         list.add(new Tuple<>(branchID,Integer.class));
         list.add(new Tuple<>(1,Integer.class));
@@ -34,6 +35,7 @@ public class OrderController {
             dalOrderController = (DalOrderController) check;
         }
         orders = new Hashtable<>();
+        this.supplierController = supplierController;
     }
 
     public Order addRegularOrder(int supplierBN, int branchID, Hashtable<Integer, Integer> items) throws Exception {
@@ -57,7 +59,7 @@ public class OrderController {
         double bestPrice = Integer.MAX_VALUE;
         int bestSupplier = 0;
         try {
-            Enumeration<SupplierCard> enumeration = suppliers.elements();
+            Enumeration<SupplierCard> enumeration = supplierController.getSuppliers().elements();
             while(enumeration.hasMoreElements()) {
                 SupplierCard temp = enumeration.nextElement();
                 List<Item> items = temp.getSupplierItems();
@@ -74,7 +76,7 @@ public class OrderController {
                     }
                 }
             }
-            order = suppliers.get(bestSupplier).addNeededOrder(dalOrderController.getNumOfOrders(), branchID, item, neededAmount);
+            order = supplierController.getSuppliers().get(bestSupplier).addNeededOrder(dalOrderController.getNumOfOrders(), branchID, item, neededAmount);
             dalOrderController.addNumOfOrders();
         }catch (Exception e){
             throw new Exception(e.getMessage());
@@ -83,7 +85,7 @@ public class OrderController {
     }
 
     public Item addItemToOrder(int supplierBN, int orderId, int itemId, int amount) throws Exception {
-        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+        ///if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         ///////////NEED TO THINK WHAT TO DO
         try{
             Order order = orders.get(orderId);
@@ -110,7 +112,7 @@ public class OrderController {
 //        SupplierCard supplierCard = suppliers.get(supplierBN);
 //        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try{
-            return suppliers.get(supplierBN).showOrderOfSupplier(orderId);
+            return supplierController.getSuppliers().get(supplierBN).showOrderOfSupplier(orderId);
         } catch (Exception e){
             throw new Exception(e.getMessage());
         }
@@ -119,7 +121,7 @@ public class OrderController {
     public List<Order> showAllOrdersOfSupplier(int supplierBN) {
 //        SupplierCard supplierCard = suppliers.get(supplierBN);
 //        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
-        return suppliers.get(supplierBN).showAllOrdersOfSupplier();
+        return supplierController.getSuppliers().get(supplierBN).showAllOrdersOfSupplier();
     }
 
     public Order showTotalAmount(int supplierBN, int orderId) {
@@ -139,12 +141,13 @@ public class OrderController {
     }
 
     public void updateDeliverTime(int supplierBN, int orderId, LocalDate deliverTime) throws Exception {
-        SupplierCard supplierCard = suppliers.get(supplierBN);
+        SupplierCard supplierCard = supplierController.getSuppliers().get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            suppliers.get(supplierBN).updateDeliverTime(orderId, deliverTime);
+            supplierController.getSuppliers().get(supplierBN).updateDeliverTime(orderId, deliverTime);
         } catch (Exception e){
             throw new Exception(e.getMessage());
         }
     }
+
 }
