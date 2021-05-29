@@ -3,7 +3,6 @@ package Business.Employees.ShiftPKG;
 import Business.Employees.EmployeePKG.Employee;
 import Business.Type.RoleType;
 import Business.Type.ShiftType;
-import DataAccess.DriverMapper;
 import DataAccess.ShiftMapper;
 import org.apache.log4j.Logger;
 
@@ -99,7 +98,7 @@ public class Shift {
     public void addEmpToShift(RoleType role, Employee emp) {
         employees.put(emp, role);
         ShiftMapper.getInstance().insertEmpToShift(SID, emp.getEID(), role.name());
-        removeEmpFromOptionals(emp);
+        //removeEmpFromOptionals(emp);
         updateComplete();
         if (role.equals(RoleType.ShiftManager))
             hasShiftManager = true;
@@ -270,9 +269,10 @@ public class Shift {
         return ld;
     }
 
-    public void addStoreKeeper() {
+    public Employee addStoreKeeper() {
         Employee emp = optionals.get(RoleType.StoreKeeper).get(0);
         addEmpToShift(RoleType.StoreKeeper,emp);
+        return emp;
     }
     //-------------------getters&setters----------------------------------------
 
@@ -321,5 +321,13 @@ public class Shift {
 
     public void removeDriverAndStorekeeper(int driverID) {
 
+    }
+
+    public Employee getStoreKeeperToRemove() {
+        for(Map.Entry<Employee,RoleType> e : employees.entrySet()){
+            if(e.getValue().equals(RoleType.StoreKeeper))
+                return e.getKey();
+        }
+        return null; //never
     }
 }

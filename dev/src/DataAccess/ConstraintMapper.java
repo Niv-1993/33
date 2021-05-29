@@ -66,24 +66,40 @@ public class ConstraintMapper extends Mapper{
 
 
     public void insertTempConstraint(TempConstraint c) {
-        boolean res =false;
-        String query = "INSERT INTO TempConstraints (CID,EID,ShiftType,Date,Reason) VALUES (?,?,?,?,?)";
-        try (Connection con = connect();
-             PreparedStatement pre = con.prepareStatement(query)) {
-            pre.setInt(1, c.getCID());
-            pre.setInt(2,c.getEID());
-            pre.setString(3, c.getShiftType().name());
-            pre.setString(4, c.getDate().toString());
-            pre.setString(5, c.getReason());
-            res = pre.executeUpdate()>0;
-        } catch (Exception e) {
-         //   System.out.println("[insertTempConstrain] ->" +e.getMessage());
-        }finally {
-            if (res)
-                constraints.put(c.getCID(), c);
+        if(!constraintExist(c.getEID(),c.getDate(),c.getShiftType().name())) {
+            boolean res = false;
+            String query = "INSERT INTO TempConstraints (CID,EID,ShiftType,Date,Reason) VALUES (?,?,?,?,?)";
+            try (Connection con = connect();
+                 PreparedStatement pre = con.prepareStatement(query)) {
+                pre.setInt(1, c.getCID());
+                pre.setInt(2, c.getEID());
+                pre.setString(3, c.getShiftType().name());
+                pre.setString(4, c.getDate().toString());
+                pre.setString(5, c.getReason());
+                res = pre.executeUpdate() > 0;
+            } catch (Exception e) {
+                //   System.out.println("[insertTempConstrain] ->" +e.getMessage());
+            } finally {
+                if (res)
+                    constraints.put(c.getCID(), c);
+            }
         }
     }
 
+    public boolean constraintExist(int eid, LocalDate date,String shiftType) {
+        String query1 = "SELECT * FROM TempConstraints WHERE EID=? AND Date=? AND ShiftType=?";
+        try (Connection con = connect();
+             PreparedStatement pre = con.prepareStatement(query1)) {
+            pre.setInt(1,eid);
+            pre.setString(2,date.toString());
+            pre.setString(3,shiftType);
+            ResultSet res = pre.executeQuery();
+            return res.next();
+        } catch (Exception e) {
+            return false;
+            //   System.out.println("[constraintExist] ->" +e.getMessage());
+        }
+    }
 
     public void deleteConstraint(int cid) {
         String query = String.format("DELETE FROM ConstConstraints WHERE CID= %d",cid);
@@ -142,6 +158,7 @@ public class ConstraintMapper extends Mapper{
         constraints.put(tempCon.getCID(), tempCon);
         return tempCon;
     }
+
 
     public List<Constraint> getConstraint(int eid, LocalDate date) {
         List<Constraint> listCon = new ArrayList<>();

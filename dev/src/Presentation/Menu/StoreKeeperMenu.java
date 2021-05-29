@@ -1,6 +1,7 @@
 package Presentation.Menu;
 
 
+import Business.ApplicationFacade.ResponseData;
 import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Presentation.Controllers;
 
@@ -50,7 +51,7 @@ public class StoreKeeperMenu extends Menu{
                 case "6":
                     //TODO: get function for this method kfir and ori [Suppliers card managements menu]
                 case "7":
-                    ResponseData<List<TransportationServiceDTO> trans =  r.getTc().getTransportations(r.getCurrBID(), LocalDate.now(), LocalTime.now());
+                    List<TransportationServiceDTO> trans =  r.getTc().getTransportations(r.getCurrBID(), LocalDate.now(), LocalTime.now());
                     for (TransportationServiceDTO t : trans)
                         System.out.println(t.toString());
                     TransportationServiceDTO acceptT = getAcceptID(trans);

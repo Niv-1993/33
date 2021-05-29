@@ -161,6 +161,9 @@ public class ShiftController {
     public void addEmpToShift(int SID, RoleType role, Employee emp) {
         Shift s = get(SID,AllOptionals);
         s.addEmpToShift(role, emp);
+        List<Employee> l = new ArrayList<>();
+        l.add(emp);
+        createBuildConstraintsAndRemoveFromOpt(l,s.getShiftType(),s.getDate());
     }
 
     private Shift get(int sid,Map<RoleType, List<Employee>> optionals) {
@@ -382,7 +385,11 @@ public class ShiftController {
         Shift s = getShiftByDate(date,shiftType);
         s.incrementDriverStoreKeeper();
         s.addEmpToShift(RoleType.Driver,driver);
-        s.addStoreKeeper();
+        Employee sk = s.addStoreKeeper();
+        List<Employee> l = new ArrayList<>();
+        l.add(sk);
+        l.add(driver);
+        createBuildConstraintsAndRemoveFromOpt(l,s.getShiftType(),s.getDate());
     }
 
     public void setAllOptionals(Map<RoleType, List<Employee>> allOptionals) {
@@ -404,7 +411,8 @@ public class ShiftController {
 
     public void removeDriverFromShiftAndStorekeeper(Employee driver, LocalDate date, ShiftType shiftType) {
         Shift s = getShiftByDate(date,shiftType);
-        s.removeEmpFromShift(driver);
-
+        removeEmpFromShift(s.getSID(),driver);
+        Employee skToRemove = s.getStoreKeeperToRemove();
+        removeEmpFromShift(s.getSID(),skToRemove);
     }
 }
