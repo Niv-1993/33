@@ -93,17 +93,10 @@ public class TransportationMapper extends Mapper{
         }
     }
 
-    public void addTransportation(long idCounter, Transportation tra) {
-
-        transportations.put(idCounter,tra);
+    public void addTransportation(Transportation tra) throws Exception {
+        transportations.put(tra.getId(),tra);
+        insert(tra.getId(),tra.getArea().toString(),tra.getDate().toString(),tra.getLeavingTime().toString(),tra.getWeight(),tra.getDriver().getEID(),tra.getTruck().getId());
     }
-    public void saveTransportation(long id) throws Exception {
-        //TODO:keep implement save orders.
-        Transportation tra=transportations.get(id);
-        insert(id,tra.getArea().toString(),tra.getDate().toString(),tra.getLeavingTime().toString(),tra.getWeight(),tra.getDriver().getEID(),tra.getTruck().getId());
-
-    }
-
     public Transportation getTransportation(long id, TruckMapper truckMapper, ItemMapper itemMapper, SupplierMapper supplierMapper, BranchMapper branchMapper,DriverMapper driverMapper) throws Exception {
 
         if(transportations.containsKey(id)){
@@ -205,7 +198,6 @@ public class TransportationMapper extends Mapper{
         }
         return null;
     }
-
     public void updateTransWeight(long id, int weight,Order order) {
         String sql = "UPDATE Transportations " +
                 "SET Weight="+weight
@@ -220,7 +212,11 @@ public class TransportationMapper extends Mapper{
         }
         Transportation tra=transportations.get(id);
         tra.setWeight(weight);
-        tra.getOrders().put(order.getOrderId(),order);
+        if(!tra.containOrder(order.getOrderId())){
+            tra.addOrder(order);
+        }else {
+            tra.replaceOrder(order);
+        }
         transportations.replace(id,tra);
     }
 }
