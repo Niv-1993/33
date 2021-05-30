@@ -1,18 +1,22 @@
 package Business.Transportation;
+
 import Business.ApplicationFacade.DriverRoleController;
+import Business.ApplicationFacade.ResponseData;
 import Business.ApplicationFacade.iControllers.iManagerRoleController;
-import Business.Type.Area;
+import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Business.Employees.EmployeePKG.Driver;
+import Business.Type.Area;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 
 public class TransportationService {
 
+    private final TruckService truckService;
     private final DataControl dataControl;
     private long idCounter = 0;
     private final DriverRoleController drivers;
@@ -22,6 +26,7 @@ public class TransportationService {
         dataControl=new DataControl();
         idCounter=getId();
         drivers = new DriverRoleController(mc);
+        truckService=new TruckService();
     }
 
     private long getId() {
@@ -87,9 +92,9 @@ public class TransportationService {
      * Initializing new transportation object.
      * @return : the new object
      */
-    public Transportation newTransportation(){
+    public Transportation newTransportation() throws Exception {
         Transportation tra=new Transportation(idCounter);
-        dataControl.addTransportation(idCounter,tra);
+        dataControl.addTransportation(tra);
         idCounter++;
         return tra;
     }
@@ -187,8 +192,41 @@ public class TransportationService {
         HashMap <Integer,Order> newOrdersList = new HashMap<>();
         newOrdersList.put(order.getOrderId(),order);
         Transportation transportation = new Transportation(getId(),date,leavingTime,chosenDriver,chooseTruck,order.getWeight(),newOrdersList);
-        dataControl.addTransportation(transportation.getId(),transportation);
+        dataControl.addTransportation(transportation);
         drivers.addDriverToShiftAndStoreKeeper(order.getBranchID(),chosenDriver.getEID(),date,leavingTime);
         return transportation.getId();
+    }
+
+    public ResponseData<List<TransportationServiceDTO>> getDTOTransportations() {
+        List<TransportationServiceDTO> returnT = new LinkedList<>();
+        try {
+            List<Transportation> transportations = getTransportationsList();
+            for (Transportation t: transportations){
+                returnT.add(toTransportationServiceDTO(t));
+            }
+            return new ResponseData<>(returnT);
+        }catch (Exception e){
+            return new ResponseData<>(e.getMessage());
+        }
+    }
+    private TransportationServiceDTO toTransportationServiceDTO(Transportation t){
+
+        //TODO:implement
+        return null;
+    }
+    public void addTruck(long id, int maxWeight, String model, int netWeight, int license){
+        dataControl.addTruck(id, maxWeight,model,netWeight,license);
+    }
+    public List<TransportationServiceDTO> getTransportations(int currBID, LocalDate date, LocalTime time){
+        List<TransportationServiceDTO> returnT = new LinkedList<>();
+        try {
+            List<Transportation> transportations = dataControl.getTransportations(currBID,date,time);
+            for (Transportation t: transportations){
+                returnT.add(toTransportationServiceDTO(t));
+            }
+            return returnT;
+        }catch (Exception e){
+            throw  new IllegalArgumentException(e.getMessage());
+        }
     }
 }

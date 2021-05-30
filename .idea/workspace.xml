@@ -22,21 +22,115 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bccfd2f2-7c4c-4f48-b723-f62a6117cacb" name="Default Changelist" comment="finish Transportation">
-    <list default="true" id="bccfd2f2-7c4c-4f48-b723-f62a6117cacb" name="Default Changelist" comment="">
+    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/QuantityDocument.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DALObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalStock/DALCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalStock/DALDiscount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalStock/DALInstanceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalStock/DALProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalStock/DALProductType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalStock/DALSaleDiscount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalStock/DALShelf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalStock/DALStoreController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalStock/DALSupplierDiscount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalSuppliers/DalItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalSuppliers/DalOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalSuppliers/DalOrderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalSuppliers/DalQuantityDocument.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalSuppliers/DalSupplierAgreement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalSuppliers/DalSupplierCard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/DalSuppliers/DalSupplierController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/DAL/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/Utility/Tuple.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dev/src/Utility/Util.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ADSS_Group_B.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ADSS_Group_B.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/Branch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/DataControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/DataControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/ItemService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/ServiceFaced.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/Site.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/SiteService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/Supplier.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Employees/ShiftPKG/Shift.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Employees/ShiftPKG/Shift.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Employees/ShiftPKG/ShiftController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Employees/ShiftPKG/ShiftController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/ConstraintMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/ConstraintMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Presentation/Menu/StoreKeeperMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/Menu/StoreKeeperMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Assignment2 .drawio" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Assignment2 .drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/ManagerRoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/ManagerRoleController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/ShiftPKG/ShiftController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/ShiftPKG/ShiftController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/ServiceFaced.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/ServiceFaced.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/ConstraintMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/ConstraintMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/EmployeeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/EmployeeMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/ShiftMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/ShiftMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/BranchMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/BranchMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/ItemMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/SupplierMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Presentation/Controllers.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/Controllers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Presentation/Menu/TransportationMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/Menu/TransportationMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Presentation/TransportationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/TransportationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/DriverRoleController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/ManagerRoleController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/RegularRoleController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/Response.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/ResponseData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/Utils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/iControllers/iDriverRoleController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/iControllers/iManagerRoleController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/iControllers/iRegularRoleController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/outObjects/BranchServiceDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/outObjects/Constraint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/outObjects/DriverServiceDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/outObjects/Employee.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/outObjects/ItemServiceDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/outObjects/Shift.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/outObjects/SupplierServiceDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/outObjects/TransportationServiceDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/ApplicationFacade/outObjects/TruckServiceDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/EmployeePKG/BankAccount.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/EmployeePKG/Driver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/EmployeePKG/Employee.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/EmployeePKG/TermsOfEmployment.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/ShiftPKG/ConstConstraint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/ShiftPKG/Constraint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/ShiftPKG/Shift.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/ShiftPKG/ShiftController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Employees/ShiftPKG/TempConstraint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/Address.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/Branch.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/DataControl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/Item.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/ItemService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/ServiceFaced.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/ShippingArea.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/Site.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/SiteService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/Supplier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/Transportation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/TransportationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/Truck.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Transportation/TruckService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Type/Area.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Type/Pair.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Type/RoleType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Business/Type/ShiftType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/BranchMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/ConstraintMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/DriverMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/EmployeeMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/ItemMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/Mapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/ShiftMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/SupplierMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/TransportationMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/DataAccess/TruckMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Presentation/CLIPresentation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Presentation/Controllers.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Presentation/Menu/ConstraintMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Presentation/Menu/EmployeeMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Presentation/Menu/ManagerMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Presentation/Menu/Menu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Presentation/Menu/RegularMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Presentation/Menu/ShiftMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Presentation/Menu/TransportationMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/Presentation/TransportationController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ADSS_Group_B/main.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,20 +186,25 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/dev/lib/sqlite-jdbc-3.20.1.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Desktop/ADSS_Group_B-KfirAndOri" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="ReaderModeSettings">
     <option name="enabled" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="StockBusiness.Fcade.outObjects" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -115,13 +214,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -304,19 +405,9 @@
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/dev/src/DataAccess/SupplierMapper.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java</url>
-          <line>103</line>
+          <line>106</line>
           <option name="timeStamp" value="51" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/dev/src/Presentation/Menu/TransportationMenu.java</url>
-          <line>98</line>
-          <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dev/src/DataAccess/ShiftMapper.java</url>
