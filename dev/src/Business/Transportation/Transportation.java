@@ -165,7 +165,31 @@ public class Transportation {
         }
         return false;
     }
+    public boolean canChange(Order newOrder){
+        if(orders.containsKey(newOrder.getOrderId())){
+            Order oldOrder = orders.get(newOrder.getOrderId());
+            int newWeight = weight - oldOrder.getWeight()+newOrder.getWeight();
+            if(truck.getMaxWeight() >= newWeight){
+                orders.replace(newOrder.getOrderId(),newOrder);
+                weight = newWeight;
+                return  true;
+            }
+        }
+        return  false;
+    }
 
     public  Map<Integer,Order> getOrders() {return  orders;
+    }
+
+    public void addOrder(Order order) {
+        orders.put(order.getOrderId(),order);
+    }
+
+    public boolean containOrder(int orderId) {
+        return orders.containsKey(orderId);
+    }
+
+    public void replaceOrder(Order order) {
+        orders.replace(order.getOrderId(),order);
     }
 }
