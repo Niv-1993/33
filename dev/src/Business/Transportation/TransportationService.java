@@ -3,11 +3,8 @@ import Business.ApplicationFacade.DriverRoleController;
 import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.Type.Area;
 import Business.Employees.EmployeePKG.Driver;
-import Business.Type.Pair;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -51,27 +48,6 @@ public class TransportationService {
         t.setTruck(truck);
         dataControl.setTruckOnTrans(transId,truck);
 
-    }
-    /**
-     * Adding the branches and their products for a specific transportation.
-     * Does a check with the suppliers field for same data
-     * @param transId: the transportation id to add to.
-     * @param deliveryItems: the suppliers and their products to add.
-     */
-    public void setDeliveryItems(long transId, HashMap<Branch,List<Pair<Item,Integer>>> deliveryItems) throws Exception {
-        Transportation t = getTransportationById(transId);
-        List< List<Pair<Item, Integer>>> pairs=new ArrayList<>(deliveryItems.values());
-        checkQuantity(pairs);
-        t.setDeliveryItems(deliveryItems);
-        dataControl.setDeliveryItems(transId,deliveryItems);
-    }
-    private void checkQuantity(List< List<Pair<Item, Integer>>> pairs){
-        for (List<Pair<Item, Integer>> quantity:pairs) {
-            for (Pair<Item, Integer> pair: quantity) {
-                if(pair.getSec()<=0)
-                    throw new IllegalArgumentException("illegal item quantity. item id: "+pair.getFir().getId());
-            }
-        }
     }
 
     /**
@@ -127,21 +103,6 @@ public class TransportationService {
 
     }
 
-    /**
-     * Loads the database data.
-     * @param dataControl : the data control that should bring the data from the database.
-     */
-
-    /**
-     * Save the new completed transportation to the database.
-     * @param id : The transportation id.
-     * @return :The added transportation after saved.
-     */
-    public Transportation saveTransportation(long id) throws Exception {
-        Transportation tra=getTransportationById(id);
-        dataControl.saveTransportation(id);
-        return tra;
-    }
 
     /**
      * sets an area to new transportation.
@@ -187,14 +148,15 @@ public class TransportationService {
         if(trucks.isEmpty()) throw new NoSuchElementException("No truck compatible for this order's weight. ");
         chooseTruck=trucks.get(0);
         for(LocalDate i=LocalDate.now() ;i.compareTo(days)<=0;i=LocalDate.now().plusDays(1)) {
-            if(!drivers.checkAvailableStoreKeeperAndShifts(bran.getId(), i,morning)|drivers.checkAvailableDriverAndShifts(bran.getId(), i,morning)) {
-                if (drivers.checkAvailableStoreKeeperAndShifts(bran.getId(), i, noon)|drivers.checkAvailableDriverAndShifts(bran.getId(), i,morning)) {
+            if(!drivers.checkAvailableStoreKeeperAndShifts(bran.getId(), i,morning)|drivers.checkAvailableDriver(bran.getId(), i,morning)) {
+                if (drivers.checkAvailableStoreKeeperAndShifts(bran.getId(), i, noon)|drivers.checkAvailableDriver(bran.getId(), i,morning)) {
                         //when there are driver and storeKeeper for noon
-                        drivers.chooseDriver(i,)
+                        List<Driver> driverList= drivers.chooseDriver(i,noon);
                 }
             }
             else{
                 //when there are driver and storeKeeper for morning
+                List<Driver> driverList= drivers.chooseDriver(i,morning);
             }
         }
     }
