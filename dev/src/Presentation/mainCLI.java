@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import java.util.Scanner;
 
 public class mainCLI {
-    PresentationCL presentationCL;
+    SuppliersPresentation presentationCL;
     StockCLI stockCLI;
     Scanner scan=new Scanner(System.in);
     final static Logger log= Logger.getLogger(StockCLI.class);
@@ -17,7 +17,7 @@ public class mainCLI {
     }
 
     public mainCLI(){
-        presentationCL = new PresentationCL();
+        presentationCL = new SuppliersPresentation();
         stockCLI = new StockCLI();
         stockCLI.setStockService(presentationCL.getService());
         presentationCL.setStockService(stockCLI.getService());

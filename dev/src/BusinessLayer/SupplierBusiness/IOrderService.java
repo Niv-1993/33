@@ -16,9 +16,7 @@ public interface IOrderService {
     response removeOrder(int supplierBN , int orderId);
     Tresponse<Order> showOrderOfSupplier(int supplierBN , int orderId);
     Tresponse<List<Order>> showAllOrdersOfSupplier(int supplierBN);
-    response showTotalAmount(int supplierBN , int orderId);
-    response showDeliverTime(int supplierBN , int orderId);
-    response updateDeliverTime(int supplierBN , int orderId , LocalDate deliverTime);
+    Tresponse<Order> showTotalAmount(int supplierBN , int orderId);
     Tresponse<Order> getOrder(int orderId);
     Tresponse<List<Order>> getOrdersByTransportation(int transportationID);
     Tresponse<Order> addOrderToTransportation(BusinessLayer.SupplierBusiness.Order Order);

@@ -15,7 +15,6 @@ public class DalOrder extends DALObject {
     private int orderId;
     private int supplierBN;
     private double totalAmount;
-    private String deliverTime;
     private int branchId;
     private int orderType;
     private double totalWeight;
@@ -26,13 +25,12 @@ public class DalOrder extends DALObject {
         super(null);
     }
 
-    public DalOrder(Integer orderId , Integer supplierBN , Double totalAmount , String deliverTime , Integer branchId ,
+    public DalOrder(Integer orderId , Integer supplierBN , Double totalAmount , Integer branchId ,
                     Integer orderType , Double totalWeight, Integer transportationID, DalController dalController ){
         super(dalController);
         this.orderId = orderId;
         this.supplierBN = supplierBN;
         this.totalAmount = totalAmount;
-        this.deliverTime = deliverTime;
         this.branchId = branchId;
         this.orderType = orderType;
         this.totalAmount = totalAmount;
@@ -45,7 +43,6 @@ public class DalOrder extends DALObject {
                 "\t\"orderId\" INTEGER NOT NULL,\n" +
                 "\t\"supplierBN\" INTEGER NOT NULL,\n" +
                 "\t\"totalAmount\" DOUBLE NOT NULL,\n" +
-                "\t\"deliverTime\" VARCHAR NOT NULL,\n" +
                 "\t\"branchId\" INTEGER NOT NULL,\n" +
                 "\t\"orderType\" INTEGER NOT NULL,\n" +
                 "\t\"totalWeight\" DOUBLE NOT NULL,\n" +
@@ -85,7 +82,7 @@ public class DalOrder extends DALObject {
     @Override
     public String getInsert() {
         return "INSERT OR REPLACE INTO Orders\n"+
-                "VALUES (?,?,?,?,?,?,?,?);";
+                "VALUES (?,?,?,?,?,?,?);";
     }
 
     public int getOrderID() {
@@ -105,6 +102,21 @@ public class DalOrder extends DALObject {
             log.warn(e);
         }
         return totalAmount;
+    }
+
+    public int getSupplierBN() {
+        try {
+            String query = "SELECT supplierBN FROM Orders\n" +
+                    "WHERE orderId = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(orderId);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            supplierBN = (Integer) tuple.item2.get(0);
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+        return supplierBN;
     }
 
     public List<Tuple<List<Class>, List<Object>>> getOrderByTransportation() {
@@ -137,23 +149,6 @@ public class DalOrder extends DALObject {
         return totalWeight;
     }
 
-    public String getDeliverTime() {
-        String Temp = "";
-        try {
-            String query = "SELECT deliverTime FROM Orders\n" +
-                    "WHERE orderId = ?;";
-            LinkedList<Integer> list = new LinkedList<>();
-            list.add(orderId);
-            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
-            Temp = tuple.item2.get(0).toString();
-        }
-        catch (Exception e){
-            log.warn(e);
-        }
-        deliverTime= Temp;
-        return deliverTime;
-    }
-
     public int getBranchID() {
         try {
             String query = "SELECT branchId FROM Orders\n" +
@@ -182,17 +177,6 @@ public class DalOrder extends DALObject {
             log.warn(e);
         }
         return orderType;
-    }
-
-    public void updateDeliverTime(LocalDate deliverTime) throws Exception {
-        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
-        String query = "UPDATE Orders\n" +
-                "SET deliverTime = ?\n"+
-                "WHERE orderId = ?;";
-        list.add(new Tuple<>(deliverTime.toString(), String.class));
-        list.add(new Tuple<>(orderId, Integer.class));
-        DC.noSelect(query, list);
-        this.deliverTime = deliverTime.toString();
     }
 
     public void updateTotalAmount(double totalAmount){

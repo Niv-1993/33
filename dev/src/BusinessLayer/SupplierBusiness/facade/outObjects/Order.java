@@ -5,15 +5,15 @@ import java.util.Hashtable;
 
 public class Order {
     private final int orderId;
+    private final int supplierBN;
     private final double totalAmount;
-    private final LocalDate deliverTime;
     private final int branchId;
     private final Hashtable<Integer, Integer> items;
 
     public Order(BusinessLayer.SupplierBusiness.Order order) {
         orderId = order.getOrderId();
+        supplierBN = order.getSupplierBN();
         totalAmount = order.getTotalAmount();
-        deliverTime = order.getDeliverTime();
         branchId = order.getBranchID();
         items = order.getAmounts();
     }
@@ -21,8 +21,8 @@ public class Order {
     public String toString() {
         return "Order: \n" +
                 "\torderId: " + orderId + "\n" +
+                "\tsupplierBN: " + supplierBN + "\n" +
                 "\ttotal amount: " + totalAmount + "\n" +
-                "\tdeliver time: " + toStringDeliverTime() + "\n" +
                 "\tbranchId: " + branchId;
     }
 
@@ -34,12 +34,10 @@ public class Order {
         return totalAmount + "";
     }
 
-    public String toStringDeliverTime() {
-        if (deliverTime == null) return "unknown";
-        return deliverTime.toString();
-    }
-
     public String toStringAmount(String itemId) {
         return "" + items.get(Integer.parseInt(itemId));
     }
+
+    public String toStringSupplierBN() { return "" + supplierBN; }
+
 }

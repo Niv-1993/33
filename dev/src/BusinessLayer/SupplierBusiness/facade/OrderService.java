@@ -1,8 +1,10 @@
 package BusinessLayer.SupplierBusiness.facade;
 
 import BusinessLayer.StockBusiness.Fcade.StorageService;
+import BusinessLayer.StockBusiness.Fcade.outObjects.NeededReport;
 import BusinessLayer.SupplierBusiness.IOrderService;
 import BusinessLayer.SupplierBusiness.SupplierController;
+import BusinessLayer.SupplierBusiness.facade.outObjects.Item;
 import BusinessLayer.SupplierBusiness.facade.outObjects.Order;
 import DAL.DALObject;
 import DAL.DalSuppliers.DalOrder;
@@ -128,7 +130,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public response showTotalAmount(int supplierBN, int orderId) {
+    public Tresponse<Order> showTotalAmount(int supplierBN, int orderId) {
         BusinessLayer.SupplierBusiness.Order order;
         try{
             order = orderControllers.get(branchID).showTotalAmount(supplierBN, orderId);
@@ -138,26 +140,18 @@ public class OrderService implements IOrderService {
         return new Tresponse<>(new Order(order));
     }
 
-    @Override
-    public response showDeliverTime(int supplierBN, int orderId) {
-        BusinessLayer.SupplierBusiness.Order order;
+    public Tresponse<NeededReport> getNeededItems(){
+        NeededReport report;
         try{
-            order = orderControllers.get(branchID).showDeliverTime(supplierBN, orderId);
+            Tresponse<NeededReport> responseData = stockService.getNeededReportToOrder();
+            if(responseData.isError())  return new Tresponse<>("ERROR: " + responseData.getError());
+            report = responseData.getOutObject();
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
-        return new Tresponse<>(new Order(order));
+        return new Tresponse<>(report);
     }
 
-    @Override
-    public response updateDeliverTime(int supplierBN, int orderId, LocalDate deliverTime) {
-        try{
-            orderControllers.get(branchID).updateDeliverTime(supplierBN, orderId, deliverTime);
-        }catch (Exception e){
-            return new response("ERROR: " + e.getMessage());
-        }
-        return new response();
-    }
 
     @Override
     public Tresponse<Order> getOrder(int orderId) {
@@ -190,6 +184,14 @@ public class OrderService implements IOrderService {
         return null;
     }
 
+    public Boolean ShipToUs(int branchId , int orderId) { return null;}  // return true if there is supplierAgreement and the ship is to us , false otherwise.
+
+    public Tresponse<List<Item>> showAllItemsOfOrder(int brunchId , int orderId) { return null;}
+
+    public response removeItemFromRegularOrder(int branchId, int orderId, int itemId) { return null;} // remove all shows of the item from the order.
+
+    public response removeAmountItemFromRegularOrder(int branchId, int orderId, int itemId , int amount) { return null;} // remove amount of the item from the order.
+
     public void newData() {
         orderControllers.put(1, new OrderController(1));
         orderControllers.put(2, new OrderController(2));
@@ -201,4 +203,5 @@ public class OrderService implements IOrderService {
         orderControllers.put(8, new OrderController(8));
         orderControllers.put(9, new OrderController(9));
     }
+
 }

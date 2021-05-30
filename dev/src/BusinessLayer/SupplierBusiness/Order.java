@@ -3,10 +3,8 @@ package BusinessLayer.SupplierBusiness;
 import DAL.DALObject;
 import DAL.DalSuppliers.DalItem;
 import DAL.DalSuppliers.DalOrder;
-import DAL.DalSuppliers.DalSupplierCard;
 import DAL.Mapper;
 import Utility.Tuple;
-import Utility.Util;
 import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
@@ -20,12 +18,11 @@ public class Order {
     protected DalOrder dalOrder;
     final static Logger log=Logger.getLogger(Order.class);
 
-    public Order(int supplierBN, int orderId , LocalDate deliverTime , int branchId , int orderType){
+    public Order(int supplierBN, int orderId , int branchId , int orderType){
         List<Tuple<Object,Class>> list=new ArrayList<>();
         list.add(new Tuple<>(orderId,Integer.class));
         list.add(new Tuple<>(supplierBN,Integer.class));
         list.add(new Tuple<>(0.0,Double.class));
-        list.add(new Tuple<>(deliverTime.toString(),String.class));
         list.add(new Tuple<>(branchId,Integer.class));
         list.add(new Tuple<>(orderType,Integer.class));
         list.add(new Tuple<>(0.0,Double.class));
@@ -102,7 +99,6 @@ public class Order {
         return "Order: \n" +
                 "\torderId: " + dalOrder.getOrderID() + "\n" +
                 "\ttotal amount: " + dalOrder.getTotalAmount() + "\n" +
-                "\tdeliver time: " + dalOrder.getDeliverTime() + "\n" +
                 "\tbranchId: " + dalOrder.getBranchID();
     }
 
@@ -118,9 +114,6 @@ public class Order {
         return dalOrder.getTotalAmount();
     }
 
-    public LocalDate getDeliverTime() {
-        return LocalDate.parse(dalOrder.getDeliverTime());
-    }
 
     public int getBranchID() {
         return dalOrder.getBranchID();
@@ -140,7 +133,7 @@ public class Order {
 
     public int getOrderType() {return dalOrder.getOrderType();}
 
-    public double showTotalAmount() {
-        return dalOrder.getTotalAmount();
-    }
+    public int getSupplierBN() { return dalOrder.getSupplierBN(); }
+
+
 }

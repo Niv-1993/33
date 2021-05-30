@@ -127,7 +127,7 @@ public class OrderController {
     public Order showTotalAmount(int supplierBN, int orderId) {
 //        SupplierCard supplierCard = suppliers.get(supplierBN);
 //        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
-        return orders.get(orderId).showDeliverTime();
+        return orders.get(orderId);
     }
 
     public Order showDeliverTime(int supplierBN, int orderId) throws Exception {
