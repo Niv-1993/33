@@ -18,7 +18,7 @@ public class SuppliersPresentation {
     final static Logger log = Logger.getLogger(SuppliersPresentation.class);
 
     public SuppliersPresentation(int branchID) {
-        service = new SupplierService(branchID);
+        service = new SupplierService();
     }
 
     public void loadData() {

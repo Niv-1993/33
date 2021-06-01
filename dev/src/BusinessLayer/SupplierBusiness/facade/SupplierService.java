@@ -17,11 +17,9 @@ import java.util.List;
 public class SupplierService implements ISupplierService {
     private SupplierController supplierController;
     private StorageService stockService;
-    private int branchID;
 
-    public SupplierService(int branchID) {
+    public SupplierService() {
         supplierController = null;
-        this.branchID = branchID;
     }
 
     @Override
@@ -554,6 +552,16 @@ public class SupplierService implements ISupplierService {
             return new response("ERROR: " + e.getMessage());
         }
         return new response();
+    }
+
+    public Tresponse<BusinessLayer.SupplierBusiness.Item> getItem(int supplierBN, int ItemId) {
+        BusinessLayer.SupplierBusiness.Item item;
+        try {
+            item = supplierController.getItem(supplierBN, ItemId);
+        } catch (Exception e) {
+            return new Tresponse<>("ERROR: " + e.getMessage());
+        }
+        return new Tresponse<>(item);
     }
 
     public void newData() {

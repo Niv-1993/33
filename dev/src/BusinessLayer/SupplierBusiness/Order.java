@@ -136,4 +136,7 @@ public class Order {
     public int getSupplierBN() { return dalOrder.getSupplierBN(); }
 
 
+    public regularOrder removeItemFromRegularOrder(Item item) {
+        items.remove(item);
+    }
 }

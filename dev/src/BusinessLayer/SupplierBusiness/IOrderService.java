@@ -16,8 +16,12 @@ public interface IOrderService {
     response removeOrder(int supplierBN , int orderId);
     Tresponse<Order> showOrderOfSupplier(int supplierBN , int orderId);
     Tresponse<List<Order>> showAllOrdersOfSupplier(int supplierBN);
-    Tresponse<Order> showTotalAmount(int supplierBN , int orderId);
+    response showTotalAmount(int supplierBN , int orderId) throws Exception;
+    response showDeliverTime(int supplierBN , int orderId);
+    response updateDeliverTime(int supplierBN , int orderId , LocalDate deliverTime);
     Tresponse<Order> getOrder(int orderId);
     Tresponse<List<Order>> getOrdersByTransportation(int transportationID);
     Tresponse<Order> addOrderToTransportation(BusinessLayer.SupplierBusiness.Order Order);
+
+    response removeAmountItemFromRegularOrder(int branchId, int orderId, int itemId, int amount);
 }

@@ -6,7 +6,8 @@ import org.apache.log4j.Logger;
 import java.util.Scanner;
 
 public class mainCLI {
-    SuppliersPresentation presentationCL;
+    SuppliersPresentation suppliersPresentation;
+    OrderPresentation orderPresentation;
     StockCLI stockCLI;
     Scanner scan=new Scanner(System.in);
     final static Logger log= Logger.getLogger(StockCLI.class);
@@ -17,10 +18,11 @@ public class mainCLI {
     }
 
     public mainCLI(){
-        presentationCL = new SuppliersPresentation();
+        suppliersPresentation = new SuppliersPresentation(1);
+        orderPresentation = new OrderPresentation(1);
         stockCLI = new StockCLI();
-        stockCLI.setStockService(presentationCL.getService());
-        presentationCL.setStockService(stockCLI.getService());
+        stockCLI.setStockService(suppliersPresentation.getService());
+        suppliersPresentation.setStockService(stockCLI.getService());
     }
 
     private int menuCheck(Scanner scanner) {
@@ -54,13 +56,15 @@ public class mainCLI {
                 switch (n) {
                     case 1 -> {
                         Mapper.getMap(lastDB);
-                        presentationCL.loadData(); // make a test that chek if it was load correctlly
+                        suppliersPresentation.loadData(); // make a test that chek if it was load correctlly
+                        orderPresentation.loadData();
                         break;
                     }
                     case 2 -> { /* Mapper.getMap("newDB.db"); */
                         lastDB="empty.db";
                         Mapper.getMap(lastDB);
-                        presentationCL.newData();
+                        suppliersPresentation.newData();
+                        orderPresentation.loadData();
                         break;
                     }
                     default -> System.out.println("illegal option!!!");
@@ -72,7 +76,7 @@ public class mainCLI {
             System.out.println("please enter:\n1 for Suppliers\n2 for Stock\n3 to exit");
             in = read();
             try {
-                if(Integer.parseInt(in) == 1) presentationCL.mainRun(true);
+                if(Integer.parseInt(in) == 1) suppliersPresentation.mainRun(true);
                 else if(Integer.parseInt(in) == 2) stockCLI.start();
                 else if(Integer.parseInt(in) == 3) System.exit(0);
                 else System.out.println("illegal input!!!");

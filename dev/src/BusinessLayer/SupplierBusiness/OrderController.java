@@ -1,9 +1,7 @@
-package BusinessLayer.SupplierBusiness.facade;
+package BusinessLayer.SupplierBusiness;
 
-import BusinessLayer.SupplierBusiness.*;
 import DAL.DALObject;
 import DAL.DalSuppliers.DalOrderController;
-import DAL.DalSuppliers.DalSupplierController;
 import DAL.Mapper;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
@@ -14,10 +12,9 @@ import java.util.*;
 public class OrderController {
     private Dictionary<Integer , Order> orders;
     private DalOrderController dalOrderController;
-    private SupplierController supplierController;
     final static Logger log=Logger.getLogger(OrderController.class);
 
-    public OrderController(int branchID, SupplierController supplierController){
+    public OrderController(int branchID){
         List<Tuple<Object,Class>> list=new ArrayList<>();
         list.add(new Tuple<>(branchID,Integer.class));
         list.add(new Tuple<>(1,Integer.class));
@@ -35,12 +32,11 @@ public class OrderController {
             dalOrderController = (DalOrderController) check;
         }
         orders = new Hashtable<>();
-        this.supplierController = supplierController;
     }
 
     public Order addRegularOrder(int supplierBN, int branchID, Hashtable<Integer, Integer> items) throws Exception {
-//        SupplierCard supplierCard = suppliers.get(supplierBN);
-//        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+        SupplierCard supplierCard = supplierController.getSuppliers().get(supplierBN);
+        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         Order order;
         try {
             order = new regularOrder(supplierBN, dalOrderController.getNumOfOrders(), branchID);
@@ -85,22 +81,20 @@ public class OrderController {
     }
 
     public Item addItemToOrder(int supplierBN, int orderId, int itemId, int amount) throws Exception {
-        ///if(supplierCard == null) throw new Exception("supplier BN does not exist.");
-        ///////////NEED TO THINK WHAT TO DO
+        SupplierCard supplierCard = supplierController.getSuppliers().get(supplierBN);
+        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try{
-            Order order = orders.get(orderId);
-            ///Order order = supplierCard.showOrderOfSupplier(orderId);
+            Order order = supplierCard.showOrderOfSupplier(orderId);
             if(order.getOrderType() == 1) throw new Exception("you cannot add new items to needed order");
-            regularOrder regularOrder = (BusinessLayer.SupplierBusiness.regularOrder) order;
-            return (regularOrder) regularOrder.addItemToOrder(itemId , amount);
+            return supplierController.getSuppliers().get(supplierBN).addItemToOrder(orderId, itemId , amount);
         } catch (Exception e){
             throw new Exception(e.getMessage());
         }
     }
 
     public void removeOrder(int supplierBN, int orderId) throws Exception {
-        ////SupplierCard supplierCard = suppliers.get(supplierBN);
-        ////if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+        SupplierCard supplierCard = supplierController.getSuppliers().get(supplierBN);
+        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try{
             orders.remove(orderId);
         } catch (Exception e){
@@ -109,8 +103,8 @@ public class OrderController {
     }
 
     public Order showOrderOfSupplier(int supplierBN, int orderId) throws Exception {
-//        SupplierCard supplierCard = suppliers.get(supplierBN);
-//        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+        SupplierCard supplierCard = .getSuppliers().get(supplierBN);
+        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try{
             return supplierController.getSuppliers().get(supplierBN).showOrderOfSupplier(orderId);
         } catch (Exception e){
@@ -118,21 +112,21 @@ public class OrderController {
         }
     }
 
-    public List<Order> showAllOrdersOfSupplier(int supplierBN) {
-//        SupplierCard supplierCard = suppliers.get(supplierBN);
-//        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+    public List<Order> showAllOrdersOfSupplier(int supplierBN) throws Exception {
+        SupplierCard supplierCard = supplierController.getSuppliers().get(supplierBN);
+        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         return supplierController.getSuppliers().get(supplierBN).showAllOrdersOfSupplier();
     }
 
-    public Order showTotalAmount(int supplierBN, int orderId) {
-//        SupplierCard supplierCard = suppliers.get(supplierBN);
-//        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+    public Order showTotalAmount(int supplierBN, int orderId) throws Exception {
+        SupplierCard supplierCard = supplierController.getSuppliers().get(supplierBN);
+        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         return orders.get(orderId);
     }
 
     public Order showDeliverTime(int supplierBN, int orderId) throws Exception {
-//        SupplierCard supplierCard = suppliers.get(supplierBN);
-//        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+        SupplierCard supplierCard = supplierController.getSuppliers().get(supplierBN);
+        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
             return orders.get(orderId).showDeliverTime();
         } catch (Exception e){
@@ -150,4 +144,25 @@ public class OrderController {
         }
     }
 
+    public List<Order> showAllOrders() {
+        List<Order> retList = new LinkedList<>();
+        Enumeration<Order> enumeration = orders.elements();
+        while (enumeration.hasMoreElements()) {
+            Order temp = enumeration.nextElement();
+            retList.add(temp);
+        }
+        return retList;
+    }
+
+    public int getSupplierBN(int orderId) {
+        return orders.get(orderId).getSupplierBN();
+    }
+
+    public void removeItemFromRegularOrder(int orderId, Item item) {
+        regularOrder order = orders.get(orderId).removeItemFromRegularOrder(item);
+    }
+
+    public List<Item> showAllItemsOfOrder(int orderId) {
+        return orders.get(orderId).showAllItemsOfOrder();
+    }
 }

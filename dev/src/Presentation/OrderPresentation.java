@@ -3,6 +3,7 @@ package Presentation;
 import BusinessLayer.StockBusiness.Fcade.StorageService;
 import BusinessLayer.StockBusiness.Fcade.outObjects.NeededReport;
 import BusinessLayer.SupplierBusiness.facade.OrderService;
+import BusinessLayer.SupplierBusiness.facade.Security;
 import BusinessLayer.SupplierBusiness.facade.Tresponse;
 import BusinessLayer.SupplierBusiness.facade.outObjects.*;
 import BusinessLayer.SupplierBusiness.facade.response;
@@ -91,13 +92,13 @@ public class OrderPresentation {
             option = menuCheck(scanner);
             switch (option) {
                 case 1 -> {
+                    int supplierBN = intScan(scanner, "please enter supplierBN", "supplierBN must be a number");
                     int orderId = intScan(scanner, "please enter orderId", "orderId must be a number");
-                    service.showTotalAmount(branchId, orderId);
-                    Tresponse<Order> response = service.showOrderOfSupplier(branchId , orderId);
+                    Tresponse<Order> response = Security.getInstance().showOrderOfSupplier(supplierBN, branchId, orderId);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else {
                         System.out.println(response.getOutObject().toString());
-                        System.out.println("\tship to us: " + service.ShipToUs(branchId , orderId));
+                        System.out.println("\tship to us: " + service.ShipToUs(supplierBN, orderId).getOutObject().getShipToUs());
                         Tresponse<List<Item>> items = service.showAllItemsOfOrder(branchId , orderId);
                         if (items.isError()) System.out.println(items.getError() + "\n");
                         else {
@@ -161,15 +162,15 @@ public class OrderPresentation {
             int BN;
             switch (option) {
                 case 1 -> {
-                    int branchID = intScan(scanner, "please enter branchId for deliver", "branchId must be a number");
+                    int supplierBN = intScan(scanner, "please enter supplierBN", "supplierBN must be a number");
                     Hashtable<Integer, Integer> items = hashScan(scanner);
-                    Tresponse<Order> response = service.addRegularOrder(branchId , branchID, items);
+                    Tresponse<Order> response = service.addRegularOrder(supplierBN , branchId, items);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("orderId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner);
                 }
                 case 2 -> {
-                    Tresponse<NeededReport> tresponse = service.getNeededItems();
+                    Tresponse<NeededReport> tresponse = service.getNeededItems(branchId);
                     if (tresponse.isError()) System.out.println(tresponse.getError() + "\n");
                     else {
                         Dictionary<Integer, Integer> dictionary = tresponse.getOutObject().get_list();

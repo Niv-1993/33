@@ -516,4 +516,7 @@ public class SupplierController{
         return suppliers;
     }
 
+    public Item getItem(int supplierBN, int itemId) {
+        return suppliers.get(supplierBN).getSupplierItems().get(itemId);
+    }
 }
