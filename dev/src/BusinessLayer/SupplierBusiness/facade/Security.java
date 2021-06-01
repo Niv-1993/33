@@ -4,10 +4,17 @@ import BusinessLayer.StockBusiness.Fcade.outObjects.NeededReport;
 import BusinessLayer.SupplierBusiness.Order;
 import BusinessLayer.SupplierBusiness.SupplierAgreement;
 import BusinessLayer.SupplierBusiness.SupplierCard;
+import DAL.DALObject;
+import DAL.DalSuppliers.DalOrder;
+import DAL.DalSuppliers.DalSupplierCard;
+import DAL.Mapper;
+import org.apache.log4j.Logger;
 
 
 import java.rmi.server.ExportException;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 public class Security {
 
@@ -16,6 +23,7 @@ public class Security {
     //private final OrderService orderService;
     private final Hashtable<Integer , OrderService> orderServices;
     private final SupplierService supplierService;
+    final static Logger log=Logger.getLogger(Security.class);
 
     public Security(){
         suppliersOrder = new Hashtable<>();
@@ -42,12 +50,14 @@ public class Security {
     }
 
     public void addOrder(int branchId, int orderId) throws ExportException {
-        Tresponse<BusinessLayer.SupplierBusiness.facade.outObjects.Order> orderResponse = orderServices.get(branchId).getOrder(orderId);
-        if(orderResponse.isError()) throw new ExportException("no such orderId");
-        Order order = orderResponse.getOutObject();
-        Tresponse<SupplierCard> supplierCardResponse = supplierService.showSupplier(Integer.parseInt(order.toStringSupplierBN())); // return the supplierBN.
-        if(supplierCardResponse.isError()) throw new ExportException("there is no supplier that has this order");
-        suppliersOrder.put(order , supplierCardResponse.getOutObject());
+        //Tresponse<BusinessLayer.SupplierBusiness.facade.outObjects.Order> orderResponse = orderServices.get(branchId).getOrder(orderId);
+        Order order = getOrder(branchId, orderId);
+        if(order == null) throw new ExportException("no such orderId");
+        int supplierBN = order.getSupplierBN();
+        //Tresponse<SupplierCard> supplierCardResponse = supplierService.showSupplier(retOrder.getSupplierBN()); // return the supplierBN.
+        SupplierCard supplierCard = getSupplier(supplierBN);
+        if(supplierCard == null) throw new ExportException("there is no supplier that has this order");
+        suppliersOrder.put(order , supplierCard);
     }
 
 
@@ -73,5 +83,46 @@ public class Security {
 
     public SupplierCard getSupplier(int branchId, int OrderId) {
         return suppliersOrder.get(OrderId);
+    }
+
+    private Order getOrder(int branchId, int orderId) {
+        DalOrder dalOrder;
+        BusinessLayer.SupplierBusiness.Order retOrder;
+        Mapper map=Mapper.getMap();
+        List<Integer> keyList=new ArrayList<>();
+        keyList.add(branchId);
+        keyList.add(orderId);
+        DALObject check =map.getItem(DalOrder.class ,keyList);
+        if (check==null ||(check.getClass()!=DalOrder.class)){
+            String s="the instance that return from Mapper is null";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        else{
+            log.info("create new Object");
+            dalOrder = (DalOrder) check;
+            retOrder = new Order(dalOrder);
+        }
+        return retOrder;
+    }
+
+    private SupplierCard getSupplier(int supplierBN) {
+        DalSupplierCard dalSupplierCard;
+        BusinessLayer.SupplierBusiness.SupplierCard supplierCard;
+        Mapper map=Mapper.getMap();
+        List<Integer> keyList=new ArrayList<>();
+        keyList.add(supplierBN);
+        DALObject check =map.getItem(DalSupplierCard.class ,keyList);
+        if (check==null ||(check.getClass()!=DalSupplierCard.class)){
+            String s="the instance that return from Mapper is null";
+            log.warn(s);
+            throw new IllegalArgumentException(s);
+        }
+        else{
+            log.info("create new Object");
+            dalSupplierCard = (DalSupplierCard) check;
+            supplierCard = new SupplierCard(dalSupplierCard);
+        }
+        return supplierCard;
     }
 }

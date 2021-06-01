@@ -204,6 +204,7 @@ public class OrderService implements IOrderService {
         int supplierBN = orderController.getSupplierBN(orderId);
         Item item = Security.getInstance().getItem(supplierBN, itemId);
         orderController.removeItemFromRegularOrder(orderId, item);
+        return new response();
     }
 
     public Tresponse<List<BusinessLayer.SupplierBusiness.facade.outObjects.Item>> showAllItemsOfOrder(int branchId, int orderId) {
