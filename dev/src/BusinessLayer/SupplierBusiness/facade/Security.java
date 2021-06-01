@@ -66,7 +66,11 @@ public class Security {
     }
 
     public Order showTotalAmount(int orderId, int branchId) throws Exception {
-        return suppliersOrder.get(orderId).showTotalAmount(orderId);
+        try {
+            return suppliersOrder.get(orderId).showTotalAmount(orderId);
+        }catch (Exception e){
+            throw new Exception("there is no such orderId");
+        }
     }
 
     public BusinessLayer.SupplierBusiness.Item getItem(int supplierBN, int itemId) {
@@ -74,15 +78,29 @@ public class Security {
     }
 
     public Tresponse<BusinessLayer.SupplierBusiness.facade.outObjects.Order> showOrderOfSupplier(int supplierBN, int branchId, int orderId) {
+        /*int BN;
+        try {
+            BN = suppliersOrder.get(orderServices.get(orderId)).getSupplierBN();
+        }catch (Exception e){
+            throw new Exception("there is no supplier that supplies that orderId");
+        }*/
         return supplierService.showOrderOfSupplier(supplierBN,orderId);
     }
 
-    public SupplierAgreement getSupplierAgreement(int supplierBN, int orderId) {
-        return suppliersOrder.get(orderId).showSupplierAgreement();
+    public SupplierAgreement getSupplierAgreement(int supplierBN, int orderId) throws Exception {
+        try {
+            return suppliersOrder.get(orderId).showSupplierAgreement();
+        }catch (Exception e){
+            throw new Exception("there is no such orderId");
+        }
     }
 
-    public SupplierCard getSupplier(int branchId, int OrderId) {
-        return suppliersOrder.get(OrderId);
+    public SupplierCard getSupplier(int branchId, int OrderId) throws Exception {
+        try {
+            return suppliersOrder.get(OrderId);
+        }catch (Exception e){
+            throw new Exception("there is no such orderId");
+        }
     }
 
     private Order getOrder(int branchId, int orderId) {

@@ -81,7 +81,7 @@ public class OrderPresentation {
 
     private void showingMethods() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
-        int option = -1;
+        int option;
         String[] showingMethodArray = {"show Order Of Supplier", "show All Orders Of Supplier", "show Total Amount",
                                        "back to the main menu", "END PROGRAM"};
         System.out.println("please select the showing method: ");
