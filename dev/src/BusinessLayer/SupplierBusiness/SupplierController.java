@@ -129,7 +129,7 @@ public class SupplierController{
     public void updateSupplierPayWay(int supplierBN, String payWay) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
-            suppliers.get(supplierBN);
+        suppliers.get(supplierBN);
         try {
             suppliers.get(supplierBN).updateSupplierPayWay(payWay);
         } catch (Exception e){
@@ -309,8 +309,9 @@ public class SupplierController{
     }
 
 
-    public Order addNeededOrder(int itemId, int neededAmount, int branchID) throws Exception {
+    public Tuple<Order , Boolean> addNeededOrder(int itemId, int neededAmount, int branchID) throws Exception {
         Order order;
+        Tuple<Order , Boolean> tuple;
         Item item = null;
         double bestPrice = Integer.MAX_VALUE;
         int bestSupplier = 0;
@@ -332,15 +333,15 @@ public class SupplierController{
                     }
                 }
             }
-            order = suppliers.get(bestSupplier).addNeededOrder(dalSupplierController.getNumOfOrders(), branchID, item, neededAmount);
+            tuple = suppliers.get(bestSupplier).addNeededOrder(dalSupplierController.getNumOfOrders(), branchID, item, neededAmount);
             dalSupplierController.addNumOfOrders();
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
-        return order;
+        return tuple;
     }
 
-    public Item addItemToOrder(int supplierBN, int orderId, int itemId , int amount) throws Exception {
+    public Tuple<Order , Boolean> addItemToOrder(int supplierBN, int orderId, int itemId , int amount) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try{
@@ -394,15 +395,15 @@ public class SupplierController{
         }
     }
 
-    public void updateDeliverTime(int supplierBN, int orderId, LocalDate deliverTime) throws Exception {
-        SupplierCard supplierCard = suppliers.get(supplierBN);
-        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
-        try {
-            suppliers.get(supplierBN).updateDeliverTime(orderId, deliverTime);
-        } catch (Exception e){
-            throw new Exception(e.getMessage());
-        }
-    }
+//    public void updateDeliverTime(int supplierBN, int orderId, LocalDate deliverTime) throws Exception {
+//        SupplierCard supplierCard = suppliers.get(supplierBN);
+//        if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+//        try {
+//            suppliers.get(supplierBN).updateDeliverTime(orderId, deliverTime);
+//        } catch (Exception e){
+//            throw new Exception(e.getMessage());
+//        }
+//    }
 
     public void addQuantityDocument(int supplierBN, int itemId, int minimalAmount, int discount) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
@@ -512,11 +513,6 @@ public class SupplierController{
         }
     }
 
-    public Dictionary<Integer , SupplierCard> getSuppliers() {
-        return suppliers;
-    }
-
-    public Item getItem(int supplierBN, int itemId) {
-        return suppliers.get(supplierBN).getSupplierItems().get(itemId);
+    public List<BusinessLayer.SupplierBusiness.facade.outObjects.Order> getOrdersByTransportation(int transportationID) {
     }
 }

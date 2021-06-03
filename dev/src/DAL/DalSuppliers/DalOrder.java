@@ -47,16 +47,15 @@ public class DalOrder extends DALObject {
                 "\t\"orderType\" INTEGER NOT NULL,\n" +
                 "\t\"totalWeight\" DOUBLE NOT NULL,\n" +
                 "\t\"transportationID\" INTEGER NOT NULL,\n" +
-                "\tPRIMARY KEY(orderId, branchId),\n" +
+                "\tPRIMARY KEY(orderId),\n" +
                 "\tFOREIGN KEY(\"supplierBN\") REFERENCES \"Suppliers\"(\"supplierBN\") ON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");" +
                 "CREATE TABLE IF NOT EXISTS \"ItemsInOrders\"(\n" +
                 "\t\"orderId\" INTEGER NOT NULL,\n" +
-                "\t\"branchId\" INTEGER NOT NULL,\n" +
                 "\t\"itemId\" INTEGER NOT NULL,\n" +
                 "\t\"amount\" INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY(\"itemId\"),\n" +
-                "\tFOREIGN KEY(orderId, branchId) REFERENCES \"Orders\"(orderId, branchId)  ON DELETE CASCADE ON UPDATE CASCADE ,\n" +
+                "\tFOREIGN KEY(\"orderId\") REFERENCES \"Orders\"(\"orderId\")  ON DELETE CASCADE ON UPDATE CASCADE ,\n" +
                 "\tFOREIGN KEY(\"itemId\") REFERENCES \"Items\"(\"itemId\")  ON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";
     }
@@ -293,4 +292,5 @@ public class DalOrder extends DALObject {
         }
         this.totalWeight = totalWeight;
     }
+
 }

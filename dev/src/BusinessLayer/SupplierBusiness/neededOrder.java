@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public final class neededOrder extends Order {
 
     public neededOrder(int supplierBN, int orderId, LocalDate deliverTime, int branchID, Item item, int amount, double totalAmount) throws Exception {
-        super(supplierBN, orderId, deliverTime, branchID, 1);
+        super(supplierBN, orderId, branchID, 1);
         try {
             items.put(item, amount);
             if (items.get(item) != null) {

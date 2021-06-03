@@ -47,8 +47,8 @@ public interface ISupplierService {
     Tresponse<Order> showOrderOfSupplier(int supplierBN , int orderId);
     Tresponse<List<Order>> showAllOrdersOfSupplier(int supplierBN);
     response showTotalAmount(int supplierBN , int orderId);
-    response showDeliverTime(int supplierBN , int orderId);
-    response updateDeliverTime(int supplierBN , int orderId , LocalDate deliverTime);
+    //response showDeliverTime(int supplierBN , int orderId);
+    //response updateDeliverTime(int supplierBN , int orderId , LocalDate deliverTime);
     response addQuantityDocument(int supplierBN , int itemId , int minimalAmount , int discount);
     response removeQuantityDocument(int supplierBN , int itemId);
     Tresponse<QuantityDocument> showQuantityDocument(int supplierBN , int itemId);

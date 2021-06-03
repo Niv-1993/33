@@ -8,18 +8,11 @@ import java.time.temporal.ChronoUnit;
 public class regularOrder extends Order {
 
     public regularOrder(int supplierBN, int orderId, int branchId) {
-        super(supplierBN, orderId, LocalDate.now().plusDays(7), branchId, 0);
+        super(supplierBN, orderId,  branchId, 0);
     }
 
     public regularOrder(DalOrder dalOrder) {
         super(dalOrder);
-    }
-
-    public void updateDeliverTime(LocalDate deliverTime) throws Exception {
-        long daysDiffrence = ChronoUnit.DAYS.between(LocalDate.now(), deliverTime);
-        if (daysDiffrence >= 1) {
-            dalOrder.updateDeliverTime(deliverTime);
-        } else throw new Exception("deliver time must be at least one day after current time");
     }
 
     public void addItemToOrder(Item item, int amount) throws Exception {

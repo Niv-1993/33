@@ -8,10 +8,7 @@ import Utility.Tuple;
 import org.apache.log4j.Logger;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Order {
     protected Hashtable<Item , Integer> items;
@@ -136,7 +133,16 @@ public class Order {
     public int getSupplierBN() { return dalOrder.getSupplierBN(); }
 
 
-    public regularOrder removeItemFromRegularOrder(Item item) {
+    public void removeItemFromRegularOrder(Item item) {
         items.remove(item);
+    }
+
+    public Item getItem(int itemId) {
+        Enumeration<Item> enumuration = items.keys();
+        while (enumuration.hasMoreElements()) {
+            Item temp = enumuration.nextElement();
+            if (temp.getItemId() == itemId) return temp;
+        }
+        return null;
     }
 }

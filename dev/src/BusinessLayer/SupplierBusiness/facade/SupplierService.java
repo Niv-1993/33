@@ -1,3 +1,4 @@
+
 package BusinessLayer.SupplierBusiness.facade;
 
 import BusinessLayer.StockBusiness.Fcade.StorageService;
@@ -17,9 +18,11 @@ import java.util.List;
 public class SupplierService implements ISupplierService {
     private SupplierController supplierController;
     private StorageService stockService;
+    private int branchID;
 
     public SupplierService() {
         supplierController = null;
+        this.branchID = branchID;
     }
 
     @Override
@@ -58,7 +61,7 @@ public class SupplierService implements ISupplierService {
     @Override
     public response addSupplier(String supplierName, int bankNumber , int branchNumber, int bankAccount, String payWay) {
         try{
-          supplierController.addSupplier(supplierName,bankNumber ,branchNumber , bankAccount, payWay);
+            supplierController.addSupplier(supplierName,bankNumber ,branchNumber , bankAccount, payWay);
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
@@ -308,6 +311,9 @@ public class SupplierService implements ISupplierService {
                     stockService.addProduct(order.showAllItemsOfOrder().get(i).getItemId(), Date.from(order.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
                 }
             }
+            else {
+                ///NEED TO CHANGE FOR KUS SHEL AIMA SHELAEM (BAR AND YUVAL)
+            }
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
@@ -329,15 +335,18 @@ public class SupplierService implements ISupplierService {
 
     public response addNeededOrder(int itemId ,int neededAmount, int branchID) {
         BusinessLayer.SupplierBusiness.Order order;
+        Tuple<BusinessLayer.SupplierBusiness.Order , Boolean> tuple;
         try {
-            order = supplierController.addNeededOrder(itemId , neededAmount, branchID);
-            if (order == null) {
-                return new Tresponse<>("ERROR: unsuccessful adding");
-            }else{
+            tuple = supplierController.addNeededOrder(itemId , neededAmount, branchID);
+            order = tuple.item1;
+            if(tuple.item2){
                 ZoneId zone = ZoneId.systemDefault();
-                for(int i = 0 ; i < neededAmount ; i++) {
+                for(int i = 0 ; i < order.showAllItemsOfOrder().size() ; i++) {
                     stockService.addProduct(order.showAllItemsOfOrder().get(i).getItemId(), Date.from(order.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
                 }
+            }
+            else {
+                ///NEED TO CHANGE FOR KUS SHEL AIMA SHELAEM (BAR AND YUVAL)
             }
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
@@ -348,14 +357,24 @@ public class SupplierService implements ISupplierService {
     @Override
     public response addItemToOrder(int supplierBN, int orderId, int itemId , int amount) {
         BusinessLayer.SupplierBusiness.Item item;
+        Tuple<BusinessLayer.SupplierBusiness.Order, Boolean> order;
         try{
-            item = supplierController.addItemToOrder(supplierBN, orderId, itemId , amount);
+            order = supplierController.addItemToOrder(supplierBN, orderId, itemId , amount);
+            item = order.item1.getItem(itemId);
             ZoneId zone = ZoneId.systemDefault();
+            if(order.item2){
+                for(int i = 0 ; i < order.item1.showAllItemsOfOrder().size() ; i++) {
+                    stockService.addProduct(order.item1.showAllItemsOfOrder().get(i).getItemId(), Date.from(order.item1.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
+                }
+            }
+            else {
+                ///NEED TO CHANGE FOR KUS SHEL AIMA SHELAEM (BAR AND YUVAL)
+            }
             for(int i = 0 ; i < amount ; i++) {
-                stockService.addProduct(item.getItemId(), Date.from(item.getExpirationDate().atStartOfDay(zone).toInstant()));
+                stockService.addProduct(itemId, Date.from(item.getExpirationDate().atStartOfDay(zone).toInstant()));
             }
         }catch (Exception e){
-            return new response("ERROR: " + e.getMessage());
+            return new Tresponse("ERROR: " + e.getMessage());
         }
         return new response();
     }
@@ -408,26 +427,26 @@ public class SupplierService implements ISupplierService {
         return new Tresponse<>(new Order(order));
     }
 
-    @Override
-    public Tresponse<Order> showDeliverTime(int supplierBN, int orderId) {
-        BusinessLayer.SupplierBusiness.Order order;
-        try{
-            order = supplierController.showDeliverTime(supplierBN, orderId);
-        }catch (Exception e){
-            return new Tresponse<>("ERROR: " + e.getMessage());
-        }
-        return new Tresponse<>(new Order(order));
-    }
+//    @Override
+//    public Tresponse<Order> showDeliverTime(int supplierBN, int orderId) {
+//        BusinessLayer.SupplierBusiness.Order order;
+//        try{
+//            order = supplierController.showDeliverTime(supplierBN, orderId);
+//        }catch (Exception e){
+//            return new Tresponse<>("ERROR: " + e.getMessage());
+//        }
+//        return new Tresponse<>(new Order(order));
+//    }
 
-    @Override
-    public response updateDeliverTime(int supplierBN, int orderId, LocalDate deliverTime){
-        try{
-            supplierController.updateDeliverTime(supplierBN, orderId, deliverTime);
-        }catch (Exception e){
-            return new response("ERROR: " + e.getMessage());
-        }
-        return new response();
-    }
+//    @Override
+//    public response updateDeliverTime(int supplierBN, int orderId, LocalDate deliverTime){
+//        try{
+//            supplierController.updateDeliverTime(supplierBN, orderId, deliverTime);
+//        }catch (Exception e){
+//            return new response("ERROR: " + e.getMessage());
+//        }
+//        return new response();
+//    }
 
     @Override
     public response addQuantityDocument(int supplierBN, int itemId, int minimalAmount, int discount){
@@ -554,14 +573,15 @@ public class SupplierService implements ISupplierService {
         return new response();
     }
 
-    public Tresponse<BusinessLayer.SupplierBusiness.Item> getItem(int supplierBN, int ItemId) {
-        BusinessLayer.SupplierBusiness.Item item;
+    Tresponse<List<Order>> getOrdersByTransportation(int transportationID) {
+        List<Order> outOrder = new LinkedList<>();
         try {
-            item = supplierController.getItem(supplierBN, ItemId);
-        } catch (Exception e) {
+            outOrder = supplierController.getOrdersByTransportation(transportationID);
+        }
+        catch (Exception e) {
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
-        return new Tresponse<>(item);
+        return new Tresponse<>(outOrder);
     }
 
     public void newData() {

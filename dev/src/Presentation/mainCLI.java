@@ -6,8 +6,7 @@ import org.apache.log4j.Logger;
 import java.util.Scanner;
 
 public class mainCLI {
-    SuppliersPresentation suppliersPresentation;
-    OrderPresentation orderPresentation;
+    PresentationCL suppliersPresentation;
     StockCLI stockCLI;
     Scanner scan=new Scanner(System.in);
     final static Logger log= Logger.getLogger(StockCLI.class);
@@ -18,8 +17,7 @@ public class mainCLI {
     }
 
     public mainCLI(){
-        suppliersPresentation = new SuppliersPresentation(1);
-        orderPresentation = new OrderPresentation(1);
+        suppliersPresentation = new PresentationCL();
         stockCLI = new StockCLI();
         stockCLI.setStockService(suppliersPresentation.getService());
         suppliersPresentation.setStockService(stockCLI.getService());
@@ -57,14 +55,12 @@ public class mainCLI {
                     case 1 -> {
                         Mapper.getMap(lastDB);
                         suppliersPresentation.loadData(); // make a test that chek if it was load correctlly
-                        orderPresentation.loadData();
                         break;
                     }
                     case 2 -> { /* Mapper.getMap("newDB.db"); */
                         lastDB="empty.db";
                         Mapper.getMap(lastDB);
                         suppliersPresentation.newData();
-                        orderPresentation.loadData();
                         break;
                     }
                     default -> System.out.println("illegal option!!!");

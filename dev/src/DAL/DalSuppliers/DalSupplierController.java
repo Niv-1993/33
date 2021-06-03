@@ -17,18 +17,16 @@ public class DalSupplierController extends DALObject {
     public DalSupplierController() {
         super(null);
     }
-    public DalSupplierController(Integer controller , Integer numOfOrders , Integer branchID, DalController dalController) {
+    public DalSupplierController(Integer controller , Integer numOfOrders , DalController dalController) {
         super(dalController);
         this.controller = controller;
         this.numOfOrders = numOfOrders;
-        this.branchID = branchID;
     }
 
     @Override
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS \"SupplierController\"(\n" +
                 "\t\"controller\" INTEGER NOT NULL,\n" +
-                "\t\"branchID\" INTEGER NOT NULL,\n" +
                 "\t\"numOfOrders\" INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY(\"controller\")\n" +
                 ");";

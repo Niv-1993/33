@@ -313,7 +313,6 @@ public class SupplierCard {
 
     public Tuple<Order , Boolean> addRegularOrder(int orderId , int branchId, Hashtable<Integer, Integer> items) throws Exception {
         regularOrder order;
-        boolean isCons = false;
         order = new regularOrder(dalSupplierCard.getSupplierBN(), orderId , branchId);
         orders.add(order);
         try {
@@ -323,10 +322,10 @@ public class SupplierCard {
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
-        return new Tuple<>(order , isCons);
+        return new Tuple<>(order , supplierAgreement.getShipToUs());
     }
 
-    public Order addNeededOrder(int orderID, int branchID, Item item, int amount) throws Exception {
+    public Tuple<Order , Boolean> addNeededOrder(int orderID, int branchID, Item item, int amount) throws Exception {
         if (item == null || isItemExist(item.getItemId()) == null) return null;
         neededOrder order;
         double totalAmount = calculateTotalAmount(item , amount);
@@ -336,7 +335,7 @@ public class SupplierCard {
             throw new Exception(e.getMessage());
         }
         orders.add(order);
-        return order;
+        return new Tuple<>(order , supplierAgreement.getShipToUs());
     }
 
     public double calculateTotalAmount(Item item , int amount){
@@ -361,7 +360,7 @@ public class SupplierCard {
         return null;
     }
 
-    public Item addItemToOrder(int orderId, int itemId , int amount) throws Exception {
+    public Tuple<Order , Boolean> addItemToOrder(int orderId, int itemId , int amount) throws Exception {
         Item toAdd = isItemExist(itemId);
         if(toAdd == null) throw new Exception("the supplier does not have this item");
         for (Order o : orders) {
@@ -369,11 +368,12 @@ public class SupplierCard {
             if (o.getOrderId() == orderId) {
                 regularOrder temp = (regularOrder) o;
                 temp.addItemToOrder(toAdd , amount);
-                return toAdd;
+                return new Tuple<>(o, supplierAgreement.getShipToUs());
             }
         }
         throw new Exception("orderId does not exist");
     }
+
 
     public void removeOrder(int orderId) throws Exception {
         List<Order> copyOrders = orders;
@@ -438,19 +438,19 @@ public class SupplierCard {
         throw new Exception("orderId does not exist.");
     }
 
-    public void updateDeliverTime(int orderId, LocalDate deliverTime) throws Exception {
-        boolean hasFound = false;
-        for (Order o : orders) {
-            if (o.getOrderId() == orderId) {
-                if(o.getOrderType() == 1) throw new Exception("you can update deliver time only for regular order");
-                regularOrder temp = (regularOrder) o;
-                temp.updateDeliverTime(deliverTime);
-                hasFound = true;
-            }
-            if(hasFound) break;
-        }
-        if(!hasFound) throw new Exception("orderId does not exist.");
-    }
+//    public void updateDeliverTime(int orderId, LocalDate deliverTime) throws Exception {
+//        boolean hasFound = false;
+//        for (Order o : orders) {
+//            if (o.getOrderId() == orderId) {
+//                if(o.getOrderType() == 1) throw new Exception("you can update deliver time only for regular order");
+//                regularOrder temp = (regularOrder) o;
+//                temp.updateDeliverTime(deliverTime);
+//                hasFound = true;
+//            }
+//            if(hasFound) break;
+//        }
+//        if(!hasFound) throw new Exception("orderId does not exist.");
+//    }
 
     public void addQuantityDocument(int itemId, int minimalAmount, int discount) throws Exception {
         boolean hasFound = false;
