@@ -514,5 +514,6 @@ public class SupplierController{
     }
 
     public List<BusinessLayer.SupplierBusiness.facade.outObjects.Order> getOrdersByTransportation(int transportationID) {
+        return null;
     }
 }

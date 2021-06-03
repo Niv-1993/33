@@ -3,7 +3,7 @@ package BusinessLayer.SupplierBusiness.facade.outObjects;
 public class SupplierAgreement {
     private final int minimalAmount;
     private final int discount;
-    private final boolean constantTime;
+    private final boolean constantTime;  // maybe to delete.
     private final boolean shipToUs;
 
 

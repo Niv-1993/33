@@ -9,6 +9,7 @@ public class Order {
     private final double totalAmount;
     private final int branchId;
     private final Hashtable<Integer, Integer> items;
+    //private final int transportationId;
 
     public Order(BusinessLayer.SupplierBusiness.Order order) {
         orderId = order.getOrderId();
@@ -16,6 +17,7 @@ public class Order {
         totalAmount = order.getTotalAmount();
         branchId = order.getBranchID();
         items = order.getAmounts();
+        //transportationId = order.getTransportationId();
     }
 
     public String toString() {
