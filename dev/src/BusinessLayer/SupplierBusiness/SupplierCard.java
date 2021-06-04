@@ -29,7 +29,7 @@ public class SupplierCard {
         List<Integer> keyList=new ArrayList<>();
         keyList.add(supplierBN);
         DALObject check =map.getItem(DalSupplierCard.class ,keyList);
-        if (DalSupplierCard.class==null || check==null ||(check.getClass()!=DalSupplierCard.class)){
+        if (check==null ||(check.getClass()!=DalSupplierCard.class)){
             String s="the instance that return from Mapper is null";
             log.warn(s);
             throw new IllegalArgumentException(s);
@@ -380,8 +380,8 @@ public class SupplierCard {
         boolean found = false;
         for(Order order : copyOrders){
             if(order.getOrderId() == orderId){
-                orders.remove(order);
                 order.removeOrder();
+                orders.remove(order);
                 found = true;
                 break;
             }
@@ -577,7 +577,41 @@ public class SupplierCard {
         if(!hasFound) throw new Exception("itemId does not found");
     }
 
+    public void removeOrdersByTransportation(int transportationID) throws Exception {
+        for (Order o : orders) {
+            if (o.getTransportationID() == transportationID) {
+                removeOrder(o.getOrderId());
+            }
+        }
+    }
     public List<Item> getSupplierItems() {
         return items;
+    }
+
+    private void loadOrdersByTransportationID(int transportationID) {
+        List<Order> ordersOfTransportation = new LinkedList<>();
+        List<Tuple<List<Class>,List<Object>>> list1 = dalSupplierCard.loadOrdersByTransportation(transportationID);
+        if (list1.size() > 0) {
+            for (int i = 0; i < list1.get(0).item2.size(); i = i + 8) {
+                int key = (int) list1.get(0).item2.get(i);
+                Mapper map = Mapper.getMap();
+                List<Integer> keyList = new ArrayList<>();
+                keyList.add(key);
+                DALObject check = map.getItem(DalOrder.class, keyList);
+                if (check == null || (check.getClass() != DalOrder.class)) {
+                    String s = "the instance that return from Mapper is null";
+                    log.warn(s);
+                    throw new IllegalArgumentException(s);
+                } else {
+                    log.info("loaded new Object");
+                    if (((DalOrder) check).getOrderType() == 0) {
+                        ordersOfTransportation.add(new regularOrder((DalOrder) check));
+                    }
+                    else {
+                        ordersOfTransportation.add(new neededOrder((DalOrder) check));
+                    }
+                }
+            }
+        }
     }
 }

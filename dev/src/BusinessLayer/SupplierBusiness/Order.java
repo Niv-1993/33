@@ -59,6 +59,7 @@ public class Order {
         return retOrder;
     }
 
+
     public Order(DalOrder dalOrder) {
         this.dalOrder = dalOrder;
         loadItemsOfOrders();
@@ -131,6 +132,8 @@ public class Order {
     public int getOrderType() {return dalOrder.getOrderType();}
 
     public int getSupplierBN() { return dalOrder.getSupplierBN(); }
+
+    public int getTransportationID() { return dalOrder.getTransportationID(); }
 
 
     public void removeItemFromRegularOrder(Item item) {

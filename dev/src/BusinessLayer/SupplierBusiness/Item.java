@@ -30,7 +30,7 @@ public class Item{
         List<Integer> keyList=new ArrayList<>();
         keyList.add(itemId);
         DALObject check =map.getItem(DalItem.class ,keyList);
-        if (DalItem.class==null || check==null ||(check.getClass()!=DalItem.class)){
+        if (check==null ||(check.getClass()!=DalItem.class)){
             String s="the instance that return from Mapper is null";
             log.warn(s);
             throw new IllegalArgumentException(s);

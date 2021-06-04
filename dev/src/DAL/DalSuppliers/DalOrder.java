@@ -117,6 +117,21 @@ public class DalOrder extends DALObject {
         return supplierBN;
     }
 
+    public int getTransportationID() {
+        try {
+            String query = "SELECT transportationID FROM Orders\n" +
+                    "WHERE orderId = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(orderId);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            transportationID = (Integer) tuple.item2.get(0);
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+        return transportationID;
+    }
+
     public List<Tuple<List<Class>, List<Object>>> getOrderByTransportation() {
         try {
             String query = "SELECT * FROM Orders\n" +
@@ -187,7 +202,7 @@ public class DalOrder extends DALObject {
         try {
             DC.noSelect(query, list);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.warn(e);
         }
         this.totalAmount = totalAmount;
     }
@@ -217,7 +232,7 @@ public class DalOrder extends DALObject {
         try {
             DC.noSelect(query, list);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.warn(e);
         }
         this.transportationID = transportationID;
     }
@@ -230,7 +245,7 @@ public class DalOrder extends DALObject {
         try {
             DC.noSelect(query, list);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.warn(e);
         }
     }
 
@@ -243,7 +258,7 @@ public class DalOrder extends DALObject {
         try {
             DC.noSelect(query, list);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.warn(e);
         }
     }
 

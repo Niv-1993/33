@@ -333,6 +333,21 @@ public class DalSupplierCard extends DALObject {
         return null;
     }
 
+    public List<Tuple<List<Class>, List<Object>>> loadOrdersByTransportation(int transportationID) {
+        try {
+            String query = "SELECT * FROM Orders\n"+
+                    "WHERE transportationID = ?";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(transportationID);
+            List<Tuple<List<Class>,List<Object>>> tuple = DC.SelectMany(query, list);
+            return tuple;
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+        return null;
+    }
+
     public List<Tuple<List<Class>, List<Object>>> loadItems() {
         try {
             String query = "SELECT * FROM Items\n" +

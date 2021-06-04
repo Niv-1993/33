@@ -27,7 +27,7 @@ public class SupplierController{
         map.setItem(DalSupplierController.class,list);
         List<Integer> keyList=new ArrayList<>();
         DALObject check =map.getItem(DalSupplierController.class ,keyList);
-        if (DalSupplierController.class==null || check==null ||(check.getClass()!=DalSupplierController.class)){
+        if (check==null ||(check.getClass()!=DalSupplierController.class)){
             String s="the instance that return from Mapper is null";
             log.warn(s);
             throw new IllegalArgumentException(s);
@@ -65,7 +65,7 @@ public class SupplierController{
             List<Integer> keyList=new ArrayList<>();
             keyList.add(key);
             DALObject check =map.getItem(DalSupplierCard.class ,keyList);
-            if (DalSupplierCard.class==null || check==null ||(check.getClass()!=DalSupplierCard.class)){
+            if (check==null ||(check.getClass()!=DalSupplierCard.class)){
                 String s="the instance that return from Mapper is null";
                 log.warn(s);
                 throw new IllegalArgumentException(s);
@@ -515,5 +515,16 @@ public class SupplierController{
 
     public List<BusinessLayer.SupplierBusiness.facade.outObjects.Order> getOrdersByTransportation(int transportationID) {
         return null;
+    }
+
+    public void removeOrdersByTransport(int transportationID) throws Exception {
+        try {
+            Enumeration<SupplierCard> suppliersEnum = this.suppliers.elements();
+            while (suppliersEnum.hasMoreElements()) {
+                suppliersEnum.nextElement().removeOrdersByTransportation(transportationID);
+            }
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 }

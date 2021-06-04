@@ -39,7 +39,7 @@ public class SupplierAgreement {
         List<Integer> keyList=new ArrayList<>();
         keyList.add(supplierBN);
         DALObject check =map.getItem(DalSupplierAgreement.class ,keyList);
-        if (DalSupplierAgreement.class==null || check==null ||(check.getClass()!=DalSupplierAgreement.class)){
+        if (check==null ||(check.getClass()!=DalSupplierAgreement.class)){
             String s="the instance that return from Mapper is null";
             log.warn(s);
             throw new IllegalArgumentException(s);

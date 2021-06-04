@@ -313,7 +313,7 @@ public class SupplierService implements ISupplierService {
                 }
             }
             else {
-                ///NEED TO CHANGE FOR KUS SHEL AIMA SHELAEM (BAR AND YUVAL)
+                ///NEED TO CHANGE FOR BAR AND YUVAL
             }
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
@@ -347,7 +347,7 @@ public class SupplierService implements ISupplierService {
                 }
             }
             else {
-                ///NEED TO CHANGE FOR KUS SHEL AIMA SHELAEM (BAR AND YUVAL)
+                ///NEED TO CHANGE FOR BAR AND YUVAL
             }
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
@@ -369,7 +369,7 @@ public class SupplierService implements ISupplierService {
                 }
             }
             else {
-                ///NEED TO CHANGE FOR KUS SHEL AIMA SHELAEM (BAR AND YUVAL)
+                ///NEED TO CHANGE FOR BAR AND YUVAL
             }
             for(int i = 0 ; i < amount ; i++) {
                 stockService.addProduct(itemId, Date.from(item.getExpirationDate().atStartOfDay(zone).toInstant()));
@@ -583,6 +583,15 @@ public class SupplierService implements ISupplierService {
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new Tresponse<>(outOrder);
+    }
+
+    public response removeOrdersByTransport(int transportationID) {
+        try{
+            supplierController.removeOrdersByTransport(transportationID);
+        }catch (Exception e){
+            return new response("ERROR: " + e.getMessage());
+        }
+        return new response();
     }
 
     public void newData() {
