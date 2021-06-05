@@ -54,7 +54,7 @@ public class TransportationMapper extends Mapper{
         return new ArrayList<>(transportations.values());
     }
 
-    private Transportation select(long id,TruckMapper tru,BranchMapper branchMapper,DriverMapper driverMapper) throws Exception{
+    private Transportation select(long id,TruckMapper tru,DriverMapper driverMapper) throws Exception{
     //TODO:implement with kfir orders
         String sql = "SELECT * FROM Transactions WHERE ID="+ id ;
         try (Connection conn = connect();
@@ -118,11 +118,6 @@ public class TransportationMapper extends Mapper{
     //TODO:implemet after get suppliers from kfir.
 
     }
-
-    public void remove(long idCounter) {
-        transportations.remove(idCounter);
-    }
-
     public void setDriverOnTrans(long transId, Driver driver) {
         transportations.get(transId).setDriver(driver);
     }
@@ -180,11 +175,8 @@ public class TransportationMapper extends Mapper{
 
     }
 
-    public  List<Transportation> getTransportationsByArea( DriverMapper driverMapper, TruckMapper truckMapper,Area area) {
-       return getTransportationsByArea(truckMapper,driverMapper, area);
-    }
 
-    private List<Transportation> getTransportationsByArea(TruckMapper truckMapper,  DriverMapper driverMapper, Area area) {
+    public List<Transportation> getTransportationsByArea(TruckMapper truckMapper,  DriverMapper driverMapper, Area area) {
         String sql = "SELECT * FROM Transactions WHERE Area="+ area  ;
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
@@ -227,7 +219,7 @@ public class TransportationMapper extends Mapper{
         transportations.replace(id,tra);
     }
 
-    public List<Transportation> getTransportations(int currBID, LocalDate date, LocalTime time,TruckMapper tm,DriverMapper dm) {
+    public List<Transportation> getTransportationsByDate(int currBID, LocalDate date, LocalTime time,TruckMapper tm,DriverMapper dm) {
         String tim="AND LeavingTime < 14:00";
         if(time.compareTo(LocalTime.parse("14:00"))>=0)
             tim="AND LeavingTime >= 14:00";

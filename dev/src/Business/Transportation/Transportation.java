@@ -182,8 +182,8 @@ public class Transportation {
         return  false;
     }
 
-    public  Map<Integer,Order> getOrders() {return  orders;
-    }
+    public boolean isEmpty(){return orders.isEmpty();}
+    public  Map<Integer,Order> getOrders() {return  orders;}
     public List<Order> getOrderList(){return new ArrayList<>(orders.values());}
 
     public void addOrder(Order order) {

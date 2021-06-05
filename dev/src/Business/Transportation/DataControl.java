@@ -98,7 +98,7 @@ public class DataControl {
     }
 
     public List<Transportation> getTransportationsByArea(Area area) {
-       return transportationMapper.getTransportationsByArea(driverMapper,truckMapper,area);
+       return transportationMapper.getTransportationsByArea(truckMapper,driverMapper,area);
     }
 
     public void updateTransWeight(long id, int weight,Order order) {
@@ -106,6 +106,6 @@ public class DataControl {
     }
 
     public List<Transportation> getTransportations(int currBID, LocalDate date, LocalTime time) {
-        return transportationMapper.getTransportations(currBID,date,time);
+        return transportationMapper.getTransportationsByDate(currBID,date,time,truckMapper,driverMapper);
     }
 }

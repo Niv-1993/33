@@ -135,4 +135,7 @@ public class Order {
     public int getSupplierBN() { return dalOrder.getSupplierBN(); }
 
 
+    public int getWeight() {
+        return -1;
+    }
 }

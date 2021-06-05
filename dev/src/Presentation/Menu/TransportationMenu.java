@@ -25,6 +25,9 @@ public class TransportationMenu extends Menu{
         finish=false;
     }
 
+    /**
+     * Main function of the menu.
+     */
     @Override
     public void show(){
         while(endOfProgram()){
@@ -32,22 +35,28 @@ public class TransportationMenu extends Menu{
             nextStep();
         }
     }
+
+
     /**
      *The starting choice of the user if to keep run the system or shut it off.
      */
     public void chooseOption(){
-        System.out.print("1) See all Transportations.\n2) Create a new Business.Transportation.\nOption: ");
+        System.out.print("1) See all Transportations.\n2) Delete Transportation.\nOption: ");
         option = chooseOp(numOfOptions);
         System.out.println();
     }
 
     /**
-     * Delete new transportation
+     * Delete transportation
      */
-    private void Delete() {
-
+    private void delete() {
+        System.out.println("\n*************************************************");
+        System.out.println("************ Delete a Transportation ************");
+        System.out.println("*************************************************\n");
+        System.out.println("Please enter order id to delete.");
+        long id= input.nextLong();
         try {
-            transportationController.delete();
+            transportationController.delete(id);
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -105,7 +114,9 @@ public class TransportationMenu extends Menu{
      *Method to direct the menu by the user's choice in the starting menu.
      */
     public void nextStep() {
-        //TODO:add oll transportation manager options.
+        if(option==1)
         printAllTransportations();
+        else
+            delete();
     }
 }

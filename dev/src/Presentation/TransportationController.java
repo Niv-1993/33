@@ -26,9 +26,9 @@ public class TransportationController {
         }
         return res.getData();
     }
-    public void delete() {
+    public void delete(long id) {
         try{
-            serviceControl.cancelTran();
+            serviceControl.cancelTran(id);
         }
         catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());

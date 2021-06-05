@@ -19,13 +19,11 @@ public class TransportationService {
 
     private final TruckService truckService;
     private final DataControl dataControl;
-    private long idCounter = 0;
     private final DriverRoleController drivers;
 
     public TransportationService(iManagerRoleController mc) {
 
         dataControl=new DataControl();
-        idCounter=getId();
         drivers = new DriverRoleController(mc);
         truckService=new TruckService();
     }
@@ -39,66 +37,7 @@ public class TransportationService {
         }
     }
 
-    public void setDriver(long transId, Driver driver) throws Exception {
-        Transportation t = getTransportationById(transId);
-        dataControl.setDriverOnTrans(transId,driver);
-        t.setDriver(driver);
-    }
 
-
-    /**
-     * Adding truck to a specific transportation.
-     * @param transId: to transportation id to add to.
-     * @param truck : the truck object to add.
-     */
-    public void setTruck(long transId, Truck truck) throws Exception {
-        Transportation t = getTransportationById(transId);
-        t.setTruck(truck);
-        dataControl.setTruckOnTrans(transId,truck);
-
-    }
-
-    /**
-     * Add time to new transportation.
-     * @param id :  the transportation id to add to.
-     * @param leavingTime : the time to set.
-     */
-    public void setTransportationTime(long id, LocalTime leavingTime) throws Exception {
-        getTransportationById(id).setLeavingTime(leavingTime);
-        dataControl.setTime(id,leavingTime);
-    }
-
-    /**
-     *
-     * @param id :  the transportation id to add to.
-     * @param date : the date to set.
-     */
-    public void setDate(long id, LocalDate date) throws Exception {
-        getTransportationById(id).setDate(date);
-        dataControl.setDate(id,date);
-    }
-
-    /**
-     *
-     * @param id :  the transportation id to add to.
-     * @param weight: the weight to set.
-     */
-    public void setTransportationWeight(long id, int weight) throws Exception {
-
-        getTransportationById(id).setWeight(weight);
-        dataControl.setWeight(id,weight);
-    }
-
-    /**
-     * Initializing new transportation object.
-     * @return : the new object
-     */
-    public Transportation newTransportation() throws Exception {
-        Transportation tra=new Transportation(idCounter);
-        dataControl.addTransportation(tra);
-        idCounter++;
-        return tra;
-    }
 
     /**
      * returns a transportation by it's id.
@@ -113,16 +52,6 @@ public class TransportationService {
 
 
     /**
-     * sets an area to new transportation.
-     * @param id : The transportation id.
-     * @param area : the area should be added.
-     */
-    public void setArea(long id, Area area) throws Exception {
-
-        getTransportationById(id).setShippingArea(area);
-    }
-
-    /**
      * Method to return all transportations that has been made.
      * @return : list of all transportations.
      */
@@ -130,10 +59,7 @@ public class TransportationService {
         return dataControl.getTransportationsList();
     }
 
-    public void deleteTransport() {
-        idCounter--;
-        dataControl.remove(idCounter);
-    }
+
     private Branch getBranchById(int id) throws Exception {
        return dataControl.getBranch(id);
     }
@@ -159,7 +85,10 @@ public class TransportationService {
         Transportation toDelete = dataControl.getTransportation(tranId);
         Order deleteOrder = toDelete.removeOrder(orderId);
         drivers.removeDriverFromShiftAndStorekeeper(deleteOrder.getBranchID(),toDelete.getDriver().getEID(),toDelete.getDate(),toDelete.getLeavingTime());
-        toDelete.removeOrder(orderId);
+        deleteOrder.removeOrder();
+        if(toDelete.isEmpty())
+            dataControl.remove(tranId);
+
     }
     public long addOrderToTransportation(Order order) throws Exception {
         Branch bran = getBranchById(order.getBranchID());
