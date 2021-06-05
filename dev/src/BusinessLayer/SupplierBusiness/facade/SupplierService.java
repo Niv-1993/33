@@ -32,7 +32,7 @@ public class SupplierService implements ISupplierService {
             supplierController = new SupplierController(true);
             stockService.loadAllStores();
         }catch(Exception e){
-            supplierController = new SupplierController();
+//            supplierController = new SupplierController();
             stockService.loadAllStores();
         }
         return new response();
@@ -574,7 +574,7 @@ public class SupplierService implements ISupplierService {
         return new response();
     }
 
-    Tresponse<List<Order>> getOrdersByTransportation(int transportationID) {
+    public Tresponse<List<Order>> getOrdersByTransportation(int transportationID) {
         List<Order> outOrder = new LinkedList<>();
         try {
             outOrder = supplierController.getOrdersByTransportation(transportationID);

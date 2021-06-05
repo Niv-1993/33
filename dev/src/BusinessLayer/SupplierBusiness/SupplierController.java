@@ -43,7 +43,7 @@ public class SupplierController{
         Mapper map=Mapper.getMap();
         List<Integer> keyList=new ArrayList<>();
         DALObject check =map.getItem(DalSupplierController.class ,keyList);
-        if (DalSupplierController.class==null || check==null ||(check.getClass()!=DalSupplierController.class)){
+        if (check==null ||(check.getClass()!=DalSupplierController.class)){
             String s="the instance that return from Mapper is null";
             log.warn(s);
             throw new IllegalArgumentException(s);

@@ -21,7 +21,5 @@ public class main {
     public static void main(String[] args) {
          mainCLI CLI = new mainCLI();
          CLI.start(true);
-
-
     }
 }

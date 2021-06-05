@@ -76,6 +76,7 @@ public class Item{
     }
 
     public void removeQuantityDocument() throws Exception {
+        ////NEED TO ADD REMOVE FROM DATABASE
         if(quantityDocument == null) throw new Exception("quantity document all ready removed");
         quantityDocument = null;
     }
