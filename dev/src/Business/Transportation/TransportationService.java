@@ -12,6 +12,7 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 
 public class TransportationService {
@@ -145,8 +146,20 @@ public class TransportationService {
         }
         return false;
     }
-    public void cancelTran(){
-        //TODO
+    public void cancelTran(long tranId) throws Exception {
+        Transportation toDelete = dataControl.getTransportation(tranId);
+        List<Order> orders = toDelete.getOrderList();
+        for (Order order:orders){
+            drivers.removeDriverFromShiftAndStorekeeper(order.getBranchID(),toDelete.getDriver().getEID(),toDelete.getDate(),toDelete.getLeavingTime());
+            order.removeOrder();
+            dataControl.remove(tranId);
+        }
+    }
+    public void removeOrderFromTran(long tranId,int orderId) throws Exception {
+        Transportation toDelete = dataControl.getTransportation(tranId);
+        Order deleteOrder = toDelete.removeOrder(orderId);
+        drivers.removeDriverFromShiftAndStorekeeper(deleteOrder.getBranchID(),toDelete.getDriver().getEID(),toDelete.getDate(),toDelete.getLeavingTime());
+        toDelete.removeOrder(orderId);
     }
     public long addOrderToTransportation(Order order) throws Exception {
         Branch bran = getBranchById(order.getBranchID());

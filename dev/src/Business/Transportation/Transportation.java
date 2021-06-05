@@ -4,9 +4,7 @@ import Business.Type.Area;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 
 public class Transportation {
@@ -39,8 +37,14 @@ public class Transportation {
         this.leavingTime = leavingTime;
         orders=orderS;
     }
-
-
+    Order removeOrder(int orderId){
+        if(!orders.containsKey(orderId)){
+            throw new IllegalArgumentException("order id: "+ orderId+" not found on transportation is: "+ id);
+        }
+        Order retOrder = orders.get(orderId);
+        orders.remove(orderId);
+        return  retOrder;
+    }
     /**
      * Sets new data.
      * Check if the date is later than the date it was typed..
@@ -180,6 +184,7 @@ public class Transportation {
 
     public  Map<Integer,Order> getOrders() {return  orders;
     }
+    public List<Order> getOrderList(){return new ArrayList<>(orders.values());}
 
     public void addOrder(Order order) {
         orders.put(order.getOrderId(),order);
