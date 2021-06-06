@@ -39,7 +39,7 @@ public class BranchMapper extends Mapper{
             // loop through the result set
             while (rs.next()) {
                 Address add=new Address(rs.getInt("Number"),rs.getString("Street"),rs.getString("City"));
-                ShippingArea are=new ShippingArea(Area.valueOf(rs.getString("Area")));
+                Area are=Area.valueOf(rs.getString("Area"));
                 branches.put(rs.getInt("BID"), new Branch(rs.getString("Phone"),rs.getString("ContactName"),rs.getInt("BID"),add,are));
             }
         } catch (SQLException e) {
@@ -56,7 +56,7 @@ public class BranchMapper extends Mapper{
              ResultSet rs    = stmt.executeQuery(sql)){
             if (rs.next()) {
                 Address add=new Address(rs.getInt("Number"),rs.getString("Street"),rs.getString("City"));
-                ShippingArea are=new ShippingArea(Area.valueOf(rs.getString("Area")));
+                Area are= Area.valueOf(rs.getString("Area"));
                branch = new Branch(rs.getString("Phone"),rs.getString("ContactName"),rs.getInt("BID"),add,are);
                branches.put(id,branch);
             }
@@ -73,7 +73,7 @@ public class BranchMapper extends Mapper{
              ResultSet rs    = stmt.executeQuery(sql)){
             if (rs.next()) {
                 Address add=new Address(rs.getInt("Number"),rs.getString("Street"),rs.getString("City"));
-                ShippingArea are=new ShippingArea(Area.valueOf(rs.getString("Area")));
+                Area are= Area.valueOf(rs.getString("Area"));
                 branch = new Branch(rs.getString("Phone"),rs.getString("ContactName"),rs.getInt("BID"),add,are);
                 branches.put(id,branch);
             }
@@ -124,7 +124,7 @@ public class BranchMapper extends Mapper{
         } catch (Exception e) {
            // System.out.println("[insertNewBranch-branchMapper] ->" + e.getMessage());
         }
-        Branch branch = new Branch(phone,cn,bid,new Address(number,street,city),new ShippingArea(Area.valueOf(area)));
+        Branch branch = new Branch(phone,cn,bid,new Address(number,street,city),Area.valueOf(area));
         branches.put(bid,branch);
         return bid;
     }

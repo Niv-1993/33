@@ -5,7 +5,6 @@ import Business.Transportation.Order;
 import Business.Transportation.Transportation;
 import Business.Transportation.Truck;
 import Business.Type.Area;
-
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
@@ -30,7 +29,7 @@ public class TransportationMapper extends Mapper{
         transportations=new HashMap<>();
     }
 
-    private List< Transportation> selectAll(TruckMapper tru,ItemMapper item,DriverMapper driverMapper) throws Exception {
+    private List< Transportation> selectAll(TruckMapper tru,DriverMapper driverMapper) throws Exception {
         //TODO:implement with kfir orders
         String sql = "SELECT * FROM Transportations ";
         try (Connection conn = connect();
@@ -44,8 +43,9 @@ public class TransportationMapper extends Mapper{
                 LocalDate date=LocalDate.parse( rs.getString("Date"));
                 LocalTime time=LocalTime.parse(rs.getString("LeavingTime"));
                 int weight=rs.getInt("Weight");
+                Area area= Area.valueOf(rs.getString("Area"));
                 //TODO:add the orders hashmap.
-                transportations.put( tID,new Transportation(tID,date,time, tempD,tempT,weight));
+                //TODO: add transportation to hashmap
 
             }
         } catch (SQLException e) {
@@ -54,7 +54,7 @@ public class TransportationMapper extends Mapper{
         return new ArrayList<>(transportations.values());
     }
 
-    private Transportation select(long id,TruckMapper tru,ItemMapper item,SupplierMapper supplierMapper,BranchMapper branchMapper,DriverMapper driverMapper) throws Exception{
+    private Transportation select(long id,TruckMapper tru,DriverMapper driverMapper) throws Exception{
     //TODO:implement with kfir orders
         String sql = "SELECT * FROM Transactions WHERE ID="+ id ;
         try (Connection conn = connect();
@@ -65,8 +65,11 @@ public class TransportationMapper extends Mapper{
                 Driver tempD= driverMapper.select(rs.getInt("driverID"));
                 Truck tempT= tru.getTruck(rs.getInt("truckID"));
                 Long tID=rs.getLong("ID");
-               return new Transportation(tID,rs.getDate("Date").toLocalDate(),rs.getTime("LeavingTime").toLocalTime(),
-                        tempD,tempT,rs.getInt("Weight"));
+                Area area= Area.valueOf(rs.getString("Area"));
+                LocalDate date=LocalDate.parse( rs.getString("Date"));
+                LocalTime time=LocalTime.parse(rs.getString("LeavingTime"));
+                int weight=rs.getInt("Weight");
+               //TODO:create new transportation.
             }
         } catch (SQLException e) {
             throw new IOException("failed to get all branches from database");
@@ -93,40 +96,28 @@ public class TransportationMapper extends Mapper{
         }
     }
 
-    public void addTransportation(long idCounter, Transportation tra) {
-
-        transportations.put(idCounter,tra);
+    public void addTransportation(Transportation tra) throws Exception {
+        transportations.put(tra.getId(),tra);
+        insert(tra.getId(),tra.getArea().toString(),tra.getDate().toString(),tra.getLeavingTime().toString(),tra.getWeight(),tra.getDriver().getEID(),tra.getTruck().getId());
     }
-    public void saveTransportation(long id) throws Exception {
-        //TODO:keep implement save orders.
-        Transportation tra=transportations.get(id);
-        insert(id,tra.getArea().toString(),tra.getDate().toString(),tra.getLeavingTime().toString(),tra.getWeight(),tra.getDriver().getEID(),tra.getTruck().getId());
-
-    }
-
-    public Transportation getTransportation(long id, TruckMapper truckMapper, ItemMapper itemMapper, SupplierMapper supplierMapper, BranchMapper branchMapper,DriverMapper driverMapper) throws Exception {
+    public Transportation getTransportation(long id, TruckMapper truckMapper, BranchMapper branchMapper,DriverMapper driverMapper) throws Exception {
 
         if(transportations.containsKey(id)){
             return transportations.get(id);
         }
         else {
-            Transportation tra=select(id,truckMapper,itemMapper,supplierMapper,branchMapper, driverMapper);
+            Transportation tra=select(id,truckMapper,branchMapper, driverMapper);
             if(tra!=null)
                 return tra;
             throw new IllegalArgumentException("No transportation match to id:" + id);
         }
     }
 
-    public List<Transportation> getTransportations(TruckMapper truckMapper, ItemMapper itemMapper,DriverMapper driverMapper) throws Exception {
-        return selectAll(truckMapper,itemMapper, driverMapper);
+    public List<Transportation> getTransportations(TruckMapper truckMapper,DriverMapper driverMapper) throws Exception {
+        return selectAll(truckMapper, driverMapper);
     //TODO:implemet after get suppliers from kfir.
 
     }
-
-    public void remove(long idCounter) {
-        transportations.remove(idCounter);
-    }
-
     public void setDriverOnTrans(long transId, Driver driver) {
         transportations.get(transId).setDriver(driver);
     }
@@ -184,11 +175,8 @@ public class TransportationMapper extends Mapper{
 
     }
 
-    public  List<Transportation> getTransportationsByArea( DriverMapper driverMapper, TruckMapper truckMapper,Area area) {
-       return getTransportationsByArea(truckMapper,driverMapper, area);
-    }
 
-    private List<Transportation> getTransportationsByArea(TruckMapper truckMapper,  DriverMapper driverMapper, Area area) {
+    public List<Transportation> getTransportationsByArea(TruckMapper truckMapper,  DriverMapper driverMapper, Area area) {
         String sql = "SELECT * FROM Transactions WHERE Area="+ area  ;
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
@@ -198,6 +186,10 @@ public class TransportationMapper extends Mapper{
                 Driver tempD= driverMapper.select(rs.getInt("driverID"));
                 Truck tempT= truckMapper.getTruck(rs.getInt("truckID"));
                 Long tID=rs.getLong("ID");
+                Area are= Area.valueOf(rs.getString("Area"));
+                LocalDate date=LocalDate.parse( rs.getString("Date"));
+                LocalTime time=LocalTime.parse(rs.getString("LeavingTime"));
+                int weight=rs.getInt("Weight");
                 //TODO: implement creating new transportation.
             }
         } catch (Exception e) {
@@ -205,8 +197,7 @@ public class TransportationMapper extends Mapper{
         }
         return null;
     }
-
-    public void updateTransWeight(long id, int weight,Order order) {
+    public void updateTransWeight(long id, int weight, Order order) {
         String sql = "UPDATE Transportations " +
                 "SET Weight="+weight
                 +"Where ID="+id;
@@ -220,7 +211,36 @@ public class TransportationMapper extends Mapper{
         }
         Transportation tra=transportations.get(id);
         tra.setWeight(weight);
-        tra.getOrders().put(order.getOrderId(),order);
+        if(!tra.containOrder(order.getOrderId())){
+            tra.addOrder(order);
+        }else {
+            tra.replaceOrder(order);
+        }
         transportations.replace(id,tra);
+    }
+
+    public List<Transportation> getTransportationsByDate(int currBID, LocalDate date, LocalTime time,TruckMapper tm,DriverMapper dm) {
+        String tim="AND LeavingTime < 14:00";
+        if(time.compareTo(LocalTime.parse("14:00"))>=0)
+            tim="AND LeavingTime >= 14:00";
+        String sql = "SELECT * FROM Transactions WHERE Date="+ date +tim  ;
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            // loop through the result set
+            while (rs.next()) {
+                Driver tempD= dm.select(rs.getInt("driverID"));
+                Truck tempT= tm.getTruck(rs.getInt("truckID"));
+                Long tID=rs.getLong("ID");
+                LocalDate Date=LocalDate.parse( rs.getString("Date"));
+                LocalTime leavingTime=LocalTime.parse(rs.getString("LeavingTime"));
+                Area area= Area.valueOf(rs.getString("Area"));
+                int weight=rs.getInt("Weight");
+                //TODO: implement creating new transportation.
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
