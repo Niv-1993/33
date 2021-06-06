@@ -1,4 +1,4 @@
-package Business.Transportation;
+package BusinessLayer.SupplierBusiness;
 
 import DataAccess.DALObject;
 import DataAccess.DalSuppliers.DalItem;
@@ -29,7 +29,7 @@ public class Item{
         List<Integer> keyList=new ArrayList<>();
         keyList.add(itemId);
         DALObject check =map.getItem(DalItem.class ,keyList);
-        if (DalItem.class==null || check==null ||(check.getClass()!=DalItem.class)){
+        if (check==null ||(check.getClass()!=DalItem.class)){
             String s="the instance that return from Mapper is null";
             log.warn(s);
             throw new IllegalArgumentException(s);
@@ -75,6 +75,7 @@ public class Item{
     }
 
     public void removeQuantityDocument() throws Exception {
+        ////NEED TO ADD REMOVE FROM DATABASE
         if(quantityDocument == null) throw new Exception("quantity document all ready removed");
         quantityDocument = null;
     }

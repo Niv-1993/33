@@ -1,4 +1,4 @@
-package Business.Transportation;
+package BusinessLayer.SupplierBusiness;
 
 import DataAccess.DALObject;
 import DataAccess.DalSuppliers.DalQuantityDocument;
@@ -23,7 +23,7 @@ public class QuantityDocument {
         List<Integer> keyList=new ArrayList<>();
         keyList.add(itemId);
         DALObject check =map.getItem(DalQuantityDocument.class ,keyList);
-        if (DalQuantityDocument.class==null || check==null ||(check.getClass()!=DalQuantityDocument.class)){
+        if (check==null ||(check.getClass()!=DalQuantityDocument.class)){
             String s="the instance that return from Mapper is null";
             log.warn(s);
             throw new IllegalArgumentException(s);

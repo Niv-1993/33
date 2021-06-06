@@ -1,4 +1,4 @@
-package Business.Transportation;
+package BusinessLayer.SupplierBusiness;
 
 import DataAccess.DALObject;
 import DataAccess.DalSuppliers.DalItem;
@@ -7,13 +7,10 @@ import DataAccess.SMapper;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Order {
-    protected Hashtable<Item, Integer> items;
+    protected Hashtable<Item , Integer> items;
     protected DalOrder dalOrder;
     final static Logger log=Logger.getLogger(Order.class);
 
@@ -60,6 +57,7 @@ public class Order {
         }
         return retOrder;
     }
+
 
     public Order(DalOrder dalOrder) {
         this.dalOrder = dalOrder;
@@ -134,8 +132,19 @@ public class Order {
 
     public int getSupplierBN() { return dalOrder.getSupplierBN(); }
 
+    public int getTransportationID() { return dalOrder.getTransportationID(); }
 
-    public int getWeight() {
-        return -1;
+
+    public void removeItemFromRegularOrder(Item item) {
+        items.remove(item);
+    }
+
+    public Item getItem(int itemId) {
+        Enumeration<Item> enumuration = items.keys();
+        while (enumuration.hasMoreElements()) {
+            Item temp = enumuration.nextElement();
+            if (temp.getItemId() == itemId) return temp;
+        }
+        return null;
     }
 }
