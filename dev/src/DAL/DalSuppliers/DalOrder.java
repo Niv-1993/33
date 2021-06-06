@@ -132,21 +132,6 @@ public class DalOrder extends DALObject {
         return transportationID;
     }
 
-    public List<Tuple<List<Class>, List<Object>>> getOrderByTransportation() {
-        try {
-            String query = "SELECT * FROM Orders\n" +
-                    "WHERE transportationID = ?";
-            LinkedList<Integer> list = new LinkedList<>();
-            list.add(transportationID);
-            List<Tuple<List<Class>,List<Object>>> tuple = DC.SelectMany(query, list);
-            return tuple;
-        }
-        catch (Exception e){
-            log.warn(e);
-        }
-        return null;
-    }
-
     public double getTotalWeight() {
         try {
             String query = "SELECT totalWeight FROM Orders\n" +

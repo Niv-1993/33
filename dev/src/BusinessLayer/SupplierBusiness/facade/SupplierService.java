@@ -574,8 +574,8 @@ public class SupplierService implements ISupplierService {
         return new response();
     }
 
-    public Tresponse<List<Order>> getOrdersByTransportation(int transportationID) {
-        List<Order> outOrder = new LinkedList<>();
+    public Tresponse<List<BusinessLayer.SupplierBusiness.Order>> getOrdersByTransportation(int transportationID) {
+        List<BusinessLayer.SupplierBusiness.Order> outOrder = new LinkedList<>();
         try {
             outOrder = supplierController.getOrdersByTransportation(transportationID);
         }

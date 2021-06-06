@@ -3,6 +3,7 @@ package BusinessLayer.SupplierBusiness;
 import BusinessLayer.StockBusiness.StoreController;
 import DAL.DALObject;
 import DAL.DalStock.DALStoreController;
+import DAL.DalSuppliers.DalOrder;
 import DAL.DalSuppliers.DalSupplierCard;
 import DAL.DalSuppliers.DalSupplierController;
 import DAL.Mapper;
@@ -513,9 +514,34 @@ public class SupplierController{
         }
     }
 
-    public List<BusinessLayer.SupplierBusiness.facade.outObjects.Order> getOrdersByTransportation(int transportationID) {
-        return null;
+    public List<Order> getOrdersByTransportation(int transportationID) {
+        List <Order> retList = new LinkedList<>();
+        List<Tuple<List<Class>, List<Object>>> orders = dalSupplierController.getOrderByTransportation(transportationID);
+        if (orders.size() > 0) {
+            for (int i = 0; i < orders.get(0).item2.size(); i = i + 8) {
+                int key = (int) orders.get(0).item2.get(i);
+                Mapper map = Mapper.getMap();
+                List<Integer> keyList = new ArrayList<>();
+                keyList.add(key);
+                DALObject check = map.getItem(DalOrder.class, keyList);
+                if (check == null || (check.getClass() != DalOrder.class)) {
+                    String s = "the instance that return from Mapper is null";
+                    log.warn(s);
+                    throw new IllegalArgumentException(s);
+                } else {
+                    log.info("loaded new Object");
+                    if (((DalOrder) check).getOrderType() == 0) {
+                        retList.add(new regularOrder((DalOrder) check));
+                    }
+                    else {
+                        retList.add(new neededOrder((DalOrder) check));
+                    }
+                }
+            }
+        }
+        return retList;
     }
+
 
     public void removeOrdersByTransport(int transportationID) throws Exception {
         try {
