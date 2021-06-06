@@ -1,4 +1,4 @@
-package BusinessLayer.SupplierBusiness;
+package Business.SupplierBusiness;
 
 import DataAccess.DALObject;
 import DataAccess.DalSuppliers.*;
@@ -253,7 +253,7 @@ public class SupplierCard {
     public Item addItem(int supplierBN, int ItemId , String name , double price , LocalDate expirationDate, double weight) throws Exception {
         if(price < 0) throw new Exception("price must be a positive number!");
         if(expirationDate.isBefore(LocalDate.now())) throw new IllegalAccessException("expiration date must be in the future");
-        Item newItem = new BusinessLayer.SupplierBusiness.Item(supplierBN, ItemId , name , price , expirationDate, weight);
+        Item newItem = new Business.SupplierBusiness.Item(supplierBN, ItemId , name , price , expirationDate, weight);
         items.add(newItem);
         return newItem;
     }
@@ -299,7 +299,7 @@ public class SupplierCard {
             if(order.getOrderId() == orderId){
                 try {
                     if(order.getOrderType() == 1) throw new Exception("you can remove items only from regular order");
-                    regularOrder regularOrder = (BusinessLayer.SupplierBusiness.regularOrder) order;
+                    regularOrder regularOrder = (Business.SupplierBusiness.regularOrder) order;
                     regularOrder.removeAmountItemFromRegularOrder(itemId , amount);
                     break;
                 }catch (Exception e){

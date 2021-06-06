@@ -1,4 +1,4 @@
-package BusinessLayer.SupplierBusiness;
+package Business.SupplierBusiness;
 
 import DataAccess.DALObject;
 import DataAccess.DalSuppliers.DalSupplierCard;
@@ -92,7 +92,7 @@ public class SupplierController{
         }
         if(!(payWay.equals("check") || payWay.equals("bank transfer") || payWay.equals("cash")))
             throw new Exception("pay way must be check/bank transfer/cash.");
-        BusinessLayer.SupplierBusiness.SupplierCard supplierCard = new BusinessLayer.SupplierBusiness.SupplierCard(suppliers.size() ,supplierName, bankNumber,branchNumber,bankAccount,payWay);
+        Business.SupplierBusiness.SupplierCard supplierCard = new Business.SupplierBusiness.SupplierCard(suppliers.size() ,supplierName, bankNumber,branchNumber,bankAccount,payWay);
         suppliers.put(suppliers.size() , supplierCard);
     }
 
@@ -509,7 +509,7 @@ public class SupplierController{
         }
     }
 
-    public List<BusinessLayer.SupplierBusiness.facade.outObjects.Order> getOrdersByTransportation(int transportationID) {
+    public List<Business.SupplierBusiness.facade.outObjects.Order> getOrdersByTransportation(int transportationID) {
         return null;
     }
 

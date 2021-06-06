@@ -1,4 +1,4 @@
-package BusinessLayer.SupplierBusiness.facade.outObjects;
+package Business.SupplierBusiness.facade.outObjects;
 
 import java.util.Dictionary;
 import java.util.Enumeration;
@@ -14,7 +14,7 @@ public class SupplierCard{
     private final Dictionary<String , String> contactPhone;
     private final Dictionary<String , String> contactEmail;
 
-    public SupplierCard(BusinessLayer.SupplierBusiness.SupplierCard supplierCard) {
+    public SupplierCard(Business.SupplierBusiness.SupplierCard supplierCard) {
         supplierBN = supplierCard.getSupplierBN();
         supplierName = supplierCard.getSupplierName();
         bankNumber = supplierCard.getSupplierBankNumber();

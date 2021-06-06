@@ -1,4 +1,4 @@
-package BusinessLayer.SupplierBusiness;
+package Business.SupplierBusiness;
 
 import DataAccess.DALObject;
 import DataAccess.DalSuppliers.DalSupplierAgreement;

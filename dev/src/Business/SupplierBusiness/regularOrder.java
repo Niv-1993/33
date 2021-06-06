@@ -1,4 +1,4 @@
-package BusinessLayer.SupplierBusiness;
+package Business.SupplierBusiness;
 
 import DataAccess.DalSuppliers.DalOrder;
 

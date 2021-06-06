@@ -1,11 +1,11 @@
 package Presentation;
 
-import BusinessLayer.StockBusiness.Fcade.StorageService;
-import BusinessLayer.StockBusiness.Fcade.outObjects.NeededReport;
-import BusinessLayer.SupplierBusiness.facade.SupplierService;
-import BusinessLayer.SupplierBusiness.facade.Tresponse;
-import BusinessLayer.SupplierBusiness.facade.outObjects.*;
-import BusinessLayer.SupplierBusiness.facade.response;
+import Business.StockBusiness.Fcade.StorageService;
+import Business.StockBusiness.Fcade.outObjects.NeededReport;
+import Business.SupplierBusiness.facade.SupplierService;
+import Business.SupplierBusiness.facade.Tresponse;
+import Business.SupplierBusiness.facade.outObjects.*;
+import Business.SupplierBusiness.facade.response;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
 

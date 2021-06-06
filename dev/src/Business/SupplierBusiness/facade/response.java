@@ -1,4 +1,4 @@
-package BusinessLayer.SupplierBusiness.facade;
+package Business.SupplierBusiness.facade;
 
 public class response {
     private final String error;

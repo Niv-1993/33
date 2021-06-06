@@ -1,12 +1,12 @@
-package BusinessLayer.SupplierBusiness;
+package Business.SupplierBusiness;
 
-import BusinessLayer.SupplierBusiness.facade.response;
-import BusinessLayer.SupplierBusiness.facade.Tresponse;
-import BusinessLayer.SupplierBusiness.facade.outObjects.Item;
-import BusinessLayer.SupplierBusiness.facade.outObjects.Order;
-import BusinessLayer.SupplierBusiness.facade.outObjects.QuantityDocument;
-import BusinessLayer.SupplierBusiness.facade.outObjects.SupplierCard;
-import BusinessLayer.SupplierBusiness.facade.outObjects.SupplierAgreement;
+import Business.SupplierBusiness.facade.response;
+import Business.SupplierBusiness.facade.Tresponse;
+import Business.SupplierBusiness.facade.outObjects.Item;
+import Business.SupplierBusiness.facade.outObjects.Order;
+import Business.SupplierBusiness.facade.outObjects.QuantityDocument;
+import Business.SupplierBusiness.facade.outObjects.SupplierCard;
+import Business.SupplierBusiness.facade.outObjects.SupplierAgreement;
 
 
 

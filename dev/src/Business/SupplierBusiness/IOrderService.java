@@ -1,4 +1,4 @@
-package BusinessLayer.SupplierBusiness;
+/*package BusinessLayer.SupplierBusiness;
 
 import BusinessLayer.SupplierBusiness.facade.Tresponse;
 import BusinessLayer.SupplierBusiness.facade.outObjects.Order;
@@ -25,3 +25,5 @@ public interface IOrderService {
 
     response removeAmountItemFromRegularOrder(int branchId, int orderId, int itemId, int amount);
 }
+
+ */
