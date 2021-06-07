@@ -1,4 +1,4 @@
-package BusinessLayer.StockBusiness.Fcade;
+package Business.StockBusiness.Fcade;
 
 public class ResponseData<T> extends Response{
     public T data;

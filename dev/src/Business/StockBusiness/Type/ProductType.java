@@ -1,7 +1,7 @@
-package BusinessLayer.StockBusiness.Type;
+package Business.StockBusiness.Type;
 
-import BusinessLayer.StockBusiness.instance.Location;
-import BusinessLayer.StockBusiness.instance.Product;
+import Business.StockBusiness.instance.Location;
+import Business.StockBusiness.instance.Product;
 import DataAccess.DALObject;
 import DataAccess.DalStock.DALProductType;
 import DataAccess.SMapper;

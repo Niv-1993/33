@@ -1,4 +1,4 @@
-package BusinessLayer.StockBusiness.Type;
+package Business.StockBusiness.Type;
 
 import DataAccess.DalStock.DALSaleDiscount;
 import DataAccess.SMapper;

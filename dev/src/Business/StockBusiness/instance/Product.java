@@ -1,4 +1,4 @@
-package BusinessLayer.StockBusiness.instance;
+package Business.StockBusiness.instance;
 
 import DataAccess.DALObject;
 import DataAccess.DalStock.DALProduct;

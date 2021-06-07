@@ -1,7 +1,7 @@
-package BusinessLayer.StockBusiness.instance;
+package Business.StockBusiness.instance;
 
 
-import BusinessLayer.StockBusiness.StoreController;
+import Business.StockBusiness.StoreController;
 import DataAccess.DalStock.DALInstanceController;
 import Utility.Tuple;
 import Utility.Util;

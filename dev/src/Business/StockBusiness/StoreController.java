@@ -1,13 +1,13 @@
-package BusinessLayer.StockBusiness;
+package Business.StockBusiness;
 
-import BusinessLayer.StockBusiness.Type.Category;
-import BusinessLayer.StockBusiness.Type.ProductType;
-import BusinessLayer.StockBusiness.Type.SaleDiscount;
-import BusinessLayer.StockBusiness.Type.SupplierDiscount;
-import BusinessLayer.StockBusiness.instance.InstanceController;
-import BusinessLayer.StockBusiness.instance.Location;
-import BusinessLayer.StockBusiness.instance.Product;
-import BusinessLayer.StockBusiness.instance.Shelf;
+import Business.StockBusiness.Type.Category;
+import Business.StockBusiness.Type.ProductType;
+import Business.StockBusiness.Type.SaleDiscount;
+import Business.StockBusiness.Type.SupplierDiscount;
+import Business.StockBusiness.instance.InstanceController;
+import Business.StockBusiness.instance.Location;
+import Business.StockBusiness.instance.Product;
+import Business.StockBusiness.instance.Shelf;
 import DataAccess.DALObject;
 import DataAccess.DalStock.DALStoreController;
 import DataAccess.SMapper;

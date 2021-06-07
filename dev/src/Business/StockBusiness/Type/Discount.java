@@ -1,4 +1,4 @@
-package BusinessLayer.StockBusiness.Type;
+package Business.StockBusiness.Type;
 
 import org.apache.log4j.Logger;
 

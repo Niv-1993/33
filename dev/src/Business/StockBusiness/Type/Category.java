@@ -1,4 +1,4 @@
-package BusinessLayer.StockBusiness.Type;
+package Business.StockBusiness.Type;
 
 import DataAccess.DALObject;
 import DataAccess.DalStock.DALCategory;

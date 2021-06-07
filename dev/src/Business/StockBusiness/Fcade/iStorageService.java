@@ -1,8 +1,8 @@
-package BusinessLayer.StockBusiness.Fcade;
+package Business.StockBusiness.Fcade;
 
-import BusinessLayer.StockBusiness.Fcade.outObjects.*;
-import BusinessLayer.SupplierBusiness.facade.Tresponse;
-import BusinessLayer.SupplierBusiness.facade.response;
+import Business.StockBusiness.Fcade.outObjects.*;
+import Business.SupplierBusiness.facade.Tresponse;
+import Business.SupplierBusiness.facade.response;
 
 import java.util.Date;
 import java.util.List;

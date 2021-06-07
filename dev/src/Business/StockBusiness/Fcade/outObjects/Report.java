@@ -1,4 +1,4 @@
-package BusinessLayer.StockBusiness.Fcade.outObjects;
+package Business.StockBusiness.Fcade.outObjects;
 
 import java.util.Date;
 
