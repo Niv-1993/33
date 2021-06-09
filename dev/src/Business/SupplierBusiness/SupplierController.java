@@ -20,6 +20,7 @@ public class SupplierController{
         List<Tuple<Object,Class>> list=new ArrayList<>();
         list.add(new Tuple<>(0,Integer.class));
         list.add(new Tuple<>(1,Integer.class));
+        list.add(new Tuple<>(1,Integer.class));
         SMapper map= SMapper.getMap();
         map.setItem(DalSupplierController.class,list);
         List<Integer> keyList=new ArrayList<>();

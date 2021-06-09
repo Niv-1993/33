@@ -23,6 +23,7 @@ public class Order {
         list.add(new Tuple<>(orderType,Integer.class));
         list.add(new Tuple<>(0.0,Double.class));
         list.add(new Tuple<>(-1,Integer.class));
+        list.add(new Tuple<>(0,Integer.class));
         SMapper map= SMapper.getMap();
         map.setItem(DalOrder.class,list);
         List<Integer> keyList=new ArrayList<>();
@@ -126,6 +127,10 @@ public class Order {
 
     public void removeOrder() {
         dalOrder.removeOrder();
+    }
+
+    public void updateArrived() {
+        dalOrder.updateArrived();
     }
 
     public int getOrderType() {return dalOrder.getOrderType();}

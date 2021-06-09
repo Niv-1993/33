@@ -7,10 +7,6 @@ import Business.SupplierBusiness.facade.outObjects.Order;
 import Business.SupplierBusiness.facade.outObjects.QuantityDocument;
 import Business.SupplierBusiness.facade.outObjects.SupplierCard;
 import Business.SupplierBusiness.facade.outObjects.SupplierAgreement;
-
-
-
-
 import java.time.LocalDate;
 import java.util.Hashtable;
 import java.util.List;

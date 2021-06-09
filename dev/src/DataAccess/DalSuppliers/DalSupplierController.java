@@ -11,16 +11,18 @@ import java.util.List;
 public class DalSupplierController extends DALObject {
     private int controller;
     private int numOfOrders;
+    private int numOfItems;
     private int branchID;
     final static Logger log=Logger.getLogger(DalSupplierController.class);
 
     public DalSupplierController() {
         super(null);
     }
-    public DalSupplierController(Integer controller , Integer numOfOrders , DalController dalController) {
+    public DalSupplierController(Integer controller , Integer numOfOrders , Integer numOfItems, DalController dalController) {
         super(dalController);
         this.controller = controller;
         this.numOfOrders = numOfOrders;
+        this.numOfItems = numOfItems;
     }
 
     @Override
@@ -28,6 +30,7 @@ public class DalSupplierController extends DALObject {
         return "CREATE TABLE IF NOT EXISTS \"SupplierController\"(\n" +
                 "\t\"controller\" INTEGER NOT NULL,\n" +
                 "\t\"numOfOrders\" INTEGER NOT NULL,\n" +
+                "\t\"numOfItems\" INTEGER NOT NULL,\n" +
                 "\tPRIMARY KEY(\"controller\")\n" +
                 ");";
     }
@@ -53,23 +56,9 @@ public class DalSupplierController extends DALObject {
     @Override
     public String getInsert() {
         return "INSERT OR REPLACE INTO SupplierController\n"+
-                "VALUES (?,?);";
+                "VALUES (?,?,?);";
     }
 
-    /*public int getNumOfItems() {
-        try {
-            String query = "SELECT numOfItems FROM SupplierController\n" +
-                    "WHERE controller = ?;";
-            LinkedList<Integer> list = new LinkedList<>();
-            list.add(controller);
-            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
-            numOfItems = (Integer) tuple.item2.get(0);
-        }
-        catch (Exception e){
-            log.warn(e);
-        }
-        return numOfItems;
-    }*/
 
     public int getNumOfOrders() {
         try {
@@ -84,6 +73,21 @@ public class DalSupplierController extends DALObject {
             log.warn(e);
         }
         return numOfOrders;
+    }
+
+    public int getNumOfItems() {
+        try {
+            String query = "SELECT numOfItems FROM SupplierController\n" +
+                    "WHERE controller = ?;";
+            LinkedList<Integer> list = new LinkedList<>();
+            list.add(controller);
+            Tuple<List<Class>,List<Object>> tuple = DC.Select(query, list);
+            numOfItems = (Integer) tuple.item2.get(0);
+        }
+        catch (Exception e){
+            log.warn(e);
+        }
+        return numOfItems;
     }
 
     public int getBranchID() {
@@ -101,20 +105,6 @@ public class DalSupplierController extends DALObject {
         return branchID;
     }
 
-
-
-
-    /*public void addNumOfItems() throws Exception {
-        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
-        String query = "UPDATE SupplierController\n" +
-                "SET numOfItems = ?\n" +
-                "WHERE controller = ?;";
-        list.add(new Tuple<>(numOfItems+1, Integer.class));
-        list.add(new Tuple<>(controller, Integer.class));
-        DC.noSelect(query, list);
-        numOfItems++;
-    }*/
-
     public void addNumOfOrders() throws Exception {
         LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
         String query = "UPDATE SupplierController\n" +
@@ -124,6 +114,17 @@ public class DalSupplierController extends DALObject {
         list.add(new Tuple<>(controller, Integer.class));
         DC.noSelect(query, list);
         numOfOrders++;
+    }
+
+    public void addNumOfItems() throws Exception {
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE SupplierController\n" +
+                "SET numOfItems = ?\n" +
+                "WHERE controller = ?;";
+        list.add(new Tuple<>(numOfItems+1, Integer.class));
+        list.add(new Tuple<>(controller, Integer.class));
+        DC.noSelect(query, list);
+        numOfItems++;
     }
 
     public List<Tuple<List<Class>,List<Object>>> loadSuppliers() {
