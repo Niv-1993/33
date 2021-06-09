@@ -20,7 +20,6 @@ public class SupplierService implements ISupplierService {
     private SupplierController supplierController;
     private StorageService stockService;
     private TransportationService transportationService;
-    //private TransportationService transportationService;
     private int branchID;
 
     public SupplierService() {

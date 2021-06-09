@@ -5,6 +5,7 @@ import Business.ApplicationFacade.ResponseData;
 import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Business.Employees.EmployeePKG.Driver;
+import Business.SupplierBusiness.Order;
 import Business.Type.Area;
 
 import java.time.LocalDate;
@@ -45,9 +46,7 @@ public class TransportationService {
      * @return: The transportation object that wanted.
      */
     public Transportation getTransportationById(long id) throws Exception {
-
         return dataControl.getTransportation(id);
-
     }
 
 
@@ -67,7 +66,7 @@ public class TransportationService {
     public boolean updateOrderOnTrans(long tranId,Order updatedOrder) throws Exception {
         Transportation tran =dataControl.getTransportation(tranId);
         if(tran.canChange(updatedOrder)){
-            dataControl.updateTransWeight(tranId,updatedOrder.getWeight(),updatedOrder);
+            dataControl.updateTransWeight(tranId,updatedOrder.getTotalWeight(),updatedOrder);
             return  true;
         }
         return false;
@@ -95,14 +94,14 @@ public class TransportationService {
         List<Transportation> trans = dataControl.getTransportationsByArea(bran.getArea());
         for (Transportation tran : trans) {
             if (tran.canAdd(order)) {
-                dataControl.updateTransWeight(tran.getId(), order.getWeight(), order);
+                dataControl.updateTransWeight(tran.getId(), order.getTotalWeight(), order);
                 return tran.getId();
             }
         }
         LocalDate days = (order.getOrderType() == 0) ? LocalDate.now().plusDays(7) : LocalDate.now().plusDays(2);
         LocalTime noon = LocalTime.parse("15:00");
         LocalTime morning = LocalTime.parse("09:00");
-        List<Truck> trucks = dataControl.getTrucksByWeight(order.getWeight());
+        List<Truck> trucks = dataControl.getTrucksByWeight(order.getTotalWeight());
         Truck chooseTruck = null;
         if (trucks.isEmpty()) throw new IllegalArgumentException("No truck compatible for this order's weight. ");
         chooseTruck = trucks.get(0);
@@ -133,7 +132,7 @@ public class TransportationService {
         }
         HashMap <Integer,Order> newOrdersList = new HashMap<>();
         newOrdersList.put(order.getOrderId(),order);
-        Transportation transportation = new Transportation(getId(),date,leavingTime,chosenDriver,chooseTruck,order.getWeight(),newOrdersList);
+        Transportation transportation = new Transportation(getId(),date,leavingTime,chosenDriver,chooseTruck,order.getTotalWeight(),newOrdersList);
         dataControl.addTransportation(transportation);
         drivers.addDriverToShiftAndStoreKeeper(order.getBranchID(),chosenDriver.getEID(),date,leavingTime);
         return transportation.getId();

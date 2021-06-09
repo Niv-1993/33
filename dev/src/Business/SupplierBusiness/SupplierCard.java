@@ -74,7 +74,7 @@ public class SupplierCard {
         orders = new LinkedList<>();
         List<Tuple<List<Class>,List<Object>>> list1 = dalSupplierCard.loadOrders();
         if (list1.size() > 0) {
-            for (int i = 0; i < list1.get(0).item2.size(); i = i + 8) {
+            for (int i = 0; i < list1.get(0).item2.size(); i = i + 9) {
                 int key = (int) list1.get(0).item2.get(i);
                 SMapper map = SMapper.getMap();
                 List<Integer> keyList = new ArrayList<>();

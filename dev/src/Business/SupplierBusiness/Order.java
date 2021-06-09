@@ -139,6 +139,9 @@ public class Order {
 
     public int getTransportationID() { return dalOrder.getTransportationID(); }
 
+    public double getTotalWeight() {
+        return dalOrder.getTotalWeight();
+    }
 
     public void removeItemFromRegularOrder(Item item) {
         items.remove(item);

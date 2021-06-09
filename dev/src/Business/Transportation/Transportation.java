@@ -1,7 +1,7 @@
 package Business.Transportation;
 import Business.Employees.EmployeePKG.Driver;
 import Business.Type.Area;
-
+import Business.SupplierBusiness.Order;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -15,7 +15,7 @@ public class Transportation {
     private Truck truck;
     private int weight;
     private Area shippingArea;
-    private HashMap <Integer,Order> orders;
+    private HashMap <Integer, Order> orders;
 
     public Transportation(long id) {
         this.id = id;
@@ -162,9 +162,9 @@ public class Transportation {
         return !(date == null | leavingTime == null|driver == null| truck == null|shippingArea == null|weight == -1);
     }
     public boolean canAdd(Order order){
-        if(weight+order.getWeight()<=truck.getMaxWeight()){
+        if(weight+order.getTotalWeight()<=truck.getMaxWeight()){
             orders.put(order.getOrderId(), order);
-            weight+=order.getWeight();
+            weight+=order.getTotalWeight();
             return true;
         }
         return false;
@@ -172,7 +172,7 @@ public class Transportation {
     public boolean canChange(Order newOrder){
         if(orders.containsKey(newOrder.getOrderId())){
             Order oldOrder = orders.get(newOrder.getOrderId());
-            int newWeight = weight - oldOrder.getWeight()+newOrder.getWeight();
+            double newWeight = weight - oldOrder.getTotalWeight()+newOrder.getTotalWeight();
             if(truck.getMaxWeight() >= newWeight){
                 orders.replace(newOrder.getOrderId(),newOrder);
                 weight = newWeight;

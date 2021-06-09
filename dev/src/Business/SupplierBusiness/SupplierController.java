@@ -515,7 +515,7 @@ public class SupplierController{
         List <Order> retList = new LinkedList<>();
         List<Tuple<List<Class>, List<Object>>> orders = dalSupplierController.getOrderByTransportation(transportationID);
         if (orders.size() > 0) {
-            for (int i = 0; i < orders.get(0).item2.size(); i = i + 8) {
+            for (int i = 0; i < orders.get(0).item2.size(); i = i + 9) {
                 int key = (int) orders.get(0).item2.get(i);
                 SMapper map = SMapper.getMap();
                 List<Integer> keyList = new ArrayList<>();
