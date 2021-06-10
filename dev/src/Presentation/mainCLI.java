@@ -1,12 +1,13 @@
 package Presentation;
 
 import DAL.Mapper;
+import Presentation.Menu.SuppliersMenu;
 import org.apache.log4j.Logger;
 
 import java.util.Scanner;
 
 public class mainCLI {
-    PresentationCL suppliersPresentation;
+    SuppliersMenu suppliersPresentation;
     StockCLI stockCLI;
     Scanner scan=new Scanner(System.in);
     final static Logger log= Logger.getLogger(StockCLI.class);
@@ -17,7 +18,7 @@ public class mainCLI {
     }
 
     public mainCLI(){
-        suppliersPresentation = new PresentationCL();
+        suppliersPresentation = new SuppliersMenu();
         stockCLI = new StockCLI();
         stockCLI.setStockService(suppliersPresentation.getService());
         suppliersPresentation.setStockService(stockCLI.getService());
