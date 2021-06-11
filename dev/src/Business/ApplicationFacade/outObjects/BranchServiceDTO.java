@@ -1,5 +1,7 @@
 package Business.ApplicationFacade.outObjects;
 
+import Business.Transportation.Branch;
+
 import java.util.Objects;
 
 public class BranchServiceDTO {
@@ -10,13 +12,17 @@ public class BranchServiceDTO {
     private  String Area;
 
     public BranchServiceDTO(String phone, String contactName, int id, String area ){
-
         this.phone=phone;
         this.contactName=contactName;
         this.id=id;
         this.Area=area;
     }
-
+    public BranchServiceDTO(Branch b){
+        this.phone=b.getPhone();
+        this.contactName=b.getContactName();
+        this.id=b.getId();
+        this.Area=b.getArea().toString();
+    }
 
     @Override
     public String toString() {

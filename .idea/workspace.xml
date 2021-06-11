@@ -22,12 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="edit db">
+    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="edit service object">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/outObjects/DriverServiceDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/outObjects/DriverServiceDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/outObjects/TransportationServiceDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/outObjects/TransportationServiceDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/outObjects/TruckServiceDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/outObjects/TruckServiceDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/outObjects/BranchServiceDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/outObjects/BranchServiceDTO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +173,7 @@
       <workItem from="1622132013733" duration="1613000" />
       <workItem from="1622208237811" duration="4936000" />
       <workItem from="1622217644220" duration="6785000" />
-      <workItem from="1623418048430" duration="917000" />
+      <workItem from="1623418048430" duration="1632000" />
     </task>
     <task id="LOCAL-00001" summary="add mappers - data layer">
       <created>1620304052353</created>
@@ -251,7 +248,13 @@
       <option name="presentableId" value="LOCAL‎00011" />
       <updated>1623418060608</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL‎00012" summary="edit service object">
+      <created>1623418994207</created>
+      <option name="number" value="LOCAL‎00012" />
+      <option name="presentableId" value="LOCAL‎00012" />
+      <updated>1623418994207</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,7 +283,8 @@
     <MESSAGE value="finish Transportation" />
     <MESSAGE value="adding read/write abilities with db" />
     <MESSAGE value="edit db" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit db" />
+    <MESSAGE value="edit service object" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit service object" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
