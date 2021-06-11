@@ -371,7 +371,7 @@ public class SupplierService implements ISupplierService {
                 }
             }
             else {
-                ///NEED TO CHANGE FOR BAR AND YUVAL
+                transportationController.addOrderToTransportation(order.item1);
             }
             for(int i = 0 ; i < amount ; i++) {
                 stockService.addProduct(itemId, Date.from(item.getExpirationDate().atStartOfDay(zone).toInstant()));

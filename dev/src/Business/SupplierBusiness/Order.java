@@ -69,6 +69,34 @@ public class Order {
         dalOrder.updateTransportation(tranID);
     }
 
+    public List<Order> getOrdersByTransportation(int transportationID) {
+        List <Order> retList = new LinkedList<>();
+        List<Tuple<List<Class>, List<Object>>> orders = dalOrder.getOrderByTransportation(transportationID);
+        if (orders.size() > 0) {
+            for (int i = 0; i < orders.get(0).item2.size(); i = i + 9) {
+                int key = (int) orders.get(0).item2.get(i);
+                SMapper map = SMapper.getMap();
+                List<Integer> keyList = new ArrayList<>();
+                keyList.add(key);
+                DALObject check = map.getItem(DalOrder.class, keyList);
+                if (check == null || (check.getClass() != DalOrder.class)) {
+                    String s = "the instance that return from Mapper is null";
+                    log.warn(s);
+                    throw new IllegalArgumentException(s);
+                } else {
+                    log.info("loaded new Object");
+                    if (((DalOrder) check).getOrderType() == 0) {
+                        retList.add(new regularOrder((DalOrder) check));
+                    }
+                    else {
+                        retList.add(new neededOrder((DalOrder) check));
+                    }
+                }
+            }
+        }
+        return retList;
+    }
+
     private void loadItemsOfOrders() {
         items = new Hashtable<>();
         List<Tuple<List<Class>,List<Object>>> list1 = dalOrder.loadItems();

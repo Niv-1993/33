@@ -150,7 +150,7 @@ public class DalOrder extends DALObject {
         return isArrived;
     }
 
-    public List<Tuple<List<Class>, List<Object>>> getOrderByTransportation() {
+    public List<Tuple<List<Class>, List<Object>>> getOrderByTransportation(int transportationID) {
         try {
             String query = "SELECT * FROM Orders\n" +
                     "WHERE transportationID = ?";
