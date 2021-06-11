@@ -22,18 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ADSS_Group_B.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ADSS_Group_B.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/SupplierBusiness/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/SupplierBusiness/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/DataControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/DataControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/Transportation.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/Transportation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/TruckMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/TruckMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Presentation/TransportationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/TransportationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Assignment2 .drawio" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Assignment2 .drawio" afterDir="false" />
+    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="adding read/write abilities with db">
+      <change beforePath="$PROJECT_DIR$/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/database.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,17 +103,6 @@
     <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main" />
       <module name="ADSS_Group_B" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -258,7 +237,13 @@
       <option name="presentableId" value="LOCAL‎00009" />
       <updated>1620667732074</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL‎00010" summary="adding read/write abilities with db">
+      <created>1623417408995</created>
+      <option name="number" value="LOCAL‎00010" />
+      <option name="presentableId" value="LOCAL‎00010" />
+      <updated>1623417408995</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,7 +270,8 @@
     <MESSAGE value="add Transportation menu" />
     <MESSAGE value="menue, drivers,storekeepers" />
     <MESSAGE value="finish Transportation" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish Transportation" />
+    <MESSAGE value="adding read/write abilities with db" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding read/write abilities with db" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
