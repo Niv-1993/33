@@ -13,7 +13,7 @@ public class Transportation {
     private LocalTime leavingTime;
     private Driver driver;
     private Truck truck;
-    private int weight;
+    private double weight;
     private Area shippingArea;
     private HashMap <Integer, Order> orders;
 
@@ -28,7 +28,7 @@ public class Transportation {
         orders=new HashMap<>();
     }
 
-    public Transportation(long id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, int weight, HashMap<Integer, Order> orderS) {
+    public Transportation(long id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, double weight, HashMap<Integer, Order> orderS) {
         this.date = date;
         this.id = id;
         this.driver = driver;
@@ -101,7 +101,7 @@ public class Transportation {
      * Checks if the weight is legal.
      * @param weight : the weight to set to.
      */
-    public void setWeight(int weight){
+    public void setWeight(double weight){
 
         if(truck!=null && weight< truck.getNetWeight())
             throw new IllegalArgumentException("Warning!!! The weight must include the truck net weight. \n");
@@ -113,7 +113,7 @@ public class Transportation {
 
 
     public void setTruck(Truck truck) { this.truck = truck; }
-    public int getWeight() { return weight; }
+    public double getWeight() { return weight; }
     public Truck getTruck() { return truck; }
     public long getId() {
         return id;

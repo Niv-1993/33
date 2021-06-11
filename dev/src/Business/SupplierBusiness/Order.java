@@ -6,14 +6,15 @@ import DataAccess.DalSuppliers.DalOrder;
 import DataAccess.SMapper;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
-
 import java.util.*;
+
 
 public class Order {
     protected Hashtable<Item , Integer> items;
     protected DalOrder dalOrder;
     final static Logger log=Logger.getLogger(Order.class);
 
+    public  Order(){ }
     public Order(int supplierBN, int orderId , int branchId , int orderType){
         List<Tuple<Object,Class>> list=new ArrayList<>();
         list.add(new Tuple<>(orderId,Integer.class));
@@ -157,6 +158,8 @@ public class Order {
         dalOrder.removeOrder();
     }
 
+    public boolean isArrived(){ return dalOrder.getIsArrived();}
+
     public void updateArrived() {
         dalOrder.updateArrived();
     }
@@ -182,5 +185,8 @@ public class Order {
             if (temp.getItemId() == itemId) return temp;
         }
         return null;
+    }
+
+    public void removeOrdersByTransportationId(int idCounter) {
     }
 }

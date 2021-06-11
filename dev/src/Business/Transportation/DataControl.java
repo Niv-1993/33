@@ -1,12 +1,13 @@
 package Business.Transportation;
 
-import Business.Employees.EmployeePKG.Driver;
+import Business.SupplierBusiness.Order;
 import Business.Type.Area;
 import DataAccess.BranchMapper;
 import DataAccess.DriverMapper;
 import DataAccess.TransportationMapper;
 import DataAccess.TruckMapper;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -28,21 +29,12 @@ public class DataControl {
 
     }
 
-    public List< Branch> getBranches() throws Exception {
-        return branchMapper.getBranches();
-    }
-
     public List<Truck> getTrucks() throws Exception {
         return truckMapper.getTrucks();
     }
-    public List<Truck> getTrucksByWeight(int weight) throws Exception {
+    public List<Truck> getTrucksByWeight(double weight) throws Exception {
         return truckMapper.getTrucksByWeight(weight);
     }
-
-    public List< Transportation> getTransportations() throws Exception {
-        return transportationMapper.getTransportations(truckMapper,driverMapper);
-    }
-
 
     public Branch getBranch(int id) throws Exception {
         return branchMapper.getBranch(id);
@@ -60,29 +52,11 @@ public class DataControl {
     }
 
     public List<Transportation> getTransportationsList() throws Exception {
-        return transportationMapper.getTransportations(truckMapper,driverMapper);
+        return transportationMapper.getAllTransportations(truckMapper,driverMapper);
     }
 
-    public void remove(long idCounter) {
-        transportationMapper.remove(idCounter);
-    }
+    public void remove(long idCounter) throws IOException { transportationMapper.remove(idCounter); }
 
-    public void setDriverOnTrans(long transId, Driver driver) {
-
-        transportationMapper.setDriverOnTrans(transId,driver);
-    }
-    public void setTruckOnTrans(long transId, Truck truck) {
-
-        transportationMapper.setTruckOnTrans(transId,truck);
-    }
-
-    public void setTime(long id, LocalTime leavingTime) {
-        transportationMapper.setTime(id,leavingTime);
-    }
-
-    public void setWeight(long id, int weight) {
-        transportationMapper.setWeight(id,weight);
-    }
 
     public void setDate(long id, LocalDate date) {
         transportationMapper.setDate(id,date);
@@ -93,19 +67,16 @@ public class DataControl {
     }
 
     public void addTruck(long id, int maxweight,String model, int netWeight, int license){truckMapper.addTruck(id,maxweight,model,netWeight,license);}
-    public void addTransportation(int i, String center, String s, String s1, int i1, int i2, int i3) {
-        transportationMapper.addTransportation( i,  center,  s,  s1,  i1,  i2,  i3);
-    }
 
-    public List<Transportation> getTransportationsByArea(Area area) {
+    public List<Transportation> getTransportationsByArea(Area area) throws IOException {
        return transportationMapper.getTransportationsByArea(truckMapper,driverMapper,area);
     }
 
-    public void updateTransWeight(long id, int weight,Order order) {
+    public void updateTransWeight(long id, double weight,Order order) throws IOException {
         transportationMapper.updateTransWeight(id,weight,order);
     }
 
-    public List<Transportation> getTransportations(int currBID, LocalDate date, LocalTime time) {
-        return transportationMapper.getTransportationsByDate(currBID,date,time,truckMapper,driverMapper);
+    public List<Transportation> getTransportations( LocalDate date, LocalTime time) throws IOException {
+        return transportationMapper.getTransportationsByDate(date,time,truckMapper,driverMapper);
     }
 }

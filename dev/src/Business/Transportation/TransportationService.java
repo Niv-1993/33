@@ -6,13 +6,11 @@ import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Business.Employees.EmployeePKG.Driver;
 import Business.SupplierBusiness.Order;
-import Business.Type.Area;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 
 public class TransportationService {
@@ -114,7 +112,6 @@ public class TransportationService {
                 driverList = drivers.chooseDriver(i, morning);
                 leavingTime = morning;
             } else if (drivers.checkAvailableStoreKeeperAndShifts(bran.getId(), i, noon) & drivers.checkAvailableDriver(bran.getId(), i, noon)) {
-                //when there are driver and storeKeeper for noon
                 driverList = drivers.chooseDriver(i, noon);
                 leavingTime = noon;
             }
@@ -157,10 +154,10 @@ public class TransportationService {
     public void addTruck(long id, int maxWeight, String model, int netWeight, int license){
         dataControl.addTruck(id, maxWeight,model,netWeight,license);
     }
-    public List<TransportationServiceDTO> getTransportations(int currBID, LocalDate date, LocalTime time){
+    public List<TransportationServiceDTO> getTransportations( LocalDate date, LocalTime time){
         List<TransportationServiceDTO> returnT = new LinkedList<>();
         try {
-            List<Transportation> transportations = dataControl.getTransportations(currBID,date,time);
+            List<Transportation> transportations = dataControl.getTransportations(date,time);
             for (Transportation t: transportations){
                 returnT.add(toTransportationServiceDTO(t));
             }

@@ -1,7 +1,7 @@
 package DataAccess;
 
 import Business.Employees.EmployeePKG.Driver;
-import Business.Transportation.Order;
+import Business.SupplierBusiness.Order;
 import Business.Transportation.Transportation;
 import Business.Transportation.Truck;
 import Business.Type.Area;
@@ -30,12 +30,12 @@ public class TransportationMapper extends Mapper{
     }
 
     private List< Transportation> selectAll(TruckMapper tru,DriverMapper driverMapper) throws Exception {
-        //TODO:implement with kfir orders
+
         String sql = "SELECT * FROM Transportations ";
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
-            // loop through the result set
+            List<Transportation> toRet=new ArrayList<>();
             while (rs.next()) {
                 Driver tempD= driverMapper.select(rs.getInt("driverID"));
                 Truck tempT= tru.getTruck(rs.getLong("truckID"));
@@ -44,19 +44,22 @@ public class TransportationMapper extends Mapper{
                 LocalTime time=LocalTime.parse(rs.getString("LeavingTime"));
                 int weight=rs.getInt("Weight");
                 Area area= Area.valueOf(rs.getString("Area"));
-                //TODO:add the orders hashmap.
-                //TODO: add transportation to hashmap
-
+                List<Order> orders= new Order().getOrdersByTransportation(tID.intValue());
+                HashMap <Integer,Order> ordersMap=new HashMap<>();
+                for (Order order: orders)
+                    ordersMap.put(order.getOrderId(), order);
+                toRet.add(new Transportation(tID,date,time,tempD,tempT,weight,ordersMap));
             }
+            for (Transportation tran: toRet)
+                transportations.put(tran.getId(),tran);
+            return toRet;
         } catch (SQLException e) {
             throw new IOException("failed to get all branches from database");
         }
-        return new ArrayList<>(transportations.values());
     }
 
     private Transportation select(long id,TruckMapper tru,DriverMapper driverMapper) throws Exception{
-    //TODO:implement with kfir orders
-        String sql = "SELECT * FROM Transactions WHERE ID="+ id ;
+        String sql = "SELECT * FROM Transportations WHERE ID="+ id ;
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
@@ -69,7 +72,14 @@ public class TransportationMapper extends Mapper{
                 LocalDate date=LocalDate.parse( rs.getString("Date"));
                 LocalTime time=LocalTime.parse(rs.getString("LeavingTime"));
                 int weight=rs.getInt("Weight");
-               //TODO:create new transportation.
+                List<Order> orders= new Order().getOrdersByTransportation(tID.intValue());
+                HashMap <Integer,Order> ordersMap=new HashMap<>();
+                for (Order order: orders)
+                    ordersMap.put(order.getOrderId(), order);
+                Transportation tran= new Transportation(tID,date,time,tempD,tempT,weight,ordersMap);
+                if (!transportations.containsKey(tran.getId()))
+                    transportations.put(tran.getId(),tran);
+                return tran;
             }
         } catch (SQLException e) {
             throw new IOException("failed to get all branches from database");
@@ -78,21 +88,20 @@ public class TransportationMapper extends Mapper{
     }
 
 
-    private void insert(long id, String area, String date,String time, int weight, long driverID,long truckID) throws Exception {
+    private void insert(long id, String area, String date,String time, double weight, long driverID,long truckID) throws Exception {
         String sql = "INSERT INTO Transportations (ID,Area,Date,LeavingTime,Weight,driverID,truckID) VALUES(?,?,?,?,?,?,?)";
-
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setLong(1,id );
             pstmt.setString(2,area );
             pstmt.setString(3,date );
             pstmt.setString(4,time );
-            pstmt.setInt(5, weight);
+            pstmt.setDouble(5, weight);
             pstmt.setLong(6, driverID);
             pstmt.setLong(7, truckID);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            throw new IOException(e.getMessage());
         }
     }
 
@@ -106,33 +115,16 @@ public class TransportationMapper extends Mapper{
             return transportations.get(id);
         }
         else {
-            Transportation tra=select(id,truckMapper,branchMapper, driverMapper);
+            Transportation tra=select(id,truckMapper, driverMapper);
             if(tra!=null)
                 return tra;
-            throw new IllegalArgumentException("No transportation match to id:" + id);
+            throw new IOException("No transportation match to id:" + id);
         }
     }
 
-    public List<Transportation> getTransportations(TruckMapper truckMapper,DriverMapper driverMapper) throws Exception {
+    public List<Transportation> getAllTransportations(TruckMapper truckMapper, DriverMapper driverMapper) throws Exception {
         return selectAll(truckMapper, driverMapper);
-    //TODO:implemet after get suppliers from kfir.
-
     }
-    public void setDriverOnTrans(long transId, Driver driver) {
-        transportations.get(transId).setDriver(driver);
-    }
-    public void setTruckOnTrans(long transId, Truck truck) {
-        transportations.get(transId).setTruck(truck);
-    }
-
-    public void setTime(long id, LocalTime leavingTime) {
-        transportations.get(id).setLeavingTime(leavingTime);
-    }
-
-    public void setWeight(long id, int weight) {
-        transportations.get(id).setWeight(weight);
-    }
-
     public void setDate(long id, LocalDate date) {
         transportations.get(id).setDate(date);
     }
@@ -153,7 +145,7 @@ public class TransportationMapper extends Mapper{
         return -1;
     }
 
-    public void addTransportation(int id, String area, String date, String time, int weight, int driverID, int truckID) {
+    public void insert(int id, String area, String date, String time, double weight, int driverID, int truckID) throws IOException {
 
         String sql = "INSERT INTO Transportations (ID,Area,Date,LeavingTime,Weight,driverID,truckID) VALUES(?,?,?,?,?,?,?)";
 
@@ -163,25 +155,24 @@ public class TransportationMapper extends Mapper{
             pstmt.setString(2,area );
             pstmt.setString(3,date );
             pstmt.setString(4,time );
-            pstmt.setInt(5, weight);
+            pstmt.setDouble(5, weight);
             pstmt.setLong(6, driverID);
             pstmt.setLong(7, truckID);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            throw new IOException(e.getMessage());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new IOException(e.getMessage());
         }
-
     }
 
 
-    public List<Transportation> getTransportationsByArea(TruckMapper truckMapper,  DriverMapper driverMapper, Area area) {
-        String sql = "SELECT * FROM Transactions WHERE Area="+ area  ;
+    public List<Transportation> getTransportationsByArea(TruckMapper truckMapper,  DriverMapper driverMapper, Area area) throws IOException {
+        String sql = "SELECT * FROM Transportations WHERE Area="+ area  ;
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
-            // loop through the result set
+             List<Transportation> toRet=new ArrayList<>();
             while (rs.next()) {
                 Driver tempD= driverMapper.select(rs.getInt("driverID"));
                 Truck tempT= truckMapper.getTruck(rs.getInt("truckID"));
@@ -189,15 +180,20 @@ public class TransportationMapper extends Mapper{
                 Area are= Area.valueOf(rs.getString("Area"));
                 LocalDate date=LocalDate.parse( rs.getString("Date"));
                 LocalTime time=LocalTime.parse(rs.getString("LeavingTime"));
-                int weight=rs.getInt("Weight");
-                //TODO: implement creating new transportation.
+                double weight=rs.getDouble("Weight");
+                List<Order> orders= new Order().getOrdersByTransportation(tID.intValue());
+                HashMap <Integer,Order> ordersMap=new HashMap<>();
+                for (Order order: orders)
+                    ordersMap.put(order.getOrderId(), order);
+                toRet.add(new Transportation(tID,date,time,tempD,tempT,weight,ordersMap));
             }
+            return toRet;
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new IOException(e.getMessage());
         }
-        return null;
     }
-    public void updateTransWeight(long id, int weight, Order order) {
+
+    public void updateTransWeight(long id, double weight, Order order) throws IOException {
         String sql = "UPDATE Transportations " +
                 "SET Weight="+weight
                 +"Where ID="+id;
@@ -205,9 +201,9 @@ public class TransportationMapper extends Mapper{
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            throw new IOException(e.getMessage());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new IOException(e.getMessage());
         }
         Transportation tra=transportations.get(id);
         tra.setWeight(weight);
@@ -219,28 +215,55 @@ public class TransportationMapper extends Mapper{
         transportations.replace(id,tra);
     }
 
-    public List<Transportation> getTransportationsByDate(int currBID, LocalDate date, LocalTime time,TruckMapper tm,DriverMapper dm) {
+    public List<Transportation> getTransportationsByDate( LocalDate date, LocalTime time,TruckMapper tm,DriverMapper dm) throws IOException {
         String tim="AND LeavingTime < 14:00";
         if(time.compareTo(LocalTime.parse("14:00"))>=0)
             tim="AND LeavingTime >= 14:00";
-        String sql = "SELECT * FROM Transactions WHERE Date="+ date +tim  ;
+        String sql = "SELECT * FROM Transportations WHERE Date="+ date.toString() +tim  ;
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
+            List<Transportation> toRet= new ArrayList<>();
             // loop through the result set
             while (rs.next()) {
-                Driver tempD= dm.select(rs.getInt("driverID"));
-                Truck tempT= tm.getTruck(rs.getInt("truckID"));
                 Long tID=rs.getLong("ID");
-                LocalDate Date=LocalDate.parse( rs.getString("Date"));
-                LocalTime leavingTime=LocalTime.parse(rs.getString("LeavingTime"));
-                Area area= Area.valueOf(rs.getString("Area"));
-                int weight=rs.getInt("Weight");
-                //TODO: implement creating new transportation.
+                List<Order> orders= new Order().getOrdersByTransportation(tID.intValue());
+                HashMap <Integer,Order> ordersMap=new HashMap<>();
+                for (Order order: orders) {
+                    ordersMap.put(order.getOrderId(), order);
+                }
+                if(!orders.get(0).isArrived()) {
+                    LocalDate Date=LocalDate.parse( rs.getString("Date"));
+                    LocalTime leavingTime=LocalTime.parse(rs.getString("LeavingTime"));
+                    Area area= Area.valueOf(rs.getString("Area"));
+                    int weight=rs.getInt("Weight");
+                    Driver tempD= dm.select(rs.getInt("driverID"));
+                    Truck tempT= tm.getTruck(rs.getInt("truckID"));
+                    Transportation tran = new Transportation(tID, date, time, tempD, tempT, weight, ordersMap);
+                    if(!transportations.containsKey(tran.getId()))
+                        transportations.put(tran.getId(),tran);
+                    toRet.add(tran);
+                }
             }
+            return toRet;
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new IOException(e.getMessage());
         }
-        return null;
+    }
+
+    public void remove(Long idCounter) throws IOException {
+        String sql = "DELETE FROM  Transactions WHERE ID="+ idCounter ;
+        try (Connection conn = connect();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            transportations.remove(idCounter);
+            Order order=new Order();
+            order.removeOrdersByTransportationId( idCounter.intValue() );
+        }
+        catch (SQLException e) {
+            throw new IOException("failed to delete transportation "+ idCounter );
+        } catch (Exception e) {
+            throw new IOException("failed to delete transportation "+ idCounter+" Error :" + e.getMessage());
+        }
     }
 }

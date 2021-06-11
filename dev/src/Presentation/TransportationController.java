@@ -5,7 +5,6 @@ import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Business.SupplierBusiness.Order;
 import Business.Transportation.TransportationService;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -47,13 +46,20 @@ public class TransportationController {
 
     public List<TransportationServiceDTO> getTransportations(int currBID, LocalDate date, LocalTime time) {
         try {
-            return serviceControl.getTransportations(currBID, date, time);
+            return serviceControl.getTransportations( date, time);
         }
         catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
     }
 
-    public void addOrderToTransportation(Order order) {
+    public long addOrderToTransportation(Order order) {
+        try {
+            return serviceControl.addOrderToTransportation(order);
+        }
+        catch (Exception e){
+            throw new IllegalArgumentException(e.getMessage());
+        }
+
     }
 }
