@@ -1,6 +1,8 @@
 package Business.SupplierBusiness.facade.outObjects;
 
-import java.time.LocalDate;
+import Business.ApplicationFacade.outObjects.BranchServiceDTO;
+import Business.Transportation.TransportationService;
+import Presentation.TransportationController;
 import java.util.Hashtable;
 
 public class Order {
@@ -21,11 +23,16 @@ public class Order {
     }
 
     public String toString() {
-        return "Order: \n" +
-                "\torderId: " + orderId + "\n" +
-                "\tsupplierBN: " + supplierBN + "\n" +
-                "\ttotal amount: " + totalAmount + "\n" +
-                "\tbranchId: " + branchId;
+        TransportationService tra=new TransportationService(null);
+        try {
+            return "Order: \n" +
+                    "\torderId: " + orderId + "\n" +
+                    "\tsupplierBN: " + supplierBN + "\n" +
+                    "\ttotal amount: " + totalAmount + "\n" +
+                    "\tbranch: " + new BranchServiceDTO(tra.getBranchById(branchId));
+        } catch (Exception e) {
+            return e.getMessage();
+        }
     }
 
     public String toStringId() {

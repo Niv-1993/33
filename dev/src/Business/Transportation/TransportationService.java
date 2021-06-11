@@ -45,7 +45,7 @@ public class TransportationService {
     }
 
 
-    private Branch getBranchById(int id) throws Exception {
+    public Branch getBranchById(int id) throws Exception {
        return dataControl.getBranch(id);
     }
 

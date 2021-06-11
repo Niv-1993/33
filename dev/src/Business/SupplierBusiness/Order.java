@@ -158,7 +158,7 @@ public class Order {
         dalOrder.removeOrder();
     }
 
-    public boolean isArrived(){ return dalOrder.getIsArrived();}
+    public boolean isArrived(){ return (dalOrder.getIsArrived()==1);}
 
     public void updateArrived() {
         dalOrder.updateArrived();
