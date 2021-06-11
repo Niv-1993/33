@@ -3,6 +3,7 @@ package Presentation;
 import Business.ApplicationFacade.ResponseData;
 import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
+import Business.SupplierBusiness.Order;
 import Business.Transportation.TransportationService;
 
 import java.time.LocalDate;
@@ -51,5 +52,8 @@ public class TransportationController {
         catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
+    }
+
+    public void addOrderToTransportation(Order order) {
     }
 }

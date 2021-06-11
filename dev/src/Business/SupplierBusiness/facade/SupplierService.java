@@ -7,6 +7,7 @@ import Business.SupplierBusiness.ISupplierService;
 import Business.SupplierBusiness.SupplierController;
 import Business.SupplierBusiness.facade.outObjects.*;
 import Business.Transportation.TransportationService;
+import Presentation.TransportationController;
 import Utility.Tuple;
 
 import java.sql.Date;
@@ -19,7 +20,7 @@ import java.util.List;
 public class SupplierService implements ISupplierService {
     private SupplierController supplierController;
     private StorageService stockService;
-    private TransportationService transportationService;
+    private TransportationController transportationController;
     private int branchID;
 
     public SupplierService() {
@@ -314,7 +315,7 @@ public class SupplierService implements ISupplierService {
                 }
             }
             else {
-                transportationService.addOrderToTransportation(order);
+                transportationController.addOrderToTransportation(order);
             }
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
@@ -348,7 +349,7 @@ public class SupplierService implements ISupplierService {
                 }
             }
             else {
-                transportationService.addOrderToTransportation(order);
+                transportationController.addOrderToTransportation(order);
             }
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
