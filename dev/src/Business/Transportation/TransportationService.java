@@ -3,9 +3,12 @@ package Business.Transportation;
 import Business.ApplicationFacade.DriverRoleController;
 import Business.ApplicationFacade.ResponseData;
 import Business.ApplicationFacade.iControllers.iManagerRoleController;
+import Business.ApplicationFacade.outObjects.DriverServiceDTO;
 import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
+import Business.ApplicationFacade.outObjects.TruckServiceDTO;
 import Business.Employees.EmployeePKG.Driver;
 import Business.SupplierBusiness.Order;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -15,7 +18,6 @@ import java.util.List;
 
 public class TransportationService {
 
-    private final TruckService truckService;
     private final DataControl dataControl;
     private final DriverRoleController drivers;
 
@@ -23,7 +25,6 @@ public class TransportationService {
 
         dataControl=new DataControl();
         drivers = new DriverRoleController(mc);
-        truckService=new TruckService();
     }
 
     private long getId() {
@@ -34,18 +35,6 @@ public class TransportationService {
             return -1;
         }
     }
-
-
-
-    /**
-     * returns a transportation by it's id.
-     * @param id :  the transportation id to add to.
-     * @return: The transportation object that wanted.
-     */
-    public Transportation getTransportationById(long id) throws Exception {
-        return dataControl.getTransportation(id);
-    }
-
 
     /**
      * Method to return all transportations that has been made.
@@ -60,14 +49,6 @@ public class TransportationService {
        return dataControl.getBranch(id);
     }
 
-    public boolean updateOrderOnTrans(long tranId,Order updatedOrder) throws Exception {
-        Transportation tran =dataControl.getTransportation(tranId);
-        if(tran.canChange(updatedOrder)){
-            dataControl.updateTransWeight(tranId,updatedOrder.getTotalWeight(),updatedOrder);
-            return  true;
-        }
-        return false;
-    }
     public void cancelTran(long tranId) throws Exception {
         Transportation toDelete = dataControl.getTransportation(tranId);
         List<Order> orders = toDelete.getOrderList();
@@ -77,15 +58,7 @@ public class TransportationService {
             dataControl.remove(tranId);
         }
     }
-    public void removeOrderFromTran(long tranId,int orderId) throws Exception {
-        Transportation toDelete = dataControl.getTransportation(tranId);
-        Order deleteOrder = toDelete.removeOrder(orderId);
-        drivers.removeDriverFromShiftAndStorekeeper(deleteOrder.getBranchID(),toDelete.getDriver().getEID(),toDelete.getDate(),toDelete.getLeavingTime());
-        deleteOrder.removeOrder();
-        if(toDelete.isEmpty())
-            dataControl.remove(tranId);
 
-    }
     public long addOrderToTransportation(Order order) throws Exception {
         Branch bran = getBranchById(order.getBranchID());
         List<Transportation> trans = dataControl.getTransportationsByArea(bran.getArea());
@@ -99,10 +72,8 @@ public class TransportationService {
         LocalTime noon = LocalTime.parse("15:00");
         LocalTime morning = LocalTime.parse("09:00");
         List<Truck> trucks = dataControl.getTrucksByWeight(order.getTotalWeight());
-        Truck chooseTruck = null;
         if (trucks.isEmpty()) throw new IllegalArgumentException("No truck compatible for this order's weight. ");
-        chooseTruck = trucks.get(0);
-
+        Truck  chooseTruck = trucks.get(0);
         Driver chosenDriver = null;
         LocalDate date = null;
         LocalTime leavingTime= null;
@@ -148,8 +119,10 @@ public class TransportationService {
     }
     private TransportationServiceDTO toTransportationServiceDTO(Transportation t){
 
-        //TODO:implement
-        return null;
+        HashMap<Integer,Business.SupplierBusiness.facade.outObjects.Order> ordersService=new HashMap<>();
+        for(Order order : t.getOrderList())
+            ordersService.put(order.getOrderId(),new Business.SupplierBusiness.facade.outObjects.Order(order));
+        return new TransportationServiceDTO(t.getId(),t.getDate(),t.getLeavingTime(),new DriverServiceDTO(t.getDriver()),new TruckServiceDTO(t.getTruck()),t.getWeight(),ordersService);
     }
     public void addTruck(long id, int maxWeight, String model, int netWeight, int license){
         dataControl.addTruck(id, maxWeight,model,netWeight,license);

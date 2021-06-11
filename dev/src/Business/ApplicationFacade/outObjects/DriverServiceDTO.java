@@ -1,5 +1,7 @@
 package Business.ApplicationFacade.outObjects;
 
+import Business.Employees.EmployeePKG.Driver;
+
 import java.util.Objects;
 
 public class DriverServiceDTO {
@@ -12,6 +14,10 @@ public class DriverServiceDTO {
         this.license=license;
     }
 
+    public DriverServiceDTO(Driver d){
+        this.id=d.getEID();
+        this.license=d.getLicense();
+    }
     @Override
     public String toString() {
         return "Id=" + id +

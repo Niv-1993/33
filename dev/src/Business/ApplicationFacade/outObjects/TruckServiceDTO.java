@@ -1,5 +1,7 @@
 package Business.ApplicationFacade.outObjects;
 
+import Business.Transportation.Truck;
+
 import java.util.Objects;
 
 public class TruckServiceDTO {
@@ -27,7 +29,13 @@ public class TruckServiceDTO {
         this.netWeight=netWeight;
         this.id=id;
     }
-
+    public TruckServiceDTO(Truck t ){
+        this.license=t.getLicense();
+        this.maxWeight=t.getMaxWeight();
+        this.model=t.getModel();
+        this.netWeight=t.getNetWeight();
+        this.id=t.getId();
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
