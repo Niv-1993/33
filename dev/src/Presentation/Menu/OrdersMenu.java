@@ -18,7 +18,7 @@ public class OrdersMenu extends Menu{
     private final SupplierService service;
     final static Logger log = Logger.getLogger(SuppliersMenu.class);
 
-    public PresentationCL(Controllers r , Scanner input) {
+    public OrdersMenu(Controllers r , Scanner input) {
         super(r, input);
         service = r.getSc();
     }
