@@ -332,6 +332,18 @@ public abstract class Menu {
     }
     //TODO: ORI
     protected void cancelDelivery(){
+        System.out.println("Enter ID of Delivery: ");
+        while (true) {
+            System.out.println("ID: ");
+            long ID = enterInt(read());
+            if (ID < 0) {
+                System.out.println("Delivery ID must be a positive number");
+            }
+            else {
+                r.getTc().delete(ID);
+                break;
+            }
+        }
 
     }
 
