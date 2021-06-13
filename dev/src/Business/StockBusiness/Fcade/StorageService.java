@@ -147,9 +147,9 @@ public class StorageService implements iStorageService {
     @Override
     public Tresponse<Category> getCategoryInfo(int id) {
         try {
-            BusinessLayer.StockBusiness.Type.Category ret=curr.getCategory(id);
+            Business.StockBusiness.Type.Category ret=curr.getCategory(id);
             List<Integer> cids=new ArrayList<>();
-            for(BusinessLayer.StockBusiness.Type.Category c:ret.get_categories()){
+            for(Business.StockBusiness.Type.Category c:ret.get_categories()){
                 cids.add(c.get_categoryID());
             }
             return new Tresponse<>(new Category(ret.get_categoryID(),ret.get_superCategory()==null?0:ret.get_superCategory().get_categoryID(),ret.get_name(),cids,ret.get_productTypes()));
@@ -205,7 +205,7 @@ public class StorageService implements iStorageService {
     @Override
     public Tresponse<ProductType> getProductTypeInfo(int id) {
         try {
-            BusinessLayer.StockBusiness.Type.ProductType ret=curr.getProductTypeInfo(id);
+            Business.StockBusiness.Type.ProductType ret=curr.getProductTypeInfo(id);
             return new Tresponse<>(new ProductType(ret.get_typeID(),ret.get_minAmount(),ret.get_categoryID(),ret.get_producer(),
                     ret.get_suppliers(),ret.get_shelfCurr(),ret.get_storageCurr(),ret.get_basePrice(),ret.get_salePrice()));
         }
@@ -305,8 +305,8 @@ public class StorageService implements iStorageService {
     @Override
     public Tresponse<Product> getProductInfo(int ID) {
         try {
-            BusinessLayer.StockBusiness.Type.ProductType Tret=curr.getProductTypeInfo(ID/curr.MAX_PRODUCTS_ON_PROTUCTTYPE);
-            BusinessLayer.StockBusiness.instance.Product Pret=curr.getProductInfo(ID);
+            Business.StockBusiness.Type.ProductType Tret=curr.getProductTypeInfo(ID/curr.MAX_PRODUCTS_ON_PROTUCTTYPE);
+            Business.StockBusiness.instance.Product Pret=curr.getProductInfo(ID);
             return new Tresponse<>(new Product(Pret.get_id(),Tret.get_typeID(),Pret.get_expiration(),
                     Pret.get_location().item2==Location.Storage,Pret.get_location().item1));
         }
@@ -338,9 +338,9 @@ public class StorageService implements iStorageService {
     @Override
     public Tresponse<SupplierDiscounts> getSupplierDiscounts(int typeID) {
         try {
-            List<BusinessLayer.StockBusiness.Type.SupplierDiscount> get=curr.getSupplierDiscounts(typeID);
+            List<Business.StockBusiness.Type.SupplierDiscount> get=curr.getSupplierDiscounts(typeID);
             List<SupplierDiscount> ret=new ArrayList<>();
-            for (BusinessLayer.StockBusiness.Type.SupplierDiscount d:get){
+            for (Business.StockBusiness.Type.SupplierDiscount d:get){
                 ret.add(new SupplierDiscount(d.get_discountID(),d.get_start(),d.get_end(),d.get_percent(),d.get_supplierID()));
             }
             return new Tresponse<>(new SupplierDiscounts(typeID,ret));
@@ -353,11 +353,11 @@ public class StorageService implements iStorageService {
     @Override
     public Tresponse<SaleDiscounts> getSaleDiscounts(int typeID) {
         try {
-            List<BusinessLayer.StockBusiness.Type.SaleDiscount> get=curr.getSaleDiscounts(typeID);
+            List<Business.StockBusiness.Type.SaleDiscount> get=curr.getSaleDiscounts(typeID);
             int cat=curr.getProductTypeInfo(typeID).get_categoryID();
             get.addAll(curr.getSaleCategoryDiscounts(cat));
             List<SaleDiscount> ret=new ArrayList<>();
-            for (BusinessLayer.StockBusiness.Type.SaleDiscount d:get){
+            for (Business.StockBusiness.Type.SaleDiscount d:get){
                 ret.add(new SaleDiscount(d.get_discountID(),d.get_start(),d.get_end(),d.get_percent()));
             }
             return new Tresponse<>(new SaleDiscounts(typeID,ret));

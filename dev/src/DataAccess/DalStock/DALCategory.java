@@ -4,7 +4,6 @@ import DataAccess.DALObject;
 import DataAccess.DalController;
 import DataAccess.SMapper;
 import Utility.Tuple;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

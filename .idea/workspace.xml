@@ -22,15 +22,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="">
-    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="edit mappars">
+    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="edit service object">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/StockBusiness/Fcade/StorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/StockBusiness/Fcade/StorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/DataControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/DataControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/Transportation.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/Transportation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/DalStock/DALCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/DalStock/DALCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/DalStock/DALShelf.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/DalStock/DALShelf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Presentation/Menu/TransportationMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/Menu/TransportationMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Presentation/StockCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/StockCLI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/Presentation/TransportationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/TransportationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Assignment2 .drawio" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Assignment2 .drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Presentation/mainCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/mainCLI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Utility/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Utility/Util.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,9 +72,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$PROJECT_DIR$/release/adss2020_v01.jar!/Business/ShiftPKG/Shift.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1s86hbzt27FEyGDxuxgDFSWzabG" />
   <component name="ProjectViewState">
@@ -114,49 +118,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <module name="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <module name="" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -170,7 +149,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bccfd2f2-7c4c-4f48-b723-f62a6117cacb" name="Default Changelist" comment="" />
+      <changelist id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="adding read/write abilities with db" />
       <created>1620241990152</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -182,6 +161,7 @@
       <workItem from="1622132013733" duration="1613000" />
       <workItem from="1622208237811" duration="4936000" />
       <workItem from="1622217644220" duration="6785000" />
+      <workItem from="1623418048430" duration="1632000" />
     </task>
     <task id="LOCAL-00001" summary="add mappers - data layer">
       <created>1620304052353</created>
@@ -244,7 +224,25 @@
       <option name="presentableId" value="LOCAL‎00009" />
       <updated>1620667732074</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL‎00010" summary="adding read/write abilities with db">
+      <created>1623417408995</created>
+      <option name="number" value="LOCAL‎00010" />
+      <option name="presentableId" value="LOCAL‎00010" />
+      <updated>1623417408995</updated>
+    </task>
+    <task id="LOCAL‎00011" summary="edit db">
+      <created>1623418060608</created>
+      <option name="number" value="LOCAL‎00011" />
+      <option name="presentableId" value="LOCAL‎00011" />
+      <updated>1623418060608</updated>
+    </task>
+    <task id="LOCAL‎00012" summary="edit service object">
+      <created>1623418994207</created>
+      <option name="number" value="LOCAL‎00012" />
+      <option name="presentableId" value="LOCAL‎00012" />
+      <updated>1623418994207</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,7 +269,10 @@
     <MESSAGE value="add Transportation menu" />
     <MESSAGE value="menue, drivers,storekeepers" />
     <MESSAGE value="finish Transportation" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish Transportation" />
+    <MESSAGE value="adding read/write abilities with db" />
+    <MESSAGE value="edit db" />
+    <MESSAGE value="edit service object" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit service object" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -290,11 +291,6 @@
           <url>file://$PROJECT_DIR$/dev/src/Business/ShiftPKG/ShiftController.java</url>
           <line>63</line>
           <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java</url>
-          <line>106</line>
-          <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dev/src/DataAccess/ShiftMapper.java</url>

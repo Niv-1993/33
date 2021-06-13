@@ -1,6 +1,6 @@
 package Presentation;
 
-import DAL.Mapper;
+import DataAccess.Mapper;
 import Presentation.Menu.SuppliersMenu;
 import org.apache.log4j.Logger;
 

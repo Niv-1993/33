@@ -1,32 +1,36 @@
 package Presentation;
 
-import Business.ApplicationFacade.Response;
 import Business.ApplicationFacade.ResponseData;
 import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Business.SupplierBusiness.Order;
 import Business.Transportation.TransportationService;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TransportationController {
     private final TransportationService serviceControl;
 
 
-    public List<Integer> checkAvailableDriverSubs(int driverID, LocalTime time, LocalDate date,List<Integer> optionalDrivers){
-        ResponseData<List<Integer>> res = serviceControl.checkAvailableDriverSubs(driverID,time,date,optionalDrivers);
-        if(res.isError()){
-            throw new IllegalArgumentException(res.getError());
-        }else {
-            return res.getData();
+    public List<Integer> checkAvailableDriverSubs(int driverID, String time, LocalDate date,List<Integer> optionalDrivers){
+        try {
+            return serviceControl.checkAvailableDriverSubs(driverID, time, date, optionalDrivers);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return new ArrayList<>();
         }
     }
-    //2
-    public void swapDrivers(int newDriverID, int oldDriverID, LocalTime time, LocalDate date){
-        Response res = serviceControl.swapDrivers(newDriverID,oldDriverID,time,date);
-        if(res.isError()) {
-            throw new IllegalArgumentException(res.getError());
+    public void swapDrivers(int newDriverID, int oldDriverID, String time, LocalDate date){
+        try{
+            serviceControl.swapDrivers(newDriverID,oldDriverID,time,date);
+
+        }
+        catch (Exception e){
+            System.out.println( e.getMessage());
         }
     }
     public TransportationController(iManagerRoleController mc){
@@ -62,7 +66,7 @@ public class TransportationController {
 
     public List<TransportationServiceDTO> getTransportations(int currBID, LocalDate date, LocalTime time) {
         try {
-            return serviceControl.getTransportations( date, time);
+            return serviceControl.getTransportations(date, time);
         }
         catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
@@ -76,6 +80,5 @@ public class TransportationController {
         catch (Exception e){
             throw new IllegalArgumentException(e.getMessage());
         }
-
     }
 }

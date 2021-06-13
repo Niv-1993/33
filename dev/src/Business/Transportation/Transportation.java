@@ -5,6 +5,7 @@ import Business.SupplierBusiness.Order;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Transportation {
@@ -80,13 +81,9 @@ public class Transportation {
         }
     }
     public List<Integer> getTransBranches(){
-        List<Integer> ret = new LinkedList<>();
-        List<Order> orders = new ArrayList<>( this.orders.values());
-        for (Order order:orders){
-            ret.add(order.getBranchID());
-        }
-        return ret;
+        return orders.values().stream().map(o-> o.getBranchID()).collect(Collectors.toList());
     }
+
     public void setId(int id) {
         this.id = id;
     }

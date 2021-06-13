@@ -1,7 +1,7 @@
 package Utility;
 
-import DAL.DALObject;
-import DAL.Mapper;
+import DataAccess.DALObject;
+import DataAccess.Mapper;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;

@@ -1,5 +1,6 @@
 package Business.Transportation;
 
+import Business.Employees.EmployeePKG.Driver;
 import Business.SupplierBusiness.Order;
 import Business.Type.Area;
 import DataAccess.BranchMapper;
@@ -10,6 +11,7 @@ import DataAccess.TruckMapper;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataControl {
@@ -44,9 +46,12 @@ public class DataControl {
         return truckMapper.getTruck(id);
     }
     public Transportation getTransportation(long id) throws Exception {
-        return transportationMapper.getTransportation(id,truckMapper,branchMapper,driverMapper);
+        return transportationMapper.getTransportation(id,truckMapper,driverMapper);
     }
 
+    public void insertAlerts (int bid, int eid, LocalDate date, String message){
+        transportationMapper.insertAlerts(bid,eid,date,message);
+    }
     public void addTransportation( Transportation tra) throws Exception {
         transportationMapper.addTransportation(tra);
     }
@@ -57,10 +62,6 @@ public class DataControl {
 
     public void remove(long idCounter) throws IOException { transportationMapper.remove(idCounter); }
 
-
-    public void setDate(long id, LocalDate date) {
-        transportationMapper.setDate(id,date);
-    }
 
     public long getCurrID() throws Exception {
         return transportationMapper.getCurrId();
@@ -78,5 +79,26 @@ public class DataControl {
 
     public List<Transportation> getTransportations( LocalDate date, LocalTime time) throws IOException {
         return transportationMapper.getTransportationsByDate(date,time,truckMapper,driverMapper);
+    }
+    public Transportation selectTransWithDriverShift(int driverID, String time,LocalDate date) throws Exception {
+        return transportationMapper.selectTransWithDriverShift(driverID,date,time,truckMapper,driverMapper);
+    }
+
+    public List<Driver> getDriversList(List<Integer> optionalDrivers) {
+        List<Driver> ret= new ArrayList<>();
+        try {
+            for (Integer id : optionalDrivers) {
+                ret.add(driverMapper.select(id));
+            }
+            return ret;
+        }
+        catch (Exception e){
+            System.out.println("Fail to launch drivers from database. Error: "+e.getMessage());
+            throw new IllegalArgumentException("Failed to launch drivers to change drivers in transportation.");
+        }
+    }
+
+    public void replaceDrivers(long id, int newDriverID) throws Exception {
+        transportationMapper.replaceDrivers(id,driverMapper.select(newDriverID));
     }
 }

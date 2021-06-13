@@ -1,7 +1,7 @@
 package Presentation;
 
-import BusinessLayer.StockBusiness.Fcade.StorageService;
-import BusinessLayer.SupplierBusiness.facade.SupplierService;
+import Business.StockBusiness.Fcade.StorageService;
+import Business.SupplierBusiness.facade.SupplierService;
 import org.apache.log4j.Logger;
 
 import java.text.SimpleDateFormat;

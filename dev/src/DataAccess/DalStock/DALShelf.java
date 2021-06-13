@@ -1,6 +1,6 @@
 package DataAccess.DalStock;
 
-import BusinessLayer.StockBusiness.instance.Location;
+import Business.StockBusiness.instance.Location;
 import DataAccess.DALObject;
 import DataAccess.DalController;
 import Utility.Tuple;
