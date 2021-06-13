@@ -339,4 +339,15 @@ public class DalOrder extends DALObject {
         this.totalWeight = totalWeight;
     }
 
+    public void removeOrdersByTransportationId(int tranID) {
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "DELETE FROM Orders\n" +
+                "WHERE transportationID = ?;";
+        list.add(new Tuple<>(tranID, Integer.class));
+        try {
+            DC.noSelect(query, list);
+        } catch (Exception e) {
+            log.warn(e);
+        }
+    }
 }

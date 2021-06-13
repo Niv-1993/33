@@ -192,6 +192,7 @@ public class Order {
     }
 
 
-    public void removeOrdersByTransportationId(int idCounter) {
+    public void removeOrdersByTransportationId(int tranID) {
+        dalOrder.removeOrdersByTransportationId(tranID);
     }
 }
