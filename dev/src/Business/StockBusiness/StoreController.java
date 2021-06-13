@@ -647,6 +647,11 @@ public class StoreController implements iStoreController {
         pt.removeSupplier(supplierId);
     }
 
+    @Override
+    public int getTypeID(int id) {
+        return id/StoreController.getMaxProdOnType();
+    }
+
     private void checkValidCategory(int catID){
         log.debug("got inside checkValidCategory(int catID) Method with: "+catID);
         String s;

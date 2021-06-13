@@ -176,7 +176,7 @@ public class OrdersMenu extends Menu{
     private void ordersAddingMethods() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int option = -1;
-        String[] showingMethodArray = {"add Regular Order", "add needed report", "add Item To Order", "back to the main menu", "END PROGRAM"};
+        String[] showingMethodArray = {"add Regular Order", "add Item To Order", "back to the main menu", "END PROGRAM"};
         System.out.println("please select the showing method: ");
         while (true) {
             for (int i = 1; i <= showingMethodArray.length; i++) {
@@ -194,22 +194,22 @@ public class OrdersMenu extends Menu{
                     else System.out.println("orderId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner);
                 }
+//                case 2 -> {
+//                    Tresponse<NeededReport> tresponse = service.getNeededItems();
+//                    if (tresponse.isError()) System.out.println(tresponse.getError() + "\n");
+//                    else {
+//                        Dictionary<Integer , Integer> dictionary = tresponse.getOutObject().get_list();
+//                        for (Integer i : Collections.list(dictionary.keys())) {
+//                            String ans = stringScan(scanner, "pres yes to if you want to order the item: " + i);
+//                            if (ans.equals("yes")) {
+//                                response response = service.addNeededOrder(i, dictionary.get(i), tresponse.getOutObject().getStoreID());
+//                                if(response.isError()) System.out.println(response.getError() + "\n");
+//                                else System.out.println("The operation was completed successfully\n");
+//                            }
+//                        }
+//                    }
+//                }
                 case 2 -> {
-                    Tresponse<NeededReport> tresponse = service.getNeededItems();
-                    if (tresponse.isError()) System.out.println(tresponse.getError() + "\n");
-                    else {
-                        Dictionary<Integer , Integer> dictionary = tresponse.getOutObject().get_list();
-                        for (Integer i : Collections.list(dictionary.keys())) {
-                            String ans = stringScan(scanner, "pres yes to if you want to order the item: " + i);
-                            if (ans.equals("yes")) {
-                                response response = service.addNeededOrder(i, dictionary.get(i), tresponse.getOutObject().getStoreID());
-                                if(response.isError()) System.out.println(response.getError() + "\n");
-                                else System.out.println("The operation was completed successfully\n");
-                            }
-                        }
-                    }
-                }
-                case 3 -> {
                     BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
                     int orderId = intScan(scanner, "please enter orderId", "orderId must be a number");
                     int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
@@ -218,10 +218,10 @@ public class OrdersMenu extends Menu{
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 4 -> {
+                case 3 -> {
                     return;
                 }
-                case 5 -> {
+                case 4 -> {
                     System.out.println("illegal option!!!\n");
                     toContinue(scanner);
                     System.exit(0);

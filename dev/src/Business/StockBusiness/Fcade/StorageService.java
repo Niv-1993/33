@@ -10,10 +10,7 @@ import org.apache.log4j.Logger;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class StorageService implements iStorageService {
     int counter=1;
@@ -58,6 +55,9 @@ public class StorageService implements iStorageService {
         try {
             reports.Report rep=curr.getWeeklyReport();
             Report ret=new Report(rep.getStore(),rep.getDate(),rep.toString(),rep.getType());
+            reports.NeededReport need=(reports.NeededReport)curr.getNeededReport();
+            for (Integer i: Collections.list(need.get_list().keys()))
+                supplierService.addNeededOrder(i,need.get_list().get(i),curr.getID());
             return new Tresponse<>(ret);
         }
         catch (Exception e) {
@@ -70,6 +70,10 @@ public class StorageService implements iStorageService {
         try {
             reports.Report rep=curr.getWeeklyReport(c);
             Report ret=new Report(rep.getStore(),rep.getDate(),rep.toString(),rep.getType());
+            reports.NeededReport need=(reports.NeededReport)curr.getNeededReport();
+            for (Integer i: Collections.list(need.get_list().keys()))
+                if (c.contains(i))
+                    supplierService.addNeededOrder(i,need.get_list().get(i),curr.getID());
             return new Tresponse<>(ret);
         }
         catch (Exception e) {
@@ -284,6 +288,7 @@ public class StorageService implements iStorageService {
     public response removeProduct(int ID) {
         try {
             curr.removeProduct(ID);
+            supplierService.addNeededOrder(curr.getTypeID(ID),1,curr.getID());
             return new response();
         }
         catch (Exception e) {
@@ -295,6 +300,7 @@ public class StorageService implements iStorageService {
     public response reportDamage(int ID) {
         try {
             curr.reportDamage(ID);
+            supplierService.addNeededOrder(curr.getTypeID(ID),1,curr.getID());
             return new response();
         }
         catch (Exception e) {
