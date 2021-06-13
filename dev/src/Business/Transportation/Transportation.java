@@ -38,7 +38,7 @@ public class Transportation {
         this.leavingTime = leavingTime;
         orders=orderS;
     }
-    Order removeOrder(int orderId){
+    public Order removeOrder(int orderId){
         if(!orders.containsKey(orderId)){
             throw new IllegalArgumentException("order id: "+ orderId+" not found on transportation is: "+ id);
         }

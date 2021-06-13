@@ -435,4 +435,8 @@ public class TransportationMapper extends Mapper {
         transportations.get(id).setDriver(newDriverID);
         updateTransDriver(id, newDriverID.getEID());
     }
+
+    public void removeOrderFromTransportation(long transID, int orderId) {
+        transportations.get(transID).removeOrder(orderId);
+    }
 }

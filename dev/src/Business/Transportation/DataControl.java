@@ -101,4 +101,8 @@ public class DataControl {
     public void replaceDrivers(long id, int newDriverID) throws Exception {
         transportationMapper.replaceDrivers(id,driverMapper.select(newDriverID));
     }
+
+    public void removeOrderFromTransportation(long transID, int orderId) {
+        transportationMapper.removeOrderFromTransportation(transID,orderId);
+    }
 }

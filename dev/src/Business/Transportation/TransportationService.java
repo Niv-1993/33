@@ -60,6 +60,7 @@ public class TransportationService {
         }
     }
 
+
     public long addOrderToTransportation(Order order) throws Exception {
         Branch bran = getBranchById(order.getBranchID());
         List<Transportation> trans = dataControl.getTransportationsByArea(bran.getArea());
@@ -180,5 +181,9 @@ public class TransportationService {
         else {
             throw new IllegalArgumentException("No such transportation for driver change.");
         }
+    }
+
+    public void removeOrderFromTransportation(long transID, int orderId) {
+        dataControl.removeOrderFromTransportation(transID,orderId);
     }
 }

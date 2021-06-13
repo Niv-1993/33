@@ -81,4 +81,12 @@ public class TransportationController {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
+    public void removeOrderFromTransportation(long transID, int orderId) {
+        try {
+             serviceControl.removeOrderFromTransportation(transID,orderId);
+        }
+        catch (Exception e){
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
 }
