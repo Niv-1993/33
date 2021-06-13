@@ -39,7 +39,7 @@ public interface ISupplierService {
     Tresponse<Order> addRegularOrder(int supplierBn , int branchId, Hashtable<Integer, Integer> items);
     response addNeededOrder(int typeID, int neededAmount, int branchID);
     response addItemToOrder(int supplierBN , int orderId , int itemId , int amount);
-    response removeOrder(int supplierBN , int orderId);
+    boolean removeOrder();
     Tresponse<Order> showOrderOfSupplier(int supplierBN , int orderId);
     Tresponse<List<Order>> showAllOrdersOfSupplier(int supplierBN);
     response showTotalAmount(int supplierBN , int orderId);

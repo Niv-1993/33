@@ -11,7 +11,7 @@ public class Order {
     private final double totalAmount;
     private final int branchId;
     private final Hashtable<Integer, Integer> items;
-    //private final int transportationId;
+    private final int transportationId;
 
     public Order(Business.SupplierBusiness.Order order) {
         orderId = order.getOrderId();
@@ -19,7 +19,7 @@ public class Order {
         totalAmount = order.getTotalAmount();
         branchId = order.getBranchID();
         items = order.getAmounts();
-        //transportationId = order.getTransportationId();
+        transportationId = order.getTransportationId();
     }
 
     public String toString() {
@@ -48,5 +48,7 @@ public class Order {
     }
 
     public String toStringSupplierBN() { return "" + supplierBN; }
+
+    public int getTransportationId(){ return  transportationId;}
 
 }

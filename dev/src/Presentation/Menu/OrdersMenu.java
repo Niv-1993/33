@@ -237,7 +237,7 @@ public class OrdersMenu extends Menu{
     private void ordersRemovingMethods() {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int option = -1;
-        String[] removeMethodArray = {"remove Order", "remove item from regular order", "remove amount of items from regular order",
+        String[] removeMethodArray = {"remove item from regular order", "remove amount of items from regular order",
                 "back to the main menu", "END PROGRAM"};
         System.out.println("please select the showing method: ");
         while (true) {
@@ -250,19 +250,12 @@ public class OrdersMenu extends Menu{
                 case 1 -> {
                     BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
                     int orderId = intScan(scanner, "please enter orderId", "orderId must be a number");
-                    response response = service.removeOrder(BN, orderId);
-                    if (response.isError()) System.out.println(response.getError() + "\n");
-                    else System.out.println("The operation was completed successfully\n");
-                }
-                case 2 -> {
-                    BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
-                    int orderId = intScan(scanner, "please enter orderId", "orderId must be a number");
                     int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
                     response response = service.removeItemFromRegularOrder(BN, orderId, itemId);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 3 -> {
+                case 2 -> {
                     BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
                     int orderId = intScan(scanner, "please enter orderId", "orderId must be a number");
                     int itemId = intScan(scanner, "please enter itemId", "itemId must be a number");
@@ -271,10 +264,10 @@ public class OrdersMenu extends Menu{
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("The operation was completed successfully\n");
                 }
-                case 4 -> {
+                case 3 -> {
                     return;
                 }
-                case 5 -> {
+                case 4 -> {
                     System.exit(0);
                 }
                 default -> {

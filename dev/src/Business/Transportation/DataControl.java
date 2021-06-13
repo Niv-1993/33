@@ -60,7 +60,7 @@ public class DataControl {
         return transportationMapper.getAllTransportations(truckMapper,driverMapper);
     }
 
-    public void remove(long idCounter) throws IOException { transportationMapper.remove(idCounter); }
+    public void remove(long idCounter) throws IOException { transportationMapper.deleteTrans(idCounter); }
 
 
     public long getCurrID() throws Exception {
@@ -102,7 +102,7 @@ public class DataControl {
         transportationMapper.replaceDrivers(id,driverMapper.select(newDriverID));
     }
 
-    public void removeOrderFromTransportation(long transID, int orderId) {
-        transportationMapper.removeOrderFromTransportation(transID,orderId);
+    public boolean removeOrderFromTransportation(long transID, int orderId) throws IOException {
+        return transportationMapper.removeOrderFromTransportation(transID,orderId);
     }
 }

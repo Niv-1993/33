@@ -187,6 +187,11 @@ public class Order {
         return null;
     }
 
+    public int getTransportationId(){
+        return dalOrder.getTransportationID();
+    }
+
+
     public void removeOrdersByTransportationId(int idCounter) {
     }
 }

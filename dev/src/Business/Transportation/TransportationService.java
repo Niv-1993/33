@@ -184,6 +184,19 @@ public class TransportationService {
     }
 
     public void removeOrderFromTransportation(long transID, int orderId) {
-        dataControl.removeOrderFromTransportation(transID,orderId);
+        try {
+            boolean empty = dataControl.removeOrderFromTransportation(transID, orderId);
+            if(empty){
+                Transportation t=dataControl.getTransportation(transID);
+                Order order= new Order();
+                Order or=order.getOrder(orderId);
+                drivers.removeDriverFromShiftAndStorekeeper(or.getBranchID(),t.getDriver().getEID(),t.getDate(),t.getLeavingTime());
+                dataControl.remove(t.getId());
+            }
+        }
+        catch(Exception e){
+            System.out.println("Could not remove order number: "+orderId+" from transportation number: "+transID+" .Error: "+e.getMessage());
+        }
+
     }
 }

@@ -332,24 +332,9 @@ public abstract class Menu {
     }
     //TODO: ORI
     protected void cancelDelivery(){
-        System.out.println("Enter ID of Order: ");
-        while (true) {
-            System.out.println("Supplier ID: ");
-            int supplierBN = enterInt(read());
-            if (supplierBN < 0) {
-                System.out.println("Supplier ID must be a positive number");
-            }
-            System.out.println("Order ID: ");
-            int orderID = enterInt(read());
-            if (orderID < 0) {
-                System.out.println("Order ID must be a positive number");
-            }
-            else {
-                r.getSc().removeOrder(supplierBN, orderID);
-                break;
-            }
-        }
-
+        boolean succ = r.getSc().removeOrder();
+        if(succ) System.out.println("cancel delivery succeed");
+        else System.out.println("cancel delivery failed");
     }
 
 

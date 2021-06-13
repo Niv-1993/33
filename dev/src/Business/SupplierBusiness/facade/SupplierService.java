@@ -16,6 +16,7 @@ import java.time.ZoneId;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public class SupplierService implements ISupplierService {
     private SupplierController supplierController;
@@ -383,16 +384,84 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public response removeOrder(int supplierBN, int orderId) {
-        try{
-            supplierController.removeOrder(supplierBN, orderId);
-        }catch (Exception e){
-            return new response("ERROR: " + e.getMessage());
+    public boolean removeOrder() {
+        Scanner scanner = new Scanner(System.in);
+        Tresponse<List<SupplierCard>> suppliers = showAllSuppliers();
+        if(suppliers.isError()){
+            System.out.println(suppliers.getError());
+            return false;
         }
-        return new response();
+        for (SupplierCard supplierCard : suppliers.getOutObject()) {
+            Tresponse<List<Order>> orders = showAllOrdersOfSupplier(supplierCard.getSupplierBN());
+            if(orders.isError()){
+                System.out.println(orders.getError());
+                return false;
+            }
+            for (Order order : orders.getOutObject()) {
+                System.out.println(order.toString());
+                Tresponse<List<Item>> items = showAllItemsOfOrder(supplierCard.getSupplierBN(), Integer.parseInt(order.toStringId()));
+                if (items.isError()) {
+                    System.out.println(items.getError() + "\n");
+                    return false;
+                }
+                else {
+                    Tresponse<SupplierAgreement> supplierAgreement = showSupplierAgreement(supplierCard.getSupplierBN());
+                    if (supplierAgreement.isError()) {
+                        System.out.println(supplierAgreement.getError() + "\n");
+                        return true;
+                    }
+                    else {
+                        System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
+                    }
+                    List<Item> responseItem = items.getOutObject();
+                    for (Item item : responseItem) {
+                        System.out.println(item.toString(order.toStringAmount(item.toStringId())));
+                    }
+                }
+            }
+        }
+        int toReturnSupplier;
+        String answer;
+        while (true) {
+            System.out.println("please enter the orderId you want to delete");
+            try {
+                answer = read(scanner);
+                toReturnSupplier = Integer.parseInt(answer);
+                break;
+            } catch (Exception e) {
+                System.out.println("orderId does not exist or something want wrong");
+            }
+        }
+        int toReturnOrderId;
+        while (true) {
+            System.out.println("please enter the supplierBN of the order you want to delete");
+            try {
+                answer = read(scanner);
+                toReturnOrderId = Integer.parseInt(answer);
+                break;
+            } catch (Exception e) {
+                System.out.println("supplierBN does not exist or something want wrong");
+            }
+        }
+        return removeOrder(toReturnSupplier , toReturnOrderId);
     }
 
-    @Override
+    private String read(Scanner scanner) {
+        return scanner.nextLine().toLowerCase().replaceAll("\\s", "");
+    }
+
+    private boolean removeOrder(int supplierBN, int orderId) {
+        try{
+            int transportationId = showOrderOfSupplier(supplierBN , orderId).getOutObject().getTransportationId();
+            supplierController.removeOrder(supplierBN, orderId);
+            transportationController.removeOrderFromTransportation(transportationId , orderId);
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
+        @Override
     public Tresponse<Order> showOrderOfSupplier(int supplierBN, int orderId) {
         Business.SupplierBusiness.Order order;
         try {

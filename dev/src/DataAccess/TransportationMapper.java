@@ -436,7 +436,13 @@ public class TransportationMapper extends Mapper {
         updateTransDriver(id, newDriverID.getEID());
     }
 
-    public void removeOrderFromTransportation(long transID, int orderId) {
-        transportations.get(transID).removeOrder(orderId);
+    public boolean removeOrderFromTransportation(long transID, int orderId) throws IOException {
+       transportations.get(transID).removeOrder(orderId);
+       return transportations.get(transID).getOrderList().isEmpty();
+    }
+
+    public void deleteTrans(long idCounter) throws IOException {
+        remove(idCounter);
+        transportations.remove(idCounter);
     }
 }
