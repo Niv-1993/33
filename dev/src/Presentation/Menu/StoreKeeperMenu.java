@@ -47,9 +47,11 @@ public class StoreKeeperMenu extends Menu{
                 case "4":
                     //TODO: get function for this method alex and yaki[the stock menu only]
                 case "5":
-                    //TODO: get function for this method kfir and ori [orders from suppliers menu]
+                    new OrdersMenu(r,input).show();
+                    break;
                 case "6":
-                    //TODO: get function for this method kfir and ori [Suppliers card managements menu]
+                    new SuppliersMenu(r,input).show();
+                    break;
                 case "7":
                     List<TransportationServiceDTO> trans =  r.getTc().getTransportations(r.getCurrBID(), LocalDate.now(), LocalTime.now());
                     for (TransportationServiceDTO t : trans)
@@ -58,7 +60,8 @@ public class StoreKeeperMenu extends Menu{
                     if(acceptT == null) break; //go back to main menu
                     //TODO: send to alex the transportationDTO to update stock acceptTransportation(acceptT);
                 case "8":
-                    //TODO: logic cancel functions KFIR AND ORI
+                    cancelDelivery();
+                    break;
                 case "9":
                     r.getRc().Logout();
                     return;

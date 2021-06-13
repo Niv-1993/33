@@ -392,6 +392,7 @@ public class ShiftController {
         createBuildConstraintsAndRemoveFromOpt(l,s.getShiftType(),s.getDate());
     }
 
+
     public void setAllOptionals(Map<RoleType, List<Employee>> allOptionals) {
         AllOptionals = allOptionals;
     }
@@ -414,5 +415,21 @@ public class ShiftController {
         removeEmpFromShift(s.getSID(),driver);
         Employee skToRemove = s.getStoreKeeperToRemove();
         removeEmpFromShift(s.getSID(),skToRemove);
+    }
+
+    public void removeDriverFromShift(Employee driver, LocalDate date, ShiftType shiftType) {
+        Shift s = getShiftByDate(date,shiftType);
+        removeEmpFromShift(s.getSID(),driver);
+    }
+    public void addDriverToShift(Employee driver, LocalDate date, ShiftType shiftType) {
+        Shift s = getShiftByDate(date,shiftType);
+        s.addEmpToShift(RoleType.Driver,driver);
+        List<Employee> l = new ArrayList<>();
+        l.add(driver);
+        createBuildConstraintsAndRemoveFromOpt(l,s.getShiftType(),s.getDate());
+    }
+
+    public Shift getShift(int sid) {
+        return get(sid,AllOptionals);
     }
 }

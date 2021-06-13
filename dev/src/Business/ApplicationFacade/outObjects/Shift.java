@@ -16,6 +16,7 @@ public class Shift {
     public Map<String, Integer> rolesAmount;
     public String status;
     public boolean hasShiftManager;
+    private List<Integer> optionalDrivers;
 
     public Shift(Business.Employees.ShiftPKG.Shift shift, Map<Employee, String> employees, Map<String, List<Employee>> optionals) {
         this.SID = shift.getSID();
@@ -26,6 +27,12 @@ public class Shift {
         this.rolesAmount = Collections.unmodifiableMap(converterRolesA(shift.getRolesAmount()));
         this.status = (shift.getComplete()) ? "Full" : "*** Missing ***";
         this.hasShiftManager = shift.HasShiftManager();
+    }
+
+    public Shift(Business.Employees.ShiftPKG.Shift s, List<Integer> optionals) {
+        date = s.getDate();
+        shiftType = s.getShiftType().name();
+        optionalDrivers = optionals;
     }
 
     public String toStringWithoutOptAndEmp() {
@@ -112,4 +119,47 @@ public class Shift {
         return ret;
     }
 
+    public String strDrivers() {
+        return
+                "----------------------------------------------------------------------\n" +
+                        "Shift ID: " + SID +
+                        "       Date: " + date +
+                        "       ShiftType: '" + shiftType + '\'' + "\n\t" +
+                        printDrivers() + "\n\t"+
+                        "Optional Drivers: " + printOptionalDrivers() + "\n";
+    }
+
+    private String printOptionalDrivers() {
+        StringBuilder opt = new StringBuilder();
+        List<Employee> optionalDrivers = optionals.get("Driver");
+        for (Employee d : optionalDrivers){
+            opt.append("[").append(d.EID).append(",").append(d.name).append("]");
+        }
+        return opt.toString();
+    }
+
+    private String printDrivers() {
+        if (employees.isEmpty()) return " None\n";
+        StringBuilder drivers = new StringBuilder();
+        drivers.append("\n");
+        drivers.append("Drivers").append(": ");
+        for (Map.Entry<Employee, String> m : employees.entrySet()) {
+            if (m.getValue().equals("Driver"))
+                drivers.append("[").append(m.getKey().EID).append(",").append(m.getKey().name).append("] ");
+        drivers.append("\n");
+        }
+        return drivers.toString();
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getShiftType() {
+        return shiftType;
+    }
+
+    public List<Integer> getOptionalDrivers() {
+        return optionalDrivers;
+    }
 }

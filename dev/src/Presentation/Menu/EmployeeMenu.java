@@ -168,7 +168,7 @@ public class EmployeeMenu extends Menu {
             role = chooseRole();
             if(role.equals("Driver")) {
                 System.out.print("License number: ");
-                licence = enterInt(read());  //TODO check which int legal? only positive?
+                licence = enterInt(read());
                 r.getDc().addNewDriver(ID,name,new int[]{AC, BB, BID}, salary,LocalDate.now(), new int[]{fund, DO, SD},licence);
             }else
                 r.getMc().addEmployee(ID, name, new int[]{AC, BB, BID}, salary, role, LocalDate.now(), new int[]{fund, DO, SD});

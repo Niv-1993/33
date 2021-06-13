@@ -4,6 +4,9 @@ import Business.ApplicationFacade.*;
 import Business.ApplicationFacade.iControllers.iDriverRoleController;
 import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.iControllers.iRegularRoleController;
+import Business.StockBusiness.StoreController;
+import Business.StockBusiness.iStoreController;
+import Business.SupplierBusiness.ISupplierService;
 import Business.SupplierBusiness.facade.SupplierService;
 
 import java.time.DayOfWeek;
@@ -18,6 +21,8 @@ public class Controllers {
     private final iManagerRoleController mc;
     private final iDriverRoleController dc;
     private final TransportationController tc;
+    private final SupplierService sc;
+    private final iStoreController st;
     private int currBID;
 
     public Controllers() {
@@ -25,6 +30,8 @@ public class Controllers {
         mc = new ManagerRoleController(rc.getUtils());
         dc = new DriverRoleController(mc);
         tc = new TransportationController(mc);
+        sc = new SupplierService();
+        st = new StoreController(); //TODO: check if this is the constructor to call
         currBID = -1;
     }
 
@@ -42,6 +49,14 @@ public class Controllers {
 
     public TransportationController getTc() {
         return tc;
+    }
+
+    public SupplierService getSc() {
+        return sc;
+    }
+
+    public iStoreController getSt() {
+        return st;
     }
 
     public void init() {

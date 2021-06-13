@@ -271,4 +271,8 @@ public class RegularRoleController implements iRegularRoleController {
             return false;
         }
     }
+
+    public int getCurrConnectedEID() {
+        return currConnectedEmp.getEID();
+    }
 }

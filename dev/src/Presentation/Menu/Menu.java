@@ -330,6 +330,10 @@ public abstract class Menu {
             return num;
         }
     }
+    //TODO: ORI
+    protected void cancelDelivery(){
+
+    }
 
 
 }

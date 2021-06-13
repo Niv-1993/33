@@ -6,7 +6,9 @@ import Business.Type.RoleType;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DriverMapper extends Mapper{
@@ -66,4 +68,18 @@ public class DriverMapper extends Mapper{
         return driver;
     }
 
+    public List<Integer> allPersonnelManager(int bid) {
+        String query = String.format("SELECT EID FROM Employees as E JOIN RolesAndEmployees as RAE ON E.EID = RAE.EID WHERE RAE.Role = %s AND E.BID= %d","PersonnelManager",bid);
+        List<Integer> l = new ArrayList<>();
+        try (Connection con = connect();
+             PreparedStatement pre = con.prepareStatement(query)) {
+            ResultSet res = pre.executeQuery();
+            while (res.next()) {
+                l.add(res.getInt("EID"));
+            }
+        } catch (Exception e) {
+            System.out.println("[allPersonnelManager-emp] ->" + e.getMessage());
+        }
+        return l;
+    }
 }

@@ -23,7 +23,8 @@ public class ShiftMenu extends Menu {
             System.out.println("5) make placement for shifts of next week");
             System.out.println("6) Print all shifts");
             System.out.println("7) Update the amount of a specific role in a shift");
-            System.out.println("8) previous menu");
+            System.out.println("8) Change drivers");
+            System.out.println("9) previous menu");
             System.out.println("Choose option: ");
             String option = read();
             switch (option) {
@@ -58,12 +59,60 @@ public class ShiftMenu extends Menu {
                     updateAmountRole();
                     break;
                 case "8":
+                    int currBID = r.getCurrBID();
+                    changeDriver();
+                    r.getMc().EnterBranch(currBID);
+                case "9":
                     return;
                 default:
                     System.out.println("Invalid input,please choose a number again");
                     if (goBack()) return;
                     break;
             }
+        }
+    }
+
+    private void changeDriver() {
+        if (!printAllDrivers(LocalDate.now().plusWeeks(2))) return;
+        int SID = getSID();
+        int driverID = getDriverEID(SID);
+        if(driverID == -1) return;
+        Shift s = r.getMc().getShift(SID);
+        List<Integer> optionalDrivers = r.getTc().checkAvailableDriverSubs(driverID,s.getShiftType(),s.getDate(),s.getOptionalDrivers());
+        if(optionalDrivers.isEmpty()){
+            System.out.println("None available drivers to change at this point.");
+            return;
+        }
+        System.out.print("Optional Drivers: ");
+        optionalDrivers.forEach(id -> {
+            System.out.print(id+" ");
+        });
+        System.out.println("Choose an optional driver");
+        int  newDriver = enterInt(read());
+        if(!optionalDrivers.contains(newDriver)){
+            System.out.println("invalid chosen id");
+            return;
+        }
+        r.getTc().swapDrivers(newDriver,driverID,s.getShiftType(),s.getDate());
+    }
+
+    private int getDriverEID(int SID) {
+        while (true) {
+            System.out.print("driver ID to change: ");
+            int EID = enterInt(read());
+            if (EID < 0) {
+                System.out.println("Invalid EID: negative number");
+                continue;
+            }
+            if (!r.getMc().EIDWorkInSID(SID, EID)) {
+                System.out.println("Invalid EID: is not work in this shift");
+                continue;
+            }
+            if (!r.getDc().isDriver(EID)) {
+                System.out.println("Error: ID is not driver");
+                return -1;
+            }
+            return EID;
         }
     }
 
@@ -155,7 +204,19 @@ public class ShiftMenu extends Menu {
             return EID;
         }
     }
-
+    private boolean printAllDrivers(LocalDate until){
+        System.out.println("Shifts and Drivers");
+        ResponseData<List<Shift>> shifts = r.getMc().getShifts(until);
+        if (shifts.getData().isEmpty()) {
+            System.out.println("No shifts in this branch");
+            return false;
+        }else{
+            for (Shift s : shifts.getData()){
+                System.out.println(s.strDrivers());
+            }
+        }
+        return true;
+    }
     private boolean printAllShifts(String all, LocalDate until) {
         System.out.println("All shifts of this branch until " + until + " :");
         ResponseData<List<Shift>> shifts = r.getMc().getShifts(until);

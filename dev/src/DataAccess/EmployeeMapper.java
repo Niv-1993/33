@@ -5,6 +5,7 @@ import Business.Employees.EmployeePKG.Employee;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -216,4 +217,26 @@ public class EmployeeMapper extends Mapper {
         needToUpdateEmps = true;
     }
 
+    public List<String> getManagerMessages(int bid, int eid) {
+        String query = String.format("SELECT * FROM ManagerAlerts WHERE BID= %d AND EID=%d AND Date >= date('now')",bid,eid);
+        List<String> l = new ArrayList<>();
+        List<Integer> mids = new ArrayList<>();
+        try (Connection con = connect();
+             PreparedStatement pre = con.prepareStatement(query);
+                Statement deletes = con.createStatement()) {
+            ResultSet res = pre.executeQuery();
+            while (res.next()) {
+                l.add(res.getString("Message"));
+                mids.add((res.getInt("MID")));
+            }
+            for (Integer mid : mids){
+                deletes.addBatch(String.format("DELETE FROM ManagerAlerts WHERE MID=%d;",mid));
+            }
+            deletes.executeBatch();
+
+        } catch (Exception e) {
+            System.out.println("[getManagerMessages-emp] ->" + e.getMessage());
+        }
+        return l;
+    }
 }

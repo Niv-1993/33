@@ -18,4 +18,7 @@ public interface iDriverRoleController {
     void removeDriverFromShiftAndStorekeeper(int BID,int driverID, LocalDate date, LocalTime leavingTime);
 
     void addDriverToShiftAndStoreKeeper(int BID,int driverID, LocalDate date, LocalTime leavingTime);
+    List<Integer> allPersonnelManager(int BID);
+    void changeDriver(List<Integer> BIDS, int oldDriverID, int newDriverID,  LocalDate date, LocalTime leavingTime);
+    boolean isDriver(int eid);
 }

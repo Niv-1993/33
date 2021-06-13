@@ -46,7 +46,7 @@ public class LogisticManagerMenu extends Menu{
                     r.getMc().EnterBranch(currBID);
                     break;
                 case "6":
-                    //TODO: logic cancel functions KFIR AND ORI
+                    cancelDelivery();
                     break;
                 case "7":
                     return;

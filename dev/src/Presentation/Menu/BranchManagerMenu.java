@@ -28,7 +28,8 @@ public class BranchManagerMenu extends Menu {
                     //TODO: Reports logic call [alex and yaki reports menu]
                     break;
                 case "3":
-                    //TODO: get function for this method kfir and ori [Suppliers card managements menu]
+                    new SuppliersMenu(r,input).show();
+                    break;
                 case "4":
                     r.getRc().Logout();
                     return;

@@ -91,10 +91,24 @@ public class Mapper {
             s.addBatch(getCreateTransportations());
             s.addBatch(getCreateSuppliersItemsOnTran());
             s.addBatch(getCreateBranchesItemsOnTran());
+            s.addBatch(getManagerAlerts());
             s.executeBatch();
         } catch (Exception e) {
         //    System.out.println("[createTables] ->"+e.getMessage());
         }
+    }
+
+    private String getManagerAlerts() {
+        return "CREATE TABLE \"ManagerAlerts\" (\n" +
+                "\t\"MID\"\tINTEGER,\n" +
+                "\t\"BID\"\tINTEGER,\n" +
+                "\t\"EID\"\tINTEGER,\n" +
+                "\t\"Date\"\tTEXT,\n" +
+                "\t\"Message\"\tTEXT,\n" +
+                "\tFOREIGN KEY(\"BID\") REFERENCES \"Branches\"(\"BID\") ON DELETE CASCADE,\n" +
+                "\tPRIMARY KEY(\"MID\"),\n" +
+                "\tFOREIGN KEY(\"EID\") REFERENCES \"Employees\"(\"EID\") ON DELETE CASCADE\n" +
+                ");";
     }
 
     private String getCreateEmployee() {

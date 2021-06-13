@@ -253,4 +253,13 @@ public interface iManagerRoleController {
     boolean DriverAvailable(LocalDate date, String shiftType);
 
     void removeDriverFromShiftAndStorekeeper(int driverID, LocalDate date, String shiftType);
+
+
+    Shift getShift(int sid);
+
+    List<String> getMessagesOfManager(int BID, int EID);
+
+    void removeDriverFromShift(int oldDriverID, LocalDate date, String shiftType);
+
+    void addDriverToShift(int newDriverID, LocalDate date, String shiftType);
 }

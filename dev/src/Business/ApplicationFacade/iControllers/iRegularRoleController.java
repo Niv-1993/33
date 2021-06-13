@@ -151,4 +151,6 @@ public interface iRegularRoleController {
      boolean checkIfShiftIsClose(LocalDate date, String shiftType);
 
     boolean checkIfDriver(int eid);
+
+    int getCurrConnectedEID();
 }

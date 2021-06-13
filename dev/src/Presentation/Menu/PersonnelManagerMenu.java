@@ -2,6 +2,7 @@ package Presentation.Menu;
 
 import Presentation.Controllers;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class PersonnelManagerMenu extends Menu {
@@ -11,6 +12,7 @@ public class PersonnelManagerMenu extends Menu {
 
     @Override
     public void show() {
+        checkMessages();
         while (true) {
             System.out.println("\n\n************* Functions Menu *************");
             System.out.println("1) My details");
@@ -49,7 +51,8 @@ public class PersonnelManagerMenu extends Menu {
                     shftM.show();
                     break;
                 case "7":
-                    //TODO: logic cancel functions KFIR AND ORI
+                    cancelDelivery();
+                    break;
                 case "8":
                     return;
                 default:
@@ -58,5 +61,17 @@ public class PersonnelManagerMenu extends Menu {
                     break;
             }
         }
+    }
+
+    private void checkMessages() {
+        List<String>  messages = r.getMc().getMessagesOfManager(r.getCurrBID(),r.getRc().getCurrConnectedEID());
+        int i = 1;
+        if(messages.isEmpty()) return;
+        System.out.println("******** Manager Messages ********");
+        for (String m : messages){
+            System.out.println(i+") "+ m);
+            i++;
+        }
+        System.out.println("******** End of Messages ********\n");
     }
 }
