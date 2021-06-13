@@ -1,7 +1,6 @@
 package Business.StockBusiness;
 
 
-import Business.StockBusiness.Fcade.ResponseData;
 import Business.StockBusiness.Type.Category;
 import Business.StockBusiness.Type.ProductType;
 import Business.StockBusiness.Type.SaleDiscount;
@@ -71,4 +70,6 @@ public interface iStoreController {
     int getProductTypeByName(String name);
 
     void removeSupplier(int itemId, int supplierId);
+
+    int getTypeID(int id);
 }
