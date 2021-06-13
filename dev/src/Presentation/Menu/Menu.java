@@ -337,12 +337,12 @@ public abstract class Menu {
             System.out.println("Supplier ID: ");
             int supplierBN = enterInt(read());
             if (supplierBN < 0) {
-                System.out.println("Delivery ID must be a positive number");
+                System.out.println("Supplier ID must be a positive number");
             }
             System.out.println("Order ID: ");
             int orderID = enterInt(read());
             if (orderID < 0) {
-                System.out.println("Delivery ID must be a positive number");
+                System.out.println("Order ID must be a positive number");
             }
             else {
                 r.getSc().removeOrder(supplierBN, orderID);
