@@ -84,13 +84,8 @@ public class Mapper {
             s.addBatch(getCreateShiftsAndRolesAmount());
             s.addBatch(getCreateDefaults());
             s.addBatch(getCreateBranches());
-            s.addBatch(getCreateItem());
-            s.addBatch(getCreateSuppliers());
-            s.addBatch(getCreateSupplierItems());
             s.addBatch(getCreateTrucks());
             s.addBatch(getCreateTransportations());
-            s.addBatch(getCreateSuppliersItemsOnTran());
-            s.addBatch(getCreateBranchesItemsOnTran());
             s.addBatch(getManagerAlerts());
             s.executeBatch();
         } catch (Exception e) {
@@ -229,65 +224,14 @@ public class Mapper {
                 "\tFOREIGN KEY(\"BID\") REFERENCES \"Branches\"(\"BID\") ON DELETE CASCADE\n" +
                 ");";
     }
-    private String getCreateBranchesItemsOnTran() {
-        return "CREATE TABLE IF NOT EXISTS \"BranchesItemsOnTran\" (\n" +
-                "\t\"BranID\"\tNUMERIC,\n" +
-                "\t\"TranID\"\tNUMERIC,\n" +
-                "\t\"ItemID\"\tNUMERIC,\n" +
-                "\t\"Quantity\"\tINTEGER,\n" +
-                "\tPRIMARY KEY(\"BranID\",\"TranID\",\"ItemID\"),\n" +
-                "\tFOREIGN KEY(\"TranID\") REFERENCES \"Transportations\"(\"ID\") ,\n" +
-                "\tFOREIGN KEY(\"BranID\") REFERENCES \"Branches\"(\"BID\") ,\n" +
-                "\tFOREIGN KEY(\"ItemID\") REFERENCES \"Items\"(\"ID\") \n"+
-                ");";
-    }
-    private String getCreateItem() {
-        return "CREATE TABLE IF NOT EXISTS \"Items\" (\n" +
-                "\t\"ID\"\tNUMERIC,\n" +
-                "\t\"Name\"\tTEXT,\n" +
-                "\tPRIMARY KEY(\"ID\")\n" +
-                ");";
-    }
-    private String getCreateSuppliers() {
-        return "CREATE TABLE IF NOT EXISTS \"Suppliers\" (\n" +
-                "\t\"ID\"\tNUMERIC,\n" +
-                "\t\"Street\"\tTEXT NOT NULL,\n" +
-                "\t\"City\"\tTEXT NOT NULL,\n" +
-                "\t\"Number\"\tINTEGER NOT NULL,\n" +
-                "\t\"Enter\"\tINTEGER NOT NULL,\n" +
-                "\t\"Area\"\tTEXT NOT NULL,\n" +
-                "\t\"ContactName\"\tTEXT NOT NULL,\n" +
-                "\t\"Phone\"\tTEXT NOT NULL,\n" +
-                "\tPRIMARY KEY(\"ID\")\n" +
-                ");";
-    }
-    private String getCreateSupplierItems() {
-        return "CREATE TABLE IF NOT EXISTS \"SupplierItems\" (\n" +
-                "\t\"ItemID\"\tNUMERIC,\n" +
-                "\t\"SupID\"\tNUMERIC,\n" +
-                "\tPRIMARY KEY(\"ItemID\",\"SupID\"),\n" +
-                "\tFOREIGN KEY(\"ItemID\") REFERENCES \"Items\"(\"ID\") \n"+
-                ");";
-    }
-    private String getCreateSuppliersItemsOnTran() {
-        return "CREATE TABLE IF NOT EXISTS \"SupplierItemsOnTran\" (\n" +
-                "\t\"SupID\"\tNUMERIC,\n" +
-                "\t\"TranID\"\tNUMERIC,\n" +
-                "\t\"ItemID\"\tNUMERIC,\n" +
-                "\t\"Quantity\"\tINTEGER,\n" +
-                "\tPRIMARY KEY(\"SupID\",\"TranID\",\"ItemID\"),\n" +
-                "\tFOREIGN KEY(\"SupID\") REFERENCES \"Suppliers\"(\"ID\") ,\n" +
-                "\tFOREIGN KEY(\"TranID\") REFERENCES \"Transportations\"(\"ID\") ,\n" +
-                "\tFOREIGN KEY(\"ItemID\") REFERENCES \"Items\"(\"ID\") \n"+
-                ");";
-    }
+
     private String getCreateTransportations() {
         return "CREATE TABLE IF NOT EXISTS \"Transportations\" (\n" +
                 "\t\"ID\"\tINTEGER,\n" +
                 "\t\"Area\"\tTEXT,\n" +
                 "\t\"Date\"\tTEXT,\n" +
                 "\t\"LeavingTime\"\tTEXT,\n" +
-                "\t\"Weight\"\tINTEGER,\n" +
+                "\t\"Weight\"\tREAL,\n" +
                 "\t\"driverID\"\tNUMERIC,\n" +
                 "\t\"truckID\"\tNUMERIC,\n" +
                 "\tPRIMARY KEY(\"ID\")\n" +

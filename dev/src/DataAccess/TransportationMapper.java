@@ -12,6 +12,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TransportationMapper extends Mapper {
 
@@ -345,7 +346,7 @@ public class TransportationMapper extends Mapper {
                 for (Order order : orders) {
                     ordersMap.put(order.getOrderId(), order);
                 }
-                if (!orders.get(0).isArrived()) {
+                if (orders.stream().filter(o->(o.isArrived())).collect(Collectors.toList()).isEmpty()) {
                     LocalDate Date = LocalDate.parse(rs.getString("Date"));
                     LocalTime leavingTime = LocalTime.parse(rs.getString("LeavingTime"));
                     Area area = Area.valueOf(rs.getString("Area"));
