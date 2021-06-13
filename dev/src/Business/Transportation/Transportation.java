@@ -79,7 +79,14 @@ public class Transportation {
             this.driver = driver;
         }
     }
-
+    public List<Integer> getTransBranches(){
+        List<Integer> ret = new LinkedList<>();
+        List<Order> orders = new ArrayList<>( this.orders.values());
+        for (Order order:orders){
+            ret.add(order.getBranchID());
+        }
+        return ret;
+    }
     public void setId(int id) {
         this.id = id;
     }

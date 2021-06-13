@@ -1,6 +1,7 @@
 package Business.Transportation;
 
 import Business.ApplicationFacade.DriverRoleController;
+import Business.ApplicationFacade.Response;
 import Business.ApplicationFacade.ResponseData;
 import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.outObjects.DriverServiceDTO;
@@ -58,7 +59,37 @@ public class TransportationService {
             dataControl.remove(tranId);
         }
     }
+    // INSERT INTO ManagerAlerts (BID, EID, Date, Message) VALUES(?,?,?,?);
+    public ResponseData<List<Integer>> allPersonnelManager(int BID){
 
+    }
+    //1
+    public ResponseData<List<Integer>> checkAvailableDriverSubs(int driverID, LocalTime time, LocalDate date,List<Integer> optionalDrivers){
+        try(Transportation t = dataControl.selectTransWithDriverShift(driverID, time, date);) {
+            List<Integer> ret = new LinkedList<>();
+            Driver d = drivers.getDriver(driverID);
+            for (int dId: optionalDrivers){
+                if(drivers.getDriver(dId).getLicense() >= d.getLicense()){
+                    ret.add(dId);
+                }
+            }
+            return new ResponseData<>(ret);
+        }catch (Exception ex) {
+            return new ResponseData<>(ex.getMessage());
+        }
+    }
+    //2
+    public Response swapDrivers(int newDriverID, int oldDriverID, LocalTime time, LocalDate date){
+        try(Transportation t = dataControl.selectTransWithDriverShift(oldDriverID, time, date);
+            dataControl.changeDriverOnTrans(t.getId(),newDriverID);) {
+            Driver d = drivers.getDriver(newDriverID);
+            t.setDriver(d);
+            drivers.changeDriver(t.getTransBranches(),oldDriverID,newDriverID,date,time);
+            return new Response();
+        }catch (Exception ex) {
+            return new Response(ex.getMessage());
+        }
+    }
     public long addOrderToTransportation(Order order) throws Exception {
         Branch bran = getBranchById(order.getBranchID());
         List<Transportation> trans = dataControl.getTransportationsByArea(bran.getArea());
@@ -72,7 +103,10 @@ public class TransportationService {
         LocalTime noon = LocalTime.parse("15:00");
         LocalTime morning = LocalTime.parse("09:00");
         List<Truck> trucks = dataControl.getTrucksByWeight(order.getTotalWeight());
-        if (trucks.isEmpty()) throw new IllegalArgumentException("No truck compatible for this order's weight. ");
+        if (trucks.isEmpty()){
+            announceManagers(order.getBranchID(),"no compatible truck was found for new Order: " +order.getOrderId() + "\n at Date: " + LocalDate.now().toString() + ",time: " + LocalTime.now().toString());
+            throw new IllegalArgumentException("No truck compatible for this order's weight. ");
+        }
         Truck  chooseTruck = trucks.get(0);
         Driver chosenDriver = null;
         LocalDate date = null;
@@ -95,7 +129,8 @@ public class TransportationService {
             }
         }
         if(chosenDriver == null){
-            throw new IllegalArgumentException("no driver compatible for this order");
+            announceManagers(order.getBranchID(),"no compatible driver was found for new Order: " +order.getOrderId() + "\n at Date: " + LocalDate.now().toString() + ",time: " + LocalTime.now().toString());
+            throw new IllegalArgumentException("no compatible driver was found");
         }
         HashMap <Integer,Order> newOrdersList = new HashMap<>();
         newOrdersList.put(order.getOrderId(),order);
@@ -104,7 +139,12 @@ public class TransportationService {
         drivers.addDriverToShiftAndStoreKeeper(order.getBranchID(),chosenDriver.getEID(),date,leavingTime);
         return transportation.getId();
     }
-
+    private void announceManagers(int branchId,String msg){
+        List<Integer> MIDs = drivers.allPersonnelManager(branchId);
+        for (int manager:MIDs){
+            dataControl.announceManagers(MIDs,LocalDate.now(),msg);
+        }
+    }
     public ResponseData<List<TransportationServiceDTO>> getDTOTransportations() {
         List<TransportationServiceDTO> returnT = new LinkedList<>();
         try {

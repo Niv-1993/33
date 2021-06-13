@@ -1,5 +1,6 @@
 package Presentation;
 
+import Business.ApplicationFacade.Response;
 import Business.ApplicationFacade.ResponseData;
 import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
@@ -13,6 +14,21 @@ public class TransportationController {
     private final TransportationService serviceControl;
 
 
+    public List<Integer> checkAvailableDriverSubs(int driverID, LocalTime time, LocalDate date,List<Integer> optionalDrivers){
+        ResponseData<List<Integer>> res = serviceControl.checkAvailableDriverSubs(driverID,time,date,optionalDrivers);
+        if(res.isError()){
+            throw new IllegalArgumentException(res.getError());
+        }else {
+            return res.getData();
+        }
+    }
+    //2
+    public void swapDrivers(int newDriverID, int oldDriverID, LocalTime time, LocalDate date){
+        Response res = serviceControl.swapDrivers(newDriverID,oldDriverID,time,date);
+        if(res.isError()) {
+            throw new IllegalArgumentException(res.getError());
+        }
+    }
     public TransportationController(iManagerRoleController mc){
         serviceControl = new TransportationService(mc);
     }
