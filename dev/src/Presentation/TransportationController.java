@@ -16,29 +16,27 @@ public class TransportationController {
     private final TransportationService serviceControl;
 
 
-    public List<Integer> checkAvailableDriverSubs(int driverID, String time, LocalDate date,List<Integer> optionalDrivers)  {
-     try {
+    public List<Integer> checkAvailableDriverSubs(int driverID, String time, LocalDate date,List<Integer> optionalDrivers) {
+        try {
 
 
-         ResponseData<List<Integer>> res = serviceControl.checkAvailableDriverSubs(driverID, time, date, optionalDrivers);
-         if (res.isError()) {
-             System.out.println("Could not check available drivers for replacement. Error: "+res.getError());
-             return new ArrayList<>();
-         }
-         else {
-             return res.getData();
-         }
-     }
-     catch (Exception e){
-         System.out.println("Could not check available drivers for replacement. Error: "+e.getMessage());
-         return new ArrayList<>();
-     }
+            ResponseData<List<Integer>> res = serviceControl.checkAvailableDriverSubs(driverID, time, date, optionalDrivers);
+            if (res.isError()) {
+                System.out.println("Could not check available drivers for replacement. Error: " + res.getError());
+                return new ArrayList<>();
+            } else {
+                return res.getData();
+            }
+        } catch (Exception e) {
+            System.out.println("Could not check available drivers for replacement. Error: " + e.getMessage());
+            return new ArrayList<>();
+        }
     }
-    //2
+
     public void swapDrivers(int newDriverID, int oldDriverID, String time, LocalDate date){
         Response res = serviceControl.swapDrivers(newDriverID,oldDriverID,time,date);
         if(res.isError()) {
-            throw new IllegalArgumentException(res.getError());
+            System.out.println("Could not swap drivers. Error: "+res.getError());
         }
     }
     public TransportationController(iManagerRoleController mc){
@@ -50,7 +48,8 @@ public class TransportationController {
 
         ResponseData<List<TransportationServiceDTO>> res = serviceControl.getDTOTransportations();
         if(res.isError()){
-            throw new IllegalArgumentException(res.getError());
+            System.out.println("Could not get all transportation. Error: "+res.getError());
+            return new ArrayList<>();
         }
         return res.getData();
     }
@@ -59,34 +58,34 @@ public class TransportationController {
             serviceControl.cancelTran(id);
         }
         catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
+            System.out.println("Could not delete transportation. Error: "+e.getMessage());
         }
     }
 
-    public void addTruck(long id, int maxweight,String model, int netWeight, int license) {
+    public void addTruck(long id, int maxWeight,String model, int netWeight, int license) {
         try {
-            serviceControl.addTruck(id, maxweight, model, netWeight, license);
+            serviceControl.addTruck(id, maxWeight, model, netWeight, license);
         }
         catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
+            System.out.println("Could not add truck. Error: "+e.getMessage());
         }
     }
-
     public List<TransportationServiceDTO> getTransportations(int currBID, LocalDate date, LocalTime time) {
         try {
             return serviceControl.getTransportations(date, time);
         }
         catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
+            System.out.println("Could not get transportations by date and bid. Error: "+e.getMessage());
+            return new ArrayList<>();
         }
     }
-
     public long addOrderToTransportation(Order order) {
         try {
             return serviceControl.addOrderToTransportation(order);
         }
         catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
+            System.out.println("Could not add order to trans. Error: "+e.getMessage());
+            return -1;
         }
     }
     public void removeOrderFromTransportation(long transID, int orderId) {
@@ -94,7 +93,8 @@ public class TransportationController {
              serviceControl.removeOrderFromTransportation(transID,orderId);
         }
         catch (Exception e){
-            throw new IllegalArgumentException(e.getMessage());
+            System.out.println("Could not remover order from trans. Error: "+e.getMessage());
+
         }
     }
 }
