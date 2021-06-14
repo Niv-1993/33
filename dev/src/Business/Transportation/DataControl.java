@@ -105,4 +105,8 @@ public class DataControl {
     public boolean removeOrderFromTransportation(long transID, int orderId) throws IOException {
         return transportationMapper.removeOrderFromTransportation(transID,orderId);
     }
+
+    public void changeDriverOnTrans(long id, int newDriverID) {
+        transportationMapper.chaneDriverOnTran(id , newDriverID);
+    }
 }

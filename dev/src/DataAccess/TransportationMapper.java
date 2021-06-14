@@ -444,4 +444,7 @@ public class TransportationMapper extends Mapper {
         remove(idCounter);
         transportations.remove(idCounter);
     }
+
+    public void chaneDriverOnTran(long id, int newDriverID) {
+    }
 }

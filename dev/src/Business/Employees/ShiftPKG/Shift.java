@@ -98,7 +98,7 @@ public class Shift {
     public void addEmpToShift(RoleType role, Employee emp) {
         employees.put(emp, role);
         ShiftMapper.getInstance().insertEmpToShift(SID, emp.getEID(), role.name());
-        //removeEmpFromOptionals(emp);
+        removeEmpFromOptionals(emp);
         updateComplete();
         if (role.equals(RoleType.ShiftManager))
             hasShiftManager = true;

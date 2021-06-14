@@ -102,6 +102,7 @@ public class ShiftMenu extends Menu {
             int EID = enterInt(read());
             if (EID < 0) {
                 System.out.println("Invalid EID: negative number");
+                if(goBack()) return -1;
                 continue;
             }
             if (!r.getMc().EIDWorkInSID(SID, EID)) {

@@ -110,6 +110,8 @@ public class Controllers {
         rc.createBranch(3, "PersonnelManager", bankDetails, 100000, terms,"Alenbi","Beer-Sheva",12,2,"North","bar","507350111");
         rc.EnterBranch(1);
         rc.Login(1);
+        mc.addEmployee(4, "SorterA", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
+        mc.addEmployee(5, "SorterB", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
         mc.addEmployee(6, "StoreKeeperA", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
         mc.addEmployee(7, "CashierA", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
         mc.addEmployee(8, "CashierB", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
@@ -138,6 +140,8 @@ public class Controllers {
 
         rc.EnterBranch(2);
         rc.Login(2);
+        mc.addEmployee(27, "SorterA", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
+        mc.addEmployee(28, "SorterB", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
         mc.addEmployee(13, "StoreKeeperA", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
         mc.addEmployee(14, "CashierA", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
         mc.addEmployee(15, "CashierB", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
@@ -151,6 +155,8 @@ public class Controllers {
 
         rc.EnterBranch(3);
         rc.Login(3);
+        mc.addEmployee(29, "SorterA", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
+        mc.addEmployee(30, "SorterB", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
         mc.addEmployee(20, "StoreKeeperA", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
         mc.addEmployee(21, "CashierA", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
         mc.addEmployee(22, "CashierB", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
@@ -170,7 +176,25 @@ public class Controllers {
         rc.Login(1);
         rc.EnterBranch(1);
         mc.createWeekShifts();
+        mc.createShift(morning,LocalDate.now(),"Morning");
+        mc.createShift(night,LocalDate.now(),"Night");
         rc.Logout();
+
+
+        rc.EnterBranch(2);
+        rc.Login(2);
+        mc.createWeekShifts();
+        mc.createShift(morning,LocalDate.now(),"Morning");
+        mc.createShift(night,LocalDate.now(),"Night");
+        rc.Logout();
+
+        rc.EnterBranch(3);
+        rc.Login(3);
+        mc.createWeekShifts();
+        mc.createShift(morning,LocalDate.now(),"Morning");
+        mc.createShift(night,LocalDate.now(),"Night");
+        rc.Logout();
+
 
     }
 

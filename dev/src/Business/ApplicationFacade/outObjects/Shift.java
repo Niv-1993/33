@@ -125,7 +125,7 @@ public class Shift {
                         "Shift ID: " + SID +
                         "       Date: " + date +
                         "       ShiftType: '" + shiftType + '\'' + "\n\t" +
-                        printDrivers() + "\n\t"+
+                        printDrivers() + "\n"+
                         "Optional Drivers: " + printOptionalDrivers() + "\n";
     }
 

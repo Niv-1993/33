@@ -52,7 +52,7 @@ public class ShiftMapper extends Mapper {
             }
             sts.executeBatch();
         } catch (Exception e) {
-          //  System.out.println("[insertNewShift]" + e.getMessage());
+            System.out.println("[insertNewShift]" + e.getMessage());
         } finally {
             if (res)
                 shifts.put(s.getSID(), s);
@@ -68,7 +68,7 @@ public class ShiftMapper extends Mapper {
             pre.setString(3, role);
             pre.executeUpdate();
         } catch (Exception e) {
-          //  System.out.println("[insertEmpToShift]" + e.getMessage());
+            System.out.println("[insertEmpToShift]" + e.getMessage());
         }
     }
 
@@ -173,7 +173,7 @@ public class ShiftMapper extends Mapper {
             if (res.next())
                 sid = res.getInt("SID");
         } catch (Exception e) {
-          //  System.out.println("[getShiftByDate]" + e.getMessage());
+            System.out.println("[getShiftByDate]" + e.getMessage());
         }
         if (sid == -1)
             return null;
@@ -194,7 +194,7 @@ public class ShiftMapper extends Mapper {
             pre.setInt(2, eid);
             pre.executeUpdate();
         } catch (Exception e) {
-         //   System.out.println("[deleteEmpFromShift]" + e.getMessage());
+            System.out.println("[deleteEmpFromShift]" + e.getMessage());
         }
     }
 
@@ -207,7 +207,7 @@ public class ShiftMapper extends Mapper {
             pre.setString(3, role);
             pre.executeUpdate();
         } catch (Exception e) {
-         //   System.out.println("[updateAmountRole]" + e.getMessage());
+            System.out.println("[updateAmountRole]" + e.getMessage());
         }
     }
 
@@ -220,7 +220,7 @@ public class ShiftMapper extends Mapper {
                 if (res.next())
                     nextID = res.getInt("nextID") == 0? 1: res.getInt("nextID");
             } catch (Exception e) {
-             //   System.out.println("[getNextID] ->" +e.getMessage());
+                System.out.println("[getNextID] ->" +e.getMessage());
             }
             return nextID;
     }
@@ -250,7 +250,7 @@ public class ShiftMapper extends Mapper {
                 }
             }
         } catch (Exception e) {
-         //   System.out.println("[getDefaults] -> " + e.getMessage());
+            System.out.println("[getDefaults] -> " + e.getMessage());
         }
         return defaults;
     }
@@ -272,7 +272,7 @@ public class ShiftMapper extends Mapper {
                 queries.addBatch(q);
             queries.executeBatch();
         } catch (Exception e) {
-         //   System.out.println("[insertDefaults]-> " + e.getMessage());
+            System.out.println("[insertDefaults]-> " + e.getMessage());
         }
         this.defaults = defaults;
     }
