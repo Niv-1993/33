@@ -1,6 +1,5 @@
 package Presentation;
 
-import DataAccess.Mapper;
 import Presentation.Menu.SuppliersMenu;
 import org.apache.log4j.Logger;
 
@@ -18,8 +17,8 @@ public class mainCLI {
     }
 
     public mainCLI(){
-        suppliersPresentation = new SuppliersMenu();
-        stockCLI = new StockCLI();
+        //suppliersPresentation = new SuppliersMenu();
+        //stockCLI = new StockCLI();
         stockCLI.setStockService(suppliersPresentation.getService());
         suppliersPresentation.setStockService(stockCLI.getService());
     }
@@ -54,13 +53,13 @@ public class mainCLI {
                 n = menuCheck(scan);
                 switch (n) {
                     case 1 -> {
-                        Mapper.getMap(lastDB);
+                        //Mapper.getMap(lastDB);
                         suppliersPresentation.loadData(); // make a test that chek if it was load correctlly
                         break;
                     }
                     case 2 -> { /* Mapper.getMap("newDB.db"); */
                         lastDB="empty.db";
-                        Mapper.getMap(lastDB);
+                        //Mapper.getMap(lastDB);
                         suppliersPresentation.newData();
                         break;
                     }
@@ -73,11 +72,12 @@ public class mainCLI {
             System.out.println("please enter:\n1 for Suppliers\n2 for Orders\n3 for Stock\n4 to exit");
             in = read();
             try {
-                if(Integer.parseInt(in) == 1) suppliersPresentation.suppliersMainRun();
-                else if(Integer.parseInt(in) == 2) suppliersPresentation.ordersMainRun();
-                else if(Integer.parseInt(in) == 3) stockCLI.start();
-                else if(Integer.parseInt(in) == 4) System.exit(0);
-                else System.out.println("illegal input!!!");
+                break;
+//                if(Integer.parseInt(in) == 1) suppliersPresentation.suppliersMainRun();
+//                else if(Integer.parseInt(in) == 2) suppliersPresentation.ordersMainRun();
+//                else if(Integer.parseInt(in) == 3) stockCLI.start();
+//                else if(Integer.parseInt(in) == 4) System.exit(0);
+//                else System.out.println("illegal input!!!");
             }catch (Exception e){
                 System.out.println(e.getMessage());
             }

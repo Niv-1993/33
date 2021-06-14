@@ -12,6 +12,7 @@ public class CLIPresentation {
     private final Scanner input;
     private final Controllers r;
     private boolean isManager = false;
+    private int lastID=0;
 
     public CLIPresentation() {
         r = new Controllers();
@@ -23,7 +24,9 @@ public class CLIPresentation {
         System.out.println("*** Welcome to Super Li Employee management ***");
         System.out.println("***********************************************\n");
         System.out.println("Will you like to initialize an existing program? Y/N: ");
-        if (read().equalsIgnoreCase("y")) r.init();
+        if (read().equalsIgnoreCase("y")) {
+            r.init();
+        }
         System.out.println("\n***** If you want to return to previous menu while being in a menu, press any key that is not an option and after press 1 *****\n");
         while (true) {
             System.out.println("Current available branches are: "
@@ -51,7 +54,6 @@ public class CLIPresentation {
             }
         }
     }
-
     private void createBranch() {
         String code, name,street,city,area,CN,phone;
         int ID, AC, BB, BID, salary, fund, DO, SD,number,enter;
@@ -107,6 +109,7 @@ public class CLIPresentation {
             if(phone.equals("1"))return;
             System.out.println();
             r.getRc().createBranch(ID, name, new int[]{AC, BB, BID}, salary, new int[]{fund, DO, SD},street,city,number,enter,area,CN,phone);
+            r.getSt().addStore(ID);
             //TODO: call addStore() alex function to create new shelfs and stock for this branch
             break;
         }
@@ -315,7 +318,7 @@ public class CLIPresentation {
                 AddDefaultWeekShifts();
             }
             r.setCurrBID(branchNum);
-            //TODO: call useStore() to enter/load the stock of this branch [alex]
+            r.getSt().useStore(branchNum);
             break;
         }
         login();

@@ -1,7 +1,7 @@
 package Utility;
 
 import DataAccess.DALObject;
-import DataAccess.Mapper;
+import DataAccess.SMapper;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public  class Util {
         List<Integer> keyList=new ArrayList<>();
         keyList.add(storeID);
         keyList.add(key);
-        Mapper map=Mapper.getMap();
+        SMapper map=SMapper.getMap();
         DALObject check =map.getItem(c,keyList);
         if (check!=null) {
             log.warn("entry is already in DB, will not attempt insert.");
@@ -32,7 +32,7 @@ public  class Util {
 
         check =map.getItem(c ,keyList);
         if (c==null || check==null ||(check.getClass()!=c)){
-            String s="the instance that return from Mapper is null for: "+c;
+            String s="the instance that return from SMapper is null for: "+c;
             log.warn(s);
             throw new IllegalArgumentException(s);
 

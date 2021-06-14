@@ -88,13 +88,15 @@ public class Mapper {
             s.addBatch(getCreateTransportations());
             s.addBatch(getManagerAlerts());
             s.executeBatch();
+
         } catch (Exception e) {
-        //    System.out.println("[createTables] ->"+e.getMessage());
+            System.out.println("[createTables] ->"+e.getMessage());
         }
+        SMapper.getMap(dbname);
     }
 
     private String getManagerAlerts() {
-        return "CREATE TABLE \"ManagerAlerts\" (\n" +
+        return "CREATE TABLE IF NOT EXISTS \"ManagerAlerts\" (\n" +
                 "\t\"MID\"\tINTEGER,\n" +
                 "\t\"BID\"\tINTEGER,\n" +
                 "\t\"EID\"\tINTEGER,\n" +

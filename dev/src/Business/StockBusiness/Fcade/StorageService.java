@@ -1,5 +1,6 @@
 package Business.StockBusiness.Fcade;
 
+import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Business.StockBusiness.Fcade.outObjects.*;
 import Business.StockBusiness.StoreController;
 import Business.StockBusiness.instance.Location;
@@ -8,9 +9,8 @@ import Business.SupplierBusiness.facade.Tresponse;
 import Business.SupplierBusiness.facade.response;
 import org.apache.log4j.Logger;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class StorageService implements iStorageService {
     int counter=1;
@@ -25,6 +25,7 @@ public class StorageService implements iStorageService {
     public StorageService() {
         stores=new ArrayList<>();
         curr=null;
+        loadAllStores();
     }
 
     public Tresponse<Integer> getProductTypeId(String name){
@@ -385,11 +386,11 @@ public class StorageService implements iStorageService {
     }
 
     @Override
-    public Tresponse<Integer> addStore() {
+    public Tresponse<Integer> addStore(int ID) {
         try {
-            stores.add(new StoreController(counter,shelves,storeShelves,MAX_PER_SHELF));
-            counter++;
-            return new Tresponse<>(counter-1);
+            stores.add(new StoreController(ID,shelves,storeShelves,MAX_PER_SHELF));
+            //counter++;
+            return new Tresponse<>(ID);
         }
         catch (Exception e) {
             log.warn(e);
@@ -416,6 +417,7 @@ public class StorageService implements iStorageService {
 
     @Override
     public response useStore(int ID) {
+        loadAllStores();
         boolean found = false;
         try {
             StoreController old=curr;
@@ -434,26 +436,40 @@ public class StorageService implements iStorageService {
             return new response(e.toString());
         }
     }
-    public static void init(StorageService ss) throws ParseException {
-        ss.addStore();
-        ss.useStore(1);
-        for (int i = 1; i < 11; i++) ss.addCategory("root" + i);
-        for (int i = 1; i < 21; i++) {
-            ss.addCategory("ch" + i, i);
 
-        }
-        for (int i = 1; i < 15; i++) {
-            for (int j = 1; j < 10; j++) {
-                ss.addProductType("p" + i + "" + j, 8, i * j / 2, i * j * j / 4, "P" + i + "" + j, i, i);
+    @Override
+    public void acceptTrans(TransportationServiceDTO acceptT) {
+        List<Business.SupplierBusiness.facade.outObjects.Order> orders=acceptT.getOrders().
+                values().stream().filter(x->x.getBranchId()==getCurrID()).collect(Collectors.toList());
+        Date date=new Date();
+        date.setTime(date.getTime()+14);
+        for (Business.SupplierBusiness.facade.outObjects.Order o: orders){
+            for (Integer i: Collections.list(o.getItems().keys())){
+                for (int j=0; j<o.getItems().size(); j++)
+                    addProduct(i,date);
             }
         }
-        for (int i = 0; i < ss.getProductTypes().getOutObject().size(); i++) {
-            for (int j = 0; j < i * 3; j++) {
-                ss.addProduct(i, new Date(System.currentTimeMillis()+1000000000)); // expire in approx 20 days
-            }
-        }
-        ss.addSaleCategoryDiscount(1, 12, new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2000"), new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2050"));
     }
+//    public static void init(StorageService ss) throws ParseException {
+//        ss.addStore();
+//        ss.useStore(1);
+//        for (int i = 1; i < 11; i++) ss.addCategory("root" + i);
+//        for (int i = 1; i < 21; i++) {
+//            ss.addCategory("ch" + i, i);
+//
+//        }
+//        for (int i = 1; i < 15; i++) {
+//            for (int j = 1; j < 10; j++) {
+//                ss.addProductType("p" + i + "" + j, 8, i * j / 2, i * j * j / 4, "P" + i + "" + j, i, i);
+//            }
+//        }
+//        for (int i = 0; i < ss.getProductTypes().getOutObject().size(); i++) {
+//            for (int j = 0; j < i * 3; j++) {
+//                ss.addProduct(i, new Date(System.currentTimeMillis()+1000000000)); // expire in approx 20 days
+//            }
+//        }
+//        ss.addSaleCategoryDiscount(1, 12, new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2000"), new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2050"));
+//    }
 
     public void loadAllStores() {
         stores=new ArrayList<>();

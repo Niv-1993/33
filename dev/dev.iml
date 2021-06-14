@@ -89,5 +89,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="apache-log4j-extras-1.2.171" level="application" />
   </component>
 </module>

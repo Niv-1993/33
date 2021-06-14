@@ -25,7 +25,7 @@ public class BranchManagerMenu extends Menu {
                     printMyDetails();
                     break;
                 case "2":
-                    //TODO: Reports logic call [alex and yaki reports menu]
+                    new ReportMenu(r,input).show();
                     break;
                 case "3":
                     new SuppliersMenu(r,input).show();

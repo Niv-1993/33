@@ -2,13 +2,18 @@ package Business.SupplierBusiness.facade.outObjects;
 
 import Business.ApplicationFacade.outObjects.BranchServiceDTO;
 import Business.Transportation.TransportationService;
-import Presentation.TransportationController;
+
 import java.util.Hashtable;
 
 public class Order {
     private final int orderId;
     private final int supplierBN;
     private final double totalAmount;
+
+    public int getBranchId() {
+        return branchId;
+    }
+
     private final int branchId;
     private final Hashtable<Integer, Integer> items;
     private final int transportationId;
@@ -51,4 +56,7 @@ public class Order {
 
     public int getTransportationId(){ return  transportationId;}
 
+    public Hashtable<Integer, Integer> getItems() {
+        return items;
+    }
 }
