@@ -24,6 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="add area to insert db">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/database.db" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logger.log" beforeDir="false" afterPath="$PROJECT_DIR$/logger.log" afterDir="false" />
     </list>
@@ -144,7 +145,7 @@
       <workItem from="1623418048430" duration="1632000" />
       <workItem from="1623611501520" duration="2567000" />
       <workItem from="1623659301915" duration="1578000" />
-      <workItem from="1623698896080" duration="268000" />
+      <workItem from="1623698896080" duration="3612000" />
     </task>
     <task id="LOCAL-00001" summary="add mappers - data layer">
       <created>1620304052353</created>
@@ -273,7 +274,13 @@
       <option name="presentableId" value="LOCAL‎00020" />
       <updated>1623697837196</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL‎00021" summary="add area to insert db">
+      <created>1623699191128</created>
+      <option name="number" value="LOCAL‎00021" />
+      <option name="presentableId" value="LOCAL‎00021" />
+      <updated>1623699191128</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,8 +337,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java</url>
-          <line>387</line>
-          <option name="timeStamp" value="36" />
+          <line>349</line>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dev/src/DataAccess/ShiftMapper.java</url>

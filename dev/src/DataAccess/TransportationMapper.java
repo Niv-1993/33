@@ -67,6 +67,7 @@ public class TransportationMapper extends Mapper {
                 transportations.put(tran.getId(), tran);
             return toRet;
         } catch (SQLException e) {
+            System.out.println("selectAll()-> TransportationMapper ->"+e.getMessage());
             throw new IOException("Failed to load all transportations from database. Error: " + e.getMessage());
         }
     }
@@ -107,6 +108,7 @@ public class TransportationMapper extends Mapper {
                 return tran;
             }
         } catch (SQLException e) {
+            System.out.println("select()-> TransportationMapper ->"+e.getMessage());
             throw new IOException("Failed to get transportation from database. Transportation id: " + id + ". Error: " + e.getMessage());
         }
         return null;
@@ -132,6 +134,7 @@ public class TransportationMapper extends Mapper {
             }
             return null;
         } catch (SQLException e) {
+            System.out.println("selectTransportationIdByDriverAndDate()-> TransportationMapper ->"+e.getMessage());
             throw new IOException("Failed to get transportation id by driver and date from database. Error: " + e.getMessage());
         }
     }
@@ -163,7 +166,7 @@ public class TransportationMapper extends Mapper {
             pstmt.setLong(7, truckID);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Failed to insert new transportation to database. Transportation Id: " + id + ". Error: " + e.getMessage());
+            System.out.println("insert()-> TransportationMapper ->"+e.getMessage());
             throw new IOException(e.getMessage());
         }
     }
@@ -262,7 +265,7 @@ public class TransportationMapper extends Mapper {
      * @throws IOException
      */
     public List<Transportation> getTransportationsByArea(TruckMapper truckMapper, DriverMapper driverMapper, Area area) throws IOException {
-        String sql = "SELECT * FROM Transportations WHERE Area=" + area.toString();
+        String sql =String.format( "SELECT * FROM Transportations WHERE Area='%s'",area.name()) ;
         try (Connection conn = connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
@@ -343,10 +346,10 @@ public class TransportationMapper extends Mapper {
      * @throws IOException
      */
     public List<Transportation> getTransportationsByDate(LocalDate date, LocalTime time, TruckMapper tm, DriverMapper dm) throws IOException {
-        String tim="AND LeavingTime < 14:00";
+        String tim="<";
         if(time.compareTo(LocalTime.parse("14:00"))>=0)
-            tim="AND LeavingTime >= 14:00";
-        String sql = "SELECT * FROM Transportations WHERE Date="+ date +tim  ;
+            tim=">=";
+        String sql =String.format( "SELECT * FROM Transportations WHERE Date='%s' AND LeavingTime %s '14:00'",date.toString(),tim) ;
         try (Connection conn = connect();
              Statement stmt  = conn.createStatement();
              ResultSet rs    = stmt.executeQuery(sql)){
@@ -432,6 +435,7 @@ public class TransportationMapper extends Mapper {
                 return rs.getInt("MA");
             }
         } catch (SQLException e) {
+            System.out.println("getCurrMessageId()-> TransportationMapper ->"+e.getMessage());
             throw new IOException("Failed to get current message id from database. Error: " + e.getMessage());
         }
         return -1;
@@ -453,7 +457,7 @@ public class TransportationMapper extends Mapper {
        return transportations.get(transID).getOrderList().isEmpty();
     }
 
-    public boolean deleteTrans(long idCounter) throws IOException {
+    public boolean deleteTrans(long idCounter) {
        try {
            remove(idCounter);
            transportations.remove(idCounter);
