@@ -5,6 +5,12 @@ import Business.ApplicationFacade.ResponseData;
 import Business.ApplicationFacade.outObjects.Constraint;
 import Business.ApplicationFacade.outObjects.Employee;
 import Business.ApplicationFacade.outObjects.Shift;
+import Business.SupplierBusiness.facade.Tresponse;
+import Business.SupplierBusiness.facade.outObjects.Item;
+import Business.SupplierBusiness.facade.outObjects.Order;
+import Business.SupplierBusiness.facade.outObjects.SupplierAgreement;
+import Business.SupplierBusiness.facade.outObjects.SupplierCard;
+import Business.SupplierBusiness.facade.response;
 import Presentation.Controllers;
 
 import java.time.DayOfWeek;
@@ -133,6 +139,7 @@ public abstract class Menu {
         }
         return roles.get(s - 1);
     }
+
     protected String chooseRole3() {
         System.out.println("\nChoose a role");
         List<String> roles = r.getRc().getRoleTypes().getData();
@@ -330,12 +337,61 @@ public abstract class Menu {
             return num;
         }
     }
+
     //TODO: ORI
-    protected void cancelDelivery(){
-        boolean succ = r.getSc().removeOrder();
-        if(succ) System.out.println("cancel delivery succeed");
-        else System.out.println("cancel delivery failed");
+    protected void cancelDelivery() {
+        Scanner scanner = new Scanner(System.in);
+        Tresponse<List<SupplierCard>> suppliers = r.getSc().showAllSuppliers();
+        if (suppliers.isError()) System.out.println(suppliers.getError());
+        for (SupplierCard supplierCard : suppliers.getOutObject()) {
+            Tresponse<List<Order>> orders = r.getSc().showAllOrdersOfSupplier(supplierCard.getSupplierBN());
+            if (orders.isError()) System.out.println(orders.getError());
+            for (Order order : orders.getOutObject()) {
+                System.out.println(order.toString());
+                Tresponse<List<Item>> items = r.getSc().showAllItemsOfOrder(supplierCard.getSupplierBN(), Integer.parseInt(order.toStringId()));
+                if (items.isError()) System.out.println(items.getError() + "\n");
+                else {
+                    Tresponse<SupplierAgreement> supplierAgreement = r.getSc().showSupplierAgreement(supplierCard.getSupplierBN());
+                    if (supplierAgreement.isError()) System.out.println(supplierAgreement.getError() + "\n");
+                    else System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
+                    List<Item> responseItem = items.getOutObject();
+                    for (Item item : responseItem) {
+                        System.out.println(item.toString(order.toStringAmount(item.toStringId())));
+                    }
+                }
+            }
+        }
+        int toReturnSupplier;
+        String answer;
+        while (true) {
+            System.out.println("please enter the orderId you want to delete");
+            try {
+                answer = read(scanner);
+                toReturnSupplier = Integer.parseInt(answer);
+                break;
+            } catch (Exception e) {
+                System.out.println("orderId does not exist or something want wrong");
+            }
+        }
+        int toReturnOrderId;
+        while (true) {
+            System.out.println("please enter the supplierBN of the order you want to delete");
+            try {
+                answer = read(scanner);
+                toReturnOrderId = Integer.parseInt(answer);
+                break;
+            } catch (Exception e) {
+                System.out.println("supplierBN does not exist or something want wrong");
+            }
+        }
+        response res = r.getSc().removeOrder(toReturnSupplier, toReturnOrderId);
+        if(res.isError()) System.out.println("order cannot be removed");
+        else System.out.println("order has been removed");
     }
 
+    private String read(Scanner scanner) {
+        return scanner.nextLine().toLowerCase().replaceAll("\\s", "");
+    }
 
 }
+
