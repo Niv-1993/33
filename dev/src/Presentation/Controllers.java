@@ -28,7 +28,7 @@ public class Controllers {
         dc = new DriverRoleController(mc);
         tc = new TransportationController(mc);
         st = new StorageService(); //TODO: check if this is the constructor to call
-        sc = new SupplierService(st);
+        sc = new SupplierService(st, tc);
         currBID = -1;
     }
 

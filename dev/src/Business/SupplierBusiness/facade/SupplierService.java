@@ -24,10 +24,11 @@ public class SupplierService implements ISupplierService {
     private TransportationController transportationController;
     private int branchID;
 
-    public SupplierService(StorageService st) {
-        supplierController = null;
+    public SupplierService(StorageService st, TransportationController tc) {
+        supplierController = new SupplierController();
         stockService = st;
-        LoadData();
+        transportationController = tc;
+        //LoadData();
     }
 
     @Override
