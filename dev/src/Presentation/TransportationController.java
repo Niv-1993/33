@@ -1,5 +1,6 @@
 package Presentation;
 
+import Business.ApplicationFacade.Response;
 import Business.ApplicationFacade.ResponseData;
 import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
@@ -8,29 +9,25 @@ import Business.Transportation.TransportationService;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TransportationController {
     private final TransportationService serviceControl;
 
 
-    public List<Integer> checkAvailableDriverSubs(int driverID, String time, LocalDate date,List<Integer> optionalDrivers){
-        try {
-            return serviceControl.checkAvailableDriverSubs(driverID, time, date, optionalDrivers);
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-            return new ArrayList<>();
+    public List<Integer> checkAvailableDriverSubs(int driverID, String time, LocalDate date,List<Integer> optionalDrivers) throws Exception {
+        ResponseData<List<Integer>> res = serviceControl.checkAvailableDriverSubs(driverID,time,date,optionalDrivers);
+        if(res.isError()){
+            throw new IllegalArgumentException(res.getError());
+        }else {
+            return res.getData();
         }
     }
+    //2
     public void swapDrivers(int newDriverID, int oldDriverID, String time, LocalDate date){
-        try{
-            serviceControl.swapDrivers(newDriverID,oldDriverID,time,date);
-
-        }
-        catch (Exception e){
-            System.out.println( e.getMessage());
+        Response res = serviceControl.swapDrivers(newDriverID,oldDriverID,time,date);
+        if(res.isError()) {
+            throw new IllegalArgumentException(res.getError());
         }
     }
     public TransportationController(iManagerRoleController mc){

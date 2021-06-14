@@ -1,6 +1,7 @@
 package Business.Transportation;
 
 import Business.ApplicationFacade.DriverRoleController;
+import Business.ApplicationFacade.Response;
 import Business.ApplicationFacade.ResponseData;
 import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.outObjects.DriverServiceDTO;
@@ -14,7 +15,6 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class TransportationService {
@@ -75,9 +75,7 @@ public class TransportationService {
         LocalTime morning = LocalTime.parse("09:00");
         List<Truck> trucks = dataControl.getTrucksByWeight(order.getTotalWeight());
         if (trucks.isEmpty()) {
-            for(Integer eid: drivers.allPersonnelManager(bran.getId())) {
-                dataControl.insertAlerts(bran.getId(), eid,days,"Can not add order to a new transportation. No trucks available. Order number: "+ order.getOrderId());
-            }
+            announceManagers(order.getBranchID(),days,"no compatible truck was found for new Order: " +order.getOrderId() + "\n at Date: " + LocalDate.now().toString() + ",time: " + LocalTime.now().toString());
             throw new IllegalArgumentException("No truck compatible for this order's weight. ");
         }
         Truck  chooseTruck = trucks.get(0);
@@ -102,9 +100,7 @@ public class TransportationService {
             }
         }
         if(chosenDriver == null){
-            for(Integer eid: drivers.allPersonnelManager(bran.getId())) {
-                dataControl.insertAlerts(bran.getId(), eid,days,"Can not add order to a new transportation. No drivers available .Order number: "+ order.getOrderId());
-            }
+            announceManagers(order.getBranchID(),days,"no compatible driver was found for new Order: " +order.getOrderId() + "\n at Date: " + LocalDate.now().toString() + ",time: " + LocalTime.now().toString());
             throw new IllegalArgumentException("no driver compatible for this order");
         }
         HashMap <Integer,Order> newOrdersList = new HashMap<>();
@@ -125,6 +121,12 @@ public class TransportationService {
             return new ResponseData<>(returnT);
         }catch (Exception e){
             return new ResponseData<>(e.getMessage());
+        }
+    }
+    private void announceManagers(int branchId,LocalDate days,String msg){
+        List<Integer> MIDs = drivers.allPersonnelManager(branchId);
+        for (int manager:MIDs){
+            dataControl.insertAlerts(branchId,manager,days,msg);
         }
     }
     private TransportationServiceDTO toTransportationServiceDTO(Transportation t){
@@ -154,32 +156,34 @@ public class TransportationService {
      * @return All drivers who can replace the driver in the transportation.
      * @throws Exception
      */
-    public List<Integer> checkAvailableDriverSubs(int driverID, String time, LocalDate date, List<Integer> optionalDrivers) throws Exception {
+
+
+    public ResponseData<List<Integer>> checkAvailableDriverSubs(int driverID, String time, LocalDate date,List<Integer> optionalDrivers) throws Exception{
         try {
             Transportation t = dataControl.selectTransWithDriverShift(driverID, time, date);
-            if (t == null){
-                throw new IllegalArgumentException("No such Transportation to change drivers.");
+            List<Integer> ret = new LinkedList<>();
+            Driver d = drivers.getDriver(driverID);
+            for (int dId: optionalDrivers){
+                if(drivers.getDriver(dId).getLicense() >= d.getLicense()){
+                    ret.add(dId);
+                }
             }
-            List <Driver> drivers=dataControl.getDriversList(optionalDrivers);
-            return (drivers.stream().filter(d-> d.getLicense()>=t.getWeight()).collect(Collectors.toList()))
-                    .stream().map(d->d.getEID()).collect(Collectors.toList()); //return the list of optional drivers.
-
-        }
-        catch (Exception e){
-            throw e;
+            return new ResponseData<>(ret);
+        }catch (Exception ex) {
+            return new ResponseData<>(ex.getMessage());
         }
     }
-
-    public void swapDrivers(int newDriverID, int oldDriverID, String time, LocalDate date) throws Exception {
-
-        Transportation t = dataControl.selectTransWithDriverShift(oldDriverID, time, date);
-        if (t != null) {
-
-            dataControl.replaceDrivers(t.getId(), newDriverID);
-            drivers.changeDriver(t.getTransBranches(),oldDriverID, newDriverID,date,t.getLeavingTime());
-        }
-        else {
-            throw new IllegalArgumentException("No such transportation for driver change.");
+    //2
+    public Response swapDrivers(int newDriverID, int oldDriverID, String time, LocalDate date){
+        try{
+            Transportation t = dataControl.selectTransWithDriverShift(oldDriverID, time, date);
+            dataControl.changeDriverOnTrans(t.getId(),newDriverID);
+            Driver d = drivers.getDriver(newDriverID);
+            t.setDriver(d);
+            drivers.changeDriver(t.getTransBranches(),oldDriverID,newDriverID,date,LocalTime.parse(time));
+            return new Response();
+        }catch (Exception ex) {
+            return new Response(ex.getMessage());
         }
     }
 
