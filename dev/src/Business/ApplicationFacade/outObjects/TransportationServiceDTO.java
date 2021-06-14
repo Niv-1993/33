@@ -46,7 +46,7 @@ public class TransportationServiceDTO {
 
     }
 
-    public TransportationServiceDTO(long id, LocalDate date, LocalTime leavingTime, DriverServiceDTO driver, TruckServiceDTO truck, double weight, HashMap<Integer, Order> orderS) {
+    public TransportationServiceDTO(long id, LocalDate date, LocalTime leavingTime,Area area ,DriverServiceDTO driver, TruckServiceDTO truck, double weight, HashMap<Integer, Order> orderS) {
         this.date = date;
         this.id = id;
         this.driver = driver;
@@ -54,6 +54,7 @@ public class TransportationServiceDTO {
         this.weight = weight;
         this.leavingTime = leavingTime;
         orders=orderS;
+        this.shippingArea=area;
     }
 
     public void setId(int id) { this.id = id; }
