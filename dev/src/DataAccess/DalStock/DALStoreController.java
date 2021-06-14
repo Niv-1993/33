@@ -40,12 +40,14 @@ public class DALStoreController extends DALObject {
     @Override
     public String getCreate() {
         return "CREATE TABLE IF NOT EXISTS StoreController (\n" +
-                "\tstoreID INTEGER PRIMARY KEY NOT NULL UNIQUE,\n" +
+                "\tstoreID INTEGER NOT NULL UNIQUE,\n" +
                 "\tstoreShelves INTEGER NOT NULL,\n" +
                 "\tnumberOfShelves INTEGER NOT NULL,\n" +
                 "\tdiscountCounter INTEGER NOT NULL,\n" +
                 "\ttypeCounter INTEGER NOT NULL,\n" +
-                "\tcategoryCounter INTEGER NOT NULL\n" +
+                "\tcategoryCounter INTEGER NOT NULL,\n"+
+                "\tFOREIGN KEY(\"storeID\") REFERENCES \"Branches\"(\"BID\"),\n" +
+                "\tPRIMARY KEY(\"storeID\")\n" +
                 ");";
     }
 

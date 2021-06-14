@@ -1,12 +1,12 @@
 package Presentation;
 
-import Business.ApplicationFacade.*;
+import Business.ApplicationFacade.DriverRoleController;
+import Business.ApplicationFacade.ManagerRoleController;
+import Business.ApplicationFacade.RegularRoleController;
 import Business.ApplicationFacade.iControllers.iDriverRoleController;
 import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.iControllers.iRegularRoleController;
-import Business.StockBusiness.StoreController;
-import Business.StockBusiness.iStoreController;
-import Business.SupplierBusiness.ISupplierService;
+import Business.StockBusiness.Fcade.StorageService;
 import Business.SupplierBusiness.facade.SupplierService;
 
 import java.time.DayOfWeek;
@@ -22,7 +22,7 @@ public class Controllers {
     private final iDriverRoleController dc;
     private final TransportationController tc;
     private final SupplierService sc;
-    private final iStoreController st;
+    private final StorageService st;
     private int currBID;
 
     public Controllers() {
@@ -31,7 +31,7 @@ public class Controllers {
         dc = new DriverRoleController(mc);
         tc = new TransportationController(mc);
         sc = new SupplierService();
-        st = new StoreController(); //TODO: check if this is the constructor to call
+        st = new StorageService(); //TODO: check if this is the constructor to call
         currBID = -1;
     }
 
@@ -55,13 +55,20 @@ public class Controllers {
         return sc;
     }
 
-    public iStoreController getSt() {
+    public StorageService getSt() {
         return st;
     }
 
     public void init() {
         initializeEmpsModule();
         initializeTransportationModule();
+        initializeStorage();
+    }
+    void initializeStorage(){
+        StorageService s=new StorageService();
+        s.addStore(1);
+        s.addStore(2);
+        s.addStore(3);
     }
 
     private void initializeTransportationModule() {
@@ -95,6 +102,7 @@ public class Controllers {
         mc.addEmployee(10, "CashierC", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
         mc.addEmployee(11, "ShiftManagerA", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
         mc.addEmployee(12, "ShiftManagerB", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
+        mc.addEmployee(200, "BranchManagerA", bankDetails, 40000, "BranchManager", LocalDate.now(), terms);
         Map<String, Integer> morning = new HashMap<>();
         morning.put("Driver", 0);
         morning.put("Cashier", 1);
@@ -122,6 +130,7 @@ public class Controllers {
         mc.addEmployee(17, "CashierC", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
         mc.addEmployee(18, "ShiftManagerA", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
         mc.addEmployee(19, "ShiftManagerB", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
+        mc.addEmployee(201, "BranchManagerB", bankDetails, 40000, "BranchManager", LocalDate.now(), terms);
         mc.defaultShifts(defaultRolesAmount);
         rc.Logout();
 
@@ -134,6 +143,7 @@ public class Controllers {
         mc.addEmployee(24, "CashierC", bankDetails, 10000, "Cashier", LocalDate.now(), terms);
         mc.addEmployee(25, "ShiftManagerA", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
         mc.addEmployee(26, "ShiftManagerB", bankDetails, 40000, "ShiftManager", LocalDate.now(), terms);
+        mc.addEmployee(202, "BranchManagerC", bankDetails, 40000, "BranchManager", LocalDate.now(), terms);
         mc.defaultShifts(defaultRolesAmount);
         rc.Logout();
 
@@ -146,6 +156,7 @@ public class Controllers {
         rc.EnterBranch(1);
         mc.createWeekShifts();
         rc.Logout();
+
     }
 
     public int getCurrBID() {
@@ -155,4 +166,6 @@ public class Controllers {
     public void setCurrBID(int currBID) {
         this.currBID = currBID;
     }
+
+
 }

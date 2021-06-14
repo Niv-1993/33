@@ -1,9 +1,9 @@
 package Presentation.Menu;
 
 
-import Business.ApplicationFacade.ResponseData;
 import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Presentation.Controllers;
+import Presentation.StockCLI;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -45,7 +45,8 @@ public class StoreKeeperMenu extends Menu{
                     System.out.println();
                     break;
                 case "4":
-                    //TODO: get function for this method alex and yaki[the stock menu only]
+                    new StockCLI(r,input).show();
+                    break;
                 case "5":
                     new OrdersMenu(r,input).show();
                     break;
@@ -58,7 +59,9 @@ public class StoreKeeperMenu extends Menu{
                         System.out.println(t.toString());
                     TransportationServiceDTO acceptT = getAcceptID(trans);
                     if(acceptT == null) break; //go back to main menu
-                    //TODO: send to alex the transportationDTO to update stock acceptTransportation(acceptT);
+                        r.getSt().acceptTrans(acceptT);
+                        break;
+
                 case "8":
                     cancelDelivery();
                     break;

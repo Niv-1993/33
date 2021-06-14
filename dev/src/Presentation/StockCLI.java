@@ -2,6 +2,7 @@ package Presentation;
 
 import Business.StockBusiness.Fcade.StorageService;
 import Business.SupplierBusiness.facade.SupplierService;
+import Presentation.Menu.Menu;
 import org.apache.log4j.Logger;
 
 import java.text.SimpleDateFormat;
@@ -11,13 +12,18 @@ import java.util.Scanner;
 
 
 
-public class StockCLI {
+public class StockCLI extends Menu {
     StorageService SS;
     Scanner scan = new Scanner(System.in);
     final static Logger log = Logger.getLogger(StockCLI.class);
 
-    String read() {
+    public String read() {
         return scan.nextLine().toLowerCase().replaceAll("\\s", "");
+    }
+
+    @Override
+    public void show() {
+        store();
     }
 
     private void printM(String[] menu) {
@@ -26,12 +32,18 @@ public class StockCLI {
         }
     }
 
-    public StockCLI() {
-        SS = new StorageService();
-    }
+//    public StockCLI() {
+//        SS = new StorageService();
+//    }
+//
+//    public StockCLI(StorageService ss) {
+//        SS = ss;
+//    }
 
-    public StockCLI(StorageService ss) {
-        SS = ss;
+
+    public StockCLI(Controllers r, Scanner input){
+        super(r, input);
+        SS=r.getSt();
     }
 
     public StorageService getService() {
@@ -41,75 +53,75 @@ public class StockCLI {
         this.SS.setStockService(service);
     }
 
-    public void setup() {
-        String in;
-        while (true) {
-            System.out.print("Welcome to SuperLi storage management setup.\n" +
-                    "To start with an empty system enter 'empty'\n to start with a pre-generated example enter 'pre'" +
-                    "\n'exit' to exit.\n");
+//    public void setup() {
+//        String in;
+//        while (true) {
+//            System.out.print("Welcome to SuperLi storage management setup.\n" +
+//                    "To start with an empty system enter 'empty'\n to start with a pre-generated example enter 'pre'" +
+//                    "\n'exit' to exit.\n");
+//
+//            in = read();
+//            if (in.equals("exit")) return;
+//            if (in.equals("empty")) start();
+//            if (in.equals("pre")) {
+//                try {
+//                    StorageService.init(SS);
+//                } catch (Exception e) {
+//                    System.out.println("problem with initialization. system will start empty instead.");
+//                }
+//                start();
+//            } else System.out.print("bad input, try again.\n");
+//        }
+//    }
 
-            in = read();
-            if (in.equals("exit")) return;
-            if (in.equals("empty")) start();
-            if (in.equals("pre")) {
-                try {
-                    StorageService.init(SS);
-                } catch (Exception e) {
-                    System.out.println("problem with initialization. system will start empty instead.");
-                }
-                start();
-            } else System.out.print("bad input, try again.\n");
-        }
-    }
-
-    public void start() {
-        SS.loadAllStores();
-        String in;
-        String[] menu = {"exit", "return", "add new store", "use a store"};
-        while (true) {
-            System.out.print("\nWelcome to SuperLi storage management.\n" +
-                    "The current stores are: " + (SS.getStores().isError() ? "None" : SS.getStores().getOutObject()) + "\n"
-            );
-            printM(menu);
-            in = read();
-            if (in.equals("1")) System.exit(0);
-            else if (in.equals("2")) return;
-            else if (in.equals("3")) {
-                SS.addStore();
-                System.out.print("new Store added.\n");
-            }
-            else if (in.equals("4")) useStore();
-            else System.out.print("bad input, try again.\n");
-        }
-    }
-
-    private void useStore() {
-        String in;
-        System.out.print("\nWelcome to SuperLi storage store selection.\nPlease enter the store you want to use.\n");
-        in = read();
-        try {
-            int i = Integer.parseInt(in);
-            SS.useStore(i);
-            store();
-        } catch (Exception e) {
-            System.out.print("no such store exists, try again.\n");
-        }
-    }
+//    public void start() {
+//        SS.loadAllStores();
+//        String in;
+//        String[] menu = {"exit", "return", "add new store", "use a store"};
+//        while (true) {
+//            System.out.print("\nWelcome to SuperLi storage management.\n" +
+//                    "The current stores are: " + (SS.getStores().isError() ? "None" : SS.getStores().getOutObject()) + "\n"
+//            );
+//            printM(menu);
+//            in = read();
+//            if (in.equals("1")) System.exit(0);
+//            else if (in.equals("2")) return;
+//            else if (in.equals("3")) {
+//                SS.addStore();
+//                System.out.print("new Store added.\n");
+//            }
+//            else if (in.equals("4")) useStore();
+//            else System.out.print("bad input, try again.\n");
+//        }
+//    }
+//
+//    private void useStore() {
+//        String in;
+//        System.out.print("\nWelcome to SuperLi storage store selection.\nPlease enter the store you want to use.\n");
+//        in = read();
+//        try {
+//            int i = Integer.parseInt(in);
+//            SS.useStore(i);
+//            store();
+//        } catch (Exception e) {
+//            System.out.print("no such store exists, try again.\n");
+//        }
+//    }
 
     private void store() {
         String in;
-        String[] menu = {"exit", "return", "get reports", "access categories", "access product types", "access specific products", "access discounts"};
+        String[] menu = {"exit", "return", "access categories", "access product types", "access specific products", "access discounts"};
         while (true) {
             System.out.print("\nWelcome to store number: " + SS.getCurrID() + "\n");
             printM(menu);
             in = read();
             if (in.equals("1")) System.exit(0);
             if (in.equals("2")) return;
-            if (in.equals("3")) reports();
-            else if (in.equals("4")) categories();
-            else if (in.equals("5")) types();
-            else if (in.equals("6")) products();
-            else if (in.equals("7")) discounts();
+            //if (in.equals("3")) reports();
+            if (in.equals("3")) categories();
+            else if (in.equals("4")) types();
+            else if (in.equals("5")) products();
+            else if (in.equals("6")) discounts();
             else System.out.print("bad input, try again.\n");
         }
     }

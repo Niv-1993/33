@@ -75,5 +75,6 @@ public class TransportationServiceDTO {
     public Area getArea() { return shippingArea; }
 
     public void setArea(Area area) { this.shippingArea = area; }
+    public HashMap<Integer,Order> getOrders(){return orders;}
 
 }
