@@ -24,19 +24,18 @@ public class SupplierService implements ISupplierService {
     private TransportationController transportationController;
     private int branchID;
 
-    public SupplierService() {
+    public SupplierService(StorageService st) {
         supplierController = null;
-        this.branchID = branchID;
+        stockService = st;
+        LoadData();
     }
 
     @Override
     public response LoadData() {
         try {
             supplierController = new SupplierController(true);
-            stockService.loadAllStores();
         }catch(Exception e){
-//            supplierController = new SupplierController();
-            stockService.loadAllStores();
+            supplierController = new SupplierController();
         }
         return new response();
     }

@@ -27,8 +27,8 @@ public class Controllers {
         mc = new ManagerRoleController(rc.getUtils());
         dc = new DriverRoleController(mc);
         tc = new TransportationController(mc);
-        sc = new SupplierService();
         st = new StorageService(); //TODO: check if this is the constructor to call
+        sc = new SupplierService(st);
         currBID = -1;
     }
 
@@ -164,7 +164,7 @@ public class Controllers {
         sc.addSupplier("Supplier4", 3, 3, 3, "check");
         sc.addSupplier("Supplier5", 4, 4, 4, "cash");
         sc.addItem(0, 0, "meat", 21.99, 19.99, 10,
-                "Tnuva", 1, LocalDate.now().plusYears(1), 1).getOutObject();
+                "Tnuva", 1, LocalDate.now().plusYears(1), 1);
         sc.addItem(0, 0, "minced meat", 39.99, 34.99, 100,
                 "Dabah", 1, LocalDate.now().plusYears(1), 2);
         sc.addItem(0, 1, "stake", 70.5, 65, 50,
