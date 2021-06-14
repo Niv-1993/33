@@ -111,6 +111,7 @@ public class Controllers {
         rc.createBranch(3, "PersonnelManager", bankDetails, 100000, terms,"Alenbi","Beer-Sheva",12,2,"North","bar","507350111");
         rc.EnterBranch(1);
         rc.Login(1);
+        mc.addEmployee(40, "LogisticManager", bankDetails, 10000, "LogisticManager", LocalDate.now(), terms);
         mc.addEmployee(4, "SorterA", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
         mc.addEmployee(5, "SorterB", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
         mc.addEmployee(6, "StoreKeeperA", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
