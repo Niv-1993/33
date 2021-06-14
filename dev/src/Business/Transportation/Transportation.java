@@ -29,11 +29,12 @@ public class Transportation {
         orders=new HashMap<>();
     }
 
-    public Transportation(long id, LocalDate date, LocalTime leavingTime, Driver driver, Truck truck, double weight, HashMap<Integer, Order> orderS) {
+    public Transportation(long id, LocalDate date, LocalTime leavingTime,Area area, Driver driver ,Truck truck, double weight, HashMap<Integer, Order> orderS) {
         this.date = date;
         this.id = id;
         this.driver = driver;
         this.truck = truck;
+        this.shippingArea=area;
         this.weight = weight;
         this.leavingTime = leavingTime;
         orders=orderS;

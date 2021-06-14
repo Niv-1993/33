@@ -5,6 +5,7 @@ import Business.SupplierBusiness.Order;
 import Business.Transportation.Transportation;
 import Business.Transportation.Truck;
 import Business.Type.Area;
+
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
@@ -12,7 +13,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TransportationMapper extends Mapper {
 
@@ -55,7 +55,7 @@ public class TransportationMapper extends Mapper {
                 HashMap<Integer, Order> ordersMap = new HashMap<>();
                 for (Order order : orders)
                     ordersMap.put(order.getOrderId(), order);
-                toRet.add(new Transportation(tID, date, time, tempD, tempT, weight, ordersMap));
+                toRet.add(new Transportation(tID, date, time, area,tempD, tempT, weight, ordersMap));
             }
             for (Transportation tran : toRet)
                 transportations.put(tran.getId(), tran);
@@ -89,7 +89,7 @@ public class TransportationMapper extends Mapper {
                 HashMap<Integer, Order> ordersMap = new HashMap<>();
                 for (Order order : orders)
                     ordersMap.put(order.getOrderId(), order);
-                Transportation tran = new Transportation(tID, date, time, tempD, tempT, weight, ordersMap);
+                Transportation tran = new Transportation(tID, date, time, area,tempD, tempT, weight, ordersMap);
                 if (!transportations.containsKey(tran.getId()))
                     transportations.put(tran.getId(), tran);
                 return tran;
@@ -266,7 +266,7 @@ public class TransportationMapper extends Mapper {
                 HashMap<Integer, Order> ordersMap = new HashMap<>();
                 for (Order order : orders)
                     ordersMap.put(order.getOrderId(), order);
-                toRet.add(new Transportation(tID, date, time, tempD, tempT, weight, ordersMap));
+                toRet.add(new Transportation(tID, date, time, are,tempD, tempT, weight, ordersMap));
             }
             return toRet;
         } catch (Exception e) {
@@ -330,34 +330,33 @@ public class TransportationMapper extends Mapper {
      * @throws IOException
      */
     public List<Transportation> getTransportationsByDate(LocalDate date, LocalTime time, TruckMapper tm, DriverMapper dm) throws IOException {
-        String tim = " AND LeavingTime < 14:00";
-        if (time.compareTo(LocalTime.parse("14:00")) >= 0)
-            tim = " AND LeavingTime >= 14:00";
-        String sql = "SELECT * FROM Transportations WHERE Date=" + date.toString() + tim;
+        String tim="AND LeavingTime < 14:00";
+        if(time.compareTo(LocalTime.parse("14:00"))>=0)
+            tim="AND LeavingTime >= 14:00";
+        String sql = "SELECT * FROM Transportations WHERE Date="+ date +tim  ;
         try (Connection conn = connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            List<Transportation> toRet = new ArrayList<>();
+             Statement stmt  = conn.createStatement();
+             ResultSet rs    = stmt.executeQuery(sql)){
+            List<Transportation> toRet=new ArrayList<>();
             // loop through the result set
             while (rs.next()) {
-                Long tID = rs.getLong("ID");
+                Driver tempD= dm.select(rs.getInt("driverID"));
+                Truck tempT= tm.getTruck(rs.getInt("truckID"));
+                Long tID=rs.getLong("ID");
+                LocalDate Date=LocalDate.parse( rs.getString("Date"));
+                LocalTime leavingTime=LocalTime.parse(rs.getString("LeavingTime"));
+                Area area= Area.valueOf(rs.getString("Area"));
+                int weight=rs.getInt("Weight");
                 List<Order> orders = new Order().getOrdersByTransportation(tID.intValue());
                 HashMap<Integer, Order> ordersMap = new HashMap<>();
                 for (Order order : orders) {
                     ordersMap.put(order.getOrderId(), order);
                 }
-                if (orders.stream().filter(o->(o.isArrived())).collect(Collectors.toList()).isEmpty()) {
-                    LocalDate Date = LocalDate.parse(rs.getString("Date"));
-                    LocalTime leavingTime = LocalTime.parse(rs.getString("LeavingTime"));
-                    Area area = Area.valueOf(rs.getString("Area"));
-                    int weight = rs.getInt("Weight");
-                    Driver tempD = dm.select(rs.getInt("driverID"));
-                    Truck tempT = tm.getTruck(rs.getInt("truckID"));
-                    Transportation tran = new Transportation(tID, date, time, tempD, tempT, weight, ordersMap);
-                    if (!transportations.containsKey(tran.getId()))
-                        transportations.put(tran.getId(), tran);
-                    toRet.add(tran);
-                }
+                Transportation tran = new Transportation(tID, Date, leavingTime,area ,tempD, tempT, weight, ordersMap);
+                if (!transportations.containsKey(tran.getId()))
+                    transportations.put(tran.getId(), tran);
+                toRet.add(tran);
+
             }
             return toRet;
         } catch (Exception e) {
