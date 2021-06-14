@@ -142,6 +142,7 @@ public class Controllers {
 
         rc.EnterBranch(2);
         rc.Login(2);
+        mc.addEmployee(41, "LogisticManager", bankDetails, 10000, "LogisticManager", LocalDate.now(), terms);
         mc.addEmployee(27, "SorterA", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
         mc.addEmployee(28, "SorterB", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
         mc.addEmployee(13, "StoreKeeperA", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);
@@ -157,6 +158,7 @@ public class Controllers {
 
         rc.EnterBranch(3);
         rc.Login(3);
+        mc.addEmployee(42, "LogisticManager", bankDetails, 10000, "LogisticManager", LocalDate.now(), terms);
         mc.addEmployee(29, "SorterA", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
         mc.addEmployee(30, "SorterB", bankDetails, 10000, "Sorter", LocalDate.now(), terms);
         mc.addEmployee(20, "StoreKeeperA", bankDetails, 10000, "StoreKeeper", LocalDate.now(), terms);

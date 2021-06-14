@@ -22,7 +22,6 @@ public class PersonnelManagerMenu extends Menu {
             System.out.println("5) Employee operations menu");
             System.out.println("6) Shift operations menu");
             System.out.println("7) Cancel delivery");
-            System.out.println("8) previous menu");
             System.out.println("Choose an option:");
             String option = read();
             switch (option) {
@@ -53,8 +52,6 @@ public class PersonnelManagerMenu extends Menu {
                 case "7":
                     cancelDelivery();
                     break;
-                case "8":
-                    return;
                 default:
                     System.out.println("Invalid input,please choose a number again");
                     if (goBack()) return;

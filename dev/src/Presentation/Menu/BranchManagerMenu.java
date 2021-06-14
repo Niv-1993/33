@@ -17,7 +17,6 @@ public class BranchManagerMenu extends Menu {
             System.out.println("2) Reports");
             System.out.println("3) Suppliers card managements");
             System.out.println("4) Logout");
-            System.out.println("5) previous menu");
             System.out.println("Choose an option:");
             String option = read();
             switch (option) {
@@ -32,8 +31,6 @@ public class BranchManagerMenu extends Menu {
                     break;
                 case "4":
                     r.getRc().Logout();
-                    return;
-                case "5":
                     return;
                 default:
                     System.out.println("Invalid input,please choose a number again");
