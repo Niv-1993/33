@@ -9,19 +9,30 @@ import Business.Transportation.TransportationService;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TransportationController {
     private final TransportationService serviceControl;
 
 
-    public List<Integer> checkAvailableDriverSubs(int driverID, String time, LocalDate date,List<Integer> optionalDrivers) throws Exception {
-        ResponseData<List<Integer>> res = serviceControl.checkAvailableDriverSubs(driverID,time,date,optionalDrivers);
-        if(res.isError()){
-            throw new IllegalArgumentException(res.getError());
-        }else {
-            return res.getData();
-        }
+    public List<Integer> checkAvailableDriverSubs(int driverID, String time, LocalDate date,List<Integer> optionalDrivers)  {
+     try {
+
+
+         ResponseData<List<Integer>> res = serviceControl.checkAvailableDriverSubs(driverID, time, date, optionalDrivers);
+         if (res.isError()) {
+             System.out.println("Could not check available drivers for replacement. Error: "+res.getError());
+             return new ArrayList<>();
+         }
+         else {
+             return res.getData();
+         }
+     }
+     catch (Exception e){
+         System.out.println("Could not check available drivers for replacement. Error: "+e.getMessage());
+         return new ArrayList<>();
+     }
     }
     //2
     public void swapDrivers(int newDriverID, int oldDriverID, String time, LocalDate date){

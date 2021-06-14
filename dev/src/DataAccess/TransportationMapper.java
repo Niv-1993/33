@@ -431,6 +431,7 @@ public class TransportationMapper extends Mapper {
      * @throws IOException
      */
     public void replaceDrivers(long id, Driver newDriverID) throws IOException {
+        if (transportations.containsKey(id))
         transportations.get(id).setDriver(newDriverID);
         updateTransDriver(id, newDriverID.getEID());
     }
