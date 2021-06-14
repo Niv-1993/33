@@ -394,7 +394,7 @@ public class StorageService implements iStorageService {
     public Tresponse<Integer> addStore(int ID) {
         try {
             stores.add(new StoreController(ID,shelves,storeShelves,MAX_PER_SHELF));
-            supplierService.setStockService(this);
+            //supplierService.setStockService(this);
             //counter++;
             return new Tresponse<>(ID);
         }

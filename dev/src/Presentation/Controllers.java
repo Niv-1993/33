@@ -29,6 +29,7 @@ public class Controllers {
         tc = new TransportationController(mc);
         sc = new SupplierService(tc);
         st = new StorageService(sc); //TODO: check if this is the constructor to call
+        sc.setStockService(st);
         currBID = -1;
     }
 
@@ -278,13 +279,13 @@ public class Controllers {
         firstHash.put(1, 100);
         firstHash.put(6, 50);
         firstHash.put(10, 25);
-        secondHash.put(4, 45);
-        secondHash.put(5, 5);
-        secondHash.put(6, 10);
-        thirdHash.put(7, 20);
+        secondHash.put(3, 45);
+        secondHash.put(7, 5);
+        secondHash.put(12, 10);
+        thirdHash.put(4, 20);
         thirdHash.put(8, 50);
-        thirdHash.put(9, 150);
-        thirdHash.put(10, 5);
+        thirdHash.put(14, 150);
+        thirdHash.put(15, 5);
         st.useStore(1, sc);
         sc.addRegularOrder(0, 1, firstHash);
         st.useStore(2, sc);

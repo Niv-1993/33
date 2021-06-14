@@ -17,13 +17,15 @@ import java.util.*;
 
 public class SupplierService implements ISupplierService {
     private SupplierController supplierController;
-    private HashMap<Integer, StorageService> stockService;
+    //private HashMap<Integer, StorageService> stockService;
+    private StorageService stockService;
     private TransportationController transportationController;
     private int branchID;
 
     public SupplierService(TransportationController tc) {
         supplierController = null;
-        stockService = new HashMap<>();
+        //stockService = new HashMap<>();
+        stockService = null;
         transportationController = tc;
         LoadData();
     }
@@ -39,7 +41,8 @@ public class SupplierService implements ISupplierService {
     }
 
     public void setStockService(StorageService service){
-        stockService.put(service.getCurrID(), service);
+        //stockService.put(service.getCurrID(), service);
+        stockService = service;
     }
 
 
@@ -262,9 +265,9 @@ public class SupplierService implements ISupplierService {
 //            Tresponse<Integer> responseData = stockService.get(storeId).getProductTypeId(name);
 //            if(responseData.isError()) return new Tresponse<>("ERROR: " + responseData.getError());
             item = supplierController.addItem(supplierBN,name , basePrice , expirationDate, weight);
-            response response1 = stockService.get(storeId).useStore(storeId, this);
+            response response1 = stockService.useStore(storeId, this);
             if(response1.isError()) return new Tresponse<>("ERROR: " + response1.getError());
-            response response2 = stockService.get(storeId).addProductType(name, min , basePrice , salePrice , producer , supplierBN ,category);
+            response response2 = stockService.addProductType(name, min , basePrice , salePrice , producer , supplierBN ,category);
             if(response2.isError()) return new Tresponse<>("ERROR: " + response2.getError());
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
@@ -313,7 +316,7 @@ public class SupplierService implements ISupplierService {
             if(tuple.item2){
                 ZoneId zone = ZoneId.systemDefault();
                 for(int i = 0 ; i < order.showAllItemsOfOrder().size() ; i++) {
-                    stockService.get(branchID).addProduct(order.showAllItemsOfOrder().get(i).getItemId(), Date.from(order.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
+                    stockService.addProduct(order.showAllItemsOfOrder().get(i).getItemId(), Date.from(order.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
                 }
                 order.updateArrived();
             }
@@ -348,7 +351,7 @@ public class SupplierService implements ISupplierService {
             if(tuple.item2){
                 ZoneId zone = ZoneId.systemDefault();
                 for(int i = 0 ; i < order.showAllItemsOfOrder().size() ; i++) {
-                    stockService.get(branchID).addProduct(order.showAllItemsOfOrder().get(i).getItemId(), Date.from(order.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
+                    stockService.addProduct(order.showAllItemsOfOrder().get(i).getItemId(), Date.from(order.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
                 }
                 order.updateArrived();
             }
@@ -373,14 +376,14 @@ public class SupplierService implements ISupplierService {
             ZoneId zone = ZoneId.systemDefault();
             if(tuple.item2){
                 for(int i = 0 ; i < tuple.item1.showAllItemsOfOrder().size() ; i++) {
-                    stockService.get(order.getBranchID()).addProduct(tuple.item1.showAllItemsOfOrder().get(i).getItemId(), Date.from(tuple.item1.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
+                    stockService.addProduct(tuple.item1.showAllItemsOfOrder().get(i).getItemId(), Date.from(tuple.item1.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
                 }
             }
             else {
                 transportationController.addOrderToTransportation(tuple.item1);
             }
             for(int i = 0 ; i < amount ; i++) {
-                stockService.get(order.getBranchID()).addProduct(itemId, Date.from(item.getExpirationDate().atStartOfDay(zone).toInstant()));
+                stockService.addProduct(itemId, Date.from(item.getExpirationDate().atStartOfDay(zone).toInstant()));
             }
         }catch (Exception e){
             return new Tresponse("ERROR: " + e.getMessage());
