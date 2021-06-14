@@ -19,7 +19,6 @@ public class LogisticManagerMenu extends Menu{
             System.out.println("4) Logout");
             System.out.println("5) Transportation Menu");
             System.out.println("6) Cancel delivery");
-            System.out.println("7) previous menu");
             System.out.println("Choose an option:");
             String option = read();
             switch (option) {
@@ -48,8 +47,6 @@ public class LogisticManagerMenu extends Menu{
                 case "6":
                     cancelDelivery();
                     break;
-                case "7":
-                    return;
                 default:
                     System.out.println("Invalid input,please choose a number again");
                     if (goBack()) return;

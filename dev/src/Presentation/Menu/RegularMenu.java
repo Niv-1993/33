@@ -19,7 +19,6 @@ public class RegularMenu extends Menu {
             System.out.println("2) My constraints operations");
             System.out.println("3) My shifts and constraints");
             System.out.println("4) Logout");
-            System.out.println("5) previous menu");
             System.out.println("Choose an option:");
             String option = read();
             switch (option) {
@@ -38,8 +37,6 @@ public class RegularMenu extends Menu {
                     break;
                 case "4":
                     r.getRc().Logout();
-                    return;
-                case "5":
                     return;
                 default:
                     System.out.println("Invalid input,please choose a number again");

@@ -27,7 +27,6 @@ public class StoreKeeperMenu extends Menu{
             System.out.println("7) Accept incoming orders");
             System.out.println("8) Cancel delivery");
             System.out.println("9) Logout");
-            System.out.println("10) previous menu");
             System.out.println("Choose an option:");
             String option = read();
             switch (option) {
@@ -67,8 +66,6 @@ public class StoreKeeperMenu extends Menu{
                     break;
                 case "9":
                     r.getRc().Logout();
-                    return;
-                case "10":
                     return;
                 default:
                     System.out.println("Invalid input,please choose a number again");
