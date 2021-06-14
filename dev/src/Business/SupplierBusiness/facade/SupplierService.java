@@ -314,6 +314,7 @@ public class SupplierService implements ISupplierService {
                 for(int i = 0 ; i < order.showAllItemsOfOrder().size() ; i++) {
                     stockService.addProduct(order.showAllItemsOfOrder().get(i).getItemId(), Date.from(order.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
                 }
+                order.updateArrived();
             }
             else {
                 transportationController.addOrderToTransportation(order);
@@ -348,6 +349,7 @@ public class SupplierService implements ISupplierService {
                 for(int i = 0 ; i < order.showAllItemsOfOrder().size() ; i++) {
                     stockService.addProduct(order.showAllItemsOfOrder().get(i).getItemId(), Date.from(order.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
                 }
+                order.updateArrived();
             }
             else {
                 transportationController.addOrderToTransportation(order);

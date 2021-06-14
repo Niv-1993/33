@@ -146,6 +146,11 @@ public class Controllers {
         rc.EnterBranch(1);
         mc.createWeekShifts();
         rc.Logout();
+
+        sc.addSupplier("Supplier1", 0,0,0,"cash");
+        sc.addSupplier("Supplier2", 1,1,1,"bank transfer");
+        sc.addSupplier("Supplier3", 2,2,2,"");
+        sc.addSupplier("Supplier4", 3,3,3,"cash");
     }
 
     public int getCurrBID() {

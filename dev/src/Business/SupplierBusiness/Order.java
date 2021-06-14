@@ -195,4 +195,8 @@ public class Order {
     public void removeOrdersByTransportationId(int tranID) {
         dalOrder.removeOrdersByTransportationId(tranID);
     }
+
+    public int getIsArrived() {
+        return dalOrder.getIsArrived();
+    }
 }

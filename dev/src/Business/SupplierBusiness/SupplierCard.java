@@ -378,6 +378,9 @@ public class SupplierCard {
         boolean found = false;
         for(Order order : copyOrders){
             if(order.getOrderId() == orderId){
+                if (order.getIsArrived()==1) {
+                    throw new Exception("order already arrived to store - can't remove!");
+                }
                 order.removeOrder();
                 orders.remove(order);
                 found = true;
