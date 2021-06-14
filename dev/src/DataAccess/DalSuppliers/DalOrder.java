@@ -55,7 +55,7 @@ public class DalOrder extends DALObject {
                 "\t\"orderId\" INTEGER NOT NULL,\n" +
                 "\t\"itemId\" INTEGER NOT NULL,\n" +
                 "\t\"amount\" INTEGER NOT NULL,\n" +
-                "\tPRIMARY KEY(\"itemId\"),\n" +
+                "\tPRIMARY KEY(\"itemId\", \"orderId\"),\n" +
                 "\tFOREIGN KEY(\"orderId\") REFERENCES \"Orders\"(\"orderId\")  ON DELETE CASCADE ON UPDATE CASCADE ,\n" +
                 "\tFOREIGN KEY(\"itemId\") REFERENCES \"Items\"(\"itemId\")  ON DELETE CASCADE ON UPDATE CASCADE\n" +
                 ");";
@@ -348,6 +348,21 @@ public class DalOrder extends DALObject {
             DC.noSelect(query, list);
         } catch (Exception e) {
             log.warn(e);
+        }
+    }
+
+    public void updateAmountOfOrder(int itemId, int newAmount) {
+        LinkedList<Tuple<Object,Class>> list = new LinkedList<>();
+        String query = "UPDATE ItemsInOrders\n" +
+                "SET amount = ?\n"+
+                "WHERE orderId = ? AND ItemId = ?;";
+        list.add(new Tuple<>(newAmount, Integer.class));
+        list.add(new Tuple<>(orderId, Integer.class));
+        list.add(new Tuple<>(itemId, Integer.class));
+        try {
+            DC.noSelect(query, list);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

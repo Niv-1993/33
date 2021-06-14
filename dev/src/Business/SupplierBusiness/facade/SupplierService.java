@@ -225,7 +225,7 @@ public class SupplierService implements ISupplierService {
         List<Business.SupplierBusiness.Item> items;
         List<Item> outItems = new LinkedList<>();
         try {
-            items = supplierController.showAllItemsOfOrder(SupplierBN , orderId);
+            items = supplierController.showAllItemsOfOrder(SupplierBN , orderId).keySet().stream().toList();
             for(Business.SupplierBusiness.Item item : items){
                 outItems.add(new Item(item));
             }
@@ -253,7 +253,7 @@ public class SupplierService implements ISupplierService {
     }
 
     @Override
-    public Tresponse<Item> addItem(int storeId , int supplierBN, String name , double basePrice , double salePrice , int min , String producer , int category, LocalDate expirationDate, double weight) {
+    public Tresponse<Item> addItem(int supplierBN, String name , double basePrice , double salePrice , int min , String producer , int category, LocalDate expirationDate, double weight) {
         Business.SupplierBusiness.Item item;
         try{
             List<Business.SupplierBusiness.SupplierCard> sc=supplierController.showAllSuppliers();
@@ -264,11 +264,13 @@ public class SupplierService implements ISupplierService {
 //            if(response2.isError()) return new Tresponse<>("ERROR: " + response2.getError());
 //            Tresponse<Integer> responseData = stockService.get(storeId).getProductTypeId(name);
 //            if(responseData.isError()) return new Tresponse<>("ERROR: " + responseData.getError());
-            item = supplierController.addItem(supplierBN,name , basePrice , expirationDate, weight);
-            response response1 = stockService.useStore(storeId, this);
-            if(response1.isError()) return new Tresponse<>("ERROR: " + response1.getError());
-            response response2 = stockService.addProductType(name, min , basePrice , salePrice , producer , supplierBN ,category);
-            if(response2.isError()) return new Tresponse<>("ERROR: " + response2.getError());
+            item = supplierController.addItem(supplierBN, name, basePrice, expirationDate, weight);
+            for (int i=1; i<=stockService.getStores().getOutObject().size(); i++) {
+                response response1 = stockService.useStore(i, this);
+                if (response1.isError()) return new Tresponse<>("ERROR: " + response1.getError());
+                response response2 = stockService.addProductType(name, min, basePrice, salePrice, producer, supplierBN, category);
+                if (response2.isError()) return new Tresponse<>("ERROR: " + response2.getError());
+            }
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
@@ -315,8 +317,15 @@ public class SupplierService implements ISupplierService {
             order = tuple.item1;
             if(tuple.item2){
                 ZoneId zone = ZoneId.systemDefault();
-                for(int i = 0 ; i < order.showAllItemsOfOrder().size() ; i++) {
-                    stockService.addProduct(order.showAllItemsOfOrder().get(i).getItemId(), Date.from(order.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
+                Hashtable<Business.SupplierBusiness.Item, Integer> itemsAmount  = order.showAllItemsOfOrder();
+                Enumeration<Business.SupplierBusiness.Item> amounts = itemsAmount.keys();
+                while (amounts.hasMoreElements()) {
+                    Business.SupplierBusiness.Item item = amounts.nextElement();
+                    if (items.keySet().contains(item.getItemId())) {
+                        for(int i = 0 ; i < items.get(item.getItemId()) ; i++) {
+                            stockService.addProduct(item.getItemId(), Date.from(item.getExpirationDate().atStartOfDay(zone).toInstant()));
+                        }
+                    }
                 }
                 order.updateArrived();
             }
@@ -350,8 +359,15 @@ public class SupplierService implements ISupplierService {
             order = tuple.item1;
             if(tuple.item2){
                 ZoneId zone = ZoneId.systemDefault();
-                for(int i = 0 ; i < order.showAllItemsOfOrder().size() ; i++) {
-                    stockService.addProduct(order.showAllItemsOfOrder().get(i).getItemId(), Date.from(order.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
+                Enumeration<Business.SupplierBusiness.Item> items = order.showAllItemsOfOrder().keys();
+                Business.SupplierBusiness.Item item = null;
+                while (items.hasMoreElements()) {
+                    item = items.nextElement();
+                    if (item.getItemId() == itemId) {
+                        for(int i = 0 ; i < order.showAllItemsOfOrder().size() ; i++) {
+                            stockService.addProduct(itemId, Date.from(item.getExpirationDate().atStartOfDay(zone).toInstant()));
+                        }
+                    }
                 }
                 order.updateArrived();
             }
@@ -375,9 +391,17 @@ public class SupplierService implements ISupplierService {
             order = tuple.item1;
             ZoneId zone = ZoneId.systemDefault();
             if(tuple.item2){
-                for(int i = 0 ; i < tuple.item1.showAllItemsOfOrder().size() ; i++) {
-                    stockService.addProduct(tuple.item1.showAllItemsOfOrder().get(i).getItemId(), Date.from(tuple.item1.showAllItemsOfOrder().get(i).getExpirationDate().atStartOfDay(zone).toInstant()));
+                Enumeration<Business.SupplierBusiness.Item> items = order.showAllItemsOfOrder().keys();
+                Business.SupplierBusiness.Item item2 = null;
+                while (items.hasMoreElements()) {
+                    item2 = items.nextElement();
+                    if (item2.getItemId() == itemId) {
+                        for(int i = 0 ; i < order.showAllItemsOfOrder().size() ; i++) {
+                            stockService.addProduct(itemId, Date.from(item2.getExpirationDate().atStartOfDay(zone).toInstant()));
+                        }
+                    }
                 }
+                order.updateArrived();
             }
             else {
                 transportationController.addOrderToTransportation(tuple.item1);

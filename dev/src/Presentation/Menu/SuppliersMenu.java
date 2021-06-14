@@ -240,7 +240,7 @@ public class SuppliersMenu extends Menu {
                     else System.out.println("The operation was completed successfully\n");
                 }
                 case 4 -> {
-                    int sotreId = intScan(scanner, "please enter the store id", "store id must be a number");
+                    //int sotreId = intScan(scanner, "please enter the store id", "store id must be a number");
                     BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
                     String name = stringScan(scanner, "please enter item name");
                     double basePrice = doubleScan(scanner, "please enter item base price", "base price must be a number");
@@ -250,7 +250,7 @@ public class SuppliersMenu extends Menu {
                     int category = intScan(scanner, "please enter item category", "category must must be a number");
                     LocalDate expirationDate = dateScan(scanner, "expiration date of the item");
                     double weight = doubleScan(scanner, "please enter item weight", "weight must be a number");
-                    Tresponse<Item> response = service.addItem(sotreId , BN, name, basePrice, salePrice, min, preducer, category, expirationDate, weight);
+                    Tresponse<Item> response = service.addItem(BN, name, basePrice, salePrice, min, preducer, category, expirationDate, weight);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("ItemId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner);

@@ -709,7 +709,6 @@ public class StoreController implements iStoreController {
             if (tmp.get_typeID() == check)
                 return tmp;
         }
-        System.out.println("check: " + check);
         s=String.format("the number #%s, is not ID of any ProductType in Store #%s",check,getID());
         log.warn(s);
         throw new IllegalArgumentException(s);

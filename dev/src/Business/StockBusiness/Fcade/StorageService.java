@@ -56,13 +56,11 @@ public class StorageService implements iStorageService {
     @Override
     public Tresponse<Report> getWeeklyReport() {
         try {
-            System.out.println("Got here 1");
             reports.Report rep=curr.getWeeklyReport();
             Report ret=new Report(rep.getStore(),rep.getDate(),rep.toString(),rep.getType());
             reports.NeededReport need=(reports.NeededReport)curr.getNeededReport();
             for (Integer i: Collections.list(need.get_list().keys())) {
                 supplierService.addNeededOrder(i, need.get_list().get(i), curr.getID());
-                System.out.println("Got here 2");
             }
             return new Tresponse<>(ret);
         }
@@ -428,7 +426,6 @@ public class StorageService implements iStorageService {
         try {
             StoreController old=curr;
             for(StoreController s:stores){
-                System.out.println(s.getID());
                 if(s.getID()==ID) {
                     curr = s;
                     found = true;

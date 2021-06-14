@@ -258,7 +258,7 @@ public class SupplierCard {
         return newItem;
     }
 
-    public List<Item> showAllItemsOfOrder(int orderId) throws Exception {
+    public Hashtable<Item, Integer> showAllItemsOfOrder(int orderId) throws Exception {
         for(Order order : orders){
             if(order.getOrderId() == orderId) return order.showAllItemsOfOrder();
         }

@@ -129,8 +129,8 @@ public class Order {
                 "\tbranchId: " + dalOrder.getBranchID();
     }
 
-    public List<Item> showAllItemsOfOrder(){
-        return new LinkedList<>(items.keySet());
+    public Hashtable<Item, Integer> showAllItemsOfOrder(){
+        return items;
     }
 
     public Order showDeliverTime() { return this; }

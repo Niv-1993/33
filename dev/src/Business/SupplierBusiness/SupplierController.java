@@ -220,7 +220,7 @@ public class SupplierController{
         return suppliers.get(supplierBN).showAllItemsOfSupplier();
     }
 
-    public List<Item> showAllItemsOfOrder(int supplierBN , int orderId) throws Exception {
+    public Hashtable<Item, Integer> showAllItemsOfOrder(int supplierBN , int orderId) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         return suppliers.get(supplierBN).showAllItemsOfOrder(orderId);
@@ -250,7 +250,7 @@ public class SupplierController{
 
 
 
-    public Item addItem( int supplierBN,String name , double price,LocalDate expirationDate, double weight) throws Exception {
+    public Item addItem(int supplierBN,String name , double price,LocalDate expirationDate, double weight) throws Exception {
         Item item;
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");

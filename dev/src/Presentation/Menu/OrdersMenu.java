@@ -187,9 +187,9 @@ public class OrdersMenu extends Menu{
             switch (option) {
                 case 1 -> {
                     BN = intScan(scanner, "please enter supplier BN", "BN must be a number");
-                    int branchID = intScan(scanner, "please enter branchId for deliver", "branchId must be a number");
+                    //int branchID = intScan(scanner, "please enter branchId for deliver", "branchId must be a number");
                     Hashtable<Integer, Integer> items = hashScan(scanner);
-                    Tresponse<Order> response = service.addRegularOrder(BN, branchID, items);
+                    Tresponse<Order> response = service.addRegularOrder(BN, r.getCurrBID(), items);
                     if (response.isError()) System.out.println(response.getError() + "\n");
                     else System.out.println("orderId is: " + response.getOutObject().toStringId() + "\n");
                     toContinue(scanner);

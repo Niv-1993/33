@@ -15,8 +15,9 @@ public class regularOrder extends Order {
     public void addItemToOrder(Item item, int amount) throws Exception {
         if (amount < 1) throw new Exception("amount must be at least 1");
         if (items.get(item) != null) {
+            dalOrder.updateAmountOfOrder(item.getItemId(), items.get(item) + amount);
             items.put(item, items.get(item) + amount);
-            dalOrder.addItemToOrder(item.getItemId(), items.get(item) + amount);
+            //dalOrder.addItemToOrder(item.getItemId(), items.get(item) + amount);
         } else {
             items.put(item, amount);
             dalOrder.addItemToOrder(item.getItemId(), amount);
