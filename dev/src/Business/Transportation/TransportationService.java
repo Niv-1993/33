@@ -109,7 +109,7 @@ public class TransportationService {
         }
         HashMap <Integer,Order> newOrdersList = new HashMap<>();
         newOrdersList.put(order.getOrderId(),order);
-        Transportation transportation = new Transportation(getId(),date,leavingTime,chosenDriver,chooseTruck,order.getTotalWeight(),newOrdersList);
+        Transportation transportation = new Transportation(0);
         dataControl.addTransportation(transportation);
         drivers.addDriverToShiftAndStoreKeeper(order.getBranchID(),chosenDriver.getEID(),date,leavingTime);
         return transportation.getId();

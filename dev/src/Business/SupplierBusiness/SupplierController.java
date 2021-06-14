@@ -250,12 +250,13 @@ public class SupplierController{
 
 
 
-    public Item addItem(int itemId , int supplierBN,String name , double price,LocalDate expirationDate, double weight) throws Exception {
+    public Item addItem( int supplierBN,String name , double price,LocalDate expirationDate, double weight) throws Exception {
         Item item;
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
         try {
-            item = suppliers.get(supplierBN).addItem(supplierBN, itemId , name, price , expirationDate, weight);
+            item = suppliers.get(supplierBN).addItem(supplierBN, dalSupplierController.getNumOfItems() , name, price , expirationDate, weight);
+            dalSupplierController.addNumOfItems();
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

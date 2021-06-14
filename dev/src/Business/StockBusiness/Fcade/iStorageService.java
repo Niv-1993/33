@@ -2,6 +2,7 @@ package Business.StockBusiness.Fcade;
 
 import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Business.StockBusiness.Fcade.outObjects.*;
+import Business.SupplierBusiness.facade.SupplierService;
 import Business.SupplierBusiness.facade.Tresponse;
 import Business.SupplierBusiness.facade.response;
 
@@ -44,7 +45,7 @@ public interface iStorageService {
     public response relocateProduct(int ID, boolean toStorage, int targetShelf);
     public Tresponse<Integer> addStore(int ID);
     public Tresponse<List<Integer>> getStores();
-    public response useStore(int ID);
+    public response useStore(int ID, SupplierService ss);
 
     void acceptTrans(TransportationServiceDTO acceptT);
 }

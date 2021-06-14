@@ -318,7 +318,7 @@ public class CLIPresentation {
                 AddDefaultWeekShifts();
             }
             r.setCurrBID(branchNum);
-            r.getSt().useStore(branchNum);
+            r.getSt().useStore(branchNum, r.getSc());
             break;
         }
         login();

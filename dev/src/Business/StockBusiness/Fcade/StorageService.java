@@ -9,6 +9,7 @@ import Business.SupplierBusiness.facade.Tresponse;
 import Business.SupplierBusiness.facade.response;
 import org.apache.log4j.Logger;
 
+import java.sql.SQLOutput;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -22,9 +23,10 @@ public class StorageService implements iStorageService {
     SupplierService supplierService;
     final static Logger log= Logger.getLogger(StorageService.class);
 
-    public StorageService() {
+    public StorageService(SupplierService sc) {
         stores=new ArrayList<>();
         curr=null;
+        supplierService = sc;
         loadAllStores();
     }
 
@@ -54,11 +56,14 @@ public class StorageService implements iStorageService {
     @Override
     public Tresponse<Report> getWeeklyReport() {
         try {
+            System.out.println("Got here 1");
             reports.Report rep=curr.getWeeklyReport();
             Report ret=new Report(rep.getStore(),rep.getDate(),rep.toString(),rep.getType());
             reports.NeededReport need=(reports.NeededReport)curr.getNeededReport();
-            for (Integer i: Collections.list(need.get_list().keys()))
-                supplierService.addNeededOrder(i,need.get_list().get(i),curr.getID());
+            for (Integer i: Collections.list(need.get_list().keys())) {
+                supplierService.addNeededOrder(i, need.get_list().get(i), curr.getID());
+                System.out.println("Got here 2");
+            }
             return new Tresponse<>(ret);
         }
         catch (Exception e) {
@@ -389,6 +394,7 @@ public class StorageService implements iStorageService {
     public Tresponse<Integer> addStore(int ID) {
         try {
             stores.add(new StoreController(ID,shelves,storeShelves,MAX_PER_SHELF));
+            supplierService.setStockService(this);
             //counter++;
             return new Tresponse<>(ID);
         }
@@ -416,7 +422,7 @@ public class StorageService implements iStorageService {
     }
 
     @Override
-    public response useStore(int ID) {
+    public response useStore(int ID, SupplierService ss) {
         loadAllStores();
         boolean found = false;
         try {
@@ -426,6 +432,7 @@ public class StorageService implements iStorageService {
                 if(s.getID()==ID) {
                     curr = s;
                     found = true;
+                    supplierService = ss;
                     break;
                 }
             }
