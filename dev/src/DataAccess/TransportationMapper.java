@@ -262,7 +262,7 @@ public class TransportationMapper extends Mapper {
      * @throws IOException
      */
     public List<Transportation> getTransportationsByArea(TruckMapper truckMapper, DriverMapper driverMapper, Area area) throws IOException {
-        String sql = "SELECT * FROM Transportations WHERE Area=" + area;
+        String sql = "SELECT * FROM Transportations WHERE Area=" + area.toString();
         try (Connection conn = connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
