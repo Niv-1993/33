@@ -195,7 +195,7 @@ public class EmployeeMapper extends Mapper {
                     }
                 }
             } catch (Exception e) {
-             //   System.out.println("[loadEmployeesInBranch-emp] ->" + e.getMessage());
+                System.out.println("[loadEmployeesInBranch-emp] ->" + e.getMessage());
             }
             needToUpdateEmps = false;
             return new ArrayList<>(employees.values());
@@ -208,7 +208,7 @@ public class EmployeeMapper extends Mapper {
              PreparedStatement pre = con.prepareStatement(addRole)) {
             pre.executeUpdate();
         } catch (Exception e) {
-         //   System.out.println("[addRole]-> " + e.getMessage());
+            System.out.println("[addRole]-> " + e.getMessage());
         }
     }
 
