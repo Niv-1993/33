@@ -163,29 +163,29 @@ public class Controllers {
         sc.addSupplier("Supplier3", 2, 2, 2, "bank transfer");
         sc.addSupplier("Supplier4", 3, 3, 3, "check");
         sc.addSupplier("Supplier5", 4, 4, 4, "cash");
-        sc.addItem(0, 0, "meat", 21.99, 19.99, 10,
+        sc.addItem(1, 0, "meat", 21.99, 19.99, 10,
                 "Tnuva", 1, LocalDate.now().plusYears(1), 1);
-        sc.addItem(0, 0, "minced meat", 39.99, 34.99, 100,
+        sc.addItem(1, 0, "minced meat", 39.99, 34.99, 100,
                 "Dabah", 1, LocalDate.now().plusYears(1), 2);
-        sc.addItem(0, 1, "stake", 70.5, 65, 50,
+        sc.addItem(1, 1, "stake", 70.5, 65, 50,
                 "Dabah", 1, LocalDate.now().plusMonths(1), 1.5);
-        sc.addItem(1, 2, "yogurt", 9.99, 8.99, 200,
+        sc.addItem(2, 2, "yogurt", 9.99, 8.99, 200,
                 "Tara", 2, LocalDate.now().plusMonths(1), 0.1);
-        sc.addItem(1, 3, "cheese cake", 35, 34, 150,
+        sc.addItem(2, 3, "cheese cake", 35, 34, 150,
                 "Cheese Cake Factory", 2, LocalDate.now().plusDays(14), 1);
-        sc.addItem(1, 0, "gum", 1.99, 1.5, 1000,
+        sc.addItem(2, 0, "gum", 1.99, 1.5, 1000,
                 "Hubba", 3, LocalDate.now().plusYears(1000), 0.01);
-        sc.addItem(1, 1, "lollipop", 0.5, 0.35, 1000,
+        sc.addItem(3, 1, "lollipop", 0.5, 0.35, 1000,
                 "Hubba", 3, LocalDate.now().plusYears(1000), 0.01);
-        sc.addItem(2, 2, "windshield wiper", 15.99, 14, 500,
+        sc.addItem(3, 2, "windshield wiper", 15.99, 14, 500,
                 "Sano", 3, LocalDate.now().plusYears(1), 0.5);
-        sc.addItem(2, 3, "broom", 19.99, 17, 400,
+        sc.addItem(3, 3, "broom", 19.99, 17, 400,
                 "Sano", 3, LocalDate.now().plusYears(50), 1);
-        sc.addItem(3, 0, "soda", 10.99, 9, 350,
+        sc.addItem(2, 0, "soda", 10.99, 9, 350,
                 "Cola-Cola", 3, LocalDate.now().plusMonths(6), 3);
-        sc.addItem(3, 0, "sprite ", 10.99, 8, 700,
+        sc.addItem(2, 0, "sprite ", 10.99, 8, 700,
                 "Cola-Cola", 3, LocalDate.now().plusMonths(3), 1.5);
-        sc.addItem(3, 1, "fanta", 10.99, 10, 200,
+        sc.addItem(4, 1, "fanta", 10.99, 10, 200,
                 "Cola-Cola", 3, LocalDate.now().plusMonths(3), 1.5);
         sc.addItem(3, 1, "grape juice", 10.99, 9.99, 350,
                 "PriGat", 3, LocalDate.now().plusMonths(9), 1);
