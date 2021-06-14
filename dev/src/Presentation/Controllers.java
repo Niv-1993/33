@@ -279,6 +279,7 @@ public class Controllers {
         Hashtable<Integer, Integer> firstHash = new Hashtable<>();
         Hashtable<Integer, Integer> secondHash = new Hashtable<>();
         Hashtable<Integer, Integer> thirdHash = new Hashtable<>();
+        Hashtable<Integer, Integer> fourthHash = new Hashtable<>();
         firstHash.put(1, 100);
         firstHash.put(6, 50);
         firstHash.put(10, 25);
@@ -289,12 +290,16 @@ public class Controllers {
         thirdHash.put(8, 50);
         thirdHash.put(14, 150);
         thirdHash.put(15, 5);
+        fourthHash.put(5, 50);
+        fourthHash.put(9, 10);
+        fourthHash.put(16,70);
         st.useStore(1, sc);
         sc.addRegularOrder(0, 1, firstHash);
         st.useStore(2, sc);
         sc.addRegularOrder(1, 2, secondHash);
         st.useStore(2, sc);
         sc.addRegularOrder(2, 2, thirdHash);
+        sc.addRegularOrder(3, 2, fourthHash);
         sc.addItemToOrder(0, 0, 0, 2);
         sc.addItemToOrder(0, 0, 2, 5);
         sc.addItemToOrder(2, 1, 8, 10);
