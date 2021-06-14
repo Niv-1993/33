@@ -60,7 +60,9 @@ public class DataControl {
         return transportationMapper.getAllTransportations(truckMapper,driverMapper);
     }
 
-    public void remove(long idCounter) throws IOException { transportationMapper.deleteTrans(idCounter); }
+    public boolean remove(long idCounter) throws IOException {
+        return transportationMapper.deleteTrans(idCounter);
+    }
 
 
     public long getCurrID() throws Exception {
@@ -106,7 +108,7 @@ public class DataControl {
         return transportationMapper.removeOrderFromTransportation(transID,orderId);
     }
 
-    public void changeDriverOnTrans(long id, int newDriverID) {
-        transportationMapper.chaneDriverOnTran(id , newDriverID);
+    public void addTransportation(int id, LocalDate date, LocalTime time, Area south, int driver, int truck, double weight) {
+        transportationMapper.addTransportation(id,date,time,south,driver,truck,weight);
     }
 }

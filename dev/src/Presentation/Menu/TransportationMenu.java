@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class TransportationMenu extends Menu{
     private int option;
     private int subOption;
-    private final int numOfOptions = 7;
     private final Area[] areas={Area.South,Area.North,Area.Center };
     private final TransportationController transportationController;
     private boolean finish;
@@ -30,9 +29,8 @@ public class TransportationMenu extends Menu{
      */
     @Override
     public void show(){
-        while(endOfProgram()){
+        while(!finish){
             chooseOption();
-            nextStep();
         }
     }
 
@@ -41,8 +39,20 @@ public class TransportationMenu extends Menu{
      *The starting choice of the user if to keep run the system or shut it off.
      */
     public void chooseOption(){
-        System.out.print("1) See all Transportations.\n2) Delete Transportation.\nOption: ");
-        option = chooseOp(numOfOptions);
+        System.out.println("\n****************** Transportation menu *******************");
+        System.out.print("1) See all Transportations.\n2) Delete Transportation.\n3)Exit\nOption: ");
+        option = chooseOp(3);
+        switch (option){
+            case 1:
+                printAllTransportations();
+                break;
+            case 2:
+                delete();
+                break;
+            case 3:
+                finish=true;
+                break;
+        }
         System.out.println();
     }
 
@@ -56,7 +66,8 @@ public class TransportationMenu extends Menu{
         System.out.println("Please enter order id to delete.");
         long id= input.nextLong();
         try {
-            transportationController.delete(id);
+            if(transportationController.delete(id))
+                System.out.println("Deleted transportation number "+id+" successfully." );
         }
         catch (Exception e){
             System.out.println(e.getMessage());
@@ -71,7 +82,7 @@ public class TransportationMenu extends Menu{
      */
     public void printAllTransportations(){
         System.out.println("\n*************************************************");
-        System.out.println("************ Printing Business.Transportation ************");
+        System.out.println("************ Transportations List ************");
         System.out.println("*************************************************\n");
         List<TransportationServiceDTO> sup= transportationController.getAllTransportations();
         for (TransportationServiceDTO tru:sup) { System.out.println(tru); }
@@ -83,13 +94,6 @@ public class TransportationMenu extends Menu{
      * By user's input it keep running the system or shut it off.
      * @return : if to keep run the program or terminate it
      */
-    public boolean endOfProgram(){
-        System.out.println("\n****************** Transportation menu *******************");
-        System.out.println("Hello.\nPlease choose an option:");
-        System.out.print("1)Continue\n2)Exit\nOption: ");
-        int numOfEndProgramOp = 2;
-        return chooseOp(numOfEndProgramOp) == 1;
-    }
 
     /**
      *Method to receive an input from the user with boundary limit.
@@ -108,15 +112,5 @@ public class TransportationMenu extends Menu{
             }
         }
         return userOption;
-    }
-
-    /**
-     *Method to direct the menu by the user's choice in the starting menu.
-     */
-    public void nextStep() {
-        if(option==1)
-        printAllTransportations();
-        else
-            delete();
     }
 }

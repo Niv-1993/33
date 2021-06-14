@@ -9,6 +9,7 @@ import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Business.ApplicationFacade.outObjects.TruckServiceDTO;
 import Business.Employees.EmployeePKG.Driver;
 import Business.SupplierBusiness.Order;
+import Business.Type.Area;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -50,14 +51,19 @@ public class TransportationService {
        return dataControl.getBranch(id);
     }
 
-    public void cancelTran(long tranId) throws Exception {
+    public boolean cancelTran(long tranId) throws Exception {
         Transportation toDelete = dataControl.getTransportation(tranId);
+        if(toDelete==null)
+        {
+            System.out.println("Transportation with this id is not exists.");
+            return false;
+        }
         List<Order> orders = toDelete.getOrderList();
         for (Order order:orders){
             drivers.removeDriverFromShiftAndStorekeeper(order.getBranchID(),toDelete.getDriver().getEID(),toDelete.getDate(),toDelete.getLeavingTime());
             order.removeOrder();
-            dataControl.remove(tranId);
         }
+       return dataControl.remove(tranId);
     }
 
 
@@ -177,7 +183,7 @@ public class TransportationService {
     public Response swapDrivers(int newDriverID, int oldDriverID, String time, LocalDate date){
         try{
             Transportation t = dataControl.selectTransWithDriverShift(oldDriverID, time, date);
-            dataControl.changeDriverOnTrans(t.getId(),newDriverID);
+            dataControl.replaceDrivers(t.getId(),newDriverID);
             Driver d = drivers.getDriver(newDriverID);
             t.setDriver(d);
             drivers.changeDriver(t.getTransBranches(),oldDriverID,newDriverID,date,LocalTime.parse(time));
@@ -204,5 +210,9 @@ public class TransportationService {
             System.out.println("Could not remove order number: "+orderId+" from transportation number: "+transID+" .Error: "+e.getMessage());
         }
 
+    }
+
+    public void addTransportation(int id, Area south, LocalDate date, LocalTime time, double weight, int driver, int truck) {
+        dataControl.addTransportation(id,date,time,south,driver,truck,weight);
     }
 }

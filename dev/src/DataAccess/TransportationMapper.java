@@ -51,7 +51,13 @@ public class TransportationMapper extends Mapper {
                 LocalTime time = LocalTime.parse(rs.getString("LeavingTime"));
                 int weight = rs.getInt("Weight");
                 Area area = Area.valueOf(rs.getString("Area"));
-                List<Order> orders = new Order().getOrdersByTransportation(tID.intValue());
+                List<Order> orders;
+                try {
+                     orders = new Order().getOrdersByTransportation(tID.intValue());
+                }
+                catch (Exception e){
+                    orders =new ArrayList<>();
+                }
                 HashMap<Integer, Order> ordersMap = new HashMap<>();
                 for (Order order : orders)
                     ordersMap.put(order.getOrderId(), order);
@@ -85,7 +91,13 @@ public class TransportationMapper extends Mapper {
                 LocalDate date = LocalDate.parse(rs.getString("Date"));
                 LocalTime time = LocalTime.parse(rs.getString("LeavingTime"));
                 int weight = rs.getInt("Weight");
-                List<Order> orders = new Order().getOrdersByTransportation(tID.intValue());
+                List<Order> orders;
+                try {
+                    orders = new Order().getOrdersByTransportation(tID.intValue());
+                }
+                catch (Exception e){
+                    orders =new ArrayList<>();
+                }
                 HashMap<Integer, Order> ordersMap = new HashMap<>();
                 for (Order order : orders)
                     ordersMap.put(order.getOrderId(), order);
@@ -176,11 +188,12 @@ public class TransportationMapper extends Mapper {
 
         if (transportations.containsKey(id)) {
             return transportations.get(id);
-        } else {
+        }
+        else {
             Transportation tra = select(id, truckMapper, driverMapper);
             if (tra != null)
                 return tra;
-            throw new IOException("No transportation match to id:" + id);
+            return null;
         }
     }
 
@@ -372,11 +385,10 @@ public class TransportationMapper extends Mapper {
      * @throws IOException
      */
     public void remove(Long idCounter) throws IOException {
-        String sql = "DELETE FROM  Transactions WHERE ID=" + idCounter;
+        String sql = "DELETE FROM  Transportations WHERE ID=" + idCounter;
         try (Connection conn = connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-            transportations.remove(idCounter);
             Order order = new Order();
             order.removeOrdersByTransportationId(idCounter.intValue());
         } catch (SQLException e) {
@@ -436,16 +448,27 @@ public class TransportationMapper extends Mapper {
         updateTransDriver(id, newDriverID.getEID());
     }
 
-    public boolean removeOrderFromTransportation(long transID, int orderId) throws IOException {
+    public boolean removeOrderFromTransportation(long transID, int orderId){
        transportations.get(transID).removeOrder(orderId);
        return transportations.get(transID).getOrderList().isEmpty();
     }
 
-    public void deleteTrans(long idCounter) throws IOException {
-        remove(idCounter);
-        transportations.remove(idCounter);
+    public boolean deleteTrans(long idCounter) throws IOException {
+       try {
+           remove(idCounter);
+           transportations.remove(idCounter);
+           return true;
+       }
+       catch (Exception e){
+           return false;
+       }
     }
 
-    public void chaneDriverOnTran(long id, int newDriverID) {
+    public void addTransportation(int id, LocalDate date, LocalTime time, Area south, int driver, int truck, double weight) {
+        try {
+            insert(id,south.toString(),date.toString(),time.toString(),weight,driver,truck);
+        } catch (IOException e) {
+            System.out.println("could not add new transportation to db. Error: "+e.getMessage());
+        }
     }
 }
