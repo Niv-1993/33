@@ -188,6 +188,8 @@ public class TransportationService {
             boolean empty = dataControl.removeOrderFromTransportation(transID, orderId);
             if(empty){
                 Transportation t=dataControl.getTransportation(transID);
+                if(t.getDate().compareTo(LocalDate.now())>0)
+                    throw new IllegalArgumentException("Cannot remove order from transportation who already left.");
                 Order order= new Order();
                 Order or=order.getOrder(orderId);
                 drivers.removeDriverFromShiftAndStorekeeper(or.getBranchID(),t.getDriver().getEID(),t.getDate(),t.getLeavingTime());
