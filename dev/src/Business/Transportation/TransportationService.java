@@ -109,7 +109,7 @@ public class TransportationService {
         }
         HashMap <Integer,Order> newOrdersList = new HashMap<>();
         newOrdersList.put(order.getOrderId(),order);
-        Transportation transportation = new Transportation(getId(),date,leavingTime,chosenDriver,chooseTruck,order.getTotalWeight(),newOrdersList);
+        Transportation transportation = new Transportation(getId(),date,leavingTime,bran.getArea(),chosenDriver,chooseTruck,order.getTotalWeight(),newOrdersList);
         dataControl.addTransportation(transportation);
         drivers.addDriverToShiftAndStoreKeeper(order.getBranchID(),chosenDriver.getEID(),date,leavingTime);
         return transportation.getId();
@@ -132,7 +132,7 @@ public class TransportationService {
         HashMap<Integer,Business.SupplierBusiness.facade.outObjects.Order> ordersService=new HashMap<>();
         for(Order order : t.getOrderList())
             ordersService.put(order.getOrderId(),new Business.SupplierBusiness.facade.outObjects.Order(order));
-        return new TransportationServiceDTO(t.getId(),t.getDate(),t.getLeavingTime(),new DriverServiceDTO(t.getDriver()),new TruckServiceDTO(t.getTruck()),t.getWeight(),ordersService);
+        return new TransportationServiceDTO(t.getId(),t.getDate(),t.getLeavingTime(),t.getArea(),new DriverServiceDTO(t.getDriver()),new TruckServiceDTO(t.getTruck()),t.getWeight(),ordersService);
     }
     public void addTruck(long id, int maxWeight, String model, int netWeight, int license){
         dataControl.addTruck(id, maxWeight,model,netWeight,license);
