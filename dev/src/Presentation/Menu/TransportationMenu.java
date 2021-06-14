@@ -39,8 +39,8 @@ public class TransportationMenu extends Menu{
      *The starting choice of the user if to keep run the system or shut it off.
      */
     public void chooseOption(){
-        System.out.println("\n****************** Transportation menu *******************");
-        System.out.print("1) See all Transportations.\n2) Delete Transportation.\n3)Exit\nOption: ");
+        System.out.println("\n****************** Transportation menu *******************\n");
+        System.out.print("1) See all Transportations.\n2) Delete Transportation.\n3)Previous menu\nOption: ");
         option = chooseOp(3);
         switch (option){
             case 1:
@@ -60,10 +60,8 @@ public class TransportationMenu extends Menu{
      * Delete transportation
      */
     private void delete() {
-        System.out.println("\n*************************************************");
-        System.out.println("************ Delete a Transportation ************");
-        System.out.println("*************************************************\n");
-        System.out.println("Please enter order id to delete.");
+        System.out.println("************ Delete a Transportation ************\n");
+        System.out.print("Please enter order id to delete: ");
         long id= input.nextLong();
         try {
             if(transportationController.delete(id))
@@ -81,11 +79,13 @@ public class TransportationMenu extends Menu{
      * Used for the transportations printing option in the menu.
      */
     public void printAllTransportations(){
-        System.out.println("\n*************************************************");
-        System.out.println("************ Transportations List ************");
-        System.out.println("*************************************************\n");
+        System.out.println("************ Transportations List ************\n");
         List<TransportationServiceDTO> sup= transportationController.getAllTransportations();
+        if(!sup.isEmpty())
         for (TransportationServiceDTO tru:sup) { System.out.println(tru); }
+        else{
+            System.out.println("No transportations available.");
+        }
     }
 
     /**

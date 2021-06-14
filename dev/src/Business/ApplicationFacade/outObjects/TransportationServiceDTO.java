@@ -18,7 +18,7 @@ public class TransportationServiceDTO {
 
     @Override
     public String toString() {
-        String output="Business.Transportation : \tid = " + id ;
+        String output="Transportation : \tid = " + id ;
         if(date==null)
             output+="\tDate: ";
         else

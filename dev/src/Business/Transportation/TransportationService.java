@@ -53,6 +53,7 @@ public class TransportationService {
 
     public boolean cancelTran(long tranId) throws Exception {
         Transportation toDelete = dataControl.getTransportation(tranId);
+        Long id=tranId;
         if(toDelete==null)
         {
             System.out.println("Transportation with this id is not exists.");
@@ -60,8 +61,8 @@ public class TransportationService {
         }
         List<Order> orders = toDelete.getOrderList();
         for (Order order:orders){
+            //order.removeOrdersByTransportationId(id.intValue());
             drivers.removeDriverFromShiftAndStorekeeper(order.getBranchID(),toDelete.getDriver().getEID(),toDelete.getDate(),toDelete.getLeavingTime());
-            order.removeOrder();
         }
        return dataControl.remove(tranId);
     }
@@ -203,7 +204,6 @@ public class TransportationService {
                 Order order= new Order();
                 Order or=order.getOrder(orderId);
                 drivers.removeDriverFromShiftAndStorekeeper(or.getBranchID(),t.getDriver().getEID(),t.getDate(),t.getLeavingTime());
-                dataControl.remove(t.getId());
             }
         }
         catch(Exception e){

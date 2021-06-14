@@ -390,10 +390,8 @@ public class TransportationMapper extends Mapper {
     public void remove(Long idCounter) throws IOException {
         String sql = "DELETE FROM  Transportations WHERE ID=" + idCounter;
         try (Connection conn = connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            Order order = new Order();
-            order.removeOrdersByTransportationId(idCounter.intValue());
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.executeUpdate();
         } catch (SQLException e) {
             throw new IOException("failed to delete transportation " + idCounter);
         } catch (Exception e) {
