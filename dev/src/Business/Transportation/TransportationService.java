@@ -9,8 +9,6 @@ import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Business.ApplicationFacade.outObjects.TruckServiceDTO;
 import Business.Employees.EmployeePKG.Driver;
 import Business.SupplierBusiness.Order;
-import Business.SupplierBusiness.regularOrder;
-import Business.Type.Area;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -79,13 +77,13 @@ public class TransportationService {
                 dataControl.updateOrder(tran.getId(),weight,order);
                 return tran.getId();
             }
-            else if(weight!=0){
-                return -1;
-            }
             else if (tran.canAdd(order)) {
                     dataControl.updateTransWeight(tran.getId(), tran.getWeight()+order.getTotalWeight(), order);
                 return tran.getId();
             }
+        }
+        if(weight!=0){
+            return -1;
         }
         LocalDate days = (order.getOrderType() == 0) ? LocalDate.now().plusDays(7) : LocalDate.now().plusDays(2);
         LocalTime noon = LocalTime.parse("15:00");
@@ -239,25 +237,19 @@ public class TransportationService {
     public void removeOrderFromTransportation(long transID, int orderId) {
         try {
             Transportation t=dataControl.getTransportation(transID);
+            int branId= t.getOrders().get(orderId).getBranchID();
             if(t.getDate().compareTo(LocalDate.now())>0)
                 throw new IllegalArgumentException("Cannot remove order from transportation who already left.");
             dataControl.removeOrderFromTransportation(transID, orderId);
-            t=dataControl.getTransportation(transID);
-            if(t.getWeight()<=0){
-                Order order = new regularOrder(0, 0, 1);
-                Order or=order.getOrder(orderId);
-                order.removeOrder();
+            if(t.getOrderList().isEmpty()){
+                //Order or=order.getOrder(orderId);
                 dataControl.remove(transID);
-                drivers.removeDriverFromShiftAndStorekeeper(or.getBranchID(),t.getDriver().getEID(),t.getDate(),t.getLeavingTime());
+                drivers.removeDriverFromShiftAndStorekeeper(branId,t.getDriver().getEID(),t.getDate(),t.getLeavingTime());
             }
         }
         catch(Exception e){
             System.out.println("Could not remove order number: "+orderId+" from transportation number: "+transID+" .Error: "+e.getMessage());
         }
 
-    }
-
-    public void addTransportation(int id, Area south, LocalDate date, LocalTime time, double weight, int driver, int truck) {
-        dataControl.addTransportation(id,date,time,south,driver,truck,weight);
     }
 }

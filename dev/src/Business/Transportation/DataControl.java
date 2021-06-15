@@ -1,6 +1,5 @@
 package Business.Transportation;
 
-import Business.Employees.EmployeePKG.Driver;
 import Business.SupplierBusiness.Order;
 import Business.Type.Area;
 import DataAccess.BranchMapper;
@@ -11,7 +10,6 @@ import DataAccess.TruckMapper;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -120,10 +118,6 @@ public class DataControl {
 
     public boolean removeOrderFromTransportation(long transID, int orderId) throws IOException {
         return transportationMapper.removeOrderFromTransportation(transID,orderId);
-    }
-
-    public void addTransportation(int id, LocalDate date, LocalTime time, Area south, int driver, int truck, double weight) {
-        transportationMapper.addTransportation(id,date,time,south,driver,truck,weight);
     }
 
     public void updateOrder(long id, double oldWeight, Order order) {

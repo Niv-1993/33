@@ -13,7 +13,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 public class TransportationMapper extends Mapper {
@@ -429,7 +428,8 @@ public class TransportationMapper extends Mapper {
 
     public boolean removeOrderFromTransportation(long transID, int orderId) throws IOException {
        double ord=transportations.get(transID).getOrders().get(orderId).getTotalWeight();
-       updateTransWeight(transID,transportations.get(transID).getWeight()-ord);
+       double newW=transportations.get(transID).getWeight();
+       updateTransWeight(transID,newW-ord);
         transportations.get(transID).removeOrder(orderId);
        return transportations.get(transID).getOrderList().isEmpty();
     }
