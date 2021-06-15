@@ -18,6 +18,7 @@ public class DalOrder extends DALObject {
     private double totalWeight;
     private int transportationID;
     private int isArrived;
+    private boolean removed = false;
     final static Logger log=Logger.getLogger(DalOrder.class);
 
     public DalOrder() {
@@ -280,6 +281,7 @@ public class DalOrder extends DALObject {
         } catch (Exception e) {
             log.warn(e);
         }
+        removed = true;
     }
 
 
@@ -364,5 +366,9 @@ public class DalOrder extends DALObject {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean getIsRemoved() {
+        return removed;
     }
 }

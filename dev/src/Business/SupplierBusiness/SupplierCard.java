@@ -393,12 +393,14 @@ public class SupplierCard {
     public Order showOrderOfSupplier(int orderId) throws Exception {
         for (Order o : orders) {
             if (o.getOrderId() == orderId)
-                return o;
+                if (!o.isRemoved())
+                    return o;
         }
         throw new Exception("orderId does not exist.");
     }
 
     public List<Order> showAllOrdersOfSupplier() {
+        orders.removeIf(Order::isRemoved);
         return orders;
     }
 
