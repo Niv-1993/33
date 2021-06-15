@@ -54,13 +54,16 @@ public class StoreKeeperMenu extends Menu{
                     break;
                 case "7":
                     List<TransportationServiceDTO> trans =  r.getTc().getTransportations(r.getCurrBID(), LocalDate.now(), LocalTime.now());
+                    if(trans.isEmpty()) {
+                        System.out.println("No transportations available for this shift");
+                        break;
+                    }
                     for (TransportationServiceDTO t : trans)
                         System.out.println(t.toString());
                     TransportationServiceDTO acceptT = getAcceptID(trans);
                     if(acceptT == null) break; //go back to main menu
                         r.getSt().acceptTrans(acceptT);
                         break;
-
                 case "8":
                     cancelDelivery();
                     break;
