@@ -617,4 +617,19 @@ public class SupplierCard {
             }
         }
     }
+
+    public void updateArrived(int orderId) throws Exception {
+        boolean found = false;
+        try{
+            for (Order o : orders) {
+                if (o.getOrderId() == orderId) {
+                    o.updateArrived();
+                    found = true;
+                }
+            }
+            if(!found) throw new Exception("orderId does not exist.");
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
 }

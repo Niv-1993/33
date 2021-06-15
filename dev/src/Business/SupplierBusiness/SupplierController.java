@@ -551,4 +551,14 @@ public class SupplierController{
             throw new Exception(e.getMessage());
         }
     }
+
+    public void updateArrived(int supplierBN , int orderId) throws Exception {
+        try{
+            SupplierCard supplierCard = suppliers.get(supplierBN);
+            if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+            supplierCard.updateArrived(orderId);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
 }

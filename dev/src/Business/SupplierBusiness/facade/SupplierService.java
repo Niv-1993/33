@@ -327,7 +327,8 @@ public class SupplierService implements ISupplierService {
                         }
                     }
                 }
-                order.updateArrived();
+                ////// here need to check ///////////
+                updateArrived(order.getSupplierBN() , order.getOrderId());
             }
             else {
                 Long tranId = transportationController.addOrderToTransportation(order, 0);
@@ -609,6 +610,15 @@ public class SupplierService implements ISupplierService {
             supplierController.updatePrice(supplierBN , itemId , price);
         }catch (Exception e){
             return new response("ERROR: " + e.getMessage());
+        }
+        return new response();
+    }
+
+    public response updateArrived(int supplierBN , int orderId) {
+        try{
+            supplierController.updateArrived(supplierBN , orderId);
+        }catch (Exception e){
+            return new response(e.getMessage());
         }
         return new response();
     }

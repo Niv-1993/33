@@ -164,9 +164,7 @@ public class Order {
 
     public boolean isArrived(){ return (dalOrder.getIsArrived()==1);}
 
-    public void updateArrived() {
-        dalOrder.updateArrived();
-    }
+    public void updateArrived() { dalOrder.updateArrived(); }
 
     public int getOrderType() {return dalOrder.getOrderType();}
 
