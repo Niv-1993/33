@@ -1,0 +1,1692 @@
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:104] - isFull()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:67] - get_cur()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:98] - get_maxAmount()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:91] - set_typeID(int typeID)
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:93] - set type of 8 to 9
+[WARN ] 15-06-2021 18:48:34 [class: DataAccess.DalStock.DALShelf,Line:89] - query: UPDATE Shelf  
+SET typeID=? WHERE storeID=? AND shelfID=?; params: [Tuple{item1=9, item2=class java.lang.Integer}, Tuple{item1=2, item2=class java.lang.Integer}, Tuple{item1=8, item2=class java.lang.Integer}]
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:34 [class: Business.StockBusiness.StoreController,Line:532] - shelf: 9, 8, Shelves
+[WARN ] 15-06-2021 18:48:34 [class: Business.StockBusiness.StoreController,Line:533] - products=[9000, 9001]
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.InstanceController,Line:97] - addProduct(Date expiration, Location l) Values: Mon Jun 15 00:00:00 IDT 2071, Shelves, 8
+[WARN ] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.InstanceController,Line:107] - adding product to dal from instanceController.
+[WARN ] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Product,Line:44] - starting 1st check DALProduct
+[WARN ] 15-06-2021 18:48:34 [class: DataAccess.DalController,Line:79] - Select query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ params: [2, 9002]
+failed due to 
+[WARN ] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Product,Line:46] - did 1st check DALProduct
+[WARN ] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Product,Line:48] - entry is already in DB, will not attempt insert.
+[WARN ] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.InstanceController,Line:109] - done adding product to dal in instanceController.
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.InstanceController,Line:68] - addProduct(Product p)
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Product,Line:79] - get_id()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Product,Line:79] - get_id()
+[INFO ] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.InstanceController,Line:93] - new item add to IC #?
+[WARN ] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.InstanceController,Line:111] - done adding product to biz in instanceController.
+[WARN ] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.InstanceController,Line:113] - done adding product to hash in instanceController.
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.StoreController,Line:535] - the productID: 9002:
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.Type.ProductType,Line:337] - addProduct(int productID, Location l) Values: 9002, Shelves
+[WARN ] 15-06-2021 18:48:34 [class: Business.StockBusiness.Type.ProductType,Line:344] - adding product to product type.
+[WARN ] 15-06-2021 18:48:34 [class: Business.StockBusiness.Type.ProductType,Line:347] - adding shelves to product type.
+[WARN ] 15-06-2021 18:48:34 [class: Business.StockBusiness.Type.ProductType,Line:353] - done adding shelves/storage to product type.
+[WARN ] 15-06-2021 18:48:34 [class: Business.StockBusiness.StoreController,Line:539] - adding product in store controller.
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:110] - addProduct()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:104] - isFull()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:67] - get_cur()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:98] - get_maxAmount()
+[DEBUG] 15-06-2021 18:48:34 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:541] - done adding product in store controller.
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT expirationDate FROM Items
+WHERE itemId = ?; params: [9]
+failed due to 
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:527] - got inside addProduct(int typeID, Date expiration) Method with: 9, Mon Jun 15 00:00:00 IDT 2071
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:700] - got inside checkIDProductTypeExist(int check) Method with:9
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 3, 1, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 12, 2, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 7, 3, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 1, 4, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 2, 5, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 4, 6, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 5, 7, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 9, 8, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:104] - isFull()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:67] - get_cur()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:98] - get_maxAmount()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:91] - set_typeID(int typeID)
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:93] - set type of 8 to 9
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalStock.DALShelf,Line:89] - query: UPDATE Shelf  
+SET typeID=? WHERE storeID=? AND shelfID=?; params: [Tuple{item1=9, item2=class java.lang.Integer}, Tuple{item1=2, item2=class java.lang.Integer}, Tuple{item1=8, item2=class java.lang.Integer}]
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:532] - shelf: 9, 8, Shelves
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:533] - products=[9000, 9001, 9002]
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:97] - addProduct(Date expiration, Location l) Values: Mon Jun 15 00:00:00 IDT 2071, Shelves, 8
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:107] - adding product to dal from instanceController.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:44] - starting 1st check DALProduct
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ params: [2, 9003]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:46] - did 1st check DALProduct
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:48] - entry is already in DB, will not attempt insert.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:109] - done adding product to dal in instanceController.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:68] - addProduct(Product p)
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:79] - get_id()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:79] - get_id()
+[INFO ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:93] - new item add to IC #?
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:111] - done adding product to biz in instanceController.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:113] - done adding product to hash in instanceController.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:535] - the productID: 9003:
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:337] - addProduct(int productID, Location l) Values: 9003, Shelves
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:344] - adding product to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:347] - adding shelves to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:353] - done adding shelves/storage to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:539] - adding product in store controller.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:110] - addProduct()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:104] - isFull()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:67] - get_cur()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:98] - get_maxAmount()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:541] - done adding product in store controller.
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT expirationDate FROM Items
+WHERE itemId = ?; params: [9]
+failed due to 
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:527] - got inside addProduct(int typeID, Date expiration) Method with: 9, Mon Jun 15 00:00:00 IDT 2071
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:700] - got inside checkIDProductTypeExist(int check) Method with:9
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 3, 1, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 12, 2, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 7, 3, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 1, 4, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 2, 5, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 4, 6, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 5, 7, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 9, 8, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:104] - isFull()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:67] - get_cur()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:98] - get_maxAmount()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:91] - set_typeID(int typeID)
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:93] - set type of 8 to 9
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalStock.DALShelf,Line:89] - query: UPDATE Shelf  
+SET typeID=? WHERE storeID=? AND shelfID=?; params: [Tuple{item1=9, item2=class java.lang.Integer}, Tuple{item1=2, item2=class java.lang.Integer}, Tuple{item1=8, item2=class java.lang.Integer}]
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:532] - shelf: 9, 8, Shelves
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:533] - products=[9000, 9001, 9002, 9003]
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:97] - addProduct(Date expiration, Location l) Values: Mon Jun 15 00:00:00 IDT 2071, Shelves, 8
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:107] - adding product to dal from instanceController.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:44] - starting 1st check DALProduct
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ params: [2, 9004]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:46] - did 1st check DALProduct
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:48] - entry is already in DB, will not attempt insert.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:109] - done adding product to dal in instanceController.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:68] - addProduct(Product p)
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:79] - get_id()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:79] - get_id()
+[INFO ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:93] - new item add to IC #?
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:111] - done adding product to biz in instanceController.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:113] - done adding product to hash in instanceController.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:535] - the productID: 9004:
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:337] - addProduct(int productID, Location l) Values: 9004, Shelves
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:344] - adding product to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:347] - adding shelves to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:353] - done adding shelves/storage to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:539] - adding product in store controller.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:110] - addProduct()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:104] - isFull()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:67] - get_cur()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:98] - get_maxAmount()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:541] - done adding product in store controller.
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT totalWeight FROM Orders
+WHERE orderId = ?; params: [2]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT orderType FROM Orders
+WHERE orderId = ?; params: [2]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT orderType FROM Orders
+WHERE orderId = ?; params: [2]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT totalAmount FROM Orders
+WHERE orderId = ?; params: [2]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT price FROM Items
+WHERE itemId = ?; params: [3]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT minimalAmount FROM QuantityDocuments
+WHERE itemId = ?; params: [3]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT discount FROM QuantityDocuments
+WHERE itemId = ?; params: [3]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT totalAmount FROM Orders
+WHERE orderId = ?; params: [2]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT price FROM Items
+WHERE itemId = ?; params: [3]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT totalWeight FROM Orders
+WHERE orderId = ?; params: [2]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT weight FROM Items
+WHERE itemId = ?; params: [3]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT shipToUs FROM SupplierAgreements
+WHERE supplierBN = ?; params: [1]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT expirationDate FROM Items
+WHERE itemId = ?; params: [3]
+failed due to 
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:527] - got inside addProduct(int typeID, Date expiration) Method with: 3, Thu Jul 15 00:00:00 IDT 2021
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:700] - got inside checkIDProductTypeExist(int check) Method with:3
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 3, 1, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:104] - isFull()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:67] - get_cur()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:98] - get_maxAmount()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:91] - set_typeID(int typeID)
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:93] - set type of 1 to 3
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalStock.DALShelf,Line:89] - query: UPDATE Shelf  
+SET typeID=? WHERE storeID=? AND shelfID=?; params: [Tuple{item1=3, item2=class java.lang.Integer}, Tuple{item1=2, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}]
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:532] - shelf: 3, 1, Shelves
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:533] - products=[3000]
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:97] - addProduct(Date expiration, Location l) Values: Thu Jul 15 00:00:00 IDT 2021, Shelves, 1
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:107] - adding product to dal from instanceController.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:44] - starting 1st check DALProduct
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ params: [2, 3001]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:46] - did 1st check DALProduct
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:48] - entry is already in DB, will not attempt insert.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:109] - done adding product to dal in instanceController.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:68] - addProduct(Product p)
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:79] - get_id()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:79] - get_id()
+[INFO ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:93] - new item add to IC #?
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:111] - done adding product to biz in instanceController.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:113] - done adding product to hash in instanceController.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:535] - the productID: 3001:
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:337] - addProduct(int productID, Location l) Values: 3001, Shelves
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:344] - adding product to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:347] - adding shelves to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:353] - done adding shelves/storage to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:539] - adding product in store controller.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:110] - addProduct()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:104] - isFull()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:67] - get_cur()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:98] - get_maxAmount()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:541] - done adding product in store controller.
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT expirationDate FROM Items
+WHERE itemId = ?; params: [3]
+failed due to 
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:527] - got inside addProduct(int typeID, Date expiration) Method with: 3, Thu Jul 15 00:00:00 IDT 2021
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:700] - got inside checkIDProductTypeExist(int check) Method with:3
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 3, 1, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:104] - isFull()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:67] - get_cur()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:98] - get_maxAmount()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:91] - set_typeID(int typeID)
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:93] - set type of 1 to 3
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalStock.DALShelf,Line:89] - query: UPDATE Shelf  
+SET typeID=? WHERE storeID=? AND shelfID=?; params: [Tuple{item1=3, item2=class java.lang.Integer}, Tuple{item1=2, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}]
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:532] - shelf: 3, 1, Shelves
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:533] - products=[3000, 3001]
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:97] - addProduct(Date expiration, Location l) Values: Thu Jul 15 00:00:00 IDT 2021, Shelves, 1
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:107] - adding product to dal from instanceController.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:44] - starting 1st check DALProduct
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ params: [2, 3002]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:46] - did 1st check DALProduct
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:48] - entry is already in DB, will not attempt insert.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:109] - done adding product to dal in instanceController.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:68] - addProduct(Product p)
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:79] - get_id()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:79] - get_id()
+[INFO ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:93] - new item add to IC #?
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:111] - done adding product to biz in instanceController.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:113] - done adding product to hash in instanceController.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:535] - the productID: 3002:
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:337] - addProduct(int productID, Location l) Values: 3002, Shelves
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:344] - adding product to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:347] - adding shelves to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:353] - done adding shelves/storage to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:539] - adding product in store controller.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:110] - addProduct()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:104] - isFull()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:67] - get_cur()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:98] - get_maxAmount()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:541] - done adding product in store controller.
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT expirationDate FROM Items
+WHERE itemId = ?; params: [3]
+failed due to 
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:527] - got inside addProduct(int typeID, Date expiration) Method with: 3, Thu Jul 15 00:00:00 IDT 2021
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:700] - got inside checkIDProductTypeExist(int check) Method with:3
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 3, 1, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:104] - isFull()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:67] - get_cur()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:98] - get_maxAmount()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:91] - set_typeID(int typeID)
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:93] - set type of 1 to 3
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalStock.DALShelf,Line:89] - query: UPDATE Shelf  
+SET typeID=? WHERE storeID=? AND shelfID=?; params: [Tuple{item1=3, item2=class java.lang.Integer}, Tuple{item1=2, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}]
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:532] - shelf: 3, 1, Shelves
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:533] - products=[3000, 3001, 3002]
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:97] - addProduct(Date expiration, Location l) Values: Thu Jul 15 00:00:00 IDT 2021, Shelves, 1
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:107] - adding product to dal from instanceController.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:44] - starting 1st check DALProduct
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ params: [2, 3003]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:46] - did 1st check DALProduct
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:48] - entry is already in DB, will not attempt insert.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:109] - done adding product to dal in instanceController.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:68] - addProduct(Product p)
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:79] - get_id()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:79] - get_id()
+[INFO ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:93] - new item add to IC #?
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:111] - done adding product to biz in instanceController.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:113] - done adding product to hash in instanceController.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:535] - the productID: 3003:
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:337] - addProduct(int productID, Location l) Values: 3003, Shelves
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:344] - adding product to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:347] - adding shelves to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:353] - done adding shelves/storage to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:539] - adding product in store controller.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:110] - addProduct()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:104] - isFull()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:67] - get_cur()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:98] - get_maxAmount()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:541] - done adding product in store controller.
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT expirationDate FROM Items
+WHERE itemId = ?; params: [3]
+failed due to 
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:527] - got inside addProduct(int typeID, Date expiration) Method with: 3, Thu Jul 15 00:00:00 IDT 2021
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:700] - got inside checkIDProductTypeExist(int check) Method with:3
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:756] - 3, 1, Shelves
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:104] - isFull()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:67] - get_cur()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:98] - get_maxAmount()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:91] - set_typeID(int typeID)
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:93] - set type of 1 to 3
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalStock.DALShelf,Line:89] - query: UPDATE Shelf  
+SET typeID=? WHERE storeID=? AND shelfID=?; params: [Tuple{item1=3, item2=class java.lang.Integer}, Tuple{item1=2, item2=class java.lang.Integer}, Tuple{item1=1, item2=class java.lang.Integer}]
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:532] - shelf: 3, 1, Shelves
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:533] - products=[3000, 3001, 3002, 3003]
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:55] - get_shelfID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:97] - addProduct(Date expiration, Location l) Values: Thu Jul 15 00:00:00 IDT 2021, Shelves, 1
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:107] - adding product to dal from instanceController.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:44] - starting 1st check DALProduct
+[WARN ] 15-06-2021 18:48:35 [class: DataAccess.DalController,Line:79] - Select query: SELECT *  
+FROM Product  
+WHERE storeID=? AND productID=?;  
+ params: [2, 3004]
+failed due to 
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:46] - did 1st check DALProduct
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:48] - entry is already in DB, will not attempt insert.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:109] - done adding product to dal in instanceController.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:68] - addProduct(Product p)
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:79] - get_id()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Product,Line:79] - get_id()
+[INFO ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:93] - new item add to IC #?
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:111] - done adding product to biz in instanceController.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.InstanceController,Line:113] - done adding product to hash in instanceController.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:535] - the productID: 3004:
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:61] - get_location()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:337] - addProduct(int productID, Location l) Values: 3004, Shelves
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:344] - adding product to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:347] - adding shelves to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.Type.ProductType,Line:353] - done adding shelves/storage to product type.
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:539] - adding product in store controller.
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:110] - addProduct()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:104] - isFull()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:67] - get_cur()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:98] - get_maxAmount()
+[DEBUG] 15-06-2021 18:48:35 [class: Business.StockBusiness.instance.Shelf,Line:85] - get_typeID()
+[WARN ] 15-06-2021 18:48:35 [class: Business.StockBusiness.StoreController,Line:541] - done adding product in store controller.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.ApplicationFacade.RegularRoleController,Line:168] - loading data of branch id: 1
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:168] - query: SELECT categoryID 
+FROM Category
+WHERE storeID=?; params: [1]
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:176] - [1, 2, 3, 4]
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:168] - query: SELECT typeID 
+FROM ProductType
+WHERE storeID=?; params: [1]
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:176] - [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:126] - [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:130] - {Business.StockBusiness.Type.ProductType@5a411614=Business.StockBusiness.instance.InstanceController@2374d36a, Business.StockBusiness.Type.ProductType@14dda234=Business.StockBusiness.instance.InstanceController@54d18072, Business.StockBusiness.Type.ProductType@736d6a5c=Business.StockBusiness.instance.InstanceController@1506f20f, Business.StockBusiness.Type.ProductType@74a6a609=Business.StockBusiness.instance.InstanceController@47a5b70d, Business.StockBusiness.Type.ProductType@5b529706=Business.StockBusiness.instance.InstanceController@424fd310, Business.StockBusiness.Type.ProductType@3a0d172f=Business.StockBusiness.instance.InstanceController@1a45193b, Business.StockBusiness.Type.ProductType@63fdab07=Business.StockBusiness.instance.InstanceController@38f116f6, Business.StockBusiness.Type.ProductType@2a79d4b1=Business.StockBusiness.instance.InstanceController@5286c33a, Business.StockBusiness.Type.ProductType@5553d0f5=Business.StockBusiness.instance.InstanceController@6e6d5d29, Business.StockBusiness.Type.ProductType@2e9fda69=Business.StockBusiness.instance.InstanceController@5c530d1e, Business.StockBusiness.Type.ProductType@7b5a12ae=Business.StockBusiness.instance.InstanceController@6c25e6c4, Business.StockBusiness.Type.ProductType@68ad99fe=Business.StockBusiness.instance.InstanceController@85e6769, Business.StockBusiness.Type.ProductType@3f390d63=Business.StockBusiness.instance.InstanceController@c5ee75e, Business.StockBusiness.Type.ProductType@781f10f2=Business.StockBusiness.instance.InstanceController@48a12036, Business.StockBusiness.Type.ProductType@485e36bc=Business.StockBusiness.instance.InstanceController@bf1ec20, Business.StockBusiness.Type.ProductType@1755e85b=Business.StockBusiness.instance.InstanceController@70efb718, Business.StockBusiness.Type.ProductType@1af687fe=Business.StockBusiness.instance.InstanceController@b70da4c, Business.StockBusiness.Type.ProductType@17cdf2d0=Business.StockBusiness.instance.InstanceController@4a11eb84, Business.StockBusiness.Type.ProductType@2371aaca=Business.StockBusiness.instance.InstanceController@4e858e0a}
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:168] - query: SELECT shelfID 
+FROM Shelf
+WHERE storeID=?; params: [1]
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:176] - [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:168] - query: SELECT categoryID 
+FROM Category
+WHERE storeID=?; params: [2]
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:176] - [1, 2, 3, 4]
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:168] - query: SELECT typeID 
+FROM ProductType
+WHERE storeID=?; params: [2]
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:176] - [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:126] - [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:130] - {Business.StockBusiness.Type.ProductType@47a86fbb=Business.StockBusiness.instance.InstanceController@53dacd14, Business.StockBusiness.Type.ProductType@435fb7b5=Business.StockBusiness.instance.InstanceController@14d14731, Business.StockBusiness.Type.ProductType@5a85c92=Business.StockBusiness.instance.InstanceController@2eced48b, Business.StockBusiness.Type.ProductType@4795ded0=Business.StockBusiness.instance.InstanceController@47c4ecdc, Business.StockBusiness.Type.ProductType@7fe7c640=Business.StockBusiness.instance.InstanceController@42f33b5d, Business.StockBusiness.Type.ProductType@7ce97ee5=Business.StockBusiness.instance.InstanceController@5c8504fd, Business.StockBusiness.Type.ProductType@4e70a728=Business.StockBusiness.instance.InstanceController@4b7e96a, Business.StockBusiness.Type.ProductType@4c4748bf=Business.StockBusiness.instance.InstanceController@6475472c, Business.StockBusiness.Type.ProductType@32811494=Business.StockBusiness.instance.InstanceController@3f07b12c, Business.StockBusiness.Type.ProductType@7bb6ab3a=Business.StockBusiness.instance.InstanceController@4bd1f8dd, Business.StockBusiness.Type.ProductType@19553973=Business.StockBusiness.instance.InstanceController@7096b474, Business.StockBusiness.Type.ProductType@5733f295=Business.StockBusiness.instance.InstanceController@3e14c16d, Business.StockBusiness.Type.ProductType@32c8e539=Business.StockBusiness.instance.InstanceController@3c989952, Business.StockBusiness.Type.ProductType@696f0212=Business.StockBusiness.instance.InstanceController@784b990c, Business.StockBusiness.Type.ProductType@f478a81=Business.StockBusiness.instance.InstanceController@3d3ba765, Business.StockBusiness.Type.ProductType@56c698e3=Business.StockBusiness.instance.InstanceController@25bc0606, Business.StockBusiness.Type.ProductType@1c3146bc=Business.StockBusiness.instance.InstanceController@5d1659ea, Business.StockBusiness.Type.ProductType@73dce0e6=Business.StockBusiness.instance.InstanceController@793138bd, Business.StockBusiness.Type.ProductType@b7838a9=Business.StockBusiness.instance.InstanceController@1951b871}
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:168] - query: SELECT shelfID 
+FROM Shelf
+WHERE storeID=?; params: [2]
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:176] - [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:168] - query: SELECT categoryID 
+FROM Category
+WHERE storeID=?; params: [3]
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:176] - [1, 2, 3, 4]
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.Category,Line:104] - get_categoryID()
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:168] - query: SELECT typeID 
+FROM ProductType
+WHERE storeID=?; params: [3]
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:176] - [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:126] - [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:65] - loaded product types
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:73] - got sale discount
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:67] - loaded sale discounts
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALProductType,Line:366] - query: SELECT discountID  
+FROM Discount  
+WHERE storeID=? AND typeID=?;
+ params: []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:83] - []
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Type.ProductType,Line:69] - loaded supplier discounts
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: Utility.Util,Line:28] - entry is already in DB, will not attempt insert.
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:130] - {Business.StockBusiness.Type.ProductType@1d0d6318=Business.StockBusiness.instance.InstanceController@5c153b9e, Business.StockBusiness.Type.ProductType@4409e975=Business.StockBusiness.instance.InstanceController@2a7686a7, Business.StockBusiness.Type.ProductType@463b4ac8=Business.StockBusiness.instance.InstanceController@758a34ce, Business.StockBusiness.Type.ProductType@5c18016b=Business.StockBusiness.instance.InstanceController@7ec3394b, Business.StockBusiness.Type.ProductType@62f68dff=Business.StockBusiness.instance.InstanceController@bff34c6, Business.StockBusiness.Type.ProductType@7c098bb3=Business.StockBusiness.instance.InstanceController@1522d8a0, Business.StockBusiness.Type.ProductType@31e4bb20=Business.StockBusiness.instance.InstanceController@312ab28e, Business.StockBusiness.Type.ProductType@f001896=Business.StockBusiness.instance.InstanceController@5644dc81, Business.StockBusiness.Type.ProductType@18cebaa5=Business.StockBusiness.instance.InstanceController@246f8b8b, Business.StockBusiness.Type.ProductType@765f05af=Business.StockBusiness.instance.InstanceController@278bb07e, Business.StockBusiness.Type.ProductType@33aeca0b=Business.StockBusiness.instance.InstanceController@4351c8c3, Business.StockBusiness.Type.ProductType@1ae67cad=Business.StockBusiness.instance.InstanceController@3381b4fc, Business.StockBusiness.Type.ProductType@4ba302e0=Business.StockBusiness.instance.InstanceController@6bea52d4, Business.StockBusiness.Type.ProductType@e98770d=Business.StockBusiness.instance.InstanceController@11981797, Business.StockBusiness.Type.ProductType@13f17eb4=Business.StockBusiness.instance.InstanceController@5c42d2b7, Business.StockBusiness.Type.ProductType@43aaf813=Business.StockBusiness.instance.InstanceController@625abb97, Business.StockBusiness.Type.ProductType@4bc28c33=Business.StockBusiness.instance.InstanceController@5b1f29fa, Business.StockBusiness.Type.ProductType@57ac5227=Business.StockBusiness.instance.InstanceController@aeab9a1, Business.StockBusiness.Type.ProductType@2f6e28bc=Business.StockBusiness.instance.InstanceController@40f70521}
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:168] - query: SELECT shelfID 
+FROM Shelf
+WHERE storeID=?; params: [3]
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalStock.DALStoreController,Line:176] - [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalController,Line:79] - Select query: SELECT * FROM StoreController WHERE storeID=? params: [4]
+failed due to 
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.DalController,Line:118] - DalController from RS error due to: java.sql.SQLException: ResultSet closed
+[WARN ] 15-06-2021 18:48:57 [class: DataAccess.SMapper,Line:116] - mapper returned null on:class DataAccess.DalStock.DALStoreController
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:95] - storeID is not in DB
+[WARN ] 15-06-2021 18:48:57 [class: Business.StockBusiness.Fcade.StorageService,Line:486] - java.lang.IllegalArgumentException: storeID is not in DB
+[DEBUG] 15-06-2021 18:48:57 [class: Business.StockBusiness.StoreController,Line:156] - got inside getID Method
+[DEBUG] 15-06-2021 18:49:01 [class: Business.ApplicationFacade.RegularRoleController,Line:46] - entered login function with user id: 6
+[DEBUG] 15-06-2021 18:49:01 [class: Business.ApplicationFacade.RegularRoleController,Line:48] - successfully logged in - user fields are updated to +6
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT numOfOrders FROM SupplierController
+WHERE controller = ?; params: [0]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT supplierBN FROM Suppliers
+WHERE supplierBN = ?; params: [2]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: Select * FROM Orders
+WHERE orderId = ?; params: [5]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:39] - create new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT orderType FROM Orders
+WHERE orderId = ?; params: [3]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT orderType FROM Orders
+WHERE orderId = ?; params: [5]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT totalAmount FROM Orders
+WHERE orderId = ?; params: [5]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT price FROM Items
+WHERE itemId = ?; params: [4]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT minimalAmount FROM QuantityDocuments
+WHERE itemId = ?; params: [4]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT discount FROM QuantityDocuments
+WHERE itemId = ?; params: [4]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT totalAmount FROM Orders
+WHERE orderId = ?; params: [5]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT price FROM Items
+WHERE itemId = ?; params: [4]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT totalWeight FROM Orders
+WHERE orderId = ?; params: [5]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT weight FROM Items
+WHERE itemId = ?; params: [4]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT shipToUs FROM SupplierAgreements
+WHERE supplierBN = ?; params: [2]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT shipToUs FROM SupplierAgreements
+WHERE supplierBN = ?; params: [2]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT branchId FROM Orders
+WHERE orderId = ?; params: [5]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT orderType FROM Orders
+WHERE orderId = ?; params: [5]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT totalWeight FROM Orders
+WHERE orderId = ?; params: [5]
+failed due to 
+[DEBUG] 15-06-2021 18:49:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:418] - loading data of branch id: 1
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.Shift,Line:54] - shift: 12 created
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:290] - EID: 12 remove from optionals
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:290] - EID: 19 remove from optionals
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:290] - EID: 26 remove from optionals
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:290] - EID: 13 remove from optionals
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:290] - EID: 100 remove from optionals
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:290] - EID: 11 remove from optionals
+[DEBUG] 15-06-2021 18:49:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:418] - loading data of branch id: 1
+[DEBUG] 15-06-2021 18:49:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:418] - loading data of branch id: 1
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.Shift,Line:54] - shift: 13 created
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:290] - EID: 11 remove from optionals
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:290] - EID: 18 remove from optionals
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:290] - EID: 25 remove from optionals
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.ShiftController,Line:290] - EID: 12 remove from optionals
+[DEBUG] 15-06-2021 18:49:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:418] - loading data of branch id: 1
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:39] - create new Object
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:88] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT orderType FROM Orders
+WHERE orderId = ?; params: [3]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:117] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT * FROM QuantityDocuments
+WHERE itemId = ?; params: [8]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Item,Line:62] - loaded new Object
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:117] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT * FROM QuantityDocuments
+WHERE itemId = ?; params: [15]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Item,Line:62] - loaded new Object
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:117] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT * FROM QuantityDocuments
+WHERE itemId = ?; params: [4]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Item,Line:62] - loaded new Object
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:88] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT orderType FROM Orders
+WHERE orderId = ?; params: [4]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:117] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT * FROM QuantityDocuments
+WHERE itemId = ?; params: [9]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Item,Line:62] - loaded new Object
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:117] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT * FROM QuantityDocuments
+WHERE itemId = ?; params: [16]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Item,Line:62] - loaded new Object
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:117] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT * FROM QuantityDocuments
+WHERE itemId = ?; params: [5]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Item,Line:62] - loaded new Object
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:39] - create new Object
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:88] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT orderType FROM Orders
+WHERE orderId = ?; params: [3]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:117] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT * FROM QuantityDocuments
+WHERE itemId = ?; params: [8]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Item,Line:62] - loaded new Object
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:117] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT * FROM QuantityDocuments
+WHERE itemId = ?; params: [15]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Item,Line:62] - loaded new Object
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:117] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT * FROM QuantityDocuments
+WHERE itemId = ?; params: [4]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Item,Line:62] - loaded new Object
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:88] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT orderType FROM Orders
+WHERE orderId = ?; params: [4]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:117] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT * FROM QuantityDocuments
+WHERE itemId = ?; params: [9]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Item,Line:62] - loaded new Object
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:117] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT * FROM QuantityDocuments
+WHERE itemId = ?; params: [16]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Item,Line:62] - loaded new Object
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Order,Line:117] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT * FROM QuantityDocuments
+WHERE itemId = ?; params: [5]
+failed due to 
+[INFO ] 15-06-2021 18:49:15 [class: Business.SupplierBusiness.Item,Line:62] - loaded new Object
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT totalWeight FROM Orders
+WHERE orderId = ?; params: [5]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT branchId FROM Orders
+WHERE orderId = ?; params: [5]
+failed due to 
+[DEBUG] 15-06-2021 18:49:15 [class: Business.ApplicationFacade.ManagerRoleController,Line:418] - loading data of branch id: 1
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.Shift,Line:152] - EID: 101 remove from optionals
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.Shift,Line:105] - EID: 101added to SID: 13
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.Shift,Line:152] - EID: 6 remove from optionals
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.Shift,Line:105] - EID: 6added to SID: 13
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.Shift,Line:152] - EID: 6 remove from optionals
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 43 created
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.Shift,Line:152] - EID: 101 remove from optionals
+[DEBUG] 15-06-2021 18:49:15 [class: Business.Employees.ShiftPKG.TempConstraint,Line:17] - Temp constraint 44 created
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT supplierBN FROM Orders
+WHERE orderId = ?; params: [5]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT totalAmount FROM Orders
+WHERE orderId = ?; params: [5]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT branchId FROM Orders
+WHERE orderId = ?; params: [5]
+failed due to 
+[WARN ] 15-06-2021 18:49:15 [class: DataAccess.DalController,Line:79] - Select query: SELECT transportationID FROM Orders
+WHERE orderId = ?; params: [5]
+failed due to 

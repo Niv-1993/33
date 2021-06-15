@@ -14,6 +14,7 @@ import Business.Type.Area;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -102,16 +103,32 @@ public class TransportationService {
                     driverList = drivers.chooseDriver(i, morning);
                     leavingTime = morning;
                 }
+                else {
+                    if (drivers.checkAvailableStoreKeeperAndShifts(bran.getId(), i, noon) & drivers.checkAvailableDriver(bran.getId(), i, noon)) {
+                        driverList = drivers.chooseDriver(i, noon);
+                        leavingTime = noon;
+                    }
+                }
             } else if (drivers.checkAvailableStoreKeeperAndShifts(bran.getId(), i, noon) & drivers.checkAvailableDriver(bran.getId(), i, noon)) {
                 driverList = drivers.chooseDriver(i, noon);
                 leavingTime = noon;
             }
-            List<Truck> unavailableTrucks= dataControl.getTransportations(date,  leavingTime).stream().map(t->t.getTruck()).collect(Collectors.toList());
-            trucks.stream().filter(t->!unavailableTrucks.contains(t)).collect(Collectors.toList());
-            chooseTruck = trucks.get(0);
-            List<Driver> unavailableDriver= dataControl.getTransportations(date,leavingTime).stream().map(t->t.getDriver()).collect(Collectors.toList());
-            driverList.stream().filter(d->!unavailableDriver.contains(d));
-            for (Driver d:driverList) {
+            else
+                continue;
+            List<Long> unavailableTrucks= dataControl.getTransportations(i,  leavingTime).stream().map(t->t.getTruck().getId()).collect(Collectors.toList());
+            List<Truck> newTrucks=new ArrayList<>();
+            for(Truck t: trucks){
+                if(!unavailableTrucks.contains(t.getId()))
+                    newTrucks.add(t);
+            }
+            chooseTruck = newTrucks.get(0);
+            List<Integer> unavailableDriver= dataControl.getTransportations(i,leavingTime).stream().map(t->t.getDriver().getEID()).collect(Collectors.toList());
+           List<Driver> newDrivers=new ArrayList<>();
+            for(Driver d: driverList){
+               if(!unavailableDriver.contains(d.getEID()))
+                   newDrivers.add(d);
+           }
+            for (Driver d:newDrivers) {
                 if(d.getLicense()>=chooseTruck.getLicense()){
                     date = i;
                     chosenDriver = d;
