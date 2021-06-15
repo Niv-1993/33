@@ -7,6 +7,8 @@ import DataAccess.DalSuppliers.DalSupplierController;
 import DataAccess.SMapper;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
+
+import java.rmi.server.ExportException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -559,6 +561,16 @@ public class SupplierController{
             supplierCard.updateArrived(orderId);
         }catch (Exception e){
             throw new Exception(e.getMessage());
+        }
+    }
+
+    public LocalDate getExpirationDate(int supplierBN , int itemId) throws ExportException {
+        try{
+            SupplierCard supplierCard = suppliers.get(supplierBN);
+            if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+            return supplierCard.getExpirationDate(itemId);
+        }catch (Exception e){
+            throw new ExportException(e.getMessage());
         }
     }
 }
