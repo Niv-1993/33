@@ -8,11 +8,9 @@ import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.iControllers.iRegularRoleController;
 import Business.StockBusiness.Fcade.StorageService;
 import Business.SupplierBusiness.facade.SupplierService;
-import Business.Type.Area;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.*;
 
 public class Controllers {
@@ -102,8 +100,7 @@ public class Controllers {
         int[] terms = {1000, 5, 10};
         dc.addNewDriver(100, "Driver1", bankDetails, 40000,LocalDate.now(),terms,13000);
         dc.addNewDriver(101, "Driver2", bankDetails, 40000,LocalDate.now(),terms,13000);
-        tc.addTrans(1, Area.South, LocalDate.of(2021,6,30), LocalTime.of(14,30),12000,100,4);
-    }
+        }
 
 
     private void initializeEmpsModule(){

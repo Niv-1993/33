@@ -17,6 +17,7 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class TransportationService {
@@ -54,7 +55,6 @@ public class TransportationService {
 
     public boolean cancelTran(long tranId) throws Exception {
         Transportation toDelete = dataControl.getTransportation(tranId);
-        Long id=tranId;
         if(toDelete==null)
         {
             System.out.println("Transportation with this id is not exists.");
@@ -90,20 +90,27 @@ public class TransportationService {
             announceManagers(order.getBranchID(),days,"no compatible truck was found for new Order: " +order.getOrderId() + "\n at Date: " + LocalDate.now().toString() + ",time: " + LocalTime.now().toString());
             throw new IllegalArgumentException("No truck compatible for this order's weight. ");
         }
-        Truck  chooseTruck = trucks.get(0);
         Driver chosenDriver = null;
         LocalDate date = null;
         LocalTime leavingTime= null;
         boolean found = false;
+        Truck  chooseTruck=null;
         for (LocalDate i = LocalDate.now(); i.compareTo(days) <= 0 & !found; i = LocalDate.now().plusDays(1)) {
             List<Driver> driverList = new LinkedList<>();
             if (drivers.checkAvailableStoreKeeperAndShifts(bran.getId(), i, morning) & drivers.checkAvailableDriver(bran.getId(), i, morning)) {
-                driverList = drivers.chooseDriver(i, morning);
-                leavingTime = morning;
+                if(i.compareTo(LocalDate.now())!=0 | !(LocalTime.now().compareTo(LocalTime.of(14,0))>=0)) {
+                    driverList = drivers.chooseDriver(i, morning);
+                    leavingTime = morning;
+                }
             } else if (drivers.checkAvailableStoreKeeperAndShifts(bran.getId(), i, noon) & drivers.checkAvailableDriver(bran.getId(), i, noon)) {
                 driverList = drivers.chooseDriver(i, noon);
                 leavingTime = noon;
             }
+            List<Truck> unavailableTrucks= dataControl.getTransportations(date,  leavingTime).stream().map(t->t.getTruck()).collect(Collectors.toList());
+            trucks.stream().filter(t->!unavailableTrucks.contains(t)).collect(Collectors.toList());
+            chooseTruck = trucks.get(0);
+            List<Driver> unavailableDriver= dataControl.getTransportations(date,leavingTime).stream().map(t->t.getDriver()).collect(Collectors.toList());
+            driverList.stream().filter(d->!unavailableDriver.contains(d));
             for (Driver d:driverList) {
                 if(d.getLicense()>=chooseTruck.getLicense()){
                     date = i;
@@ -116,6 +123,10 @@ public class TransportationService {
         if(chosenDriver == null){
             announceManagers(order.getBranchID(),days,"no compatible driver was found for new Order: " +order.getOrderId() + "\n at Date: " + LocalDate.now().toString() + ",time: " + LocalTime.now().toString());
             throw new IllegalArgumentException("no driver compatible for this order");
+        }
+        if(chooseTruck == null){
+            announceManagers(order.getBranchID(),days,"no compatible truck was found for new Order: " +order.getOrderId() + "\n at Date: " + LocalDate.now().toString() + ",time: " + LocalTime.now().toString());
+            throw new IllegalArgumentException("no truck compatible for this order");
         }
         HashMap <Integer,Order> newOrdersList = new HashMap<>();
         newOrdersList.put(order.getOrderId(),order);
