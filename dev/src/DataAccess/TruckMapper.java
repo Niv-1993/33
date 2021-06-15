@@ -2,7 +2,7 @@ package DataAccess;
 
 
 import Business.Transportation.Truck;
-import java.io.IOException;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +36,7 @@ public class TruckMapper extends Mapper{
                trucks.put(rs.getLong("ID"),tr);
             }
         } catch (SQLException e) {
-            throw new IOException("failed to get all trucks from database");
+            //throw new IOException("failed to get all trucks from database");
         }
         return new ArrayList<>(trucks.values());
     }
@@ -50,7 +50,7 @@ public class TruckMapper extends Mapper{
                 trucks.put(rs.getLong("ID"),tr);
             }
         } catch (SQLException e) {
-            throw new IOException("failed to get all trucks from database");
+            //throw new IOException("failed to get all trucks from database");
         }
         return new ArrayList<>(trucks.values());
     }
@@ -65,7 +65,7 @@ public class TruckMapper extends Mapper{
                     return new Truck(rs.getLong("ID"),rs.getInt("License"),rs.getInt("MaxWeight"),rs.getInt("NetWeight"),rs.getString("Model"));
                 }
             } catch (SQLException e) {
-                throw new IOException("failed to get all trucks from database");
+                //throw new IOException("failed to get all trucks from database");
             }
             return null;
     }
@@ -88,9 +88,9 @@ public class TruckMapper extends Mapper{
             pstmt.setInt(5, license);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
         }
     }
 
@@ -102,7 +102,8 @@ public class TruckMapper extends Mapper{
             Truck it=select(id);
             if (it!=null)
                 return it;
-            throw new IOException("Truck does not exists");
+           // throw new IOException("Truck does not exists");
+            return null;
         }
     }
 }

@@ -59,7 +59,7 @@ public class TransportationMapper extends Mapper {
                 transportations.put(tran.getId(), tran);
             return toRet;
         } catch (SQLException e) {
-            System.out.println("selectAll()-> TransportationMapper ->"+e.getMessage());
+            //System.out.println("selectAll()-> TransportationMapper ->"+e.getMessage());
             throw new IOException("Failed to load all transportations from database. Error: " + e.getMessage());
         }
     }
@@ -91,7 +91,7 @@ public class TransportationMapper extends Mapper {
                 return tran;
             }
         } catch (SQLException e) {
-            System.out.println("select()-> TransportationMapper ->"+e.getMessage());
+            //System.out.println("select()-> TransportationMapper ->"+e.getMessage());
             throw new IOException("Failed to get transportation from database. Transportation id: " + id + ". Error: " + e.getMessage());
         }
         return null;
@@ -115,7 +115,7 @@ public class TransportationMapper extends Mapper {
             }
             return null;
         } catch (SQLException e) {
-            System.out.println("selectTransportationIdByDriverAndDate()-> TransportationMapper ->"+e.getMessage());
+            //System.out.println("selectTransportationIdByDriverAndDate()-> TransportationMapper ->"+e.getMessage());
             throw new IOException("Failed to get transportation id by driver and date from database. Error: " + e.getMessage());
         }
     }
@@ -148,7 +148,7 @@ public class TransportationMapper extends Mapper {
             pstmt.setLong(7, truckID);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("insert()-> TransportationMapper ->"+e.getMessage());
+            //System.out.println("insert()-> TransportationMapper ->"+e.getMessage());
             throw new IOException(e.getMessage());
         }
     }
@@ -232,10 +232,10 @@ public class TransportationMapper extends Mapper {
             pstmt.setLong(7, truckID);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Failed to insert new transportation. Id: " + id + " Error: " + e.getMessage());
+            //System.out.println("Failed to insert new transportation. Id: " + id + " Error: " + e.getMessage());
             throw new IOException(e.getMessage());
         } catch (Exception e) {
-            System.out.println("Failed to insert new transportation. Id: " + id + " Error: " + e.getMessage());
+            //System.out.println("Failed to insert new transportation. Id: " + id + " Error: " + e.getMessage());
             throw new IOException(e.getMessage());
         }
     }
@@ -266,7 +266,7 @@ public class TransportationMapper extends Mapper {
             }
             return toRet;
         } catch (Exception e) {
-            System.out.println("Failed to get transportations list by area. Error: " + e.getMessage());
+            //System.out.println("Failed to get transportations list by area. Error: " + e.getMessage());
             throw new IOException(e.getMessage());
         }
     }
@@ -287,7 +287,7 @@ public class TransportationMapper extends Mapper {
             System.out.println("Failed to update transportation weight. Transportation id: " + id + " Error: " + e.getMessage());
             throw new IOException(e.getMessage());
         } catch (Exception e) {
-            System.out.println("Failed to update transportation weight. Transportation id: " + id + " Error: " + e.getMessage());
+            //System.out.println("Failed to update transportation weight. Transportation id: " + id + " Error: " + e.getMessage());
             throw new IOException(e.getMessage());
         }
 
@@ -351,7 +351,7 @@ public class TransportationMapper extends Mapper {
             }
             return toRet;
         } catch (Exception e) {
-            System.out.println("Failed to get transportations list by date. Error: " + e.getMessage());
+            //System.out.println("Failed to get transportations list by date. Error: " + e.getMessage());
             throw new IOException(e.getMessage());
         }
     }
@@ -389,9 +389,9 @@ public class TransportationMapper extends Mapper {
             pstmt.setString(5, message);
             pstmt.executeUpdate();
         } catch (SQLException throwables) {
-            System.out.println(throwables.getMessage());
+            //System.out.println(throwables.getMessage());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
         }
     }
 
@@ -409,7 +409,7 @@ public class TransportationMapper extends Mapper {
                 return rs.getInt("MA");
             }
         } catch (SQLException e) {
-            System.out.println("getCurrMessageId()-> TransportationMapper ->"+e.getMessage());
+            //System.out.println("getCurrMessageId()-> TransportationMapper ->"+e.getMessage());
             throw new IOException("Failed to get current message id from database. Error: " + e.getMessage());
         }
         return -1;
@@ -445,14 +445,6 @@ public class TransportationMapper extends Mapper {
        }
     }
 
-    public void addTransportation(int id, LocalDate date, LocalTime time, Area south, int driver, int truck, double weight) {
-        try {
-            insert(id,south.toString(),date.toString(),time.toString(),weight,driver,truck);
-        } catch (IOException e) {
-            System.out.println("could not add new transportation to db. Error: "+e.getMessage());
-        }
-    }
-
     public HashMap<Integer, Order> getOrdersByTranId(int tranId) throws Exception {
         Order order = new regularOrder(0, 0, 1);
         List<Order> ordersList = order.getOrdersByTransportation(tranId);
@@ -476,7 +468,7 @@ public class TransportationMapper extends Mapper {
         try {
             updateTransWeight(id,transportations.get(id).getWeight());
         } catch (IOException e) {
-            System.out.println("Failed to change existed order transportation weight. updateOrder()-> transportationMapper-> "+e.getMessage());
+            //System.out.println("Failed to change existed order transportation weight. updateOrder()-> transportationMapper-> "+e.getMessage());
         }
     }
 }

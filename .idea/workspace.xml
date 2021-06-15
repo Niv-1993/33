@@ -22,10 +22,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="finish add order to trans">
+    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="EDIT LONG TRANS OUT TIME">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/Transportation.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/Transportation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/TruckMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/TruckMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Presentation/TransportationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/TransportationController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +142,7 @@
       <workItem from="1623698896080" duration="5504000" />
       <workItem from="1623751680831" duration="1347000" />
       <workItem from="1623761492207" duration="9159000" />
-      <workItem from="1623788113106" duration="57000" />
+      <workItem from="1623788113106" duration="1096000" />
     </task>
     <task id="LOCAL-00001" summary="add mappers - data layer">
       <created>1620304052353</created>
@@ -298,7 +301,13 @@
       <option name="presentableId" value="LOCAL‎00025" />
       <updated>1623786879477</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL‎00026" summary="EDIT LONG TRANS OUT TIME">
+      <created>1623788192949</created>
+      <option name="number" value="LOCAL‎00026" />
+      <option name="presentableId" value="LOCAL‎00026" />
+      <updated>1623788192949</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,7 +345,8 @@
     <MESSAGE value="EDIT REMOVE ORDER FROM TRANSPORTATION" />
     <MESSAGE value="edit add new transportation" />
     <MESSAGE value="finish add order to trans" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish add order to trans" />
+    <MESSAGE value="EDIT LONG TRANS OUT TIME" />
+    <option name="LAST_COMMIT_MESSAGE" value="EDIT LONG TRANS OUT TIME" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -358,17 +368,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java</url>
-          <line>233</line>
+          <line>235</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java</url>
-          <line>131</line>
+          <line>133</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java</url>
-          <line>119</line>
+          <line>121</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">

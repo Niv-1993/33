@@ -22,13 +22,13 @@ public class TransportationController {
 
             ResponseData<List<Integer>> res = serviceControl.checkAvailableDriverSubs(driverID, time, date, optionalDrivers);
             if (res.isError()) {
-                System.out.println("Could not check available drivers for replacement. Error: " + res.getError());
+                //System.out.println("Could not check available drivers for replacement. Error: " + res.getError());
                 return new ArrayList<>();
             } else {
                 return res.getData();
             }
         } catch (Exception e) {
-            System.out.println("Could not check available drivers for replacement. Error: " + e.getMessage());
+            //System.out.println("Could not check available drivers for replacement. Error: " + e.getMessage());
             return new ArrayList<>();
         }
     }
@@ -36,7 +36,7 @@ public class TransportationController {
     public void swapDrivers(int newDriverID, int oldDriverID, String time, LocalDate date){
         Response res = serviceControl.swapDrivers(newDriverID,oldDriverID,time,date);
         if(res.isError()) {
-            System.out.println("Could not swap drivers. Error: "+res.getError());
+            //System.out.println("Could not swap drivers. Error: "+res.getError());
         }
     }
     public TransportationController(iManagerRoleController mc){
@@ -48,7 +48,7 @@ public class TransportationController {
 
         ResponseData<List<TransportationServiceDTO>> res = serviceControl.getDTOTransportations();
         if(res.isError()){
-            System.out.println("Could not get all transportation. Error: "+res.getError());
+            //System.out.println("Could not get all transportation. Error: "+res.getError());
             return new ArrayList<>();
         }
         return res.getData();
@@ -58,7 +58,7 @@ public class TransportationController {
             return serviceControl.cancelTran(id);
         }
         catch (Exception e){
-            System.out.println("Could not delete transportation. Error: "+e.getMessage());
+            //System.out.println("Could not delete transportation. Error: "+e.getMessage());
             return false;
         }
     }
@@ -68,7 +68,7 @@ public class TransportationController {
             serviceControl.addTruck(id, maxWeight, model, netWeight, license);
         }
         catch (Exception e){
-            System.out.println("Could not add truck. Error: "+e.getMessage());
+            //System.out.println("Could not add truck. Error: "+e.getMessage());
         }
     }
     public List<TransportationServiceDTO> getTransportations(int currBID, LocalDate date, LocalTime time) {
@@ -76,7 +76,7 @@ public class TransportationController {
             return serviceControl.getTransportations(date, time);
         }
         catch (Exception e){
-            System.out.println("Could not get transportations by date and bid. Error: "+e.getMessage());
+            //System.out.println("Could not get transportations by date and bid. Error: "+e.getMessage());
             return new ArrayList<>();
         }
     }
@@ -85,7 +85,7 @@ public class TransportationController {
             return serviceControl.addOrderToTransportation(order, weight);
         }
         catch (Exception e){
-            System.out.println("Could not add order to trans. Error: "+e.getMessage());
+            //System.out.println("Could not add order to trans. Error: "+e.getMessage());
             return -1;
         }
     }
@@ -94,7 +94,7 @@ public class TransportationController {
              serviceControl.removeOrderFromTransportation(transID,orderId);
         }
         catch (Exception e){
-            System.out.println("Could not remover order from trans. Error: "+e.getMessage());
+            //System.out.println("Could not remover order from trans. Error: "+e.getMessage());
         }
     }
 
