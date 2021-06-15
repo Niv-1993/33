@@ -128,7 +128,7 @@ public class StoreController implements iStoreController {
             ProductType p_i=new ProductType(getID(),i);
             InstanceController ic_i=new InstanceController(getID(),i);
             _products.put(p_i,ic_i);
-            p_i.set_products(ic_i.getProducts());
+            p_i.initProducts(ic_i.getProducts());
         }
         log.warn(_products);
         for (ProductType p: Collections.list(_products.keys()))

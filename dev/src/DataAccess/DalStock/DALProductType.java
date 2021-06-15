@@ -163,6 +163,9 @@ public class DALProductType extends DALObject {
         }
 
     }
+    public void initProducts(List<Integer> list){
+        _products=list;
+    }
     public void insertSupplier(int storeID, int typeID, int supplierID){
         String query= "INSERT OR REPLACE INTO Supplier VALUES (?,?,?);";
         List<Tuple<Object,Class>> list=prepareList(storeID,typeID,supplierID);

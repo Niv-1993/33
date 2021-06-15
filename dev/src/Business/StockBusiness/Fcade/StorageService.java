@@ -56,10 +56,6 @@ public class StorageService implements iStorageService {
         try {
             reports.Report rep=curr.getWeeklyReport();
             Report ret=new Report(rep.getStore(),rep.getDate(),rep.toString(),rep.getType());
-            reports.NeededReport need=(reports.NeededReport)curr.getNeededReport();
-            for (Integer i: Collections.list(need.get_list().keys())) {
-                supplierService.addNeededOrder(i, need.get_list().get(i), curr.getID());
-            }
             return new Tresponse<>(ret);
         }
         catch (Exception e) {
@@ -72,10 +68,6 @@ public class StorageService implements iStorageService {
         try {
             reports.Report rep=curr.getWeeklyReport(c);
             Report ret=new Report(rep.getStore(),rep.getDate(),rep.toString(),rep.getType());
-            reports.NeededReport need=(reports.NeededReport)curr.getNeededReport();
-            for (Integer i: Collections.list(need.get_list().keys()))
-                if (c.contains(i))
-                    supplierService.addNeededOrder(i,need.get_list().get(i),curr.getID());
             return new Tresponse<>(ret);
         }
         catch (Exception e) {
@@ -290,7 +282,8 @@ public class StorageService implements iStorageService {
     public response removeProduct(int ID) {
         try {
             curr.removeProduct(ID);
-            supplierService.addNeededOrder(curr.getTypeID(ID),1,curr.getID());
+            if (curr.getProductTypeInfo(curr.getTypeID(ID)).getNeededReport()>0)
+                supplierService.addNeededOrder(curr.getTypeID(ID),1,curr.getID());
             return new response();
         }
         catch (Exception e) {
@@ -302,7 +295,8 @@ public class StorageService implements iStorageService {
     public response reportDamage(int ID) {
         try {
             curr.reportDamage(ID);
-            supplierService.addNeededOrder(curr.getTypeID(ID),1,curr.getID());
+            if (curr.getProductTypeInfo(curr.getTypeID(ID)).getNeededReport()>0)
+                supplierService.addNeededOrder(curr.getTypeID(ID),1,curr.getID());
             return new response();
         }
         catch (Exception e) {
@@ -419,14 +413,12 @@ public class StorageService implements iStorageService {
 
     @Override
     public response useStore(int ID, SupplierService ss) {
-        System.out.println("hhoooo");
         loadAllStores();
         boolean found = false;
         try {
             StoreController old=curr;
             for(StoreController s:stores){
                 if(s.getID()==ID) {
-                    System.out.println(s);
                     curr = s;
                     found = true;
                     supplierService = ss;
