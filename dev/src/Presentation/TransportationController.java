@@ -6,7 +6,6 @@ import Business.ApplicationFacade.iControllers.iManagerRoleController;
 import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Business.SupplierBusiness.Order;
 import Business.Transportation.TransportationService;
-import Business.Type.Area;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -98,7 +97,5 @@ public class TransportationController {
             System.out.println("Could not remover order from trans. Error: "+e.getMessage());
         }
     }
-    public void addTrans(int id, Area south, LocalDate date, LocalTime time, double weight, int driver, int truck){
-        serviceControl.addTransportation(id,south,date,time,weight,driver,truck);
-    }
+
 }

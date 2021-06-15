@@ -144,9 +144,7 @@ public class Transportation {
     }
 
     public boolean canAdd(Order order){
-        if(weight+order.getTotalWeight()<=truck.getMaxWeight()){
-//            orders.put(order.getOrderId(), order);
-//            weight+=order.getTotalWeight();
+        if(weight+order.getTotalWeight()<=truck.getMaxWeight()&&orders.get(0).getOrderType()== order.getOrderType()){
             return true;
         }
         return false;
