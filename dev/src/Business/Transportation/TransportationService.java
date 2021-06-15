@@ -212,8 +212,8 @@ public class TransportationService {
                 Order order = new regularOrder(0, 0, 1);
                 Order or=order.getOrder(orderId);
                 order.removeOrder();
-                drivers.removeDriverFromShiftAndStorekeeper(or.getBranchID(),t.getDriver().getEID(),t.getDate(),t.getLeavingTime());
                 dataControl.remove(transID);
+                drivers.removeDriverFromShiftAndStorekeeper(or.getBranchID(),t.getDriver().getEID(),t.getDate(),t.getLeavingTime());
             }
         }
         catch(Exception e){
