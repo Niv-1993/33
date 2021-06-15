@@ -304,7 +304,6 @@ public class Controllers {
         secondHash.put(12, 4);
         thirdHash.put(4, 1);
         thirdHash.put(8, 2);
-        thirdHash.put(14, 3);
         thirdHash.put(15, 1);
         fourthHash.put(5, 2);
         fourthHash.put(9, 4);
