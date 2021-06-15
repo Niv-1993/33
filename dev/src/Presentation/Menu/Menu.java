@@ -342,46 +342,46 @@ public abstract class Menu {
     protected void cancelDelivery() {
         Scanner scanner = new Scanner(System.in);
         Tresponse<List<SupplierCard>> suppliers = r.getSc().showAllSuppliers();
-        if (suppliers.isError()) System.out.println(suppliers.getError());
-        for (SupplierCard supplierCard : suppliers.getOutObject()) {
-            Tresponse<List<Order>> orders = r.getSc().showAllOrdersOfSupplier(supplierCard.getSupplierBN());
-            if (orders.isError()) System.out.println(orders.getError());
-            for (Order order : orders.getOutObject()) {
-                System.out.println(order.toString());
-                Tresponse<List<Item>> items = r.getSc().showAllItemsOfOrder(supplierCard.getSupplierBN(), Integer.parseInt(order.toStringId()));
-                if (items.isError()) System.out.println(items.getError() + "\n");
-                else {
-                    Tresponse<SupplierAgreement> supplierAgreement = r.getSc().showSupplierAgreement(supplierCard.getSupplierBN());
-                    if (supplierAgreement.isError()) System.out.println(supplierAgreement.getError() + "\n");
-                    else System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
-                    List<Item> responseItem = items.getOutObject();
-                    for (Item item : responseItem) {
-                        System.out.println(item.toString(order.toStringAmount(item.toStringId())));
+        if (!suppliers.isError()) {
+            for (SupplierCard supplierCard : suppliers.getOutObject()) {
+                Tresponse<List<Order>> orders = r.getSc().showAllOrdersOfSupplier(supplierCard.getSupplierBN());
+                if (!orders.isError())
+                    for (Order order : orders.getOutObject()) {
+                        System.out.println(order.toString());
+                        Tresponse<List<Item>> items = r.getSc().showAllItemsOfOrder(supplierCard.getSupplierBN(), Integer.parseInt(order.toStringId()));
+                        if (!items.isError()) {
+                            Tresponse<SupplierAgreement> supplierAgreement = r.getSc().showSupplierAgreement(supplierCard.getSupplierBN());
+                            if (!supplierAgreement.isError())
+                                System.out.println("\tship to us: " + supplierAgreement.getOutObject().toStringShipToUs());
+                            List<Item> responseItem = items.getOutObject();
+                            for (Item item : responseItem) {
+                                System.out.println(item.toString(order.toStringAmount(item.toStringId())));
+                            }
+                        }
                     }
-                }
             }
         }
-        int toReturnSupplier;
         String answer;
+        int toReturnSupplier;
         while (true) {
-            System.out.println("please enter the orderId you want to delete");
+            System.out.println("please enter the supplierBN of the order you want to delete");
             try {
                 answer = read(scanner);
                 toReturnSupplier = Integer.parseInt(answer);
                 break;
             } catch (Exception e) {
-                System.out.println("orderId does not exist or something want wrong");
+                System.out.println("supplierBN does not exist or something want wrong");
             }
         }
         int toReturnOrderId;
         while (true) {
-            System.out.println("please enter the supplierBN of the order you want to delete");
+            System.out.println("please enter the orderId you want to delete");
             try {
                 answer = read(scanner);
                 toReturnOrderId = Integer.parseInt(answer);
                 break;
             } catch (Exception e) {
-                System.out.println("supplierBN does not exist or something want wrong");
+                System.out.println("orderId does not exist or something want wrong");
             }
         }
         response res = r.getSc().removeOrder(toReturnSupplier, toReturnOrderId);

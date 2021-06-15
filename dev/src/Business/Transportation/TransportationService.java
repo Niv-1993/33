@@ -9,6 +9,7 @@ import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Business.ApplicationFacade.outObjects.TruckServiceDTO;
 import Business.Employees.EmployeePKG.Driver;
 import Business.SupplierBusiness.Order;
+import Business.SupplierBusiness.regularOrder;
 import Business.Type.Area;
 
 import java.time.LocalDate;
@@ -61,19 +62,23 @@ public class TransportationService {
         }
         List<Order> orders = toDelete.getOrderList();
         for (Order order:orders){
-            //order.removeOrdersByTransportationId(id.intValue());
+            order.removeOrder();
             drivers.removeDriverFromShiftAndStorekeeper(order.getBranchID(),toDelete.getDriver().getEID(),toDelete.getDate(),toDelete.getLeavingTime());
         }
        return dataControl.remove(tranId);
     }
 
 
-    public long addOrderToTransportation(Order order) throws Exception {
+    public long addOrderToTransportation(Order order, double weight) throws Exception {
         Branch bran = getBranchById(order.getBranchID());
         List<Transportation> trans = dataControl.getTransportationsByArea(bran.getArea());
         for (Transportation tran : trans) {
-            if (tran.canAdd(order)) {
-                dataControl.updateTransWeight(tran.getId(), order.getTotalWeight(), order);
+            if(tran.getOrders().containsKey(order.getOrderId())){
+                dataControl.updateOrder(tran.getId(),weight,order);
+                return tran.getId();
+            }
+            else if (tran.canAdd(order)) {
+                    dataControl.updateTransWeight(tran.getId(), tran.getWeight()+order.getTotalWeight(), order);
                 return tran.getId();
             }
         }
@@ -89,7 +94,8 @@ public class TransportationService {
         Driver chosenDriver = null;
         LocalDate date = null;
         LocalTime leavingTime= null;
-        for (LocalDate i = LocalDate.now(); i.compareTo(days) <= 0; i = LocalDate.now().plusDays(1)) {
+        boolean found = false;
+        for (LocalDate i = LocalDate.now(); i.compareTo(days) <= 0 & !found; i = LocalDate.now().plusDays(1)) {
             List<Driver> driverList = new LinkedList<>();
             if (drivers.checkAvailableStoreKeeperAndShifts(bran.getId(), i, morning) & drivers.checkAvailableDriver(bran.getId(), i, morning)) {
                 driverList = drivers.chooseDriver(i, morning);
@@ -102,6 +108,7 @@ public class TransportationService {
                 if(d.getLicense()>=chooseTruck.getLicense()){
                     date = i;
                     chosenDriver = d;
+                    found = true;
                     break;
                 }
             }
@@ -196,14 +203,17 @@ public class TransportationService {
 
     public void removeOrderFromTransportation(long transID, int orderId) {
         try {
-            boolean empty = dataControl.removeOrderFromTransportation(transID, orderId);
-            if(empty){
-                Transportation t=dataControl.getTransportation(transID);
-                if(t.getDate().compareTo(LocalDate.now())>0)
-                    throw new IllegalArgumentException("Cannot remove order from transportation who already left.");
-                Order order= new Order();
+            Transportation t=dataControl.getTransportation(transID);
+            if(t.getDate().compareTo(LocalDate.now())>0)
+                throw new IllegalArgumentException("Cannot remove order from transportation who already left.");
+            dataControl.removeOrderFromTransportation(transID, orderId);
+            t=dataControl.getTransportation(transID);
+            if(t.getWeight()<=0){
+                Order order = new regularOrder(0, 0, 1);
                 Order or=order.getOrder(orderId);
+                order.removeOrder();
                 drivers.removeDriverFromShiftAndStorekeeper(or.getBranchID(),t.getDriver().getEID(),t.getDate(),t.getLeavingTime());
+                dataControl.remove(transID);
             }
         }
         catch(Exception e){

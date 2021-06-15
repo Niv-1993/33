@@ -2,6 +2,7 @@ package DataAccess;
 
 import Business.Employees.EmployeePKG.Driver;
 import Business.SupplierBusiness.Order;
+import Business.SupplierBusiness.regularOrder;
 import Business.Transportation.Transportation;
 import Business.Transportation.Truck;
 import Business.Type.Area;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TransportationMapper extends Mapper {
@@ -49,18 +51,9 @@ public class TransportationMapper extends Mapper {
                 Long tID = rs.getLong("ID");
                 LocalDate date = LocalDate.parse(rs.getString("Date"));
                 LocalTime time = LocalTime.parse(rs.getString("LeavingTime"));
-                int weight = rs.getInt("Weight");
+                double weight = rs.getDouble("Weight");
                 Area area = Area.valueOf(rs.getString("Area"));
-                List<Order> orders;
-                try {
-                     orders = new Order().getOrdersByTransportation(tID.intValue());
-                }
-                catch (Exception e){
-                    orders =new ArrayList<>();
-                }
                 HashMap<Integer, Order> ordersMap = new HashMap<>();
-                for (Order order : orders)
-                    ordersMap.put(order.getOrderId(), order);
                 toRet.add(new Transportation(tID, date, time, area,tempD, tempT, weight, ordersMap));
             }
             for (Transportation tran : toRet)
@@ -91,17 +84,8 @@ public class TransportationMapper extends Mapper {
                 Area area = Area.valueOf(rs.getString("Area"));
                 LocalDate date = LocalDate.parse(rs.getString("Date"));
                 LocalTime time = LocalTime.parse(rs.getString("LeavingTime"));
-                int weight = rs.getInt("Weight");
-                List<Order> orders;
-                try {
-                    orders = new Order().getOrdersByTransportation(tID.intValue());
-                }
-                catch (Exception e){
-                    orders =new ArrayList<>();
-                }
+                double weight = rs.getDouble("Weight");
                 HashMap<Integer, Order> ordersMap = new HashMap<>();
-                for (Order order : orders)
-                    ordersMap.put(order.getOrderId(), order);
                 Transportation tran = new Transportation(tID, date, time, area,tempD, tempT, weight, ordersMap);
                 if (!transportations.containsKey(tran.getId()))
                     transportations.put(tran.getId(), tran);
@@ -149,6 +133,7 @@ public class TransportationMapper extends Mapper {
         Long id = selectTransportationIdByDriverAndDate(driverID, date, time);
         if (id != null) {
             return select(id, tru, driverMapper);
+
         }
         throw new IOException("No such transportation by those driver, date and time in database");
     }
@@ -194,8 +179,9 @@ public class TransportationMapper extends Mapper {
         }
         else {
             Transportation tra = select(id, truckMapper, driverMapper);
-            if (tra != null)
+            if (tra != null) {
                 return tra;
+            }
             return null;
         }
     }
@@ -207,7 +193,7 @@ public class TransportationMapper extends Mapper {
      * @throws Exception
      */
     public List<Transportation> getAllTransportations(TruckMapper truckMapper, DriverMapper driverMapper) throws Exception {
-        return selectAll(truckMapper, driverMapper);
+       return selectAll(truckMapper, driverMapper);
     }
 
     /**
@@ -278,10 +264,7 @@ public class TransportationMapper extends Mapper {
                 LocalDate date = LocalDate.parse(rs.getString("Date"));
                 LocalTime time = LocalTime.parse(rs.getString("LeavingTime"));
                 double weight = rs.getDouble("Weight");
-                List<Order> orders = new Order().getOrdersByTransportation(tID.intValue());
                 HashMap<Integer, Order> ordersMap = new HashMap<>();
-                for (Order order : orders)
-                    ordersMap.put(order.getOrderId(), order);
                 toRet.add(new Transportation(tID, date, time, are,tempD, tempT, weight, ordersMap));
             }
             return toRet;
@@ -296,10 +279,10 @@ public class TransportationMapper extends Mapper {
      *
      * @throws IOException
      */
-    public void updateTransWeight(long id, double weight, Order order) throws IOException {
+    public void updateTransWeight(long id, double weight) throws IOException {
         String sql = "UPDATE Transportations " +
                 "SET Weight=" + weight
-                + "Where ID=" + id;
+                + " Where ID=" + id;
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
@@ -310,13 +293,12 @@ public class TransportationMapper extends Mapper {
             System.out.println("Failed to update transportation weight. Transportation id: " + id + " Error: " + e.getMessage());
             throw new IOException(e.getMessage());
         }
+
+    }
+    public void changeWeight(long id, double weight, Order order){
         Transportation tra = transportations.get(id);
         tra.setWeight(weight);
-        if (!tra.containOrder(order.getOrderId())) {
-            tra.addOrder(order);
-        } else {
-            tra.replaceOrder(order);
-        }
+        tra.addOrder(order);
         transportations.replace(id, tra);
     }
 
@@ -362,12 +344,8 @@ public class TransportationMapper extends Mapper {
                 LocalDate Date=LocalDate.parse( rs.getString("Date"));
                 LocalTime leavingTime=LocalTime.parse(rs.getString("LeavingTime"));
                 Area area= Area.valueOf(rs.getString("Area"));
-                int weight=rs.getInt("Weight");
-                List<Order> orders = new Order().getOrdersByTransportation(tID.intValue());
+                double weight=rs.getDouble("Weight");
                 HashMap<Integer, Order> ordersMap = new HashMap<>();
-                for (Order order : orders) {
-                    ordersMap.put(order.getOrderId(), order);
-                }
                 Transportation tran = new Transportation(tID, Date, leavingTime,area ,tempD, tempT, weight, ordersMap);
                 if (!transportations.containsKey(tran.getId()))
                     transportations.put(tran.getId(), tran);
@@ -450,8 +428,10 @@ public class TransportationMapper extends Mapper {
         updateTransDriver(id, newDriverID.getEID());
     }
 
-    public boolean removeOrderFromTransportation(long transID, int orderId){
-       transportations.get(transID).removeOrder(orderId);
+    public boolean removeOrderFromTransportation(long transID, int orderId) throws IOException {
+       double ord=transportations.get(transID).getOrders().get(orderId).getTotalWeight();
+       updateTransWeight(transID,transportations.get(transID).getWeight()-ord);
+        transportations.get(transID).removeOrder(orderId);
        return transportations.get(transID).getOrderList().isEmpty();
     }
 
@@ -471,6 +451,33 @@ public class TransportationMapper extends Mapper {
             insert(id,south.toString(),date.toString(),time.toString(),weight,driver,truck);
         } catch (IOException e) {
             System.out.println("could not add new transportation to db. Error: "+e.getMessage());
+        }
+    }
+
+    public HashMap<Integer, Order> getOrdersByTranId(int tranId) throws Exception {
+        Order order = new regularOrder(0, 0, 1);
+        List<Order> ordersList = order.getOrdersByTransportation(tranId);
+        order.removeOrder();
+        HashMap<Integer, Order> ret = new HashMap<>();
+        for (Order o : ordersList)
+            ret.put(o.getOrderId(), o);
+        Transportation t;
+        if (!transportations.containsKey(tranId))
+            t=select(tranId,TruckMapper.getMapper(),DriverMapper.getMapper());
+        else
+            t=transportations.get((long)tranId);
+        t.setOrders(ret);
+        transportations.replace((long) tranId,t);
+        return ret;
+    }
+
+    public void updateOrder(long id, double oldWeight, Order order) {
+        transportations.get(id).setWeight(transportations.get(id).getWeight()-oldWeight+order.getTotalWeight());
+        transportations.get(id).replaceOrder(order);
+        try {
+            updateTransWeight(id,transportations.get(id).getWeight());
+        } catch (IOException e) {
+            System.out.println("Failed to change existed order transportation weight. updateOrder()-> transportationMapper-> "+e.getMessage());
         }
     }
 }

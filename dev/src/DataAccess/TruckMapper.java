@@ -41,7 +41,7 @@ public class TruckMapper extends Mapper{
         return new ArrayList<>(trucks.values());
     }
     public List< Truck> getTrucksByWeight(double weight) throws Exception {
-        String sql = "SELECT * FROM Trucks WHERE MaxWeight>="+weight+ "ORDER BY License ASC";
+        String sql = "SELECT * FROM Trucks WHERE MaxWeight>="+weight+ " ORDER BY License ASC;";
         try (Connection conn = connect();
              Statement stmt = conn.createStatement()){
             ResultSet rs = stmt.executeQuery(sql);

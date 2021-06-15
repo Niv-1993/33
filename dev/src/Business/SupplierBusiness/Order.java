@@ -14,7 +14,7 @@ public class Order {
     protected DalOrder dalOrder;
     final static Logger log=Logger.getLogger(Order.class);
 
-    public  Order(){ }
+    public Order(){ }
     public Order(int supplierBN, int orderId , int branchId , int orderType){
         List<Tuple<Object,Class>> list=new ArrayList<>();
         list.add(new Tuple<>(orderId,Integer.class));
@@ -192,7 +192,7 @@ public class Order {
     }
 
 
-    public void removeOrdersByTransportationId(int tranID) {
+    public void removeOrderByTransportationId(int tranID) {
         dalOrder.removeOrdersByTransportationId(tranID);
     }
 

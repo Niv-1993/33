@@ -336,7 +336,7 @@ public class DalOrder extends DALObject {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        this.totalWeight = totalWeight;
+        this.totalWeight = weight;
     }
 
     public void removeOrdersByTransportationId(int tranID) {

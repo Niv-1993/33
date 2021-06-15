@@ -45,6 +45,7 @@ public class Transportation {
             throw new IllegalArgumentException("order id: "+ orderId+" not found on transportation is: "+ id);
         }
         Order retOrder = orders.get(orderId);
+        weight=weight-retOrder.getTotalWeight();
         orders.remove(orderId);
         return  retOrder;
     }
@@ -58,10 +59,6 @@ public class Transportation {
             throw new IllegalArgumentException("the date is: " + LocalDate.now() + " but u set: " + date + "to be the date.");
         }
         this.date = date;
-    }
-    public void setShippingArea(Area shippingArea) {
-
-        this.shippingArea = shippingArea;
     }
 
 
@@ -90,17 +87,6 @@ public class Transportation {
         this.id = id;
     }
 
-    /**
-     * Adding the new transportation time.
-     * Checks the time and date are after the current time and dates(When the transportation was created).
-     * @param leavingTime
-     */
-    public void setLeavingTime(LocalTime leavingTime) {
-        if ((LocalTime.now().compareTo(leavingTime) > 0) &&  date.compareTo(LocalDate.now())==0) {
-            throw new IllegalArgumentException("u choose incorrect living time.");
-        }
-        this.leavingTime = leavingTime;
-    }
 
     /**
      * sets the transportation weight.
@@ -108,17 +94,12 @@ public class Transportation {
      * @param weight : the weight to set to.
      */
     public void setWeight(double weight){
-
-        if(truck!=null && weight< truck.getNetWeight())
-            throw new IllegalArgumentException("Warning!!! The weight must include the truck net weight. \n");
-        if(truck!=null && weight > truck.getMaxWeight()){
+       if(truck!=null && weight > truck.getMaxWeight()){
             throw new IllegalArgumentException("Warning!!! the curr weight is mismatch to max truck wight.\n");
         }
         this.weight = weight;
     }
 
-
-    public void setTruck(Truck truck) { this.truck = truck; }
     public double getWeight() { return weight; }
     public Truck getTruck() { return truck; }
     public long getId() {
@@ -150,42 +131,25 @@ public class Transportation {
 
     @Override
     public String toString() {
-        return "Business.Transportation: " +
-                "id=" + id + '\n' +
-                ", date=" + date + '\n' +
-                ", leavingTime=" + leavingTime + '\n' +
-                ", driver=" + driver + '\n'
-                //TODO: keep implement of orders.
-                ;
+        return "Transportation{" +
+                "id=" + id +
+                ", date=" + date +
+                ", leavingTime=" + leavingTime +
+                ", driver=" + driver +
+                ", truck=" + truck +
+                ", weight=" + weight +
+                ", shippingArea=" + shippingArea +
+                ", orders=" + orders +
+                '}';
     }
 
-    /**
-     * Method that returns if the user finished to fill all the fields needed to create the transportation.
-     * @return : if the trans is completed.
-     */
-    public boolean isComplete() {
-        //TODO: add orders to method.
-        return !(date == null | leavingTime == null|driver == null| truck == null|shippingArea == null|weight == -1);
-    }
     public boolean canAdd(Order order){
         if(weight+order.getTotalWeight()<=truck.getMaxWeight()){
-            orders.put(order.getOrderId(), order);
-            weight+=order.getTotalWeight();
+//            orders.put(order.getOrderId(), order);
+//            weight+=order.getTotalWeight();
             return true;
         }
         return false;
-    }
-    public boolean canChange(Order newOrder){
-        if(orders.containsKey(newOrder.getOrderId())){
-            Order oldOrder = orders.get(newOrder.getOrderId());
-            double newWeight = weight - oldOrder.getTotalWeight()+newOrder.getTotalWeight();
-            if(truck.getMaxWeight() >= newWeight){
-                orders.replace(newOrder.getOrderId(),newOrder);
-                weight = newWeight;
-                return  true;
-            }
-        }
-        return  false;
     }
 
     public boolean isEmpty(){return orders.isEmpty();}
@@ -203,4 +167,6 @@ public class Transportation {
     public void replaceOrder(Order order) {
         orders.replace(order.getOrderId(),order);
     }
+
+    public void setOrders(HashMap<Integer, Order> ret) { this.orders=ret; }
 }

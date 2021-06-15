@@ -81,9 +81,9 @@ public class TransportationController {
             return new ArrayList<>();
         }
     }
-    public long addOrderToTransportation(Order order) {
+    public long addOrderToTransportation(Order order, double weight) {
         try {
-            return serviceControl.addOrderToTransportation(order);
+            return serviceControl.addOrderToTransportation(order, weight);
         }
         catch (Exception e){
             System.out.println("Could not add order to trans. Error: "+e.getMessage());

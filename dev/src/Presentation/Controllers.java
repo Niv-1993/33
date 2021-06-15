@@ -62,10 +62,10 @@ public class Controllers {
     public void init() {
         initializeEmpsModule();
         initializeStorage();
-        initializeSuppModule();
         initializeTransportationModule();
-
+        initializeSuppModule();
     }
+
     void initializeStorage(){
         StorageService s= st;
         s.addStore(1);
@@ -303,12 +303,12 @@ public class Controllers {
         st.useStore(2, sc);
         sc.addRegularOrder(2, 2, thirdHash);
         sc.addRegularOrder(3, 2, fourthHash);
-        sc.addItemToOrder(0, 0, 0, 2);
-        sc.addItemToOrder(0, 0, 2, 5);
-        sc.addItemToOrder(2, 1, 8, 10);
-        sc.addItemToOrder(3, 2, 11, 4);
-        sc.addItemToOrder(4, 3, 15, 5);
-        sc.addItemToOrder(4, 4, 18, 1);
+        sc.addItemToOrder(0, 1, 1, 2);
+        sc.addItemToOrder(0, 1, 2, 5);
+        sc.addItemToOrder(2, 3, 4, 10);
+        sc.addItemToOrder(3, 4, 5, 4);
+        sc.addItemToOrder(3, 4, 9, 5);
+        sc.addItemToOrder(1, 2, 3, 1);
     }
 
 

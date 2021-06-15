@@ -330,7 +330,8 @@ public class SupplierService implements ISupplierService {
                 order.updateArrived();
             }
             else {
-                transportationController.addOrderToTransportation(order);
+                Long tranId = transportationController.addOrderToTransportation(order, 0);
+                order.updateTransportation(tranId.intValue());
             }
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
@@ -372,7 +373,7 @@ public class SupplierService implements ISupplierService {
                 order.updateArrived();
             }
             else {
-                transportationController.addOrderToTransportation(order);
+                transportationController.addOrderToTransportation(order, 0);
             }
         }catch (Exception e){
             return new Tresponse<>("ERROR: " + e.getMessage());
@@ -386,6 +387,7 @@ public class SupplierService implements ISupplierService {
         Business.SupplierBusiness.Order order;
         Tuple<Business.SupplierBusiness.Order, Boolean> tuple;
         try{
+            double oldWeight = supplierController.showOrderOfSupplier(supplierBN, orderId).getTotalWeight();
             tuple = supplierController.addItemToOrder(supplierBN, orderId, itemId , amount);
             item = tuple.item1.getItem(itemId);
             order = tuple.item1;
@@ -404,7 +406,7 @@ public class SupplierService implements ISupplierService {
                 order.updateArrived();
             }
             else {
-                transportationController.addOrderToTransportation(tuple.item1);
+                transportationController.addOrderToTransportation(tuple.item1, oldWeight);
             }
             for(int i = 0 ; i < amount ; i++) {
                 stockService.addProduct(itemId, Date.from(item.getExpirationDate().atStartOfDay(zone).toInstant()));
