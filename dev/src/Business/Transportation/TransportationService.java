@@ -85,7 +85,7 @@ public class TransportationService {
         if(weight!=0){
             return -1;
         }
-        LocalDate days = (order.getOrderType() == 0) ? LocalDate.now().plusDays(7) : LocalDate.now().plusDays(2);
+        LocalDate days = LocalDate.now().plusDays(7);
         LocalTime noon = LocalTime.parse("15:00");
         LocalTime morning = LocalTime.parse("09:00");
         List<Truck> trucks = dataControl.getTrucksByWeight(order.getTotalWeight());
@@ -242,7 +242,6 @@ public class TransportationService {
                 throw new IllegalArgumentException("Cannot remove order from transportation who already left.");
             dataControl.removeOrderFromTransportation(transID, orderId);
             if(t.getOrderList().isEmpty()){
-                //Order or=order.getOrder(orderId);
                 dataControl.remove(transID);
                 drivers.removeDriverFromShiftAndStorekeeper(branId,t.getDriver().getEID(),t.getDate(),t.getLeavingTime());
             }

@@ -22,10 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="add case in accept delivery">
+    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="finish add order to trans">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ADSS_Group_B.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ADSS_Group_B.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Presentation/CLIPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/CLIPresentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/Transportation.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/Transportation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +139,7 @@
       <workItem from="1623698896080" duration="5504000" />
       <workItem from="1623751680831" duration="1347000" />
       <workItem from="1623761492207" duration="9159000" />
+      <workItem from="1623788113106" duration="57000" />
     </task>
     <task id="LOCAL-00001" summary="add mappers - data layer">
       <created>1620304052353</created>
@@ -291,7 +292,13 @@
       <option name="presentableId" value="LOCAL‎00024" />
       <updated>1623767348406</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL‎00025" summary="finish add order to trans">
+      <created>1623786879477</created>
+      <option name="number" value="LOCAL‎00025" />
+      <option name="presentableId" value="LOCAL‎00025" />
+      <updated>1623786879477</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,7 +335,8 @@
     <MESSAGE value="add area to insert db" />
     <MESSAGE value="EDIT REMOVE ORDER FROM TRANSPORTATION" />
     <MESSAGE value="edit add new transportation" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit add new transportation" />
+    <MESSAGE value="finish add order to trans" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish add order to trans" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -366,7 +374,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dev/src/DataAccess/ShiftMapper.java</url>
           <line>188</line>
-          <properties class="DataAccess.ShiftMapper">
+          <properties class="DataAccess.ShiftMapper" method="deleteEmpFromShift">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="18" />
