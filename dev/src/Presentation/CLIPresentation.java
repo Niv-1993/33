@@ -343,6 +343,7 @@ public class CLIPresentation {
             System.out.println("\n\n************* Login **************");
             System.out.println("Please enter your ID and role");
             EID = getEmpID();
+            if(EID==-1) return;
             role = chooseRole();
             if (!r.getRc().isQualified(EID, role)) {
                 if (goBack()) return;
