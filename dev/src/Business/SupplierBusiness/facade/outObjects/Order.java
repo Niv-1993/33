@@ -9,14 +9,10 @@ public class Order {
     private final int orderId;
     private final int supplierBN;
     private final double totalAmount;
-
-    public int getBranchId() {
-        return branchId;
-    }
-
     private final int branchId;
     private final Hashtable<Integer, Integer> items;
     private final int transportationId;
+    private final boolean isArrived;
 
     public Order(Business.SupplierBusiness.Order order) {
         orderId = order.getOrderId();
@@ -25,6 +21,7 @@ public class Order {
         branchId = order.getBranchID();
         items = order.getAmounts();
         transportationId = order.getTransportationId();
+        isArrived = order.isArrived();
     }
 
     public String toString() {
@@ -59,4 +56,11 @@ public class Order {
     public Hashtable<Integer, Integer> getItems() {
         return items;
     }
+
+    public int getBranchId() {
+        return branchId;
+    }
+
+    public boolean getIsArrived() { return isArrived; }
+
 }
