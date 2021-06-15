@@ -440,9 +440,13 @@ public class StorageService implements iStorageService {
         Date date=new Date();
         date.setTime(date.getTime()+14);
         for (Business.SupplierBusiness.facade.outObjects.Order o: orders){
-            for (Integer i: Collections.list(o.getItems().keys())){
-                for (int j=0; j<o.getItems().size(); j++)
-                    addProduct(i,date);
+            if (o.getBranchId()==curr.getID() && !o.getIsArrived()) {
+                for (Integer i : Collections.list(o.getItems().keys())) {
+                    for (int j = 0; j < o.getItems().size(); j++) {
+                        addProduct(i, date);
+                    }
+                }
+                supplierService.updateArrived(o.getSupplierBN(),o.getOrderId());
             }
         }
     }

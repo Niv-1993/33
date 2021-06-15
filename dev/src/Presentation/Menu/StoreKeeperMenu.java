@@ -2,11 +2,13 @@ package Presentation.Menu;
 
 
 import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
+import Business.SupplierBusiness.facade.outObjects.Order;
 import Presentation.Controllers;
 import Presentation.StockCLI;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -53,14 +55,27 @@ public class StoreKeeperMenu extends Menu{
                     new SuppliersMenu(r,input).show();
                     break;
                 case "7":
+                    List<TransportationServiceDTO> listOfTran=new ArrayList<>();
                     List<TransportationServiceDTO> trans =  r.getTc().getTransportations(r.getCurrBID(), LocalDate.now(), LocalTime.now());
-                    if(trans.isEmpty()) {
+                    for (TransportationServiceDTO t : trans) {
+                        boolean checkTran=false;
+                        for(Order o: t.getOrders().values().stream().toList())
+                        {
+                            if (!o.getIsArrived() && o.getBranchId()==r.getCurrBID()) {
+                                checkTran = true;
+                                break;
+                            }
+                        }
+                        if (checkTran)
+                            listOfTran.add(t);
+                    }
+                    if(listOfTran.isEmpty()) {
                         System.out.println("No transportations available for this shift");
                         break;
                     }
-                    for (TransportationServiceDTO t : trans)
+                    for (TransportationServiceDTO t: listOfTran)
                         System.out.println(t.toString());
-                    TransportationServiceDTO acceptT = getAcceptID(trans);
+                    TransportationServiceDTO acceptT = getAcceptID(listOfTran);
                     if(acceptT == null) break; //go back to main menu
                         r.getSt().acceptTrans(acceptT);
                         break;

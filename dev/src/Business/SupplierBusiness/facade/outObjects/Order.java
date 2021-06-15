@@ -63,4 +63,11 @@ public class Order {
 
     public boolean getIsArrived() { return isArrived; }
 
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public int getSupplierBN() {
+        return supplierBN;
+    }
 }
