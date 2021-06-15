@@ -330,4 +330,10 @@ public class Shift {
         }
         return null; //never
     }
+
+    public void decrementDriverAndStoreKeeper() {
+        int before = rolesAmount.get(RoleType.Driver);
+        updateRolesAmount(RoleType.Driver,before-1);
+        updateRolesAmount(RoleType.StoreKeeper,before-1);
+    }
 }

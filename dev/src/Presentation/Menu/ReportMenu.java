@@ -102,7 +102,7 @@ public class ReportMenu extends Menu{
             for (String s : ls) {
                 ils.add(Integer.parseInt(s));
             }
-            System.out.print(SS.getWeeklyReport(ils));
+            System.out.print(SS.getWeeklyReport(ils).getOutObject());
         } catch (Exception e) {
             System.out.print("bad input, try again.\n");
         }

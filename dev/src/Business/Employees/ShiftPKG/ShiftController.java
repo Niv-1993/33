@@ -415,6 +415,7 @@ public class ShiftController {
         removeEmpFromShift(s.getSID(),driver);
         Employee skToRemove = s.getStoreKeeperToRemove();
         removeEmpFromShift(s.getSID(),skToRemove);
+        s.decrementDriverAndStoreKeeper();
     }
 
     public void removeDriverFromShift(Employee driver, LocalDate date, ShiftType shiftType) {
