@@ -125,7 +125,10 @@ public class StoreController implements iStoreController {
         List<Integer> list=dal.getTypes();
         log.warn(list);
         for (Integer i: list){
-            _products.put(new ProductType(getID(),i),new InstanceController(getID(),i));
+            ProductType p_i=new ProductType(getID(),i);
+            InstanceController ic_i=new InstanceController(getID(),i);
+            _products.put(p_i,ic_i);
+            p_i.set_products(ic_i.getProducts());
         }
         log.warn(_products);
         for (ProductType p: Collections.list(_products.keys()))
@@ -366,7 +369,7 @@ public class StoreController implements iStoreController {
 
     @Override
     public List<Integer> getProductByType(int typeID) {
-        return  _products.get(checkIDProductTypeExist(typeID)).getProduts();
+        return  _products.get(checkIDProductTypeExist(typeID)).getProducts();
     }
 
     @Override

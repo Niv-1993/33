@@ -9,7 +9,6 @@ import Business.SupplierBusiness.facade.Tresponse;
 import Business.SupplierBusiness.facade.response;
 import org.apache.log4j.Logger;
 
-import java.sql.SQLOutput;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,7 +26,6 @@ public class StorageService implements iStorageService {
         stores=new ArrayList<>();
         curr=null;
         supplierService = sc;
-        loadAllStores();
     }
 
     public Tresponse<Integer> getProductTypeId(String name){
@@ -65,7 +63,7 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(ret);
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
@@ -81,7 +79,7 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(ret);
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
@@ -93,7 +91,7 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(ret);
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
     @Override
@@ -104,7 +102,7 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(ret);
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
@@ -116,7 +114,7 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(ret);
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
@@ -127,7 +125,7 @@ public class StorageService implements iStorageService {
             return new response();
         }
         catch (Exception e) {
-            return new response(e.toString());
+            return new response(e.getMessage());
         }
     }
 
@@ -138,7 +136,7 @@ public class StorageService implements iStorageService {
             return new response();
         }
         catch (Exception e) {
-            return new response(e.toString());
+            return new response(e.getMessage());
         }
     }
 
@@ -148,7 +146,7 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(new Categories(curr.getCategories()));
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
@@ -163,7 +161,7 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(new Category(ret.get_categoryID(),ret.get_superCategory()==null?0:ret.get_superCategory().get_categoryID(),ret.get_name(),cids,ret.get_productTypes()));
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
@@ -174,7 +172,7 @@ public class StorageService implements iStorageService {
             return new response();
         }
         catch (Exception e) {
-            return new response(e.toString());
+            return new response(e.getMessage());
         }
     }
 
@@ -185,7 +183,7 @@ public class StorageService implements iStorageService {
             return new response();
         }
         catch (Exception e) {
-            return new response(e.toString());
+            return new response(e.getMessage());
         }
     }
 
@@ -206,7 +204,7 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(new AllType(curr.getProductTypes()));
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
@@ -218,7 +216,7 @@ public class StorageService implements iStorageService {
                     ret.get_suppliers(),ret.get_shelfCurr(),ret.get_storageCurr(),ret.get_basePrice(),ret.get_salePrice()));
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
@@ -230,7 +228,7 @@ public class StorageService implements iStorageService {
         }
         catch (Exception e) {
             log.warn(e);
-            return new response(e.toString());
+            return new response(e.getMessage());
         }
     }
 
@@ -241,7 +239,7 @@ public class StorageService implements iStorageService {
             return new response();
         }
         catch (Exception e) {
-            return new response(e.toString());
+            return new response(e.getMessage());
         }
     }
 
@@ -252,7 +250,7 @@ public class StorageService implements iStorageService {
             return new response();
         }
         catch (Exception e) {
-            return new response(e.toString());
+            return new response(e.getMessage());
         }
     }
 
@@ -263,7 +261,7 @@ public class StorageService implements iStorageService {
             return new response();
         }
         catch (Exception e) {
-            return new response(e.toString());
+            return new response(e.getMessage());
         }
     }
 
@@ -273,7 +271,7 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(curr.getProductByType(typeID));
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
@@ -284,7 +282,7 @@ public class StorageService implements iStorageService {
             return new response();
         }
         catch (Exception e) {
-            return new response(e.toString());
+            return new response(e.getMessage());
         }
     }
 
@@ -296,7 +294,7 @@ public class StorageService implements iStorageService {
             return new response();
         }
         catch (Exception e) {
-            return new response(e.toString());
+            return new response(e.getMessage());
         }
     }
 
@@ -308,7 +306,7 @@ public class StorageService implements iStorageService {
             return new response();
         }
         catch (Exception e) {
-            return new response(e.toString());
+            return new response(e.getMessage());
         }
     }
 
@@ -321,7 +319,7 @@ public class StorageService implements iStorageService {
                     Pret.get_location().item2==Location.Storage,Pret.get_location().item1));
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
@@ -331,7 +329,7 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(curr.getShelvesAmount(typeID));
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
@@ -341,7 +339,7 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(curr.getStorageAmount(typeID));
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
@@ -356,7 +354,7 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(new SupplierDiscounts(typeID,ret));
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
@@ -373,7 +371,7 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(new SaleDiscounts(typeID,ret));
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
@@ -384,7 +382,7 @@ public class StorageService implements iStorageService {
             return new response();
         }
         catch (Exception e) {
-            return new response(e.toString());
+            return new response(e.getMessage());
         }
     }
 
@@ -398,7 +396,7 @@ public class StorageService implements iStorageService {
         }
         catch (Exception e) {
             log.warn(e);
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
 
     }
@@ -415,18 +413,20 @@ public class StorageService implements iStorageService {
             return new Tresponse<>(ret);
         }
         catch (Exception e) {
-            return new Tresponse<>(e.toString());
+            return new Tresponse<>(e.getMessage());
         }
     }
 
     @Override
     public response useStore(int ID, SupplierService ss) {
+        System.out.println("hhoooo");
         loadAllStores();
         boolean found = false;
         try {
             StoreController old=curr;
             for(StoreController s:stores){
                 if(s.getID()==ID) {
+                    System.out.println(s);
                     curr = s;
                     found = true;
                     supplierService = ss;
@@ -437,7 +437,7 @@ public class StorageService implements iStorageService {
             return new response();
         }
         catch (Exception e) {
-            return new response(e.toString());
+            return new response(e.getMessage());
         }
     }
 

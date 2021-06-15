@@ -2,6 +2,7 @@ package Presentation;
 
 import Business.StockBusiness.Fcade.StorageService;
 import Business.SupplierBusiness.facade.SupplierService;
+import Business.SupplierBusiness.facade.response;
 import Presentation.Menu.Menu;
 import org.apache.log4j.Logger;
 
@@ -369,16 +370,27 @@ public class StockCLI extends Menu {
         System.out.print("enter the product ID\n");
         in = read();
         try {
-            if (i == 1) System.out.print(SS.getProductsByType(Integer.parseInt(in)).getOutObject());
+            if (i == 1){
+                System.out.print("enter the Type ID\n");
+                System.out.print(SS.getProductsByType(Integer.parseInt(in)).getOutObject());}
             else if (i == 2) {
-                SS.removeProduct(Integer.parseInt(in));
-                System.out.print("product removed.\n");
+                System.out.print("enter the product ID\n");
+                response r= SS.removeProduct(Integer.parseInt(in));
+                if (!r.isError())
+                    System.out.print("product removed.\n");
+                else
+                    System.out.println(r.getError());
             }
             else if (i == 3) {
-                SS.reportDamage(Integer.parseInt(in));
-                System.out.print("damage reported.\n");
+                System.out.print("enter the product ID\n");
+                response r= SS.reportDamage(Integer.parseInt(in));
+                if (!r.isError())
+                    System.out.print("damage reported.\n");
+                else
+                    System.out.println(r.getError());
             }
             else if (i == 4) {
+                System.out.print("enter the Type ID\n");
                 System.out.println(SS.getProductInfo(Integer.parseInt(in)));
             } else System.out.print("bad input, try again.\n");
         } catch (Exception e) {

@@ -47,6 +47,7 @@ public class DALProductType extends DALObject {
         this._salePrice=salePrice;
         this._producer=producer;
     }
+
     // get products, suppliers and discounts from controller
 
     @Override
@@ -152,7 +153,6 @@ public class DALProductType extends DALObject {
 
     public List<Integer> get_products(){return _products;}
     public void set_products(List<Integer> products){
-
         for (Integer i: _products)
         {
             removeProduct(i);

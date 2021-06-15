@@ -8,6 +8,7 @@ import Utility.Util;
 import org.apache.log4j.Logger;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class InstanceController {
     private static int _MAX_PRODUCTS_ON_PROTUCTTYPE= StoreController.getMaxProdOnType();
@@ -57,7 +58,7 @@ public class InstanceController {
         Product p=_products.get(i);
         if (p==null)
         {
-            s=String.format("does not have a product with #? ID",i);
+            s=String.format("does not have a product with #%d ID",i);
             log.warn(s);
             throw new IllegalArgumentException(s);
         }
@@ -113,13 +114,15 @@ public class InstanceController {
         log.warn("done adding product to hash in instanceController.");
         return id;
     }
-    public List<Integer> getProduts(){
-        return Collections.list(_products.keys());
+    public List<Integer> getProducts(){
+        return Collections.list(_products.keys()).stream().filter(x->!_products.get(x).is_isDamage()).collect(Collectors.toList());
     }
 
     public Product reportDamage(int i) {
         log.debug(String.format("reportDamage(int i) Value:?",i));
         Product p=checkProduct(i);
+        if (p.is_isDamage())
+            throw new IllegalArgumentException("this product already reported");
         p.set_isDamage();
         return p;
     }

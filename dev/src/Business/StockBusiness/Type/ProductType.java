@@ -387,6 +387,7 @@ public class ProductType {
 
     public void reportDamage(Product i) {
         log.debug(String.format("reportDamage(int i) Value:?",i));
+        System.out.println(dal.get_products());
         if (!dal.productsContaions(i.get_id())){
             String s=String.format("the ID of product is not exist in system");
             log.warn(s);
@@ -399,6 +400,7 @@ public class ProductType {
             throw new IllegalArgumentException(s);
         }
         try {
+            System.out.println("hereeeeeee");
             if (i.get_location().item2.equals(Location.Storage)) {
                 dal.set_storageCurr(dal.get_storageCurr() - 1);
             } else
