@@ -309,6 +309,7 @@ public class SupplierController{
 
 
     public Tuple<Order , Boolean> addNeededOrder(int itemId, int neededAmount, int branchID) throws Exception {
+        System.out.println("got to second AddNeededOrder");
         Order order;
         Tuple<Order , Boolean> tuple;
         Item item = null;

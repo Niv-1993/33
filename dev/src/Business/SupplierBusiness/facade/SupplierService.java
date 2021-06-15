@@ -353,6 +353,7 @@ public class SupplierService implements ISupplierService {
 //    }
 
     public response addNeededOrder(int itemId ,int neededAmount, int branchID) {
+        System.out.println("Got to addNeededOrder");
         Business.SupplierBusiness.Order order;
         Tuple<Business.SupplierBusiness.Order , Boolean> tuple;
         try {
