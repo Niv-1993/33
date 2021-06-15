@@ -47,7 +47,7 @@ public class EmployeeMapper extends Mapper {
                 employees.put(emp.getEID(), emp);
             }
         } catch (Exception e) {
-            System.out.println("[get] ->" + e.getMessage());
+            //System.out.println("[get] ->" + e.getMessage());
         } finally {
             if (emp != null)
                 loadAllRoles(emp);
@@ -78,7 +78,7 @@ public class EmployeeMapper extends Mapper {
             }
             emp.setRole(roles);
         } catch (Exception e) {
-            System.out.println("[loadAllRoles] ->" + e.getMessage());
+            //System.out.println("[loadAllRoles] ->" + e.getMessage());
         }
     }
 
@@ -107,7 +107,7 @@ public class EmployeeMapper extends Mapper {
             res = pre.executeUpdate() > 0;
             res = res && pre2.executeUpdate() > 0;
         } catch (Exception e) {
-            System.out.println("[insert-emp] ->" + e.getMessage());
+            //System.out.println("[insert-emp] ->" + e.getMessage());
         } finally {
             if (res)
                 employees.put(emp.getEID(), emp);
@@ -126,7 +126,7 @@ public class EmployeeMapper extends Mapper {
                 branches.add(res.getInt("BID"));
             }
         } catch (Exception e) {
-            System.out.println("[getAllBranches-emp] ->" + e.getMessage());
+            //System.out.println("[getAllBranches-emp] ->" + e.getMessage());
         }
         return branches;
     }
@@ -195,7 +195,7 @@ public class EmployeeMapper extends Mapper {
                     }
                 }
             } catch (Exception e) {
-                System.out.println("[loadEmployeesInBranch-emp] ->" + e.getMessage());
+                //System.out.println("[loadEmployeesInBranch-emp] ->" + e.getMessage());
             }
             needToUpdateEmps = false;
             return new ArrayList<>(employees.values());
@@ -208,7 +208,7 @@ public class EmployeeMapper extends Mapper {
              PreparedStatement pre = con.prepareStatement(addRole)) {
             pre.executeUpdate();
         } catch (Exception e) {
-            System.out.println("[addRole]-> " + e.getMessage());
+            //System.out.println("[addRole]-> " + e.getMessage());
         }
     }
 
@@ -235,7 +235,7 @@ public class EmployeeMapper extends Mapper {
             deletes.executeBatch();
 
         } catch (Exception e) {
-            System.out.println("[getManagerMessages-emp] ->" + e.getMessage());
+            //System.out.println("[getManagerMessages-emp] ->" + e.getMessage());
         }
         return l;
     }
