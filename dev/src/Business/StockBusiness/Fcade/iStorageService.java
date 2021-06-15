@@ -5,8 +5,10 @@ import Business.StockBusiness.Fcade.outObjects.*;
 import Business.SupplierBusiness.facade.SupplierService;
 import Business.SupplierBusiness.facade.Tresponse;
 import Business.SupplierBusiness.facade.response;
+import Utility.Tuple;
 
 import java.util.Date;
+import java.util.Dictionary;
 import java.util.List;
 
 public interface iStorageService {
@@ -47,5 +49,5 @@ public interface iStorageService {
     public Tresponse<List<Integer>> getStores();
     public response useStore(int ID, SupplierService ss);
 
-    void acceptTrans(TransportationServiceDTO acceptT);
+    public  List<Tuple<Integer,Dictionary<Integer,Integer>>>  acceptTrans(TransportationServiceDTO acceptT);
 }

@@ -7,8 +7,10 @@ import Business.StockBusiness.instance.Location;
 import Business.SupplierBusiness.facade.SupplierService;
 import Business.SupplierBusiness.facade.Tresponse;
 import Business.SupplierBusiness.facade.response;
+import Utility.Tuple;
 import org.apache.log4j.Logger;
 
+import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -434,21 +436,40 @@ public class StorageService implements iStorageService {
     }
 
     @Override
-    public void acceptTrans(TransportationServiceDTO acceptT) {
+    public List<Tuple<Integer,Dictionary<Integer,Integer>>> acceptTrans(TransportationServiceDTO acceptT) {
+        List<Tuple<Integer,Dictionary<Integer,Integer>>> output= new ArrayList<>();
         List<Business.SupplierBusiness.facade.outObjects.Order> orders=acceptT.getOrders().
                 values().stream().filter(x->x.getBranchId()==getCurrID()).collect(Collectors.toList());
         Date date=new Date();
         date.setTime(date.getTime()+14);
         for (Business.SupplierBusiness.facade.outObjects.Order o: orders){
             if (o.getBranchId()==curr.getID() && !o.getIsArrived()) {
-                for (Integer i : Collections.list(o.getItems().keys())) {
-                    for (int j = 0; j < o.getItems().size(); j++) {
-                        addProduct(i, date);
+                for (Integer typeID : Collections.list(o.getItems().keys())) {
+                    int amount=0;
+                    Dictionary<Integer,Integer> failOrder=new Hashtable<>();
+                    output.add(new Tuple<>(o.getOrderId(),failOrder));
+                    for (Integer item: o.getItems().values().stream().toList()){
+                        try {
+                            Date today=new Date();
+                            Date time=Date.from(supplierService.getExpirationDate(o.getSupplierBN(), typeID).atStartOfDay(ZoneId.systemDefault()).toInstant());
+                            if (time.before(today))
+                                amount++;
+                            else
+                                addProduct(typeID, time);
+                        }
+                        catch (Exception e){
+                            System.out.println("fail to add a product from order");
+                        }
+                    }
+                    if (amount>0)
+                    {
+                        failOrder.put(typeID,amount);
                     }
                 }
                 supplierService.updateArrived(o.getSupplierBN(),o.getOrderId());
             }
         }
+        return output;
     }
 //    public static void init(StorageService ss) throws ParseException {
 //        ss.addStore();

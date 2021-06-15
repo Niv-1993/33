@@ -5,12 +5,12 @@ import Business.ApplicationFacade.outObjects.TransportationServiceDTO;
 import Business.SupplierBusiness.facade.outObjects.Order;
 import Presentation.Controllers;
 import Presentation.StockCLI;
+import Utility.Tuple;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class StoreKeeperMenu extends Menu{
     public StoreKeeperMenu(Controllers r, Scanner input) {
@@ -77,7 +77,20 @@ public class StoreKeeperMenu extends Menu{
                         System.out.println(t.toString());
                     TransportationServiceDTO acceptT = getAcceptID(listOfTran);
                     if(acceptT == null) break; //go back to main menu
-                        r.getSt().acceptTrans(acceptT);
+                        List<Tuple<Integer,Dictionary<Integer,Integer>>>  failOrders= r.getSt().acceptTrans(acceptT).stream().filter(x->x.item2.size()>0).collect(Collectors.toList());
+                        if (failOrders.size()>0){
+                            System.out.println(String.format("Transportation %d contains %d fail ordres for #%d branch:",acceptT.getId(),failOrders.size(), r.getCurrBID()));
+                            for (Tuple<Integer,Dictionary<Integer,Integer>> fo:failOrders){
+                                System.out.println(String.format("order #%d, contains %d fail ProductTypes:",fo.item1,fo.item2.size()));
+                                for (Integer i: Collections.list(fo.item2.keys())) {
+                                    System.out.println(String.format("ProductType #%d contains %d items that report damage", i, fo.item2.get(i)));
+                                    System.out.println("Do you want to make new order of this productType for this Branch? 1 for yes/ 0 for no");
+                                    option = read();
+                                    if (option.equals("1"))
+                                        r.getSc().addNeededOrder(1, 1, r.getCurrBID());
+                                }
+                            }
+                        }
                         break;
                 case "8":
                     cancelDelivery();
