@@ -220,27 +220,27 @@ public class Controllers {
         sc.addQuantityDocument(0, 2, 2, 2);
         sc.addItem( 1, "stake", 70.5, 65, 2,
                 "Dabah", 1, LocalDate.now().plusMonths(1), 1.5);
-        sc.addQuantityDocument(0, 3, 2, 3);
+        sc.addQuantityDocument(1, 3, 2, 3);
         st.useStore(2, sc);
         sc.addItem( 2, "yogurt", 9.99, 8.99, 2,
                 "Tara", 2, LocalDate.now().plusMonths(1), 0.1);
-        sc.addQuantityDocument(0, 4, 3, 1);
+        sc.addQuantityDocument(2, 4, 3, 1);
         sc.addItem( 3, "cheese cake", 35, 34, 2,
                 "Cheese Cake Factory", 2, LocalDate.now().plusDays(14), 1);
-        sc.addQuantityDocument(0, 5, 3 , 2);
+        sc.addQuantityDocument(3, 5, 3 , 2);
         sc.addItem( 0, "gum", 1.99, 1.5, 2,
                 "Hubba", 3, LocalDate.now().plusYears(1000), 0.01);
         sc.addQuantityDocument(0, 6, 3 , 3);
         st.useStore(3, sc);
         sc.addItem( 1, "lollipop", 0.5, 0.35, 2,
                 "Hubba", 3, LocalDate.now().plusYears(1000), 0.01);
-        sc.addQuantityDocument(0, 7, 2, 1);
+        sc.addQuantityDocument(1, 7, 2, 1);
         sc.addItem( 2, "windshield wiper", 15.99, 14, 2,
                 "Sano", 3, LocalDate.now().plusYears(1), 0.5);
-        sc.addQuantityDocument(0, 8, 2, 2);
+        sc.addQuantityDocument(2, 8, 2, 2);
         sc.addItem( 3, "broom", 19.99, 17, 2,
                 "Sano", 3, LocalDate.now().plusYears(50), 1);
-        sc.addQuantityDocument(0, 9, 3, 3);
+        sc.addQuantityDocument(3, 9, 3, 3);
         st.useStore(2, sc);
         sc.addItem( 0, "soda", 10.99, 9, 2,
                 "Cola-Cola", 3, LocalDate.now().plusMonths(6), 3);
@@ -250,24 +250,24 @@ public class Controllers {
         sc.addQuantityDocument(0, 11, 2, 2);
         sc.addItem( 1, "fanta", 10.99, 10, 2,
                 "Cola-Cola", 3, LocalDate.now().plusMonths(3), 1.5);
-        sc.addQuantityDocument(0, 12, 2, 3);
+        sc.addQuantityDocument(1, 12, 2, 3);
         st.useStore(3, sc);
         sc.addItem( 1, "grape juice", 10.99, 9.99, 2,
                 "PriGat", 3, LocalDate.now().plusMonths(9), 1);
-        sc.addQuantityDocument(0, 13, 3, 1);
-        sc.addItem( 2, "orange juice", 10.99, 9.99, 2,
+        sc.addQuantityDocument(1, 13, 3, 1);
+        sc.addItem( 1, "orange juice", 10.99, 9.99, 2,
                 "PriGat", 3, LocalDate.now().plusMonths(9), 1);
-        sc.addQuantityDocument(0, 14, 3, 1);
+        sc.addQuantityDocument(1, 14, 3, 1);
         sc.addItem( 2, "water", 5.99, 4.5, 2,
                 "Neviot", 3, LocalDate.now().plusYears(3), 2);
-        sc.addQuantityDocument(0,15, 3, 2);
+        sc.addQuantityDocument(2,15, 3, 2);
         st.useStore(1, sc);
         sc.addItem( 3, "apple", 1.99, 1.5, 2,
                 "Sami", 3, LocalDate.now().plusMonths(1), 0.05);
-        sc.addQuantityDocument(0, 16, 3, 1);
+        sc.addQuantityDocument(3, 16, 3, 1);
         sc.addItem( 3, "orange", 1.99, 1.5, 2,
                 "Sami", 3, LocalDate.now().plusMonths(1), 0.05);
-        sc.addQuantityDocument(0, 17, 2, 3);
+        sc.addQuantityDocument(3, 17, 2, 3);
         sc.addItem( 0, "tomato", 0.99, 0.5, 2,
                 "Orna", 3, LocalDate.now().plusMonths(1), 0.05);
         sc.addQuantityDocument(0, 18, 2, 2);
@@ -304,7 +304,6 @@ public class Controllers {
         secondHash.put(12, 4);
         thirdHash.put(4, 1);
         thirdHash.put(8, 2);
-        thirdHash.put(14, 3);
         thirdHash.put(15, 1);
         fourthHash.put(5, 2);
         fourthHash.put(9, 4);
