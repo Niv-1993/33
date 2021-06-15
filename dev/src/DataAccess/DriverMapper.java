@@ -37,7 +37,7 @@ public class DriverMapper extends Mapper{
             pstmt.setInt(2,driver.getLicense());
             res = pstmt.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            //System.out.println(e.getMessage());
         }
         if(res >0)
             drivers.put(driver.getEID(),driver);
@@ -78,7 +78,7 @@ public class DriverMapper extends Mapper{
                 l.add(res.getInt("EID"));
             }
         } catch (Exception e) {
-            System.out.println("[allPersonnelManager-emp] ->" + e.getMessage());
+            //System.out.println("[allPersonnelManager-emp] ->" + e.getMessage());
         }
         return l;
     }

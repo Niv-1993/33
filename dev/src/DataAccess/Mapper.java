@@ -90,7 +90,7 @@ public class Mapper {
             s.executeBatch();
 
         } catch (Exception e) {
-            System.out.println("[createTables] ->"+e.getMessage());
+            //System.out.println("[createTables] ->"+e.getMessage());
         }
         SMapper.getMap(dbname);
     }

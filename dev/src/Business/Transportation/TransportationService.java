@@ -24,11 +24,13 @@ public class TransportationService {
 
     private final DataControl dataControl;
     private final DriverRoleController drivers;
+    private final TruckService tc;
 
     public TransportationService(iManagerRoleController mc) {
 
         dataControl=new DataControl();
         drivers = new DriverRoleController(mc);
+        tc=new TruckService();
     }
 
     private long getId() {
@@ -247,7 +249,7 @@ public class TransportationService {
             }
         }
         catch(Exception e){
-            System.out.println("Could not remove order number: "+orderId+" from transportation number: "+transID+" .Error: "+e.getMessage());
+            //System.out.println("Could not remove order number: "+orderId+" from transportation number: "+transID+" .Error: "+e.getMessage());
         }
 
     }

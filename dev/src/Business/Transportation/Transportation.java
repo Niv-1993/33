@@ -158,10 +158,6 @@ public class Transportation {
         orders.put(order.getOrderId(),order);
     }
 
-    public boolean containOrder(int orderId) {
-        return orders.containsKey(orderId);
-    }
-
     public void replaceOrder(Order order) {
         orders.replace(order.getOrderId(),order);
     }
