@@ -10,6 +10,7 @@ import Business.Transportation.TransportationService;
 import Presentation.TransportationController;
 import Utility.Tuple;
 
+import java.rmi.server.ExportException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -646,4 +647,13 @@ public class SupplierService implements ISupplierService {
     public void newData() {
         supplierController = new SupplierController();
     }
+
+    public LocalDate getExpirationDate(int supplierBN , int itemId) throws ExportException {
+        try{
+            return supplierController.getExpirationDate(supplierBN , itemId);
+        }catch (Exception e){
+            throw new ExportException(e.getMessage());
+        }
+    }
+
 }

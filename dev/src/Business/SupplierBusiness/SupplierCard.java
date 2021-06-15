@@ -6,6 +6,7 @@ import DataAccess.SMapper;
 import Utility.Tuple;
 import org.apache.log4j.Logger;
 
+import java.rmi.server.ExportException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -631,5 +632,17 @@ public class SupplierCard {
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
+    }
+
+    public LocalDate getExpirationDate(int itemId) throws ExportException {
+        try {
+            for (Item item : items) {
+                if (item.getItemId() == itemId)
+                    return item.getExpirationDate();
+            }
+        } catch (Exception e) {
+            throw new ExportException(e.getMessage());
+        }
+        throw new ExportException("there is no such itemId to this supplier");
     }
 }
