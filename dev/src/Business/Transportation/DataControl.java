@@ -52,7 +52,7 @@ public class DataControl {
         return t;
     }
 
-    public void insertAlerts (int bid, int eid, LocalDate date, String message){
+    public void insertAlerts (int bid, int eid, LocalDate date, String message) throws Exception {
         transportationMapper.insertAlerts(bid,eid,date,message);
     }
     public void addTransportation( Transportation tra) throws Exception {

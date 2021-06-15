@@ -80,14 +80,14 @@ public class ShiftMenu extends Menu {
         Shift s = r.getMc().getShift(SID);
         List<Integer> optionalDrivers = r.getTc().checkAvailableDriverSubs(driverID,s.getShiftType(),s.getDate(),s.getOptionalDrivers());
         if(optionalDrivers.isEmpty()){
-            System.out.println("None available drivers to change at this point.");
+            System.out.println("None available drivers to change at this point. -> [chosen sub driver is unavailable]");
             return;
         }
         System.out.print("Optional Drivers: ");
         optionalDrivers.forEach(id -> {
             System.out.print(id+" ");
         });
-        System.out.println("Choose an optional driver");
+        System.out.println("\nChoose an optional driver");
         int  newDriver = enterInt(read());
         if(!optionalDrivers.contains(newDriver)){
             System.out.println("invalid chosen id");

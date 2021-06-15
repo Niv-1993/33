@@ -466,7 +466,7 @@ public class ManagerRoleController implements iManagerRoleController {
     }
 
     public void addDriverToShift(int newDriverID, LocalDate date, String shiftType) {
-        sc.removeDriverFromShift(employeeMapper.get(newDriverID),date,ShiftType.valueOf(shiftType));
+        sc.addDriverToShift(employeeMapper.get(newDriverID),date,ShiftType.valueOf(shiftType));
     }
 
 

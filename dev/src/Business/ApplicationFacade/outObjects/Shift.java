@@ -75,10 +75,12 @@ public class Shift {
     private String printOptionals() {
         StringBuilder opt = new StringBuilder();
         for (Map.Entry<String, List<Employee>> m : optionals.entrySet()) {
-            if (rolesAmount.containsKey(m.getKey()) && rolesAmount.get(m.getKey()) > 0) {
+            if (!m.getKey().equals("Driver") && rolesAmount.containsKey(m.getKey()) && rolesAmount.get(m.getKey()) > 0) {
                 opt.append("\t").append(m.getKey()).append(": ");
-                for (Employee emp : m.getValue())
-                    opt.append("[").append(emp.EID).append(",").append(emp.name).append("] ");
+                for (Employee emp : m.getValue()) {
+                    if(!employees.containsKey(emp))
+                        opt.append("[").append(emp.EID).append(",").append(emp.name).append("] ");
+                }
                 opt.append("\n");
             }
         }
@@ -133,7 +135,8 @@ public class Shift {
         StringBuilder opt = new StringBuilder();
         List<Employee> optionalDrivers = optionals.get("Driver");
         for (Employee d : optionalDrivers){
-            opt.append("[").append(d.EID).append(",").append(d.name).append("]");
+            if(!employees.containsKey(d))
+                opt.append("[").append(d.EID).append(",").append(d.name).append("]");
         }
         return opt.toString();
     }

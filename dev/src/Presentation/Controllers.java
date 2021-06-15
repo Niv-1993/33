@@ -90,10 +90,10 @@ public class Controllers {
     private void initializeTransportationModule() {
 
 
-        tc.addTruck(1,3500,"Subaro",3000,3500);
-        tc.addTruck(2,4500,"Volvo",4000,5000);
-        tc.addTruck(3,11000,"Mercedese",7000,12000);
-        tc.addTruck(4,13500,"Dodge",10000,15000);
+        //tc.addTruck(1,3500,"Subaro",3000,3500);
+        //tc.addTruck(2,4500,"Volvo",4000,5000);
+        //tc.addTruck(3,11000,"Mercedese",7000,12000);
+        //tc.addTruck(4,13500,"Dodge",10000,15000);
 
 
         int[] bankDetails = {123, 456, 789};

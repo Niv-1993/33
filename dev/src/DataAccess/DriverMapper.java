@@ -69,7 +69,7 @@ public class DriverMapper extends Mapper{
     }
 
     public List<Integer> allPersonnelManager(int bid) {
-        String query = String.format("SELECT EID FROM Employees as E JOIN RolesAndEmployees as RAE ON E.EID = RAE.EID WHERE RAE.Role = %s AND E.BID= %d","PersonnelManager",bid);
+        String query = String.format("SELECT E.EID FROM Employees as E JOIN RolesAndEmployees as RAE ON E.EID = RAE.EID WHERE RAE.Role = '%s' AND E.BID= %d","PersonnelManager",bid);
         List<Integer> l = new ArrayList<>();
         try (Connection con = connect();
              PreparedStatement pre = con.prepareStatement(query)) {

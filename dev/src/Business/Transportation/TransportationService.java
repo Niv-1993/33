@@ -14,6 +14,7 @@ import Business.Type.Area;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -78,6 +79,9 @@ public class TransportationService {
                 dataControl.updateOrder(tran.getId(),weight,order);
                 return tran.getId();
             }
+            else if(weight!=0){
+                return -1;
+            }
             else if (tran.canAdd(order)) {
                     dataControl.updateTransWeight(tran.getId(), tran.getWeight()+order.getTotalWeight(), order);
                 return tran.getId();
@@ -88,7 +92,9 @@ public class TransportationService {
         LocalTime morning = LocalTime.parse("09:00");
         List<Truck> trucks = dataControl.getTrucksByWeight(order.getTotalWeight());
         if (trucks.isEmpty()) {
-            announceManagers(order.getBranchID(),days,"no compatible truck was found for new Order: " +order.getOrderId() + "\n at Date: " + LocalDate.now().toString() + ",time: " + LocalTime.now().toString());
+            announceManagers(order.getBranchID(),days
+                    ,"no compatible truck was found for new Order: \nOrder id: " +order.getOrderId() + "\tDate: "
+                            + LocalDate.now().toString() + "\tTime: " + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
             throw new IllegalArgumentException("No truck compatible for this order's weight. ");
         }
         Driver chosenDriver = null;
@@ -165,7 +171,7 @@ public class TransportationService {
             return new ResponseData<>(e.getMessage());
         }
     }
-    private void announceManagers(int branchId,LocalDate days,String msg){
+    private void announceManagers(int branchId,LocalDate days,String msg) throws Exception {
         List<Integer> MIDs = drivers.allPersonnelManager(branchId);
         for (int manager:MIDs){
             dataControl.insertAlerts(branchId,manager,days,msg);
@@ -202,11 +208,12 @@ public class TransportationService {
 
     public ResponseData<List<Integer>> checkAvailableDriverSubs(int driverID, String time, LocalDate date,List<Integer> optionalDrivers) throws Exception{
         try {
+            List<Integer> used=dataControl.getTransportations(date,time.equals("Morning")?LocalTime.of(9,0):LocalTime.of(15,0)).stream().map(t->t.getDriver().getEID()).collect(Collectors.toList());
             Transportation t = dataControl.selectTransWithDriverShift(driverID, time, date);
             List<Integer> ret = new LinkedList<>();
             Driver d = drivers.getDriver(driverID);
             for (int dId: optionalDrivers){
-                if(drivers.getDriver(dId).getLicense() >= d.getLicense()){
+                if(drivers.getDriver(dId).getLicense() >= d.getLicense()& !used.contains(dId)){
                     ret.add(dId);
                 }
             }
@@ -222,7 +229,7 @@ public class TransportationService {
             dataControl.replaceDrivers(t.getId(),newDriverID);
             Driver d = drivers.getDriver(newDriverID);
             t.setDriver(d);
-            drivers.changeDriver(t.getTransBranches(),oldDriverID,newDriverID,date,LocalTime.parse(time));
+            drivers.changeDriver(t.getTransBranches(),oldDriverID,newDriverID,date,t.getLeavingTime());
             return new Response();
         }catch (Exception ex) {
             return new Response(ex.getMessage());

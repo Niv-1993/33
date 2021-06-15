@@ -105,14 +105,12 @@ public class TransportationMapper extends Mapper {
      * @throws Exception
      */
     private Long selectTransportationIdByDriverAndDate(int driverID, LocalDate date, String time) throws Exception {
-        String tim = " AND LeavingTime < 14:00";
-        if (time == "Night")
-            tim = " AND LeavingTime >= 14:00";
-        String sql = "SELECT * FROM Transportations WHERE driverID=" + driverID + " AND Date=" + date.toString() + tim;
+        String sql = String.format("SELECT ID FROM Transportations WHERE driverID=%d AND Date='%s' AND LeavingTime %s '14:00'",
+                driverID,date.toString(),time.equals("Morning")? "<" : ">=");
         try (Connection conn = connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
+             PreparedStatement pre = conn.prepareStatement(sql)) {
             // loop through the result set
+            ResultSet rs = pre.executeQuery();
             while (rs.next()) {
                 return rs.getLong("ID");
             }
@@ -310,7 +308,7 @@ public class TransportationMapper extends Mapper {
     public void updateTransDriver(long id, int driverId) throws IOException {
         String sql = "UPDATE Transportations " +
                 "SET driverID=" + driverId
-                + "Where ID=" + id;
+                + " Where ID=" + id;
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
@@ -380,11 +378,12 @@ public class TransportationMapper extends Mapper {
     /**
      * Inserts new message to human resources managers.
      */
-    public void insertAlerts(int bid, int eid, LocalDate date, String message) {
+    public void insertAlerts(int bid, int eid, LocalDate date, String message) throws Exception {
         String sql = "INSERT INTO ManagerAlerts (MID,BID, EID, Date, Message) VALUES(?,?,?,?,?)";
+        int mid = getCurrMessageId()+1;
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, getCurrMessageId());
+            pstmt.setInt(1, mid);
             pstmt.setInt(2, bid);
             pstmt.setInt(3, eid);
             pstmt.setString(4, date.toString());
