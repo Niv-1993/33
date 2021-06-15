@@ -22,14 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="add area to insert db">
+    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="add print for debug db">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/outObjects/TransportationServiceDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/ApplicationFacade/outObjects/TransportationServiceDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/Assignment2 .drawio" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/DataAccess/TransportationMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Presentation/Menu/TransportationMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/Menu/TransportationMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logger.log" beforeDir="false" afterPath="$PROJECT_DIR$/logger.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dev/src/Presentation/Menu/StoreKeeperMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Presentation/Menu/StoreKeeperMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logger.log" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +65,9 @@
     <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1s86hbzt27FEyGDxuxgDFSWzabG" />
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -113,17 +112,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -160,6 +148,7 @@
       <workItem from="1623611501520" duration="2567000" />
       <workItem from="1623659301915" duration="1578000" />
       <workItem from="1623698896080" duration="5504000" />
+      <workItem from="1623751680831" duration="1347000" />
     </task>
     <task id="LOCAL-00001" summary="add mappers - data layer">
       <created>1620304052353</created>
@@ -363,7 +352,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dev/src/DataAccess/ShiftMapper.java</url>
           <line>188</line>
-          <properties class="DataAccess.ShiftMapper" method="deleteEmpFromShift">
+          <properties class="DataAccess.ShiftMapper">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="18" />
