@@ -354,21 +354,37 @@ public class SupplierService implements ISupplierService {
 //        return new Tresponse<>(report);
 //    }
 
+    private Business.SupplierBusiness.Item getItem(int supplierBN , int itemId) throws Exception {
+        try{
+            return supplierController.getItem(supplierBN , itemId);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
     public response addNeededOrder(int itemId ,int neededAmount, int branchID) {
         Business.SupplierBusiness.Order order;
         Tuple<Business.SupplierBusiness.Order , Boolean> tuple;
         try {
-            tuple = supplierController.addNeededOrder(itemId , neededAmount, branchID);
+            int BN = supplierController.findSupplierByItemId(itemId);
+            Business.SupplierBusiness.Item item = getItem(BN, itemId);
+            if(item.getExpirationDate().isBefore(LocalDate.now())){
+                int minimalAmount = item.getQuantityDocument().getMinimalAmount();
+                int discount = item.getQuantityDocument().getDiscount();
+                item = supplierController.addItem(BN , item.getName() , item.getPrice() , LocalDate.now().plusDays(14) , item.getWeight());
+                supplierController.addQuantityDocument(BN , item.getItemId() , minimalAmount , discount);
+            }
+            tuple = supplierController.addNeededOrder(item.getItemId() , neededAmount, branchID);
             order = tuple.item1;
             if(tuple.item2){
                 ZoneId zone = ZoneId.systemDefault();
                 Enumeration<Business.SupplierBusiness.Item> items = order.showAllItemsOfOrder().keys();
-                Business.SupplierBusiness.Item item = null;
+                Business.SupplierBusiness.Item newItem = null;
                 while (items.hasMoreElements()) {
-                    item = items.nextElement();
-                    if (item.getItemId() == itemId) {
+                    newItem = items.nextElement();
+                    if (newItem.getItemId() == itemId) {
                         for(int i = 0 ; i < order.showAllItemsOfOrder().size() ; i++) {
-                            stockService.addProduct(itemId, Date.from(item.getExpirationDate().atStartOfDay(zone).toInstant()));
+                            stockService.addProduct(itemId, Date.from(newItem.getExpirationDate().atStartOfDay(zone).toInstant()));
                         }
                     }
                 }
@@ -378,6 +394,7 @@ public class SupplierService implements ISupplierService {
                 transportationController.addOrderToTransportation(order, 0);
             }
         }catch (Exception e){
+            System.out.println(e.getMessage());
             return new Tresponse<>("ERROR: " + e.getMessage());
         }
         return new Tresponse<>(new Order(order));

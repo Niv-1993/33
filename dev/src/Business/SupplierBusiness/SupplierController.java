@@ -216,6 +216,22 @@ public class SupplierController{
         return list;
     }
 
+    public int findSupplierByItemId(int itemId) throws Exception {
+        try {
+            List<SupplierCard> suppliers = showAllSuppliers();
+            for(SupplierCard supplierCard : suppliers){
+                List<Item> items = supplierCard.getSupplierItems();
+                for(Item item : items){
+                    if(item.getItemId() == itemId)
+                        return supplierCard.getSupplierBN();
+                }
+            }
+        }catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+        throw new Exception("there is no supplier that has this itemId");
+    }
+
     public List<Item> showAllItemsOfSupplier(int supplierBN) throws Exception {
         SupplierCard supplierCard = suppliers.get(supplierBN);
         if(supplierCard == null) throw new Exception("supplier BN does not exist.");
@@ -307,6 +323,16 @@ public class SupplierController{
             throw new Exception(e.getMessage());
         }
         return tuple;
+    }
+
+    public Item getItem(int supplierBN , int itemId) throws Exception {
+        try {
+            SupplierCard supplierCard = suppliers.get(supplierBN);
+            if(supplierCard == null) throw new Exception("supplier BN does not exist.");
+            return supplierCard.getItem(itemId);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
 

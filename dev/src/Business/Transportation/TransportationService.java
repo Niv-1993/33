@@ -79,10 +79,13 @@ public class TransportationService {
                 dataControl.updateOrder(tran.getId(),weight,order);
                 return tran.getId();
             }
-            else if (tran.canAdd(order)) {
+            else{
+                boolean shift=(tran.getLeavingTime().isBefore(LocalTime.of(14,0)));
+                boolean shiftNow=(LocalTime.now().isBefore(LocalTime.of(14,0)));
+                if (tran.canAdd(order)&&((tran.getDate().isAfter(LocalDate.now())||(shift&&!shiftNow)))) {
                     dataControl.updateTransWeight(tran.getId(), tran.getWeight()+order.getTotalWeight(), order);
                 return tran.getId();
-            }
+            }}
         }
         if(weight!=0){
             return -1;

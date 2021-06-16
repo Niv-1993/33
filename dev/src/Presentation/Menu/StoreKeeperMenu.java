@@ -87,7 +87,7 @@ public class StoreKeeperMenu extends Menu{
                                     System.out.println("Do you want to make new order of this productType for this Branch? 1 for yes/ 0 for no");
                                     option = read();
                                     if (option.equals("1"))
-                                        r.getSc().addNeededOrder(1, 1, r.getCurrBID());
+                                        r.getSc().addNeededOrder(i, fo.item2.get(i), r.getCurrBID());
                                 }
                             }
                         }

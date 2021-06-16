@@ -324,6 +324,14 @@ public class SupplierCard {
         return new Tuple<>(order , supplierAgreement.getShipToUs());
     }
 
+    public Item getItem(int itemId) throws Exception {
+        for(Item item : items){
+            if(item.getItemId() == itemId)
+                return item;
+        }
+        throw new Exception("there is no such itemId for this Supplier");
+    }
+
     public Tuple<Order , Boolean> addNeededOrder(int orderID, int branchID, Item item, int amount) throws Exception {
         if (item == null || isItemExist(item.getItemId()) == null) return null;
         neededOrder order;
