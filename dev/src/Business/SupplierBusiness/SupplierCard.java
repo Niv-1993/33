@@ -371,8 +371,8 @@ public class SupplierCard {
         Item toAdd = isItemExist(itemId);
         if(toAdd == null) throw new Exception("the supplier does not have this item");
         for (Order o : orders) {
-            if(o.getOrderType() == 1) throw new Exception("you can add more items to an existing order only for regular order");
             if (o.getOrderId() == orderId) {
+                if(o.getOrderType() == 1) throw new Exception("you can add more items to an existing order only for regular order");
                 regularOrder temp = (regularOrder) o;
                 temp.addItemToOrder(toAdd , amount);
                 return new Tuple<>(o, supplierAgreement.getShipToUs());
