@@ -105,7 +105,7 @@ public class TransportationService {
         LocalTime leavingTime= null;
         boolean found = false;
         Truck  chooseTruck=null;
-        for (LocalDate i = LocalDate.now(); i.compareTo(days) <= 0 & !found; i = LocalDate.now().plusDays(1)) {
+        for (LocalDate i = LocalDate.now(); i.compareTo(days) <= 0 | !found; i = i.plusDays(1)) {
             List<Driver> driverList = new LinkedList<>();
             if (drivers.checkAvailableStoreKeeperAndShifts(bran.getId(), i, morning) & drivers.checkAvailableDriver(bran.getId(), i, morning)) {
                 if(i.compareTo(LocalDate.now())!=0 | !(LocalTime.now().compareTo(LocalTime.of(14,0))>=0)) {
