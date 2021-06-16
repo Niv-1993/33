@@ -82,7 +82,7 @@ public class TransportationService {
             else{
                 boolean shift=(tran.getLeavingTime().isBefore(LocalTime.of(14,0)));
                 boolean shiftNow=(LocalTime.now().isBefore(LocalTime.of(14,0)));
-                if (tran.canAdd(order)&&((tran.getDate().isAfter(LocalDate.now())||(shift&&!shiftNow)))) {
+                if (tran.canAdd(order)&&((tran.getDate().isAfter(LocalDate.now())||!(!shift&&shiftNow)))) {
                     dataControl.updateTransWeight(tran.getId(), tran.getWeight()+order.getTotalWeight(), order);
                 return tran.getId();
             }}

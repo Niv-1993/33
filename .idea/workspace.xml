@@ -22,9 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="fix exceptions">
+    <list default="true" id="8cf500fe-2cff-4b65-80dc-f4703919b3be" name="Default Changelist" comment="COMPLETE">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dev/src/Business/SupplierBusiness/facade/SupplierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/SupplierBusiness/facade/SupplierService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dev/src/Business/Transportation/TransportationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -315,7 +314,13 @@
       <option name="presentableId" value="LOCAL‎00026" />
       <updated>1623788192949</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL‎00027" summary="COMPLETE">
+      <created>1623833578504</created>
+      <option name="number" value="LOCAL‎00027" />
+      <option name="presentableId" value="LOCAL‎00027" />
+      <updated>1623833578504</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,7 +359,8 @@
     <MESSAGE value="edit add new transportation" />
     <MESSAGE value="finish add order to trans" />
     <MESSAGE value="EDIT LONG TRANS OUT TIME" />
-    <option name="LAST_COMMIT_MESSAGE" value="EDIT LONG TRANS OUT TIME" />
+    <MESSAGE value="COMPLETE" />
+    <option name="LAST_COMMIT_MESSAGE" value="COMPLETE" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
