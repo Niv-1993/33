@@ -2,11 +2,9 @@
 package Business.SupplierBusiness.facade;
 
 import Business.StockBusiness.Fcade.StorageService;
-import Business.StockBusiness.Fcade.outObjects.NeededReport;
 import Business.SupplierBusiness.ISupplierService;
 import Business.SupplierBusiness.SupplierController;
 import Business.SupplierBusiness.facade.outObjects.*;
-import Business.Transportation.TransportationService;
 import Presentation.TransportationController;
 import Utility.Tuple;
 
@@ -14,7 +12,10 @@ import java.rmi.server.ExportException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.*;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.List;
 
 public class SupplierService implements ISupplierService {
     private SupplierController supplierController;
@@ -391,7 +392,8 @@ public class SupplierService implements ISupplierService {
                 order.updateArrived();
             }
             else {
-                transportationController.addOrderToTransportation(order, 0);
+                Long tranId = transportationController.addOrderToTransportation(order, 0);
+                order.updateTransportation(tranId.intValue());
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
